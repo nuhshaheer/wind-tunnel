@@ -1,0 +1,68 @@
+# Wind Tunnel .gitignore
+# Covers what this project uses or plans to use: Python analysis, microcontroller firmware
+# (Arduino / PlatformIO / CMake), CAD exports, lab photos and videos.
+# Data policy (what is committed vs. stored externally): see data/README.md and DECISIONS.md.
+
+# --- Secrets and private configuration (never commit) ---
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets.*
+*credentials*.json
+
+# --- Claude Code personal files (shared skills and settings.json ARE committed) ---
+.claude/settings.local.json
+.claude/*.lock
+CLAUDE.local.md
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+*.egg-info/
+
+# --- Microcontroller firmware build output ---
+# (No blanket `build/` rule: in this project "build" may mean the physical tunnel build.)
+.pio/
+cmake-build-*/
+*.elf
+*.hex
+*.map
+*.uf2
+
+# --- Videos: too large for Git. Keep originals in external storage and reference them
+#     from docs/data_catalog.md (path or link). See DECISIONS.md D-004. ---
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.MP4
+*.MOV
+
+# --- Local scratch space (never committed) ---
+scratch/
+tmp/
+
+# --- CAD / Office autosave, backup and lock files ---
+~$*
+*.FCBak
+*.bak
+*.tmp
+
+# --- OS, sync client and editor clutter ---
+.DS_Store
+Thumbs.db
+desktop.ini
+.tmp.driveupload/
+.tmp.drivedownload/
+*.swp
+*~
+.vscode/
+.idea/

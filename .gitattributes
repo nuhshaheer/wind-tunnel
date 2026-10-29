@@ -1,0 +1,29 @@
+# Normalize line endings in the repository (LF), let Git convert for the OS on checkout.
+* text=auto
+
+# Shell and Python scripts must stay LF even on Windows, or bash/python fail ("\r: command not found").
+*.sh   text eol=lf
+*.py   text eol=lf
+
+# Raw experimental data is stored byte-for-byte as acquired: no line-ending conversion.
+data/raw/** -text
+
+# Binary files: never convert or diff as text.
+*.pdf  binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.xlsx binary
+*.ods  binary
+*.stl  binary
+*.step binary
+*.stp  binary
+*.3mf  binary
+*.f3d  binary
+*.FCStd binary
+*.SLDPRT binary
+*.SLDASM binary
+
+# Git LFS is NOT enabled yet (DECISIONS.md D-004). If CAD or binary assets grow large, enable it with
+# `git lfs install` and patterns such as the line below, then record the change in DECISIONS.md.
+# *.step filter=lfs diff=lfs merge=lfs -text
