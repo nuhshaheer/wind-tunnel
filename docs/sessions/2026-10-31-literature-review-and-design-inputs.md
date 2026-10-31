@@ -2,9 +2,9 @@
 
 - **Session ID:** 0bc1e3bc-a0e1-477c-8a4e-e0e842f9c3f9 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
-- **Dates:** the session ran 2026-10-30 to 2026-10-31. Docs written during it are dated 2026-10-30; this wrap is dated
-  2026-10-31.
+- **Commit:** `5bc60f0` (the main work, pushed 2026-10-31). The second `/wrap`'s updates: not committed yet.
+- **Dates:** the session ran 2026-10-30 to 2026-10-31. Docs written during it are dated 2026-10-30; the first `/wrap`
+  and the second `/wrap` (after the owner's push) are dated 2026-10-31.
 
 ## 1. Starting state and objective
 
@@ -24,6 +24,8 @@
 4. Recommend further documents.
 5. Assess a water-mist flow-visualization idea from two YouTube videos.
 6. Run `/wrap`.
+7. Find out why the owner's push failed ("Could not resolve host: github.com").
+8. Run `/wrap` again after the push succeeded, to record it.
 
 ## 2. Work completed
 
@@ -67,11 +69,22 @@
   TODO.md with design points, and the videos listed in resources/README.md. Main point: a blower tunnel will not
   draw the mist in the way Aki's suction tunnel does, so the mist must be pushed in and released downstream of the
   screens.
-- **This `/wrap`:**
+- **First `/wrap`:**
   - PROJECT_STATUS.md rewritten.
   - TODO.md re-prioritized: push task moved to Done, and new P0, P1 and Done items added.
   - `cc51fff` backfilled into the 2026-10-29 log and the index.
   - PROJECT_BACKGROUND Re range corrected (§8).
+- **Commit and push** (owner, with the §13 commands):
+  - The commit worked first time: `5bc60f0`, 17 files.
+  - The push failed with "Could not resolve host: github.com". The agent's read-only checks (§8) found that the PC's
+    Wi-Fi had no IPv4 address, only a self-assigned `169.254.41.184`, so only sites with IPv6 addresses loaded.
+  - The owner restored the network (the exact fix is not recorded; `ipconfig /renew` alone had not helped when the
+    agent rechecked), then pushed: `cc51fff..5bc60f0`, and `sync_status.py --fetch` reported `UP_TO_DATE`.
+- **Second `/wrap`:**
+  - Backfilled `5bc60f0` and marked `/wrap` Verified.
+  - Moved the push task to Done.
+  - Corrected the first wrap's wrong explanations of the fetch and Amazon-link failures (§8).
+  - Added the network lesson to PROJECT_BACKGROUND.md.
 
 ## 3. Files and equipment affected
 
@@ -96,6 +109,9 @@
 - `docs/sessions/SESSION_LOG.md`: new row and backfill.
 - `docs/sessions/2026-10-29-github-setup-and-agent-handoff.md`: commit backfill only.
 
+**Modified by the second `/wrap`:** this log, `docs/sessions/SESSION_LOG.md`, `PROJECT_STATUS.md`, `TODO.md`,
+`PROJECT_BACKGROUND.md` (Lessons learned).
+
 **Equipment:** none.
 
 **Scratch files** (outside the repo, in the session scratchpad): extracted text, page renders, and the image-extraction
@@ -108,7 +124,7 @@ None. No physical work this session; no hardware exists yet.
 ## 5. Commands and scripts executed
 
 ```bash
-python scripts/sync_status.py --fetch                 # /catchup: UP_TO_DATE; /wrap: FETCH_FAILED (see §8)
+python scripts/sync_status.py --fetch                 # /catchup: UP_TO_DATE; 1st /wrap: FETCH_FAILED (§8); 2nd /wrap: UP_TO_DATE
 git status --short; git log --oneline -15
 python scripts/check_docs.py                          # run after each batch of edits
 python -m unittest discover -s tests [-v]
@@ -118,6 +134,21 @@ python -I <scratch>/ccitt_pages.py <pdf> <outdir> 1400   # render CCITT-fax page
 mkdir -p resources/notes; mv -n <owner file> resources/<Key>_<title>.pdf   # three renames
 rm -- resources/19880012661.pdf                       # owner-requested duplicate removal
 nslookup amzn.to; curl -sS -o /dev/null -w "%{http_code} -> %{redirect_url}" https://amzn.to/<id>   # see §8
+```
+
+After the first `/wrap`. The owner ran the §13 commands in PowerShell, then `ipconfig /renew`. After fixing the
+network, they ran `git fetch origin`, `sync_status.py --fetch` (`AHEAD`), `git push origin HEAD` and
+`sync_status.py --fetch` (`UP_TO_DATE`). The agent's network checks (PowerShell, read-only):
+
+```powershell
+Resolve-DnsName github.com; Test-NetConnection github.com -Port 443
+where.exe git; Select-String C:\Windows\System32\drivers\etc\hosts -Pattern github,amzn; Get-DnsClientServerAddress
+nslookup github.com; nslookup github.com 1.1.1.1; nslookup google.com
+[System.Net.Dns]::GetHostAddresses('<host>')   # google.com, github.com, amzn.to, microsoft.com, stackoverflow.com
+Resolve-DnsName github.com -Type AAAA -DnsOnly
+Get-NetIPAddress -AddressFamily IPv4; Get-NetRoute -AddressFamily IPv4 -DestinationPrefix 0.0.0.0/0
+Test-Connection 192.168.86.1; Test-Connection 1.1.1.1; Test-Connection 2606:4700:4700::1111
+Get-NetAdapter | Where-Object Status -eq 'Up'
 ```
 
 Design estimates were computed with short inline Python calculations; the formulas and assumed values are written
@@ -147,6 +178,11 @@ No measurements. Calculated estimates only (status: estimate, not a result). Det
 | `python scripts/check_docs.py` (final, after this log) | 0 failures, 0 warnings: 12 required files, 2 session logs each indexed once, all relative links and anchors resolve |
 | Paper transcriptions | Equations and tables checked against page images (§6 cross-checks). Figures 2, 7, 8, 9 of Abdelhamed2014, Figs. 1–12 and Table 3 of Bell1988, and Figs. 1(a) and 2 of Mehta1979 were not examined in detail |
 | Further-reading citations | Existence and bibliographic details checked by web search; contents not read |
+| Owner's commit and push with the §13 commands (2026-10-31) | Commit `5bc60f0` (17 files) worked first time. The push failed because of the PC network fault (§8). After the fix: `git push origin HEAD` gave `cc51fff..5bc60f0`, and `sync_status.py --fetch` gave `UP_TO_DATE`. This completes the independent `/wrap` verification |
+| `sync_status.py` states seen live in the owner's terminal | `FETCH_FAILED` (network down), `AHEAD` (1 commit, before the push), `UP_TO_DATE` (after the push), each correct for the situation |
+| Second wrap: `python scripts/sync_status.py --fetch` (agent) | `UP_TO_DATE` at `5bc60f0`, clean tree |
+| Second wrap: `python -m unittest discover -s tests` | 20 tests, all passed (no code changed) |
+| Second wrap: `python scripts/check_docs.py` | 0 failures, 0 warnings: 2 session logs each indexed once, 101 links and anchors resolve, 28 committable files, no secrets |
 | Calibration or equipment checks | **None performed.** No hardware exists |
 
 ## 8. Errors, failed approaches and troubleshooting
@@ -169,10 +205,29 @@ No measurements. Calculated estimates only (status: estimate, not a result). Det
     The same wrong figure was given to the owner in chat.
 - **Amazon links not resolved:** the owner could not open two `amzn.to` links in Firefox. WebFetch failed with DNS
   ENOTFOUND, and sandboxed `curl` could not resolve the host, while Windows `nslookup` did resolve it. The products
-  remain unidentified. Likely cause on the owner's side: Firefox tracking protection or an ad blocker. Not verified.
-- **`/wrap` sync check returned `FETCH_FAILED`** ("Could not resolve host: github.com") inside the agent sandbox,
-  although the same fetch worked at `/catchup`. The remote state at wrap time is therefore unknown; the Git commands
-  below start with a fetch.
+  remain unidentified. The first wrap guessed Firefox tracking protection or an ad blocker. **Corrected at the second
+  wrap: that guess was probably wrong.** amzn.to failed the same Windows lookup as github.com during the IPv4 fault
+  below. IPv4 was not checked on 2026-10-30, when the owner first hit the problem, so this is likely but not proven.
+- **First `/wrap` sync check returned `FETCH_FAILED`** ("Could not resolve host: github.com"), although the same
+  fetch worked at `/catchup`. The first wrap blamed the agent sandbox. **Corrected at the second wrap: that was
+  wrong.** The owner's own terminal gave the same error, for the reason below. The remote state at that wrap was
+  unknown, so the Git commands started with a fetch.
+- **Owner's push failed: the PC had no IPv4 address.** Evidence from the agent's read-only checks (§5):
+  - The only connected adapter was Wi-Fi (MediaTek Wi-Fi 7 MT7925). Its IPv4 address was `169.254.41.184`, which
+    Windows assigns itself when DHCP gives it none. There was no IPv4 default route, and IPv4 pings to 192.168.86.1
+    and 1.1.1.1 failed.
+  - IPv6 worked: a ping to 2606:4700:4700::1111 succeeded, and the router's IPv6 DNS server answered.
+  - Windows lookups returned IPv6 addresses only. google.com and microsoft.com resolved. github.com, amzn.to and
+    stackoverflow.com failed with "No such host is known" (an AAAA query for github.com returned nothing).
+  - `nslookup github.com` still printed the IPv4 address 140.82.114.4, which made it look as if DNS was working.
+  - Ruled out: the Git in use was Git for Windows (`C:\Program Files\Git`), and the hosts file had no GitHub or
+    Amazon entries.
+  - `ipconfig /renew` did not restore IPv4 by the time the agent rechecked (its output also said Ethernet, Wi-Fi 3
+    and Wi-Fi 5 were disconnected; harmless). The owner then fixed the network, exact step not recorded, and the
+    push succeeded.
+  - Once the network was fixed, the agent's own `sync_status.py --fetch` worked too, so a fetch failure seen by the
+    agent was a real network fault.
+  - Lesson recorded in PROJECT_BACKGROUND.md (Lessons learned).
 
 ## 9. Decisions and reasoning
 
@@ -200,7 +255,8 @@ No measurements. Calculated estimates only (status: estimate, not a result). Det
 
 See TODO.md:
 
-- **P0:** push this session; sizing inputs; confirm D-003 and D-004; finish verifying `/wrap`.
+- **P0:** commit and push the second wrap's doc updates; sizing inputs; confirm D-003 and D-004. (`5bc60f0` is
+  pushed, and `/wrap` is now Verified.)
 - **P1:**
   - size the contraction and test section;
   - get and review the free "Wanted" documents;
@@ -212,7 +268,9 @@ See TODO.md:
 
 ## 12. Recommended first task for the next agent
 
-Run `/catchup`. If the sync state is `UP_TO_DATE` and this session is committed, backfill this log's commit hash.
+Run `/catchup`. Expect `UP_TO_DATE` once the owner has pushed the second wrap's commit. The next `/wrap` adds that
+commit's hash to this log's Commit line, next to `5bc60f0`. If the fetch fails with "Could not resolve host", see the
+network lesson in PROJECT_BACKGROUND.md before blaming the sandbox.
 
 If the owner has provided the sizing inputs (check PROJECT_BACKGROUND "Requirements and constraints"), start
 **build step 1: size the contraction and test section**. Use the rules in `resources/notes/` (read the notes, not
@@ -228,8 +286,14 @@ See [Manual Git commands](#manual-git-commands) below.
 
 ## Manual Git commands
 
-State at wrap time: `FETCH_FAILED` from the agent sandbox. At `/catchup` (2026-10-30) the state was `UP_TO_DATE`
-with `cc51fff` on GitHub. Nothing is staged or committed.
+Two sets: the first `/wrap`'s commands (run by the owner; committed and pushed as `5bc60f0`), then
+[the second `/wrap`'s commands](#follow-up-commit-second-wrap) for a small docs-only commit.
+
+### First wrap (committed and pushed as 5bc60f0)
+
+State at the first wrap: `FETCH_FAILED`. The PC's network was down (§8); the first wrap wrongly blamed the agent
+sandbox. At `/catchup` (2026-10-30) the state was `UP_TO_DATE` with `cc51fff` on GitHub. Nothing was staged or
+committed.
 
 Run in PowerShell or Git Bash (the VS Code terminal is fine):
 
@@ -269,3 +333,33 @@ python scripts/sync_status.py --fetch
   Run `git pull --rebase origin main`, then `python -m unittest discover -s tests`, then `git push origin HEAD`. If
   the rebase stops on conflicts: run `git status`, edit the listed files, `git add <file>`, then
   `git rebase --continue`. `git rebase --abort` returns to where you started.
+
+**Outcome (2026-10-31):**
+- The owner ran these commands. Both fetches failed, and the owner carried on (the commands did not say to stop on
+  `FETCH_FAILED`). The commit worked (`5bc60f0`, 17 files); the push failed.
+- After fixing the network, the owner ran `git fetch origin`, `python scripts/sync_status.py --fetch` (`AHEAD`, 1
+  commit), `git push origin HEAD` (`cc51fff..5bc60f0`) and `python scripts/sync_status.py --fetch` (`UP_TO_DATE`).
+
+### Follow-up commit (second wrap)
+
+State at the second wrap: `UP_TO_DATE` at `5bc60f0`. Five docs files are modified, with no new files; nothing is
+staged or committed.
+
+```bash
+cd "C:/Users/nuhbm/OneDrive/Desktop/nuhs projects/2 - Wind Tunnel"
+git fetch origin
+python scripts/sync_status.py --fetch
+# Expect UP_TO_DATE. If BEHIND: run  git pull --ff-only  first.
+# If FETCH_FAILED: stop and fix the network first (PROJECT_BACKGROUND.md, Lessons learned).
+git status
+git diff
+git add PROJECT_BACKGROUND.md PROJECT_STATUS.md TODO.md docs/sessions/SESSION_LOG.md docs/sessions/2026-10-31-literature-review-and-design-inputs.md
+git diff --cached --stat
+git commit -m "Record push of 5bc60f0 and mark /wrap verified" -m "The owner pushed 5bc60f0 with the commands from the first /wrap, which completes the /wrap verification. Backfills the hash, moves the push task to Done, and corrects the session log: the fetch and Amazon-link failures came from the PC losing its IPv4 address, not the agent sandbox or Firefox. Adds that lesson to PROJECT_BACKGROUND.md."
+git push origin HEAD
+python scripts/sync_status.py --fetch
+```
+
+- `git status` should list exactly the five files above as modified, and nothing untracked.
+- The last command should end with `STATE: UP_TO_DATE`.
+- The LF/CRLF warnings, credentials and rejected-push notes for the first wrap apply here too.

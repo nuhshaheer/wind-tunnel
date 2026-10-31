@@ -180,4 +180,15 @@ and notes in `resources/`) when it is actually used. More candidates are listed 
 
 ## Lessons learned
 
-None recorded yet. Add lasting lessons here (with a link to the session log where they were learned).
+Add lasting lessons here (with a link to the session log where they were learned).
+
+- **"Could not resolve host: github.com" can be a missing IPv4 address, not a DNS or sandbox problem** (2026-10-31,
+  [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#8-errors-failed-approaches-and-troubleshooting)).
+  - What happened: the PC's Wi-Fi had only a self-assigned IPv4 address (169.254.x.x), so only sites with IPv6
+    addresses worked. Google and Microsoft loaded. GitHub, amzn.to and Stack Overflow failed in every browser and in
+    Git. `nslookup` still printed GitHub's IPv4 address, which made DNS look fine.
+  - Check: run `ipconfig`. If the Wi-Fi's IPv4 address starts with 169.254, the PC has no working IPv4 connection.
+  - Things to try: turn the Wi-Fi off and on, restart the router, or forget and rejoin the network. Which step fixed
+    it on 2026-10-31 was not recorded; `ipconfig /renew` alone had not helped.
+  - The agent's fetch failed and recovered at the same times as the owner's. So when an agent reports
+    `FETCH_FAILED` with "Could not resolve host", check the PC's network before blaming the agent's sandbox.

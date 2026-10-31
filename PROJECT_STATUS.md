@@ -1,9 +1,9 @@
 # Project Status
 
 **Last updated:** 2026-10-31
-**Last commit:** `cc51fff` (2026-10-29, initial setup), pushed to `origin/main`; `/catchup` confirmed `UP_TO_DATE` on
-2026-10-30. The 2026-10-30/31 literature-review session is **not committed yet** (commands in its
-[session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#manual-git-commands)).
+**Last commit:** `5bc60f0` (2026-10-31, literature review), pushed to `origin/main`; `sync_status.py --fetch`
+reported `UP_TO_DATE` afterwards. The second `/wrap`'s doc updates are **not committed yet** (commands in the
+[session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#follow-up-commit-second-wrap)).
 **Current stage:** Planning / pre-build. Design research under way: three reference papers reviewed, construction
 method chosen (segmented 3D printing). No hardware built, no data collected, no analysis code written.
 
@@ -63,10 +63,10 @@ project README (2026-10-25). Long-term context is in [PROJECT_BACKGROUND.md](PRO
 |---|---|
 | Data acquisition firmware | Planned; not started |
 | Analysis scripts (`analysis/`) | Planned; not started |
-| `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote) |
+| `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30); the others are covered by unit tests. |
-| `/wrap` | Implemented, unverified. Run 2026-10-29 by the agent that wrote it, and 2026-10-31 by an agent in a later session ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). Verification still needs the owner's push to succeed with the commands given. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `UP_TO_DATE`). The push first failed because of a PC network fault, not the commands. One content error: the first run's log blamed that failure on the agent sandbox; the second run corrected it ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only (developed with Python 3.13 on Windows 11). Git 2.54, Git LFS 3.7
@@ -84,6 +84,8 @@ None. No experiment has been run.
   (Abdelhamed2014, Bell1988, Mehta1979). Recorded D-005 (segmented printing), estimates of printable sizes and fan
   requirements, a list of further documents, and the optional mist-visualization idea. See
   [the session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md).
+- 2026-10-31: the owner committed and pushed this as `5bc60f0`, after fixing a network fault on the PC (no IPv4
+  address). `/wrap` verified. Same session log.
 
 ## 7. Data and analyses
 
@@ -103,6 +105,9 @@ printable contraction sizes and fan requirements. They are **calculations from a
 - **Blocked:** all physical work waits on choosing and buying hardware (fan, sensors, load cell, microcontroller).
   Sizing waits on owner inputs (open question 3).
 - No known software bugs.
+- Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
+  `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
+  [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
 - Risk: the project folder is inside OneDrive. OneDrive syncing a `.git` folder can cause conflicts if the repo is
   edited from two machines. GitHub, not OneDrive, is the source of truth between machines.
 - Copyright: `resources/Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf` is under Cambridge Core terms of
@@ -136,9 +141,9 @@ None measured yet. Literature findings that shape the design are summarized in t
 
 See [TODO.md](TODO.md) for the full list. In order:
 
-1. **Owner:** review, commit and push this session's changes (commands in the
-   [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#manual-git-commands)). Then provide
-   the sizing inputs (open question 3), and confirm or change D-003 and D-004.
+1. **Owner:** commit and push the second `/wrap`'s small doc update (commands in the
+   [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#follow-up-commit-second-wrap)). Then
+   provide the sizing inputs (open question 3), and confirm or change D-003 and D-004.
 2. **Build step 1:** size the contraction and test section using the papers' rules and the estimate tables, and
    record the choice as a decision.
 3. Get and review the free documents on the resources "Wanted" list: the ASEE 2024 balance paper, the Morrison
@@ -148,5 +153,5 @@ See [TODO.md](TODO.md) for the full list. In order:
 ## 13. Repository
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
-- Remote: `origin` → https://github.com/nuhshaheer-2007/wind-tunnel (private; holds `cc51fff`)
+- Remote: `origin` → https://github.com/nuhshaheer-2007/wind-tunnel (private; holds `cc51fff` and `5bc60f0`)
 - Branch: `main`

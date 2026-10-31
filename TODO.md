@@ -8,19 +8,14 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: review, commit and push the 2026-10-30/31 session's changes.** This includes three PDFs (about 5.5 MB);
-  the commands also show how to leave the PDFs out. Outcome: GitHub holds the literature review. Verify:
-  `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`. Commands:
-  [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#manual-git-commands).
+- [ ] **Owner: commit and push the second `/wrap`'s doc update** (five docs files, no new files). Outcome: GitHub
+  records the push and the `/wrap` verification. Verify: `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`.
+  Commands: [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#follow-up-commit-second-wrap).
 - [ ] **Owner: provide the sizing inputs:** available floor or bench length for the tunnel, target top airspeed, and
   any fan or blower already in mind. Outcome: recorded under "Requirements and constraints" in PROJECT_BACKGROUND.md.
   Verify: the first P1 task can start without guessing these.
 - [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility) and D-004 (data and LFS policy) in [DECISIONS.md](DECISIONS.md).
   Verify: status changed to Accepted (or replaced by a new decision).
-- [ ] **Verify `/wrap` independently.** It was run on 2026-10-31 by an agent that did not write the skill
-  ([session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)), with `check_docs.py` at
-  0 failures. Remaining check: the owner's push succeeds with the commands given. Then mark `/wrap` Verified in
-  PROJECT_STATUS.md.
 
 ## P1: Design and choose hardware (build step 1)
 
@@ -103,3 +98,6 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-10-30: Created `resources/` (index, naming rules, notes template) and reviewed Abdelhamed2014, Bell1988 and
   Mehta1979. Recorded D-005 (segmented printing on the P1S), estimates of printable sizes and fan requirements, and a
   checked list of further documents ([session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)).
+- [x] 2026-10-31: Owner committed and pushed the literature review as `5bc60f0`, after fixing a network fault (the
+  PC had no IPv4 address). The push used the commands `/wrap` gave, which completes the independent `/wrap`
+  verification ([session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)).
