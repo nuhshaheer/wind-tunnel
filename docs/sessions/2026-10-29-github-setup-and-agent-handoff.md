@@ -2,7 +2,7 @@
 
 - **Session ID:** 87b8e38e-7b05-46d0-b116-8e18cc4677ba (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `cc51fff` (backfilled 2026-10-31)
 
 ## 1. Starting state and objective
 

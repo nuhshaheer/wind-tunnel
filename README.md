@@ -54,6 +54,7 @@ docs/
   data_catalog.md         Every dataset/experiment and how it was processed
   sessions/               One log per work session + SESSION_LOG.md index
 data/README.md            Data layout and rules (raw vs processed, naming, units, large files)
+resources/                Reference papers (PDFs) with reading notes; index and naming rules in resources/README.md
 scripts/                  Helper scripts used by /catchup and /wrap
 tests/                    Tests for the helper scripts
 .claude/                  Agent commands (skills/) and the no-push permission rule (settings.json)

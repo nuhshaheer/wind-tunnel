@@ -74,6 +74,9 @@ python -m unittest discover -s tests -v        # tests for the two scripts
   `results/`. Each script states inputs, outputs and units at the top. Do not hard-code calibration constants without
   citing the calibration dataset.
 - Data layout and naming: `data/README.md`. Videos stay out of Git; reference them from the data catalog.
+- Reference papers go in `resources/` with a notes file in `resources/notes/`; naming, notes template and index are
+  in `resources/README.md`. Read a paper's notes before opening its PDF, and cite the notes file when a paper informs
+  a design choice.
 - Run the tests and `scripts/check_docs.py` before finishing any session that changed code or docs.
 - Commit messages: imperative summary line (≤ 72 chars), body explaining why.
 - Physical checks (calibrations, equipment tests) cannot be done by an agent. If one is needed, say so and list it as

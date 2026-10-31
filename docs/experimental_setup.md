@@ -15,7 +15,7 @@ with a guess. When the setup changes, update the **Current configuration** and a
 | Test section cross-section (W × H) | Unknown | Planned, build step 1 |
 | Test section length | Unknown | Planned, build step 1 |
 | Diffuser | Unknown | Planned |
-| Construction material | Unknown | |
+| Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins and glued; filament unknown | Planned ([D-005](../DECISIONS.md)) |
 | CAD / drawings | None yet | |
 
 ## Flow generation and control

@@ -76,3 +76,21 @@ Template:
   keep all data outside Git (rejected: breaks reproducibility of the analysis).
 - Evidence / source: no data or binary files exist yet (inspected 2026-10-29).
 - Status: Tentative. A default chosen by the setup agent. Owner to confirm; revisit when the first CAD files or videos exist.
+
+## D-005: Print the tunnel in segments on the Bambu Lab P1S
+
+- Date: 2026-10-30
+- Question: How are tunnel parts larger than the P1S build volume (256 × 256 × 256 mm, manufacturer spec) made?
+- Decision: The tunnel will be "decently big" (owner's words; test-section size not yet chosen). Parts that do not
+  fit the build volume, starting with the contraction, are printed in segments. Segments get alignment holes (for
+  pins or dowels) and are joined, probably with glue.
+- Rationale: A one-piece printed contraction would cap the test section at about 100 mm, which gives a sphere drag of
+  about 1 gf at 10 m/s ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#printable-contraction-sizes)). A larger tunnel
+  gives larger forces, which are easier to measure.
+- Alternatives considered: a one-piece print with a ~100 mm test section (rejected: forces too small).
+- Design considerations [Proposed, not decided]: keep internal steps at joints as small as possible, and keep joints
+  away from the contraction exit, where the flow is fastest and the boundary layer thinnest. The contraction-design
+  method in [Bell1988](resources/notes/Bell1988.md) assumes smooth walls with a laminar boundary layer from the inlet.
+  Seal seams against leaks. Unknown: filament, wall thickness, segment layout, adhesive.
+- Evidence / source: owner statement, 2026-10-30 session.
+- Status: Accepted (segmented printing with alignment holes). Joining method (glue): Tentative.
