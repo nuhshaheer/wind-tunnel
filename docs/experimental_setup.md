@@ -3,7 +3,8 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-10-29: nothing built.** Only the instrumentation parts listed as "On hand" exist.
+**Current configuration as of 2026-10-31: nothing built.** Only the instrumentation parts listed as "On hand" exist.
+The README lists only the op-amps and regulator from the owner's ECE kit; the rest of the kit is not recorded.
 
 ## Tunnel geometry
 
@@ -45,8 +46,9 @@ with a guess. When the setup changes, update the **Current configuration** and a
 
 Signal conditioning parts on hand (README): LM741 / LM348 op-amps, LM317 regulator. Circuit: not designed.
 
-HX711 datasheet facts (general, not yet confirmed on this project's module): 24-bit ADC, selectable 10 or 80 samples/s,
-channel A gain 128 or 64.
+HX711 chip facts, confirmed from the Avia datasheet rev. V2.0 ([notes](../resources/notes/HX711.md)): 24-bit ADC,
+10 or 80 samples/s, channel A gain 128 or 64 (channel B fixed at 32), input noise 50 nV rms at gain 128 and 10 SPS.
+The module (and so its excitation voltage and RATE wiring) is not chosen.
 
 ## Data acquisition
 
@@ -78,3 +80,5 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | Date | Change | Session log |
 |---|---|---|
 | 2026-10-29 | Document created; no hardware built | [2026-10-29](sessions/2026-10-29-github-setup-and-agent-handoff.md) |
+| 2026-10-30 | Construction method recorded: segmented 3D printing on the P1S (D-005). Planning only; nothing built. Row added retrospectively on 2026-10-31 | [2026-10-31](sessions/2026-10-31-literature-review-and-design-inputs.md) |
+| 2026-10-31 | HX711 chip specs confirmed from its datasheet (documentation only; no hardware change) | [2026-10-31](sessions/2026-10-31-reference-library-and-electronics.md) |

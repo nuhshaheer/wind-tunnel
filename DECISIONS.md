@@ -94,3 +94,21 @@ Template:
   Seal seams against leaks. Unknown: filament, wall thickness, segment layout, adhesive.
 - Evidence / source: owner statement, 2026-10-30 session.
 - Status: Accepted (segmented printing with alignment holes). Joining method (glue): Tentative.
+
+## D-006: Keep reference PDFs over 25 MB in `resources/`, ignored by Git
+
+- Date: 2026-10-31
+- Question: Where do reference documents over the 25 MB limit (D-004) live? Two arrived this session: Barlow1999
+  (57 MiB, a commercial textbook) and Ewald1998 (the full AGARD-AG-336 volume, 26.1 MiB).
+- Decision: Keep them in `resources/` under the normal naming rule, add each one by name to `.gitignore`, and list
+  them in the resources index as "local only" in backticks, not as links. A smaller extract that is needed often (here
+  AGARD chapter 6, Cooper1998, 3.5 MB) can be committed as its own file.
+- Rationale: They stay next to the other references and their notes, and OneDrive already copies them between the
+  owner's machines. A named `.gitignore` entry stops them being committed by accident; listing them in backticks keeps
+  `check_docs.py`'s link check passing on a fresh clone. Barlow1999 is also a commercial book that should not be
+  redistributed.
+- Alternatives considered: external storage with a link (D-004's wording; adds a second place to look); committing
+  them (exceeds the D-004 limit); Git LFS (not enabled, D-004).
+- Evidence / source: [2026-10-31 session log](docs/sessions/2026-10-31-reference-library-and-electronics.md).
+- Status: Tentative. Chosen by the agent following D-004; the owner has not confirmed it. Consequence: a fresh clone
+  from GitHub on a machine without OneDrive lacks these two files.

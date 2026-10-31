@@ -46,6 +46,10 @@ cmake-build-*/
 *.MP4
 *.MOV
 
+# --- Reference PDFs over 25 MB: kept locally, listed in resources/README.md (D-004) ---
+resources/Barlow1999_low-speed-wind-tunnel-testing-3rd-ed.pdf
+resources/Ewald1998_wind-tunnel-wall-correction-AGARD-AG-336.pdf
+
 # --- Local scratch space (never committed) ---
 scratch/
 tmp/

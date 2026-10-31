@@ -163,19 +163,26 @@ PDFs and reading notes live in [resources/](resources/README.md).
 - R. D. Mehta, P. Bradshaw, "Design rules for small low speed wind tunnels," *The Aeronautical Journal* 83(827),
   November 1979, pp. 443–449. Reviewed 2026-10-30. Rules for every component of a small blower tunnel, plus the
   power-factor estimate. Notes: [resources/notes/Mehta1979.md](resources/notes/Mehta1979.md).
+- J. Weakly, S. Ho, E. Feehery, B. D. Kothmann, C. Sung, "A Low-Cost, Adaptable System for Lift and Drag Measurement
+  in an Educational Wind Tunnel," ASEE Annual Conference, 2024. Reviewed 2026-10-31. TAL220 + HX711 + Arduino balance
+  with a sphere-drag check. Notes: [resources/notes/Weakly2024.md](resources/notes/Weakly2024.md).
+- Avia Semiconductor, HX711 datasheet, rev. V2.0. Reviewed 2026-10-31. Notes:
+  [resources/notes/HX711.md](resources/notes/HX711.md).
 
 ### Not yet reviewed
 
 These are standard sources suggested as starting points. Move each to "Reviewed" (with the relevant page or figure,
-and notes in `resources/`) when it is actually used. More candidates are listed under "Wanted" in
-[resources/README.md](resources/README.md).
+and notes in `resources/`) when it is actually used. More papers are in `resources/` but not yet reviewed (Roos1971,
+Morrison2013, Maskell1963, Cooper1998 (AGARD-AG-336 chapter 6), Mehta1977 and others), and further candidates are
+under "Wanted"; both are in [resources/README.md](resources/README.md).
 
-- J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. Tunnel design, corrections, blockage.
+- J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. Tunnel design, corrections,
+  blockage. A local-only copy is in `resources/` (not in Git; see the index).
 - E. Achenbach, "Experiments on the flow past spheres at very high Reynolds numbers," *Journal of Fluid Mechanics*
   54, 1972, pp. 565–575. Sphere drag and the drag crisis. Its abstract (checked online 2026-10-30) gives the range
   5×10⁴ ≤ Re ≤ 6×10⁶. That covers only the top of this project's planned Re (roughly 10⁴–10⁵ in the estimates
-  above), so it cannot be the only C_D reference. Candidates covering 10⁴–10⁵ are listed under "Wanted" in
-  [resources/README.md](resources/README.md).
+  above), so it cannot be the only C_D reference. Candidates covering 10⁴–10⁵, Morrison2013 (correlation) and
+  Roos1971 (measurements), are now in `resources/` but not yet reviewed ([index](resources/README.md)).
 - F. M. White, *Fluid Mechanics* (any recent edition). Sphere C_D vs Re chart and pitot-static theory.
 
 ## Lessons learned

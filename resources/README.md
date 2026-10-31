@@ -9,11 +9,27 @@ Agents: read the notes file first. Open the PDF only when you need a detail the 
 
 ## Index
 
+Topics for items **not yet reviewed** come from their title page or abstract only. Items added 2026-10-31 were
+downloaded by the owner; their original file names are recorded in the notes (reviewed items) or here.
+
 | Key | Reference | Topic | Status | Files |
 |---|---|---|---|---|
 | Abdelhamed2014 | A. S. Abdelhamed, Y. El-S. Yassen, M. M. ElSakka, "Design optimization of three dimensional geometry of wind tunnel contraction," *Ain Shams Engineering Journal*, 2014 (article in press). doi:10.1016/j.asej.2014.09.008 | Contraction ratio, length and wall profile; CFD optimization checked with a pitot-static traverse | Reviewed 2026-10-30 | [PDF](Abdelhamed2014_wind-tunnel-contraction-optimization.pdf), [notes](notes/Abdelhamed2014.md) |
+| Anthoine2004 | J. Anthoine, D. Olivari, D. Portugaels, "Drag coefficient determination of bluff bodies: analysis of blockage effect," von Karman Institute Reprint 2004-24, COST Action C14 meeting, May 2004. The reprint cover lists P. Cosyn instead of J. Anthoine; the paper's own header lists Anthoine | Circular cylinders (2-D) at three blockage ratios, up to 17 %, sub- to super-critical Re; compares blockage corrections (Allen and Vincenti, Maskell). Per the abstract, no single correction works in all regimes. Cylinders, not spheres | Not yet reviewed | [PDF](Anthoine2004_bluff-body-drag-blockage-effect.pdf) (was `rp200424.pdf372046978rp200424.pdf`) |
+| Barlow1999 | J. B. Barlow, W. H. Rae Jr., A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. ISBN 0-471-55774-9 | The standard textbook. Chapters most relevant here: 3 (tunnel design, drive, construction), **4 (pressure, temperature and flow measurement)**, 6 (test-section calibration; **6.4 data systems**), **7 (balances)**, 9–10 (boundary corrections), **12.2 (uncertainty)**, 17 (small wind tunnels) | Not yet reviewed (contents pages only) | **Local only, not in Git:** `Barlow1999_low-speed-wind-tunnel-testing-3rd-ed.pdf` (57 MiB, over the 25 MB limit, and a commercial textbook; ignored by `.gitignore`). OneDrive copies it between the owner's machines; a fresh clone from GitHub will not have it |
 | Bell1988 | J. H. Bell, R. D. Mehta, *Contraction Design for Small Low-Speed Wind Tunnels*, NASA CR-177488, Stanford University, August 1988 (also JIAA TR-84, April 1988) | Contraction wall shape (5th-order polynomial), length and separation for small tunnels; panel method + laminar boundary layer, validated on 4 tunnels | Reviewed 2026-10-30 | [PDF](Bell1988_contraction-design-small-low-speed-tunnels.pdf), [notes](notes/Bell1988.md) |
+| Bradshaw1964 | P. Bradshaw, R. C. Pankhurst, "The design of low-speed wind tunnels," *Progress in Aerospace Sciences* 5, 1964, p. 1. This copy states "Crown copyright. Reprinted from NPL Aero Report 1039"; the journal details are from the earlier citation check and are not visible in its text layer | Aerodynamic and structural design of low-speed tunnels (wooden construction), with drawings and data for about thirty tunnels. Largely summarized by Mehta1979 | Not yet reviewed | [PDF](Bradshaw1964_design-of-low-speed-wind-tunnels.pdf) (was `bradshaw1964.pdf`) |
+| Cooper1998 | K. R. Cooper, "Bluff-Body Blockage Corrections in Closed- and Open-Test-Section Wind Tunnels," Chapter 6 of B. F. R. Ewald (ed.), *Wind Tunnel Wall Correction*, AGARD-AG-336, October 1998, pp. 6-1 to 6-33 | A modern review of bluff-body blockage corrections: Maskell's analysis, Cowdrey, Hackett's two-step version, wake buoyancy, Mercker; open-section methods (Mercker and Wiedemann); applications. Needed to choose the blockage correction (TODO P1) | Not yet reviewed | [PDF](Cooper1998_bluff-body-blockage-corrections-AGARD-AG-336-ch6.pdf). The owner printed PDF pages 332–364 of the full volume to PDF on 2026-10-31. **Image only, no text layer**; for searchable text use the full volume (Ewald1998) on this machine |
+| Ewald1998 | B. F. R. Ewald (ed.), *Wind Tunnel Wall Correction*, AGARDograph 336 (AGARD-AG-336), RTO/NATO, October 1998. ISBN 92-836-1076-8. Distribution statement: "There are no restrictions on the distribution of this document" | The complete volume, 12 chapters on wall corrections. Chapter 6 is filed separately as Cooper1998 (PDF pages 332–364). The PDF's permission flags forbid page extraction and copying, so agents should not split it; print or download chapters instead | Not yet reviewed | **Local only, not in Git:** `Ewald1998_wind-tunnel-wall-correction-AGARD-AG-336.pdf` (26.1 MiB, over the 25 MiB limit; ignored by `.gitignore`). Has a text layer. Was `AGARD-AG-336-All.pdf` |
+| HX711 | Avia Semiconductor, *HX711: 24-Bit ADC for Weigh Scales*, datasheet rev. V2.0 | Load-cell ADC: gains, noise, data rates, serial timing, power. Confirms the specs quoted in docs/experimental_setup.md | Reviewed 2026-10-31 | [PDF](HX711_avia-adc-datasheet-v2.pdf), [notes](notes/HX711.md) |
+| Maskell1963 | E. C. Maskell, "A Theory of the Blockage Effects on Bluff Bodies and Stalled Wings in a Closed Wind Tunnel," ARC R&M 3400, November 1963 (published by HMSO, 1965; replaces RAE Report Aero 2685) | The original bluff-body blockage correction, Δq/q = ε·C_D·S/C, with ε a little above 5/2 for axisymmetric bodies (summary, report p. 1). A 27-page scan with **no text layer**: read the page images | Not yet reviewed | [PDF](Maskell1963_blockage-bluff-bodies-closed-tunnel.pdf) (was `arc-rm-3400.pdf`) |
+| Mehta1977 | R. D. Mehta, "The aerodynamic design of blower tunnels with wide-angle diffusers," *Progress in Aerospace Sciences* 18, 1977, pp. 59–120 | The detailed data behind Mehta1979: blower, wide-angle diffuser and screen design, with briefer contraction, working-section and structural advice | Not yet reviewed | [PDF](Mehta1977_blower-tunnels-wide-angle-diffusers.pdf) (was `mehta1979.pdf`, but it is the 1977 paper) |
 | Mehta1979 | R. D. Mehta, P. Bradshaw, "Design rules for small low speed wind tunnels," *The Aeronautical Journal* 83(827), Nov 1979, pp. 443–449. doi:10.1017/S0001924000031985 | Rules for every component of a small blower tunnel (fan, screens, diffusers, honeycomb, settling chamber, contraction, working section) and the power-factor estimate for fan sizing | Reviewed 2026-10-30 | [PDF](Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf) (PDF pages 8–11 are an unrelated note), [notes](notes/Mehta1979.md) |
+| Morel1975 | T. Morel, "Comprehensive Design of Axisymmetric Wind Tunnel Contractions," *ASME Journal of Fluids Engineering*, June 1975, pp. 225–233 | Contraction design charts for a wall of two matched cubic arcs, from inviscid flow analysis. The text layer doubles many characters; read the page images | Not yet reviewed | [PDF](Morel1975_axisymmetric-contraction-design.pdf) (was `morel1975.pdf`) |
+| Morrison2013 | F. A. Morrison, "Data Correlation for Drag Coefficient for Sphere," Michigan Technological University, 2013 (2-page handout), plus the CM3110 "Data Correlations for Examinations" sheet that repeats it | One explicit C_D(Re) correlation from creeping flow up to Re = 10⁶. Candidate for the Re-matched C_D reference (TODO P1); a curve fit, to be checked against Roos1971 | Not yet reviewed | [handout](Morrison2013_sphere-drag-correlation.pdf), [exam sheet](Morrison2013_exam-data-correlations-sheet.pdf) (were `DataCorrelationForSphereDrag2013.pdf` and `DataCorrelationsforExaminations2013.pdf`; a byte-identical second copy, `…2013-2.pdf`, was removed) |
+| Roos1971 | F. W. Roos, W. W. Willmarth, "Some experimental results on sphere and disk drag," *AIAA Journal* 9(2), February 1971, pp. 285–291. doi:10.2514/3.6164 | Primary sphere and disk drag measurements, widely used to fit C_D(Re) curves. The copy carries a 2013 university-library download stamp | Not yet reviewed | [PDF](Roos1971_sphere-and-disk-drag.pdf) (was `roos1971.pdf`) |
+| Scheiman1981 | J. Scheiman, *Comparison of Experimental and Theoretical Turbulence Reduction Characteristics for Screens, Honeycomb, and Honeycomb-Screen Combinations*, NASA TP-1958, Langley Research Center, December 1981 | Turbulence reduction by screens, honeycomb and combinations, measured in a half-scale model of a Langley tunnel and compared with theory | Not yet reviewed | [PDF](Scheiman1981_screens-honeycomb-turbulence-reduction.pdf) (was `19820006182.pdf`, the NTRS id) |
+| Weakly2024 | J. Weakly, S. Ho, E. Feehery, B. D. Kothmann, C. Sung, "A Low-Cost, Adaptable System for Lift and Drag Measurement in an Educational Wind Tunnel," ASEE Annual Conference, 2024, Paper ID #41981 | Two-load-cell balance (TAL220 + HX711 + Arduino Uno, about $121), validated with static loads and sphere drag (C_D within 6 % of 0.47, no blockage or mount correction) | Reviewed 2026-10-31 | [PDF](Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf), [notes](notes/Weakly2024.md) |
 
 ## Videos and web pages
 
@@ -26,7 +42,7 @@ Not stored here: videos stay out of Git (D-004). Summaries come from transcripts
 ## Adding a paper
 
 1. Save the PDF here as `<Key>_<short-title>.pdf`. Key = first author's surname + year (add `a`, `b` if two
-   clash); short title in lowercase words joined by hyphens.
+   clash); for a datasheet, Key = the part number (e.g. `HX711`). Short title in lowercase words joined by hyphens.
 2. Add a row to the index with status **Not yet reviewed**.
 3. When it has been read, write `notes/<Key>.md` from the template below and set the status to **Reviewed YYYY-MM-DD**.
 4. If it changes the design, record that in DECISIONS.md or PROJECT_BACKGROUND.md and cite the notes file.
@@ -49,63 +65,72 @@ Not stored here: videos stay out of Git (D-004). Summaries come from transcripts
 
 - Notes state what the source says, with page, figure or table numbers. Keep our own inferences and arithmetic
   separate and label them.
-- Files over 25 MB are not committed; store them externally and link them here ([DECISIONS.md](../DECISIONS.md) D-004).
-  PDFs are stored as binary (`.gitattributes`).
+- Files over 25 MB are not committed ([DECISIONS.md](../DECISIONS.md) D-004). Either store them externally and link
+  them here, or keep them in this folder with a `.gitignore` entry and list them in the index as "local only", in
+  backticks rather than as a link (so the link check passes on a fresh clone). See D-006 (Tentative). PDFs are
+  stored as binary (`.gitattributes`).
 - The repository is private (D-003, Tentative). Before making it public, check each paper's licence and replace any
   PDF that may not be redistributed with a link.
 
 ## Wanted
 
-Recommended next, in priority order. Citations and availability were checked online on 2026-10-30; nothing below has
-been read yet.
+Rewritten 2026-10-31. The owner has added everything on the 2026-10-30 list (the last item, AGARD-AG-336 chapter 6,
+is Cooper1998 in the index). Citations and availability below were checked online on 2026-10-31. Nothing below has
+been read yet, and spec values quoted here come from vendor pages or search summaries, not from datasheets in this
+folder: confirm them in the datasheet before using them.
 
-**Get now (free):**
+**Electronics, get now (free). Needed to choose the parts (TODO P1):**
 
-1. J. Weakly, S. Ho, E. Feehery, B. D. Kothmann, C. Sung (University of Pennsylvania), "A Low-Cost, Adaptable System
-   for Lift and Drag Measurement in an Educational Wind Tunnel," ASEE Annual Conference, 2024.
-   [Paper page](https://nemo.asee.org/public/conferences/344/papers/41981/view).
-   - The closest match to this project: a force balance built from HX711 load cells and an Arduino for under $125,
-     validated by measuring sphere drag.
-   - Per its abstract: static-load error 2.5 % and sphere drag within about 4 % of theory.
-   - Useful for balance and mount design, and for the microcontroller choice.
-2. F. A. Morrison, "Data Correlation for Drag Coefficient for Sphere," Michigan Technological University, 2013.
-   [PDF](https://pages.mtu.edu/~fmorriso/cm310/DataCorrelationsforExaminations2013.pdf) (exam-sheet version; the full
-   handout is mirrored [here](https://galileoandeinstein.phys.virginia.edu/more_stuff/Applets/Projectile/DataCorrelationForSphereDrag2013.pdf)).
-   - One explicit C_D(Re) correlation valid up to Re = 10⁶, easy to code into the analysis.
-   - Candidate for the Re-matched reference (TODO P1). It is a curve fit, so it should be backed by primary data
-     (item 6).
-3. K. R. Cooper, "Bluff-Body Blockage Corrections in Closed- and Open-Test-Section Wind Tunnels," Chapter 6 of
-   *Wind Tunnel Wall Correction*, AGARD-AG-336, 1998.
-   [PDF](https://www.sto.nato.int/publications/AGARD/AGARD-AG-336/08chap06.pdf).
-   - A modern review of blockage corrections (Maskell and later methods).
-   - Needed to correct the sphere C_D and to choose the test-section size.
-4. E. C. Maskell, "A Theory of the Blockage Effects on Bluff Bodies and Stalled Wings in a Closed Wind Tunnel," ARC
-   R&M 3400, 1963. [Cranfield record](https://aerade.cranfield.ac.uk/handle/1826.2/3982),
-   [DTIC PDF](https://apps.dtic.mil/sti/pdfs/ADA955243.pdf). The original bluff-body blockage theory that item 3 builds on.
-5. Avia Semiconductor, HX711 datasheet (for example the copy
-   [hosted on TI's forum](https://e2e.ti.com/cfs-file/__key/communityserver-discussions-components-files/73/HX711.pdf)).
-   [docs/experimental_setup.md](../docs/experimental_setup.md) quotes HX711 specs as "not yet confirmed". This
-   confirms them. Check the revision number.
+1. **Differential pressure sensor candidates.** This is the biggest gap: q enters C_D directly, and dynamic pressure
+   is only about 15–240 Pa. Our arithmetic (ρ = 1.2 kg/m³): a ±125 Pa sensor reads up to about 14 m/s, ±249 Pa about
+   20 m/s, ±500 Pa about 29 m/s. Pick the range after the top speed is chosen.
+   - Sensirion SDP3x, digital I²C, temperature compensated: SDP32 (±125 Pa) and SDP31 (±500 Pa). Sensirion's catalog
+     lists zero-point accuracy 0.08 Pa (SDP32) and 0.1 Pa (SDP31).
+     [SDP32 catalog page](https://sensirion.com/products/catalog/SDP32) (datasheet linked there).
+   - Honeywell TruStability HSC, ±1 inH₂O (±249 Pa) differential, I²C, for example HSCDRRN001ND2A3 (3.3 V) or
+     …2A5 (5 V). Get the official HSC datasheet from Honeywell; distributor listings disagree on accuracy and
+     temperature range.
+2. **Load-cell candidates.** HTC TAL220 (10 kg, the cell Weakly2024 used) and the TAL221 mini family (100 g to
+   1.5 kg). The maker's sheet, as summarized online, gives the 100 g TAL221 0.6 mV/V and 150 % safe overload.
+   [SparkFun TAL221 100 g page](https://www.sparkfun.com/mini-load-cell-100g-straight-bar-tal221.html) (datasheet
+   linked there). Needed: rated output, creep, zero and span temperature coefficients, safe overload. The noise
+   trade-off is worked out in [notes/HX711.md](notes/HX711.md).
+3. **Datasheets for the parts on hand:** TI [LM741](https://www.ti.com/product/LM741),
+   [LM348](https://www.ti.com/product/LM348) (combined LM148/LM248/LM348 datasheet) and
+   [LM317](https://www.ti.com/product/LM317). Needed for the TODO P1 task "decide the role of the op-amp circuit".
+4. **Ambient pressure and temperature for air density:** Bosch BME280 (I²C pressure, temperature and humidity).
+   Vendor pages give about ±1 hPa absolute pressure accuracy, about 0.1 % in ρ (our arithmetic).
+   [Datasheet copy hosted by SparkFun](https://cdn.sparkfun.com/assets/5/3/0/f/7/BME280_Datasheet.pdf); prefer the
+   current revision from Bosch Sensortec.
+
+**Electronics background (free; useful, not blocking):**
+
+5. M. Tomin, M. Scipioni, B. Gatti, "Design, construction and testing of a 3-component force balance for educational
+   wind tunnels in undergraduate aerodynamics," *J. Aviation/Aerospace Education & Research* 29(1), 2020,
+   pp. 89–105, doi:10.15394/jaaer.2020.1809. [Open access](https://commons.erau.edu/jaaer/vol29/iss1/5). Arduino-based
+   balance; Weakly2024's ref. [2].
+6. S. Post, M. Morris, "Force balance design for educational wind tunnels," ASEE Annual Conference, 2010.
+   [ASEE PEER](https://peer.asee.org/15891). Two-load-cell balance with a sting-drag measurement; Weakly2024's ref. [1].
+7. K. Hoffmann, *An Introduction to Stress Analysis using Strain Gauges*, HBM. Free PDF from HBK; a free account may
+   be needed. [HBM reference-literature page](https://www.hbm.com/index.php?id=112). Bridge circuits, excitation and
+   temperature compensation: the theory inside a load cell.
+8. W. Kester, J. Bryant, M. Byrne, "Grounding Data Converters and Solving the Mystery of 'AGND' and 'DGND',"
+   Analog Devices tutorial MT-031, Rev. A, 2008.
+   [PDF](https://www.analog.com/media/en/training-seminars/tutorials/mt-031.pdf). Grounding and layout for the ADC
+   board, which will sit near a fan motor.
+9. Dwyer Instruments, Series 160 stainless steel pitot tubes, Bulletin H-11.
+   [Distributor copy](https://core.instrumart.com/assets/Dwyer-160-datasheet.pdf). Geometry and use of a standard
+   pitot-static tube, if one is bought rather than made.
+10. B. N. Taylor, C. E. Kuyatt, *Guidelines for Evaluating and Expressing the Uncertainty of NIST Measurement
+    Results*, NIST Technical Note 1297, 1994 edition. [NIST page](https://www.nist.gov/pml/pubs/tn1297/index). Short
+    and practical, for the C_D uncertainty budget (Barlow1999 §12.2 covers the same ground).
 
 **Needs a library or purchase:**
 
-6. F. W. Roos, W. W. Willmarth, "Some experimental results on sphere and disk drag," *AIAA Journal* 9(2), 1971,
-   pp. 285–291. Primary sphere-drag measurements, widely used to fit C_D(Re) curves.
-7. J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. The standard textbook:
-   pitot-static use, balances, calibration and corrections. Already listed in PROJECT_BACKGROUND.md.
-8. R. D. Mehta, "The aerodynamic design of blower tunnels with wide-angle diffusers," *Progress in Aerospace Sciences*
-   18(1), 1977, pp. 59–120. The detailed data behind Mehta1979, including wide-angle diffuser and screen design.
+- S. F. Hoerner, *Fluid-Dynamic Drag*, 1965. Weakly2024's source for C_D = 0.47. Low priority now that Roos1971 and
+  Morrison2013 are here.
 
-**Lower priority:**
-
-- J. Scheiman, *Comparison of experimental and theoretical turbulence reduction characteristics for screens,
-  honeycomb, and honeycomb-screen combinations*, NASA TP-1958, 1981 ([NTRS record](https://ntrs.nasa.gov/citations/19820006182);
-  full-text availability not checked). Useful when choosing screens and honeycomb.
-- P. Bradshaw, R. C. Pankhurst, "The design of low-speed wind tunnels," *Progress in Aerospace Sciences* 5, 1964,
-  p. 1. Mostly summarized by Mehta1979.
-- T. Morel, "Comprehensive Design of Axisymmetric Wind Tunnel Contractions," *ASME J. Fluids Eng.*, June 1975,
-  pp. 225–233. Contraction design charts; Bell1988 already gives a usable shape.
-- Datasheets for the pressure sensor and load cell, once chosen.
+**Later:** datasheets for the chosen fan or blower, microcontroller board, pressure sensor and load cell.
 
 When one of these is added, move it out of this list. Duplicate copies: keep the cleaner one and record the choice
 in its notes file.

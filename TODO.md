@@ -8,17 +8,26 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: commit and push the second `/wrap`'s doc update** (five docs files, no new files). Outcome: GitHub
-  records the push and the `/wrap` verification. Verify: `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`.
-  Commands: [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#follow-up-commit-second-wrap).
+- [ ] **Owner: commit and push this session's changes** (reference library and electronics references: docs, two
+  notes files and 12 PDFs). Outcome: GitHub holds them. Verify: `python scripts/sync_status.py --fetch` reports
+  `UP_TO_DATE`. Commands: [session log](docs/sessions/2026-10-31-reference-library-and-electronics.md#13-manual-git-commands-as-given-to-the-owner).
 - [ ] **Owner: provide the sizing inputs:** available floor or bench length for the tunnel, target top airspeed, and
   any fan or blower already in mind. Outcome: recorded under "Requirements and constraints" in PROJECT_BACKGROUND.md.
-  Verify: the first P1 task can start without guessing these.
-- [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility) and D-004 (data and LFS policy) in [DECISIONS.md](DECISIONS.md).
+  Verify: the first P1 sizing task can start without guessing these.
+- [ ] **Owner: list what else is in the ECE kit** (a photo works): passives, breadboard, multimeter, bench or split
+  power supply, any microcontroller board. Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and
+  docs/experimental_setup.md, citing the owner and date. Verify: open question 9 closed; the microcontroller and
+  op-amp tasks below can use it.
+- [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy) and
+  D-006 (reference PDFs over 25 MB kept local only) in [DECISIONS.md](DECISIONS.md).
   Verify: status changed to Accepted (or replaced by a new decision).
 
 ## P1: Design and choose hardware (build step 1)
 
+- [ ] **Review the blockage and C_D-reference papers now in `resources/`:** Maskell1963 and Cooper1998 (AGARD-AG-336
+  chapter 6), then Morrison2013 and Roos1971. Both scans (Maskell1963, Cooper1998) have no text layer; read the page
+  images, or the full AGARD volume's text on this machine. Outcome: a notes file per paper. Verify: each index row in
+  [resources/README.md](resources/README.md) says "Reviewed". Feeds the blockage, C_D-reference and sizing tasks below.
 - [ ] **Size the contraction and test section.** Choose tunnel type (open-circuit blower vs suck-down), test-section
   cross-section and length, contraction ratio, contraction wall shape and length, whether to fit an exit diffuser,
   and target airspeed range. Needs the owner's sizing inputs (P0).
@@ -28,31 +37,41 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, and a DECISIONS.md entry.
   - Verify: Reynolds number, blockage ratio, expected drag and fan duty recomputed for the chosen numbers (see
     [estimates](PROJECT_BACKGROUND.md#order-of-magnitude-estimates)); sphere blockage stays at a few percent or below.
-- [ ] **Get and review the free documents on the resources "Wanted" list** (ASEE 2024 low-cost balance paper,
-  Morrison sphere-drag correlation, AGARD-AG-336 chapter 6, Maskell R&M 3400, HX711 datasheet). The owner downloads
-  them into `resources/`, and an agent writes the notes. Outcome: a notes file per document. Verify: each index row
-  says "Reviewed".
+- [ ] **Owner: download the electronics datasheets** on the resources "Wanted" list, items 1–4: pressure-sensor
+  candidates (Sensirion SDP31/SDP32, Honeywell TruStability HSC ±1 inH₂O), load-cell candidates (TAL220, TAL221),
+  TI LM741 / LM348 / LM317, Bosch BME280. Outcome: PDFs in `resources/`; an agent files them and writes notes.
+  Verify: each has an index row marked "Reviewed".
+- [ ] **Review the remaining papers when their topic comes up:** Mehta1977 (fan and wide-angle diffuser), Scheiman1981
+  (screens and honeycomb), Morel1975 (contraction), Anthoine2004 (blockage on cylinders), Bradshaw1964, and Barlow1999
+  chapters 4, 6.4, 7 and 12.2 (instrumentation, data systems, balances, uncertainty). Outcome and verify as above.
 - [ ] **Size and choose the fan or blower.** Outcome: model recorded, with its performance curve. Verify: at the
   chosen test-section size and top speed, the required flow rate and static pressure (Mehta1979 power-factor method,
   recomputed for the real screens and contraction ratio) sit near the maker's maximum-efficiency point, with power
   margin.
-- [ ] **Choose the blockage-correction method** for the sphere (Maskell 1963 or the AGARD-AG-336 chapter 6
-  methods). Outcome: method and formula recorded in PROJECT_BACKGROUND.md. Verify: the correction for the chosen
-  sphere and test section is computed and stated with its uncertainty.
+- [ ] **Choose the blockage-correction method** for the sphere (Maskell1963 or the Cooper1998 methods). Outcome:
+  method and formula recorded in PROJECT_BACKGROUND.md. Verify: the correction for the chosen sphere and test section
+  is computed and stated with its uncertainty.
 - [ ] **Choose sphere diameter(s) and material.** Outcome: diameter, tolerance, surface finish and mounting method recorded.
   Verify: test Re sits inside the subcritical plateau (well below ~2×10⁵); diameter measured with calipers once bought.
-- [ ] **Choose the microcontroller / DAQ.** Outcome: board chosen and recorded (D-entry). Verify: it can read the HX711
-  and the chosen pressure sensor at the planned sample rate, and log to a PC as CSV.
+- [ ] **Choose the microcontroller / DAQ.** Baseline: Arduino Uno with one HX711 per load cell
+  ([Weakly2024 notes](resources/notes/Weakly2024.md)). Outcome: board chosen and recorded (D-entry). Verify: it can
+  read the HX711 and the chosen pressure sensor at the planned sample rate (interface and logic voltage checked), and
+  log raw counts to a PC as CSV.
 - [ ] **Choose the differential pressure sensor range.** Outcome: model and range recorded. Verify: full-scale range covers
   the maximum q (about 240 Pa at 20 m/s, estimate) without leaving most of the span unused; offset and noise specs written down.
 - [ ] **Choose the load-cell capacity.** Outcome: capacity recorded. Verify: expected drag plus mount drag (grams-force
-  range, estimate) is a usable fraction of full scale; overload margin for handling noted.
+  range, estimate) is a usable fraction of full scale; HX711 noise in grams computed from the chosen cell's rated
+  output ([HX711 notes](resources/notes/HX711.md)); overload margin for handling noted.
+- [ ] **Choose the ambient pressure and temperature sensor** for air density (candidate: Bosch BME280). Outcome:
+  sensor recorded in docs/experimental_setup.md. Verify: its stated accuracy gives a density uncertainty that is
+  small next to the q and force uncertainties.
 - [ ] **Decide the role of the op-amp circuit** (LM741/LM348, LM317). Outcome: a short circuit description. Verify:
-  supply rails compatible with the op-amp (LM741 is not rail-to-rail and expects split supplies).
+  supply rails compatible with the op-amp (LM741 is not rail-to-rail and expects split supplies). Depends on the
+  pressure-sensor choice (a digital sensor needs no analog conditioning) and on the kit inventory (P0).
 - [ ] **Pick a Re-matched reference for sphere Cd.** Outcome: citation with figure/table and the Cd value at the test Re,
   added to PROJECT_BACKGROUND.md as reviewed. Verify: the source covers the planned Re range. Note: Achenbach (1972)
-  covers only Re ≥ 5×10⁴, but the planned Re is roughly 10⁴–10⁵. Candidates: the Morrison (2013) correlation (free),
-  backed by Roos & Willmarth (1971) data (library).
+  covers only Re ≥ 5×10⁴, but the planned Re is roughly 10⁴–10⁵. Candidates now in `resources/`: Morrison2013
+  (correlation) backed by Roos1971 (measurements).
 - [ ] **Owner: buy hardware** once the above are chosen. Outcome: parts on hand. Verify: part numbers and datasheets
   recorded in `docs/experimental_setup.md`.
 
@@ -78,11 +97,14 @@ Owner tasks are physical or account actions that an agent cannot do.
 
   Outcome: a printed generator plus injection tube. Verify: visible streaklines in the test section at a stated speed
   (photo or video referenced in the data catalog).
-- [ ] **Build the load cell and its conditioning circuit.** Verify: stable zero over several minutes with wind off; noise recorded.
+- [ ] **Build the load cell and its conditioning circuit.** Solder the load-cell leads directly to the HX711, with no
+  breadboard in the bridge wiring (lesson from Weakly2024). Verify: stable zero over several minutes with wind off;
+  noise recorded.
 - [ ] **Calibrate the load cell against known weights.** Outcome: calibration dataset and fit (counts → N). Verify:
   residuals and linearity reported; calibration file referenced from the data catalog.
 - [ ] **Sphere Cd validation run.** Outcome: C_D with uncertainty at one or more Re, compared with the reference.
-  Verify: mount drag subtracted, repeated runs agree within the stated uncertainty, analysis reproducible from raw data.
+  Verify: mount drag subtracted, blockage corrected, repeated runs agree within the stated uncertainty, analysis
+  reproducible from raw data.
 
 ## P3: After validation (build step 7)
 
@@ -101,3 +123,8 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-10-31: Owner committed and pushed the literature review as `5bc60f0`, after fixing a network fault (the
   PC had no IPv4 address). The push used the commands `/wrap` gave, which completes the independent `/wrap`
   verification ([session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)).
+- [x] 2026-10-31: Owner committed and pushed the second `/wrap`'s doc update as `b710093`; `/catchup` confirmed
+  `UP_TO_DATE` ([session log](docs/sessions/2026-10-31-reference-library-and-electronics.md)).
+- [x] 2026-10-31: Owner downloaded every document on the 2026-10-30 "Wanted" list (and the full AGARD-AG-336 volume);
+  the agent filed them, reviewed the HX711 datasheet and Weakly2024, and wrote a new electronics "Wanted" list
+  ([session log](docs/sessions/2026-10-31-reference-library-and-electronics.md)).

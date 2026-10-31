@@ -2,7 +2,7 @@
 
 - **Session ID:** 0bc1e3bc-a0e1-477c-8a4e-e0e842f9c3f9 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** `5bc60f0` (the main work, pushed 2026-10-31). The second `/wrap`'s updates: not committed yet.
+- **Commit:** `5bc60f0` (the main work, pushed 2026-10-31). The second `/wrap`'s updates: `b710093` (pushed 2026-10-31).
 - **Dates:** the session ran 2026-10-30 to 2026-10-31. Docs written during it are dated 2026-10-30; the first `/wrap`
   and the second `/wrap` (after the owner's push) are dated 2026-10-31.
 
