@@ -93,7 +93,9 @@ Template:
   method in [Bell1988](resources/notes/Bell1988.md) assumes smooth walls with a laminar boundary layer from the inlet.
   Seal seams against leaks. Unknown: filament, wall thickness, segment layout, adhesive.
 - Evidence / source: owner statement, 2026-10-30 session.
-- Status: Accepted (segmented printing with alignment holes). Joining method (glue): Tentative.
+- Status: Accepted (segmented printing with alignment holes). Joining method (glue): Tentative. Tunnel size: the
+  "decently big" intent is superseded by D-008 (100 mm test section, 2026-11-01). Segmented printing still applies,
+  because the 250 mm settling chamber and contraction inlet leave no room for walls and flanges on the 256 mm bed.
 
 ## D-006: Keep reference PDFs over 25 MB in `resources/`, ignored by Git
 
@@ -112,3 +114,55 @@ Template:
 - Evidence / source: [2026-10-31 session log](docs/sessions/2026-10-31-reference-library-and-electronics.md).
 - Status: Tentative. Chosen by the agent following D-004; the owner has not confirmed it. Consequence: a fresh clone
   from GitHub on a machine without OneDrive lacks these two files.
+
+## D-007: Open-circuit blower tunnel, fan at the front
+
+- Date: 2026-11-01
+- Question: Blower (fan at the front, pushing) or suction (fan at the back, pulling)? And is there an exit diffuser?
+- Decision: An open-circuit **blower**: "The fan will go at the front. That will be better" (owner). Proposed layout
+  (agent): fan → flexible coupling → short wide-angle diffuser with screens → settling chamber (honeycomb + screens) →
+  contraction → closed test section → **open exit, no exit diffuser**.
+- Rationale:
+  - The test section sits near room pressure, so print seams and the sting slot barely leak (the agent's lean since
+    2026-10-31).
+  - The honeycomb and screens remove the fan's swirl before the test section.
+  - The open exit is the agent's proposal. An exit diffuser by Mehta1979's rule (5°, area ratio 2.5) would add about
+    7.5 × the test-section height, about 0.75 m at 100 mm, against the owner's target of a tunnel about 1 m long. It
+    would roughly halve the fan pressure and power
+    ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#fan-requirement-estimates)).
+- Alternatives considered: suction, the shape of the owner's first sketch
+  ([docs/sketches/](docs/sketches/README.md)). The fan's turbulence leaves out of the back, and the sketch's sealed
+  electronics box under the floor would stop air leaking in through the sting slot. It needs calm room air at the
+  inlet and a square-to-round transition before the fan. An exit diffuser is the other alternative: less fan power,
+  more length.
+- Consequences: the tunnel will not draw mist in by itself, so optional visualization injects mist after the last
+  screen ([TODO.md](TODO.md) P2). The settling chamber runs above room pressure, so any removable panel there needs
+  latches or strong magnets.
+- Evidence / source: [2026-11-01 session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md).
+- Status: Accepted (blower, fan at the front; owner). Open exit: Tentative (agent's proposal, not objected to, not
+  confirmed).
+
+## D-008: 100 mm × 100 mm test section
+
+- Date: 2026-11-01
+- Question: What test-section cross-section? It sets the tunnel length, the sphere size, the drag force and the fan.
+- Decision: A square 100 mm × 100 mm test section ("lets keep it at 100mm", owner). The owner first targeted about
+  1 m in total including the fan, then allowed more ("we can also go more than 1m if needed").
+- Rationale (the comparison shown to the owner; estimates, not measurements,
+  [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#tunnel-length-budget)):
+  - about 1.15–1.3 m long including a 6-inch fan, close to the owner's 1 m target;
+  - one 6-inch inline fan should reach about 13 m/s;
+  - the smallest fan, print and parts cost of the sizes compared.
+- Alternatives considered:
+  - 80 mm, which fits 1 m including the fan but has smaller forces;
+  - 150 mm (about 1.6–1.9 m, about twice the force, an 8–10 inch fan);
+  - 200 mm (about 2–2.5 m, about four times the force, a 10–12 inch fan, a 500 mm settling chamber in many printed
+    pieces). The owner raised 200 mm, then chose 100 mm.
+- Consequences:
+  - The sphere is about 20 mm at 3 % blockage (25 mm at 5 %). Its drag is about 0.9 gf at 10 m/s and 2.0 gf at
+    15 m/s (estimate), so the load cell, its zero drift and the sting drag are the hardest part of the project.
+    D-005 had rejected a ~100 mm section for this reason; the owner chose it after seeing the force comparison.
+  - Re for a 20 mm sphere is about 1.3×10⁴ at 10 m/s, inside the subcritical C_D plateau.
+  - Proposed, not decided: contraction ratio 6.25 (250 mm settling chamber), test section 270–290 mm long.
+- Evidence / source: [2026-11-01 session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md).
+- Status: Accepted (100 mm × 100 mm cross-section; owner). Contraction ratio and section lengths: Tentative.

@@ -14,7 +14,9 @@ Every statement is tagged: **[Confirmed]** = stated by the project owner or veri
 - [Confirmed] Deliverable: the measured Cd of a sphere compared against the published value of about 0.47.
 - [Confirmed] Why it matters to the owner: of their three current projects, this is the one that shows mechanical
   engineering work in fluids, the kind of work aerospace companies hire MEs into.
-- [Confirmed] After validation: an airfoil pitch attachment (servo-driven) for further testing.
+- [Confirmed] After validation: an airfoil pitch attachment (servo-driven, in the original README) for further
+  testing. On 2026-11-01 the owner switched to **preset angles of attack**: their sketch notes that a pivoting airfoil
+  would ruin the force measurement.
 
 Source: the original README, written 2026-10-25 and kept in [README.md](README.md).
 
@@ -33,7 +35,20 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
   weights, (6) sphere Cd validation run, (7) airfoil pitch attachment.
 - [Confirmed] The owner has access to a Bambu Lab P1S 3D printer (stated 2026-10-30). Build volume 256 × 256 × 256 mm
   (manufacturer's published spec, not measured). Filament and material choice: unknown.
-- Unknown: budget, available space, power supply, tunnel type (open-circuit suck-down vs blower), target airspeed.
+- [Confirmed] Tunnel type: open-circuit **blower**, fan at the front (owner, 2026-11-01; [D-007](DECISIONS.md)).
+- [Confirmed] Test section **100 mm × 100 mm** (owner, 2026-11-01; [D-008](DECISIONS.md)). Length: the owner first
+  wanted about 1 m in total including the fan, then allowed more. Estimated 1.15–1.3 m with a 6-inch fan
+  ([Tunnel length budget](#tunnel-length-budget)).
+- [Confirmed] Model access: one test chamber. The top and/or side acrylic panel comes off to swap the model; the
+  owner proposed magnets to hold the panels (2026-11-01).
+- [Confirmed] Controls: a display with a knob and a menu like the Ender 3 3D printer's, to choose what to show (drag
+  force and so on) and to change the fan speed (owner, 2026-11-01).
+- [Confirmed] Tools on hand: a multimeter, a soldering station, a bench power supply (maximum voltage and current
+  unknown) and access to a workbench (owner, 2026-11-01).
+- [Confirmed] Budget: "I don't really have a budget" (owner, 2026-11-01). The owner compared this project with typical
+  projects under $50, which have no load cell. The agent's estimate for this one is about $120–200, mostly the fan and
+  the pressure sensor (PROJECT_STATUS §3).
+- Unknown: target top airspeed, fan model, the bench supply's rating, the room's free length around the tunnel.
 
 ## Governing equations [Standard]
 
@@ -167,6 +182,55 @@ What this implies (to be confirmed when the layout is chosen):
 - Recompute with the actual screen count, K values and contraction ratio once they are chosen. Add a power margin,
   as Mehta1979 advises.
 
+### Tunnel length budget
+
+**[Assumption] values, not measurements.** Blower layout with an open exit (D-007) and contraction ratio 6.25, so the
+settling chamber is 2.5 h square. Computed 2026-11-01 with short Python calculations (session scratch scripts, not
+kept; the rules below reproduce them).
+
+Section rules:
+
+| Section | Rule | Source |
+|---|---|---|
+| Wide-angle diffuser (fan outlet → settling chamber) | Equivalent cone opening at 30–45° (included angle) | Assumed. Mehta1979 Fig. 3 sets the real limit; Mehta1977 not yet reviewed |
+| Settling chamber | 0.6–0.8 × its width: honeycomb, screens 0.2 widths apart, the last 0.2 widths before the contraction | [Mehta1979](resources/notes/Mehta1979.md) |
+| Contraction | 1.0 × its inlet width | [Bell1988](resources/notes/Bell1988.md), [Abdelhamed2014](resources/notes/Abdelhamed2014.md) |
+| Test section | 2.7–2.9 h: 0.5 h for the flow to settle, the reference reading 1.5√C before the sphere, 4√S behind it at 3–5 % blockage | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md) |
+| Exit diffuser (not planned) | Area ratio 2.5 at a 5° included angle: about 7.5 h | [Mehta1979](resources/notes/Mehta1979.md) |
+
+Fan outlets assumed: 6-inch (152 mm) for h ≤ 120 mm, 8-inch for 150 mm, 10-inch for 200 mm. The 6-inch fan's body
+is about 320 mm long (listings for the AC Infinity Cloudline S6 give 12.6 in); the larger fans' lengths are not
+known. Sphere d = 0.2 h (3.1 % blockage), C_D = 0.47, ρ = 1.20 kg/m³.
+
+| Test section h (mm) | Settling chamber (mm) | Fan outlet to exit (mm) | Total with fan | Sphere d (mm) | Drag at 10 / 15 m/s (gf) |
+|---|---|---|---|---|---|
+| 80 | 200 | 625–729 | 0.95–1.05 m | 16 | 0.58 / 1.31 |
+| **100 (chosen, D-008)** | 250 | 827–983 | **1.15–1.30 m** | 20 | 0.90 / 2.03 |
+| 120 | 300 | 1029–1236 | 1.35–1.56 m | 24 | 1.30 / 2.93 |
+| 150 | 375 | 1271–1521 | about 1.6–1.9 m (fan length guessed) | 30 | 2.03 / 4.58 |
+| 200 | 500 | 1714–2059 | about 2.0–2.5 m (fan length guessed) | 40 | 3.6 / 8.1 |
+
+What this implies:
+
+- Most of the length is flow conditioning and the contraction, not the test section.
+- With the same fan, a bigger section gives *less* force at top speed: the speed falls faster than the sphere's area
+  grows. A bigger tunnel only gives more force with a bigger fan. Doubling the size gives four times the force for four
+  times the fan power; doubling the speed gives four times the force for eight times the power.
+- The sting should be as short as the layout allows: a cantilever's deflection grows with length cubed. For h =
+  100 mm it is about 80–90 mm long (sphere centre 50 mm above the floor, plus 30–40 mm through the floor to the load
+  cell). A 20 mm sphere sheds vortices at about 0.2 V/d, i.e. about 100 Hz at 10 m/s and 150 Hz at 15 m/s. Check the
+  sting-plus-load-cell natural frequency against that once both are chosen.
+
+Fan requirement for h = 100 mm (open exit, fan pressure 1.25–1.5 q): about 210 CFM delivered against 75–90 Pa at
+10 m/s, and about 320 CFM against 170–200 Pa at 15 m/s. So look for a fan **rated about 400 CFM free air with a
+listed maximum static pressure of 300–500 Pa**. Crude top-speed estimates, assuming a straight-line fan curve between
+the listed maximum pressure and the free-air flow (real curves sag, so real speeds are lower):
+
+| Fan (listed specs) | Estimated top speed at h = 100 mm |
+|---|---|
+| AC Infinity Cloudline S6: 402 CFM, about 500 Pa maximum (retailer listings) | 13.1–13.7 m/s |
+| Delta PFR1212UHE-SP00 120 mm 12 V server fan: 228.6 CFM, 300 Pa (DigiKey) | one fan 8.5–8.7 m/s; two side by side 12.1–12.8 m/s |
+
 ## Measurement and analysis approach [Proposed]
 
 1. Measure ambient p and T each session to compute ρ (instrument not chosen; candidate BME280).
@@ -179,6 +243,14 @@ What this implies (to be confirmed when the layout is chosen):
 3. Mount the model on a sting that passes through a floor slot to an upright straight-bar load cell outside the
    tunnel, as Weakly2024 did. Drag bends the cell. Use a non-magnetic sting and fasteners if magnets hold panels
    nearby (2026-11-01).
+   - Put only the load cell and HX711 in the closed box under the floor (the "electronics house" in the owner's
+     sketch). The display, knob and Arduino go in a separate box on a cable, so pressing the knob does not bump the
+     balance and their heat does not drift the load cell (2026-11-01).
+   - Protect the load cell when swapping models. Small bar cells are typically rated for only about 120 % of
+     capacity before damage (check the chosen cell's datasheet), and screwing a model onto the sting twists and
+     pushes it. Plan a sting lock (a clamp or pin that holds the sting while swapping, removed before running),
+     overload stops, and a low-twist model attachment (for example a push fit with a set screw). Re-zero with the wind
+     off after every swap.
 4. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
    drag direction at the sphere's position, for example a thread over a low-friction pulley. Fit counts → newtons
    and record residuals.

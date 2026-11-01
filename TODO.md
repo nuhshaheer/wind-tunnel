@@ -8,13 +8,27 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: commit and push this session's changes** (parts review and kit inventory: one new session log and doc
-  updates). Outcome: GitHub holds them. Verify: `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`.
-  Commands: [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md#13-manual-git-commands-as-given-to-the-owner).
-- [ ] **Owner: provide the sizing inputs:** available floor or bench length for the tunnel, target top airspeed, and
-  any fan or blower already in mind. These now also decide the fan size (6-inch or 8-inch inline fan) and the
-  pressure-sensor range. Outcome: recorded under "Requirements and constraints" in PROJECT_BACKGROUND.md.
-  Verify: the first P1 sizing task can start without guessing these.
+- [ ] **Owner: commit and push the rest of this session** (the sketch, D-007, D-008 and doc updates, after
+  `748dae9`). First decide about the sketch PDF: it is 10.2 MiB, over the roughly 2 MB guideline for scans
+  ([data/README.md](data/README.md)). Either re-export it smaller, ask an agent to make a compressed copy, or commit it
+  as is (under D-004's 25 MB limit; it stays in Git history for good). Outcome: GitHub holds the changes. Verify:
+  `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`. Commands:
+  [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md#13-manual-git-commands-as-given-to-the-owner).
+- [ ] **Owner: give the target top airspeed.** The test section (100 mm, D-008) and length (about 1 m target, more
+  allowed) are settled. The top speed sets the pressure-sensor range (±125 Pa covers about 14 m/s) and confirms the
+  fan. 10–13 m/s is enough for the sphere validation. Outcome: recorded under "Requirements and constraints" in
+  PROJECT_BACKGROUND.md. Verify: the sensor-range and fan tasks (P1) can be finished without guessing it.
+- [ ] **Owner: choose the fan** from the candidates in [PROJECT_STATUS.md](PROJECT_STATUS.md) §3.
+  - Agent's pick: a 6-inch mixed-flow EC inline fan. Either the VIVOSUN AeroZesh S6 (from about $63; first find its
+    static pressure in the manual or from VIVOSUN) or the AC Infinity Cloudline S6 ($90–120, about 500 Pa listed).
+  - Alternative if menu control of the fan matters from day one: two Delta PFR1212UHE-SP00 12 V PWM server fans
+    (very loud; need about 5.4 A at 12 V from the bench supply; buy from a real distributor because fakes are common).
+  - Check the listing for a 6-inch outlet, a maximum static pressure figure, an included speed controller and a
+    return policy.
+  - Outcome: model recorded in PROJECT_STATUS §3 and docs/experimental_setup.md with its datasheet or listed specs.
+    Verify: its listed maximum static pressure is at least about 300 Pa and its free-air flow about 400 CFM (or the
+    pair's combined), which covers 15 m/s with margin by the estimate in
+    [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#tunnel-length-budget).
 - [ ] **Owner: set up the Elegoo Mega 2560 R3** once the USB A-to-B cable arrives (UGREEN 5 ft, ordered 2026-11-01).
   - Confirm the board: it should read MEGA2560 R3, and the large chip ATMEGA2560.
   - Install the Arduino IDE, select **Tools → Board → Arduino Mega or Mega 2560** and the port, and upload
@@ -23,17 +37,17 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Verify: a new COM port appears in Device Manager under "Ports (COM & LPT)" when it is plugged in, and the
     onboard LED blinks. The power LED alone proves nothing, because it also lights on a charge-only cable. If
     Windows shows "Unknown device", a driver is needed; report the name it shows.
-- [ ] **Owner: finish the parts-on-hand list.** The ECE kit is recorded from its packing list (2026-11-01). Still
-  needed:
-  - whether a multimeter, soldering iron and bench or split power supply are on hand;
+- [ ] **Owner: finish the parts-on-hand list.** The ECE kit, a multimeter, a soldering station, a bench power supply
+  and a workbench are recorded (2026-11-01). Still needed:
+  - the bench supply's maximum voltage and current (on its label or front panel);
   - any other electronics the owner has (a photo works);
   - the magnets' type and size.
 
   Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and docs/experimental_setup.md, citing the owner
   and date. Verify: open question 9 closed.
-- [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy) and
-  D-006 (reference PDFs over 25 MB kept local only) in [DECISIONS.md](DECISIONS.md).
-  Verify: status changed to Accepted (or replaced by a new decision).
+- [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy),
+  D-006 (reference PDFs over 25 MB kept local only) and D-007's open exit (no exit diffuser) in
+  [DECISIONS.md](DECISIONS.md). Verify: status changed to Accepted (or replaced by a new decision).
 
 ## P1: Design and choose hardware (build step 1)
 
@@ -56,12 +70,25 @@ Owner tasks are physical or account actions that an agent cannot do.
     4. Why is 0.47 only right over a range of Reynolds numbers?
     5. Why do the walls change the measured drag?
   - Verify: the owner can discuss those questions when making the sizing decisions.
-- [ ] **Size the contraction and test section.** Choose tunnel type (open-circuit blower vs suck-down), test-section
-  cross-section and length, contraction ratio, contraction wall shape and length, whether to fit an exit diffuser,
-  and target airspeed range. Needs the owner's sizing inputs (P0).
+- [ ] **Size the contraction and test section.** Fix the test-section length, contraction ratio, contraction wall
+  shape and length, the settling chamber and the fan-to-chamber diffuser, and the target airspeed range.
+  - **Decided 2026-11-01 (owner):** an open-circuit blower with the fan at the front (D-007) and a 100 mm × 100 mm
+    test section (D-008). Proposed, from the
+    [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget): contraction ratio 6.25 (250 mm settling chamber),
+    contraction about 250 mm long, test section 270–290 mm, open exit; about 1.15–1.3 m including a 6-inch fan.
+    The wide-angle diffuser from the round fan outlet (152 mm) to the 250 mm square chamber has an area ratio of
+    about 3.4: check it against Mehta1977 and Mehta1979 Fig. 3.
   - Inputs [Proposed]: contraction ratio 6–9, square section, 5th-order-polynomial wall, length about 1.0 × inlet
     height, sphere at least 0.5 D downstream of the contraction, segmented print (D-005). See the notes in
     [resources/README.md](resources/README.md).
+  - Added 2026-11-01 [Proposed], the balance box:
+    - only the load cell and HX711 in the closed box under the floor (the owner's sketched "electronics house"); the
+      display, knob and Arduino in a separate box on a cable;
+    - a sting about 80–90 mm long, as short and stiff as the layout allows;
+    - **load-cell protection for model swaps**: a sting lock (a clamp or pin that holds the sting while swapping,
+      removed before running), overload stops that let the sting move only slightly past full scale, and a low-twist
+      model attachment (for example a push fit with a set screw). Small bar cells are typically rated for only about
+      120 % of capacity; check the chosen cell's datasheet.
   - Added 2026-10-31 [Proposed]:
     - a **closed** test section with a clear window;
     - the test-section length set by the position rules: reference pressure at least 1.5√C upstream of the sphere,
@@ -69,9 +96,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     - choose where the airspeed reference is read (PROJECT_STATUS open question 10);
     - a capped mist port after the last screen, so optional visualization needs no later cutting;
     - lean toward a blower with an open exit, because seams and the sting slot then barely leak (PROJECT_STATUS §2).
-      Decide together with the fan.
+      Decided 2026-11-01: blower (D-007).
   - Added 2026-11-01 [Proposed]: **model access through removable clear acrylic panels held by magnets** (owner's
-    idea, preferred over a sliding panel). Design points:
+    idea, preferred over a sliding panel). Owner's concept: one test chamber whose top and/or side panel comes off to
+    swap the model; the top gives the best reach to the sting tip. Design points:
     - magnets clamp; pins or lips locate each panel so it lands in the same place every time, especially at the
       contraction-to-test-section joint (a 1 mm step in the wall disturbs the flow just before the sphere);
     - the panel's inner face flush with the wall (acrylic set into a printed frame that holds the magnets; magnets
@@ -93,24 +121,29 @@ Owner tasks are physical or account actions that an agent cannot do.
   candidates (Sensirion SDP810 and SDP31/SDP32, Honeywell TruStability HSC ±1 inH₂O), load-cell candidates (TAL220,
   TAL221), TI LM741 / LM348 / LMC6484 / LM317 / LM7805, Bosch BME280. Outcome: PDFs in `resources/`; an agent files
   them and writes notes. Verify: each has an index row marked "Reviewed".
-- [ ] **Review the remaining papers when their topic comes up:** Mehta1977 (fan and wide-angle diffuser), Scheiman1981
-  (screens and honeycomb), Morel1975 (contraction), Anthoine2004 (blockage on cylinders), Bradshaw1964, and Barlow1999
+- [ ] **Review the remaining papers when their topic comes up.** Next, because the 100 mm layout needs them now:
+  Mehta1977 (blower tunnels and the wide-angle diffuser after the fan) and Scheiman1981 (screens and honeycomb).
+  Later: Morel1975 (contraction), Anthoine2004 (blockage on cylinders), Bradshaw1964, and Barlow1999
   chapters 4, 6, 7, 9–10 and 12.2 (instrumentation; test-section calibration and data systems; balances; boundary
   corrections, needed to confirm the solid-blockage formula; uncertainty). Outcome and verify as above.
-- [ ] **Size and choose the fan or blower.**
+- [ ] **Size and choose the fan or blower.** The owner picks from the candidates (P0); this task checks the choice.
   - Proposed type (2026-11-01): an inline mixed-flow duct fan with a speed controller. Computer fans and box fans
     cannot push enough air through the honeycomb and screens; a centrifugal blower works but is loud and bulky,
-    often with only 2–3 speeds.
+    often with only 2–3 speeds. High-pressure 12 V server fans (Delta PFR1212UHE-SP00, 300 Pa) are the exception:
+    two side by side should reach about 12 m/s (estimate), with PWM control from the Arduino, but they are loud.
   - Look for:
-    - a **published fan curve** (flow against static pressure); a fan rated only by free-air CFM cannot be sized;
+    - a **published fan curve** (flow against static pressure), or at least a listed maximum static pressure; a fan
+      rated only by free-air CFM cannot be sized;
     - smooth or many-step speed control (the pitot measures the actual speed, so Arduino control is not needed);
-    - an EC (brushless DC) motor if affordable, for smoother running.
-  - Rough size: a 6-inch fan (listed about 402 CFM and 500 Pa maximum, $90–120) gives roughly 9–13 m/s in a
-    120–100 mm section (estimate, session log 2026-11-01). Larger sections or 20 m/s need 8 inches or more.
+    - an EC (brushless DC) motor if affordable, for smoother running;
+    - a documented low-voltage speed input (PWM or 0–10 V) if the owner's menu is to set the fan speed.
+  - Need for the 100 mm section (estimate): about 400 CFM rated, 300–500 Pa maximum static pressure. A 6-inch fan
+    (listed about 402 CFM and 500 Pa maximum, $90–120) gives about 13 m/s
+    ([length budget](PROJECT_BACKGROUND.md#tunnel-length-budget)).
   - Mount the fan on its own stand with a flexible coupling to the tunnel, so its vibration does not reach the
     balance. A printed round-to-square widening section joins it to the settling chamber.
   - Not suitable: the 120 mm Qirssyn fan from Aki's video (about 95 CFM, at most about 4.5 m/s through a 100 mm
-    section even with nothing in the way).
+    section even with nothing in the way), and 6-inch "booster" duct fans (axial, no pressure figure).
   - Outcome: model recorded, with its performance curve. Verify: at the chosen test-section size and top speed, the
     required flow rate and static pressure (Mehta1979 power-factor method, recomputed for the real screens and
     contraction ratio) sit near the maker's maximum-efficiency point, with power margin.
@@ -122,8 +155,11 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: method and formula marked as chosen (D-entry).
   - Verify: the correction for the chosen sphere and test section is computed and stated with its uncertainty
     (θ spread 1.85–2.8). The plan includes a two-sphere-size check (P2 validation run).
-- [ ] **Choose sphere diameter(s) and material.** Outcome: diameter, tolerance, surface finish and mounting method recorded.
-  Verify: test Re sits inside the subcritical plateau (well below ~2×10⁵); diameter measured with calipers once bought.
+- [ ] **Choose sphere diameter(s) and material.** Proposed for the 100 mm section (2026-11-01): about 20 mm (3.1 %
+  blockage) and about 25 mm (4.9 %) for the two-size check. Outcome: diameter, tolerance, surface finish and mounting
+  method recorded (a low-twist attachment to the sting, see the sizing task). Verify: test Re sits inside the
+  subcritical plateau (well below ~2×10⁵; a 20 mm sphere at 10 m/s is about 1.3×10⁴); diameter measured with calipers
+  once bought.
 - [ ] **Confirm the microcontroller / DAQ.** Candidate (2026-11-01): the owner's Elegoo Mega 2560 R3 (5 V logic,
   I²C on pins 20/21). Weakly2024 used an Uno with one HX711 per load cell; the Mega does everything the Uno does,
   with more pins. Needs the P0 Blink test first. Outcome: board recorded as chosen (D-entry). Verify: it reads the
@@ -143,9 +179,11 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: model and range recorded. Verify: full-scale range covers the maximum q (about 240 Pa at 20 m/s,
     estimate) without leaving most of the span unused; offset and noise specs written down.
 - [ ] **Choose the load-cell capacity.** Buy a straight-bar cell that has a datasheet; a no-name cell without one
-  cannot enter the uncertainty budget. Outcome: capacity recorded. Verify: expected drag plus mount drag
-  (grams-force range, estimate) is a usable fraction of full scale; HX711 noise in grams computed from the chosen
-  cell's rated output ([HX711 notes](resources/notes/HX711.md)); overload margin for handling noted.
+  cannot enter the uncertainty budget. Expected sphere drag in the 100 mm section: about 0.9 gf at 10 m/s and 2.0 gf
+  at 15 m/s (estimate), plus the sting's drag. Outcome: capacity recorded. Verify: expected drag plus mount drag is a
+  usable fraction of full scale; HX711 noise in grams computed from the chosen cell's rated output
+  ([HX711 notes](resources/notes/HX711.md)); safe-overload rating noted and the sting lock and overload stops (sizing
+  task) designed around it.
 - [ ] **Choose the ambient pressure and temperature sensor** for air density (candidate: Bosch BME280 on a 5 V-compatible
   breakout; a BMP280 also serves for density). Outcome: sensor recorded in docs/experimental_setup.md. Verify: its
   stated accuracy gives a density uncertainty that is small next to the q and force uncertainties.
@@ -158,8 +196,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   added to PROJECT_BACKGROUND.md as reviewed. Verify: the source covers the planned Re range. Note: Achenbach (1972)
   covers only Re ≥ 5×10⁴, but the planned Re is roughly 10⁴–10⁵. Candidates now in `resources/`: Morrison2013
   (correlation) backed by Roos1971 (measurements).
-- [ ] **Owner: buy hardware** once the above are chosen. Rough total for the electronics plus a 6-inch fan: about
-  $200 (PROJECT_STATUS §3). Outcome: parts on hand. Verify: part numbers and datasheets recorded in
+- [ ] **Owner: buy hardware** once the above are chosen. No fixed budget (owner, 2026-11-01). Rough total for the
+  electronics plus a 6-inch fan: about $120–200 (PROJECT_STATUS §3). Outcome: parts on hand. Verify: part numbers and datasheets recorded in
   `docs/experimental_setup.md`.
 
 ## P2: Build and validate (build steps 2–6)
@@ -203,8 +241,13 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Proposed contents: a shield for the Mega 2560 holding:
     - connectors for the HX711 module, the pressure sensor and the BME280;
     - I²C pull-ups and decoupling capacitors;
-    - servo power from the kit's LM7805 (kept off the Arduino's own regulator);
-    - an input for the angle dial (the kit's 10 kΩ potentiometer).
+    - headers for the display (I²C) and the rotary encoder (two interrupt pins plus the push switch) of the menu
+      task below;
+    - optionally a PWM output and speed-sense input for a 12 V fan, if one with a low-voltage control input is
+      chosen.
+
+    The servo-power and angle-dial inputs proposed earlier are no longer needed now that the owner has chosen preset
+    angles (2026-11-01).
 
     Route I²C to the SDA/SCL pins next to AREF so the board also fits an Uno. Design in KiCad (free).
   - A breadboard is fine for testing the digital wiring. **Solder the load-cell leads directly to the HX711**, with no
@@ -213,6 +256,19 @@ Owner tasks are physical or account actions that an agent cannot do.
     board.
   - Verify: an I²C scan finds the pressure sensor and the BME280 through the board, and the HX711 gives a stable
     zero with the wind off.
+- [ ] **Firmware with an on-tunnel display and knob menu** (owner's idea, 2026-11-01: "like the menu for an Ender 3
+  with a knob"; choose what to see, such as drag force, and change the fan speed).
+  - Proposed hardware: a 20×4 character LCD with an I²C adapter (shares pins 20/21 with the pressure sensor) and a
+    push-button rotary encoder on interrupt pins 2/3 or 18/19 (pins 20/21 are I²C). Start on the breadboard. Upgrade
+    option: a 128×64 graphic LCD like the Ender 3's, for live graphs.
+  - Proposed menu: live readout (V, q, F, C_D), tare (wind-off zero), calibrate with a known mass, model setup (sphere
+    diameter), fan speed (only if the fan has a documented low-voltage input; otherwise the fan's own dial), logging
+    on/off.
+  - The laptop log over USB stays the data record; the screen is for watching live. Refresh the screen only 2–5 times
+    a second so drawing does not slow the sensor readings.
+  - Put the display, knob and Arduino in a box separate from the load-cell box.
+  - Outcome: firmware in the repo (folder `firmware/`, documented in data/README.md when the first file exists).
+    Verify: the menu works on the bench, and logging rate and timing with the screen running match those without it.
 - [ ] **Build the load cell and its conditioning circuit.** Solder the load-cell leads directly to the HX711, with no
   breadboard in the bridge wiring (lesson from Weakly2024). Verify: stable zero over several minutes with wind off;
   noise recorded.
@@ -226,15 +282,16 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P3: After validation (build step 7)
 
-- [ ] **Airfoil pitch attachment** (servo). Defined after the validation result.
-  - Owner's idea (2026-10-31, "nothing final"): a dial (potentiometer) to set the angle of attack.
-  - Proposed form: dial → microcontroller → servo, with the commanded angle logged in the same CSV as the forces. A
-    hardware-only servo-tester circuit (555 timer + potentiometer) would work but could not log the angle.
-  - Plan for:
-    - commanded ≠ actual angle (servo slop, air load): calibrate against a protractor or measure the pivot angle
-      directly;
-    - servo jitter vibrating the balance: cut the signal once set, or use a self-locking worm gear;
-    - servo wires crossing onto the balance: keep them light and slack.
+- [ ] **Airfoil tests at preset angles of attack.** Defined after the validation result.
+  - **Owner, 2026-11-01:** preset angles, because a pivoting airfoil would ruin the force measurement (note on the
+    [sketch](docs/sketches/README.md)). This replaces the earlier dial-and-servo idea below.
+  - Proposed form: an indexed hub on the same sting, with a pin that drops into holes at set angles (for example 0°,
+    2°, 4° …), so one airfoil covers many angles. Stop the tunnel and take a wind-off zero between angles.
+  - Lift matters as much as drag for an airfoil, and measuring it needs a second load cell (Weakly2024 used two).
+    Decide whether to measure lift before designing the hub.
+  - Earlier idea (owner, 2026-10-31, "nothing final"; superseded 2026-11-01): a dial → microcontroller → servo, with
+    the commanded angle logged in the CSV. Its points to plan for were: commanded ≠ actual angle; servo jitter
+    vibrating the balance; servo wires crossing onto the balance.
   - Consider tufts (yarn taped to the wing) to see stall at full speed; Maskell1963 (p. 16) advises visual
     observation of stall onset.
   - Outcome and verify: defined after validation.
@@ -265,3 +322,11 @@ Owner tasks are physical or account actions that an agent cannot do.
   commands); `/wrap` confirmed `UP_TO_DATE` ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).
 - [x] 2026-11-01: ECE kit recorded from its packing list, the Elegoo Mega 2560 R3 recorded, and the owner's candidate
   pitot kit and fan assessed ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).
+- [x] 2026-11-01: Owner committed and pushed the parts review as `748dae9`; `/wrap` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).
+- [x] 2026-11-01: Sizing inputs, part 1: the owner chose a blower with the fan at the front (D-007) and a 100 mm test
+  section (D-008), with a length target of about 1 m (more allowed). The top speed is still open (P0)
+  ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).
+- [x] 2026-11-01: The owner's first sketch filed in [docs/sketches/](docs/sketches/README.md), and the multimeter,
+  soldering station, bench power supply and workbench recorded as on hand
+  ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).

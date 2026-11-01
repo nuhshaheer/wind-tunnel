@@ -3,30 +3,34 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-01: nothing built.** Parts on hand are listed in [Parts on hand](#parts-on-hand):
-the owner's ECE kit (from its packing list), an Elegoo Mega 2560 R3 (untested) and some magnets.
+**Current configuration as of 2026-11-01: nothing built.** Decided so far: an open-circuit blower with the fan at the
+front ([D-007](../DECISIONS.md)) and a 100 mm × 100 mm test section ([D-008](../DECISIONS.md)). Parts on hand are
+listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing list), an Elegoo Mega 2560 R3
+(untested), magnets, and tools (multimeter, soldering station, bench power supply). The owner's first sketch is in
+[docs/sketches/](sketches/README.md).
 
 ## Tunnel geometry
 
 | Parameter | Value | Status / source |
 |---|---|---|
-| Tunnel type (open-circuit blower / suck-down / closed-return) | Unknown | Planned, build step 1 |
-| Inlet / settling chamber size | Unknown | Planned |
-| Contraction ratio and length | Unknown | Planned, build step 1 |
-| Test section cross-section (W × H) | Unknown | Planned, build step 1 |
-| Test section length | Unknown | Planned, build step 1 |
-| Diffuser | Unknown | Planned |
+| Tunnel type (open-circuit blower / suck-down / closed-return) | Open-circuit blower, fan at the front. Proposed order: fan → flexible coupling → wide-angle diffuser with screens → settling chamber → contraction → test section → open exit | Accepted 2026-11-01 ([D-007](../DECISIONS.md)); open exit Tentative |
+| Inlet / settling chamber size | Proposed: 250 mm × 250 mm (2.5 × the test section at contraction ratio 6.25), about 150–200 mm long | Proposed 2026-11-01 ([estimate](../PROJECT_BACKGROUND.md#tunnel-length-budget)) |
+| Contraction ratio and length | Proposed: 6.25 (250 mm → 100 mm square), about 250 mm long | Proposed 2026-11-01; build step 1 |
+| Test section cross-section (W × H) | 100 mm × 100 mm | Accepted 2026-11-01 ([D-008](../DECISIONS.md)) |
+| Test section length | Proposed: 270–290 mm (2.7–2.9 × its height, from the position rules) | Proposed 2026-11-01 ([estimate](../PROJECT_BACKGROUND.md#tunnel-length-budget)) |
+| Diffuser | Wide-angle diffuser with screens between the fan and the settling chamber (about 0.2–0.35 m, estimate). No exit diffuser: open exit | Proposed / Tentative 2026-11-01 ([D-007](../DECISIONS.md)) |
+| Overall length | About 1.15–1.3 m including a 6-inch fan (estimate). Owner's target: about 1 m, more allowed | Estimate 2026-11-01 |
 | Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins and glued; filament unknown | Planned ([D-005](../DECISIONS.md)) |
-| Model access | Unknown. Proposed: removable clear acrylic panels (3–5 mm, cast) held by magnets, located by pins, flush inside, foam-gasketed; floor fixed; no magnets near ferrous parts of the balance | Proposed 2026-11-01 (owner's idea; [TODO.md](../TODO.md) P1 sizing task) |
-| CAD / drawings | None yet | |
+| Model access | One test chamber; the top and/or side clear acrylic panel comes off to swap the model (owner's concept). Proposed details: 3–5 mm cast acrylic held by magnets, located by pins, flush inside, foam-gasketed; floor fixed; no magnets near ferrous parts of the balance; a sting lock and overload stops protect the load cell during swaps | Owner's concept 2026-11-01; details Proposed ([TODO.md](../TODO.md) P1 sizing task) |
+| CAD / drawings | No CAD yet. The owner's hand sketch: [2026-11-01 concept sketch](sketches/README.md) | |
 
 ## Flow generation and control
 
 | Parameter | Value | Status / source |
 |---|---|---|
-| Fan / blower model | Unknown. Proposed type: inline mixed-flow duct fan with a speed controller, on its own stand with a flexible coupling | To buy (README); type proposed 2026-11-01 ([TODO.md](../TODO.md) P1) |
-| Motor and speed controller | Unknown | |
-| Airspeed range | Unknown | Target not chosen |
+| Fan / blower model | Unknown. Proposed type: a 6-inch mixed-flow EC inline duct fan with a speed controller (candidates: VIVOSUN AeroZesh S6, AC Infinity Cloudline S6), on its own stand with a flexible coupling. Alternative: two Delta PFR1212UHE-SP00 12 V PWM server fans | To buy; candidates 2026-11-01 ([TODO.md](../TODO.md) P1) |
+| Motor and speed controller | Unknown. First build: the fan's own controller. Setting the speed from the Arduino menu needs a fan with a documented low-voltage control input (PWM or 0–10 V); the Arduino never switches mains | Proposed 2026-11-01 |
+| Airspeed range | Unknown. A 6-inch fan should reach about 13 m/s in the 100 mm section (estimate) | Target not chosen |
 
 ## Flow conditioning
 
@@ -43,7 +47,7 @@ the owner's ECE kit (from its packing list), an Elegoo Mega 2560 R3 (untested) a
 | Drag force | Load cell + HX711 | Unknown | None (planned: known weights) | Unknown | To buy (README) |
 | Ambient pressure | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
 | Ambient temperature | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
-| Airfoil pitch actuator | Servo | Unknown | | | To buy (README), build step 7 |
+| Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
 Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). Circuit: not designed. Proposed 2026-11-01:
 digital sensors (HX711, I²C pressure sensor, BME280) with no op-amps in the measurement chain, on an interface board
@@ -60,14 +64,15 @@ The module (and so its excitation voltage and RATE wiring) is not chosen.
 | Microcontroller / DAQ | Candidate: the owner's **Elegoo Mega 2560 R3** (identified by appearance, 2026-11-01; not yet powered or tested; USB A-to-B cable on order). 5 V logic; I²C on pins 20 (SDA) and 21 (SCL) |
 | Sample rate(s) | Unknown |
 | Synchronization between pressure and force | Unknown |
-| Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)) |
+| Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)), sent over USB to a laptop |
+| Display and controls | Planned (owner, 2026-11-01): a display with a push-button rotary encoder (knob) and a menu like the Ender 3's. Proposed: a 20×4 character LCD with an I²C adapter (sharing pins 20/21 with the pressure sensor), encoder on interrupt pins 2/3 or 18/19, screen refreshed 2–5 times a second, in a control box separate from the load-cell box |
 
 ## Test models
 
 | Model | Dimensions | Mount | Status |
 |---|---|---|---|
-| Validation sphere | Unknown diameter | Unknown. Proposed: a non-magnetic sting through a floor slot to an upright straight-bar load cell outside the tunnel (as in Weakly2024) | Planned |
-| Airfoil | Unknown | Servo pitch mechanism | Planned (after validation) |
+| Validation sphere | Proposed: about 20 mm (3.1 % blockage); about 25 mm (4.9 %) as the second size | Proposed: a non-magnetic sting about 80–90 mm long through a floor slot to an upright straight-bar load cell in a closed box under the floor (as in Weakly2024) | Planned |
+| Airfoil | Unknown | Same sting, with a preset-angle adapter | Planned (after validation) |
 
 ## Parts on hand
 
@@ -78,6 +83,10 @@ Recorded 2026-11-01. Nothing here has been tested.
 | Bambu Lab P1S 3D printer | Owner, 2026-10-30 | Build volume 256 × 256 × 256 mm (manufacturer spec) |
 | Elegoo Mega 2560 R3 | Owner, 2026-11-01 ("that is what it looks like at least") | Not yet powered or tested; USB A-to-B cable missing, owner ordering one |
 | Magnets | Owner, 2026-11-01 | Type, size and strength unknown |
+| Multimeter | Owner, 2026-11-01 | Model unknown |
+| Soldering station | Owner, 2026-11-01 | Model unknown |
+| Bench power supply | Owner, 2026-11-01 | Model, maximum voltage and current unknown |
+| Workbench | Owner, 2026-11-01 ("a bench that I have access to") | Size unknown |
 | ECE2010 Lab 2 kit (WPI) | Its packing list, scanned as `PartsListECE2010.pdf` (owner's Downloads folder, not in the repo) | Quantities below are the packed ones; the owner has not counted what remains |
 
 ECE2010 Lab 2 kit, transcribed from the packing list ("#32WORMAECE2010", Worcester Polytechnic Institute, packaged by
@@ -94,7 +103,8 @@ RSR Electronics, Inc., Rahway, NJ; "100118-vn"):
 | Capacitors | 1 × 330 µF 25 V radial, 2 × 100 µF 25 V radial, 2 × 10 µF 50 V radial, 2 × 1 µF 50 V radial, 4 × 0.1 µF mylar, 4 × 0.01 µF mylar, 4 × 0.001 µF mylar; disc: 2 each of 5, 10, 33, 47, 75, 100, 150, 220, 470 and 680 pF |
 | Miscellaneous | 03MB102 breadboard, 0602BNP1 pliers, 4" × 9" foam (1/4" thick), 2700WJW60B jumper wire kit, 060220 wire stripper, resistor colour-code card, 26MPFET microphone, 26SP08WR speaker with wires |
 
-Not in the list: a multimeter, a soldering iron, a power supply, any load cell, HX711, pressure sensor or BME280.
+Not in the kit list: a multimeter, a soldering iron or a power supply (the owner has all three separately, see
+above), or any load cell, HX711, pressure sensor or BME280.
 
 ## Operating procedure
 
@@ -114,3 +124,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-10-31 | HX711 chip specs confirmed from its datasheet (documentation only; no hardware change) | [2026-10-31](sessions/2026-10-31-reference-library-and-electronics.md) |
 | 2026-10-31 | Ambient-sensor rows corrected from "Not planned yet" to the TODO P1 task and the BME280 candidate (documentation only; no hardware change) | [2026-10-31](sessions/2026-10-31-blockage-review-and-tunnel-concepts.md) |
 | 2026-11-01 | Parts on hand recorded: the ECE2010 kit (from its packing list), the Elegoo Mega 2560 R3 and magnets. Proposals added for model access (magnetic acrylic panels), fan type, sting mounting and the interface board (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
+| 2026-11-01 | Blower with the fan at the front (D-007) and a 100 mm test section (D-008) decided. Added: proposed section sizes and lengths, fan candidates, display and knob, preset airfoil angles, load-cell protection; multimeter, soldering station, bench supply and workbench on hand (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
