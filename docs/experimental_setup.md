@@ -40,8 +40,8 @@ The README lists only the op-amps and regulator from the owner's ECE kit; the re
 |---|---|---|---|---|---|
 | Airspeed | Pitot tube + differential pressure sensor | Unknown | None | Unknown | To buy (README) |
 | Drag force | Load cell + HX711 | Unknown | None (planned: known weights) | Unknown | To buy (README) |
-| Ambient pressure | Unknown | | | | Not planned yet (needed for ρ) |
-| Ambient temperature | Unknown | | | | Not planned yet (needed for ρ) |
+| Ambient pressure | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
+| Ambient temperature | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
 | Airfoil pitch actuator | Servo | Unknown | | | To buy (README), build step 7 |
 
 Signal conditioning parts on hand (README): LM741 / LM348 op-amps, LM317 regulator. Circuit: not designed.
@@ -82,3 +82,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-10-29 | Document created; no hardware built | [2026-10-29](sessions/2026-10-29-github-setup-and-agent-handoff.md) |
 | 2026-10-30 | Construction method recorded: segmented 3D printing on the P1S (D-005). Planning only; nothing built. Row added retrospectively on 2026-10-31 | [2026-10-31](sessions/2026-10-31-literature-review-and-design-inputs.md) |
 | 2026-10-31 | HX711 chip specs confirmed from its datasheet (documentation only; no hardware change) | [2026-10-31](sessions/2026-10-31-reference-library-and-electronics.md) |
+| 2026-10-31 | Ambient-sensor rows corrected from "Not planned yet" to the TODO P1 task and the BME280 candidate (documentation only; no hardware change) | [2026-10-31](sessions/2026-10-31-blockage-review-and-tunnel-concepts.md) |

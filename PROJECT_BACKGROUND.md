@@ -57,6 +57,34 @@ source is an open item in [TODO.md](TODO.md).
   wind-off zero after it.
 - **Flow non-uniformity and turbulence:** the reason for honeycomb, screens and contraction. Build step 3 (uniformity map) quantifies it.
 
+### Blockage correction [Proposed]
+
+Not decided. From [Maskell1963](resources/notes/Maskell1963.md) and [Cooper1998](resources/notes/Cooper1998.md)
+(reviewed 2026-10-31). The test section and sphere are not chosen, so the correction has not been computed for the
+real geometry (TODO P1). Percentages below are our arithmetic for C_D = 0.47.
+
+- **Wake blockage (Maskell, closed test section):** q_c/q_u = C_Du/C_Dc = 1 + θ·C_Du·S/C.
+  - θ = 2.5; C_Du is the measured, uncorrected drag coefficient; S is the sphere's frontal area; C is the
+    test-section area.
+  - The support's own drag takes the classical ½·(S/C)·C_Dr term, not θ.
+  - Hackett's two-step version gives the same corrected drag within 0.1 % at S/C ≤ 5 %, so the value of θ matters
+    more than the choice of method.
+- **θ is uncertain for a sphere.** It was derived on flat plates (2.5–2.8); a fit for parachutes gave 1.85. Maskell
+  warns that well-rounded bodies may fall outside the theory, and neither source has sphere data. The spread is about
+  ±0.65 % of C_D at S/C = 3 % and ±1.1 % at 5 %.
+- **Solid blockage** (the sphere's own volume) is a separate term. Using Cooper's eq. (6.16) form it is about 0.6 %
+  in q at S/C = 3 % and 1.2 % at 5 %, and up to half as much again with a sphere's effective volume of 1.5 V. Confirm
+  the formula in Barlow1999 ch. 9–10 before using it.
+- **Check the correction experimentally:** measure two or more sphere sizes (different S/C) and confirm that the
+  corrected C_D values agree.
+- **Limits:** keep Δq ≤ 0.1 q (S/C ≤ about 8.5 %), preferably about 3 %. Use a closed test section; open-jet
+  corrections are less developed.
+- **Positions:**
+  - the reference pressure reading at least 1.5√C upstream of the sphere;
+  - the sphere's base at least 2√S_b, preferably 4√S_b, from the end of the test section (S_b = separated base area,
+    at most S);
+  - the sphere at least about 0.5 D after the contraction exit (Mehta1979).
+
 ## Order-of-magnitude estimates
 
 **[Assumption] values, not measurements:** ρ = 1.20 kg/m³, μ = 1.81×10⁻⁵ Pa·s, C_D = 0.47, and a 300 mm × 300 mm
@@ -135,9 +163,15 @@ What this implies (to be confirmed when the layout is chosen):
 
 ## Measurement and analysis approach [Proposed]
 
-1. Measure ambient p and T each session to compute ρ (instrument not chosen).
+1. Measure ambient p and T each session to compute ρ (instrument not chosen; candidate BME280).
+   - The pitot-static tube measures q directly, and C_D = F/(q·A), so ρ does not enter C_D itself.
+   - ρ is needed for the airspeed V = √(2q/ρ) and for Re, which picks the reference C_D.
 2. Map test-section velocity uniformity with the pitot tube before force testing (build step 3).
-3. Calibrate the load cell with known masses across the expected force range (build step 5). Fit counts → newtons
+   - During force runs, take the reference reading where its wake cannot reach the sphere: a probe off the
+     centreline, or wall static taps calibrated against a pitot at the model position in the empty tunnel.
+   - Place it at least 1.5√C upstream of the sphere ([Blockage correction](#blockage-correction-proposed)).
+3. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
+   drag direction at the sphere's position, for example a thread over a low-friction pulley. Fit counts → newtons
    and record residuals.
 4. For each speed: wind-off tare → wind-on average → wind-off zero; repeat runs; subtract mount drag; compute C_D with uncertainty.
 5. Keep raw logs untouched in `data/raw/`; do all conversions in scripts (see [data/README.md](data/README.md)).
@@ -168,13 +202,19 @@ PDFs and reading notes live in [resources/](resources/README.md).
   with a sphere-drag check. Notes: [resources/notes/Weakly2024.md](resources/notes/Weakly2024.md).
 - Avia Semiconductor, HX711 datasheet, rev. V2.0. Reviewed 2026-10-31. Notes:
   [resources/notes/HX711.md](resources/notes/HX711.md).
+- E. C. Maskell, "A Theory of the Blockage Effects on Bluff Bodies and Stalled Wings in a Closed Wind Tunnel," ARC
+  R&M 3400, November 1963. Reviewed 2026-10-31. The bluff-body wake-blockage correction Δq/q = ε·C_D·S/C, with ε
+  about 5/2 in 3-D. Notes: [resources/notes/Maskell1963.md](resources/notes/Maskell1963.md).
+- K. R. Cooper, "Bluff-Body Blockage Corrections in Closed- and Open-Test-Section Wind Tunnels," AGARD-AG-336
+  chapter 6, 1998. Reviewed 2026-10-31. Maskell, Hackett's two-step version and the rules for model position along
+  the test section. Notes: [resources/notes/Cooper1998.md](resources/notes/Cooper1998.md).
 
 ### Not yet reviewed
 
 These are standard sources suggested as starting points. Move each to "Reviewed" (with the relevant page or figure,
 and notes in `resources/`) when it is actually used. More papers are in `resources/` but not yet reviewed (Roos1971,
-Morrison2013, Maskell1963, Cooper1998 (AGARD-AG-336 chapter 6), Mehta1977 and others), and further candidates are
-under "Wanted"; both are in [resources/README.md](resources/README.md).
+Morrison2013, Mehta1977, Anthoine2004 and others), and further candidates are under "Wanted"; both are in
+[resources/README.md](resources/README.md).
 
 - J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. Tunnel design, corrections,
   blockage. A local-only copy is in `resources/` (not in Git; see the index).
@@ -199,3 +239,9 @@ Add lasting lessons here (with a link to the session log where they were learned
     it on 2026-10-31 was not recorded; `ipconfig /renew` alone had not helped.
   - The agent's fetch failed and recovered at the same times as the owner's. So when an agent reports
     `FETCH_FAILED` with "Could not resolve host", check the PC's network before blaming the agent's sandbox.
+- **Take equations and numbers from page images, not from a PDF's OCR text layer** (2026-10-31,
+  [session log](docs/sessions/2026-10-31-blockage-review-and-tunnel-concepts.md#8-errors-failed-approaches-and-troubleshooting)).
+  - The full AGARD-AG-336 volume's text layer reads Cooper's eq. (6.6) as θ = 0.98 + …; the page shows 0.96.
+  - The same layer garbles θ into "8" or "6" and renders most equations unreadably.
+  - Use the text layer to find pages and read prose. Read equations, tables and numbers from page renders (PyMuPDF),
+    zooming into equations.
