@@ -37,7 +37,7 @@ Not stored here: videos stay out of Git (D-004). Summaries come from transcripts
 
 | Reference | What it shows | Notes |
 |---|---|---|
-| Aki (YouTube), DIY wind tunnel water-mist generator, two videos: [video 1](https://www.youtube.com/watch?v=Xa4YN12IiHg), [video 2](https://www.youtube.com/watch?v=7Zdn8moAwxE). Upload dates not recorded. Added 2026-10-30. | A 3D-printed box with an ultrasonic mist maker sitting in water. The air intake is high and the mist outlet low, because the mist sinks. A rubber tube carries the mist to the inlet of a desktop **suction** tunnel (fan at the back), which draws it in. | Lessons from the videos: the lid has a downward-pointing pyramid to stop splashing; the water level must stay below the outlet or the mist stops; the mist thins and fades at high tunnel speed. The video description links a "variable fan" and a "mist maker" through Amazon short links that could not be opened from here, so the products are unidentified. Assessment and plan: TODO.md, P2 "flow visualization". |
+| Aki (YouTube), DIY wind tunnel water-mist generator, two videos: [video 1](https://www.youtube.com/watch?v=Xa4YN12IiHg), [video 2](https://www.youtube.com/watch?v=7Zdn8moAwxE). Upload dates not recorded. Added 2026-10-30. | A 3D-printed box with an ultrasonic mist maker sitting in water. The air intake is high and the mist outlet low, because the mist sinks. A rubber tube carries the mist to the inlet of a desktop **suction** tunnel (fan at the back), which draws it in. | Lessons from the videos: the lid has a downward-pointing pyramid to stop splashing; the water level must stay below the outlet or the mist stops; the mist thins and fades at high tunnel speed. The video description links a "variable fan" and a "mist maker" through Amazon short links that could not be opened from here. The mist maker is still unidentified. **The fan is probably identified (2026-11-01):** the owner's link to Amazon item B092C65F3P carries Aki's affiliate tag (`akitechspace-20`). The item is a Qirssyn 120 mm computer fan with an AC plug and a speed controller. Retailer listings give model QYN1225BSP1, about 95 CFM at 3000 RPM; some list a two-fan version. That is far too small for this project's tunnel ([session log](../docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)). Assessment and plan: TODO.md, P2 "flow visualization". |
 
 ## Adding a paper
 
@@ -90,6 +90,16 @@ folder: confirm them in the datasheet before using them.
    - Honeywell TruStability HSC, ±1 inH₂O (±249 Pa) differential, I²C, for example HSCDRRN001ND2A3 (3.3 V) or
      …2A5 (5 V). Get the official HSC datasheet from Honeywell; distributor listings disagree on accuracy and
      temperature range.
+   - Added 2026-11-01: **Sensirion SDP810-125Pa and SDP810-500Pa**, I²C, with tube barbs and a cable connector, so
+     they are easier to wire by hand than the surface-mount SDP31/SDP32.
+     - Distributor listings give a 3–5.5 V supply (2.7–5.5 V for the 125 Pa part), so it runs on the 5 V Mega.
+     - One reseller lists the 125 Pa part at 3 % of reading and 0.08 Pa zero-point accuracy.
+     - Single units about €21–26 or $41 (listings, often out of stock).
+     - Get the SDP8xx datasheet from Sensirion. The SDP31 is listed as a 3.3 V part, and SparkFun's SDP31 breakout
+       is retired.
+   - Not suitable: drone airspeed kits built on the TE MS4525DO (±1 psi ≈ ±6.9 kPa; total error band ±1 % of span
+     per TE's datasheet as summarized online). The owner found an FPVDrone PX4 kit ($49.99) of this type on
+     2026-11-01; its chip is not named in the listing.
 2. **Load-cell candidates.** HTC TAL220 (10 kg, the cell Weakly2024 used) and the TAL221 mini family (100 g to
    1.5 kg). The maker's sheet, as summarized online, gives the 100 g TAL221 0.6 mV/V and 150 % safe overload.
    [SparkFun TAL221 100 g page](https://www.sparkfun.com/mini-load-cell-100g-straight-bar-tal221.html) (datasheet
@@ -98,6 +108,13 @@ folder: confirm them in the datasheet before using them.
 3. **Datasheets for the parts on hand:** TI [LM741](https://www.ti.com/product/LM741),
    [LM348](https://www.ti.com/product/LM348) (combined LM148/LM248/LM348 datasheet) and
    [LM317](https://www.ti.com/product/LM317). Needed for the TODO P1 task "decide the role of the op-amp circuit".
+   Added 2026-11-01, also in the owner's kit:
+   - TI [LMC6484](https://www.ti.com/product/LMC6484). TI's page title: "Ultra-low Bias Current, Precision CMOS
+     Rail-to-Rail Input and Output Quad Operational Amplifier", 3–15 V supply. It is the single-supply op-amp option.
+   - LM7805CT (5 V, 1 A regulator in TO-220), proposed for the servo supply. Distributors list it under onsemi
+     (formerly Fairchild) and mark it obsolete, so take the datasheet from onsemi or from the
+     [DigiKey listing](https://www.digikey.com/en/products/detail/onsemi/LM7805CT/458698). TI has no LM7805 product
+     page.
 4. **Ambient pressure and temperature for air density:** Bosch BME280 (I²C pressure, temperature and humidity).
    Vendor pages give about ±1 hPa absolute pressure accuracy, about 0.1 % in ρ (our arithmetic).
    [Datasheet copy hosted by SparkFun](https://cdn.sparkfun.com/assets/5/3/0/f/7/BME280_Datasheet.pdf); prefer the
@@ -130,7 +147,8 @@ folder: confirm them in the datasheet before using them.
 - S. F. Hoerner, *Fluid-Dynamic Drag*, 1965. Weakly2024's source for C_D = 0.47. Low priority now that Roos1971 and
   Morrison2013 are here.
 
-**Later:** datasheets for the chosen fan or blower, microcontroller board, pressure sensor and load cell.
+**Later:** datasheets for the chosen fan or blower, pressure sensor and load cell. For the microcontroller (Elegoo
+Mega 2560 R3, 2026-11-01): Arduino's Mega 2560 Rev3 documentation and pinout, needed for the interface board.
 
 When one of these is added, move it out of this list. Duplicate copies: keep the cleaner one and record the choice
 in its notes file.

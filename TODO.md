@@ -8,16 +8,29 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: commit and push this session's changes** (blockage review and tunnel concepts: two notes files and doc
+- [ ] **Owner: commit and push this session's changes** (parts review and kit inventory: one new session log and doc
   updates). Outcome: GitHub holds them. Verify: `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`.
-  Commands: [session log](docs/sessions/2026-10-31-blockage-review-and-tunnel-concepts.md#13-manual-git-commands-as-given-to-the-owner).
+  Commands: [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md#13-manual-git-commands-as-given-to-the-owner).
 - [ ] **Owner: provide the sizing inputs:** available floor or bench length for the tunnel, target top airspeed, and
-  any fan or blower already in mind. Outcome: recorded under "Requirements and constraints" in PROJECT_BACKGROUND.md.
+  any fan or blower already in mind. These now also decide the fan size (6-inch or 8-inch inline fan) and the
+  pressure-sensor range. Outcome: recorded under "Requirements and constraints" in PROJECT_BACKGROUND.md.
   Verify: the first P1 sizing task can start without guessing these.
-- [ ] **Owner: list what else is in the ECE kit** (a photo works): passives, breadboard, multimeter, bench or split
-  power supply, any microcontroller board. Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and
-  docs/experimental_setup.md, citing the owner and date. Verify: open question 9 closed; the microcontroller and
-  op-amp tasks below can use it.
+- [ ] **Owner: set up the Elegoo Mega 2560 R3** once the USB A-to-B cable arrives (UGREEN 5 ft, ordered 2026-11-01).
+  - Confirm the board: it should read MEGA2560 R3, and the large chip ATMEGA2560.
+  - Install the Arduino IDE, select **Tools → Board → Arduino Mega or Mega 2560** and the port, and upload
+    **File → Examples → Basics → Blink**.
+  - Outcome: the board recorded as working in PROJECT_STATUS §3 and docs/experimental_setup.md.
+  - Verify: a new COM port appears in Device Manager under "Ports (COM & LPT)" when it is plugged in, and the
+    onboard LED blinks. The power LED alone proves nothing, because it also lights on a charge-only cable. If
+    Windows shows "Unknown device", a driver is needed; report the name it shows.
+- [ ] **Owner: finish the parts-on-hand list.** The ECE kit is recorded from its packing list (2026-11-01). Still
+  needed:
+  - whether a multimeter, soldering iron and bench or split power supply are on hand;
+  - any other electronics the owner has (a photo works);
+  - the magnets' type and size.
+
+  Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and docs/experimental_setup.md, citing the owner
+  and date. Verify: open question 9 closed.
 - [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy) and
   D-006 (reference PDFs over 25 MB kept local only) in [DECISIONS.md](DECISIONS.md).
   Verify: status changed to Accepted (or replaced by a new decision).
@@ -28,6 +41,21 @@ Owner tasks are physical or account actions that an agent cannot do.
   2026-10-31). Outcome: a notes file per paper, with the C_D value(s) at Re of about 10⁴–10⁵ and the figure or table
   they come from. Verify: each index row in [resources/README.md](resources/README.md) says "Reviewed". Read numbers
   from page images, not text layers (Lessons learned in PROJECT_BACKGROUND.md). Feeds the C_D-reference task below.
+- [ ] **Owner (recommended, optional): read the two key references.** The owner has not read the references yet
+  (2026-11-01).
+  - Read in full: [Mehta1979](resources/Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf) (rules for every
+    part of a small blower tunnel) and
+    [Weakly2024](resources/Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf) (a student balance with an
+    Arduino, HX711 and a sphere, and what went wrong).
+  - Notes only: Bell1988, Maskell1963, Cooper1998 and HX711 in [resources/notes/](resources/notes/). The agent reads
+    the rest when their topic comes up.
+  - Outcome: the owner can answer five questions:
+    1. What does each part of the tunnel do?
+    2. What sets the test-section and fan size?
+    3. How is a force of a few grams measured accurately?
+    4. Why is 0.47 only right over a range of Reynolds numbers?
+    5. Why do the walls change the measured drag?
+  - Verify: the owner can discuss those questions when making the sizing decisions.
 - [ ] **Size the contraction and test section.** Choose tunnel type (open-circuit blower vs suck-down), test-section
   cross-section and length, contraction ratio, contraction wall shape and length, whether to fit an exit diffuser,
   and target airspeed range. Needs the owner's sizing inputs (P0).
@@ -42,21 +70,50 @@ Owner tasks are physical or account actions that an agent cannot do.
     - a capped mist port after the last screen, so optional visualization needs no later cutting;
     - lean toward a blower with an open exit, because seams and the sting slot then barely leak (PROJECT_STATUS §2).
       Decide together with the fan.
+  - Added 2026-11-01 [Proposed]: **model access through removable clear acrylic panels held by magnets** (owner's
+    idea, preferred over a sliding panel). Design points:
+    - magnets clamp; pins or lips locate each panel so it lands in the same place every time, especially at the
+      contraction-to-test-section joint (a 1 mm step in the wall disturbs the flow just before the sphere);
+    - the panel's inner face flush with the wall (acrylic set into a printed frame that holds the magnets; magnets
+      can be embedded by pausing the print);
+    - a thin foam gasket under each panel to seal it and stop it buzzing;
+    - the floor (sting slot and balance) stays fixed; the pitot goes through a fixed wall;
+    - **keep magnets away from ferrous parts on the measured side of the balance**, and use a non-magnetic sting
+      (aluminium, brass or carbon fibre) and non-magnetic fasteners near it. A magnet pulling on a steel sting could
+      add a few grams-force, the same size as the drag;
+    - holding force: test-section panels see little pressure in a blower with an open exit. A removable 500 mm
+      settling-chamber panel would see about 15 N at 10 m/s and 60 N at 20 m/s (estimate), so it needs latches or
+      many strong magnets;
+    - acrylic 3–5 mm thick, cast rather than extruded (clearer);
+    - mark the magnet poles; one flipped magnet repels.
   - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, and a DECISIONS.md entry.
   - Verify: Reynolds number, blockage ratio, expected drag and fan duty recomputed for the chosen numbers (see
     [estimates](PROJECT_BACKGROUND.md#order-of-magnitude-estimates)); sphere blockage stays at a few percent or below.
 - [ ] **Owner: download the electronics datasheets** on the resources "Wanted" list, items 1–4: pressure-sensor
-  candidates (Sensirion SDP31/SDP32, Honeywell TruStability HSC ±1 inH₂O), load-cell candidates (TAL220, TAL221),
-  TI LM741 / LM348 / LM317, Bosch BME280. Outcome: PDFs in `resources/`; an agent files them and writes notes.
-  Verify: each has an index row marked "Reviewed".
+  candidates (Sensirion SDP810 and SDP31/SDP32, Honeywell TruStability HSC ±1 inH₂O), load-cell candidates (TAL220,
+  TAL221), TI LM741 / LM348 / LMC6484 / LM317 / LM7805, Bosch BME280. Outcome: PDFs in `resources/`; an agent files
+  them and writes notes. Verify: each has an index row marked "Reviewed".
 - [ ] **Review the remaining papers when their topic comes up:** Mehta1977 (fan and wide-angle diffuser), Scheiman1981
   (screens and honeycomb), Morel1975 (contraction), Anthoine2004 (blockage on cylinders), Bradshaw1964, and Barlow1999
   chapters 4, 6, 7, 9–10 and 12.2 (instrumentation; test-section calibration and data systems; balances; boundary
   corrections, needed to confirm the solid-blockage formula; uncertainty). Outcome and verify as above.
-- [ ] **Size and choose the fan or blower.** Outcome: model recorded, with its performance curve. Verify: at the
-  chosen test-section size and top speed, the required flow rate and static pressure (Mehta1979 power-factor method,
-  recomputed for the real screens and contraction ratio) sit near the maker's maximum-efficiency point, with power
-  margin.
+- [ ] **Size and choose the fan or blower.**
+  - Proposed type (2026-11-01): an inline mixed-flow duct fan with a speed controller. Computer fans and box fans
+    cannot push enough air through the honeycomb and screens; a centrifugal blower works but is loud and bulky,
+    often with only 2–3 speeds.
+  - Look for:
+    - a **published fan curve** (flow against static pressure); a fan rated only by free-air CFM cannot be sized;
+    - smooth or many-step speed control (the pitot measures the actual speed, so Arduino control is not needed);
+    - an EC (brushless DC) motor if affordable, for smoother running.
+  - Rough size: a 6-inch fan (listed about 402 CFM and 500 Pa maximum, $90–120) gives roughly 9–13 m/s in a
+    120–100 mm section (estimate, session log 2026-11-01). Larger sections or 20 m/s need 8 inches or more.
+  - Mount the fan on its own stand with a flexible coupling to the tunnel, so its vibration does not reach the
+    balance. A printed round-to-square widening section joins it to the settling chamber.
+  - Not suitable: the 120 mm Qirssyn fan from Aki's video (about 95 CFM, at most about 4.5 m/s through a 100 mm
+    section even with nothing in the way).
+  - Outcome: model recorded, with its performance curve. Verify: at the chosen test-section size and top speed, the
+    required flow rate and static pressure (Mehta1979 power-factor method, recomputed for the real screens and
+    contraction ratio) sit near the maker's maximum-efficiency point, with power margin.
 - [ ] **Choose the blockage-correction method** for the sphere.
   - Proposed 2026-10-31: Maskell with θ = 2.5 plus a solid-blockage term, recorded in
     [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed).
@@ -67,27 +124,43 @@ Owner tasks are physical or account actions that an agent cannot do.
     (θ spread 1.85–2.8). The plan includes a two-sphere-size check (P2 validation run).
 - [ ] **Choose sphere diameter(s) and material.** Outcome: diameter, tolerance, surface finish and mounting method recorded.
   Verify: test Re sits inside the subcritical plateau (well below ~2×10⁵); diameter measured with calipers once bought.
-- [ ] **Choose the microcontroller / DAQ.** Baseline: Arduino Uno with one HX711 per load cell
-  ([Weakly2024 notes](resources/notes/Weakly2024.md)). Outcome: board chosen and recorded (D-entry). Verify: it can
-  read the HX711 and the chosen pressure sensor at the planned sample rate (interface and logic voltage checked), and
-  log raw counts to a PC as CSV.
-- [ ] **Choose the differential pressure sensor range.** Outcome: model and range recorded. Verify: full-scale range covers
-  the maximum q (about 240 Pa at 20 m/s, estimate) without leaving most of the span unused; offset and noise specs written down.
-- [ ] **Choose the load-cell capacity.** Outcome: capacity recorded. Verify: expected drag plus mount drag (grams-force
-  range, estimate) is a usable fraction of full scale; HX711 noise in grams computed from the chosen cell's rated
-  output ([HX711 notes](resources/notes/HX711.md)); overload margin for handling noted.
-- [ ] **Choose the ambient pressure and temperature sensor** for air density (candidate: Bosch BME280). Outcome:
-  sensor recorded in docs/experimental_setup.md. Verify: its stated accuracy gives a density uncertainty that is
-  small next to the q and force uncertainties.
-- [ ] **Decide the role of the op-amp circuit** (LM741/LM348, LM317). Outcome: a short circuit description. Verify:
-  supply rails compatible with the op-amp (LM741 is not rail-to-rail and expects split supplies). Depends on the
-  pressure-sensor choice (a digital sensor needs no analog conditioning) and on the kit inventory (P0).
+- [ ] **Confirm the microcontroller / DAQ.** Candidate (2026-11-01): the owner's Elegoo Mega 2560 R3 (5 V logic,
+  I²C on pins 20/21). Weakly2024 used an Uno with one HX711 per load cell; the Mega does everything the Uno does,
+  with more pins. Needs the P0 Blink test first. Outcome: board recorded as chosen (D-entry). Verify: it reads the
+  HX711 and the chosen pressure sensor at the planned sample rate (interface and logic voltage checked), and logs raw
+  counts to a PC as CSV.
+- [ ] **Choose the differential pressure sensor range.**
+  - Look for:
+    - a full-scale range just above the top speed's q: ±125 Pa covers about 14 m/s, ±500 Pa about 29 m/s;
+    - digital I²C that runs at 5 V;
+    - a small zero-point error;
+    - **accuracy stated as % of reading**, because the q error goes straight into C_D.
+  - Candidates: Sensirion SDP810-125Pa or -500Pa (3–5.5 V and I²C per distributor listings; about $25–45; one
+    reseller lists the 125 Pa part at 3 % of reading and 0.08 Pa zero accuracy, to be confirmed in the datasheet).
+    Also the SDP31/SDP32 (3.3 V surface-mount) and Honeywell HSC ±1 inH₂O.
+  - Buy the pitot-static probe separately (a drone probe is about $5–20). Drone airspeed kits built on the MS4525DO
+    (±1 psi) do not suit these pressures.
+  - Outcome: model and range recorded. Verify: full-scale range covers the maximum q (about 240 Pa at 20 m/s,
+    estimate) without leaving most of the span unused; offset and noise specs written down.
+- [ ] **Choose the load-cell capacity.** Buy a straight-bar cell that has a datasheet; a no-name cell without one
+  cannot enter the uncertainty budget. Outcome: capacity recorded. Verify: expected drag plus mount drag
+  (grams-force range, estimate) is a usable fraction of full scale; HX711 noise in grams computed from the chosen
+  cell's rated output ([HX711 notes](resources/notes/HX711.md)); overload margin for handling noted.
+- [ ] **Choose the ambient pressure and temperature sensor** for air density (candidate: Bosch BME280 on a 5 V-compatible
+  breakout; a BMP280 also serves for density). Outcome: sensor recorded in docs/experimental_setup.md. Verify: its
+  stated accuracy gives a density uncertainty that is small next to the q and force uncertainties.
+- [ ] **Decide the role of the op-amp circuit** (LM741/LM348/LMC6484, LM317, LM7805).
+  - Proposed 2026-11-01: no op-amps in the measurement chain (the sensors are digital). The kit's regulators and
+    potentiometers serve the interface board instead (P2).
+  - Outcome: a short circuit description. Verify: supply rails compatible with each part (LM741 is not rail-to-rail
+    and expects split supplies). Depends on the pressure-sensor choice and on the parts on hand (P0).
 - [ ] **Pick a Re-matched reference for sphere Cd.** Outcome: citation with figure/table and the Cd value at the test Re,
   added to PROJECT_BACKGROUND.md as reviewed. Verify: the source covers the planned Re range. Note: Achenbach (1972)
   covers only Re ≥ 5×10⁴, but the planned Re is roughly 10⁴–10⁵. Candidates now in `resources/`: Morrison2013
   (correlation) backed by Roos1971 (measurements).
-- [ ] **Owner: buy hardware** once the above are chosen. Outcome: parts on hand. Verify: part numbers and datasheets
-  recorded in `docs/experimental_setup.md`.
+- [ ] **Owner: buy hardware** once the above are chosen. Rough total for the electronics plus a 6-inch fan: about
+  $200 (PROJECT_STATUS §3). Outcome: parts on hand. Verify: part numbers and datasheets recorded in
+  `docs/experimental_setup.md`.
 
 ## P2: Build and validate (build steps 2–6)
 
@@ -115,9 +188,31 @@ Owner tasks are physical or account actions that an agent cannot do.
     readings, and humidity changes air density. Let the tunnel dry afterwards.
   - Use distilled water, and empty and dry the generator after each use. Ultrasonic foggers put whatever is in the
     water (minerals, microbes from standing water) into the air. Keep the mains supply dry.
+  - Generator options, compared 2026-11-01 after the owner asked for one that makes thick smoke:
+    - **ultrasonic mist maker** (Aki's approach): water, cool, no residue, cheap; fades at high speed. The agent's
+      first choice;
+    - **glycol fog machine**: the thickest smoke, but warm, leaves an oily film (bad for the pitot holes and the
+      surfaces near the balance) and sets off smoke alarms;
+    - **smoke wire**: a thin oil-coated wire heated by a short current pulse; the classic lab method for sharp
+      streaklines at low speed. Its pulse circuit could be an owner circuit project.
 
   Outcome: a printed generator plus injection tube. Verify: visible streaklines in the test section at a stated speed
   (photo or video referenced in the data catalog).
+- [ ] **Design and build the sensor interface board** (owner's plan, 2026-11-01: design the circuit, possibly test it
+  on a breadboard, then turn it into a PCB).
+  - Proposed contents: a shield for the Mega 2560 holding:
+    - connectors for the HX711 module, the pressure sensor and the BME280;
+    - I²C pull-ups and decoupling capacitors;
+    - servo power from the kit's LM7805 (kept off the Arduino's own regulator);
+    - an input for the angle dial (the kit's 10 kΩ potentiometer).
+
+    Route I²C to the SDA/SCL pins next to AREF so the board also fits an Uno. Design in KiCad (free).
+  - A breadboard is fine for testing the digital wiring. **Solder the load-cell leads directly to the HX711**, with no
+    breadboard in the bridge wiring (Weakly2024 lesson).
+  - Outcome: schematic and PCB files in the repo (folder to be chosen when the first file exists), and an assembled
+    board.
+  - Verify: an I²C scan finds the pressure sensor and the BME280 through the board, and the HX711 gives a stable
+    zero with the wind off.
 - [ ] **Build the load cell and its conditioning circuit.** Solder the load-cell leads directly to the HX711, with no
   breadboard in the bridge wiring (lesson from Weakly2024). Verify: stable zero over several minutes with wind off;
   noise recorded.
@@ -166,3 +261,7 @@ Owner tasks are physical or account actions that an agent cannot do.
   ([session log](docs/sessions/2026-10-31-blockage-review-and-tunnel-concepts.md)).
 - [x] 2026-10-31: Reviewed Maskell1963 and Cooper1998 (notes files; index rows "Reviewed") and proposed the
   blockage correction and test-section position rules ([session log](docs/sessions/2026-10-31-blockage-review-and-tunnel-concepts.md)).
+- [x] 2026-11-01: Owner committed and pushed the blockage review as `9b42a07` (10 files, as listed in that session's
+  commands); `/wrap` confirmed `UP_TO_DATE` ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).
+- [x] 2026-11-01: ECE kit recorded from its packing list, the Elegoo Mega 2560 R3 recorded, and the owner's candidate
+  pitot kit and fan assessed ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).

@@ -21,7 +21,13 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 ## Requirements and constraints
 
 - [Confirmed] Instrumentation is the owner's own: flow conditioning, pitot tube for airspeed, load cell for drag,
-  signal conditioning built from an ECE kit (LM741/LM348 op-amps, LM317 regulator).
+  signal conditioning built from an ECE kit (LM741/LM348 op-amps, LM317 regulator). The whole kit (WPI ECE2010
+  Lab 2) is listed from its packing list in [docs/experimental_setup.md](docs/experimental_setup.md#parts-on-hand)
+  (2026-11-01).
+- [Confirmed] The owner wants to design the sensor interface circuit: design it, maybe test it on a breadboard, then
+  turn it into a PCB (2026-11-01).
+- [Confirmed] Microcontroller on hand: an Elegoo board the owner identifies as a Mega 2560 R3 by its appearance
+  (2026-11-01). Not yet tested.
 - [Confirmed] Build order: (1) size the contraction and test section, (2) flow conditioning (honeycomb and screens),
   (3) map flow uniformity with the pitot tube, (4) load cell and conditioning circuit, (5) calibrate against known
   weights, (6) sphere Cd validation run, (7) airfoil pitch attachment.
@@ -170,17 +176,21 @@ What this implies (to be confirmed when the layout is chosen):
    - During force runs, take the reference reading where its wake cannot reach the sphere: a probe off the
      centreline, or wall static taps calibrated against a pitot at the model position in the empty tunnel.
    - Place it at least 1.5√C upstream of the sphere ([Blockage correction](#blockage-correction-proposed)).
-3. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
+3. Mount the model on a sting that passes through a floor slot to an upright straight-bar load cell outside the
+   tunnel, as Weakly2024 did. Drag bends the cell. Use a non-magnetic sting and fasteners if magnets hold panels
+   nearby (2026-11-01).
+4. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
    drag direction at the sphere's position, for example a thread over a low-friction pulley. Fit counts → newtons
    and record residuals.
-4. For each speed: wind-off tare → wind-on average → wind-off zero; repeat runs; subtract mount drag; compute C_D with uncertainty.
-5. Keep raw logs untouched in `data/raw/`; do all conversions in scripts (see [data/README.md](data/README.md)).
+5. For each speed: wind-off tare → wind-on average → wind-off zero; repeat runs; subtract mount drag; compute C_D with uncertainty.
+6. Keep raw logs untouched in `data/raw/`; do all conversions in scripts (see [data/README.md](data/README.md)).
 
 ## Known sources of uncertainty
 
 Pressure-sensor offset and drift; load-cell creep and temperature drift; mount (sting) drag and interference; blockage;
 flow non-uniformity and turbulence intensity; sphere diameter and surface finish; ρ from ambient conditions; vibration
-from the fan coupling into the balance. None has been quantified yet.
+from the fan coupling into the balance; magnetic pull between panel magnets and any ferrous part on the measured side of
+the balance (added 2026-11-01). None has been quantified yet.
 
 ## References
 
@@ -245,3 +255,12 @@ Add lasting lessons here (with a link to the session log where they were learned
   - The same layer garbles θ into "8" or "6" and renders most equations unreadably.
   - Use the text layer to find pages and read prose. Read equations, tables and numbers from page renders (PyMuPDF),
     zooming into equations.
+- **`git commit` commits only staged files** (2026-11-01,
+  [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md#8-errors-failed-approaches-and-troubleshooting)).
+  The owner's `git commit` committed nothing; `git status` showed that no files had been staged with `git add`. Run the
+  `git add` lines that `/wrap` gives first, then check `git status` before committing. New files are untracked, so
+  `git commit -a` would miss them.
+- **Amazon product pages are too large for an agent's web fetch** (2026-11-01, same session log). The page for the
+  owner's fan link was 1.29 million characters, and the first part read held only the title. Take specs from the
+  maker's page or other retailers' listings, or ask the owner for a screenshot of the spec section. Before trusting a
+  hobby part's headline spec (CFM, "high accuracy"), check its range and pressure against this project's numbers.
