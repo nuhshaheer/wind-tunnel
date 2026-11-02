@@ -8,12 +8,9 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: commit and push the rest of this session** (the sketch, D-007, D-008 and doc updates, after
-  `748dae9`). First decide about the sketch PDF: it is 10.2 MiB, over the roughly 2 MB guideline for scans
-  ([data/README.md](data/README.md)). Either re-export it smaller, ask an agent to make a compressed copy, or commit it
-  as is (under D-004's 25 MB limit; it stays in Git history for good). Outcome: GitHub holds the changes. Verify:
-  `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`. Commands:
-  [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md#13-manual-git-commands-as-given-to-the-owner).
+- [ ] **Owner: commit and push the 2026-11-02 session** (six reference notes, two new PDFs, D-009 and doc updates).
+  Outcome: GitHub holds the changes. Verify: `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`. Commands:
+  [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
 - [ ] **Owner: give the target top airspeed.** The test section (100 mm, D-008) and length (about 1 m target, more
   allowed) are settled. The top speed sets the pressure-sensor range (±125 Pa covers about 14 m/s) and confirms the
   fan. 10–13 m/s is enough for the sphere validation. Outcome: recorded under "Requirements and constraints" in
@@ -41,7 +38,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   and a workbench are recorded (2026-11-01). Still needed:
   - the bench supply's maximum voltage and current (on its label or front panel);
   - any other electronics the owner has (a photo works);
-  - the magnets' type and size.
+  - the magnets' type and size;
+  - whether to file the ECE kit's packing list (`PartsListECE2010.pdf`, in the owner's Downloads folder) in the repo
+    as evidence for the kit inventory (asked 2026-11-01, not answered).
 
   Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and docs/experimental_setup.md, citing the owner
   and date. Verify: open question 9 closed.
@@ -51,10 +50,6 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P1: Design and choose hardware (build step 1)
 
-- [ ] **Review the C_D-reference papers: Morrison2013 and Roos1971** (Maskell1963 and Cooper1998 were done
-  2026-10-31). Outcome: a notes file per paper, with the C_D value(s) at Re of about 10⁴–10⁵ and the figure or table
-  they come from. Verify: each index row in [resources/README.md](resources/README.md) says "Reviewed". Read numbers
-  from page images, not text layers (Lessons learned in PROJECT_BACKGROUND.md). Feeds the C_D-reference task below.
 - [ ] **Owner (recommended, optional): read the two key references.** The owner has not read the references yet
   (2026-11-01).
   - Read in full: [Mehta1979](resources/Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf) (rules for every
@@ -67,7 +62,8 @@ Owner tasks are physical or account actions that an agent cannot do.
     1. What does each part of the tunnel do?
     2. What sets the test-section and fan size?
     3. How is a force of a few grams measured accurately?
-    4. Why is 0.47 only right over a range of Reynolds numbers?
+    4. Why does the reference C_D depend on the Reynolds number, and why is ours about 0.42–0.445 rather than 0.47
+       (D-009)?
     5. Why do the walls change the measured drag?
   - Verify: the owner can discuss those questions when making the sizing decisions.
 - [ ] **Size the contraction and test section.** Fix the test-section length, contraction ratio, contraction wall
@@ -78,6 +74,21 @@ Owner tasks are physical or account actions that an agent cannot do.
     contraction about 250 mm long, test section 270–290 mm, open exit; about 1.15–1.3 m including a 6-inch fan.
     The wide-angle diffuser from the round fan outlet (152 mm) to the 250 mm square chamber has an area ratio of
     about 3.4: check it against Mehta1977 and Mehta1979 Fig. 3.
+  - **Added 2026-11-02 [Proposed], from Mehta1977, Scheiman1981 and Wieghardt1953:**
+    - Fan-to-chamber diffuser: A = 3.44, K_sum ≥ 2.1. Two screens (K ≈ 1.1–1.5 each), one at the inlet angle change
+      and one at the exit, give about 150–200 mm (Fig. 5 minimum about 115 mm).
+      - Curved walls or radiused corners; filleted corners.
+      - No honeycomb or straightener at the fan outlet.
+      - Details in the [Mehta1977 notes](resources/notes/Mehta1977.md#what-it-suggests-for-this-project-proposed).
+    - Settling chamber: a honeycomb (L/D 7–10, about 2–3 mm cells), then one or two screens at least 58 % open, then
+      50 mm to the contraction.
+      - Choose between Mehta1979's 0.2 D spacing (chamber about 150–200 mm) and full-decay spacing: 500 wire
+        diameters between screens and about 50 cell diameters after the honeycomb (about 230–300 mm). See
+        PROJECT_STATUS open question 13.
+    - Fan pressure: use the low-speed screen K at about 2 m/s (about 1.1–1.8, extrapolated from Wieghardt's
+      formula), not the high-speed value.
+    - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget). The diffuser comes out shorter
+      and the chamber possibly longer, so the net change is roughly zero.
   - Inputs [Proposed]: contraction ratio 6–9, square section, 5th-order-polynomial wall, length about 1.0 × inlet
     height, sphere at least 0.5 D downstream of the contraction, segmented print (D-005). See the notes in
     [resources/README.md](resources/README.md).
@@ -85,6 +96,8 @@ Owner tasks are physical or account actions that an agent cannot do.
     - only the load cell and HX711 in the closed box under the floor (the owner's sketched "electronics house"); the
       display, knob and Arduino in a separate box on a cable;
     - a sting about 80–90 mm long, as short and stiff as the layout allows;
+    - optional (2026-11-02): room for a second, vertical load cell for airfoil lift or the owner's model-car idea
+      (P3; PROJECT_STATUS open question 14);
     - **load-cell protection for model swaps**: a sting lock (a clamp or pin that holds the sting while swapping,
       removed before running), overload stops that let the sting move only slightly past full scale, and a low-twist
       model attachment (for example a push fit with a set screw). Small bar cells are typically rated for only about
@@ -121,11 +134,25 @@ Owner tasks are physical or account actions that an agent cannot do.
   candidates (Sensirion SDP810 and SDP31/SDP32, Honeywell TruStability HSC ±1 inH₂O), load-cell candidates (TAL220,
   TAL221), TI LM741 / LM348 / LMC6484 / LM317 / LM7805, Bosch BME280. Outcome: PDFs in `resources/`; an agent files
   them and writes notes. Verify: each has an index row marked "Reviewed".
-- [ ] **Review the remaining papers when their topic comes up.** Next, because the 100 mm layout needs them now:
-  Mehta1977 (blower tunnels and the wide-angle diffuser after the fan) and Scheiman1981 (screens and honeycomb).
-  Later: Morel1975 (contraction), Anthoine2004 (blockage on cylinders), Bradshaw1964, and Barlow1999
-  chapters 4, 6, 7, 9–10 and 12.2 (instrumentation; test-section calibration and data systems; balances; boundary
-  corrections, needed to confirm the solid-blockage formula; uncertainty). Outcome and verify as above.
+- [ ] **Review the remaining papers when their topic comes up.** Mehta1977 and Scheiman1981 were done 2026-11-02.
+  Remaining:
+  - Morel1975 (contraction);
+  - Anthoine2004 (blockage on cylinders);
+  - Bradshaw1964;
+  - Barlow1999 chapters 4, 6, 7, 9–10 and 12.2: instrumentation; test-section calibration and data systems; balances;
+    boundary corrections, needed to confirm the solid-blockage formula; uncertainty.
+
+  Outcome: a notes file per paper. Verify: each index row in [resources/README.md](resources/README.md) says
+  "Reviewed". Give the owner a checklist of values read from the PDFs to confirm (session log 2026-11-02).
+- [ ] **Choose the screens and honeycomb** (new 2026-11-02).
+  - Screens: metal square-mesh, at least 58 % open; for example 20–30 wires/in with 0.19–0.23 mm wire (Scheiman1981
+    Table 1). Two go in the diffuser and one or two in the settling chamber.
+  - Honeycomb: bought thin-walled (paper or aluminium) or drinking straws rather than printed, unless a printed one
+    is shown to work. Cells about 2–3 mm, L/D 7–10.
+  - Outcome: mesh, wire diameter, open area and supplier recorded in docs/experimental_setup.md, with K estimated at
+    the settling-chamber speed.
+  - Verify: open area at least 0.58 from (1 − d/ℓ)², where d is the wire diameter and ℓ the mesh pitch. Diffuser
+    K_sum at least 2.1. If the fan's pressure margin is tight, measure one screen's pressure drop at about 2 m/s.
 - [ ] **Size and choose the fan or blower.** The owner picks from the candidates (P0); this task checks the choice.
   - Proposed type (2026-11-01): an inline mixed-flow duct fan with a speed controller. Computer fans and box fans
     cannot push enough air through the honeycomb and screens; a centrifugal blower works but is loud and bulky,
@@ -159,7 +186,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   blockage) and about 25 mm (4.9 %) for the two-size check. Outcome: diameter, tolerance, surface finish and mounting
   method recorded (a low-twist attachment to the sting, see the sizing task). Verify: test Re sits inside the
   subcritical plateau (well below ~2×10⁵; a 20 mm sphere at 10 m/s is about 1.3×10⁴); diameter measured with calipers
-  once bought.
+  once bought. Plan the two-size check at **matched Re** (D-009). For example, 20 mm at 12.5 m/s matches 25 mm at
+  10 m/s (our arithmetic).
 - [ ] **Confirm the microcontroller / DAQ.** Candidate (2026-11-01): the owner's Elegoo Mega 2560 R3 (5 V logic,
   I²C on pins 20/21). Weakly2024 used an Uno with one HX711 per load cell; the Mega does everything the Uno does,
   with more pins. Needs the P0 Blink test first. Outcome: board recorded as chosen (D-entry). Verify: it reads the
@@ -192,10 +220,6 @@ Owner tasks are physical or account actions that an agent cannot do.
     potentiometers serve the interface board instead (P2).
   - Outcome: a short circuit description. Verify: supply rails compatible with each part (LM741 is not rail-to-rail
     and expects split supplies). Depends on the pressure-sensor choice and on the parts on hand (P0).
-- [ ] **Pick a Re-matched reference for sphere Cd.** Outcome: citation with figure/table and the Cd value at the test Re,
-  added to PROJECT_BACKGROUND.md as reviewed. Verify: the source covers the planned Re range. Note: Achenbach (1972)
-  covers only Re ≥ 5×10⁴, but the planned Re is roughly 10⁴–10⁵. Candidates now in `resources/`: Morrison2013
-  (correlation) backed by Roos1971 (measurements).
 - [ ] **Owner: buy hardware** once the above are chosen. No fixed budget (owner, 2026-11-01). Rough total for the
   electronics plus a 6-inch fan: about $120–200 (PROJECT_STATUS §3). Outcome: parts on hand. Verify: part numbers and datasheets recorded in
   `docs/experimental_setup.md`.
@@ -274,11 +298,18 @@ Owner tasks are physical or account actions that an agent cannot do.
   noise recorded.
 - [ ] **Calibrate the load cell against known weights.** Outcome: calibration dataset and fit (counts → N). Verify:
   residuals and linearity reported; calibration file referenced from the data catalog.
-- [ ] **Sphere Cd validation run.** Outcome: C_D with uncertainty at one or more Re, compared with the reference.
-  Verify: mount drag subtracted, blockage corrected, repeated runs agree within the stated uncertainty, analysis
-  reproducible from raw data. Proposed 2026-10-31: use at least two sphere sizes (different S/C), if possible at
-  matched Re, and check that the blockage-corrected C_D values agree. This tests the correction itself, which has
-  no sphere data behind it ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed)).
+- [ ] **Sphere Cd validation run.** Outcome: C_D with uncertainty at several Re, compared with the reference.
+  - **Reference (D-009, 2026-11-02):** Brown and Lawler Eq. (19) at each run's Re, with a band of about ±10 %. The
+    analysis script computes it per run; see the [Brown2003 notes](resources/notes/Brown2003.md).
+  - Verify:
+    - mount drag subtracted and blockage corrected;
+    - repeated runs agree within the stated uncertainty;
+    - the analysis is reproducible from raw data;
+    - corrected C_D lies inside the ±10 % band;
+    - C_D rises with Re across about 5–15 m/s, as Eq. (19) predicts (about 12 %).
+  - Proposed 2026-10-31: use at least two sphere sizes (different S/C) at **matched Re**, and check that the
+    blockage-corrected C_D values agree. This tests the correction itself, which has no sphere data behind it
+    ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed)).
 
 ## P3: After validation (build step 7)
 
@@ -295,6 +326,26 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Consider tufts (yarn taped to the wing) to see stall at full speed; Maskell1963 (p. 16) advises visual
     observation of stall onset.
   - Outcome and verify: defined after validation.
+- [ ] **Idea (owner, 2026-11-02, "just an idea"): model-car downforce with a second load cell.** Not planned yet.
+  Points from the discussion [Proposed]:
+  - **Same hardware as airfoil lift.** Downforce and lift are the same vertical force, so a second, vertical load
+    cell, rigidly coupled at right angles to the drag cell as in Weakly2024, would serve both. Leave room for it in
+    the balance box (P1 sizing task).
+  - **Hold the car on a short post from the balance, wheels just clear of a fixed floor** (about 0.5–1 mm). Do not
+    use a weighing platform under the car: the low pressure under the car also pulls the platform up, so the
+    platform cancels much of the downforce.
+  - **"Blown away":** lift-off is unlikely, since the forces are a few gf against a car weighing tens of grams. Free
+    wheels would roll, though, and the post fixes that.
+  - **Size:** the floor acts as a mirror, so keep the frontal area to about 25 mm wide × 20 mm tall in the 100 mm
+    section (about 5 % effective blockage). A 1:64 die-cast car is borderline; 1:43 is too big.
+  - **Forces** at 13 m/s: drag about 1.5 gf, lift or downforce a few gf (estimate). Most road-car shapes make lift,
+    not downforce.
+  - **Limits:** a fixed floor is not a moving road. The floor boundary layer (about 2 mm, estimate) is comparable to
+    a model's ground clearance, and Re is about 150 times below a real car's. So results compare shapes in this
+    tunnel; they do not predict a real car.
+  - A standard reference shape exists: the Ahmed body (Ahmed et al. 1984, SAE 840300; citation from the agent's
+    memory, not checked, not in `resources/`).
+  - Outcome and verify: defined if the owner takes it up after validation.
 
 ## Done
 
@@ -330,3 +381,12 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-01: The owner's first sketch filed in [docs/sketches/](docs/sketches/README.md), and the multimeter,
   soldering station, bench power supply and workbench recorded as on hand
   ([session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md)).
+- [x] 2026-11-01: Owner committed and pushed part 2 of that session as `8fda08f`, with the sketch PDF uncompressed;
+  `/catchup` confirmed `UP_TO_DATE` on 2026-11-02 ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).
+- [x] 2026-11-02: Reviewed the C_D-reference papers Morrison2013 and Roos1971, then Brown2003 (added by the owner).
+  Picked the Re-matched sphere C_D reference: Brown and Lawler Eq. (19), ±10 %, plus a trend check
+  ([D-009](DECISIONS.md), Accepted by the owner)
+  ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).
+- [x] 2026-11-02: Reviewed Mehta1977 and Scheiman1981 for the 100 mm layout, and Wieghardt1953 (added by the owner)
+  for screen K. The owner checked the key values against the PDFs
+  ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).

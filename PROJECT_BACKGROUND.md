@@ -12,6 +12,10 @@ Every statement is tagged: **[Confirmed]** = stated by the project owner or veri
   the drag coefficient of a sphere (about 0.47). The owner compares this to "the 100 MΩ resistor on the STM": checking
   an instrument against a known reference before trusting it.
 - [Confirmed] Deliverable: the measured Cd of a sphere compared against the published value of about 0.47.
+  - Refined 2026-11-02 ([D-009](DECISIONS.md), Accepted by the owner): the published value depends on Re. At the
+    planned Re it is about 0.42–0.445.
+  - The comparison is with Brown and Lawler (2003) Eq. (19) at each run's Re, with a band of about ±10 %, plus a check
+    that C_D rises with Re as predicted ([below](#why-reynolds-number-matters-for-the-validation-standard)).
 - [Confirmed] Why it matters to the owner: of their three current projects, this is the one that shows mechanical
   engineering work in fluids, the kind of work aerospace companies hire MEs into.
 - [Confirmed] After validation: an airfoil pitch attachment (servo-driven, in the original README) for further
@@ -66,8 +70,22 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 A smooth sphere's C_D is roughly constant (about 0.4–0.5) over a wide subcritical range, roughly 10³ < Re < 2×10⁵.
 Near Re ≈ 2–3×10⁵ the "drag crisis" drops it sharply (to roughly 0.1–0.2). Free-stream turbulence and surface roughness
 move the crisis to lower Re. So the comparison with "0.47" is only meaningful if the test Re sits well inside the
-subcritical plateau, and the reference value should come from a source that covers that Re. Choosing that
-source is an open item in [TODO.md](TODO.md).
+subcritical plateau, and the reference value should come from a source that covers that Re.
+
+**Reference chosen 2026-11-02 ([D-009](DECISIONS.md), Accepted).** Within the "plateau", C_D still varies:
+
+- It has a shallow minimum of about 0.39–0.40 near Re ≈ 5×10³. It then rises to about 0.47 near 10⁵ (Brown and
+  Lawler's Eq. (19) gives 0.466 there).
+- At the planned Re (1.3–2.5×10⁴), **Eq. (19) gives 0.42–0.445**, rising about 12 % from Re = 6.6×10³ to 2.5×10⁴.
+- The published data at this Re scatter about ±8 % and sit about 7 % above Eq. (19), by our measurement of their
+  Fig. 3. So the reference band is about ±10 %.
+- Each run is compared with Eq. (19) at its own Re, and runs at several speeds must show the predicted rise.
+- Sources and the comparison with Morrison2013 (7–11 % low here) and Roos1971 (points excluded for vibration):
+  [Brown2003 notes](resources/notes/Brown2003.md), [Morrison2013 notes](resources/notes/Morrison2013.md),
+  [Roos1971 notes](resources/notes/Roos1971.md).
+
+[Assumption] The reference data come from spheres falling or towed through still fluid, with no sting and no
+free-stream turbulence. The tunnel's sting, blockage and turbulence are this project's corrections or uncertainties.
 
 ### Corrections to expect [Standard]
 
@@ -81,8 +99,9 @@ source is an open item in [TODO.md](TODO.md).
 ### Blockage correction [Proposed]
 
 Not decided. From [Maskell1963](resources/notes/Maskell1963.md) and [Cooper1998](resources/notes/Cooper1998.md)
-(reviewed 2026-10-31). The test section and sphere are not chosen, so the correction has not been computed for the
-real geometry (TODO P1). Percentages below are our arithmetic for C_D = 0.47.
+(reviewed 2026-10-31). The test section is now 100 mm × 100 mm (D-008), but the sphere is not chosen, so the
+correction has not been computed for the real geometry (TODO P1). Percentages below are our arithmetic for
+C_D = 0.47.
 
 - **Wake blockage (Maskell, closed test section):** q_c/q_u = C_Du/C_Dc = 1 + θ·C_Du·S/C.
   - θ = 2.5; C_Du is the measured, uncorrected drag coefficient; S is the sphere's frontal area; C is the
@@ -110,6 +129,8 @@ real geometry (TODO P1). Percentages below are our arithmetic for C_D = 0.47.
 
 **[Assumption] values, not measurements:** ρ = 1.20 kg/m³, μ = 1.81×10⁻⁵ Pa·s, C_D = 0.47, and a 300 mm × 300 mm
 test section used only to illustrate blockage. Computed 2026-10-29 with a short Python calculation (formulas above).
+Note added 2026-11-02: at the planned Re the reference C_D is about 0.42–0.445 (D-009). So the drag values in these
+estimates, which assume 0.47, are about 5–10 % high for Re of 1–3×10⁴. That makes no difference at their precision.
 
 | V (m/s) | q (Pa) | Sphere d (mm) | Drag (N) | Drag (gf) | Re | Blockage in 300×300 mm |
 |---|---|---|---|---|---|---|
@@ -146,7 +167,8 @@ What this implies (to be confirmed during build step 1):
 - With the P1S's 256 mm build volume, only the 100 mm row could be printed as a one-piece contraction, and only barely:
   a 250 mm inlet leaves about 3 mm per side for the walls and no room for a flange. Any larger section means printing
   the contraction in segments and joining them. **The owner chose a larger tunnel printed in segments** (DECISIONS.md
-  D-005, 2026-10-30). The test-section size is not yet chosen.
+  D-005, 2026-10-30). The owner later chose the 100 mm section anyway (D-008, 2026-11-01). It is still printed in
+  segments, because the 250 mm inlet leaves no room for walls and flanges.
 - Drag scales with the square of the test-section size at fixed blockage. A 100 mm section gives about 1 gf at
   10 m/s, which makes the load cell, its mount and zero drift the hardest part of the measurement. The choice is
   between a small one-piece print with tiny forces and a segmented print with larger, easier-to-measure forces.
@@ -192,11 +214,14 @@ Section rules:
 
 | Section | Rule | Source |
 |---|---|---|
-| Wide-angle diffuser (fan outlet → settling chamber) | Equivalent cone opening at 30–45° (included angle) | Assumed. Mehta1979 Fig. 3 sets the real limit; Mehta1977 not yet reviewed |
-| Settling chamber | 0.6–0.8 × its width: honeycomb, screens 0.2 widths apart, the last 0.2 widths before the contraction | [Mehta1979](resources/notes/Mehta1979.md) |
+| Wide-angle diffuser (fan outlet → settling chamber) | Equivalent cone opening at 30–45° (included angle). Assumed on 2026-11-01. **Superseded 2026-11-02 by Mehta1977 Fig. 5**: at h = 100 mm (A = 3.44), the minimum length is about 115 mm with two screens and 195 mm with one, so about 150–200 mm with two screens is proposed | [Mehta1977](resources/notes/Mehta1977.md) |
+| Settling chamber | 0.6–0.8 × its width: honeycomb, screens 0.2 widths apart, the last 0.2 widths before the contraction. **Added 2026-11-02:** for full turbulence decay, at least 500 wire diameters between screens and about 50 cell diameters from the honeycomb to the first screen. That is about 230–300 mm at h = 100 mm instead of 150–200 mm | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
 | Contraction | 1.0 × its inlet width | [Bell1988](resources/notes/Bell1988.md), [Abdelhamed2014](resources/notes/Abdelhamed2014.md) |
 | Test section | 2.7–2.9 h: 0.5 h for the flow to settle, the reference reading 1.5√C before the sphere, 4√S behind it at 3–5 % blockage | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md) |
 | Exit diffuser (not planned) | Area ratio 2.5 at a 5° included angle: about 7.5 h | [Mehta1979](resources/notes/Mehta1979.md) |
+
+The table below was computed on 2026-11-01 with the original two rules. For h = 100 mm, the 2026-11-02 changes roughly
+cancel: the diffuser is shorter and the chamber possibly longer. Recompute at the sizing task.
 
 Fan outlets assumed: 6-inch (152 mm) for h ≤ 120 mm, 8-inch for 150 mm, 10-inch for 200 mm. The 6-inch fan's body
 is about 320 mm long (listings for the AC Infinity Cloudline S6 give 12.6 in); the larger fans' lengths are not
@@ -290,21 +315,38 @@ PDFs and reading notes live in [resources/](resources/README.md).
 - K. R. Cooper, "Bluff-Body Blockage Corrections in Closed- and Open-Test-Section Wind Tunnels," AGARD-AG-336
   chapter 6, 1998. Reviewed 2026-10-31. Maskell, Hackett's two-step version and the rules for model position along
   the test section. Notes: [resources/notes/Cooper1998.md](resources/notes/Cooper1998.md).
+- F. A. Morrison, "Data Correlation for Drag Coefficient for Sphere," Michigan Technological University, 2013.
+  Reviewed 2026-11-02. A single C_D(Re) fit. It is 7–11 % below Brown2003 at this project's Re, and the exam-sheet
+  version has a typo. Notes: [resources/notes/Morrison2013.md](resources/notes/Morrison2013.md).
+- F. W. Roos, W. W. Willmarth, "Some experimental results on sphere and disk drag," *AIAA Journal* 9(2), 1971,
+  pp. 285–291. Reviewed 2026-11-02. Towing-tank sphere drag. Its points above Re = 5,500 read high (vibration).
+  Notes: [resources/notes/Roos1971.md](resources/notes/Roos1971.md).
+- P. P. Brown, D. F. Lawler, "Sphere Drag and Settling Velocity Revisited," *Journal of Environmental Engineering*
+  129(3), 2003, pp. 222–231. Reviewed 2026-11-02. 480 curated sphere-drag points and the Eq. (19) correlation, the
+  validation reference (D-009). Notes: [resources/notes/Brown2003.md](resources/notes/Brown2003.md).
+- R. D. Mehta, "The aerodynamic design of blower tunnels with wide-angle diffusers," *Prog. Aerospace Sci.* 18, 1977,
+  pp. 59–120. Reviewed 2026-11-02. Wide-angle diffuser charts, screens, honeycombs and settling chambers. Notes:
+  [resources/notes/Mehta1977.md](resources/notes/Mehta1977.md).
+- J. Scheiman, *Comparison of Experimental and Theoretical Turbulence Reduction Characteristics for Screens,
+  Honeycomb, and Honeycomb-Screen Combinations*, NASA TP-1958, 1981. Reviewed 2026-11-02. Notes:
+  [resources/notes/Scheiman1981.md](resources/notes/Scheiman1981.md).
+- K. E. G. Wieghardt, "On the Resistance of Screens," *The Aeronautical Quarterly* 4, 1953, pp. 186–192. Reviewed
+  2026-11-02. The screen pressure-drop formula. Notes: [resources/notes/Wieghardt1953.md](resources/notes/Wieghardt1953.md).
 
 ### Not yet reviewed
 
 These are standard sources suggested as starting points. Move each to "Reviewed" (with the relevant page or figure,
-and notes in `resources/`) when it is actually used. More papers are in `resources/` but not yet reviewed (Roos1971,
-Morrison2013, Mehta1977, Anthoine2004 and others), and further candidates are under "Wanted"; both are in
-[resources/README.md](resources/README.md).
+and notes in `resources/`) when it is actually used. More papers are in `resources/` but not yet reviewed
+(Anthoine2004, Morel1975, Bradshaw1964 and the full AGARD-AG-336), and further candidates are under "Wanted"; both
+are in [resources/README.md](resources/README.md).
 
 - J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. Tunnel design, corrections,
   blockage. A local-only copy is in `resources/` (not in Git; see the index).
 - E. Achenbach, "Experiments on the flow past spheres at very high Reynolds numbers," *Journal of Fluid Mechanics*
   54, 1972, pp. 565–575. Sphere drag and the drag crisis. Its abstract (checked online 2026-10-30) gives the range
   5×10⁴ ≤ Re ≤ 6×10⁶. That covers only the top of this project's planned Re (roughly 10⁴–10⁵ in the estimates
-  above), so it cannot be the only C_D reference. Candidates covering 10⁴–10⁵, Morrison2013 (correlation) and
-  Roos1971 (measurements), are now in `resources/` but not yet reviewed ([index](resources/README.md)).
+  above), so it cannot be the only C_D reference. The reference chosen for 10⁴–10⁵ is Brown2003 (D-009; Reviewed
+  above). Brown and Lawler left Achenbach's data out because they were published only as graphs.
 - F. M. White, *Fluid Mechanics* (any recent edition). Sphere C_D vs Re chart and pitot-static theory.
 
 ## Lessons learned
@@ -336,3 +378,17 @@ Add lasting lessons here (with a link to the session log where they were learned
   owner's fan link was 1.29 million characters, and the first part read held only the title. Take specs from the
   maker's page or other retailers' listings, or ask the owner for a screenshot of the spec section. Before trusting a
   hobby part's headline spec (CFM, "high accuracy"), check its range and pressure against this project's numbers.
+- **Have the owner check values read from PDFs, and settle figure readings by measurement** (2026-11-02,
+  [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
+  - The owner asked to check everything read from PDFs. Give a checklist with printed and PDF page numbers. Leave
+    figure readings blind, so the owner reads the figure without seeing the agent's number.
+  - Common traps:
+    - **log axes** read as linear (the owner twice read about 0.6 where the value was about 0.4–0.5);
+    - the **raised-dot decimal** in old British papers ("5·5" = 5.5, not 5 × 5);
+    - **typos in the source** (Mehta1977's reversed "60 > … > 600"; Morrison's exam-sheet "236,000");
+    - PDF page numbers that differ from printed page numbers.
+  - Measure figures from pixels against the figure's own tick marks. **Check the calibration on a known feature**
+    (for example the Stokes line in Brown2003 Fig. 3) before trusting a reading.
+- **A correlation's overall accuracy can hide a local offset** (2026-11-02, same log). Brown and Lawler's "81 % of
+  points within ±5 %" is over all Re, yet at this project's Re their own data sit about 7 % above the curve. Check
+  the data near the Re that matters, not just the headline fit statistic.

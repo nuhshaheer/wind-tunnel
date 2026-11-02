@@ -2,8 +2,8 @@
 
 - **Session ID:** edc44a90-0a86-45f3-8527-50425c926745 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** `748dae9` (part 1, up to the first `/wrap`; pushed 2026-11-01). Part 2 (after that wrap): not committed
-  yet
+- **Commit:** `748dae9` (part 1, up to the first `/wrap`; pushed 2026-11-01). Part 2 (after that wrap): `8fda08f`
+  (committed 2026-11-01; found on GitHub at the 2026-11-02 `/catchup`)
 
 This session was wrapped twice. **Part 1** (up to the first `/wrap`) is in `748dae9`. **Part 2** is everything after
 it: the owner's sketch, the tunnel layout decisions (D-007, D-008), fan candidates and the controls. Each section below

@@ -33,6 +33,8 @@ Template:
 - Evidence / source: original README.
 - Status: Accepted. Open detail: the reference Cd must be matched to the test Reynolds number
   ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#why-reynolds-number-matters-for-the-validation-standard)).
+  **2026-11-02: the comparison value "about 0.47" is superseded by D-009** (Brown and Lawler Eq. (19) at each run's
+  Re, with a ±10 % band and a trend check). Validating with a sphere still stands.
 
 ## D-002: Pitot tube + differential pressure sensor for airspeed; load cell + HX711 for drag
 
@@ -166,3 +168,35 @@ Template:
   - Proposed, not decided: contraction ratio 6.25 (250 mm settling chamber), test section 270–290 mm long.
 - Evidence / source: [2026-11-01 session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md).
 - Status: Accepted (100 mm × 100 mm cross-section; owner). Contraction ratio and section lengths: Tentative.
+
+## D-009: Sphere validation reference: Brown and Lawler Eq. (19) at each run's Re, ±10 % band, plus a trend check
+
+- Date: 2026-11-02
+- Question: What is the measured sphere C_D compared with? D-001 said "about 0.47", but the planned test Re is about
+  1.3–2.5×10⁴ (20–25 mm spheres at 10–15 m/s), and published C_D changes with Re in that range.
+- Decision:
+  - Compare each run's corrected C_D (blockage and sting drag removed) with Brown and Lawler (2003) Eq. (19), evaluated
+    at that run's Re: C_D = (24/Re)(1 + 0.150 Re^0.681) + 0.407/(1 + 8,710/Re).
+  - The reference band is about **±10 %**.
+  - Runs at several speeds must also show C_D rising with Re as Eq. (19) predicts: about 12 % from Re = 6.6×10³ to
+    2.5×10⁴.
+  - The band may be tightened later if the original data tables near Re = 10⁴ are obtained.
+- Rationale:
+  - Eq. (19) is fitted to 480 curated, wall-corrected sphere-drag points. The selection independently excluded
+    Roos1971's vibration-affected points above Re = 5,500. It is an explicit formula the analysis script can evaluate
+    for every run.
+  - Eq. (19) gives 0.42–0.445 for the planned runs. Its own Fig. 3 data sit about 7 % above it at this Re, with about
+    ±8 % scatter (our pixel measurement, axes checked against the Stokes region). The paper's "81 % within ±5 %" is an
+    average over all Re, so ±10 % is the honest band here.
+  - A single number cannot serve, because C_D rises about 12 % across the test range. The trend check gives evidence
+    that does not depend on the absolute band.
+- Alternatives considered:
+  - A single value of 0.47 (Hoerner, used by Weakly2024). It ignores the Re dependence; it falls inside the band, but
+    only at the top of it.
+  - Morrison2013 Eq. (1): 7–11 % below Eq. (19) and the data at this Re.
+  - Eq. (19) with ±5 % and Clift et al. (1978) as a cross-check, the agent's first proposal. Rejected: ±5 % is too
+    tight at this Re, and Clift was fitted to almost the same data, so it is not independent.
+  - Roos1971 Table 1: its points at this Re read high, per its authors.
+- Evidence / source: [Brown2003 notes](resources/notes/Brown2003.md), [Morrison2013 notes](resources/notes/Morrison2013.md),
+  [Roos1971 notes](resources/notes/Roos1971.md); this session's log (2026-11-02).
+- Status: Accepted (owner, 2026-11-02, choosing the ±10 % + trend version over the ±5 % + Clift version).

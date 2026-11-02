@@ -1,8 +1,9 @@
 # Wind Tunnel: instructions for AI agents
 
 A small wind tunnel with home-built instrumentation (pitot tube + differential pressure sensor for airspeed,
-load cell + HX711 for drag). The tunnel is validated by measuring a sphere's drag coefficient against the published
-value (~0.47) before any other result is trusted. Owner: Nuh Shaheer. The project is in the **planning / pre-build**
+load cell + HX711 for drag). The tunnel is validated by measuring a sphere's drag coefficient against the published,
+Reynolds-number-matched value before any other result is trusted. That is Brown and Lawler Eq. (19), about 0.42–0.445
+at the planned Re, ±10 % (DECISIONS.md D-009); the original plan said about 0.47. Owner: Nuh Shaheer. The project is in the **planning / pre-build**
 stage; check `PROJECT_STATUS.md` for the current state.
 
 The documentation is the project's memory. Assume the next agent has none of your conversation. Anything not written
@@ -84,6 +85,9 @@ python -m unittest discover -s tests -v        # tests for the two scripts
 
 ## Environment notes
 
-- Windows 11; Git Bash and PowerShell available; Python 3.13 (`python`). Repo lives in OneDrive; GitHub is the sync
-  point between machines, not OneDrive.
+- Windows 11; Git Bash and PowerShell available. Repo lives in OneDrive; GitHub is the sync point between machines,
+  not OneDrive.
+- Python: `python` was 3.11.0 on 2026-11-02 in both shells (the `py` launcher also lists 3.10, 3.12 and 3.14). Earlier
+  sessions recorded 3.13. The helper scripts need only Python 3.9+ and the tests pass on 3.11. PyMuPDF (for reading
+  PDFs) is installed for that Python.
 - Remote: `origin` = https://github.com/nuhshaheer-2007/wind-tunnel (private). Default branch `main`.

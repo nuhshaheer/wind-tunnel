@@ -14,12 +14,12 @@ listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing
 | Parameter | Value | Status / source |
 |---|---|---|
 | Tunnel type (open-circuit blower / suck-down / closed-return) | Open-circuit blower, fan at the front. Proposed order: fan → flexible coupling → wide-angle diffuser with screens → settling chamber → contraction → test section → open exit | Accepted 2026-11-01 ([D-007](../DECISIONS.md)); open exit Tentative |
-| Inlet / settling chamber size | Proposed: 250 mm × 250 mm (2.5 × the test section at contraction ratio 6.25), about 150–200 mm long | Proposed 2026-11-01 ([estimate](../PROJECT_BACKGROUND.md#tunnel-length-budget)) |
+| Inlet / settling chamber size | Proposed: 250 mm × 250 mm (2.5 × the test section at contraction ratio 6.25). About 150–200 mm long with Mehta1979's 0.2 D screen spacing, or about 230–300 mm if screens are spaced for full turbulence decay (2026-11-02, [Mehta1977](../resources/notes/Mehta1977.md), [Scheiman1981](../resources/notes/Scheiman1981.md)) | Proposed 2026-11-01, updated 2026-11-02 ([estimate](../PROJECT_BACKGROUND.md#tunnel-length-budget)) |
 | Contraction ratio and length | Proposed: 6.25 (250 mm → 100 mm square), about 250 mm long | Proposed 2026-11-01; build step 1 |
 | Test section cross-section (W × H) | 100 mm × 100 mm | Accepted 2026-11-01 ([D-008](../DECISIONS.md)) |
 | Test section length | Proposed: 270–290 mm (2.7–2.9 × its height, from the position rules) | Proposed 2026-11-01 ([estimate](../PROJECT_BACKGROUND.md#tunnel-length-budget)) |
-| Diffuser | Wide-angle diffuser with screens between the fan and the settling chamber (about 0.2–0.35 m, estimate). No exit diffuser: open exit | Proposed / Tentative 2026-11-01 ([D-007](../DECISIONS.md)) |
-| Overall length | About 1.15–1.3 m including a 6-inch fan (estimate). Owner's target: about 1 m, more allowed | Estimate 2026-11-01 |
+| Diffuser | Wide-angle diffuser between the fan and the settling chamber: area ratio 3.44 (152 mm round → 250 mm square). With two screens (K_sum ≥ 2.1) it can be about 150–200 mm long, with curved walls or radiused corners and filleted corners, and no flow straightener at the fan outlet (2026-11-02, [Mehta1977](../resources/notes/Mehta1977.md)). Replaces the earlier 0.2–0.35 m estimate. No exit diffuser: open exit | Proposed / Tentative 2026-11-01, updated 2026-11-02 ([D-007](../DECISIONS.md)) |
+| Overall length | About 1.15–1.3 m including a 6-inch fan (estimate). The 2026-11-02 diffuser and settling-chamber changes roughly cancel; recompute at sizing. Owner's target: about 1 m, more allowed | Estimate 2026-11-01 |
 | Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins and glued; filament unknown | Planned ([D-005](../DECISIONS.md)) |
 | Model access | One test chamber; the top and/or side clear acrylic panel comes off to swap the model (owner's concept). Proposed details: 3–5 mm cast acrylic held by magnets, located by pins, flush inside, foam-gasketed; floor fixed; no magnets near ferrous parts of the balance; a sting lock and overload stops protect the load cell during swaps | Owner's concept 2026-11-01; details Proposed ([TODO.md](../TODO.md) P1 sizing task) |
 | CAD / drawings | No CAD yet. The owner's hand sketch: [2026-11-01 concept sketch](sketches/README.md) | |
@@ -36,8 +36,8 @@ listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing
 
 | Component | Value | Status / source |
 |---|---|---|
-| Honeycomb (cell size, length) | Unknown | To buy (README) |
-| Screens (number, mesh, open-area ratio) | Unknown | To buy (README) |
+| Honeycomb (cell size, length) | Unknown. Proposed (2026-11-02): thin-walled (paper, aluminium or drinking straws), cells about 2–3 mm, length 7–10 cell diameters, ahead of the screens in the settling chamber | To buy (README); [TODO.md](../TODO.md) P1 "Choose the screens and honeycomb" |
+| Screens (number, mesh, open-area ratio) | Unknown. Proposed (2026-11-02): metal square-mesh at least 58 % open (for example 20–30 wires/in, 0.19–0.23 mm wire). Two in the fan-to-chamber diffuser (K_sum ≥ 2.1) and one or two in the settling chamber, at least 500 wire diameters apart. Expected K at the settling chamber's roughly 2 m/s is about 1.1–1.8 (extrapolated from [Wieghardt1953](../resources/notes/Wieghardt1953.md)) | To buy (README); [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
 
 ## Instrumentation
 
@@ -71,7 +71,7 @@ The module (and so its excitation voltage and RATE wiring) is not chosen.
 
 | Model | Dimensions | Mount | Status |
 |---|---|---|---|
-| Validation sphere | Proposed: about 20 mm (3.1 % blockage); about 25 mm (4.9 %) as the second size | Proposed: a non-magnetic sting about 80–90 mm long through a floor slot to an upright straight-bar load cell in a closed box under the floor (as in Weakly2024) | Planned |
+| Validation sphere | Proposed: about 20 mm (3.1 % blockage); about 25 mm (4.9 %) as the second size, run at matched Re. Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: a non-magnetic sting about 80–90 mm long through a floor slot to an upright straight-bar load cell in a closed box under the floor (as in Weakly2024) | Planned |
 | Airfoil | Unknown | Same sting, with a preset-angle adapter | Planned (after validation) |
 
 ## Parts on hand
@@ -125,3 +125,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-10-31 | Ambient-sensor rows corrected from "Not planned yet" to the TODO P1 task and the BME280 candidate (documentation only; no hardware change) | [2026-10-31](sessions/2026-10-31-blockage-review-and-tunnel-concepts.md) |
 | 2026-11-01 | Parts on hand recorded: the ECE2010 kit (from its packing list), the Elegoo Mega 2560 R3 and magnets. Proposals added for model access (magnetic acrylic panels), fan type, sting mounting and the interface board (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
 | 2026-11-01 | Blower with the fan at the front (D-007) and a 100 mm test section (D-008) decided. Added: proposed section sizes and lengths, fan candidates, display and knob, preset airfoil angles, load-cell protection; multimeter, soldering station, bench supply and workbench on hand (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
+| 2026-11-02 | Proposals updated from Mehta1977, Scheiman1981 and Wieghardt1953: diffuser length and screens, settling-chamber length, honeycomb and screen choices. Sphere reference set by D-009 (documentation only; nothing built or tested) | [2026-11-02](sessions/2026-11-02-cd-reference-and-flow-conditioning.md) |

@@ -1,7 +1,9 @@
 # Wind Tunnel
 
-> **Status (2026-10-29): planning / pre-build.** Nothing is built and no data has been collected yet.
+> **Status (2026-11-02): planning / pre-build.** Nothing is built and no data has been collected yet.
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
+> The sphere's reference C_D is now matched to the test Reynolds number: about 0.42–0.445 at the planned Re, ±10 %
+> ([DECISIONS.md](DECISIONS.md) D-009). The "~0.47" below is from the original plan.
 
 ## Goal
 Measure drag, and prove the tunnel reads true.
@@ -83,7 +85,7 @@ No analysis code exists yet, so there are no analysis commands to run.
 ## Requirements and checks
 
 The helper scripts need only Python 3 (standard library; Python 3.9 or newer expected, developed and tested with
-Python 3.13 on Windows 11) and Git.
+Python 3.13 on Windows 11, and also passing on 3.11 on 2026-11-02) and Git.
 
 ```bash
 python -m unittest discover -s tests -v   # tests for the helper scripts
