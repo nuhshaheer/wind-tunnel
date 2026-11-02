@@ -1,10 +1,13 @@
 # Project Status
 
 **Last updated:** 2026-11-02
-**Last commit:** `8fda08f` (2026-11-01, blower layout, 100 mm test section and fan candidates), pushed to
-`origin/main`. `sync_status.py --fetch` reported `UP_TO_DATE` at this session's `/catchup` and `/wrap`.
-This session's work (six reference reviews and D-009; documentation only) is **not committed yet**. Commands are in the
-[session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
+**Last commit:** `c04de1b` (2026-11-02, Re-matched sphere C_D reference and flow-conditioning review), pushed to
+`origin/main`; `sync_status.py --fetch` reported `UP_TO_DATE` afterwards.
+- After that push the owner renamed the GitHub account to `nuhshaheer`, so the repo is now
+  https://github.com/nuhshaheer/wind-tunnel. The old URL redirects.
+- The local `origin` still points at the old URL until the owner runs the `set-url` command in the
+  [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
+- The doc updates recording this (push backfill, new URL) are **not committed yet**.
 **Current stage:** Planning / pre-build. The basic layout is decided, and parts are being chosen.
 - Decided:
   - segmented 3D printing (D-005);
@@ -113,7 +116,7 @@ Filament, screens, honeycomb and acrylic are extra.
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9` and `8fda08f`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f` and `c04de1b`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -168,7 +171,7 @@ None. No experiment has been run.
   - The owner checked the key values against the PDFs.
   - Recorded D-009 (the validation reference), the fan-to-chamber diffuser and settling-chamber design inputs, and the
     owner's model-car downforce idea.
-  - See [the session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md).
+  - Committed and pushed as `c04de1b`. See [the session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md).
 
 ## 7. Data and analyses
 
@@ -352,6 +355,7 @@ See [TODO.md](TODO.md) for the full list. In order:
 ## 13. Repository
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
-- Remote: `origin` → https://github.com/nuhshaheer-2007/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9` and `8fda08f`)
+- Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f` and `c04de1b`). The account was `nuhshaheer-2007` until 2026-11-02, and the
+  old URL redirects. Check `git remote -v` points at the new URL.
 - Branch: `main`

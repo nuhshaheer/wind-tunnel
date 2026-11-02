@@ -2,7 +2,8 @@
 
 - **Session ID:** aebc66ce-18f0-40b7-924b-7258bf51df1d (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `c04de1b` (pushed 2026-11-02). A follow-up doc update recording the push and the GitHub account rename
+  is not committed yet (§13).
 
 ## 1. Starting state and objective
 
@@ -330,3 +331,32 @@ python scripts/sync_status.py --fetch
   Manager.
 - **If the push is rejected** ("fetch first" / "non-fast-forward"): do not force-push. Run
   `git pull --rebase origin main`, then `python -m unittest discover -s tests`, then `git push origin HEAD`.
+
+### After the wrap: push and GitHub account rename
+
+- The owner pushed `c04de1b`; `sync_status.py --fetch` then reported `UP_TO_DATE`. The owner then renamed the GitHub
+  account from `nuhshaheer-2007` to `nuhshaheer`.
+- `git ls-remote https://github.com/nuhshaheer/wind-tunnel.git HEAD` returned `c04de1b`, so the new URL works. The
+  old URL still worked through GitHub's redirect.
+- The agent's `git remote set-url origin https://github.com/nuhshaheer/wind-tunnel.git` was **denied** by Claude
+  Code's auto-mode classifier ("Remote Repoint"). The agent did not work around it; the owner runs it.
+- Docs updated to the new URL and to record the push: CLAUDE.md, README.md, D-003's status line, PROJECT_STATUS.md,
+  TODO.md, SESSION_LOG.md and this log. Older session logs keep the old name as history.
+
+Follow-up commands (7 files):
+
+```bash
+cd "C:/Users/nuhbm/OneDrive/Desktop/nuhs projects/2 - Wind Tunnel"
+git remote set-url origin https://github.com/nuhshaheer/wind-tunnel.git
+git remote -v                         # both lines should show github.com/nuhshaheer/wind-tunnel.git
+python scripts/sync_status.py --fetch # expect UP_TO_DATE
+git status
+git diff
+git add CLAUDE.md README.md DECISIONS.md PROJECT_STATUS.md TODO.md docs/sessions/SESSION_LOG.md docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md
+git diff --cached --stat
+git commit -m "Record push of c04de1b and GitHub account rename" -m "Backfills c04de1b in the status, TODO and session logs, and updates the repository URL to github.com/nuhshaheer/wind-tunnel after the owner renamed the GitHub account from nuhshaheer-2007. The old URL redirects."
+git push origin HEAD
+python scripts/sync_status.py --fetch # expect UP_TO_DATE
+```
+
+To undo the remote change: `git remote set-url origin https://github.com/nuhshaheer-2007/wind-tunnel.git`.

@@ -8,9 +8,15 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: commit and push the 2026-11-02 session** (six reference notes, two new PDFs, D-009 and doc updates).
-  Outcome: GitHub holds the changes. Verify: `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`. Commands:
-  [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
+- [ ] **Owner: point `origin` at the renamed GitHub account, then commit and push the small doc update.**
+  - After pushing `c04de1b`, the owner renamed the account to `nuhshaheer` (2026-11-02). Run
+    `git remote set-url origin https://github.com/nuhshaheer/wind-tunnel.git`; agents are blocked from changing
+    remotes.
+  - Then commit the docs that record the push and the new URL.
+  - Outcome: `git remote -v` shows the new URL, and GitHub holds the update. Verify:
+    `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`.
+  - Commands:
+    [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
 - [ ] **Owner: give the target top airspeed.** The test section (100 mm, D-008) and length (about 1 m target, more
   allowed) are settled. The top speed sets the pressure-sensor range (±125 Pa covers about 14 m/s) and confirms the
   fan. 10–13 m/s is enough for the sphere validation. Outcome: recorded under "Requirements and constraints" in
@@ -389,4 +395,7 @@ Owner tasks are physical or account actions that an agent cannot do.
   ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).
 - [x] 2026-11-02: Reviewed Mehta1977 and Scheiman1981 for the 100 mm layout, and Wieghardt1953 (added by the owner)
   for screen K. The owner checked the key values against the PDFs
+  ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).
+- [x] 2026-11-02: Owner committed and pushed the session as `c04de1b`; `sync_status.py --fetch` confirmed
+  `UP_TO_DATE`. The owner then renamed the GitHub account to `nuhshaheer`
   ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).

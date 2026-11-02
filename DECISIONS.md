@@ -61,7 +61,9 @@ Template:
 - Alternatives considered: `.claude/commands/` (older mechanism; skills supersede it); instructions only, without a deny rule (weaker).
 - Evidence / source: [2026-10-29 session log](docs/sessions/2026-10-29-github-setup-and-agent-handoff.md).
 - Status: Accepted (requested by the owner). Repo visibility **private** is Tentative: it matches the owner's
-  `slam-robot` repo, and can be made public later (`gh repo edit --visibility public`).
+  `slam-robot` repo, and can be made public later (`gh repo edit --visibility public`). 2026-11-02: the owner renamed
+  the GitHub account to `nuhshaheer`, so the repo is now `nuhshaheer/wind-tunnel`. The old URL redirects; this is not a
+  change of decision.
 
 ## D-004: Data management: raw data immutable; videos external; no Git LFS yet
 

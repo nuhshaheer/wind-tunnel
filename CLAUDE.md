@@ -90,4 +90,7 @@ python -m unittest discover -s tests -v        # tests for the two scripts
 - Python: `python` was 3.11.0 on 2026-11-02 in both shells (the `py` launcher also lists 3.10, 3.12 and 3.14). Earlier
   sessions recorded 3.13. The helper scripts need only Python 3.9+ and the tests pass on 3.11. PyMuPDF (for reading
   PDFs) is installed for that Python.
-- Remote: `origin` = https://github.com/nuhshaheer-2007/wind-tunnel (private). Default branch `main`.
+- Remote: `origin` = https://github.com/nuhshaheer/wind-tunnel (private). Default branch `main`. The owner renamed the
+  GitHub account from `nuhshaheer-2007` to `nuhshaheer` on 2026-11-02; the old URL redirects for now. Check
+  `git remote -v`, and if it still shows the old name, ask the owner to run
+  `git remote set-url origin https://github.com/nuhshaheer/wind-tunnel.git` (agents are blocked from changing remotes).

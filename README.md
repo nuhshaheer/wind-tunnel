@@ -108,7 +108,8 @@ They are plain Markdown, so other agents can follow them by reading the files.
 
 ## Pushing to GitHub (manual)
 
-GitHub repository: https://github.com/nuhshaheer-2007/wind-tunnel (private). Remote `origin`, branch `main`.
+GitHub repository: https://github.com/nuhshaheer/wind-tunnel (private; the account was `nuhshaheer-2007` until
+2026-11-02, and the old URL redirects). Remote `origin`, branch `main`.
 Run in PowerShell or Git Bash (the VS Code terminal is fine):
 
 ```bash
