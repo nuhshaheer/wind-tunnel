@@ -33,7 +33,8 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 - [Confirmed] The owner wants to design the sensor interface circuit: design it, maybe test it on a breadboard, then
   turn it into a PCB (2026-11-01).
 - [Confirmed] Microcontroller on hand: an Elegoo board the owner identifies as a Mega 2560 R3 by its appearance
-  (2026-11-01). Not yet tested.
+  (2026-11-01). Its main chip reads ATMEGA2560, and a Blink upload worked on 2026-11-02
+  ([PROJECT_STATUS.md](PROJECT_STATUS.md) §3).
 - [Confirmed] Build order: (1) size the contraction and test section, (2) flow conditioning (honeycomb and screens),
   (3) map flow uniformity with the pitot tube, (4) load cell and conditioning circuit, (5) calibrate against known
   weights, (6) sphere Cd validation run, (7) airfoil pitch attachment.
@@ -389,6 +390,11 @@ Add lasting lessons here (with a link to the session log where they were learned
     - PDF page numbers that differ from printed page numbers.
   - Measure figures from pixels against the figure's own tick marks. **Check the calibration on a known feature**
     (for example the Stokes line in Brown2003 Fig. 3) before trusting a reading.
+- **An equipment test must show a change you caused** (2026-11-02,
+  [session log](docs/sessions/2026-11-03-mega-2560-board-test.md#4-experimental-procedures-performed)). A new Mega 2560
+  may already run Blink, so a blinking LED proves nothing about an upload. Changing the delay to 200 ms and seeing the
+  LED speed up did. Plan later checks (sensor readings, calibrations) the same way: change something known and see
+  the reading follow.
 - **A correlation's overall accuracy can hide a local offset** (2026-11-02, same log). Brown and Lawler's "81 % of
   points within ±5 %" is over all Re, yet at this project's Re their own data sit about 7 % above the curve. Check
   the data near the Re that matters, not just the headline fit statistic.

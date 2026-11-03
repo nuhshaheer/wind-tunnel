@@ -8,15 +8,6 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: point `origin` at the renamed GitHub account, then commit and push the small doc update.**
-  - After pushing `c04de1b`, the owner renamed the account to `nuhshaheer` (2026-11-02). Run
-    `git remote set-url origin https://github.com/nuhshaheer/wind-tunnel.git`; agents are blocked from changing
-    remotes.
-  - Then commit the docs that record the push and the new URL.
-  - Outcome: `git remote -v` shows the new URL, and GitHub holds the update. Verify:
-    `python scripts/sync_status.py --fetch` reports `UP_TO_DATE`.
-  - Commands:
-    [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
 - [ ] **Owner: give the target top airspeed.** The test section (100 mm, D-008) and length (about 1 m target, more
   allowed) are settled. The top speed sets the pressure-sensor range (±125 Pa covers about 14 m/s) and confirms the
   fan. 10–13 m/s is enough for the sphere validation. Outcome: recorded under "Requirements and constraints" in
@@ -32,19 +23,12 @@ Owner tasks are physical or account actions that an agent cannot do.
     Verify: its listed maximum static pressure is at least about 300 Pa and its free-air flow about 400 CFM (or the
     pair's combined), which covers 15 m/s with margin by the estimate in
     [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#tunnel-length-budget).
-- [ ] **Owner: set up the Elegoo Mega 2560 R3** once the USB A-to-B cable arrives (UGREEN 5 ft, ordered 2026-11-01).
-  - Confirm the board: it should read MEGA2560 R3, and the large chip ATMEGA2560.
-  - Install the Arduino IDE, select **Tools → Board → Arduino Mega or Mega 2560** and the port, and upload
-    **File → Examples → Basics → Blink**.
-  - Outcome: the board recorded as working in PROJECT_STATUS §3 and docs/experimental_setup.md.
-  - Verify: a new COM port appears in Device Manager under "Ports (COM & LPT)" when it is plugged in, and the
-    onboard LED blinks. The power LED alone proves nothing, because it also lights on a charge-only cable. If
-    Windows shows "Unknown device", a driver is needed; report the name it shows.
 - [ ] **Owner: finish the parts-on-hand list.** The ECE kit, a multimeter, a soldering station, a bench power supply
   and a workbench are recorded (2026-11-01). Still needed:
   - the bench supply's maximum voltage and current (on its label or front panel);
   - any other electronics the owner has (a photo works);
   - the magnets' type and size;
+  - minor: whether the Mega board is printed "R3" (the main chip already reads ATMEGA2560);
   - whether to file the ECE kit's packing list (`PartsListECE2010.pdf`, in the owner's Downloads folder) in the repo
     as evidence for the kit inventory (asked 2026-11-01, not answered).
 
@@ -194,9 +178,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   subcritical plateau (well below ~2×10⁵; a 20 mm sphere at 10 m/s is about 1.3×10⁴); diameter measured with calipers
   once bought. Plan the two-size check at **matched Re** (D-009). For example, 20 mm at 12.5 m/s matches 25 mm at
   10 m/s (our arithmetic).
-- [ ] **Confirm the microcontroller / DAQ.** Candidate (2026-11-01): the owner's Elegoo Mega 2560 R3 (5 V logic,
+- [ ] **Confirm the microcontroller / DAQ.** Candidate (2026-11-01): the owner's Elegoo Mega 2560 (5 V logic,
   I²C on pins 20/21). Weakly2024 used an Uno with one HX711 per load cell; the Mega does everything the Uno does,
-  with more pins. Needs the P0 Blink test first. Outcome: board recorded as chosen (D-entry). Verify: it reads the
+  with more pins. The board works: a modified Blink uploaded on 2026-11-02 (PROJECT_STATUS §3). Outcome: board recorded as chosen (D-entry). Verify: it reads the
   HX711 and the chosen pressure sensor at the planned sample rate (interface and logic voltage checked), and logs raw
   counts to a PC as CSV.
 - [ ] **Choose the differential pressure sensor range.**
@@ -399,3 +383,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-02: Owner committed and pushed the session as `c04de1b`; `sync_status.py --fetch` confirmed
   `UP_TO_DATE`. The owner then renamed the GitHub account to `nuhshaheer`
   ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md)).
+- [x] 2026-11-02: Owner pointed `origin` at https://github.com/nuhshaheer/wind-tunnel.git and committed and pushed the
+  follow-up as `b22a45b`; `/catchup` confirmed `UP_TO_DATE` with the new remote
+  ([session log](docs/sessions/2026-11-03-mega-2560-board-test.md)).
+- [x] 2026-11-02: Owner set up the Elegoo Mega 2560: the main chip reads ATMEGA2560, Windows lists it on COM3
+  (USB ID 2341:0042), and Blink with the delays changed from 1000 to 200 ms uploaded from Arduino IDE 2.3.10 and made
+  the "L" LED blink faster. Verified (PROJECT_STATUS §3;
+  [session log](docs/sessions/2026-11-03-mega-2560-board-test.md)).

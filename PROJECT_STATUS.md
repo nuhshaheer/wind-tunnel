@@ -1,13 +1,12 @@
 # Project Status
 
-**Last updated:** 2026-11-02
-**Last commit:** `c04de1b` (2026-11-02, Re-matched sphere C_D reference and flow-conditioning review), pushed to
-`origin/main`; `sync_status.py --fetch` reported `UP_TO_DATE` afterwards.
-- After that push the owner renamed the GitHub account to `nuhshaheer`, so the repo is now
-  https://github.com/nuhshaheer/wind-tunnel. The old URL redirects.
-- The local `origin` still points at the old URL until the owner runs the `set-url` command in the
-  [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner).
-- The doc updates recording this (push backfill, new URL) are **not committed yet**.
+**Last updated:** 2026-11-03
+**Last commit:** `b22a45b` (2026-11-02, push record of `c04de1b` and the new repo URL), pushed to `origin/main`;
+`/catchup` reported `UP_TO_DATE` on 2026-11-02.
+- The owner renamed the GitHub account to `nuhshaheer` on 2026-11-02, so the repo is now
+  https://github.com/nuhshaheer/wind-tunnel, and the local `origin` points there. The old URL redirects.
+- **Not committed yet:** the Mega 2560 board test (§3;
+  [session log](docs/sessions/2026-11-03-mega-2560-board-test.md), with the commit commands in §13).
 **Current stage:** Planning / pre-build. The basic layout is decided, and parts are being chosen.
 - Decided:
   - segmented 3D printing (D-005);
@@ -25,8 +24,8 @@
   - the balance paper Weakly2024 and the HX711 datasheet.
 
   Five more are filed in `resources/` but not yet read.
-- Parts and tools on hand: the owner's ECE kit (from its packing list), an Elegoo Mega 2560 R3 board (identified by
-  appearance, untested, USB cable on order), magnets, a multimeter, a soldering station and a bench power supply.
+- Parts and tools on hand: the owner's ECE kit (from its packing list), an Elegoo Mega 2560 board (**working**: Blink
+  upload Verified 2026-11-02, §3), magnets, a multimeter, a soldering station and a bench power supply.
 - No hardware built, no data collected, no analysis code written.
 
 This is the authoritative snapshot of the project. Status labels used below:
@@ -88,8 +87,8 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | ECE2010 lab kit (WPI) | On hand, per its packing list (owner, 2026-11-01). Quantities are the packed ones, not counted | Includes LM741, LM348 and LMC6484 op-amps, LM311, 555, LM317T and LM7805CT regulators, transistors, MOSFETs, potentiometers (1 × 10 kΩ, 2 × 1 kΩ, 1 × 100 kΩ, 1 × 1 MΩ), resistors, capacitors, breadboard and jumper wires. No multimeter, soldering iron or power supply in the list (the owner has them separately) |
 | Tools | On hand (owner, 2026-11-01): multimeter, soldering station, bench power supply, access to a workbench | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen |
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
-| Microcontroller | **On hand: Elegoo Mega 2560 R3** (owner, 2026-11-01: "that is what it looks like at least"). Not yet powered or tested | 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial; USB Type-B socket (Mega 2560 Rev3 documentation via retailer pages, not checked on this board). Covers every planned sensor plus the display and knob |
-| USB A-to-B cable for the board | To buy (owner ordering a UGREEN USB A-to-B 5 ft cable, 2026-11-01) | The board's original cable is lost. Verify with the Blink test (TODO P0) |
+| Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor plus the display and knob |
+| USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
 | Blower / fan | To buy; not chosen | Needed for the 100 mm section: rated about 400 CFM free air with a listed maximum static pressure of 300–500 Pa (about 320 CFM against 170–200 Pa at 15 m/s, estimate). Candidates (2026-11-01): **VIVOSUN AeroZesh S6** (mixed-flow EC, 405 CFM, 35 W, from about $63; static pressure not published); **AC Infinity Cloudline S6** (402 CFM, about 500 Pa listed, $90–120, about 320 mm long; about 13 m/s, estimate); **two Delta PFR1212UHE-SP00** 120 mm 12 V server fans (228.6 CFM and 300 Pa each, 2.7 A at 12 V, PWM input and speed output, 65.5 dBA each; about $30 each from the price of a sibling model; about 12 m/s for the pair, estimate). The agent's pick: a 6-inch mixed-flow EC fan. Unsuitable: VIVOSUN 6-inch "booster" fans ($32–39, axial, no pressure listed) and the 120 mm Qirssyn fan from Aki's video (about 95 CFM). Estimates in [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#tunnel-length-budget) |
 | Ducting | To buy (may be printed, D-005) | |
 | Honeycomb + screens | To buy; not chosen | Proposed (2026-11-02):<br>• Screens: metal square-mesh, at least 58 % open, for example 20–30 wires/in with 0.19–0.23 mm wire (the sizes Scheiman tested). At the settling chamber's roughly 2 m/s, K is about 1.1–1.8, about twice the high-speed value (Wieghardt's formula, extrapolated), and the wires shed no eddies (u₁d/βν below 85).<br>• Honeycomb: thin-walled (paper, aluminium or drinking straws), cell length 7–10 diameters. A 3D-printed honeycomb has thick walls (about 25 % blocked at 0.4 mm walls on 3 mm cells; our arithmetic).<br>Sources: [Scheiman1981](resources/notes/Scheiman1981.md), [Wieghardt1953](resources/notes/Wieghardt1953.md), [Mehta1977](resources/notes/Mehta1977.md) |
@@ -123,6 +122,8 @@ Dependencies: Python 3 standard library only, developed with Python 3.13 on Wind
 - On 2026-11-02, `python` on the owner's PC was **3.11.0** in both Git Bash and PowerShell. The `py` launcher listed
   3.10, 3.11, 3.12 and 3.14, but no 3.13. The 20 tests pass under 3.11.
 - Git 2.54, Git LFS 3.7 (installed, not enabled), GitHub CLI 2.97.
+- Arduino IDE 2.3.10 with the Arduino AVR Boards core 1.8.8, installed by the owner on 2026-11-02 (versions read from
+  the program file and the core's folder). `arduino-cli` is not installed.
 - Agents reading PDFs used `pdftotext` (Git for Windows) and PyMuPDF 1.28.2, which is installed on the owner's PC
   (Python 3.11). Neither is a project dependency.
 
@@ -172,6 +173,10 @@ None. No experiment has been run.
   - Recorded D-009 (the validation reference), the fan-to-chamber diffuser and settling-chamber design inputs, and the
     owner's model-car downforce idea.
   - Committed and pushed as `c04de1b`. See [the session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md).
+  - The follow-up (push record and the new repo URL) was committed and pushed as `b22a45b`.
+- 2026-11-02/03: the Mega 2560 board brought up. The owner installed the Arduino IDE and uploaded a modified Blink,
+  which Verified the board, the cable and the upload path (§3). Not committed yet. See
+  [the session log](docs/sessions/2026-11-03-mega-2560-board-test.md).
 
 ## 7. Data and analyses
 
@@ -203,13 +208,14 @@ Estimates are spread across these files; all are **calculations from assumed val
 - **Blocked:** all physical work waits on choosing and buying hardware (fan, pressure sensor, load cell).
   - The fan choice and the pressure-sensor range wait on the owner's target top speed (open question 3) and the
     owner's choice among the fan candidates (§3).
-  - The microcontroller is on hand but untested until the USB cable arrives.
+  - The microcontroller is no longer a blocker: the board works (2026-11-02, §3).
 - Resolved: the owner committed the 10.2 MiB sketch PDF uncompressed in `8fda08f` (under D-004's 25 MB limit). It stays
   in Git history.
 - No known software bugs.
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
+  It did not recur at the next `/catchup` (2026-11-02): 20 tests in 10.4 s.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -225,11 +231,10 @@ Estimates are spread across these files; all are **calculations from assumed val
 
 ## 10. Open engineering questions
 
-1. **Microcontroller: largely answered.** The owner's Elegoo Mega 2560 R3 (5 V logic) is the candidate. It still
-   needs:
-   - its identity confirmed from the board markings;
-   - a Blink upload once the cable arrives;
-   - a check that the chosen pressure sensor and BME280 board work at 5 V on its I²C pins (20/21).
+1. **Microcontroller: answered for the board itself.** The owner's Elegoo Mega 2560 (5 V logic) works: the main chip
+   reads ATMEGA2560 and a modified Blink uploaded (2026-11-02, §3). Still needed:
+   - a check that the chosen pressure sensor and BME280 board work at 5 V on its I²C pins (20/21);
+   - minor: whether the board is marked "R3", which tells whether SDA/SCL are also brought out next to AREF.
 2. **What is the op-amp signal conditioning for?** Proposed (agent, 2026-11-01): nothing in the measurement chain.
    - The HX711, a digital pressure sensor and the BME280 need no analog conditioning, and commercial digital sensors
      will be more accurate than an analog front end built here.
@@ -332,11 +337,11 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#13-manual-git-commands-as-given-to-the-owner));
+     [session log](docs/sessions/2026-11-03-mega-2560-board-test.md#13-manual-git-commands-as-given-to-the-owner));
+   - answer the settling-chamber spacing question (open question 13), asked 2026-11-02;
    - give the target top speed (open question 3);
    - choose the fan from the candidates (§3). Before buying the AeroZesh S6, find its static pressure in its manual
      or from VIVOSUN. For the Delta pair, give the bench supply's maximum voltage and current;
-   - when the USB cable arrives, confirm the board markings and run the Blink test;
    - list any other electronics and the magnets' type and size (open question 9);
    - confirm or change D-003, D-004, D-006 and D-007's open exit;
    - optionally, say whether to leave room for a second load cell (open question 14).
@@ -356,6 +361,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f` and `c04de1b`). The account was `nuhshaheer-2007` until 2026-11-02, and the
-  old URL redirects. Check `git remote -v` points at the new URL.
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b` and `b22a45b`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

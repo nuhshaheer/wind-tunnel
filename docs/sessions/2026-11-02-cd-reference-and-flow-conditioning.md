@@ -2,8 +2,8 @@
 
 - **Session ID:** aebc66ce-18f0-40b7-924b-7258bf51df1d (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** `c04de1b` (pushed 2026-11-02). A follow-up doc update recording the push and the GitHub account rename
-  is not committed yet (§13).
+- **Commit:** `c04de1b` (pushed 2026-11-02). The follow-up doc update recording the push and the GitHub account
+  rename is `b22a45b`, also pushed (§13).
 
 ## 1. Starting state and objective
 

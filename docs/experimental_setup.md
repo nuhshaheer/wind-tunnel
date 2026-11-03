@@ -3,10 +3,10 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-01: nothing built.** Decided so far: an open-circuit blower with the fan at the
+**Current configuration as of 2026-11-02: nothing built.** Decided so far: an open-circuit blower with the fan at the
 front ([D-007](../DECISIONS.md)) and a 100 mm × 100 mm test section ([D-008](../DECISIONS.md)). Parts on hand are
-listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing list), an Elegoo Mega 2560 R3
-(untested), magnets, and tools (multimeter, soldering station, bench power supply). The owner's first sketch is in
+listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing list), an Elegoo Mega 2560
+(working: Blink upload Verified 2026-11-02), magnets, and tools (multimeter, soldering station, bench power supply). The owner's first sketch is in
 [docs/sketches/](sketches/README.md).
 
 ## Tunnel geometry
@@ -61,7 +61,7 @@ The module (and so its excitation voltage and RATE wiring) is not chosen.
 
 | Parameter | Value |
 |---|---|
-| Microcontroller / DAQ | Candidate: the owner's **Elegoo Mega 2560 R3** (identified by appearance, 2026-11-01; not yet powered or tested; USB A-to-B cable on order). 5 V logic; I²C on pins 20 (SDA) and 21 (SCL) |
+| Microcontroller / DAQ | Candidate: the owner's **Elegoo Mega 2560**, working. 2026-11-02: main chip ATMEGA2560 (owner); COM3, USB ID 2341:0042, serial number `13448474939351C0E828`; a modified Blink (200 ms delays) uploaded from Arduino IDE 2.3.10 with the AVR core 1.8.8, board "Arduino Mega or Mega 2560", and the "L" LED blinked faster. 5 V logic; I²C on pins 20 (SDA) and 21 (SCL) |
 | Sample rate(s) | Unknown |
 | Synchronization between pressure and force | Unknown |
 | Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)), sent over USB to a laptop |
@@ -76,12 +76,12 @@ The module (and so its excitation voltage and RATE wiring) is not chosen.
 
 ## Parts on hand
 
-Recorded 2026-11-01. Nothing here has been tested.
+Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (2026-11-02).
 
 | Item | Source | Notes |
 |---|---|---|
 | Bambu Lab P1S 3D printer | Owner, 2026-10-30 | Build volume 256 × 256 × 256 mm (manufacturer spec) |
-| Elegoo Mega 2560 R3 | Owner, 2026-11-01 ("that is what it looks like at least") | Not yet powered or tested; USB A-to-B cable missing, owner ordering one |
+| Elegoo Mega 2560 | Owner, 2026-11-01 ("that is what it looks like at least"); main chip ATMEGA2560 (owner, 2026-11-02) | **Working:** Blink upload Verified 2026-11-02 (see Data acquisition). A USB A-to-B cable that carries data is on hand. Whether the board is printed "R3" is not recorded |
 | Magnets | Owner, 2026-11-01 | Type, size and strength unknown |
 | Multimeter | Owner, 2026-11-01 | Model unknown |
 | Soldering station | Owner, 2026-11-01 | Model unknown |
@@ -126,3 +126,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-01 | Parts on hand recorded: the ECE2010 kit (from its packing list), the Elegoo Mega 2560 R3 and magnets. Proposals added for model access (magnetic acrylic panels), fan type, sting mounting and the interface board (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
 | 2026-11-01 | Blower with the fan at the front (D-007) and a 100 mm test section (D-008) decided. Added: proposed section sizes and lengths, fan candidates, display and knob, preset airfoil angles, load-cell protection; multimeter, soldering station, bench supply and workbench on hand (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
 | 2026-11-02 | Proposals updated from Mehta1977, Scheiman1981 and Wieghardt1953: diffuser length and screens, settling-chamber length, honeycomb and screen choices. Sphere reference set by D-009 (documentation only; nothing built or tested) | [2026-11-02](sessions/2026-11-02-cd-reference-and-flow-conditioning.md) |
+| 2026-11-02 | Mega 2560 board tested: Blink upload Verified by the owner; Arduino IDE 2.3.10 installed. First hardware test; nothing built | [2026-11-03](sessions/2026-11-03-mega-2560-board-test.md) |
