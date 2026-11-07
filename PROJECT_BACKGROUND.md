@@ -52,8 +52,11 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
   unknown) and access to a workbench (owner, 2026-11-01).
 - [Confirmed] Budget: "I don't really have a budget" (owner, 2026-11-01). The owner compared this project with typical
   projects under $50, which have no load cell. The agent's estimate for this one is about $120–200, mostly the fan and
-  the pressure sensor (PROJECT_STATUS §3).
-- Unknown: target top airspeed, fan model, the bench supply's rating, the room's free length around the tunnel.
+  the pressure sensor (PROJECT_STATUS §3). On the fan, the owner is price-conscious: after the AC Infinity Cloudline S6
+  ($99) was recommended, "im trying to find somethign more affordbale" (2026-11-05).
+- Unknown: target top airspeed (13 m/s proposed by the agent on 2026-11-05, not confirmed;
+  [Top-speed trade-off](#top-speed-trade-off-proposed)), fan model, the bench supply's rating, the room's free length
+  around the tunnel.
 
 ## Governing equations [Standard]
 
@@ -249,13 +252,71 @@ What this implies:
 
 Fan requirement for h = 100 mm (open exit, fan pressure 1.25–1.5 q): about 210 CFM delivered against 75–90 Pa at
 10 m/s, and about 320 CFM against 170–200 Pa at 15 m/s. So look for a fan **rated about 400 CFM free air with a
-listed maximum static pressure of 300–500 Pa**. Crude top-speed estimates, assuming a straight-line fan curve between
-the listed maximum pressure and the free-air flow (real curves sag, so real speeds are lower):
+listed maximum static pressure of about 500 Pa**. (Corrected 2026-11-05: this said 300–500 Pa, but by the
+straight-line estimate used here, 400 CFM and 300 Pa give only about 11.5–12 m/s; see
+[Top-speed trade-off](#top-speed-trade-off-proposed).) Crude top-speed estimates, assuming a straight-line fan curve
+between the listed maximum pressure and the free-air flow (real curves sag, so real speeds are lower):
 
 | Fan (listed specs) | Estimated top speed at h = 100 mm |
 |---|---|
 | AC Infinity Cloudline S6: 402 CFM, about 500 Pa maximum (retailer listings) | 13.1–13.7 m/s |
 | Delta PFR1212UHE-SP00 120 mm 12 V server fan: 228.6 CFM, 300 Pa (DigiKey) | one fan 8.5–8.7 m/s; two side by side 12.1–12.8 m/s |
+
+### Top-speed trade-off [Proposed]
+
+**[Assumption] values, not measurements.** 100 mm square section, ρ = 1.20 kg/m³, μ = 1.81×10⁻⁵ Pa·s, C_D from Brown
+and Lawler Eq. (19) (D-009), fan pressure 1.25–1.5 q (open exit), straight-line fan curve. Computed 2026-11-05 and
+rerun 2026-11-07 with a short Python script, kept in the
+[session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md#5-commands-and-scripts-executed).
+
+| Top speed | q | Sphere drag, 20 / 25 mm | Fan must deliver | Pressure sensor (full scale) | Fan power vs 13 m/s |
+|---|---|---|---|---|---|
+| 11 m/s | 73 Pa | 0.99 / 1.58 gf | 233 CFM at 91–109 Pa | ±125 Pa (14.4 m/s) | 0.61× |
+| 12 m/s | 86 Pa | 1.19 / 1.89 gf | 254 CFM at 108–130 Pa | ±125 Pa | 0.79× |
+| **13 m/s** | **101 Pa** | **1.40 / 2.23 gf** | **275 CFM at 127–152 Pa** | **±125 Pa** | **1×** |
+| 15 m/s | 135 Pa | 1.89 / 3.01 gf | 318 CFM at 169–202 Pa | ±249 Pa (20.4 m/s) or ±500 Pa | 1.54× |
+| 20 m/s | 240 Pa | 3.44 / 5.44 gf | 424 CFM at 300–360 Pa | ±249 Pa (barely) or ±500 Pa | 3.64× |
+
+At the slow end: 6.5 m/s gives q = 25 Pa and 0.33 / 0.52 gf; 5 m/s gives 15 Pa and 0.19 / 0.30 gf.
+
+Trend check (D-009), from the 20 mm sphere at 6.5 m/s (Re 8.6×10³, C_D 0.405) to the 25 mm sphere at the top speed:
+
+| Top speed | Re at the top | Eq. (19) C_D at the top | Predicted rise |
+|---|---|---|---|
+| 11 m/s | 1.8×10⁴ | 0.434 | 7.2 % |
+| 13 m/s | 2.2×10⁴ | 0.440 | 8.7 % |
+| 15 m/s | 2.5×10⁴ | 0.445 | 9.8 % (12.1 % if the slow end is 5 m/s) |
+
+What a fan must list to reach 13 m/s. A fan's listed maximum static pressure is at **zero flow**, with the outlet
+blocked; the tunnel runs at about 150 Pa. Real curves sag below the straight line, so aim above these figures.
+
+| Listed free-air flow | Minimum listed maximum static pressure |
+|---|---|
+| 350 CFM | 595–714 Pa (2.4–2.9 inH₂O) |
+| 400 CFM | 407–488 Pa (1.6–2.0 inH₂O) |
+| 450 CFM | 327–392 Pa (1.3–1.6 inH₂O) |
+| 500 CFM | 282–339 Pa (1.1–1.4 inH₂O) |
+
+A 400 CFM fan listed at 300 Pa gives about 11.5–12.0 m/s, at 400 Pa 12.4–12.9 m/s, and at 500 Pa 13.1–13.6 m/s. A
+published fan curve is a better test: it should show at least 275 CFM at 150 Pa (0.6 inH₂O). Unit conversions:
+1 inH₂O = 249.09 Pa, 1 mmH₂O = 9.807 Pa.
+
+What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner]:
+
+- **A top speed of 13 m/s, with validation runs from about 6.5 m/s.**
+  - The trend check gains little above 13 m/s.
+  - One 6-inch fan listing about 500 Pa should just reach it.
+  - q fits a ±125 Pa sensor, whose smaller span should mean a smaller zero error in pascals. That matters most at the
+    slow end; confirm it in the datasheets.
+- **The cost is force.** Drag grows with V², so 15 m/s would give about 35 % more signal on the hardest measurement,
+  for 1.5× the fan power and an 8-inch fan or two fans. The HX711's electrical noise is not the limit (about 0.002 g
+  per sample with a 100 g cell, [HX711 notes](resources/notes/HX711.md)). Load-cell creep, zero drift and sting drag
+  are, and they cannot be quantified until a cell is chosen.
+- **If the real fan reaches only 11–12 m/s, the validation still works**, with about 30 % less force at the top and
+  a smaller predicted rise.
+- **Below about 6.5 m/s,** the 20 mm sphere's drag is only 0.2–0.3 gf, so fixed zero errors dominate.
+- **A bigger fan can be fitted later** if the airfoil or car tests need more speed. The fan has its own stand and a
+  flexible coupling; a bigger one would need a new diffuser and a wider-range pressure sensor.
 
 ## Measurement and analysis approach [Proposed]
 

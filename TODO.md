@@ -8,21 +8,40 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: give the target top airspeed.** The test section (100 mm, D-008) and length (about 1 m target, more
+- [ ] **Owner: confirm the target top airspeed.** The test section (100 mm, D-008) and length (about 1 m target, more
   allowed) are settled. The top speed sets the pressure-sensor range (±125 Pa covers about 14 m/s) and confirms the
-  fan. 10–13 m/s is enough for the sphere validation. Outcome: recorded under "Requirements and constraints" in
-  PROJECT_BACKGROUND.md. Verify: the sensor-range and fan tasks (P1) can be finished without guessing it.
-- [ ] **Owner: choose the fan** from the candidates in [PROJECT_STATUS.md](PROJECT_STATUS.md) §3.
-  - Agent's pick: a 6-inch mixed-flow EC inline fan. Either the VIVOSUN AeroZesh S6 (from about $63; first find its
-    static pressure in the manual or from VIVOSUN) or the AC Infinity Cloudline S6 ($90–120, about 500 Pa listed).
+  fan.
+  - **Proposed (agent, 2026-11-05): 13 m/s**, with validation runs from about 6.5 m/s. Reasons and the trade-off
+    table are in [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed). The owner asked
+    follow-up questions about the fan but has not confirmed the speed.
+  - Outcome: recorded as D-010 and under "Requirements and constraints" in PROJECT_BACKGROUND.md. Verify: the
+    sensor-range and fan tasks (P1) can be finished without guessing it.
+- [ ] **Owner: choose the fan** from the candidates in [PROJECT_STATUS.md](PROJECT_STATUS.md) §3. The owner is
+  looking for something cheaper than the Cloudline S6 (2026-11-05).
+  - What to look for (corrected 2026-11-05): for 13 m/s, about 400 CFM free air **and** about 500 Pa (2.0 inH₂O)
+    listed maximum static pressure, or a fan curve showing at least 275 CFM at 150 Pa (0.6 inH₂O). More free-air
+    flow allows less pressure ([table](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)). A listing with no
+    pressure figure cannot be sized.
+  - Agent's advice (2026-11-05):
+    - First ask VIVOSUN for the AeroZesh S6's maximum static pressure or fan curve. It is EC with PWM control and
+      starts at about $63. The agent offered to draft the message.
+    - If the figure is about 450 Pa or more, buy the AeroZesh S6. Otherwise buy the AC Infinity Cloudline S6 ($99
+      on AC Infinity's site; 402 CFM, 503 Pa listed).
+    - A used or open-box S6 is fine if its bearings run quiet: the pitot measures the actual speed.
+  - Not suitable as listed (2026-11-05):
+    - the VEVOR 6-inch 400 CFM AC fan the owner found: probably 300 Pa, so about 11–12 m/s, with AC speed control;
+    - the Skyshalo and HFS 6-inch AC fans: no pressure listed.
   - Alternative if menu control of the fan matters from day one: two Delta PFR1212UHE-SP00 12 V PWM server fans
-    (very loud; need about 5.4 A at 12 V from the bench supply; buy from a real distributor because fakes are common).
+    (very loud; need about 5.4 A at 12 V from the bench supply; buy from a real distributor because fakes are common;
+    about 12 m/s for the pair, estimate).
   - Check the listing for a 6-inch outlet, a maximum static pressure figure, an included speed controller and a
     return policy.
   - Outcome: model recorded in PROJECT_STATUS §3 and docs/experimental_setup.md with its datasheet or listed specs.
-    Verify: its listed maximum static pressure is at least about 300 Pa and its free-air flow about 400 CFM (or the
-    pair's combined), which covers 15 m/s with margin by the estimate in
-    [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#tunnel-length-budget).
+  - Verify: its listed free-air flow and maximum static pressure meet the 13 m/s table in
+    [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed) (about 410–490 Pa at 400 CFM, or the
+    pair's combined flow), or its fan curve gives at least 275 CFM at 150 Pa.
+  - Corrected 2026-11-05: this Verify line used to say that 300 Pa at 400 CFM "covers 15 m/s with margin". The same
+    estimate gives about 11.5–12 m/s.
 - [ ] **Owner: finish the parts-on-hand list.** The ECE kit, a multimeter, a soldering station, a bench power supply
   and a workbench are recorded (2026-11-01). Still needed:
   - the bench supply's maximum voltage and current (on its label or front panel);
@@ -154,9 +173,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     - smooth or many-step speed control (the pitot measures the actual speed, so Arduino control is not needed);
     - an EC (brushless DC) motor if affordable, for smoother running;
     - a documented low-voltage speed input (PWM or 0–10 V) if the owner's menu is to set the fan speed.
-  - Need for the 100 mm section (estimate): about 400 CFM rated, 300–500 Pa maximum static pressure. A 6-inch fan
-    (listed about 402 CFM and 500 Pa maximum, $90–120) gives about 13 m/s
-    ([length budget](PROJECT_BACKGROUND.md#tunnel-length-budget)).
+  - Need for the 100 mm section at 13 m/s (estimate): about 400 CFM rated and about 500 Pa maximum static pressure
+    (corrected 2026-11-05 from "300–500 Pa"). A 6-inch fan listed at 402 CFM and 503 Pa (the Cloudline S6, $99 on
+    AC Infinity's site, 2026-11-05) gives about 13 m/s
+    ([top-speed trade-off](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)).
   - Mount the fan on its own stand with a flexible coupling to the tunnel, so its vibration does not reach the
     balance. A printed round-to-square widening section joins it to the settling chamber.
   - Not suitable: the 120 mm Qirssyn fan from Aki's video (about 95 CFM, at most about 4.5 m/s through a 100 mm
@@ -192,6 +212,7 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Candidates: Sensirion SDP810-125Pa or -500Pa (3–5.5 V and I²C per distributor listings; about $25–45; one
     reseller lists the 125 Pa part at 3 % of reading and 0.08 Pa zero accuracy, to be confirmed in the datasheet).
     Also the SDP31/SDP32 (3.3 V surface-mount) and Honeywell HSC ±1 inH₂O.
+  - With the proposed 13 m/s top speed (2026-11-05), the range is ±125 Pa: the SDP810-125Pa (q = 101 Pa at 13 m/s).
   - Buy the pitot-static probe separately (a drone probe is about $5–20). Drone airspeed kits built on the MS4525DO
     (±1 psi) do not suit these pressures.
   - Outcome: model and range recorded. Verify: full-scale range covers the maximum q (about 240 Pa at 20 m/s,
@@ -390,3 +411,5 @@ Owner tasks are physical or account actions that an agent cannot do.
   (USB ID 2341:0042), and Blink with the delays changed from 1000 to 200 ms uploaded from Arduino IDE 2.3.10 and made
   the "L" LED blink faster. Verified (PROJECT_STATUS §3;
   [session log](docs/sessions/2026-11-03-mega-2560-board-test.md)).
+- [x] 2026-11-03: Owner committed and pushed the board-test session as `36f39eb`; `/catchup` confirmed `UP_TO_DATE`
+  on 2026-11-05 ([session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md)).

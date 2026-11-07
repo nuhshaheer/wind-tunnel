@@ -1,12 +1,12 @@
 # Project Status
 
-**Last updated:** 2026-11-03
-**Last commit:** `b22a45b` (2026-11-02, push record of `c04de1b` and the new repo URL), pushed to `origin/main`;
-`/catchup` reported `UP_TO_DATE` on 2026-11-02.
+**Last updated:** 2026-11-07
+**Last commit:** `36f39eb` (2026-11-03, the Mega 2560 board test), pushed to `origin/main`. `/catchup` reported
+`UP_TO_DATE` on 2026-11-05, and so did this session's `/wrap` on 2026-11-07.
 - The owner renamed the GitHub account to `nuhshaheer` on 2026-11-02, so the repo is now
   https://github.com/nuhshaheer/wind-tunnel, and the local `origin` points there. The old URL redirects.
-- **Not committed yet:** the Mega 2560 board test (§3;
-  [session log](docs/sessions/2026-11-03-mega-2560-board-test.md), with the commit commands in §13).
+- **Not committed yet:** the top-speed recommendation and fan search of 2026-11-05 (documentation only;
+  [session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md), with the commit commands in §13).
 **Current stage:** Planning / pre-build. The basic layout is decided, and parts are being chosen.
 - Decided:
   - segmented 3D printing (D-005);
@@ -16,6 +16,9 @@
     (D-009).**
 
   Estimated length 1.15–1.3 m including a 6-inch fan.
+- **Proposed (agent, 2026-11-05), not yet confirmed by the owner: a top speed of 13 m/s**, with validation runs from
+  about 6.5 m/s. One 6-inch fan listing about 500 Pa maximum static pressure should just reach it, and a ±125 Pa
+  pressure sensor covers it (estimates; open question 3).
 - Thirteen references reviewed:
   - tunnel design: Abdelhamed2014, Bell1988, Mehta1979, **Mehta1977**;
   - flow conditioning: **Scheiman1981, Wieghardt1953**;
@@ -89,11 +92,11 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
 | Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor plus the display and knob |
 | USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
-| Blower / fan | To buy; not chosen | Needed for the 100 mm section: rated about 400 CFM free air with a listed maximum static pressure of 300–500 Pa (about 320 CFM against 170–200 Pa at 15 m/s, estimate). Candidates (2026-11-01): **VIVOSUN AeroZesh S6** (mixed-flow EC, 405 CFM, 35 W, from about $63; static pressure not published); **AC Infinity Cloudline S6** (402 CFM, about 500 Pa listed, $90–120, about 320 mm long; about 13 m/s, estimate); **two Delta PFR1212UHE-SP00** 120 mm 12 V server fans (228.6 CFM and 300 Pa each, 2.7 A at 12 V, PWM input and speed output, 65.5 dBA each; about $30 each from the price of a sibling model; about 12 m/s for the pair, estimate). The agent's pick: a 6-inch mixed-flow EC fan. Unsuitable: VIVOSUN 6-inch "booster" fans ($32–39, axial, no pressure listed) and the 120 mm Qirssyn fan from Aki's video (about 95 CFM). Estimates in [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#tunnel-length-budget) |
+| Blower / fan | To buy; not chosen. The owner is looking for something cheaper than the Cloudline S6 (2026-11-05) | **Requirement (corrected 2026-11-05):** for the proposed 13 m/s, about 275 CFM against 127–152 Pa (estimate). On a straight-line fan curve that needs about 400 CFM free air **and** a listed maximum static pressure of about 410–490 Pa or more; more free-air flow allows less pressure (500 CFM: about 280–340 Pa). Better still, a published fan curve showing at least 275 CFM at 150 Pa (0.6 inH₂O). The earlier "300–500 Pa" was wrong at its low end: 400 CFM and 300 Pa give only about 11.5–12 m/s.<br>Candidates (prices and specs from web-search results, 2026-11-05; pages not opened):<br>• **AC Infinity Cloudline S6**: 402 CFM, 503 Pa listed, EC motor; $99 on AC Infinity's site, $119–175 elsewhere; about 320 mm long; about 13.1–13.7 m/s (estimate). The only candidate whose listed figures meet 13 m/s.<br>• **VIVOSUN AeroZesh S6**: mixed-flow EC with PWM control, 405 CFM, 35 W, 3100 rpm, 45 dBA, from about $63. **Static pressure still not published** (searched 2026-11-05). Best value if VIVOSUN gives about 450 Pa or more.<br>• **Two Delta PFR1212UHE-SP00** 120 mm 12 V server fans (228.6 CFM and 300 Pa each, 2.7 A at 12 V, PWM input and speed output, 65.5 dBA each; about $30 each from the price of a sibling model; about 12 m/s for the pair, estimate).<br>Unsuitable or impossible to size:<br>• the **VEVOR 6-inch 400 CFM AC fan** the owner found (2026-11-05): 60 W, 2600 rpm, $84.49 on eBay, no pressure on its listing. A Lowe's listing that probably matches gives 300 Pa, so about 11–12 m/s at best. Its "34 dB" is unlikely at 400 CFM;<br>• **Skyshalo 6-inch** ($53.89, AC; the same listing wording as the VEVOR, so probably the same fan, our inference);<br>• **HFS 6-inch** ($62.49, 120 W, 65 dB, no pressure listed);<br>• VIVOSUN 6-inch "booster" fans ($32–39, axial, no pressure listed);<br>• the 120 mm Qirssyn fan from Aki's video (about 95 CFM).<br>Estimates in [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed) |
 | Ducting | To buy (may be printed, D-005) | |
 | Honeycomb + screens | To buy; not chosen | Proposed (2026-11-02):<br>• Screens: metal square-mesh, at least 58 % open, for example 20–30 wires/in with 0.19–0.23 mm wire (the sizes Scheiman tested). At the settling chamber's roughly 2 m/s, K is about 1.1–1.8, about twice the high-speed value (Wieghardt's formula, extrapolated), and the wires shed no eddies (u₁d/βν below 85).<br>• Honeycomb: thin-walled (paper, aluminium or drinking straws), cell length 7–10 diameters. A 3D-printed honeycomb has thick walls (about 25 % blocked at 0.4 mm walls on 3 mm cells; our arithmetic).<br>Sources: [Scheiman1981](resources/notes/Scheiman1981.md), [Wieghardt1953](resources/notes/Wieghardt1953.md), [Mehta1977](resources/notes/Mehta1977.md) |
 | Pitot tube | To buy | Pitot-static (two ports: total and static). A drone probe alone is about $5–20. The owner found an FPVDrone PX4 airspeed kit ($49.99): its probe is suitable, its sensor is not (next row). Placement during force runs is open (question 10) |
-| Differential pressure sensor | To buy | Model and range not chosen. Candidates: Sensirion SDP810-125Pa or -500Pa (I²C, 3–5.5 V supply per distributor listings, so it suits the 5 V Mega; about $25–45), SDP31/SDP32 (3.3 V, surface-mount; the SparkFun SDP31 breakout is retired) and Honeywell TruStability HSC ±1 inH₂O. **Unsuitable:** drone airspeed modules built on the TE MS4525DO (±1 psi, about 29× our largest q). Datasheets not yet obtained |
+| Differential pressure sensor | To buy | Model and range not chosen. Candidates: Sensirion SDP810-125Pa or -500Pa (I²C, 3–5.5 V supply per distributor listings, so it suits the 5 V Mega; about $25–45), SDP31/SDP32 (3.3 V, surface-mount; the SparkFun SDP31 breakout is retired) and Honeywell TruStability HSC ±1 inH₂O. **Unsuitable:** drone airspeed modules built on the TE MS4525DO (±1 psi, about 29× our largest q). Datasheets not yet obtained. **If the 13 m/s top speed is confirmed:** the SDP810-125Pa (full scale at 14.4 m/s; q = 101 Pa at 13 m/s; agent, 2026-11-05) |
 | Load cell + HX711 | To buy | Capacity unknown. Expected sphere drag in the 100 mm section: about 0.9 gf at 10 m/s and 2.0 gf at 15 m/s (estimate). Buy a load cell that has a datasheet (rated output, creep, safe overload), and plan overload protection for model swaps (§2). Prices from Weakly2024 (2024): TAL220 $9.50, SparkFun HX711 $10.95. HX711 datasheet reviewed ([notes](resources/notes/HX711.md)) |
 | Ambient pressure / temperature sensor | Not chosen | Needed for air density. Candidate: Bosch BME280 on a 5 V-compatible breakout. A BMP280 (no humidity) would also serve for density |
 | Display and knob | To buy (proposed) | For the menu (owner, 2026-11-01). Proposed: a 20×4 character LCD with an I²C adapter plus a push-button rotary encoder (KY-040 module or EC11). Typical prices, not checked: LCD $8–12, encoder $1–3. Upgrade option: a 128×64 graphic LCD like the Ender 3's ($10–20) for live graphs |
@@ -114,8 +117,8 @@ Filament, screens, honeycomb and acrylic are extra.
 | Analysis scripts (`analysis/`) | Planned; not started |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f` and `c04de1b`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b` and `36f39eb`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -175,8 +178,16 @@ None. No experiment has been run.
   - Committed and pushed as `c04de1b`. See [the session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md).
   - The follow-up (push record and the new repo URL) was committed and pushed as `b22a45b`.
 - 2026-11-02/03: the Mega 2560 board brought up. The owner installed the Arduino IDE and uploaded a modified Blink,
-  which Verified the board, the cable and the upload path (§3). Not committed yet. See
+  which Verified the board, the cable and the upload path (§3). Committed and pushed as `36f39eb`. See
   [the session log](docs/sessions/2026-11-03-mega-2560-board-test.md).
+- 2026-11-05/07: top speed and fan search (documentation only; nothing bought or built).
+  - The agent recommended a 13 m/s top speed, with validation runs from about 6.5 m/s (estimates; open question 3).
+    The owner has not confirmed it.
+  - Explained what a fan's listed maximum static pressure means, and corrected the fan requirement: 400 CFM and
+    300 Pa give only about 11.5–12 m/s, so 13 m/s needs about 500 Pa at 400 CFM.
+  - Assessed the VEVOR 6-inch AC fan the owner found (unsuitable as listed), then searched for cheaper fans. None
+    with a published pressure figure meets 13 m/s for less than the Cloudline S6's $99 (§3).
+  - Not committed yet. See [the session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md).
 
 ## 7. Data and analyses
 
@@ -190,8 +201,9 @@ No data collected. No analyses completed. See [docs/data_catalog.md](docs/data_c
 
 Estimates are spread across these files; all are **calculations from assumed values, not results**:
 - [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#order-of-magnitude-estimates): sphere drag, printable contraction
-  sizes, fan requirements, and the [tunnel length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) with fan
-  top-speed estimates.
+  sizes, fan requirements, the [tunnel length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) with fan
+  top-speed estimates, and the [top-speed trade-off](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed) with the
+  fan pressure needed for 13 m/s (2026-11-05).
 - [resources/notes/HX711.md](resources/notes/HX711.md): the HX711 noise floor for example load cells.
 - [resources/notes/Cooper1998.md](resources/notes/Cooper1998.md#what-it-suggests-for-this-project-proposed):
   blockage-correction sizes and test-section positions.
@@ -206,8 +218,10 @@ Estimates are spread across these files; all are **calculations from assumed val
 ## 9. Bugs, equipment issues, blockers
 
 - **Blocked:** all physical work waits on choosing and buying hardware (fan, pressure sensor, load cell).
-  - The fan choice and the pressure-sensor range wait on the owner's target top speed (open question 3) and the
-    owner's choice among the fan candidates (§3).
+  - The fan choice and the pressure-sensor range wait on the owner confirming the target top speed (13 m/s proposed
+    2026-11-05, open question 3) and choosing a fan (§3).
+  - The owner wants a fan cheaper than the Cloudline S6 ($99). The cheaper EC candidate, the AeroZesh S6, has no
+    published static pressure, so it cannot be checked yet.
   - The microcontroller is no longer a blocker: the board works (2026-11-02, §3).
 - Resolved: the owner committed the 10.2 MiB sketch PDF uncompressed in `8fda08f` (under D-004's 25 MB limit). It stays
   in Git history.
@@ -215,7 +229,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It did not recur at the next `/catchup` (2026-11-02): 20 tests in 10.4 s.
+  It has not recurred since: 20 tests in 7.9–11.3 s at every run from 2026-11-02 to 2026-11-07.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -244,17 +258,27 @@ Estimates are spread across these files; all are **calculations from assumed val
      needs split supplies (TI calls the LMC6484 rail-to-rail; its datasheet is not yet in `resources/`).
 3. **Top airspeed and sphere diameter.** The test section is 100 mm (D-008), and the length target is about 1 m,
    with more allowed. Still open:
-   - the owner's target top speed. 10–13 m/s is enough for the sphere validation, and a 6-inch fan should reach about
-     13 m/s (estimate);
+   - the owner's target top speed. **Proposed (agent, 2026-11-05): 13 m/s**, with validation runs from about
+     6.5 m/s. Reasons (estimates; [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)):
+     - the trend check gains little above it. Eq. (19) rises 8.7 % from the 20 mm sphere at 6.5 m/s to the 25 mm
+       sphere at 13 m/s, and 9.8 % at 15 m/s;
+     - one 6-inch fan listing about 500 Pa should just reach it. 15 m/s needs an 8-inch fan or two fans, and 1.5×
+       the power;
+     - q = 101 Pa fits a ±125 Pa sensor (full scale at 14.4 m/s).
+
+     The cost: drag grows with V², so 15 m/s would give about 35 % more force (1.9 instead of 1.4 gf on the 20 mm
+     sphere). If the real fan reaches only 11–12 m/s, the validation still works (about 1.0 gf and a 7 % rise at
+     11 m/s). The owner asked follow-up questions about the fan but has not confirmed the speed;
    - the sphere diameters: proposed about 20 mm (3.1 % blockage) and 25 mm (4.9 %) for the two-size check.
      Run the two sizes at **matched Re**, not matched speed: at the same speed the 25 mm sphere sits at 25 % higher Re
      and about 2 % higher reference C_D (D-009).
-   - D-009's trend check needs runs over a range of speeds, about 5–15 m/s, so the fan should run steadily at low
-     speed as well.
+   - D-009's trend check needs runs over a range of speeds, so the fan should run steadily at low speed as well.
+     The proposed low end is about 6.5 m/s (2026-11-05): below that the 20 mm sphere's drag is only 0.2–0.3 gf and q
+     about 15–25 Pa, so fixed zero errors dominate.
 4. **Pressure-sensor range.** Dynamic pressure is only about 15–240 Pa for 5–20 m/s (estimate).
    - Candidates: ±125 Pa (SDP810-125Pa, SDP32), ±249 Pa (Honeywell HSC ±1 inH₂O) and ±500 Pa (SDP810-500Pa, SDP31).
    - Drone airspeed sensors (MS4525DO, ±1 psi) are ruled out: at 10 m/s, q is 0.44 % of their span (our arithmetic).
-   - Choose after the top speed.
+   - Choose after the top speed. With the proposed 13 m/s: ±125 Pa (the SDP810-125Pa).
 5. **Load-cell capacity.** Expected sphere drag is only about 1–2 grams-force at 10–15 m/s in the 100 mm section
    (estimate).
    - Overload protection for model swaps is needed: small bar cells are typically rated for only about 120 % of
@@ -337,15 +361,18 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-03-mega-2560-board-test.md#13-manual-git-commands-as-given-to-the-owner));
+     [session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md#13-manual-git-commands-as-given-to-the-owner));
+   - confirm or change the proposed 13 m/s top speed (open question 3);
+   - choose the fan (§3). The agent's advice (2026-11-05): first ask VIVOSUN for the AeroZesh S6's maximum static
+     pressure or fan curve (the agent offered to draft the message). Buy it if the figure is about 450 Pa or more;
+     otherwise buy the Cloudline S6 ($99 on AC Infinity's site). A used or open-box S6 is fine if its bearings run
+     quiet. For the Delta pair, give the bench supply's maximum voltage and current;
    - answer the settling-chamber spacing question (open question 13), asked 2026-11-02;
-   - give the target top speed (open question 3);
-   - choose the fan from the candidates (§3). Before buying the AeroZesh S6, find its static pressure in its manual
-     or from VIVOSUN. For the Delta pair, give the bench supply's maximum voltage and current;
    - list any other electronics and the magnets' type and size (open question 9);
    - confirm or change D-003, D-004, D-006 and D-007's open exit;
    - optionally, say whether to leave room for a second load cell (open question 14).
-2. **Agent, build step 1:** detail the 100 mm tunnel. All the design inputs are now reviewed.
+2. **Agent, build step 1:** once the owner confirms the top speed, record it as D-010 (and under "Requirements and
+   constraints" in PROJECT_BACKGROUND.md). Then detail the 100 mm tunnel. All the design inputs are now reviewed.
    - Fan-to-chamber diffuser: Mehta1977.
    - Settling-chamber stack: Scheiman1981 and Mehta1977 (open question 13).
    - Contraction, test section, removable panels, balance box, sting lock and overload stops.
@@ -361,6 +388,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b` and `b22a45b`). The account was `nuhshaheer-2007` until
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b` and `36f39eb`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

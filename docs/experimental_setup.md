@@ -3,7 +3,7 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-02: nothing built.** Decided so far: an open-circuit blower with the fan at the
+**Current configuration as of 2026-11-07: nothing built.** Decided so far: an open-circuit blower with the fan at the
 front ([D-007](../DECISIONS.md)) and a 100 mm × 100 mm test section ([D-008](../DECISIONS.md)). Parts on hand are
 listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing list), an Elegoo Mega 2560
 (working: Blink upload Verified 2026-11-02), magnets, and tools (multimeter, soldering station, bench power supply). The owner's first sketch is in
@@ -28,9 +28,9 @@ listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing
 
 | Parameter | Value | Status / source |
 |---|---|---|
-| Fan / blower model | Unknown. Proposed type: a 6-inch mixed-flow EC inline duct fan with a speed controller (candidates: VIVOSUN AeroZesh S6, AC Infinity Cloudline S6), on its own stand with a flexible coupling. Alternative: two Delta PFR1212UHE-SP00 12 V PWM server fans | To buy; candidates 2026-11-01 ([TODO.md](../TODO.md) P1) |
+| Fan / blower model | Unknown. Proposed type: a 6-inch mixed-flow EC inline duct fan with a speed controller, on its own stand with a flexible coupling. For 13 m/s it should list about 400 CFM free air **and** about 500 Pa maximum static pressure (corrected 2026-11-05 from 300–500 Pa; [table](../PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)). Candidates: AC Infinity Cloudline S6 (402 CFM, 503 Pa, $99) and VIVOSUN AeroZesh S6 (static pressure not published). Alternative: two Delta PFR1212UHE-SP00 12 V PWM server fans. The VEVOR 6-inch AC fan the owner found is unsuitable as listed (PROJECT_STATUS §3) | To buy; candidates 2026-11-01, updated 2026-11-05 ([TODO.md](../TODO.md) P0) |
 | Motor and speed controller | Unknown. First build: the fan's own controller. Setting the speed from the Arduino menu needs a fan with a documented low-voltage control input (PWM or 0–10 V); the Arduino never switches mains | Proposed 2026-11-01 |
-| Airspeed range | Unknown. A 6-inch fan should reach about 13 m/s in the 100 mm section (estimate) | Target not chosen |
+| Airspeed range | Unknown. Proposed (agent, 2026-11-05): a 13 m/s top speed, with validation runs from about 6.5 m/s. A 6-inch fan listing about 500 Pa should just reach 13 m/s in the 100 mm section (estimate; [trade-off](../PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)) | Proposed; not confirmed by the owner |
 
 ## Flow conditioning
 
@@ -43,7 +43,7 @@ listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing
 
 | Measurement | Sensor | Range | Calibration | Location | Status |
 |---|---|---|---|---|---|
-| Airspeed | Pitot tube + differential pressure sensor | Unknown | None | Unknown | To buy (README) |
+| Airspeed | Pitot tube + differential pressure sensor | Unknown (±125 Pa proposed with the 13 m/s top speed, 2026-11-05) | None | Unknown | To buy (README) |
 | Drag force | Load cell + HX711 | Unknown | None (planned: known weights) | Unknown | To buy (README) |
 | Ambient pressure | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
 | Ambient temperature | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
@@ -127,3 +127,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-01 | Blower with the fan at the front (D-007) and a 100 mm test section (D-008) decided. Added: proposed section sizes and lengths, fan candidates, display and knob, preset airfoil angles, load-cell protection; multimeter, soldering station, bench supply and workbench on hand (documentation only; nothing built or tested) | [2026-11-01](sessions/2026-11-01-parts-review-and-kit-inventory.md) |
 | 2026-11-02 | Proposals updated from Mehta1977, Scheiman1981 and Wieghardt1953: diffuser length and screens, settling-chamber length, honeycomb and screen choices. Sphere reference set by D-009 (documentation only; nothing built or tested) | [2026-11-02](sessions/2026-11-02-cd-reference-and-flow-conditioning.md) |
 | 2026-11-02 | Mega 2560 board tested: Blink upload Verified by the owner; Arduino IDE 2.3.10 installed. First hardware test; nothing built | [2026-11-03](sessions/2026-11-03-mega-2560-board-test.md) |
+| 2026-11-05 | 13 m/s top speed proposed; fan requirement corrected (about 500 Pa listed at 400 CFM, not 300–500 Pa); fan candidates updated after the owner's search for a cheaper fan (documentation only; nothing bought, built or tested) | [2026-11-07](sessions/2026-11-07-top-speed-and-fan-search.md) |

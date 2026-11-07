@@ -2,7 +2,7 @@
 
 - **Session ID:** 2673496a-5731-47b2-b1e6-0ce75977a706 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `36f39eb`
 
 The session began on 2026-11-02 with `/catchup`; the board test happened that evening. The `/wrap` ran after midnight,
 on 2026-11-03, which gives the file its date.
