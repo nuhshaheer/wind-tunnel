@@ -312,7 +312,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   noise recorded.
 - [ ] **Calibrate the load cell against known weights.** Method proposed 2026-11-08 ([buy list](docs/buy_list.md)
   §9): lay the balance module on its side so gravity acts in the drag direction (no pulley friction), and hang masses
-  at the ball's position from a budget 10 mg–100 g set. Weigh every piece once on the school lab balance first, and
+  at the ball's position from a budget 10 mg–100 g set (in a light pan hung from a printed attachment on the sting's
+  end, with a hook at the ball's centre; owner's idea, 2026-11-09). Weigh every piece once on the school lab balance first, and
   record those masses as raw data. Set the slope with the 2–20 g pieces; check 0.2–3 g, where the drag is.
   Outcome: calibration dataset and fit (counts → N). Verify:
   residuals and linearity reported; calibration file referenced from the data catalog.
@@ -444,4 +445,4 @@ Owner tasks are physical or account actions that an agent cannot do.
   ([session log](docs/sessions/2026-11-09-shopping-list.md)).
 - [x] 2026-11-09: **Owner's shopping tracker** written, [docs/shopping_list.md](docs/shopping_list.md): what is still
   to buy, with qty, price, link and status, grouped by store; about $255–360 plus the fan
-  ([session log](docs/sessions/2026-11-09-shopping-list.md)).
+  ([session log](docs/sessions/2026-11-09-shopping-list.md)). Owner committed and pushed it as `b08a151`.

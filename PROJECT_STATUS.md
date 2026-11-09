@@ -1,12 +1,12 @@
 # Project Status
 
 **Last updated:** 2026-11-09
-**Last commit:** `0351407` (2026-11-09, the buy-list session), pushed to `origin/main`. `/catchup` and this session's
-`/wrap` reported `UP_TO_DATE` on 2026-11-09.
+**Last commit:** `b08a151` (2026-11-09, the shopping-list session), pushed to `origin/main` (`UP_TO_DATE` on
+2026-11-09).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the shopping-list session of 2026-11-09 (documentation only;
-  [session log](docs/sessions/2026-11-09-shopping-list.md), with the commit commands in §13).
+- **Not committed yet:** a follow-up from the same session (how the calibration masses hang, and the hook-up wire
+  choice; [session log](docs/sessions/2026-11-09-shopping-list.md), with the commit commands in §13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Nothing has been ordered.** The owner
@@ -137,7 +137,7 @@ at home (our sums of the listed prices; many are typical prices, not checked).
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf` and `0351407`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407` and `b08a151`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -223,7 +223,10 @@ None. No experiment has been run.
     list named but never listed.
   - Corrected stale entries from before D-012 and the buy list (PROJECT_BACKGROUND, TODO, experimental_setup, a
     status note on D-002).
-  - Not committed yet. See [the session log](docs/sessions/2026-11-09-shopping-list.md).
+  - Committed and pushed as `b08a151`. After it: how the calibration masses hang (a printed attachment on the sting's
+    end with a hook at the ball's centre, the owner's idea, and a light pan on a thread;
+    [buy list](docs/buy_list.md) §9), not committed yet. See
+    [the session log](docs/sessions/2026-11-09-shopping-list.md).
 
 ## 7. Data and analyses
 
@@ -452,7 +455,8 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-09-shopping-list.md#13-manual-git-commands-as-given-to-the-owner));
+     [session log](docs/sessions/2026-11-09-shopping-list.md#13-manual-git-commands-as-given-to-the-owner); the main
+     part is already pushed as `b08a151`);
    - report what is on hand (filament amounts; glue, epoxy, sandpaper, screws, rubber feet, duct tape, scoring knife,
      power strip): the "Check the house first" section of [docs/shopping_list.md](docs/shopping_list.md);
    - choose the fan, the S6 or the VEVOR, on budget (D-011), and record it as a new decision;
@@ -483,6 +487,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf` and `0351407`). The account was `nuhshaheer-2007` until
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407` and `b08a151`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

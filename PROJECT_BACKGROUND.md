@@ -359,8 +359,10 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
      overload stops, and a low-twist model attachment (for example a push fit with a set screw). Re-zero with the wind
      off after every swap.
 4. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
-   drag direction at the sphere's position, for example a thread over a low-friction pulley. Fit counts → newtons
-   and record residuals.
+   drag direction at the sphere's position. Proposed 2026-11-08/09: lay the removable balance module on its side so
+   gravity acts in the drag direction, and hang the masses in a pan from a printed attachment on the sting's end
+   (owner's idea), with no pulley, whose friction is unknown ([docs/buy_list.md](docs/buy_list.md) §9). Fit counts →
+   newtons and record residuals.
 5. For each speed: wind-off tare → wind-on average → wind-off zero; repeat runs; subtract mount drag; compute C_D with uncertainty.
 6. Keep raw logs untouched in `data/raw/`; do all conversions in scripts (see [data/README.md](data/README.md)).
 

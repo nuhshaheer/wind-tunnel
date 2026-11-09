@@ -534,7 +534,7 @@ On hand: the Elegoo Mega 2560 (working) and a USB A-to-B cable; the ECE kit, wit
 | Mega prototyping shield | A perfboard shield that plugs onto the Mega, as a soldered in-between board | | about $5–10 (typical, not checked) | | | **Not needed:** the owner's plan is breadboard → test → PCB (2026-11-09) |
 | Header strips | Male and female, 0.1 in pitch | 1 assortment | about $5 (typical, not checked) | Same | Now | To buy |
 | Sensor cables | 4-core cable, shielded if available, about 3 m in all: HX711 (in the load-cell box) to the control box, SDP810 to the control box, BME280 to the control box. Keep each I²C run under about 1 m | about 3 m | about $5–10 (typical, not checked) | Hardware or electronics shop | Now | To buy |
-| Hook-up wire | Stranded 24–26 AWG in several colours (and 22 AWG solid for the breadboard) | 1 set | about $10–15 (typical, not checked) | Same | Now | Unknown (may be on hand) |
+| Hook-up wire | Stranded 24–26 AWG in several colours (and 22 AWG solid for the breadboard). **2026-11-09:** 24 AWG stranded silicone, about 6 colours (for example the TUOFENG set the owner found): soft, so it pulls less on the load cell, and it does not melt back when soldered. The solid wire is probably not needed: the ECE kit's jumper-wire kit and the Dupont jumpers cover the breadboard | 1 set | about $10–15 (typical, not checked) | Same | Now | Unknown (may be on hand) |
 | Heat-shrink tubing | Assortment | 1 | about $5–8 (typical, not checked) | Same | Now | Unknown |
 | Solder supplies | Rosin-core solder 0.6–0.8 mm, flux, desoldering wick | | | | Now | Unknown (the soldering station is on hand) |
 | Enclosures | An Arduino box and the load-cell box (cell and HX711 only) | 2 | filament | Printed | After sizing | Printed |
@@ -588,6 +588,29 @@ Notes:
   load. Instead, design the balance (load cell, base and sting) as a module that comes out of the tunnel. Lay it on
   its side so gravity pulls along the drag direction (the load cell is then flat, the way it sits in a kitchen scale)
   and hang the masses from the ball's position. A pulley check in the tunnel can follow as a cross-check.
+  - **How the masses hang** (proposed 2026-11-09, after the owner asked how weights could sit on a round sting):
+    nothing is balanced on the sting and nothing is glued. A **printed calibration attachment** (owner's idea) fits
+    on the end of the sting in place of a ball, with a hook at the ball-centre height. Two ways to fit it:
+    - a printed cap that slides over the outside of the 5/32 in sleeve and bottoms on its end (a printed hole is easy
+      to tune with a test print);
+    - or a printed hook body on a short 1/8 in brass stem, which plugs into the sleeve exactly like a ball. Avoid a
+      printed 1/8 in peg: a 3 mm printed pin is weak and comes out out-of-round.
+
+    A light printed pan (or a foil cup) hangs from the hook on a thread loop, and the masses go into the pan with
+    tweezers. Keep the pan on a thread rather than fixed to the attachment: hanging, its pull always acts at the hook,
+    wherever a mass sits in the pan.
+  - The "hook" can simply be a groove printed round the attachment at the ball-centre height, holding a thread loop;
+    the pan is a small bucket with a handle. A **fixed cup on top of the attachment** (owner asked, 2026-11-09) also
+    works if a recess centres each mass over the ball's centre; what sets the lever arm is where the mass sits along
+    the sting, not how high above it. It does not swing, but placement matters more than with a hanging pan.
+  - **On its side, the cell also carries the sting, sleeve, attachment and pan**: roughly 10–15 g (estimate; an 85 mm
+    1/8 in brass rod alone is about 5.7 g). That is a constant offset, zeroed out before adding masses; the
+    calibration only needs the change in reading per gram. Set the slope with the 2–20 g pieces (the 50 g as a check)
+    and **leave the 100 g piece out**: with the preload it would exceed the cell's 100 g rating. Weigh the pan on the school balance too, or zero the reading with it hanging. Hooking at the ball's
+    centre keeps the lever arm the same as in a run; a thread loop around the stem under the ball would pull about
+    10–13 mm lower.
+  - Lock the sting while hanging the pan; unlock to read. Lower each mass in gently. Load in steps, then unload in
+    reverse to check the reading comes back (hysteresis), and take everything off afterwards.
 - **Not suitable: Dwyer's Mark II 25 manometer** ($57–86): ±3 % of a 0–3 inH₂O (0–747 Pa) range is ±22 Pa, far coarser
   than the 25–100 Pa being checked.
 - **The home-made inclined manometer** (proposed): a water-filled U-tube lying flat on a ramp at about 1 in 10.

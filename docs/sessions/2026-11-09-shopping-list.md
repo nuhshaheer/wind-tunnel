@@ -2,7 +2,7 @@
 
 - **Session ID:** 1191b437-094a-48a8-8f14-61279a316e30 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `b08a151` (the wrap); the post-wrap follow-up (§2, last bullet) not committed yet
 
 A short session on the same day as the buy-list session's `/wrap`, after the owner pushed it. Documentation only:
 nothing was bought, built or tested.
@@ -49,6 +49,21 @@ deciding on the fan, but everything else should be good. I might need to buy mor
   buy_list §10's introduction but never in a table (price not checked).
 - **Pointers** to the tracker from buy_list.md, README.md, experimental_setup.md, PROJECT_STATUS and TODO.
 - **`/wrap`:** the stale entries listed in §1 corrected; `0351407` backfilled.
+- **The owner's questions after the wrap** (answers only; nothing bought):
+  - why two kinds of hook-up wire: stranded 24 AWG for soldered leads, solid 22 AWG for the breadboard, which the ECE
+    kit's jumper-wire kit probably already covers;
+  - which Amazon 24 AWG set: the TUOFENG silicone 6-colour set suggested (soft, so it pulls less on the load cell);
+    the 2-colour and 300 ft sets not;
+  - why the calibration weight set: the TAL221's output is 0.6 ± 0.15 mV/V (±25 %), and its behaviour at 0.2–3 g is
+    unspecified; a DIY option (coins and wire snippets weighed on the school balance) was offered;
+  - how masses can hang on a round sting: the agent proposed a brass calibration stem with a printed hook at the
+    ball's centre and a light pan on a thread; the owner then suggested printing an attachment for the end of the
+    sting instead. Recorded in [buy_list.md](../buy_list.md) §9 and the TODO calibration task: a printed cap over the
+    5/32 in sleeve, or a printed hook body on a short brass stem; not a printed 1/8 in peg (weak, out-of-round).
+  - with the owner's photo of a knob-top weight set: the hook can be a printed groove holding a thread loop, with a
+    bucket-shaped pan; a fixed cup on top also works if it centres the masses over the ball's centre. On its side the
+    cell carries the sting, attachment and pan (roughly 10–15 g, estimate; the rod alone about 5.7 g, from 8.5 g/cm³
+    brass, 3.175 mm × 85 mm), a constant offset that is zeroed out; leave the 100 g piece out.
 
 ## 3. Files and equipment affected
 
@@ -57,7 +72,11 @@ New:
 - `docs/sessions/2026-11-09-shopping-list.md` (this log).
 
 Modified:
-- `docs/buy_list.md` (a pointer to the tracker; no item changed);
+- `docs/buy_list.md` (a pointer to the tracker; after `b08a151`, a §9 note on hanging the calibration masses and the
+  hook-up wire choice in §8; no item added or removed);
+- after `b08a151` also: `docs/shopping_list.md` (the hook-up wire row: 24 AWG stranded silicone, no solid wire) and
+  the calibration step in PROJECT_BACKGROUND's measurement approach (no pulley; module on its side, printed
+  attachment);
 - `PROJECT_STATUS.md`, `TODO.md`, `PROJECT_BACKGROUND.md`, `README.md`, `docs/experimental_setup.md`;
 - `DECISIONS.md` (a dated status note on D-002; no new decision);
 - `docs/sessions/SESSION_LOG.md`;
@@ -87,6 +106,12 @@ each candidate URL (results in §7).
 Price sums for the tracker, inline Python: the low and high ends of each "To buy" row (fan and PLA excluded), the
 four sensors, and the "Check house" rows. Results: $256.44–357.96; $87.74–93.07; $92–151.
 
+Sting mass for the calibration preload (brass 8.5 g/cm³ assumed, 1/8 in = 0.3175 cm, 8.5 cm long):
+
+```bash
+python -I -c "import math; print(round(math.pi/4*0.3175**2*8.5*8.5,2),'g')"   # 5.72 g
+```
+
 ## 6. Measurements and results
 
 **None measured.**
@@ -95,14 +120,18 @@ four sensors, and the "Check house" rows. Results: $256.44–357.96; $87.74–93
 the fan is still undecided; more PLA rolls may be needed.
 
 **Estimates:** the tracker's totals are sums of listed prices, many of them typical prices that were not checked;
-tax and shipping excluded. The 3–4 kg PLA figure is the buy list's rough estimate, to be firmed up at sizing.
+tax and shipping excluded. The 3–4 kg PLA figure is the buy list's rough estimate, to be firmed up at sizing. The
+calibration preload on the side-laid cell, roughly 10–15 g (the 85 mm brass sting alone about 5.7 g, the printed
+attachment and pan guessed at a few grams each), is an estimate; it is zeroed out in the calibration.
 
 ## 7. Tests, calibration checks and validation
 
 - `python scripts/check_docs.py`: 0 failures, 0 warnings at `/catchup` (458 links, 69 files) and after the tracker
   (460 links, 70 files). At `/wrap`, after all edits: 0 failures, 0 warnings (10 session logs, 485 links,
   71 committable files).
-- `python -m unittest discover -s tests`: 20 OK in 11.5 s at `/catchup`; with `-v` at `/wrap`: 20 OK in 9.6 s.
+- `python -m unittest discover -s tests`: 20 OK in 11.5 s at `/catchup`; with `-v` at `/wrap`: 20 OK in 9.6 s; with
+  `-v` at the second `/wrap` (after `b08a151`): 20 OK in 11.8 s.
+- `check_docs.py` at the second `/wrap`: 0 failures, 0 warnings (10 session logs, 488 links, 71 committable files).
 - **Tracker links** (2026-11-09, curl with a browser user agent, following redirects):
   - loaded (HTTP 200): AC Infinity (redirects to a new S6 URL, used in the tracker), SparkFun ×2 (redirect to new
     product URLs, used), Adafruit, the Mouser search, McMaster's acetal-balls page, Bambu PLA Basic, Amazon search;
@@ -187,3 +216,21 @@ python scripts/sync_status.py --fetch
 - **If the push is rejected** ("fetch first" / "non-fast-forward"): do not force-push. Run
   `git pull --rebase origin main`, then `python -m unittest discover -s tests`, then `git push origin HEAD`.
 - The last command should end with `STATE: UP_TO_DATE`.
+
+The owner ran these as `b08a151`. **Follow-up** (second `/wrap`, after the owner's post-wrap questions; state
+`UP_TO_DATE` at `b08a151`, seven files modified):
+
+```bash
+cd "C:/Users/nuhbm/OneDrive/Desktop/nuhs projects/2 - Wind Tunnel"
+python scripts/sync_status.py --fetch
+git status
+git diff
+git add PROJECT_STATUS.md PROJECT_BACKGROUND.md TODO.md docs/buy_list.md docs/shopping_list.md
+git add docs/sessions/SESSION_LOG.md docs/sessions/2026-11-09-shopping-list.md
+git diff --cached --stat
+git commit -m "Record how calibration masses hang and the wire choice" -m "Adds the owner's printed sting-end attachment with a hook at the ball's centre and a pan on a thread for hanging calibration masses, with the side-laid preload and the 100 g limit (buy_list section 9, TODO, PROJECT_BACKGROUND, which still described a pulley). Narrows the hook-up wire to 24 AWG stranded silicone. Records the owner's post-wrap questions and backfills b08a151."
+git push origin HEAD
+python scripts/sync_status.py --fetch
+```
+
+Expect 7 files under "Changes to be committed", and `STATE: UP_TO_DATE` at the end.

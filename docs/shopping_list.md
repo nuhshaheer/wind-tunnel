@@ -92,7 +92,7 @@ PETG-CF is on hand and covers the loaded parts. Buy plain PETG only if it runs s
 | Sandpaper, 220–600 grit | 1 set | ~$10–15 | | Check house |
 | Rubber pads under the tunnel's feet (or cut them from the spare neoprene) | 6–8 | ~$5 | | Check house |
 | Acrylic scoring knife | 1 | ~$5–10 | | Check house |
-| Hook-up wire, 24–26 AWG stranded + 22 AWG solid | 1 set | ~$10–15 | | Check house |
+| Hook-up wire, **24 AWG stranded, silicone, about 6 colours** (for example the TUOFENG set). No solid wire needed: the ECE kit's jumpers cover the breadboard | 1 set | ~$10–15 | [Amazon search](https://www.amazon.com/s?k=TUOFENG+24+AWG+stranded+silicone+wire+6+colors) | Check house |
 | Heat-shrink tubing | 1 assortment | ~$5–8 | | Check house |
 | Solder (0.6–0.8 mm rosin core), flux, desoldering wick | | not checked | | Check house |
 | Steel rule, 300 mm / 12 in | 1 | a few $ | | Check house |
