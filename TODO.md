@@ -17,7 +17,10 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Comparison and the fan-to-tunnel joint: [docs/buy_list.md](docs/buy_list.md) §1.
   - Outcome: a new decision superseding D-011; the model recorded in PROJECT_STATUS §3 and docs/experimental_setup.md.
     Verify: if the VEVOR is chosen, D-010's target is restated as "what the fan reaches, about 11 m/s".
-- [ ] **Owner: report what is on hand, then order the parts** in [docs/buy_list.md](docs/buy_list.md).
+- [ ] **Owner: report what is on hand, then order the parts** in [docs/buy_list.md](docs/buy_list.md). Track them in
+  the owner's tracker, [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09): change each row's status To buy →
+  Ordered → Got it, and give the agent the part numbers when they arrive. **PLA:** the owner may need more rolls
+  (2026-11-09). Weigh the spools; the tunnel needs roughly 3–4 kg in all (estimate, firmed up at sizing).
   - The owner will report on 2026-11-10: filament amounts (PLA, PETG-CF); super glue, epoxy, silicone, sandpaper, M3/M4
     screws, rubber feet, duct tape, an acrylic scoring knife, a switched power strip, tin snips, files, a hacksaw.
   - The electronics (one SDP810-125Pa, two TAL221 100 g, a SparkFun HX711, an Adafruit BME280) and most small parts do
@@ -94,7 +97,7 @@ Owner tasks are physical or account actions that an agent cannot do.
     [resources/README.md](resources/README.md).
   - Added 2026-11-01 [Proposed], the balance box:
     - only the load cell and HX711 in the closed box under the floor (the owner's sketched "electronics house"); the
-      display, knob and Arduino in a separate box on a cable;
+      Arduino in a separate box on a cable (no display or knob since D-012);
     - a sting about 80–90 mm long, as short and stiff as the layout allows;
     - optional (2026-11-02): room for a second, vertical load cell for airfoil lift or the owner's model-car idea
       (P3; PROJECT_STATUS open question 14);
@@ -187,7 +190,8 @@ Owner tasks are physical or account actions that an agent cannot do.
       rated only by free-air CFM cannot be sized;
     - smooth or many-step speed control (the pitot measures the actual speed, so Arduino control is not needed);
     - an EC (brushless DC) motor if affordable, for smoother running;
-    - a documented low-voltage speed input (PWM or 0–10 V) if the owner's menu is to set the fan speed.
+    - a documented low-voltage speed input (PWM or 0–10 V) if the owner's menu is to set the fan speed. No longer
+      needed: there is no menu (D-012, 2026-11-08).
   - Need for the 100 mm section at 13 m/s (estimate): about 400 CFM rated and about 500 Pa maximum static pressure
     (corrected 2026-11-05 from "300–500 Pa"). A 6-inch fan listed at 402 CFM and 503 Pa (the Cloudline S6, $99 on
     AC Infinity's site, 2026-11-05) gives about 13 m/s
@@ -436,3 +440,8 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-08/09: **Full buy list written with the owner**, [docs/buy_list.md](docs/buy_list.md): 11 sections, about
   $315–505. Also recorded D-011 (fan; reopened 2026-11-09) and D-012 (no display or knob), and filed the owner's
   load-cell sketch ([session log](docs/sessions/2026-11-09-buy-list.md)).
+- [x] 2026-11-09: Owner committed and pushed the buy-list session as `0351407`; `/catchup` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-09-shopping-list.md)).
+- [x] 2026-11-09: **Owner's shopping tracker** written, [docs/shopping_list.md](docs/shopping_list.md): what is still
+  to buy, with qty, price, link and status, grouped by store; about $255–360 plus the fan
+  ([session log](docs/sessions/2026-11-09-shopping-list.md)).

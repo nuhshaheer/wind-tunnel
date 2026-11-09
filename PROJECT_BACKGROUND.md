@@ -39,7 +39,9 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
   (3) map flow uniformity with the pitot tube, (4) load cell and conditioning circuit, (5) calibrate against known
   weights, (6) sphere Cd validation run, (7) airfoil pitch attachment.
 - [Confirmed] The owner has access to a Bambu Lab P1S 3D printer (stated 2026-10-30). Build volume 256 × 256 × 256 mm
-  (manufacturer's published spec, not measured). Filament and material choice: unknown.
+  (manufacturer's published spec, not measured). Filament: PLA and PETG-CF on hand, amounts unknown, with a
+  hardened-steel nozzle (owner, 2026-11-09). Proposed: PLA shells, PETG-CF for clamped or loaded parts
+  ([docs/buy_list.md](docs/buy_list.md) §2).
 - [Confirmed] Tunnel type: open-circuit **blower**, fan at the front (owner, 2026-11-01; [D-007](DECISIONS.md)).
 - [Confirmed] Test section **100 mm × 100 mm** (owner, 2026-11-01; [D-008](DECISIONS.md)). Length: the owner first
   wanted about 1 m in total including the fan, then allowed more. Estimated 1.15–1.3 m with a 6-inch fan
@@ -56,8 +58,9 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 - [Confirmed] Tools on hand: a multimeter, a soldering station, a bench power supply (maximum voltage and current
   unknown) and access to a workbench (owner, 2026-11-01).
 - [Confirmed] Budget: "I don't really have a budget" (owner, 2026-11-01). The owner compared this project with typical
-  projects under $50, which have no load cell. The agent's estimate for this one is about $120–200, mostly the fan and
-  the pressure sensor (PROJECT_STATUS §3). On the fan, the owner is price-conscious: after the AC Infinity Cloudline S6
+  projects under $50, which have no load cell. The agent's first estimate (2026-11-01) was about $120–200, mostly the
+  fan and the pressure sensor. The full buy list (2026-11-08/09) comes to about $315–505 before tax and shipping
+  ([docs/buy_list.md](docs/buy_list.md); still to buy: [docs/shopping_list.md](docs/shopping_list.md)). On the fan, the owner is price-conscious: after the AC Infinity Cloudline S6
   ($99) was recommended, "im trying to find somethign more affordbale" (2026-11-05).
 - Unknown: the fan model (open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6, [D-011](DECISIONS.md)), the
   bench supply's rating, the room's free length around the tunnel.
@@ -348,8 +351,8 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
    tunnel, as Weakly2024 did. Drag bends the cell. Use a non-magnetic sting and fasteners if magnets hold panels
    nearby (2026-11-01).
    - Put only the load cell and HX711 in the closed box under the floor (the "electronics house" in the owner's
-     sketch). The display, knob and Arduino go in a separate box on a cable, so pressing the knob does not bump the
-     balance and their heat does not drift the load cell (2026-11-01).
+     sketch). The Arduino goes in a separate box on a cable, so handling it does not bump the balance and its heat
+     does not drift the load cell (2026-11-01). No display or knob since D-012 (2026-11-08).
    - Protect the load cell when swapping models. Small bar cells are typically rated for only about 120 % of
      capacity before damage (check the chosen cell's datasheet), and screwing a model onto the sting twists and
      pushes it. Plan a sting lock (a clamp or pin that holds the sting while swapping, removed before running),
@@ -495,6 +498,12 @@ Add lasting lessons here (with a link to the session log where they were learned
   locally. Claude Code's Read cannot render PDF pages here (no `pdftoppm`). Extract the text and render pages with
   PyMuPDF (`python -I`, file path as an argument), then check tables and drawings on the page images. Some shop pages
   (McMaster, Zoro, TWP prices) need a browser; ask the owner to paste the table.
+- **"Not committed yet" in the docs after the owner pushed is expected, not lost work** (2026-11-09,
+  [session log](docs/sessions/2026-11-09-shopping-list.md#8-errors-failed-approaches-and-troubleshooting)).
+  `/wrap` writes the docs before the owner commits, so a commit can never contain its own hash; the next `/wrap`
+  backfills it. When `/catchup` finds this, say first that the repository is fine (local `HEAD` = `origin/main`, clean
+  tree) and that only the doc text lags. The 2026-11-09 catch-up's wording ("your push isn't recorded anywhere") made
+  the owner think a commit had gone missing.
 - **A correlation's overall accuracy can hide a local offset** (2026-11-02, same log). Brown and Lawler's "81 % of
   points within ±5 %" is over all Re, yet at this project's Re their own data sit about 7 % above the curve. Check
   the data near the Re that matters, not just the headline fit statistic.

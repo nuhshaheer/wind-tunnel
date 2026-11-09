@@ -46,7 +46,10 @@ Template:
 - Alternatives considered: not recorded.
 - Evidence / source: original README hardware list.
 - Status: Accepted as the approach. Specific parts (sensor ranges, load-cell capacity, microcontroller) are **not
-  chosen**; see open questions in [PROJECT_STATUS.md](PROJECT_STATUS.md).
+  chosen**; see open questions in [PROJECT_STATUS.md](PROJECT_STATUS.md). Note 2026-11-09: the specific parts were
+  chosen by the owner on 2026-11-08 in [docs/buy_list.md](docs/buy_list.md) (one SDP810-125Pa, TAL221 100 g load
+  cells, a SparkFun HX711; the Elegoo Mega 2560 as the candidate board). The ECE kit's role is open question 2 (proposed:
+  the interface board, not the measurement chain). The approach itself is unchanged.
 
 ## D-003: GitHub repository, documentation system and agent workflow
 

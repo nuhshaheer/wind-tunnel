@@ -13,6 +13,8 @@ without a chosen part.
 - **Prices** are what a listing showed on the date given. They are guides, not quotes, and exclude tax and shipping.
 - When a part is bought, change it to On hand here and record its model and datasheet in
   [experimental_setup.md](experimental_setup.md) and [PROJECT_STATUS.md](../PROJECT_STATUS.md) §3.
+- **The owner's short shopping tracker** (item, qty, price, link, status; only what is still to buy) is
+  [shopping_list.md](shopping_list.md), added 2026-11-09. Keep the two in step.
 
 ## Running total
 

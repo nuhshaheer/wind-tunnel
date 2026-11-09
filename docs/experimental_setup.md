@@ -10,7 +10,8 @@ with a guess. When the setup changes, update the **Current configuration** and a
   - a 13 m/s target top speed ([D-010](../DECISIONS.md));
   - no display or knob ([D-012](../DECISIONS.md)).
 - The fan is open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6 ([D-011](../DECISIONS.md)).
-- Parts chosen and their prices: [buy_list.md](buy_list.md).
+- Parts chosen and their prices: [buy_list.md](buy_list.md); the owner's tracker of what is still to buy:
+  [shopping_list.md](shopping_list.md).
 - Parts on hand: [Parts on hand](#parts-on-hand).
 - The owner's sketches: [docs/sketches/](sketches/README.md).
 
@@ -25,7 +26,7 @@ with a guess. When the setup changes, update the **Current configuration** and a
 | Test section length | Proposed: 270–290 mm (2.7–2.9 × its height, from the position rules) | Proposed 2026-11-01 ([estimate](../PROJECT_BACKGROUND.md#tunnel-length-budget)) |
 | Diffuser | Wide-angle diffuser between the fan and the settling chamber: area ratio 3.44 (152 mm round → 250 mm square). With two screens (K_sum ≥ 2.1) it can be about 150–200 mm long, with curved walls or radiused corners and filleted corners, and no flow straightener at the fan outlet (2026-11-02, [Mehta1977](../resources/notes/Mehta1977.md)). Replaces the earlier 0.2–0.35 m estimate. No exit diffuser: open exit | Proposed / Tentative 2026-11-01, updated 2026-11-02 ([D-007](../DECISIONS.md)) |
 | Overall length | About 1.15–1.3 m including a 6-inch fan (estimate). The 2026-11-02 diffuser and settling-chamber changes roughly cancel; recompute at sizing. Owner's target: about 1 m, more allowed | Estimate 2026-11-01 |
-| Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins and glued; filament unknown | Planned ([D-005](../DECISIONS.md)) |
+| Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins. Proposed 2026-11-09: bolted flanges with M3 heat-set inserts and a foam gasket instead of glue; PLA shells and PETG-CF for clamped or loaded parts (both on hand, amounts unknown) | Planned ([D-005](../DECISIONS.md)); joints and filament Proposed ([buy list](buy_list.md) §2) |
 | Model access | One test chamber; the top and/or side clear acrylic panel comes off to swap the model (owner's concept). Proposed details: 3–5 mm cast acrylic held by magnets, located by pins, flush inside, foam-gasketed; floor fixed; no magnets near ferrous parts of the balance; a sting lock and overload stops protect the load cell during swaps | Owner's concept 2026-11-01; details Proposed ([TODO.md](../TODO.md) P1 sizing task) |
 | CAD / drawings | No CAD yet. The owner's hand sketch: [2026-11-01 concept sketch](sketches/README.md) | |
 
@@ -60,7 +61,8 @@ the owner designs ([TODO.md](../TODO.md) P2).
 
 HX711 chip facts, confirmed from the Avia datasheet rev. V2.0 ([notes](../resources/notes/HX711.md)): 24-bit ADC,
 10 or 80 samples/s, channel A gain 128 or 64 (channel B fixed at 32), input noise 50 nV rms at gain 128 and 10 SPS.
-The module (and so its excitation voltage and RATE wiring) is not chosen.
+The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), to buy. Its excitation voltage and RATE
+wiring have not been checked against its schematic yet.
 
 ## Data acquisition
 
@@ -139,3 +141,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-02 | Mega 2560 board tested: Blink upload Verified by the owner; Arduino IDE 2.3.10 installed. First hardware test; nothing built | [2026-11-03](sessions/2026-11-03-mega-2560-board-test.md) |
 | 2026-11-05 | 13 m/s top speed proposed; fan requirement corrected (about 500 Pa listed at 400 CFM, not 300–500 Pa); fan candidates updated after the owner's search for a cheaper fan (documentation only; nothing bought, built or tested) | [2026-11-07](sessions/2026-11-07-top-speed-and-fan-search.md) |
 | 2026-11-08/09 | Buy list written ([buy_list.md](buy_list.md)). Instruments chosen: SDP810-125Pa with a home-made probe, two TAL221 100 g with a SparkFun HX711, an Adafruit BME280. Also chosen: 3/4 in and 1 in Delrin balls, aluminium window screen and a printed honeycomb. Target 13 m/s (D-010); no display (D-012); fan open between the S6 and the VEVOR (D-011). Parts on hand updated (documentation only; nothing bought, built or tested) | [2026-11-09](sessions/2026-11-09-buy-list.md) |
+| 2026-11-09 | Owner's shopping tracker added ([shopping_list.md](shopping_list.md)). Stale entries corrected: construction material (bolted flanges, PLA and PETG-CF) and the HX711 module (SparkFun, chosen 2026-11-08). Documentation only; nothing bought, built or tested | [2026-11-09](sessions/2026-11-09-shopping-list.md) |

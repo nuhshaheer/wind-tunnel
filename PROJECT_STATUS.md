@@ -1,15 +1,17 @@
 # Project Status
 
 **Last updated:** 2026-11-09
-**Last commit:** `d7f5cdf` (2026-11-07, the top-speed and fan-search session), pushed to `origin/main`. `/catchup`
-reported `UP_TO_DATE` on 2026-11-08, and so did this session's `/wrap` on 2026-11-09.
+**Last commit:** `0351407` (2026-11-09, the buy-list session), pushed to `origin/main`. `/catchup` and this session's
+`/wrap` reported `UP_TO_DATE` on 2026-11-09.
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the buy-list session of 2026-11-08/09 (documentation, three datasheets and a sketch;
-  [session log](docs/sessions/2026-11-09-buy-list.md), with the commit commands in §13).
+- **Not committed yet:** the shopping-list session of 2026-11-09 (documentation only;
+  [session log](docs/sessions/2026-11-09-shopping-list.md), with the commit commands in §13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
-([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Nothing has been ordered.**
+([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Nothing has been ordered.** The owner
+tracks orders in [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09): only what is still to buy, about
+$255–360 plus the fan.
 - Decided:
   - segmented 3D printing (D-005);
   - an open-circuit blower with the fan at the front (D-007);
@@ -75,7 +77,7 @@ scatter that much. Runs at several speeds must also show C_D rising with Re, abo
 
 ## 2. Wind tunnel configuration
 
-**Nothing built. Tunnel type and test-section size are decided; the top airspeed and the fan are not.** Details and
+**Nothing built. Tunnel type, test-section size and target top speed are decided; the fan is not.** Details and
 unknowns are in [docs/experimental_setup.md](docs/experimental_setup.md). The owner's first sketch is in
 [docs/sketches/](docs/sketches/README.md).
 
@@ -122,6 +124,9 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 Budget: no fixed budget (owner, 2026-11-01), but price-conscious. **The full buy list,
 [docs/buy_list.md](docs/buy_list.md), totals about $315–505 before tax and shipping** (2026-11-09; the low end
 with the VEVOR fan), plus up to about $100 for items that may already be in the house. Nothing has been ordered.
+The owner's tracker, [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09), lists what is still to buy with qty,
+price, link and status: about $255–360 plus the fan, and up to about $90–150 more for "check house" items if none are
+at home (our sums of the listed prices; many are typical prices, not checked).
 
 ## 4. Software and tooling
 
@@ -131,8 +136,8 @@ with the VEVOR fan), plus up to about $100 for items that may already be in the 
 | Analysis scripts (`analysis/`) | Planned; not started |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb` and `d7f5cdf`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf` and `0351407`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -211,7 +216,14 @@ None. No experiment has been run.
   - Filed and reviewed three documents with notes: the SDP8xx and TAL221 datasheets, and Sensirion's
     signal-compensation note, which shows that SDP810 readings need the ×966 mbar / p_amb correction.
   - Filed the owner's load-cell sketch in `docs/sketches/`.
-  - Not committed yet. See [the session log](docs/sessions/2026-11-09-buy-list.md).
+  - Committed and pushed as `0351407`. See [the session log](docs/sessions/2026-11-09-buy-list.md).
+- 2026-11-09: the owner's shopping tracker (documentation only; nothing bought).
+  - Wrote [docs/shopping_list.md](docs/shopping_list.md): what is still to buy, with qty, price, link and status,
+    grouped by store, and a "check the house first" section. It adds the pin vise for the wall taps, which the buy
+    list named but never listed.
+  - Corrected stale entries from before D-012 and the buy list (PROJECT_BACKGROUND, TODO, experimental_setup, a
+    status note on D-002).
+  - Not committed yet. See [the session log](docs/sessions/2026-11-09-shopping-list.md).
 
 ## 7. Data and analyses
 
@@ -249,7 +261,8 @@ Estimates are spread across these files; all are **calculations from assumed val
 ## 9. Bugs, equipment issues, blockers
 
 - **Blocked:** all physical work waits on buying hardware. Nothing has been ordered (2026-11-09).
-  - The buy list is complete ([docs/buy_list.md](docs/buy_list.md)).
+  - The buy list is complete ([docs/buy_list.md](docs/buy_list.md)); orders are tracked in
+    [docs/shopping_list.md](docs/shopping_list.md).
   - Only the fan waits on a decision: S6 or VEVOR, on the owner's budget (D-011).
   - The electronics (SDP810, two TAL221, HX711, BME280) and most small parts do not depend on the fan or on the
     sizing, and can be ordered now.
@@ -439,11 +452,12 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-09-buy-list.md#13-manual-git-commands-as-given-to-the-owner));
+     [session log](docs/sessions/2026-11-09-shopping-list.md#13-manual-git-commands-as-given-to-the-owner));
    - report what is on hand (filament amounts; glue, epoxy, sandpaper, screws, rubber feet, duct tape, scoring knife,
-     power strip) so the buy list can be finished;
+     power strip): the "Check the house first" section of [docs/shopping_list.md](docs/shopping_list.md);
    - choose the fan, the S6 or the VEVOR, on budget (D-011), and record it as a new decision;
-   - order the parts in [docs/buy_list.md](docs/buy_list.md). The electronics and small parts can go now;
+   - order the parts, tracking each in [docs/shopping_list.md](docs/shopping_list.md). The electronics and small parts
+     can go now. Weigh the PLA spools to see whether more rolls are needed;
    - check the values read from the three new datasheets (checklists at the end of the
      [SDP8xx](resources/notes/SDP8xx.md), [Sensirion2024](resources/notes/Sensirion2024.md) and
      [TAL221](resources/notes/TAL221.md) notes);
@@ -469,6 +483,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb` and `d7f5cdf`). The account was `nuhshaheer-2007` until
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf` and `0351407`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`
