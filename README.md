@@ -61,6 +61,7 @@ docs/
   data_catalog.md         Every dataset/experiment and how it was processed
   sessions/               One log per work session + SESSION_LOG.md index
   sketches/               The owner's hand sketches of the tunnel (intent, not as built)
+  drawings/               Preliminary drawing package (HTML) and the Python scripts that generate it
 data/README.md            Data layout and rules (raw vs processed, naming, units, large files)
 resources/                Reference papers (PDFs) with reading notes; index and naming rules in resources/README.md
 scripts/                  Helper scripts used by /catchup and /wrap

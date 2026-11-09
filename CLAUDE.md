@@ -75,6 +75,8 @@ python -m unittest discover -s tests -v        # tests for the two scripts
   `results/`. Each script states inputs, outputs and units at the top. Do not hard-code calibration constants without
   citing the calibration dataset.
 - Data layout and naming: `data/README.md`. Videos stay out of Git; reference them from the data catalog.
+- Drawings: `docs/drawings/` is generated (`python docs/drawings/page.py`); change the numbers in `wtdata.py` and
+  rebuild, never hand-edit the HTML. See `docs/drawings/README.md`.
 - Reference papers go in `resources/` with a notes file in `resources/notes/`; naming, notes template and index are
   in `resources/README.md`. Read a paper's notes before opening its PDF, and cite the notes file when a paper informs
   a design choice.

@@ -104,7 +104,7 @@ Notes:
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
 | Filament, PLA | **PLA** for the shells (diffuser, settling chamber, contraction, test-section frame), the printed honeycomb, boxes, the fan stand and the base feet: stiffest and most accurate. **Black** for the test section and contraction, for contrast in any later mist visualization and less glare in photos | 2.5–3 kg | about $15–20/kg for any top-up (typical, not checked) | Bambu, Amazon | After sizing | **On hand** (owner, 2026-11-09; amount unknown) |
-| Filament for loaded parts | For anything clamped or under steady load: screen frames, sting lock, overload stops, the load-cell mount, the ball-drilling jig. **PETG-CF is on hand** (owner, 2026-11-09; amount unknown): stiffer than PETG and creeps less, but abrasive. Use it only with a hardened-steel nozzle; otherwise buy plain PETG | 0.5–1 kg | | | After sizing | **On hand:** PETG-CF, and a hardened-steel nozzle (owner, 2026-11-09). Nothing to buy unless the PETG-CF runs short |
+| Filament for loaded parts | For anything clamped or under steady load: screen frames, the sting mount (D-015), overload stops, the load-cell base, the ball-drilling jig. **PETG-CF is on hand** (owner, 2026-11-09; amount unknown): stiffer than PETG and creeps less, but abrasive. Use it only with a hardened-steel nozzle; otherwise buy plain PETG | 0.5–1 kg | | | After sizing | **On hand:** PETG-CF, and a hardened-steel nozzle (owner, 2026-11-09). Nothing to buy unless the PETG-CF runs short |
 | Heat-set inserts | Brass, M3, for screws into printed parts | 1 pack of 100 | about $11–20 (listings) | Amazon, electronics distributors | Now | To buy |
 | Screws, nuts, washers | An M3 and M4 assortment (stainless) for joining segments; a small **brass** M3 set for anything near the balance | 1 + 1 | about $10–15 + $8–10 (typical, not checked) | Hardware store, Amazon | Now | To buy |
 | Gasket for joints | The foam tape from §4, between bolted flanges | | | | | §4 |
@@ -121,7 +121,10 @@ Notes:
 
 - **Joints bolt together, not glue** (a refinement of D-005's "glue Tentative"): flanges with M3 screws into heat-set
   inserts, or M4 bolts, and foam tape between them, so the screen frames can come out for cleaning (Mehta1977 clamps
-  frames with drawbolts). Keep joints away from the contraction exit (D-005 notes).
+  frames with drawbolts). Keep joints away from the contraction exit (D-005 notes). **Decided 2026-11-09
+  ([D-013](../DECISIONS.md), owner's sketch):** every joint is an M3 screw through one flange into a brass heat-set
+  insert in the next, with foam tape between the faces and each screen clamped between the flanges in its printed
+  frame. Screw length, flange size and bolt count at sizing.
 - **PLA or PETG** (owner asked which filament is best, 2026-11-09): PLA is stiffer and prints more precisely, but it
   creeps under steady load and softens at about 55–60 °C (a car or a sunny window). PETG is tougher and creeps less.
   So PLA for the shells, PETG wherever something is clamped or holds a load.
@@ -277,7 +280,9 @@ owner, 2026-11-08**):
 ## 4. Test section and model access (proposed 2026-11-09)
 
 The owner's concept: one test chamber whose top and/or side clear panel comes off to swap the model, held by magnets
-(PROJECT_STATUS §2).
+(PROJECT_STATUS §2). **Decided 2026-11-09 ([D-014](../DECISIONS.md), owner):** the top panel lifts off on magnets (a
+removable side panel is still open), and the floor under the model is a replaceable insert: a sphere insert carrying
+the sting hole and the sting shield, and a plain insert for model cars.
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
@@ -285,7 +290,8 @@ The owner's concept: one test chamber whose top and/or side clear panel comes of
 | Acrylic scoring knife | Cuts 1/8 in acrylic by scoring and snapping | 1 | about $5–10 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
 | Magnets | **On hand: round magnets 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed), embedded in the printed panel frames. About 8 per panel (4 in the panel, 4 in the frame), so about 16 for two panels, plus spares | | | | | **On hand: 43** (owner, 2026-11-09). Enough; nothing to buy |
 | Gasket | Thin closed-cell foam tape, about 1/8 in thick and 1/4–3/8 in wide, adhesive-backed (weatherstrip). Also seals the tunnel's bolted joints (§2) | 1 roll | about $5–8 (typical, not checked) | Hardware store | Now | To buy (owner: "need to buy this for sure", 2026-11-09) |
-| Locating lips or pins | So each panel lands in the same place every time, flush inside | | filament | Printed | After sizing | Printed |
+| Locating lips or pins | So each panel and floor insert lands in the same place every time, flush inside | | filament | Printed | After sizing | Printed |
+| Floor inserts | Two printed inserts that drop into the floor opening under the model ([D-014](../DECISIONS.md)): one with the sting hole and the sting shield, one plain for model cars. Size, hold-down and seal at sizing | 2 | filament | Printed | After sizing | Printed |
 | Probe guide | A printed guide that holds the probe and lets it move across the section for the flow map; holes plugged when not in use | 1 | filament | Printed | After sizing | Printed |
 | Mist port and cap | The capped port after the last screen, for optional visualization later | 1 | filament | Printed | After sizing | Printed |
 
@@ -406,8 +412,8 @@ are from a short script (this session's log), with sphere drag from Eq. (19) and
 | Load-cell amplifier | **SparkFun HX711 breakout** (SEN-13879): separate analog and digital supplies, 10 or 80 SPS selectable, documented schematic | 1 (a second only when a lift cell is added) | $11.50 (SparkFun listing) | SparkFun | Now | To buy |
 | Validation spheres | **Acetal (Delrin) balls, 3/4 in (19.05 mm) and 1 in (25.4 mm)**, ±0.001 in (sizes confirmed by the owner, 2026-11-08). Non-magnetic, smooth, easy to drill | 2 of each (spares for drilling mistakes) | about $2.78 (3/4 in) and $4.42 (1 in) each in packs of 100–250 at Zoro; small quantities from McMaster-Carr, price not seen | McMaster-Carr | After sizing | To buy |
 | Sting | Non-magnetic rod, about 85 mm: **K&S solid brass rod, 1/8 in** proposed. Diameter and material fixed at sizing (stiffness against the sphere's 100–150 Hz vortex shedding) | 1–2 | about $1–3 (typical, not checked) | Hardware or hobby store | After sizing | To buy |
-| Sting shield | A streamlined fairing fixed to the tunnel floor around the sting, not touching it, leaving about 5 mm of sting exposed below the sphere | 1 | filament | Printed | After sizing | Printed |
-| Sting lock and overload stops | A printed clamp that holds the sting during model swaps, and stops that let it move only slightly past full scale; brass M3 screws from §2 | 1 set | filament | Printed | After sizing | Printed |
+| Sting shield | A streamlined fairing fixed to the sphere floor insert (D-014) around the sting, not touching it, leaving about 5 mm of sting exposed below the sphere | 1 | filament | Printed | After sizing | Printed |
+| Sting mount, sting lock and overload stops | **Owner's design ([D-015](../DECISIONS.md), 2026-11-09):** a printed mount screwed to the load cell's top end, with a blind hole for the sting, and a hand screw from the side that clamps the sting without glue (the sting lock). The hand screw: a printed knob on a brass M3 screw from §2 (no extra cost) or a bought knurled brass thumb screw (price not checked), into a brass heat-set insert. Stops let the sting move only slightly past full scale | 1 set | filament | Printed | After sizing | Printed |
 | Ball-to-sting joint | **Press fit**, not glue (acetal is hard to glue): a hole drilled to the ball's centre with a printed jig, slightly smaller than the rod (see notes) | | | | After sizing | Printed jig |
 | Ball stems and sting socket | K&S round brass tube, 5/32 in OD × 12 in: a short sleeve at the top of the sting, into which each ball's own 1/8 in stem slides (1/8 in fits inside 5/32 in) | 1 | about $2–3 (typical, not checked) | Hardware or hobby store | After sizing | To buy |
 | Load-cell screws | M3, **brass** (non-magnetic) near the balance | from §2 | | | | §2 |
@@ -443,11 +449,12 @@ Notes:
     6.5 m/s, hence a wind-off zero before and after every run, and a closed load-cell box away from the fan motor.
   - The HX711's own noise is far below all this, about 0.002 g per sample ([HX711 notes](../resources/notes/HX711.md)).
   - A smaller cell with a datasheet was not found among cheap parts; 100 g is the smallest TAL221.
-- **Overload:** the safe limit is 150 g, and a finger pushing a ball onto the sting can exceed it. Lock the sting
-  before every model swap. The spare cell (owner chose two, 2026-11-08) means a broken cell costs an afternoon, not a
+- **Overload:** the safe limit is 150 g, and a finger pushing a ball onto the sting can exceed it. Change balls with
+  the sting lifted out of its mount (D-015), never by pushing a ball on in place. The spare cell (owner chose two, 2026-11-08) means a broken cell costs an afternoon, not a
   week.
 - **Keeping the load cell safe** (proposed):
-  - Lock the sting before touching the ball, the sting or the shield. Unlock only to run.
+  - Loosen the sting lock and lift the sting out before changing a ball or lifting out the floor insert (D-015).
+    Hold the mount with the other hand while turning the screw; finger-tight is enough.
   - Set the overload stops with a known mass so they catch the sting at about 120 g, below the 150 g safe limit.
   - Hold and clamp the cell only by its two end blocks, never the thin middle. Do not over-tighten the M3 screws in its
     aluminium threads, and use screws short enough not to reach the middle.
@@ -482,7 +489,7 @@ Notes:
   needed with a press fit.)
 - **Stems and socket (proposed):** each ball keeps its own short 1/8 in brass stem. The top of the sting is a short
   5/32 in brass sleeve, and the stem slides into it, held by friction or a small set screw. Balls are swapped with the
-  sting locked, without twisting or pushing on the load cell. Design at sizing.
+  sting lifted out of its mount (D-015, 2026-11-09), so nothing twists or pushes on the load cell. Design at sizing.
 - **Why not a bigger cell for safety:** a 1 kg TAL221 would survive more abuse, but its errors, given as % of full
   scale, would be 10 times larger in grams (0.5 g against a 0.3–2.3 g drag), and the HX711 noise about 6 times larger
   ([HX711 notes](../resources/notes/HX711.md)). Protect the 100 g cell with the lock instead.
@@ -609,7 +616,8 @@ Notes:
     and **leave the 100 g piece out**: with the preload it would exceed the cell's 100 g rating. Weigh the pan on the school balance too, or zero the reading with it hanging. Hooking at the ball's
     centre keeps the lever arm the same as in a run; a thread loop around the stem under the ball would pull about
     10–13 mm lower.
-  - Lock the sting while hanging the pan; unlock to read. Lower each mass in gently. Load in steps, then unload in
+  - Hang the pan gently; the overload stops catch a slip (since D-015 there is no separate hold-still pin). Lower each
+    mass in gently. Load in steps, then unload in
     reverse to check the reading comes back (hysteresis), and take everything off afterwards.
 - **Not suitable: Dwyer's Mark II 25 manometer** ($57–86): ±3 % of a 0–3 inH₂O (0–747 Pa) range is ±22 Pa, far coarser
   than the 25–100 Pa being checked.
@@ -669,13 +677,14 @@ Calipers notes:
 | Interface PCB | The owner's own board (P2), ordered from a PCB service after the breadboard test. Plug-in parts: **female header sockets** for the modules (HX711, BME280) and a connector for the SDP810's cable, so any module can be swapped without soldering; **DIP sockets** for any chips such as op-amps, if used (owner's idea, 2026-11-09). Price when designed | After the breadboard test | Later |
 | Header sockets and DIP sockets | For the PCB: female 0.1 in headers (the §8 header strips) and DIP sockets if chips are used | With the PCB | Later; about $5 (typical, not checked) |
 | Second HX711 | For a lift (vertical) load cell; the spare TAL221 (§6) can become that cell. $11.50 (SparkFun) | Only if lift is measured; the owner may skip it (2026-11-09) | Later |
-| Floor plug | A printed plug to close the sting hole when no force is being measured | With the car tests | Printed |
+| Plain floor insert | A printed floor insert without holes that replaces the sphere insert for the car tests ([D-014](../DECISIONS.md), 2026-11-09; it replaces the floor plug planned earlier that day). Listed in §4 | With the car tests | Printed |
 | Mist maker | An ultrasonic mist maker for flow visualization (TODO P2, the agent's first choice); price not checked | Last (owner, 2026-10-31 and 2026-11-09) | Later, optional |
 | Airfoil and preset-angle hub | Printed | P3 | Printed |
 | Tufts | Short pieces of yarn taped to a model to show stall | P3 | Probably in the house |
 
-**Owner's plan for model cars (2026-11-09):** if lift or downforce is not measured, close the sting hole with the
-floor plug, set a model car on the floor, and watch the flow with mist: a visual study, not a force measurement. This
+**Owner's plan for model cars (2026-11-09):** if lift or downforce is not measured, swap in the plain floor insert
+(D-014; first planned as a plug for the sting hole), set a model car on it, and watch the flow with mist: a visual
+study, not a force measurement. This
 simplifies the 2026-11-02 downforce idea (TODO P3), which needed a second, vertical load cell.
 
 **Considered and not bought:**

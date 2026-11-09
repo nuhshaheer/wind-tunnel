@@ -101,10 +101,12 @@ Owner tasks are physical or account actions that an agent cannot do.
     - a sting about 80–90 mm long, as short and stiff as the layout allows;
     - optional (2026-11-02): room for a second, vertical load cell for airfoil lift or the owner's model-car idea
       (P3; PROJECT_STATUS open question 14);
-    - **load-cell protection for model swaps**: a sting lock (a clamp or pin that holds the sting while swapping,
-      removed before running), overload stops that let the sting move only slightly past full scale, and a low-twist
-      model attachment (for example a push fit with a set screw). Small bar cells are typically rated for only about
-      120 % of capacity; check the chosen cell's datasheet.
+    - **load-cell protection for model swaps**: originally a sting lock (a clamp or pin that holds the sting while
+      swapping, removed before running), overload stops that let the sting move only slightly past full scale, and a
+      low-twist model attachment. **Decided 2026-11-09 ([D-015](DECISIONS.md), owner):** a printed sting mount on the
+      cell's top end, the owner's thumb-screw sting lock clamping the sting in it, balls changed with the sting lifted
+      out, overload stops at about 120 g (the TAL221's safe overload is 150 g), and no separate hold-still pin. Size
+      the hole fit and depth, the screw and the stop gap; hold the mount while turning the screw.
   - Added 2026-10-31 [Proposed]:
     - a **closed** test section with a clear window;
     - the test-section length set by the position rules: reference pressure at least 1.5√C upstream of the sphere,
@@ -115,13 +117,17 @@ Owner tasks are physical or account actions that an agent cannot do.
       Decided 2026-11-01: blower (D-007).
   - Added 2026-11-01 [Proposed]: **model access through removable clear acrylic panels held by magnets** (owner's
     idea, preferred over a sliding panel). Owner's concept: one test chamber whose top and/or side panel comes off to
-    swap the model; the top gives the best reach to the sting tip. Design points:
+    swap the model; the top gives the best reach to the sting tip. **Decided 2026-11-09 ([D-014](DECISIONS.md),
+    owner): the top panel lifts off, held by magnets (design later); a removable side panel is still open; the floor
+    under the model is a replaceable insert** (a sphere insert with the shield, and a plain insert for cars). Design
+    points:
     - magnets clamp; pins or lips locate each panel so it lands in the same place every time, especially at the
       contraction-to-test-section joint (a 1 mm step in the wall disturbs the flow just before the sphere);
     - the panel's inner face flush with the wall (acrylic set into a printed frame that holds the magnets; magnets
       can be embedded by pausing the print);
     - a thin foam gasket under each panel to seal it and stop it buzzing;
-    - the floor (sting slot and balance) stays fixed; the pitot goes through a fixed wall;
+    - ~~the floor (sting slot and balance) stays fixed~~ (superseded by D-014: the floor inserts drop in from above,
+      sit flush, land on pins and seal at their edges); the pitot goes through a fixed wall;
     - **keep magnets away from ferrous parts on the measured side of the balance**, and use a non-magnetic sting
       (aluminium, brass or carbon fibre) and non-magnetic fasteners near it. A magnet pulling on a steel sting could
       add a few grams-force, the same size as the drag;
@@ -141,11 +147,16 @@ Owner tasks are physical or account actions that an agent cannot do.
       brass stubs. Plus a probe guide across the section.
     - The balance as a removable module that can lay on its side for calibration. The load cell stands upright under
       the ball, clamped only at its top end ([owner's sketch](docs/sketches/README.md)).
-    - A sting shield about 7.5 mm wide (5 mm bore), streamlined, fixed to the floor, up to about 5 mm below the ball;
-      a 5/32 in sleeve at the sting top for the balls' 1/8 in stems.
+    - A sting shield about 7.5 mm wide (5 mm bore), streamlined, fixed to the sphere floor insert (D-014), up to about
+      5 mm below the ball; a 5/32 in sleeve at the sting top for the balls' 1/8 in stems.
     - Panels: 1/8 in acrylic in printed frames with 8 × 2 mm magnet pockets (about 8.2–8.3 mm across, 2.2 mm deep).
-    - Bolted flanges (M3 heat-set inserts) with foam gasket; printed feet under each section, no plywood base (owner).
+    - Bolted flanges, M3 screws into brass heat-set inserts, foam tape, screens clamped between the flanges in printed
+      frames (decided 2026-11-09, [D-013](DECISIONS.md)); printed feet under each section, no plywood base (owner).
     - Filament: PLA shells (black for the contraction and test section), PETG-CF for loaded parts.
+  - **Added 2026-11-09:** settle the seven findings from the drawing package (PROJECT_STATUS open question 15),
+    starting with the settling-chamber spacing and how the 250 mm sections split in cross-section. Then update the
+    drawings: the numbers in `docs/drawings/wtdata.py`, `python docs/drawings/page.py`, and `preview.py` to check that
+    no label overlaps ([docs/drawings/README.md](docs/drawings/README.md)).
   - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, and a DECISIONS.md entry.
   - Verify: Reynolds number, blockage ratio, expected drag and fan duty recomputed for the chosen numbers (see
     [estimates](PROJECT_BACKGROUND.md#order-of-magnitude-estimates)); sphere blockage stays at a few percent or below.
@@ -346,8 +357,9 @@ Owner tasks are physical or account actions that an agent cannot do.
     observation of stall onset.
   - Outcome and verify: defined after validation.
 - [ ] **Idea (owner, 2026-11-02, "just an idea"): model-car downforce with a second load cell.** Not planned yet.
-  **Owner, 2026-11-09:** lift may never be measured. If not, plug the sting hole with a printed plug, set a model car on
-  the floor and study it with mist only (a visual study, no force). The spare TAL221 stays available for a vertical
+  **Owner, 2026-11-09:** lift may never be measured. If not, swap in the plain floor insert (D-014; it replaces the
+  printed plug planned earlier the same day), set a model car on it and study it with mist only (a visual study, no
+  force). The spare TAL221 stays available for a vertical
   cell. Points from the discussion [Proposed]:
   - **Same hardware as airfoil lift.** Downforce and lift are the same vertical force, so a second, vertical load
     cell, rigidly coupled at right angles to the drag cell as in Weakly2024, would serve both. Leave room for it in
@@ -446,3 +458,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-09: **Owner's shopping tracker** written, [docs/shopping_list.md](docs/shopping_list.md): what is still
   to buy, with qty, price, link and status, grouped by store; about $255–360 plus the fan
   ([session log](docs/sessions/2026-11-09-shopping-list.md)). Owner committed and pushed it as `b08a151`.
+- [x] 2026-11-09: Owner committed and pushed the shopping-list follow-up (how the calibration masses hang) as
+  `0558370`; `/catchup` confirmed `UP_TO_DATE` ([session log](docs/sessions/2026-11-09-drawing-package.md)).
+- [x] 2026-11-09: **Preliminary drawing package** of the whole tunnel, [docs/drawings/](docs/drawings/README.md):
+  10 sheets, a 70-item parts list, a TBD register and seven findings (pre-sizing, not for manufacture). The owner's
+  flange, load-cell and test-chamber sketch filed and compressed; D-013 (bolted flange joints), D-014 (top panel on
+  magnets, floor inserts) and D-015 (sting mount and thumb-screw sting lock) recorded
+  ([session log](docs/sessions/2026-11-09-drawing-package.md)).

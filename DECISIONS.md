@@ -100,7 +100,8 @@ Template:
   method in [Bell1988](resources/notes/Bell1988.md) assumes smooth walls with a laminar boundary layer from the inlet.
   Seal seams against leaks. Unknown: filament, wall thickness, segment layout, adhesive.
 - Evidence / source: owner statement, 2026-10-30 session.
-- Status: Accepted (segmented printing with alignment holes). Joining method (glue): Tentative. Tunnel size: the
+- Status: Accepted (segmented printing with alignment holes). Joining method (glue): Tentative, then **superseded by
+  D-013** (bolted flanges, owner, 2026-11-09). Tunnel size: the
   "decently big" intent is superseded by D-008 (100 mm test section, 2026-11-01). Segmented printing still applies,
   because the 250 mm settling chamber and contraction inlet leave no room for walls and flanges on the 256 mm bed.
 
@@ -288,3 +289,88 @@ Template:
   - Setting the fan speed from a menu (open question 11) is no longer a goal. The fan keeps its own controller.
 - Evidence / source: owner's statement in the 2026-11-08 session; [docs/buy_list.md](docs/buy_list.md) §8.
 - Status: Accepted (owner, 2026-11-08).
+
+## D-013: Section joints: bolted flanges, M3 screws into brass heat-set inserts, screens clamped between
+
+- Date: 2026-11-09
+- Question: How do the printed sections join? D-005 left the joining method as "probably glue" (Tentative); the buy
+  list proposed bolted flanges on 2026-11-09.
+- Decision: Every section joint is a bolted flange. An M3 screw passes through one section's flange into an M3 brass
+  heat-set insert in the next section's flange. Where a screen sits at a joint, it is clamped between the two flanges
+  and the screws pass through it; joints without a screen are bolted the same way. Owner's sketch: "Each section, with
+  a screen or not, will be connected like this" (2026-11-09). Asked the same day, the owner kept the buy list's foam
+  tape between the faces and the printed two-part screen frames (the sketch shows neither).
+- Rationale: the joints come apart, so screens can come out for cleaning (Mehta1977 clamps screen frames with
+  drawbolts). Heat-set inserts survive repeated assembly where printed threads would wear. Foam tape seals printed
+  faces that are never perfectly flat; a frame keeps the mesh taut and comes out in one piece.
+- Alternatives considered: glue (D-005); M4 bolts (buy list §2); flanges touching directly with the bare mesh clamped
+  between them (as sketched).
+- Consequences: screw length (the owner's "M3 length TBD"), flange width and thickness, bolt count and pitch, insert
+  length and pin size are set at sizing. Alignment pins (D-005) keep the inside faces flush; joints stay away from the
+  contraction exit (D-005 notes).
+- Evidence / source: the owner's sketch,
+  [docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf](docs/sketches/README.md), and answers in the
+  [2026-11-09 drawing-package session](docs/sessions/2026-11-09-drawing-package.md); [buy list](docs/buy_list.md) §2;
+  drawing sheet 10 in [docs/drawings/](docs/drawings/README.md).
+- Status: Accepted (owner, 2026-11-09). Supersedes D-005's joining method. Sizes Proposed or TBD.
+
+## D-014: Model access: the top panel lifts off on magnets; replaceable floor inserts under the model
+
+- Date: 2026-11-09
+- Question: How is the model reached and swapped, and how does the floor change for model-car tests (the buy list
+  planned a printed plug for the sting hole)?
+- Decision:
+  - **The top clear acrylic panel lifts off and is held down by magnets.** Owner: "i think we shoul dahve the top
+    acrilic peice be able to be taken off with a magnet. we can design it later" (2026-11-09). Whether a side panel
+    also comes off is still open (the 2026-11-01 concept said "top and/or side").
+  - **The floor under the model is a replaceable insert** (owner's sketch; "it is just a replaceable floor",
+    2026-11-09): a **sphere insert** with the sting hole, and a **plain insert** for model cars. **The sting shield is
+    attached to the sphere insert** (owner's suggestion, 2026-11-09), so the insert, with its shield, lifts out once
+    the sting has been lifted out (D-015).
+- Rationale: the top gives the best reach to the sting tip (2026-11-01 concept). The plain insert replaces the floor
+  plug and leaves no seam or loose shield at the model station.
+- Proposed details (agent, 2026-11-09; not decided): the insert drops in from above onto a ledge in the floor
+  opening, top flush with the floor (its front edge is just upstream of the ball, where a step would disturb the
+  flow most), on two locating pins at opposite corners, with sealed edges. It carries the M-station floor tap (offset
+  TBD), whose tube is unplugged when the insert comes out. With the insert out, the opening is the hand hole to the
+  sting lock. Size, hold-down and seal at sizing (drawn 80 × 60 mm, layout only).
+- Alternatives considered: a fixed floor with a printed plug for the sting hole (buy list §11, 2026-11-09); a side
+  panel only; a sliding panel (rejected by the owner on 2026-11-01).
+- Consequences: supersedes "the floor (sting slot and balance) stays fixed" from the 2026-11-01 design points. Magnets
+  stay away from ferrous parts on the measured side of the balance (unchanged). Taps in the removable top panel would
+  need unplugging at every swap (drawing finding 2, open question 15).
+- Evidence / source: the owner's sketch and statements, 2026-11-09
+  ([sketches](docs/sketches/README.md), [session log](docs/sessions/2026-11-09-drawing-package.md)); drawing sheets 7
+  and 8 in [docs/drawings/](docs/drawings/README.md).
+- Status: Accepted (owner, 2026-11-09): the top panel on magnets, the two floor inserts, and the shield on the sphere
+  insert. Details Proposed.
+
+## D-015: Sting mount and thumb-screw sting lock; no separate hold-still pin
+
+- Date: 2026-11-09
+- Question: How is the sting held on the load cell without glue, and how is the 100 g cell protected during model
+  swaps (open question 12)?
+- Decision: A printed **sting mount** is screwed to the load cell's top end. The 1/8 in brass sting stands in a hole
+  facing up, and a hand screw in a perpendicular hole clamps it without glue, "similar to the knob at the top of a
+  caliper that locks it in place" (owner, 2026-11-09). The owner calls this the **sting lock**. To swap balls or take
+  out the sphere insert, loosen it and lift the sting out. The separate hold-still pin planned since 2026-11-01 (a
+  clamp or pin holding the sting during swaps, removed before running) is **dropped** (owner, 2026-11-09, when asked).
+  The overload stops (about 120 g) stay.
+- Proposed details (agent, 2026-11-09; not decided):
+  - a blind hole, so the sting bottoms out and the ball height repeats;
+  - the screw threads into a brass M3 heat-set insert, not into printed plastic;
+  - a brass (non-magnetic) screw: a printed knob on a brass M3 screw (buy list §2, no extra cost), or a bought
+    knurled brass thumb screw (price not checked);
+  - the screw axis along the wind, so any twist that gets past the hand bends the cell sideways, its stiff direction
+    (if the sensitive axis is as assumed in the [TAL221 notes](resources/notes/TAL221.md));
+  - hold the mount with the other hand while turning the screw; finger-tight is enough.
+- Rationale: no glue; the sting comes out whole, so balls are changed away from the cell instead of being pushed onto
+  it in place, which could exceed the cell's 150 g safe overload.
+- Alternatives considered: a printed sting clamp plus a separate hold-still pin (TODO P1, 2026-11-01); glue.
+- Consequences: "sting lock" now means this clamp in all docs. The ball stems and sleeve (buy list §6) and the
+  calibration attachment (§9) are unchanged; during calibration the pan is hung gently and the stops catch an
+  overload.
+- Evidence / source: the owner's sketch ("Load cell notes") and statements, 2026-11-09
+  ([sketches](docs/sketches/README.md), [session log](docs/sessions/2026-11-09-drawing-package.md)); drawing sheet 8
+  in [docs/drawings/](docs/drawings/README.md).
+- Status: Accepted (owner, 2026-11-09) as the concept. Details Proposed; sized in build step 1.

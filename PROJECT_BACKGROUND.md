@@ -47,7 +47,9 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
   wanted about 1 m in total including the fan, then allowed more. Estimated 1.15–1.3 m with a 6-inch fan
   ([Tunnel length budget](#tunnel-length-budget)).
 - [Confirmed] Model access: one test chamber. The top and/or side acrylic panel comes off to swap the model; the
-  owner proposed magnets to hold the panels (2026-11-01).
+  owner proposed magnets to hold the panels (2026-11-01). **2026-11-09 ([D-014](DECISIONS.md)):** the top panel lifts
+  off on magnets (a removable side panel is still open), and the floor under the model is a replaceable insert: a
+  sphere insert carrying the sting shield, and a plain insert for model cars.
 - [Confirmed] Controls: a display with a knob and a menu like the Ender 3 3D printer's, to choose what to show (drag
   force and so on) and to change the fan speed (owner, 2026-11-01). **Superseded 2026-11-08 by
   [D-012](DECISIONS.md):** no display or knob; all output goes to the laptop ("this isnt a device").
@@ -357,7 +359,9 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
      capacity before damage (check the chosen cell's datasheet), and screwing a model onto the sting twists and
      pushes it. Plan a sting lock (a clamp or pin that holds the sting while swapping, removed before running),
      overload stops, and a low-twist model attachment (for example a push fit with a set screw). Re-zero with the wind
-     off after every swap.
+     off after every swap. **Decided 2026-11-09 ([D-015](DECISIONS.md)):** the sting stands in a printed mount on the
+     cell's top end, clamped by the owner's thumb-screw sting lock; balls are changed with the sting lifted out, and
+     the separate hold-still pin is dropped. Overload stops stay.
 4. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
    drag direction at the sphere's position. Proposed 2026-11-08/09: lay the removable balance module on its side so
    gravity acts in the drag direction, and hang the masses in a pan from a printed attachment on the sting's end

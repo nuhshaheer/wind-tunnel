@@ -2,7 +2,7 @@
 
 - **Session ID:** 1191b437-094a-48a8-8f14-61279a316e30 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** `b08a151` (the wrap); the post-wrap follow-up (§2, last bullet) not committed yet
+- **Commit:** `b08a151` (the wrap); the post-wrap follow-up (§2, last bullet) `0558370`
 
 A short session on the same day as the buy-list session's `/wrap`, after the owner pushed it. Documentation only:
 nothing was bought, built or tested.

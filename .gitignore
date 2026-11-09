@@ -53,6 +53,7 @@ resources/Ewald1998_wind-tunnel-wall-correction-AGARD-AG-336.pdf
 # --- Local scratch space (never committed) ---
 scratch/
 tmp/
+docs/drawings/png/
 
 # --- CAD / Office autosave, backup and lock files ---
 ~$*

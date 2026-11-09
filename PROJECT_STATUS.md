@@ -1,17 +1,19 @@
 # Project Status
 
 **Last updated:** 2026-11-09
-**Last commit:** `b08a151` (2026-11-09, the shopping-list session), pushed to `origin/main` (`UP_TO_DATE` on
-2026-11-09).
+**Last commit:** `0558370` (2026-11-09, the shopping-list session's follow-up), pushed to `origin/main` (`UP_TO_DATE`
+on 2026-11-09).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** a follow-up from the same session (how the calibration masses hang, and the hook-up wire
-  choice; [session log](docs/sessions/2026-11-09-shopping-list.md), with the commit commands in §13).
+- **Not committed yet:** the drawing-package session: the owner's 2026-11-09 sketch, a preliminary drawing package in
+  `docs/drawings/`, and D-013 to D-015 ([session log](docs/sessions/2026-11-09-drawing-package.md), with the commit
+  commands in §13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Nothing has been ordered.** The owner
 tracks orders in [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09): only what is still to buy, about
-$255–360 plus the fan.
+$255–360 plus the fan. **A preliminary drawing package** of the whole tunnel (10 sheets, parts list, TBD register;
+pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md) (2026-11-09).
 - Decided:
   - segmented 3D printing (D-005);
   - an open-circuit blower with the fan at the front (D-007);
@@ -20,7 +22,9 @@ $255–360 plus the fan.
     (D-009);
   - **a 13 m/s target top speed, validation runs from about 6.5 m/s (D-010, 2026-11-08).** Not a must-have: 11–12 m/s
     still validates, with less force;
-  - **no on-tunnel display or knob; all output on the laptop (D-012, 2026-11-08).**
+  - **no on-tunnel display or knob; all output on the laptop (D-012, 2026-11-08);**
+  - **bolted flange joints (D-013); the top panel lifting off on magnets, with replaceable floor inserts under the
+    model (D-014); a printed sting mount with the owner's thumb-screw sting lock (D-015)** (owner, 2026-11-09).
 - **Open: the fan (D-011, Tentative since 2026-11-09).** The owner will choose on budget between the AC Infinity
   CLOUDLINE S6 ($99; about 13.0–13.4 m/s, estimate) and the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s).
 - Parts chosen in the buy list (owner, 2026-11-08/09):
@@ -78,21 +82,22 @@ scatter that much. Runs at several speeds must also show C_D rising with Re, abo
 ## 2. Wind tunnel configuration
 
 **Nothing built. Tunnel type, test-section size and target top speed are decided; the fan is not.** Details and
-unknowns are in [docs/experimental_setup.md](docs/experimental_setup.md). The owner's first sketch is in
-[docs/sketches/](docs/sketches/README.md).
+unknowns are in [docs/experimental_setup.md](docs/experimental_setup.md). The owner's sketches are in
+[docs/sketches/](docs/sketches/README.md); a preliminary drawing package (pre-sizing, layout values for every TBD) is
+in [docs/drawings/](docs/drawings/README.md).
 
 | Item | State | Source |
 |---|---|---|
-| Construction | 3D-printed segments on the owner's Bambu Lab P1S, with alignment holes. Still segmented at 100 mm: the 250 mm settling chamber leaves no room for walls on the 256 mm bed. **Proposed 2026-11-09:** bolted flanges (M3 heat-set inserts) with foam gasket rather than glue, so screen frames can come out; PLA shells (black for the contraction and test section) and PETG-CF for clamped or loaded parts; **printed feet under each section instead of a plywood base (owner)** | [D-005](DECISIONS.md) (Accepted), [buy list](docs/buy_list.md) §2 |
+| Construction | 3D-printed segments on the owner's Bambu Lab P1S, with alignment holes. Still segmented at 100 mm: the 250 mm settling chamber leaves no room for walls on the 256 mm bed. **Joints, Accepted 2026-11-09 (owner's sketch, [D-013](DECISIONS.md)):** bolted flanges, M3 screws into brass heat-set inserts, foam tape between the faces, screens clamped between the flanges in printed frames, so they can come out; sizes TBD. Proposed: PLA shells (black for the contraction and test section) and PETG-CF for clamped or loaded parts; **printed feet under each section instead of a plywood base (owner)** | [D-005](DECISIONS.md) (Accepted), [D-013](DECISIONS.md), [buy list](docs/buy_list.md) §2 |
 | Tunnel type | **Accepted (owner, 2026-11-01): open-circuit blower, fan at the front.** Proposed order: fan → flexible coupling → wide-angle diffuser with screens → settling chamber → contraction → test section → **open exit** (no exit diffuser; Tentative) | [D-007](DECISIONS.md) |
 | Test section size | **Accepted (owner, 2026-11-01): 100 mm × 100 mm.** Proposed length 270–290 mm. Estimated total length 1.15–1.3 m with a 6-inch fan (owner's first target was about 1 m; more is allowed) | [D-008](DECISIONS.md), [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) |
 | Fan type | A 6-inch inline duct fan with its own speed controller, on its own stand. **Model open (D-011, Tentative): AC Infinity CLOUDLINE S6 or VEVOR VV-GDFJ-AC6** (§3). Fan-to-tunnel joint (owner's design, 2026-11-08): the fan collar, wrapped in one layer of neoprene, slides snugly into a printed inlet sized from the measured collar; duct tape seals it | [D-011](DECISIONS.md), [buy list](docs/buy_list.md) §1 |
 | Fan-to-chamber diffuser | Proposed (2026-11-02): area ratio 3.44 (152 mm round → 250 mm square), so the screens need K_sum ≥ 2.1. **Two screens (K ≈ 1.1–1.5 each) allow about 150–200 mm**; the minimum is about 115 mm with two screens, 195 mm with one and 335 mm with none. Below about 220 mm use curved walls or radiused inlet and outlet corners. Fillet the corners. **No flow straightener at the fan outlet**: the fan's swirl helps keep the diffuser attached. **2026-11-09:** with aluminium window screen (K about 0.75–0.85 at the fan outlet), plan **three** diffuser screens if the delivered wire is 0.010 in; the first screen at the fan outlet costs about 24–28 Pa at 13 m/s, so consider placing it slightly into the diffuser | [Mehta1977](resources/notes/Mehta1977.md) (Figs. 5 and 7, §6.1; owner-checked), [buy list](docs/buy_list.md) §3 |
 | Contraction | Proposed: contraction ratio 6.25 (250 mm → 100 mm square), 5th-order-polynomial wall, about 250 mm long (1.0 × inlet) | [Bell1988](resources/notes/Bell1988.md), [Abdelhamed2014](resources/notes/Abdelhamed2014.md), [Mehta1979](resources/notes/Mehta1979.md) |
-| Settling chamber | Proposed: 250 mm square. A honeycomb (cell length 7–10 diameters, cells of about 2–3 mm, thin walls), then one or two screens at least 58 % open, then about 50 mm (0.2 D) to the contraction. Add a capped port after the last screen for optional mist injection. **Length 150–200 mm** with Mehta1979's 0.2 D spacing; **about 230–300 mm** if spaced for full turbulence decay: at least 500 wire diameters between screens (about 75–125 mm) and about 50 cell diameters from the honeycomb to the first screen (2026-11-02). Decide at sizing. **2026-11-09:** two settling-chamber screens (four or five screens in all, per Mehta1977/1979); a **printed honeycomb** (owner; for example 6 mm hexagons, 0.4 mm walls, about 50 mm long), with straws as the upgrade; wall pressure taps (S) for the airspeed reference | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
-| Test section | Proposed: **closed** section with clear panels. Sphere at least about 0.5 D downstream of the contraction exit; sphere blockage about 3 % (at most 5 %); reference pressure reading at least 1.5√C upstream of the sphere; sphere at least 4√S from the test-section end. Together 2.7–2.9 h, i.e. 270–290 mm (estimate). **2026-11-08:** wall pressure taps at the entrance (E) and at the model station (M); a printed probe guide; a fixed, streamlined **sting shield** about 7.5 mm wide (5 mm hole for the 1/8 in sting) up to about 5 mm below the ball, because a bare sting would have about 115 % of the ball's drag | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md), [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed) |
-| Model access | **Owner's concept (2026-11-01):** one test chamber; the top and/or side acrylic panel comes off to swap the model, held by magnets (the owner's idea, preferred over a sliding panel). The agent's design points: pins or lips locate each panel; its inner face is flush with the wall; a foam gasket seals it; the floor (sting slot, balance) stays fixed; the pitot goes through a fixed wall; **no magnets near ferrous parts on the measured side of the balance**, and a non-magnetic sting. **2026-11-09:** the owner's 43 magnets (8 × 2 mm) suffice; 1/8 in acrylic | [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md), [buy list](docs/buy_list.md) §4 |
-| Balance and controls layout | Proposed (2026-11-01): only the load cell and HX711 in a closed box under the floor (the sketch's "electronics house"). The Arduino in a separate box on a cable (no display or knob since D-012). A sting lock, overload stops and a low-twist model attachment protect the load cell during swaps. Optional (2026-11-02): leave room for a second, vertical load cell for airfoil lift or model-car downforce (P3). **2026-11-08:** the cell stands upright directly under the ball, the sting clamped only to its top end, its screw holes along the wind ([owner's sketch](docs/sketches/README.md)); the balance is a removable module so it can be laid on its side for calibration; each ball has its own 1/8 in stem that slides into a 5/32 in sleeve at the top of the sting (press-fit into the ball: Delrin cannot be glued) | [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#measurement-and-analysis-approach-proposed) |
+| Settling chamber | Proposed: 250 mm square. A honeycomb (cell length 7–10 diameters, cells of about 2–3 mm, thin walls), then one or two screens at least 58 % open, then about 50 mm (0.2 D) to the contraction. Add a capped port after the last screen for optional mist injection. **Length 150–200 mm** with Mehta1979's 0.2 D spacing; **about 230–300 mm** if spaced for full turbulence decay: at least 500 wire diameters between screens (about 75–125 mm) and about 50 cell diameters from the honeycomb to the first screen (2026-11-02). Decide at sizing. **2026-11-09:** two settling-chamber screens (four or five screens in all, per Mehta1977/1979); a **printed honeycomb** (owner; for example 6 mm hexagons, 0.4 mm walls, about 50 mm long), with straws as the upgrade; wall pressure taps (S) for the airspeed reference. **Found while drawing (2026-11-09; open question 15):** with the chosen window screen and 6 mm cells, full-decay spacing gives about 380–390 mm plus frames, not 230–300 mm (our arithmetic) | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
+| Test section | Proposed: **closed** section with clear panels. Sphere at least about 0.5 D downstream of the contraction exit; sphere blockage about 3 % (at most 5 %); reference pressure reading at least 1.5√C upstream of the sphere; sphere at least 4√S from the test-section end. Together 2.7–2.9 h, i.e. 270–290 mm (estimate). **2026-11-08:** wall pressure taps at the entrance (E) and at the model station (M); a printed probe guide; a streamlined **sting shield** about 7.5 mm wide (5 mm hole for the 1/8 in sting) up to about 5 mm below the ball, because a bare sting would have about 115 % of the ball's drag. **2026-11-09 ([D-014](DECISIONS.md)):** the shield is fixed to a replaceable floor insert under the model | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md), [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed) |
+| Model access | **Accepted 2026-11-09 ([D-014](DECISIONS.md), owner): the top clear acrylic panel lifts off, held by magnets** (design later); whether a side panel also comes off is open. **The floor under the model is a replaceable insert:** a sphere insert carrying the sting hole and the shield, and a plain insert for model cars (replaces the floor plug). Agent's design points (Proposed): pins or lips locate each panel and insert; inner faces flush with the walls (the insert's front edge is just upstream of the ball); a foam gasket seals each panel; the pitot goes through a fixed wall; **no magnets near ferrous parts on the measured side of the balance**, and a non-magnetic sting. Owner's concept since 2026-11-01; the owner's 43 magnets (8 × 2 mm) suffice; 1/8 in acrylic | [D-014](DECISIONS.md), [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md), [buy list](docs/buy_list.md) §4 |
+| Balance and controls layout | Proposed (2026-11-01): only the load cell and HX711 in a closed box under the floor (the sketch's "electronics house"). The Arduino in a separate box on a cable (no display or knob since D-012). **2026-11-09 ([D-015](DECISIONS.md), owner):** a printed sting mount screwed to the cell's top end; the owner's sting lock, a hand screw from the side, clamps the sting in the mount without glue; the sting is lifted out to change balls; overload stops at about 120 g; no separate hold-still pin. Optional (2026-11-02): leave room for a second, vertical load cell for airfoil lift or model-car downforce (P3). **2026-11-08:** the cell stands upright directly under the ball, the sting clamped only to its top end, its screw holes along the wind ([owner's sketch](docs/sketches/README.md)); the balance is a removable module so it can be laid on its side for calibration; each ball has its own 1/8 in stem that slides into a 5/32 in sleeve at the top of the sting (press-fit into the ball: Delrin cannot be glued) | [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#measurement-and-analysis-approach-proposed) |
 
 ## 3. Hardware and instrumentation
 
@@ -106,7 +111,7 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | ECE2010 lab kit (WPI) | On hand, per its packing list (owner, 2026-11-01). Quantities are the packed ones, not counted | Includes LM741, LM348 and LMC6484 op-amps, LM311, 555, LM317T and LM7805CT regulators, transistors, MOSFETs, potentiometers (1 × 10 kΩ, 2 × 1 kΩ, 1 × 100 kΩ, 1 × 1 MΩ), resistors, capacitors, breadboard and jumper wires. No multimeter, soldering iron or power supply in the list (the owner has them separately) |
 | Tools | On hand (owner): multimeter, soldering station, bench power supply, access to a workbench (2026-11-01); **6 in (150 mm) digital calipers** (battery thought dead; LR44/SR44 size), a **hand drill** and a **spirit level** (2026-11-08); access to a **school lab balance** (2026-11-08) | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen. Tools still to buy (tube cutter, drill bits, etc.): [buy list](docs/buy_list.md) §10 |
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
-| Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor plus the display and knob |
+| Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor (no display or knob since D-012) |
 | USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
 | Blower / fan | To buy; **open between two (D-011, Tentative since 2026-11-09); the owner will choose on budget** | • **AC Infinity CLOUDLINE S6, model AI-CLS6**: $99.00; maker's page (read 2026-11-08): 425 CFM, 503 Pa, PWM-controlled EC motor, 10 speed levels, 32.0 cm long. Retailers list 402 CFM. About 13.0–13.4 m/s with five window screens (straight-line estimate; 12.3–12.7 at 90 % of the curve).<br>• **VEVOR 6-inch inline duct fan, model VV-GDFJ-AC6**: $53.90 (owner, 2026-11-09); seller's figures 400 CFM, 300 Pa, AC motor with a speed controller, 60 W. About 11.3 m/s (10.8). Its "34 dB" claim is unlikely, so its 300 Pa may be optimistic.<br>Both validate; the VEVOR gives about 73 % of the S6's force at top speed. Earlier candidates and the unsuitable fans: [2026-11-07 log](docs/sessions/2026-11-07-top-speed-and-fan-search.md). Estimates: [buy list](docs/buy_list.md) §1 |
 | Fan-to-tunnel joint | Owner's design (2026-11-08) | The fan's collar, wrapped in one layer of 1/16 in 40A neoprene (to buy, $13.78 a pair), slides snugly into a printed inlet sized from the measured collar (paper strip ÷ π); duct tape seals it. The fan stands on its own feet and never touches the print. [Buy list](docs/buy_list.md) §1 |
@@ -117,7 +122,7 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Ambient pressure / temperature sensor | To buy: **Adafruit BME280 (2652)**, $14.95 | Regulator and level shifting for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. Check the chip ID (0x60, not a BMP280's 0x58) on arrival |
 | Display and knob | **Not needed (D-012, owner, 2026-11-08)** | All output goes to the laptop (the Arduino IDE's Serial Plotter for a live view) |
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
-| Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable panels (about 8 per panel) |
+| Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable top panel (about 8 per panel; D-014) and a side panel if one is made removable |
 | Acrylic sheet | To buy: clear acrylic, 1/8 in (3.2 mm), 12 × 24 in, $10.45 cast (Online Metals) | For the window panels; cut by scoring and snapping |
 | Mist or smoke generator (optional visualization) | Not decided; deferred to the end | The owner asked (2026-11-01) for one that makes thick smoke. Options compared in [TODO.md](TODO.md) P2; the agent's first choice is an ultrasonic mist maker |
 
@@ -134,10 +139,11 @@ at home (our sums of the listed prices; many are typical prices, not checked).
 |---|---|
 | Data acquisition firmware | Planned; not started. Since D-012 (2026-11-08): log raw counts over USB to the laptop, which is also the live view (the Arduino IDE's Serial Plotter to start); no display or knob code. SDP810 commands and scale factor are in the [SDP8xx notes](resources/notes/SDP8xx.md) |
 | Analysis scripts (`analysis/`) | Planned; not started |
+| Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`), and the repo copy rebuilds byte-identical to the published one |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407` and `b08a151`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151` and `0558370`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -225,8 +231,15 @@ None. No experiment has been run.
     status note on D-002).
   - Committed and pushed as `b08a151`. After it: how the calibration masses hang (a printed attachment on the sting's
     end with a hook at the ball's centre, the owner's idea, and a light pan on a thread;
-    [buy list](docs/buy_list.md) §9), not committed yet. See
+    [buy list](docs/buy_list.md) §9), committed and pushed as `0558370`. See
     [the session log](docs/sessions/2026-11-09-shopping-list.md).
+- 2026-11-09: the drawing package and the owner's second sketch (documentation only; nothing bought, built or tested).
+  - Drew a preliminary engineering drawing package of the whole tunnel from the docs: 10 sheets, a 70-item parts list,
+    a TBD register and seven findings ([docs/drawings/](docs/drawings/README.md); pre-sizing, not for manufacture).
+  - Filed the owner's sketch of the flanges, the load cell and the test chamber, compressed from 10.2 MB to 0.4 MB.
+  - Recorded the owner's decisions: bolted flange joints (D-013), the top panel on magnets and replaceable floor
+    inserts (D-014), and the sting mount with a thumb-screw sting lock (D-015).
+  - Not committed yet. See [the session log](docs/sessions/2026-11-09-drawing-package.md).
 
 ## 7. Data and analyses
 
@@ -346,7 +359,7 @@ Estimates are spread across these files; all are **calculations from assumed val
    - A smaller cell lowers the HX711 noise in grams but has less overload margin
      ([HX711 notes](resources/notes/HX711.md)).
    - **Answered 2026-11-08: the TAL221 100 g** (the smallest in its family with a datasheet), two of them, protected by
-     a sting lock and overload stops set at about 120 g. Its errors are ±0.05 g each at full scale; how they scale at
+     overload stops set at about 120 g and by changing balls with the sting lifted out (D-015, 2026-11-09). Its errors are ±0.05 g each at full scale; how they scale at
      0.3–2.3 g loads is unspecified and must be measured in build step 5.
 6. **Which published Cd value applies at the test Reynolds number? Answered 2026-11-02 ([D-009](DECISIONS.md),
    Accepted).**
@@ -390,24 +403,47 @@ Estimates are spread across these files; all are **calculations from assumed val
 11. **Fan speed control from the menu knob. No longer a goal (D-012, 2026-11-08):** there is no menu. The fan keeps
     its own controller, and the Arduino never switches mains. If the S6 is chosen, hobbyists report driving it with a
     10 V PWM signal on its UIS port (not confirmed; D-011).
-12. **Model attachment and sting lock.** How the sphere fixes to the sting without twisting the load cell (push fit
-    and set screw, or similar), and the form of the sting lock and overload stops. Decide in build step 1.
+12. **Model attachment and sting lock. Mostly answered 2026-11-09 ([D-015](DECISIONS.md)).** How the sphere fixes to
+    the sting without twisting the load cell, and the form of the sting lock and overload stops.
     **Proposed 2026-11-08:**
     - each Delrin ball is press-fit onto its own 1/8 in brass stem (Delrin cannot be glued), drilled to the centre
       with a printed jig and the owner's hand drill;
     - the stem slides into a 5/32 in sleeve at the top of the sting;
-    - a printed sting lock, and stops set at about 120 g.
+    - stops set at about 120 g.
+
+    **Owner, 2026-11-09 (D-015):** the sting lock is a printed mount on the cell's top end with a hand screw that
+    clamps the sting; the sting is lifted out to change balls, and the separate hold-still pin is dropped. Still to
+    size in build step 1: the hole fit and depth, the screw length (printed knob on a brass M3 screw, or a bought
+    thumb screw) and the stop gap.
 13. **Screens and honeycomb: bought or printed, and which mesh?** Added 2026-11-02. **Mostly answered 2026-11-09:**
     aluminium window insect screen (18 × 16 mesh, 66–69 % open, about $10 a roll), four or five screens, and a printed
     honeycomb (owner). Still open:
     - two or three diffuser screens (decide after measuring the delivered wire, 0.010 or 0.011 in);
     - where the first diffuser screen sits (at the fan outlet it costs about 24–28 Pa at 13 m/s);
     - whether to measure a sample screen's pressure drop at about 2 m/s, where the formulas are extrapolated;
-    - settling-chamber length: 150–200 mm or about 230–300 mm (§2).
+    - settling-chamber length: 150–200 mm, or about 380–390 mm plus frames with the chosen parts if spaced for full
+      decay (the 2026-11-02 figure of 230–300 mm assumed finer wire and cells; open question 15).
 14. **Plan now for a second, vertical load cell?** The owner's model-car downforce idea (2026-11-02) and airfoil lift
     (P3) both need one. Leaving room in the balance box costs little now. **2026-11-09:** a second TAL221 is being
     bought as a spare that could become the lift cell. The owner may never measure lift: a model car can instead be
-    studied with mist, with the sting hole plugged.
+    studied with mist, on the plain floor insert (D-014, 2026-11-09).
+15. **Findings from the drawing package (2026-11-09); settle at sizing.** Our layout reasoning, not measurements
+    ([docs/drawings/](docs/drawings/README.md), "Findings"):
+    - **settling-chamber length:** with the chosen window screen (500 wire diameters = 127–140 mm between screens) and
+      6 mm printed cells (≥ 150 mm after the honeycomb), full-decay spacing gives about 380–390 mm plus frames, not the
+      230–300 mm in §2; Mehta1979's 0.2 D spacing gives about 200 mm (open question 13);
+    - **taps meet the removable top panel:** E and M taps "one per wall" would put taps in the top panel (D-014), to be
+      unplugged at every swap. Options: taps only in fixed walls, or a panel that stops short of the stations;
+    - **the M-station floor tap** cannot sit at the sting hole; drawn 30 mm upstream on the sphere insert (offset TBD),
+      or the station uses three taps;
+    - **250 mm sections need splitting in cross-section:** with walls and flanges they are wider than the 256 mm bed,
+      so the settling chamber and contraction inlet are printed in halves or as flat panels (D-005 covers splits along
+      the flow only);
+    - **the balance box sets the tunnel's height:** at layout values it hangs to about 158 mm below the centre line,
+      lower than the chamber flanges (142 mm), so the test-section feet are the tallest and the fan stand must match;
+    - **I²C length places the Arduino box:** with the BME280 near the fan inlet and the SDP810 near the test section,
+      runs under about 1 m put the box near the middle of the tunnel;
+    - **turning the sting-lock screw twists the load cell** unless the mount is held (D-015).
 
 ## 11. Important measurements and findings
 
@@ -448,6 +484,9 @@ Worth noting:
   notes](resources/notes/TAL221.md)). 0.05 % FS is 0.05 g: 4 % of the drag at 13 m/s and 17 % at 6.5 m/s on the 3/4 in
   ball, if the full-scale figures held at gram loads. Its zero drifts 0.01 g/°C regardless of load. The calibration
   must measure the real behaviour at 0.2–3 g.
+- **Drawing the whole tunnel exposed seven layout gaps** (2026-11-09; open question 15; our reasoning). The two
+  largest: the settling chamber grows to about 380–390 mm with the chosen screen and honeycomb if spaced for full
+  decay, and the 250 mm sections must be split in cross-section to fit the printer bed.
 
 ## 12. Highest-priority next steps
 
@@ -455,8 +494,7 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-09-shopping-list.md#13-manual-git-commands-as-given-to-the-owner); the main
-     part is already pushed as `b08a151`);
+     [session log](docs/sessions/2026-11-09-drawing-package.md#13-manual-git-commands-as-given-to-the-owner));
    - report what is on hand (filament amounts; glue, epoxy, sandpaper, screws, rubber feet, duct tape, scoring knife,
      power strip): the "Check the house first" section of [docs/shopping_list.md](docs/shopping_list.md);
    - choose the fan, the S6 or the VEVOR, on budget (D-011), and record it as a new decision;
@@ -470,10 +508,14 @@ See [TODO.md](TODO.md) for the full list. In order:
 2. **Agent, build step 1 (sizing):** detail the 100 mm tunnel with the parts now chosen.
    - Fan-to-chamber diffuser: Mehta1977, with two or three window-screen positions.
    - Settling-chamber stack: printed honeycomb, two screens (open question 13).
-   - Contraction, test section with S/E/M tap stations and the probe guide, removable panels with the 8 × 2 mm
-     magnets, the removable balance module, sting shield, sting lock and stops.
+   - Contraction, test section with S/E/M tap stations and the probe guide, the removable top panel with the 8 × 2 mm
+     magnets, the two floor inserts (D-014), the removable balance module, sting shield, sting mount and lock
+     (D-015), and stops.
+   - Settle the drawing findings (open question 15), starting with the settling-chamber spacing and how the 250 mm
+     sections split.
    - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget), the fan pressure (with the screen
-     losses in [buy list](docs/buy_list.md) §3) and the filament amount.
+     losses in [buy list](docs/buy_list.md) §3) and the filament amount, and update the drawings: the numbers in
+     `docs/drawings/wtdata.py`, then `python docs/drawings/page.py` ([README](docs/drawings/README.md)).
 3. **Agent, with sizing:** read Barlow1999 ch. 4 and 6 (instruments, the contraction-pressure method, test-section
    calibration) and ch. 9–10 (solid blockage).
 4. **Owner:** download the remaining electronics datasheets (BME280, LM741/LM348/LMC6484) and the chosen fan's manual.
@@ -487,6 +529,7 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407` and `b08a151`). The account was `nuhshaheer-2007` until
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151` and
+  `0558370`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`
