@@ -1,34 +1,48 @@
 # Project Status
 
-**Last updated:** 2026-11-07
-**Last commit:** `36f39eb` (2026-11-03, the Mega 2560 board test), pushed to `origin/main`. `/catchup` reported
-`UP_TO_DATE` on 2026-11-05, and so did this session's `/wrap` on 2026-11-07.
-- The owner renamed the GitHub account to `nuhshaheer` on 2026-11-02, so the repo is now
-  https://github.com/nuhshaheer/wind-tunnel, and the local `origin` points there. The old URL redirects.
-- **Not committed yet:** the top-speed recommendation and fan search of 2026-11-05 (documentation only;
-  [session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md), with the commit commands in §13).
-**Current stage:** Planning / pre-build. The basic layout is decided, and parts are being chosen.
+**Last updated:** 2026-11-09
+**Last commit:** `d7f5cdf` (2026-11-07, the top-speed and fan-search session), pushed to `origin/main`. `/catchup`
+reported `UP_TO_DATE` on 2026-11-08, and so did this session's `/wrap` on 2026-11-09.
+- The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
+  URL redirects).
+- **Not committed yet:** the buy-list session of 2026-11-08/09 (documentation, three datasheets and a sketch;
+  [session log](docs/sessions/2026-11-09-buy-list.md), with the commit commands in §13).
+
+**Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
+([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Nothing has been ordered.**
 - Decided:
   - segmented 3D printing (D-005);
   - an open-circuit blower with the fan at the front (D-007);
   - a 100 mm × 100 mm test section (D-008);
-  - **the sphere-validation reference: Brown and Lawler (2003) Eq. (19) at each run's Re, ±10 %, plus a trend check
-    (D-009).**
-
-  Estimated length 1.15–1.3 m including a 6-inch fan.
-- **Proposed (agent, 2026-11-05), not yet confirmed by the owner: a top speed of 13 m/s**, with validation runs from
-  about 6.5 m/s. One 6-inch fan listing about 500 Pa maximum static pressure should just reach it, and a ±125 Pa
-  pressure sensor covers it (estimates; open question 3).
-- Thirteen references reviewed:
-  - tunnel design: Abdelhamed2014, Bell1988, Mehta1979, **Mehta1977**;
-  - flow conditioning: **Scheiman1981, Wieghardt1953**;
+  - the sphere-validation reference: Brown and Lawler (2003) Eq. (19) at each run's Re, ±10 %, plus a trend check
+    (D-009);
+  - **a 13 m/s target top speed, validation runs from about 6.5 m/s (D-010, 2026-11-08).** Not a must-have: 11–12 m/s
+    still validates, with less force;
+  - **no on-tunnel display or knob; all output on the laptop (D-012, 2026-11-08).**
+- **Open: the fan (D-011, Tentative since 2026-11-09).** The owner will choose on budget between the AC Infinity
+  CLOUDLINE S6 ($99; about 13.0–13.4 m/s, estimate) and the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s).
+- Parts chosen in the buy list (owner, 2026-11-08/09):
+  - one Sensirion SDP810-125Pa with a home-made brass total-pressure probe and wall taps;
+  - two TAL221 100 g load cells, a SparkFun HX711 board and an Adafruit BME280;
+  - 3/4 in and 1 in Delrin balls;
+  - aluminium window screen and a printed honeycomb.
+- Sixteen references reviewed:
+  - tunnel design: Abdelhamed2014, Bell1988, Mehta1979, Mehta1977;
+  - flow conditioning: Scheiman1981, Wieghardt1953;
   - blockage: Maskell1963, Cooper1998;
-  - sphere C_D: **Morrison2013, Roos1971, Brown2003**;
-  - the balance paper Weakly2024 and the HX711 datasheet.
+  - sphere C_D: Morrison2013, Roos1971, Brown2003;
+  - the balance paper Weakly2024;
+  - datasheets and notes: HX711, **SDP8xx, TAL221, and Sensirion2024**, an app note on correcting the SDP810 for
+    ambient pressure (2026-11-08).
 
   Five more are filed in `resources/` but not yet read.
-- Parts and tools on hand: the owner's ECE kit (from its packing list), an Elegoo Mega 2560 board (**working**: Blink
-  upload Verified 2026-11-02, §3), magnets, a multimeter, a soldering station and a bench power supply.
+- On hand:
+  - the ECE kit (from its packing list) and the Elegoo Mega 2560 (**working**: Blink upload Verified 2026-11-02, §3);
+  - 43 magnets (8 × 2 mm);
+  - tools: a multimeter, a soldering station, a bench power supply, 6 in digital calipers (battery may be dead), a
+    hand drill and a spirit level;
+  - for printing: PLA and PETG-CF (amounts unknown) and a hardened-steel nozzle;
+  - access to a school lab balance.
 - No hardware built, no data collected, no analysis code written.
 
 This is the authoritative snapshot of the project. Status labels used below:
@@ -54,10 +68,10 @@ scatter that much. Runs at several speeds must also show C_D rising with Re, abo
 | Load cell calibrated against known weights | Planned |
 | Sphere Cd validation run (deliverable) | Planned. Reference and pass criterion: [D-009](DECISIONS.md) (Accepted 2026-11-02) |
 | Sensor interface circuit, designed by the owner: circuit → breadboard test → PCB | Planned (owner, 2026-11-01; [TODO.md](TODO.md) P2) |
-| On-tunnel display with a knob and menu, like the Ender 3's | Planned (owner, 2026-11-01): show drag force and other readings, set the fan speed ([TODO.md](TODO.md) P2) |
+| On-tunnel display with a knob and menu, like the Ender 3's | **Dropped (owner, 2026-11-08; [D-012](DECISIONS.md)):** "this isnt a device", so all output goes to the laptop. Planned 2026-11-01 |
 | Airfoil tests at set angles of attack | Planned (after validation). Owner, 2026-11-01: **preset angles** instead of the 2026-10-31 dial-and-servo idea, because a pivot would ruin the force measurement ([TODO.md](TODO.md) P3) |
 | Flow visualization with a water-mist generator | Planned, optional, **last** (owner, 2026-10-31). Only a capped injection port and a test-section window are planned now ([TODO.md](TODO.md) P2) |
-| Model-car downforce with a second, vertical load cell | Tentative: the owner's idea (2026-11-02, "just an idea"), after validation. The same vertical cell would measure airfoil lift ([TODO.md](TODO.md) P3) |
+| Model-car downforce with a second, vertical load cell | Tentative: the owner's idea (2026-11-02, "just an idea"), after validation. The same vertical cell would measure airfoil lift ([TODO.md](TODO.md) P3). **2026-11-09:** lift may never be measured. If not, the owner will plug the sting hole, set a model car on the floor and study it with mist only (no force measurement) |
 
 ## 2. Wind tunnel configuration
 
@@ -67,16 +81,16 @@ unknowns are in [docs/experimental_setup.md](docs/experimental_setup.md). The ow
 
 | Item | State | Source |
 |---|---|---|
-| Construction | 3D-printed segments on the owner's Bambu Lab P1S, with alignment holes; glue Tentative. Still segmented at 100 mm: the 250 mm settling chamber leaves no room for walls on the 256 mm bed | [D-005](DECISIONS.md) (Accepted) |
+| Construction | 3D-printed segments on the owner's Bambu Lab P1S, with alignment holes. Still segmented at 100 mm: the 250 mm settling chamber leaves no room for walls on the 256 mm bed. **Proposed 2026-11-09:** bolted flanges (M3 heat-set inserts) with foam gasket rather than glue, so screen frames can come out; PLA shells (black for the contraction and test section) and PETG-CF for clamped or loaded parts; **printed feet under each section instead of a plywood base (owner)** | [D-005](DECISIONS.md) (Accepted), [buy list](docs/buy_list.md) §2 |
 | Tunnel type | **Accepted (owner, 2026-11-01): open-circuit blower, fan at the front.** Proposed order: fan → flexible coupling → wide-angle diffuser with screens → settling chamber → contraction → test section → **open exit** (no exit diffuser; Tentative) | [D-007](DECISIONS.md) |
 | Test section size | **Accepted (owner, 2026-11-01): 100 mm × 100 mm.** Proposed length 270–290 mm. Estimated total length 1.15–1.3 m with a 6-inch fan (owner's first target was about 1 m; more is allowed) | [D-008](DECISIONS.md), [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) |
-| Fan type | Proposed (agent, 2026-11-01): a 6-inch mixed-flow EC inline duct fan with a speed controller, on its own stand with a flexible coupling. Candidates in §3 | [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) |
-| Fan-to-chamber diffuser | Proposed (2026-11-02): area ratio 3.44 (152 mm round → 250 mm square), so the screens need K_sum ≥ 2.1. **Two screens (K ≈ 1.1–1.5 each) allow about 150–200 mm**; the minimum is about 115 mm with two screens, 195 mm with one and 335 mm with none. Below about 220 mm use curved walls or radiused inlet and outlet corners. Fillet the corners. **No flow straightener at the fan outlet**: the fan's swirl helps keep the diffuser attached | [Mehta1977](resources/notes/Mehta1977.md) (Figs. 5 and 7, §6.1; owner-checked) |
+| Fan type | A 6-inch inline duct fan with its own speed controller, on its own stand. **Model open (D-011, Tentative): AC Infinity CLOUDLINE S6 or VEVOR VV-GDFJ-AC6** (§3). Fan-to-tunnel joint (owner's design, 2026-11-08): the fan collar, wrapped in one layer of neoprene, slides snugly into a printed inlet sized from the measured collar; duct tape seals it | [D-011](DECISIONS.md), [buy list](docs/buy_list.md) §1 |
+| Fan-to-chamber diffuser | Proposed (2026-11-02): area ratio 3.44 (152 mm round → 250 mm square), so the screens need K_sum ≥ 2.1. **Two screens (K ≈ 1.1–1.5 each) allow about 150–200 mm**; the minimum is about 115 mm with two screens, 195 mm with one and 335 mm with none. Below about 220 mm use curved walls or radiused inlet and outlet corners. Fillet the corners. **No flow straightener at the fan outlet**: the fan's swirl helps keep the diffuser attached. **2026-11-09:** with aluminium window screen (K about 0.75–0.85 at the fan outlet), plan **three** diffuser screens if the delivered wire is 0.010 in; the first screen at the fan outlet costs about 24–28 Pa at 13 m/s, so consider placing it slightly into the diffuser | [Mehta1977](resources/notes/Mehta1977.md) (Figs. 5 and 7, §6.1; owner-checked), [buy list](docs/buy_list.md) §3 |
 | Contraction | Proposed: contraction ratio 6.25 (250 mm → 100 mm square), 5th-order-polynomial wall, about 250 mm long (1.0 × inlet) | [Bell1988](resources/notes/Bell1988.md), [Abdelhamed2014](resources/notes/Abdelhamed2014.md), [Mehta1979](resources/notes/Mehta1979.md) |
-| Settling chamber | Proposed: 250 mm square. A honeycomb (cell length 7–10 diameters, cells of about 2–3 mm, thin walls), then one or two screens at least 58 % open, then about 50 mm (0.2 D) to the contraction. Add a capped port after the last screen for optional mist injection. **Length 150–200 mm** with Mehta1979's 0.2 D spacing; **about 230–300 mm** if spaced for full turbulence decay: at least 500 wire diameters between screens (about 75–125 mm) and about 50 cell diameters from the honeycomb to the first screen (2026-11-02). Decide at sizing | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
-| Test section | Proposed: **closed** section with clear panels. Sphere at least about 0.5 D downstream of the contraction exit; sphere blockage about 3 % (at most 5 %); reference pressure reading at least 1.5√C upstream of the sphere; sphere at least 4√S from the test-section end. Together 2.7–2.9 h, i.e. 270–290 mm (estimate) | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md), [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed) |
-| Model access | **Owner's concept (2026-11-01):** one test chamber; the top and/or side acrylic panel comes off to swap the model, held by magnets (the owner's idea, preferred over a sliding panel). The agent's design points: pins or lips locate each panel; its inner face is flush with the wall; a foam gasket seals it; the floor (sting slot, balance) stays fixed; the pitot goes through a fixed wall; **no magnets near ferrous parts on the measured side of the balance**, and a non-magnetic sting | [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md) |
-| Balance and controls layout | Proposed (2026-11-01): only the load cell and HX711 in a closed box under the floor (the sketch's "electronics house"). Display, knob and Arduino in a separate box on a cable. A sting lock, overload stops and a low-twist model attachment protect the load cell during swaps. Optional (2026-11-02): leave room for a second, vertical load cell for airfoil lift or model-car downforce (P3) | [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#measurement-and-analysis-approach-proposed) |
+| Settling chamber | Proposed: 250 mm square. A honeycomb (cell length 7–10 diameters, cells of about 2–3 mm, thin walls), then one or two screens at least 58 % open, then about 50 mm (0.2 D) to the contraction. Add a capped port after the last screen for optional mist injection. **Length 150–200 mm** with Mehta1979's 0.2 D spacing; **about 230–300 mm** if spaced for full turbulence decay: at least 500 wire diameters between screens (about 75–125 mm) and about 50 cell diameters from the honeycomb to the first screen (2026-11-02). Decide at sizing. **2026-11-09:** two settling-chamber screens (four or five screens in all, per Mehta1977/1979); a **printed honeycomb** (owner; for example 6 mm hexagons, 0.4 mm walls, about 50 mm long), with straws as the upgrade; wall pressure taps (S) for the airspeed reference | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
+| Test section | Proposed: **closed** section with clear panels. Sphere at least about 0.5 D downstream of the contraction exit; sphere blockage about 3 % (at most 5 %); reference pressure reading at least 1.5√C upstream of the sphere; sphere at least 4√S from the test-section end. Together 2.7–2.9 h, i.e. 270–290 mm (estimate). **2026-11-08:** wall pressure taps at the entrance (E) and at the model station (M); a printed probe guide; a fixed, streamlined **sting shield** about 7.5 mm wide (5 mm hole for the 1/8 in sting) up to about 5 mm below the ball, because a bare sting would have about 115 % of the ball's drag | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md), [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed) |
+| Model access | **Owner's concept (2026-11-01):** one test chamber; the top and/or side acrylic panel comes off to swap the model, held by magnets (the owner's idea, preferred over a sliding panel). The agent's design points: pins or lips locate each panel; its inner face is flush with the wall; a foam gasket seals it; the floor (sting slot, balance) stays fixed; the pitot goes through a fixed wall; **no magnets near ferrous parts on the measured side of the balance**, and a non-magnetic sting. **2026-11-09:** the owner's 43 magnets (8 × 2 mm) suffice; 1/8 in acrylic | [session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md), [buy list](docs/buy_list.md) §4 |
+| Balance and controls layout | Proposed (2026-11-01): only the load cell and HX711 in a closed box under the floor (the sketch's "electronics house"). The Arduino in a separate box on a cable (no display or knob since D-012). A sting lock, overload stops and a low-twist model attachment protect the load cell during swaps. Optional (2026-11-02): leave room for a second, vertical load cell for airfoil lift or model-car downforce (P3). **2026-11-08:** the cell stands upright directly under the ball, the sting clamped only to its top end, its screw holes along the wind ([owner's sketch](docs/sketches/README.md)); the balance is a removable module so it can be laid on its side for calibration; each ball has its own 1/8 in stem that slides into a 5/32 in sleeve at the top of the sting (press-fit into the ball: Delrin cannot be glued) | [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#measurement-and-analysis-approach-proposed) |
 
 ## 3. Hardware and instrumentation
 
@@ -86,39 +100,39 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 
 | Item | Availability | Notes |
 |---|---|---|
-| Bambu Lab P1S 3D printer | On hand (owner has access, stated 2026-10-30) | Build volume 256 × 256 × 256 mm (manufacturer spec). Filament unknown |
+| Bambu Lab P1S 3D printer | On hand (owner has access, stated 2026-10-30) | Build volume 256 × 256 × 256 mm (manufacturer spec). **2026-11-09 (owner):** PLA and PETG-CF on hand (amounts unknown) and a hardened-steel nozzle, so PETG-CF can be printed |
 | ECE2010 lab kit (WPI) | On hand, per its packing list (owner, 2026-11-01). Quantities are the packed ones, not counted | Includes LM741, LM348 and LMC6484 op-amps, LM311, 555, LM317T and LM7805CT regulators, transistors, MOSFETs, potentiometers (1 × 10 kΩ, 2 × 1 kΩ, 1 × 100 kΩ, 1 × 1 MΩ), resistors, capacitors, breadboard and jumper wires. No multimeter, soldering iron or power supply in the list (the owner has them separately) |
-| Tools | On hand (owner, 2026-11-01): multimeter, soldering station, bench power supply, access to a workbench | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen |
+| Tools | On hand (owner): multimeter, soldering station, bench power supply, access to a workbench (2026-11-01); **6 in (150 mm) digital calipers** (battery thought dead; LR44/SR44 size), a **hand drill** and a **spirit level** (2026-11-08); access to a **school lab balance** (2026-11-08) | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen. Tools still to buy (tube cutter, drill bits, etc.): [buy list](docs/buy_list.md) §10 |
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
 | Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor plus the display and knob |
 | USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
-| Blower / fan | To buy; not chosen. The owner is looking for something cheaper than the Cloudline S6 (2026-11-05) | **Requirement (corrected 2026-11-05):** for the proposed 13 m/s, about 275 CFM against 127–152 Pa (estimate). On a straight-line fan curve that needs about 400 CFM free air **and** a listed maximum static pressure of about 410–490 Pa or more; more free-air flow allows less pressure (500 CFM: about 280–340 Pa). Better still, a published fan curve showing at least 275 CFM at 150 Pa (0.6 inH₂O). The earlier "300–500 Pa" was wrong at its low end: 400 CFM and 300 Pa give only about 11.5–12 m/s.<br>Candidates (prices and specs from web-search results, 2026-11-05; pages not opened):<br>• **AC Infinity Cloudline S6**: 402 CFM, 503 Pa listed, EC motor; $99 on AC Infinity's site, $119–175 elsewhere; about 320 mm long; about 13.1–13.7 m/s (estimate). The only candidate whose listed figures meet 13 m/s.<br>• **VIVOSUN AeroZesh S6**: mixed-flow EC with PWM control, 405 CFM, 35 W, 3100 rpm, 45 dBA, from about $63. **Static pressure still not published** (searched 2026-11-05). Best value if VIVOSUN gives about 450 Pa or more.<br>• **Two Delta PFR1212UHE-SP00** 120 mm 12 V server fans (228.6 CFM and 300 Pa each, 2.7 A at 12 V, PWM input and speed output, 65.5 dBA each; about $30 each from the price of a sibling model; about 12 m/s for the pair, estimate).<br>Unsuitable or impossible to size:<br>• the **VEVOR 6-inch 400 CFM AC fan** the owner found (2026-11-05): 60 W, 2600 rpm, $84.49 on eBay, no pressure on its listing. A Lowe's listing that probably matches gives 300 Pa, so about 11–12 m/s at best. Its "34 dB" is unlikely at 400 CFM;<br>• **Skyshalo 6-inch** ($53.89, AC; the same listing wording as the VEVOR, so probably the same fan, our inference);<br>• **HFS 6-inch** ($62.49, 120 W, 65 dB, no pressure listed);<br>• VIVOSUN 6-inch "booster" fans ($32–39, axial, no pressure listed);<br>• the 120 mm Qirssyn fan from Aki's video (about 95 CFM).<br>Estimates in [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed) |
-| Ducting | To buy (may be printed, D-005) | |
-| Honeycomb + screens | To buy; not chosen | Proposed (2026-11-02):<br>• Screens: metal square-mesh, at least 58 % open, for example 20–30 wires/in with 0.19–0.23 mm wire (the sizes Scheiman tested). At the settling chamber's roughly 2 m/s, K is about 1.1–1.8, about twice the high-speed value (Wieghardt's formula, extrapolated), and the wires shed no eddies (u₁d/βν below 85).<br>• Honeycomb: thin-walled (paper, aluminium or drinking straws), cell length 7–10 diameters. A 3D-printed honeycomb has thick walls (about 25 % blocked at 0.4 mm walls on 3 mm cells; our arithmetic).<br>Sources: [Scheiman1981](resources/notes/Scheiman1981.md), [Wieghardt1953](resources/notes/Wieghardt1953.md), [Mehta1977](resources/notes/Mehta1977.md) |
-| Pitot tube | To buy | Pitot-static (two ports: total and static). A drone probe alone is about $5–20. The owner found an FPVDrone PX4 airspeed kit ($49.99): its probe is suitable, its sensor is not (next row). Placement during force runs is open (question 10) |
-| Differential pressure sensor | To buy | Model and range not chosen. Candidates: Sensirion SDP810-125Pa or -500Pa (I²C, 3–5.5 V supply per distributor listings, so it suits the 5 V Mega; about $25–45), SDP31/SDP32 (3.3 V, surface-mount; the SparkFun SDP31 breakout is retired) and Honeywell TruStability HSC ±1 inH₂O. **Unsuitable:** drone airspeed modules built on the TE MS4525DO (±1 psi, about 29× our largest q). Datasheets not yet obtained. **If the 13 m/s top speed is confirmed:** the SDP810-125Pa (full scale at 14.4 m/s; q = 101 Pa at 13 m/s; agent, 2026-11-05) |
-| Load cell + HX711 | To buy | Capacity unknown. Expected sphere drag in the 100 mm section: about 0.9 gf at 10 m/s and 2.0 gf at 15 m/s (estimate). Buy a load cell that has a datasheet (rated output, creep, safe overload), and plan overload protection for model swaps (§2). Prices from Weakly2024 (2024): TAL220 $9.50, SparkFun HX711 $10.95. HX711 datasheet reviewed ([notes](resources/notes/HX711.md)) |
-| Ambient pressure / temperature sensor | Not chosen | Needed for air density. Candidate: Bosch BME280 on a 5 V-compatible breakout. A BMP280 (no humidity) would also serve for density |
-| Display and knob | To buy (proposed) | For the menu (owner, 2026-11-01). Proposed: a 20×4 character LCD with an I²C adapter plus a push-button rotary encoder (KY-040 module or EC11). Typical prices, not checked: LCD $8–12, encoder $1–3. Upgrade option: a 128×64 graphic LCD like the Ender 3's ($10–20) for live graphs |
+| Blower / fan | To buy; **open between two (D-011, Tentative since 2026-11-09); the owner will choose on budget** | • **AC Infinity CLOUDLINE S6, model AI-CLS6**: $99.00; maker's page (read 2026-11-08): 425 CFM, 503 Pa, PWM-controlled EC motor, 10 speed levels, 32.0 cm long. Retailers list 402 CFM. About 13.0–13.4 m/s with five window screens (straight-line estimate; 12.3–12.7 at 90 % of the curve).<br>• **VEVOR 6-inch inline duct fan, model VV-GDFJ-AC6**: $53.90 (owner, 2026-11-09); seller's figures 400 CFM, 300 Pa, AC motor with a speed controller, 60 W. About 11.3 m/s (10.8). Its "34 dB" claim is unlikely, so its 300 Pa may be optimistic.<br>Both validate; the VEVOR gives about 73 % of the S6's force at top speed. Earlier candidates and the unsuitable fans: [2026-11-07 log](docs/sessions/2026-11-07-top-speed-and-fan-search.md). Estimates: [buy list](docs/buy_list.md) §1 |
+| Fan-to-tunnel joint | Owner's design (2026-11-08) | The fan's collar, wrapped in one layer of 1/16 in 40A neoprene (to buy, $13.78 a pair), slides snugly into a printed inlet sized from the measured collar (paper strip ÷ π); duct tape seals it. The fan stands on its own feet and never touches the print. [Buy list](docs/buy_list.md) §1 |
+| Honeycomb + screens | Screens to buy; honeycomb printed | **Screens (proposed 2026-11-09): aluminium window insect screen, "bright aluminum", 18 × 16 mesh**, wire about 0.010–0.011 in, 66–69 % open; about $9.50 a 36 × 84 in roll (Home Depot). Four or five screens (two or three in the diffuser, two in the settling chamber; Mehta1977/1979, Scheiman1981). Rejected: McMaster 30 × 30 filter mesh (0.012–0.013 in wire, 37–41 % open: about 11.8 m/s top speed and patchy flow), Online Metals 24 × 24 × 0.014 in (44 %), McNichols perforated sheet, a TWP quote of about $200, Zoro's $65.59 sheet (too expensive). **Honeycomb: printed (owner, 2026-11-08)**, for example 6 mm hexagons with 0.4 mm walls, about 50 mm long; straws as the upgrade. Details: [buy list](docs/buy_list.md) §3 |
+| Pitot tube | **Made in-house (owner, 2026-11-08)** | A 1/8 in brass total-pressure tube facing upstream, with wall static taps (four per station) at three stations: S (settling chamber), E (test-section entrance), M (model station). Probe − M gives q at the model position (flow map, calibration); S − E gives the airspeed during force runs, calibrated once against the probe (open question 10). Brass tube, 1/8 in silicone tubing and barbed tees to buy ([buy list](docs/buy_list.md) §5). The Dwyer 166-6 ($140–167) was not chosen |
+| Differential pressure sensor | To buy: **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
+| Load cell + HX711 | To buy: **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
+| Ambient pressure / temperature sensor | To buy: **Adafruit BME280 (2652)**, $14.95 | Regulator and level shifting for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. Check the chip ID (0x60, not a BMP280's 0x58) on arrival |
+| Display and knob | **Not needed (D-012, owner, 2026-11-08)** | All output goes to the laptop (the Arduino IDE's Serial Plotter for a live view) |
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
-| Magnets | On hand (owner, 2026-11-01) | Type, size and strength unknown. Planned for the removable panels (§2) |
-| Acrylic sheet | To buy (proposed) | For the window panels: 3–5 mm thick, cast acrylic (agent's proposal) |
+| Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable panels (about 8 per panel) |
+| Acrylic sheet | To buy: clear acrylic, 1/8 in (3.2 mm), 12 × 24 in, $10.45 cast (Online Metals) | For the window panels; cut by scoring and snapping |
 | Mist or smoke generator (optional visualization) | Not decided; deferred to the end | The owner asked (2026-11-01) for one that makes thick smoke. Options compared in [TODO.md](TODO.md) P2; the agent's first choice is an ultrasonic mist maker |
 
-Budget: no fixed budget (owner, 2026-11-01). Rough total for the electronics plus a 6-inch fan: about $120–200,
-depending mostly on the fan (agent's sum of the prices above). The load cell and HX711 are about $20 of it.
-Filament, screens, honeycomb and acrylic are extra.
+Budget: no fixed budget (owner, 2026-11-01), but price-conscious. **The full buy list,
+[docs/buy_list.md](docs/buy_list.md), totals about $315–505 before tax and shipping** (2026-11-09; the low end
+with the VEVOR fan), plus up to about $100 for items that may already be in the house. Nothing has been ordered.
 
 ## 4. Software and tooling
 
 | Component | Status |
 |---|---|
-| Data acquisition firmware | Planned; not started |
+| Data acquisition firmware | Planned; not started. Since D-012 (2026-11-08): log raw counts over USB to the laptop, which is also the live view (the Arduino IDE's Serial Plotter to start); no display or knob code. SDP810 commands and scale factor are in the [SDP8xx notes](resources/notes/SDP8xx.md) |
 | Analysis scripts (`analysis/`) | Planned; not started |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b` and `36f39eb`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb` and `d7f5cdf`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -128,7 +142,8 @@ Dependencies: Python 3 standard library only, developed with Python 3.13 on Wind
 - Arduino IDE 2.3.10 with the Arduino AVR Boards core 1.8.8, installed by the owner on 2026-11-02 (versions read from
   the program file and the core's folder). `arduino-cli` is not installed.
 - Agents reading PDFs used `pdftotext` (Git for Windows) and PyMuPDF 1.28.2, which is installed on the owner's PC
-  (Python 3.11). Neither is a project dependency.
+  (Python 3.11). Neither is a project dependency. Claude Code's own PDF page rendering needs `pdftoppm` (poppler),
+  which is not installed (2026-11-08), so render pages with PyMuPDF instead.
 
 ## 5. Current experiments
 
@@ -187,7 +202,16 @@ None. No experiment has been run.
     300 Pa give only about 11.5–12 m/s, so 13 m/s needs about 500 Pa at 400 CFM.
   - Assessed the VEVOR 6-inch AC fan the owner found (unsuitable as listed), then searched for cheaper fans. None
     with a published pressure figure meets 13 m/s for less than the Cloudline S6's $99 (§3).
-  - Not committed yet. See [the session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md).
+  - Committed and pushed as `d7f5cdf`. See [the session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md).
+- 2026-11-08/09: the buy list (documentation only; nothing bought or built).
+  - Wrote [docs/buy_list.md](docs/buy_list.md) with the owner, section by section: everything the tunnel needs, what
+    each part does, prices seen and what is on hand. Total about $315–505.
+  - Recorded D-010 (13 m/s target), D-011 (fan: the S6, reopened the next day as S6 or VEVOR) and D-012 (no display
+    or knob).
+  - Filed and reviewed three documents with notes: the SDP8xx and TAL221 datasheets, and Sensirion's
+    signal-compensation note, which shows that SDP810 readings need the ×966 mbar / p_amb correction.
+  - Filed the owner's load-cell sketch in `docs/sketches/`.
+  - Not committed yet. See [the session log](docs/sessions/2026-11-09-buy-list.md).
 
 ## 7. Data and analyses
 
@@ -214,14 +238,23 @@ Estimates are spread across these files; all are **calculations from assumed val
 - [resources/notes/Mehta1977.md](resources/notes/Mehta1977.md),
   [Scheiman1981.md](resources/notes/Scheiman1981.md) and [Wieghardt1953.md](resources/notes/Wieghardt1953.md):
   diffuser length and screen counts, screen K at low speed, and settling-chamber spacings.
+- [docs/buy_list.md](docs/buy_list.md) (2026-11-08/09):
+  - top speed of each fan with the real screen losses;
+  - K and pressure loss of each candidate mesh;
+  - sting drag with and without a shield, and load-cell error sizes at gram loads;
+  - the inclined-manometer resolution, and straw and filament counts.
+
+  Scripts in the [session log](docs/sessions/2026-11-09-buy-list.md#5-commands-and-scripts-executed).
 
 ## 9. Bugs, equipment issues, blockers
 
-- **Blocked:** all physical work waits on choosing and buying hardware (fan, pressure sensor, load cell).
-  - The fan choice and the pressure-sensor range wait on the owner confirming the target top speed (13 m/s proposed
-    2026-11-05, open question 3) and choosing a fan (§3).
-  - The owner wants a fan cheaper than the Cloudline S6 ($99). The cheaper EC candidate, the AeroZesh S6, has no
-    published static pressure, so it cannot be checked yet.
+- **Blocked:** all physical work waits on buying hardware. Nothing has been ordered (2026-11-09).
+  - The buy list is complete ([docs/buy_list.md](docs/buy_list.md)).
+  - Only the fan waits on a decision: S6 or VEVOR, on the owner's budget (D-011).
+  - The electronics (SDP810, two TAL221, HX711, BME280) and most small parts do not depend on the fan or on the
+    sizing, and can be ordered now.
+  - The owner will check on 2026-11-10 which small items are already in the house (filament amounts, glue, sandpaper,
+    screws, rubber feet, duct tape).
   - The microcontroller is no longer a blocker: the board works (2026-11-02, §3).
 - Resolved: the owner committed the 10.2 MiB sketch PDF uncompressed in `8fda08f` (under D-004's 25 MB limit). It stays
   in Git history.
@@ -229,7 +262,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It has not recurred since: 20 tests in 7.9–11.3 s at every run from 2026-11-02 to 2026-11-07.
+  It has not recurred since: 20 tests in 7.9–11.3 s at every run from 2026-11-02 to 2026-11-09.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -247,17 +280,24 @@ Estimates are spread across these files; all are **calculations from assumed val
 
 1. **Microcontroller: answered for the board itself.** The owner's Elegoo Mega 2560 (5 V logic) works: the main chip
    reads ATMEGA2560 and a modified Blink uploaded (2026-11-02, §3). Still needed:
-   - a check that the chosen pressure sensor and BME280 board work at 5 V on its I²C pins (20/21);
+   - a check that the chosen pressure sensor and BME280 board work at 5 V on its I²C pins (20/21). On paper both do:
+     the SDP810 takes 2.7–5.5 V with I²C up to VDD + 0.3 V (datasheet), and the Adafruit BME280 has level shifting.
+     To confirm on the breadboard;
    - minor: whether the board is marked "R3", which tells whether SDA/SCL are also brought out next to AREF.
 2. **What is the op-amp signal conditioning for?** Proposed (agent, 2026-11-01): nothing in the measurement chain.
    - The HX711, a digital pressure sensor and the BME280 need no analog conditioning, and commercial digital sensors
      will be more accurate than an analog front end built here.
-   - The owner's circuit design work goes into the interface board instead: connectors, I²C pull-ups, decoupling,
-     the display and knob headers (the servo and angle dial are no longer needed with preset angles). See TODO P2.
+   - The owner's circuit design work goes into the interface board instead: connectors, I²C pull-ups, decoupling.
+     No display or knob headers since D-012; no servo or angle dial with preset angles. See TODO P2.
+   - **Owner's plan (2026-11-09):** breadboard first, then a PCB with female header sockets for the modules and DIP
+     sockets for any chips such as op-amps, so parts plug in and can be swapped.
    - If an analog sensor is ever used, the kit's LMC6484 suits a single 5 V supply better than the LM741, which
      needs split supplies (TI calls the LMC6484 rail-to-rail; its datasheet is not yet in `resources/`).
-3. **Top airspeed and sphere diameter.** The test section is 100 mm (D-008), and the length target is about 1 m,
-   with more allowed. Still open:
+3. **Top airspeed and sphere diameter. Answered 2026-11-08: 13 m/s target (D-010, Accepted); 3/4 in and 1 in Delrin
+   balls (owner).** The fan that sets the real top speed is open (D-011): about 13.0–13.4 m/s with the S6, about
+   11.3 m/s with the VEVOR (estimates). 13 m/s is not a must-have: at 11 m/s the force is 71 % of that at 13 m/s and
+   the predicted C_D rise is 7.8 % instead of 9.2 % (3/4 in ball at 6.5 m/s to the 1 in ball at the top speed). The
+   history:
    - the owner's target top speed. **Proposed (agent, 2026-11-05): 13 m/s**, with validation runs from about
      6.5 m/s. Reasons (estimates; [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)):
      - the trend check gains little above it. Eq. (19) rises 8.7 % from the 20 mm sphere at 6.5 m/s to the 25 mm
@@ -268,14 +308,17 @@ Estimates are spread across these files; all are **calculations from assumed val
 
      The cost: drag grows with V², so 15 m/s would give about 35 % more force (1.9 instead of 1.4 gf on the 20 mm
      sphere). If the real fan reaches only 11–12 m/s, the validation still works (about 1.0 gf and a 7 % rise at
-     11 m/s). The owner asked follow-up questions about the fan but has not confirmed the speed;
+     11 m/s). The owner confirmed it on 2026-11-08 (D-010);
    - the sphere diameters: proposed about 20 mm (3.1 % blockage) and 25 mm (4.9 %) for the two-size check.
-     Run the two sizes at **matched Re**, not matched speed: at the same speed the 25 mm sphere sits at 25 % higher Re
-     and about 2 % higher reference C_D (D-009).
+     **Chosen 2026-11-08: 3/4 in (19.05 mm, 2.85 %) and 1 in (25.4 mm, 5.07 %) Delrin balls**, because inch balls are
+     easier to buy in the US. Run the two sizes at **matched Re**, not matched speed: the 3/4 in ball at 13 m/s
+     matches the 1 in ball at 9.75 m/s (D-009).
    - D-009's trend check needs runs over a range of speeds, so the fan should run steadily at low speed as well.
      The proposed low end is about 6.5 m/s (2026-11-05): below that the 20 mm sphere's drag is only 0.2–0.3 gf and q
      about 15–25 Pa, so fixed zero errors dominate.
-4. **Pressure-sensor range.** Dynamic pressure is only about 15–240 Pa for 5–20 m/s (estimate).
+4. **Pressure-sensor range. Answered 2026-11-08: one SDP810-125Pa** (owner chose one sensor over two). Its gain error
+   (3 % of reading) is to be calibrated against a home-made inclined water manometer; every reading gets the
+   ×966 mbar / p_amb correction. Background: dynamic pressure is only about 15–240 Pa for 5–20 m/s (estimate).
    - Candidates: ±125 Pa (SDP810-125Pa, SDP32), ±249 Pa (Honeywell HSC ±1 inH₂O) and ±500 Pa (SDP810-500Pa, SDP31).
    - Drone airspeed sensors (MS4525DO, ±1 psi) are ruled out: at 10 m/s, q is 0.44 % of their span (our arithmetic).
    - Choose after the top speed. With the proposed 13 m/s: ±125 Pa (the SDP810-125Pa).
@@ -285,7 +328,10 @@ Estimates are spread across these files; all are **calculations from assumed val
      capacity (§2).
    - The load cell also carries the sphere's support (sting/mount), whose drag must be measured and subtracted.
    - A smaller cell lowers the HX711 noise in grams but has less overload margin
-     ([HX711 notes](resources/notes/HX711.md)). Not chosen.
+     ([HX711 notes](resources/notes/HX711.md)).
+   - **Answered 2026-11-08: the TAL221 100 g** (the smallest in its family with a datasheet), two of them, protected by
+     a sting lock and overload stops set at about 120 g. Its errors are ±0.05 g each at full scale; how they scale at
+     0.3–2.3 g loads is unspecified and must be measured in build step 5.
 6. **Which published Cd value applies at the test Reynolds number? Answered 2026-11-02 ([D-009](DECISIONS.md),
    Accepted).**
    - The reference is Brown and Lawler (2003) Eq. (19) at each run's Re: about 0.42–0.445 for Re 1.3–2.5×10⁴. The band
@@ -303,11 +349,16 @@ Estimates are spread across these files; all are **calculations from assumed val
      two sphere sizes;
    - θ for a sphere (1.85–2.8 across the cases in the sources);
    - Anthoine2004 (cylinders) not reviewed.
-9. **What else is on hand? Mostly answered.** The ECE kit, a multimeter, a soldering station, a bench power supply
-   and a workbench are recorded (2026-11-01). Still unknown:
+9. **What else is on hand? Mostly answered.** Recorded:
+   - 2026-11-01: the ECE kit, a multimeter, a soldering station, a bench power supply and a workbench;
+   - 2026-11-08/09: 6 in calipers, a hand drill, a spirit level, 43 magnets (8 × 2 mm), PLA, PETG-CF, a
+     hardened-steel nozzle, and access to a school lab balance.
+
+   Still unknown:
    - other electronics the owner thinks they have;
    - the bench supply's maximum voltage and current (needed only for a 12 V DC fan);
-   - the magnets' type and size.
+   - the filament amounts, and the household items (glue, sandpaper, screws, rubber feet, duct tape). The owner will
+     report these on 2026-11-10.
 10. **Where is the airspeed reference measured during force runs?** A pitot directly ahead of the sphere would put its
     wake on it. Options:
     - a probe off the centreline;
@@ -315,20 +366,32 @@ Estimates are spread across these files; all are **calculations from assumed val
 
     Either way, at least 1.5√C upstream of the sphere ([Cooper1998](resources/notes/Cooper1998.md)). Check Barlow1999
     ch. 6 (test-section calibration).
-11. **Fan speed control from the menu knob.** The 6-inch duct fans plug into the wall and come with their own
-    controller. The owner's menu can set the fan speed only if the fan has a documented low-voltage control input
-    (PWM or 0–10 V), or with the Delta 12 V PWM fans on the bench supply. Proposed: the fan's own controller for the
-    first build; the Arduino never switches mains.
+
+    **Proposed 2026-11-08, accepted in the owner's choices:** the contraction method. Wall-tap rings in the settling
+    chamber (S) and at the test-section entrance (E) give Δp = q × (1 − 1/6.25²) = 0.974 q in theory. The real factor
+    is calibrated against a home-made total-pressure probe and wall taps at the model station (M) in the empty tunnel.
+    One sensor reads both pairs by swapping tubes at two couplers. Still to confirm in Barlow1999 ch. 4 and 6.
+11. **Fan speed control from the menu knob. No longer a goal (D-012, 2026-11-08):** there is no menu. The fan keeps
+    its own controller, and the Arduino never switches mains. If the S6 is chosen, hobbyists report driving it with a
+    10 V PWM signal on its UIS port (not confirmed; D-011).
 12. **Model attachment and sting lock.** How the sphere fixes to the sting without twisting the load cell (push fit
     and set screw, or similar), and the form of the sting lock and overload stops. Decide in build step 1.
-13. **Screens and honeycomb: bought or printed, and which mesh?** Added 2026-11-02.
-    - Bought or printed honeycomb: a printed one has thick walls.
-    - Screen mesh and open area: at least 58 % open.
-    - Whether to measure a sample screen's pressure drop at about 2 m/s, where the formulas are extrapolated.
-    - Settling-chamber length: 150–200 mm or about 230–300 mm (§2).
+    **Proposed 2026-11-08:**
+    - each Delrin ball is press-fit onto its own 1/8 in brass stem (Delrin cannot be glued), drilled to the centre
+      with a printed jig and the owner's hand drill;
+    - the stem slides into a 5/32 in sleeve at the top of the sting;
+    - a printed sting lock, and stops set at about 120 g.
+13. **Screens and honeycomb: bought or printed, and which mesh?** Added 2026-11-02. **Mostly answered 2026-11-09:**
+    aluminium window insect screen (18 × 16 mesh, 66–69 % open, about $10 a roll), four or five screens, and a printed
+    honeycomb (owner). Still open:
+    - two or three diffuser screens (decide after measuring the delivered wire, 0.010 or 0.011 in);
+    - where the first diffuser screen sits (at the fan outlet it costs about 24–28 Pa at 13 m/s);
+    - whether to measure a sample screen's pressure drop at about 2 m/s, where the formulas are extrapolated;
+    - settling-chamber length: 150–200 mm or about 230–300 mm (§2).
 14. **Plan now for a second, vertical load cell?** The owner's model-car downforce idea (2026-11-02) and airfoil lift
-    (P3) both need one. Leaving room in the balance box costs little now. The owner said it was "just an idea"; no
-    decision yet.
+    (P3) both need one. Leaving room in the balance box costs little now. **2026-11-09:** a second TAL221 is being
+    bought as a spare that could become the lift cell. The owner may never measure lift: a model car can instead be
+    studied with mist, with the sting hole plugged.
 
 ## 11. Important measurements and findings
 
@@ -354,6 +417,21 @@ Worth noting:
   - at about 2 m/s the settling-chamber screens have about twice their high-speed K and make no turbulence of their
     own;
   - a honeycomb followed by one screen gave far better turbulence reduction than screens alone.
+- **The SDP810 reads about 5 % high near sea level unless corrected** (2026-11-08;
+  [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Sensirion's thermal sensors are calibrated at 966 mbar,
+  and direct differential-pressure readings must be multiplied by 966 mbar / p_amb (×0.95 at 1013 mbar). Not in the
+  datasheet; the BME280 supplies p_amb.
+- **Screens cost more fan pressure than first assumed** (2026-11-08/09; our arithmetic, [buy list](docs/buy_list.md)
+  §3). Four or five good screens lose about 33–48 Pa at 13 m/s, against the 18 Pa (0.18 q₀) taken from Mehta1979's
+  typical figures. Most of it is the screen at the fan outlet, where the air is fastest. The fan then needs about
+  1.55 q₀. A 41 %-open mesh would lose about 142 Pa and cut the S6's top speed to about 11.8 m/s.
+- **A bare sting would weigh as much as the sphere in the drag reading** (2026-11-08; our arithmetic). A 1/8 in
+  sting with 40 mm in the flow under a 3/4 in ball has about 115 % of the ball's drag (cylinder C_D 1.1 assumed). A
+  fixed shield leaving about 5 mm exposed cuts it to about 0.1–0.2 gf.
+- **The load cell's error figures are as large as the signal at low speed** (2026-11-08; [TAL221
+  notes](resources/notes/TAL221.md)). 0.05 % FS is 0.05 g: 4 % of the drag at 13 m/s and 17 % at 6.5 m/s on the 3/4 in
+  ball, if the full-scale figures held at gram loads. Its zero drifts 0.01 g/°C regardless of load. The calibration
+  must measure the real behaviour at 0.2–3 g.
 
 ## 12. Highest-priority next steps
 
@@ -361,33 +439,36 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md#13-manual-git-commands-as-given-to-the-owner));
-   - confirm or change the proposed 13 m/s top speed (open question 3);
-   - choose the fan (§3). The agent's advice (2026-11-05): first ask VIVOSUN for the AeroZesh S6's maximum static
-     pressure or fan curve (the agent offered to draft the message). Buy it if the figure is about 450 Pa or more;
-     otherwise buy the Cloudline S6 ($99 on AC Infinity's site). A used or open-box S6 is fine if its bearings run
-     quiet. For the Delta pair, give the bench supply's maximum voltage and current;
-   - answer the settling-chamber spacing question (open question 13), asked 2026-11-02;
-   - list any other electronics and the magnets' type and size (open question 9);
-   - confirm or change D-003, D-004, D-006 and D-007's open exit;
-   - optionally, say whether to leave room for a second load cell (open question 14).
-2. **Agent, build step 1:** once the owner confirms the top speed, record it as D-010 (and under "Requirements and
-   constraints" in PROJECT_BACKGROUND.md). Then detail the 100 mm tunnel. All the design inputs are now reviewed.
-   - Fan-to-chamber diffuser: Mehta1977.
-   - Settling-chamber stack: Scheiman1981 and Mehta1977 (open question 13).
-   - Contraction, test section, removable panels, balance box, sting lock and overload stops.
-   - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) and the fan pressure, using the
-     low-speed screen K from Wieghardt1953.
-3. **Agent, with sizing:** read Barlow1999 ch. 9–10 (solid blockage) and ch. 6 (reference-pressure placement and
-   test-section calibration).
-4. **Owner:** download the electronics datasheets ("Wanted" items 1–4 in [resources/README.md](resources/README.md),
-   now including the SDP8xx and LMC6484), and the chosen fan's datasheet or fan curve.
-5. Choose the pressure sensor, load cell, screens and honeycomb from step 2's numbers, then buy.
+     [session log](docs/sessions/2026-11-09-buy-list.md#13-manual-git-commands-as-given-to-the-owner));
+   - report what is on hand (filament amounts; glue, epoxy, sandpaper, screws, rubber feet, duct tape, scoring knife,
+     power strip) so the buy list can be finished;
+   - choose the fan, the S6 or the VEVOR, on budget (D-011), and record it as a new decision;
+   - order the parts in [docs/buy_list.md](docs/buy_list.md). The electronics and small parts can go now;
+   - check the values read from the three new datasheets (checklists at the end of the
+     [SDP8xx](resources/notes/SDP8xx.md), [Sensirion2024](resources/notes/Sensirion2024.md) and
+     [TAL221](resources/notes/TAL221.md) notes);
+   - still open from before: the settling-chamber spacing (open question 13), the bench supply's rating, and
+     confirming D-003, D-004, D-006 and D-007's open exit.
+2. **Agent, build step 1 (sizing):** detail the 100 mm tunnel with the parts now chosen.
+   - Fan-to-chamber diffuser: Mehta1977, with two or three window-screen positions.
+   - Settling-chamber stack: printed honeycomb, two screens (open question 13).
+   - Contraction, test section with S/E/M tap stations and the probe guide, removable panels with the 8 × 2 mm
+     magnets, the removable balance module, sting shield, sting lock and stops.
+   - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget), the fan pressure (with the screen
+     losses in [buy list](docs/buy_list.md) §3) and the filament amount.
+3. **Agent, with sizing:** read Barlow1999 ch. 4 and 6 (instruments, the contraction-pressure method, test-section
+   calibration) and ch. 9–10 (solid blockage).
+4. **Owner:** download the remaining electronics datasheets (BME280, LM741/LM348/LMC6484) and the chosen fan's manual.
+5. **When parts arrive (owner):** the first equipment checks:
+   - the load cells' baseline resistances and zero;
+   - the BME280 chip ID;
+   - the SDP810 zero with the tubes capped;
+   - weighing the calibration pieces on the school balance.
 
 ## 13. Repository
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b` and `36f39eb`). The account was `nuhshaheer-2007` until
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb` and `d7f5cdf`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

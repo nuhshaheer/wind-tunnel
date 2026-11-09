@@ -1,9 +1,11 @@
 # Wind Tunnel
 
-> **Status (2026-11-02): planning / pre-build.** Nothing is built and no data has been collected yet.
+> **Status (2026-11-09): planning / pre-build.** Nothing is built or ordered, and no data has been collected yet.
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
 > The sphere's reference C_D is now matched to the test Reynolds number: about 0.42–0.445 at the planned Re, ±10 %
 > ([DECISIONS.md](DECISIONS.md) D-009). The "~0.47" below is from the original plan.
+> The hardware list below is also the original plan: the current, complete parts list is
+> [docs/buy_list.md](docs/buy_list.md).
 
 ## Goal
 Measure drag, and prove the tunnel reads true.
@@ -53,6 +55,7 @@ DECISIONS.md              Chronological technical decisions
 TODO.md                   Prioritized tasks with verification criteria
 docs/
   experimental_setup.md   The physical setup as built (Unknown until decided)
+  buy_list.md             Everything to buy, what each part does, prices, and what is on hand
   data_catalog.md         Every dataset/experiment and how it was processed
   sessions/               One log per work session + SESSION_LOG.md index
   sketches/               The owner's hand sketches of the tunnel (intent, not as built)

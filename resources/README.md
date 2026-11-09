@@ -30,6 +30,9 @@ downloaded by the owner; their original file names are recorded in the notes (re
 | Morrison2013 | F. A. Morrison, "Data Correlation for Drag Coefficient for Sphere," Michigan Technological University, 2013 (2-page handout), plus the CM3110 "Data Correlations for Examinations" sheet that repeats it | One explicit C_D(Re) correlation from creeping flow up to Re = 10⁶ (a curve fit). Gives C_D ≈ 0.39 at this project's Re of 1–2.5×10⁴, not 0.47. Use the handout's Eq. (1): the exam sheet prints a different last term and a typo (236,000) | Reviewed 2026-11-02 | [handout](Morrison2013_sphere-drag-correlation.pdf), [exam sheet](Morrison2013_exam-data-correlations-sheet.pdf), [notes](notes/Morrison2013.md) (were `DataCorrelationForSphereDrag2013.pdf` and `DataCorrelationsforExaminations2013.pdf`; a byte-identical second copy, `…2013-2.pdf`, was removed) |
 | Roos1971 | F. W. Roos, W. W. Willmarth, "Some experimental results on sphere and disk drag," *AIAA Journal* 9(2), February 1971, pp. 285–291. doi:10.2514/3.6164 | Towing-tank sphere and disk drag, 5 < Re < 10⁵ (Table 1), with a band of earlier data (Fig. 3). At Re 1–3×10⁴ its own points read high (vibrating shakedown rig, per the authors); the earlier-data band is about 0.38–0.45 at 10⁴ and 0.40–0.49 at 2×10⁴. The copy carries a 2013 university-library download stamp | Reviewed 2026-11-02 | [PDF](Roos1971_sphere-and-disk-drag.pdf) (was `roos1971.pdf`), [notes](notes/Roos1971.md) |
 | Scheiman1981 | J. Scheiman, *Comparison of Experimental and Theoretical Turbulence Reduction Characteristics for Screens, Honeycomb, and Honeycomb-Screen Combinations*, NASA TP-1958, Langley Research Center, December 1981 | Turbulence reduction by screens, honeycomb and combinations, measured in a 0.46 m duct at 7.6–18.3 m/s and compared with theory. Screens alone: u′ ≈ 1/(1+K), v′ ≈ 1/√(1+K); a honeycomb followed by a screen is far better than screens alone. Screens ≥ 58 % open, spaced 80–100 mesh lengths | Reviewed 2026-11-02 | [PDF](Scheiman1981_screens-honeycomb-turbulence-reduction.pdf) (was `19820006182.pdf`, the NTRS id), [notes](notes/Scheiman1981.md) |
+| SDP8xx | Sensirion AG, *Datasheet SDP8xx-Digital: Digital Differential Pressure Sensor*, Version 1.1, April 2019 | The proposed airspeed sensor (SDP810-125Pa): 0.08 Pa + 3 % of reading accuracy, I²C address 0x25 for every 125 Pa part, Ø3.5/5.2 mm tube barbs, 2 mm pin pitch, specs at 966 mbar. Downloaded by the agent 2026-11-08 | Reviewed 2026-11-08 (owner check pending) | [PDF](SDP8xx_sensirion-digital-dp-sensor-datasheet-v1.1.pdf), [notes](notes/SDP8xx.md) |
+| Sensirion2024 | Sensirion AG, *SDP Signal Compensation*, application note, Version 1.0, June 2024 | Ambient-pressure correction for SDP differential-pressure readings: dp × 966 mbar / p_amb (×0.95 at sea level); temperature-compensation modes; condensation. Downloaded by the agent 2026-11-08 | Reviewed 2026-11-08 (owner check pending) | [PDF](Sensirion2024_sdp-signal-compensation-app-note.pdf), [notes](notes/Sensirion2024.md) |
+| TAL221 | HT Sensor (HTC), *TAL221 Miniature Load Cell*, one-page datasheet (PDF dated 2018-01-04) | The proposed drag load cell (100 g): 0.6 ± 0.15 mV/V, safe overload 150 % FS, non-linearity, hysteresis, repeatability and creep ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C, M3 mounting. SparkFun's copy, downloaded by the agent 2026-11-08 | Reviewed 2026-11-08 (owner check pending) | [PDF](TAL221_htc-miniature-load-cell-datasheet.pdf), [notes](notes/TAL221.md) |
 | Weakly2024 | J. Weakly, S. Ho, E. Feehery, B. D. Kothmann, C. Sung, "A Low-Cost, Adaptable System for Lift and Drag Measurement in an Educational Wind Tunnel," ASEE Annual Conference, 2024, Paper ID #41981 | Two-load-cell balance (TAL220 + HX711 + Arduino Uno, about $121), validated with static loads and sphere drag (C_D within 6 % of 0.47, no blockage or mount correction) | Reviewed 2026-10-31 | [PDF](Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf), [notes](notes/Weakly2024.md) |
 | Wieghardt1953 | K. E. G. Wieghardt, "On the Resistance of Screens," *The Aeronautical Quarterly* 4, February 1953, pp. 186–192. doi:10.1017/S0001925900000871 | Screen pressure-drop formula k = c(1 − β)/β², c = 6.5·(u₁d/βν)^(−1/3) for u₁d/(βν) between 60 and 600 (the source of "Wieghardt's formula" in Mehta1977/1979). Screens stop shedding eddies below u₁d/(βν) ≈ 85. Cambridge Core download stamp; keep out of a public repository | Reviewed 2026-11-02 | [PDF](Wieghardt1953_resistance-of-screens.pdf) (was `wieghardt1953.pdf`), [notes](notes/Wieghardt1953.md) |
 
@@ -92,21 +95,18 @@ folder: confirm them in the datasheet before using them.
    - Honeywell TruStability HSC, ±1 inH₂O (±249 Pa) differential, I²C, for example HSCDRRN001ND2A3 (3.3 V) or
      …2A5 (5 V). Get the official HSC datasheet from Honeywell; distributor listings disagree on accuracy and
      temperature range.
-   - Added 2026-11-01: **Sensirion SDP810-125Pa and SDP810-500Pa**, I²C, with tube barbs and a cable connector, so
-     they are easier to wire by hand than the surface-mount SDP31/SDP32.
-     - Distributor listings give a 3–5.5 V supply (2.7–5.5 V for the 125 Pa part), so it runs on the 5 V Mega.
-     - One reseller lists the 125 Pa part at 3 % of reading and 0.08 Pa zero-point accuracy.
-     - Single units about €21–26 or $41 (listings, often out of stock).
-     - Get the SDP8xx datasheet from Sensirion. The SDP31 is listed as a 3.3 V part, and SparkFun's SDP31 breakout
-       is retired.
+   - Added 2026-11-01: **Sensirion SDP810-125Pa and SDP810-500Pa.** **Datasheet filed 2026-11-08 as SDP8xx** (see the
+     index). It corrects two points above: the sensor has four solder pins at 2 mm pitch, not a cable connector
+     (Sensirion recommends its "SDP800 series cap" for cable mounting), and its supply range is 2.7–5.5 V. Its
+     accuracy is 0.08 Pa + 3 % of reading, as the reseller said. The SDP31 is listed as a 3.3 V part, and SparkFun's
+     SDP31 breakout is retired.
    - Not suitable: drone airspeed kits built on the TE MS4525DO (±1 psi ≈ ±6.9 kPa; total error band ±1 % of span
      per TE's datasheet as summarized online). The owner found an FPVDrone PX4 kit ($49.99) of this type on
      2026-11-01; its chip is not named in the listing.
 2. **Load-cell candidates.** HTC TAL220 (10 kg, the cell Weakly2024 used) and the TAL221 mini family (100 g to
-   1.5 kg). The maker's sheet, as summarized online, gives the 100 g TAL221 0.6 mV/V and 150 % safe overload.
-   [SparkFun TAL221 100 g page](https://www.sparkfun.com/mini-load-cell-100g-straight-bar-tal221.html) (datasheet
-   linked there). Needed: rated output, creep, zero and span temperature coefficients, safe overload. The noise
-   trade-off is worked out in [notes/HX711.md](notes/HX711.md).
+   1.5 kg). **TAL221 datasheet filed 2026-11-08** (see the index): it confirms 0.6 mV/V and 150 % safe overload for
+   the 100 g cell, and gives creep and the temperature coefficients. Still wanted: the TAL220 datasheet, only if a
+   larger cell is ever considered. The noise trade-off is worked out in [notes/HX711.md](notes/HX711.md).
 3. **Datasheets for the parts on hand:** TI [LM741](https://www.ti.com/product/LM741),
    [LM348](https://www.ti.com/product/LM348) (combined LM148/LM248/LM348 datasheet) and
    [LM317](https://www.ti.com/product/LM317). Needed for the TODO P1 task "decide the role of the op-amp circuit".

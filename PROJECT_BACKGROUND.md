@@ -47,16 +47,20 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 - [Confirmed] Model access: one test chamber. The top and/or side acrylic panel comes off to swap the model; the
   owner proposed magnets to hold the panels (2026-11-01).
 - [Confirmed] Controls: a display with a knob and a menu like the Ender 3 3D printer's, to choose what to show (drag
-  force and so on) and to change the fan speed (owner, 2026-11-01).
+  force and so on) and to change the fan speed (owner, 2026-11-01). **Superseded 2026-11-08 by
+  [D-012](DECISIONS.md):** no display or knob; all output goes to the laptop ("this isnt a device").
+- [Confirmed] Top speed: **13 m/s target, validation runs from about 6.5 m/s** (owner, 2026-11-08;
+  [D-010](DECISIONS.md)). Not a must-have: 11–12 m/s still validates, with less force.
+- [Confirmed] The full parts list, with what each part does and its price, is [docs/buy_list.md](docs/buy_list.md)
+  (2026-11-08/09). The owner builds the circuit on a breadboard first, then orders a PCB with sockets (2026-11-09).
 - [Confirmed] Tools on hand: a multimeter, a soldering station, a bench power supply (maximum voltage and current
   unknown) and access to a workbench (owner, 2026-11-01).
 - [Confirmed] Budget: "I don't really have a budget" (owner, 2026-11-01). The owner compared this project with typical
   projects under $50, which have no load cell. The agent's estimate for this one is about $120–200, mostly the fan and
   the pressure sensor (PROJECT_STATUS §3). On the fan, the owner is price-conscious: after the AC Infinity Cloudline S6
   ($99) was recommended, "im trying to find somethign more affordbale" (2026-11-05).
-- Unknown: target top airspeed (13 m/s proposed by the agent on 2026-11-05, not confirmed;
-  [Top-speed trade-off](#top-speed-trade-off-proposed)), fan model, the bench supply's rating, the room's free length
-  around the tunnel.
+- Unknown: the fan model (open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6, [D-011](DECISIONS.md)), the
+  bench supply's rating, the room's free length around the tunnel.
 
 ## Governing equations [Standard]
 
@@ -317,12 +321,25 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
 - **Below about 6.5 m/s,** the 20 mm sphere's drag is only 0.2–0.3 gf, so fixed zero errors dominate.
 - **A bigger fan can be fitted later** if the airfoil or car tests need more speed. The fan has its own stand and a
   flexible coupling; a bigger one would need a new diffuser and a wider-range pressure sensor.
+- **Accepted 2026-11-08 as the target ([D-010](DECISIONS.md)).** Update 2026-11-08/09 (our arithmetic,
+  [docs/buy_list.md](docs/buy_list.md) §1 and §3):
+  - The real screens lose more than the 0.18 q₀ assumed above. Four or five window screens lose about 33–48 Pa at
+    13 m/s, mostly the one at the fan outlet. The fan then needs about 1.55 q₀ (about 157 Pa).
+  - With that, the CLOUDLINE S6 (425 CFM, 503 Pa per the maker) gives about 13.0–13.4 m/s on a straight-line curve
+    (12.3–12.7 at 90 % of it). The VEVOR VV-GDFJ-AC6 (400 CFM, 300 Pa, seller's figures) gives about 11.3 m/s (10.8).
+  - With the 3/4 in and 1 in balls, the trend check's predicted rise from the 3/4 in ball at 6.5 m/s to the 1 in
+    ball at the top speed is 9.2 % at 13 m/s, 8.5 % at 12 m/s and 7.8 % at 11 m/s.
 
 ## Measurement and analysis approach [Proposed]
 
-1. Measure ambient p and T each session to compute ρ (instrument not chosen; candidate BME280).
+1. Measure ambient p and T each session to compute ρ (an Adafruit BME280, chosen 2026-11-08).
    - The pitot-static tube measures q directly, and C_D = F/(q·A), so ρ does not enter C_D itself.
    - ρ is needed for the airspeed V = √(2q/ρ) and for Re, which picks the reference C_D.
+   - **The SDP810's reading must be corrected for ambient pressure:** q = reading × 966 mbar / p_amb (about ×0.95 near
+     sea level), because Sensirion's thermal flow-through sensors are calibrated at 966 mbar
+     ([Sensirion2024 notes](resources/notes/Sensirion2024.md)). So p_amb does enter C_D through q, at about 5 %.
+   - The airspeed reference (2026-11-08, proposed): the contraction's pressure drop S − E, calibrated against a
+     home-made total-pressure probe and wall taps at the model station ([docs/buy_list.md](docs/buy_list.md) §5).
 2. Map test-section velocity uniformity with the pitot tube before force testing (build step 3).
    - During force runs, take the reference reading where its wake cannot reach the sphere: a probe off the
      centreline, or wall static taps calibrated against a pitot at the model position in the empty tunnel.
@@ -394,6 +411,12 @@ PDFs and reading notes live in [resources/](resources/README.md).
   [resources/notes/Scheiman1981.md](resources/notes/Scheiman1981.md).
 - K. E. G. Wieghardt, "On the Resistance of Screens," *The Aeronautical Quarterly* 4, 1953, pp. 186–192. Reviewed
   2026-11-02. The screen pressure-drop formula. Notes: [resources/notes/Wieghardt1953.md](resources/notes/Wieghardt1953.md).
+- Sensirion AG, *Datasheet SDP8xx-Digital*, Version 1.1, April 2019. Reviewed 2026-11-08. The chosen airspeed sensor
+  (SDP810-125Pa). Notes: [resources/notes/SDP8xx.md](resources/notes/SDP8xx.md).
+- Sensirion AG, *SDP Signal Compensation*, application note, Version 1.0, June 2024. Reviewed 2026-11-08. The
+  ×966 mbar / p_amb correction. Notes: [resources/notes/Sensirion2024.md](resources/notes/Sensirion2024.md).
+- HT Sensor (HTC), *TAL221 Miniature Load Cell*, datasheet. Reviewed 2026-11-08. The chosen load cell (100 g). Notes:
+  [resources/notes/TAL221.md](resources/notes/TAL221.md).
 
 ### Not yet reviewed
 
@@ -456,6 +479,22 @@ Add lasting lessons here (with a link to the session log where they were learned
   may already run Blink, so a blinking LED proves nothing about an upload. Changing the delay to 200 ms and seeing the
   LED speed up did. Plan later checks (sensor readings, calibrations) the same way: change something known and see
   the reading follow.
+- **A datasheet's footnote conditions can hide a large correction** (2026-11-08,
+  [session log](docs/sessions/2026-11-09-buy-list.md#8-errors-failed-approaches-and-troubleshooting)). The SDP8xx
+  datasheet's specs hold "at absolute pressure = 966 mbar", and it points elsewhere for compensation. Sensirion's
+  application note then requires ×966 / p_amb for direct differential-pressure readings, about 5 % near sea level,
+  more than the sensor's whole span error. Read a sensor's application notes, not just its datasheet.
+- **"Mesh" is not enough to choose a tunnel screen** (2026-11-09, same log). Check the wire diameter and the open
+  area: the screen must be woven wire cloth, about 20–30 mesh, at least 58 % open.
+  - Industrial "filter mesh" (McMaster's 30 × 30 has 0.012–0.013 in wire, 37–41 % open) would cost about 1.7 m/s of
+    top speed and make the flow patchy.
+  - A perforated sheet, even at 58 % open, makes hole-sized jets.
+  - Ordinary aluminium window insect screen (18 × 16, about 66 % open, about $10 a roll) is the cheap, suitable
+    choice.
+- **Reading web PDFs** (2026-11-08, same log). The web-fetch agent cannot parse a binary PDF, but the harness saves it
+  locally. Claude Code's Read cannot render PDF pages here (no `pdftoppm`). Extract the text and render pages with
+  PyMuPDF (`python -I`, file path as an argument), then check tables and drawings on the page images. Some shop pages
+  (McMaster, Zoro, TWP prices) need a browser; ask the owner to paste the table.
 - **A correlation's overall accuracy can hide a local offset** (2026-11-02, same log). Brown and Lawler's "81 % of
   points within ±5 %" is over all Re, yet at this project's Re their own data sit about 7 % above the curve. Check
   the data near the Re that matters, not just the headline fit statistic.

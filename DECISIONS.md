@@ -202,3 +202,86 @@ Template:
 - Evidence / source: [Brown2003 notes](resources/notes/Brown2003.md), [Morrison2013 notes](resources/notes/Morrison2013.md),
   [Roos1971 notes](resources/notes/Roos1971.md); this session's log (2026-11-02).
 - Status: Accepted (owner, 2026-11-02, choosing the ±10 % + trend version over the ±5 % + Clift version).
+
+## D-010: Design top speed 13 m/s; validation runs from about 6.5 m/s
+
+- Date: 2026-11-08
+- Question: What top airspeed is the 100 mm tunnel designed for? It sets the fan, the pressure-sensor range and the
+  force available (open question 3).
+- Decision: A design top speed of **13 m/s** in the test section, with sphere validation runs from about 6.5 m/s
+  upward. Owner: "the 13m/s top speed is a big priority" (2026-11-08), and the fan was chosen on that basis (D-011).
+- Rationale (the agent's 2026-11-05 trade-off; estimates,
+  [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)):
+  - D-009's trend check gains little above it: Eq. (19) rises 8.7 % from the 20 mm sphere at 6.5 m/s to the 25 mm
+    sphere at 13 m/s, and 9.8 % at 15 m/s;
+  - one 6-inch fan listing about 500 Pa should just reach it;
+  - q = 101 Pa fits a ±125 Pa pressure sensor (full scale at 14.4 m/s);
+  - below about 6.5 m/s the 20 mm sphere's drag is only 0.2–0.3 gf, so fixed zero errors dominate.
+- Alternatives considered: 11–12 m/s (smaller fan, about 30 % less force); 15 m/s (about 35 % more force, 1.5× the
+  fan power, an 8-inch fan or two fans, a ±249 Pa or ±500 Pa sensor); 20 m/s.
+- Consequences: pressure-sensor range ±125 Pa (SDP810-125Pa proposed). The real top speed is measured with the pitot
+  once the tunnel runs. If the fan reaches only about 12 m/s, the validation still works with less force.
+- Evidence / source: [2026-11-07 session log](docs/sessions/2026-11-07-top-speed-and-fan-search.md); owner's
+  statement in the 2026-11-08 session.
+- Status: Accepted (owner, 2026-11-08). Note 2026-11-09: the owner asked whether 13 m/s is a must-have. The agent's
+  answer: no. The validation works at 11–12 m/s, with less force (71 % at 11 m/s) and a smaller C_D rise for the
+  trend check (7.8 % against 9.2 %). If the VEVOR fan is chosen (D-011, reopened), the top speed becomes whatever it
+  reaches, about 11 m/s by estimate.
+
+## D-011: Fan: AC Infinity CLOUDLINE S6 (model AI-CLS6)
+
+- Date: 2026-11-08
+- Question: Which fan drives the tunnel (PROJECT_STATUS §3)?
+- Decision: The **AC Infinity CLOUDLINE S6, model AI-CLS6**, with the 10-speed controller it comes with, on its own
+  stand. Its collar, wrapped in one layer of neoprene so it never touches the print, slides snugly into a printed
+  diffuser inlet made as small as that allows, and duct tape seals the joint (owner's design, 2026-11-08). Owner: "no
+  other fan gives us the exact
+  maximum static pressure rating other than the cloudline s6 … going with the S6 is our best bet" (2026-11-08).
+  Not bought yet; see [docs/buy_list.md](docs/buy_list.md).
+- Rationale:
+  - The maker's page (read 2026-11-08): 425 CFM, 503 Pa static pressure (2.02 inH₂O), a PWM-controlled EC motor,
+    10 speed levels, dual ball bearings, 100–240 V AC, 70 W maximum, 32.0 cm long, $99.00. Retailers list the same
+    fan as the "CLOUDLINE PRO S6" at 402 CFM.
+  - It is the only candidate whose published figures can be checked against 13 m/s. Straight-line fan-curve estimate:
+    13.5–14.1 m/s at 425 CFM, 13.1–13.7 m/s at 402 CFM. If the real curve gives only 80–90 % of the straight-line
+    flow, 12.0–13.3 m/s. AC Infinity publishes no fan curve.
+- Alternatives considered: VIVOSUN AeroZesh S6 (no static pressure published); the VEVOR, Skyshalo and HFS 6-inch AC
+  fans (no pressure listed, or about 300 Pa, which gives about 11–12 m/s); two Delta PFR1212UHE-SP00 server fans (very
+  loud, about 12 m/s, 5.4 A at 12 V).
+- Consequences:
+  - The diffuser's inlet collar is printed to the fan's outlet collar, measured once the fan arrives (the maker gives
+    the duct size as 6" but not the collar diameter).
+  - Speed is set in 10 steps with the supplied controller. Hobbyists report driving AC Infinity fans with a 10 V PWM
+    signal on the UIS port, which could let the Arduino menu set the speed without touching mains (open question 11).
+    No source found confirms the pinout; not relied on.
+- Evidence / source: [AC Infinity product page](https://acinfinity.com/hydroponics-growers/ventilation/inline-fan-systems/cloudline-pro-s6-quiet-inline-duct-fan-system-with-speed-controller-6-inch/)
+  (read 2026-11-08); estimate script in this session's log.
+- Status: **Tentative since 2026-11-09.** Accepted by the owner on 2026-11-08; reopened the next day, when the owner
+  found the VEVOR VV-GDFJ-AC6 (400 CFM, 300 Pa listed, AC motor with a speed controller) at $53.90. The owner will
+  choose between the two on budget: "put either or, i havent ordered anything yet" (2026-11-09).
+  - Estimates (straight-line fan curves, five window screens): the VEVOR reaches about 11.3 m/s (10.8 at 90 % of its
+    curve), the S6 about 13.0–13.4 m/s (12.3–12.7).
+  - The VEVOR gives about 73 % of the S6's force at top speed. Its figures are the seller's.
+  - Both validate. The fan-to-tunnel joint, the stand and the pressure sensor suit either.
+  - Record the final choice as a new decision that supersedes this one. Purchase: To buy.
+
+## D-012: No on-tunnel display or knob; all output on the laptop
+
+- Date: 2026-11-08
+- Question: Does the tunnel need its own display and knob menu (planned by the owner on 2026-11-01, "like the menu for
+  an Ender 3 with a knob")?
+- Decision: No. Owner: "i think we dont need a display and knob. this isnt a device, so any output we need lets just
+  run on the computer" (2026-11-08). The Arduino streams readings over USB to the laptop, which logs them (as already
+  planned) and shows them live.
+- Rationale: the tunnel is a lab rig used with the laptop beside it, not a stand-alone device. Dropping the display
+  removes a part to buy, its wiring, and a firmware task.
+- Alternatives considered: a 128×64 "Full Graphic Smart Controller" with knob, buzzer and SD slot (about $15–24), or a
+  20×4 I²C LCD plus a KY-040 encoder (about $12–15); both from the 2026-11-08 buy-list review.
+- Consequences:
+  - Supersedes the 2026-11-01 plan for an on-tunnel display and knob menu (PROJECT_STATUS §1 objectives, TODO P2
+    "Firmware with an on-tunnel display and knob menu", experimental_setup "Display and controls").
+  - Live view: the Arduino IDE's Serial Plotter to start with; a laptop script later if needed.
+  - The interface board needs no display or encoder headers.
+  - Setting the fan speed from a menu (open question 11) is no longer a goal. The fan keeps its own controller.
+- Evidence / source: owner's statement in the 2026-11-08 session; [docs/buy_list.md](docs/buy_list.md) §8.
+- Status: Accepted (owner, 2026-11-08).

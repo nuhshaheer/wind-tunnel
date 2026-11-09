@@ -3,11 +3,16 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-07: nothing built.** Decided so far: an open-circuit blower with the fan at the
-front ([D-007](../DECISIONS.md)) and a 100 mm × 100 mm test section ([D-008](../DECISIONS.md)). Parts on hand are
-listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing list), an Elegoo Mega 2560
-(working: Blink upload Verified 2026-11-02), magnets, and tools (multimeter, soldering station, bench power supply). The owner's first sketch is in
-[docs/sketches/](sketches/README.md).
+**Current configuration as of 2026-11-09: nothing built, nothing ordered.**
+- Decided so far:
+  - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
+  - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
+  - a 13 m/s target top speed ([D-010](../DECISIONS.md));
+  - no display or knob ([D-012](../DECISIONS.md)).
+- The fan is open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6 ([D-011](../DECISIONS.md)).
+- Parts chosen and their prices: [buy_list.md](buy_list.md).
+- Parts on hand: [Parts on hand](#parts-on-hand).
+- The owner's sketches: [docs/sketches/](sketches/README.md).
 
 ## Tunnel geometry
 
@@ -28,25 +33,25 @@ listed in [Parts on hand](#parts-on-hand): the owner's ECE kit (from its packing
 
 | Parameter | Value | Status / source |
 |---|---|---|
-| Fan / blower model | Unknown. Proposed type: a 6-inch mixed-flow EC inline duct fan with a speed controller, on its own stand with a flexible coupling. For 13 m/s it should list about 400 CFM free air **and** about 500 Pa maximum static pressure (corrected 2026-11-05 from 300–500 Pa; [table](../PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)). Candidates: AC Infinity Cloudline S6 (402 CFM, 503 Pa, $99) and VIVOSUN AeroZesh S6 (static pressure not published). Alternative: two Delta PFR1212UHE-SP00 12 V PWM server fans. The VEVOR 6-inch AC fan the owner found is unsuitable as listed (PROJECT_STATUS §3) | To buy; candidates 2026-11-01, updated 2026-11-05 ([TODO.md](../TODO.md) P0) |
-| Motor and speed controller | Unknown. First build: the fan's own controller. Setting the speed from the Arduino menu needs a fan with a documented low-voltage control input (PWM or 0–10 V); the Arduino never switches mains | Proposed 2026-11-01 |
-| Airspeed range | Unknown. Proposed (agent, 2026-11-05): a 13 m/s top speed, with validation runs from about 6.5 m/s. A 6-inch fan listing about 500 Pa should just reach 13 m/s in the 100 mm section (estimate; [trade-off](../PROJECT_BACKGROUND.md#top-speed-trade-off-proposed)) | Proposed; not confirmed by the owner |
+| Fan / blower model | **Open between two ([D-011](../DECISIONS.md), Tentative since 2026-11-09):** AC Infinity CLOUDLINE S6, model AI-CLS6 ($99; 425 CFM, 503 Pa, EC motor, 10 speed levels; about 13.0–13.4 m/s estimated) or VEVOR VV-GDFJ-AC6 ($53.90; 400 CFM, 300 Pa seller's figures, AC motor; about 11.3 m/s). Own stand; the collar, wrapped in neoprene, slides into a printed inlet, sealed with duct tape ([buy list](buy_list.md) §1) | To buy (owner to choose on budget) |
+| Motor and speed controller | The fan's own controller. No Arduino speed control (no menu since D-012); the Arduino never switches mains | Proposed 2026-11-01; updated 2026-11-08 |
+| Airspeed range | **Target 13 m/s, validation runs from about 6.5 m/s ([D-010](../DECISIONS.md), Accepted 2026-11-08).** The real top speed depends on the fan chosen (about 11–13.4 m/s, estimates) and is measured with the pitot | Accepted target; real range to be measured |
 
 ## Flow conditioning
 
 | Component | Value | Status / source |
 |---|---|---|
-| Honeycomb (cell size, length) | Unknown. Proposed (2026-11-02): thin-walled (paper, aluminium or drinking straws), cells about 2–3 mm, length 7–10 cell diameters, ahead of the screens in the settling chamber | To buy (README); [TODO.md](../TODO.md) P1 "Choose the screens and honeycomb" |
-| Screens (number, mesh, open-area ratio) | Unknown. Proposed (2026-11-02): metal square-mesh at least 58 % open (for example 20–30 wires/in, 0.19–0.23 mm wire). Two in the fan-to-chamber diffuser (K_sum ≥ 2.1) and one or two in the settling chamber, at least 500 wire diameters apart. Expected K at the settling chamber's roughly 2 m/s is about 1.1–1.8 (extrapolated from [Wieghardt1953](../resources/notes/Wieghardt1953.md)) | To buy (README); [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
+| Honeycomb (cell size, length) | **Printed (owner, 2026-11-08)**, for example 6 mm hexagonal cells with 0.4 mm walls, about 50 mm long, ahead of the screens in the settling chamber. Straws (about 5 mm, 40 mm long) are the upgrade if the flow map shows a problem. The 2026-11-02 proposal was thin-walled cells of about 2–3 mm, 7–10 diameters long | Printed, after sizing ([buy list](buy_list.md) §3) |
+| Screens (number, mesh, open-area ratio) | **Proposed 2026-11-09: aluminium window insect screen ("bright aluminum", 18 × 16 mesh, wire about 0.010–0.011 in, 66–69 % open).** Two or three in the fan-to-chamber diffuser (K_sum ≥ 2.1; three if the wire is 0.010 in) and two in the settling chamber, at least 500 wire diameters apart. Estimated K about 0.75–0.85 at the fan outlet and 1.15–1.30 in the settling chamber; four or five screens lose about 33–48 Pa at 13 m/s (Wieghardt's formula; [buy list](buy_list.md) §3) | To buy (about $10 a roll); [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
 
 ## Instrumentation
 
 | Measurement | Sensor | Range | Calibration | Location | Status |
 |---|---|---|---|---|---|
-| Airspeed | Pitot tube + differential pressure sensor | Unknown (±125 Pa proposed with the 13 m/s top speed, 2026-11-05) | None | Unknown | To buy (README) |
-| Drag force | Load cell + HX711 | Unknown | None (planned: known weights) | Unknown | To buy (README) |
-| Ambient pressure | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
-| Ambient temperature | Not chosen (candidate: Bosch BME280) | | | | Planned, TODO P1 (needed for ρ) |
+| Airspeed | **One Sensirion SDP810-125Pa** with a home-made 1/8 in brass total-pressure probe and wall-tap rings at S, E and M ([buy list](buy_list.md) §5) | ±125 Pa (full scale at 14.4 m/s) | Planned: inclined water manometer for the gain; ×966 mbar / p_amb correction on every reading ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)) | Probe − M at the model station; S − E (contraction drop) during force runs | Chosen 2026-11-08; to buy |
+| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: budget weight set, each piece weighed on a school lab balance, balance module laid on its side | Upright under the ball, sting clamped to its top end, in the load-cell box under the floor | Chosen 2026-11-08; to buy |
+| Ambient pressure | **Adafruit BME280** (2652) | | | In room air near the fan inlet | Chosen 2026-11-08; to buy |
+| Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; to buy |
 | Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
 Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). Circuit: not designed. Proposed 2026-11-01:
@@ -65,13 +70,13 @@ The module (and so its excitation voltage and RATE wiring) is not chosen.
 | Sample rate(s) | Unknown |
 | Synchronization between pressure and force | Unknown |
 | Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)), sent over USB to a laptop |
-| Display and controls | Planned (owner, 2026-11-01): a display with a push-button rotary encoder (knob) and a menu like the Ender 3's. Proposed: a 20×4 character LCD with an I²C adapter (sharing pins 20/21 with the pressure sensor), encoder on interrupt pins 2/3 or 18/19, screen refreshed 2–5 times a second, in a control box separate from the load-cell box |
+| Display and controls | **None ([D-012](../DECISIONS.md), owner, 2026-11-08):** all output on the laptop over USB (the Arduino IDE's Serial Plotter for a live view). Planned 2026-11-01 as a 20×4 LCD and knob menu; dropped |
 
 ## Test models
 
 | Model | Dimensions | Mount | Status |
 |---|---|---|---|
-| Validation sphere | Proposed: about 20 mm (3.1 % blockage); about 25 mm (4.9 %) as the second size, run at matched Re. Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: a non-magnetic sting about 80–90 mm long through a floor slot to an upright straight-bar load cell in a closed box under the floor (as in Weakly2024) | Planned |
+| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own 1/8 in brass stem, which slides into a 5/32 in sleeve on a non-magnetic 1/8 in brass sting about 80–90 mm long; the sting passes inside a fixed, streamlined printed shield and a floor slot to an upright TAL221 in a closed box under the floor (as in Weakly2024) | Chosen; to buy |
 | Airfoil | Unknown | Same sting, with a preset-angle adapter | Planned (after validation) |
 
 ## Parts on hand
@@ -82,7 +87,12 @@ Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (20
 |---|---|---|
 | Bambu Lab P1S 3D printer | Owner, 2026-10-30 | Build volume 256 × 256 × 256 mm (manufacturer spec) |
 | Elegoo Mega 2560 | Owner, 2026-11-01 ("that is what it looks like at least"); main chip ATMEGA2560 (owner, 2026-11-02) | **Working:** Blink upload Verified 2026-11-02 (see Data acquisition). A USB A-to-B cable that carries data is on hand. Whether the board is printed "R3" is not recorded |
-| Magnets | Owner, 2026-11-01 | Type, size and strength unknown |
+| Magnets | Owner, 2026-11-01; count and size 2026-11-09 | **43, round, 8 mm × 2 mm**; probably neodymium (not confirmed); strength unknown |
+| Digital calipers | Owner, 2026-11-08 | 6 in (150 mm) range; model and accuracy unknown; battery thought dead (button cell, LR44/SR44 size) |
+| Hand drill | Owner, 2026-11-08 | Model unknown |
+| Spirit level | Owner, 2026-11-08 | Size unknown |
+| Filament and nozzle | Owner, 2026-11-09 | PLA and PETG-CF, amounts unknown; a hardened-steel nozzle for the P1S |
+| School lab balance | Owner, 2026-11-08 (access) | Model and readability unknown; to be used once to weigh the calibration masses |
 | Multimeter | Owner, 2026-11-01 | Model unknown |
 | Soldering station | Owner, 2026-11-01 | Model unknown |
 | Bench power supply | Owner, 2026-11-01 | Model, maximum voltage and current unknown |
@@ -128,3 +138,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-02 | Proposals updated from Mehta1977, Scheiman1981 and Wieghardt1953: diffuser length and screens, settling-chamber length, honeycomb and screen choices. Sphere reference set by D-009 (documentation only; nothing built or tested) | [2026-11-02](sessions/2026-11-02-cd-reference-and-flow-conditioning.md) |
 | 2026-11-02 | Mega 2560 board tested: Blink upload Verified by the owner; Arduino IDE 2.3.10 installed. First hardware test; nothing built | [2026-11-03](sessions/2026-11-03-mega-2560-board-test.md) |
 | 2026-11-05 | 13 m/s top speed proposed; fan requirement corrected (about 500 Pa listed at 400 CFM, not 300–500 Pa); fan candidates updated after the owner's search for a cheaper fan (documentation only; nothing bought, built or tested) | [2026-11-07](sessions/2026-11-07-top-speed-and-fan-search.md) |
+| 2026-11-08/09 | Buy list written ([buy_list.md](buy_list.md)). Instruments chosen: SDP810-125Pa with a home-made probe, two TAL221 100 g with a SparkFun HX711, an Adafruit BME280. Also chosen: 3/4 in and 1 in Delrin balls, aluminium window screen and a printed honeycomb. Target 13 m/s (D-010); no display (D-012); fan open between the S6 and the VEVOR (D-011). Parts on hand updated (documentation only; nothing bought, built or tested) | [2026-11-09](sessions/2026-11-09-buy-list.md) |
