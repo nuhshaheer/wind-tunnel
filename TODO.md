@@ -26,8 +26,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [ ] **Owner: report what is on hand and send the part details the sizing needs** (new 2026-11-10; everything but the
   fan is ordered, see Done). Send the agent:
   - the **heat-set inserts' length and outside diameter** (the printed holes are sized to them);
-  - **which acrylic sheets** were bought: one 12 × 24 in, or four 8 × 12 in (both give 305 mm windows);
-  - the **SDP810 part number** on the Mouser order (should be 403-SDP810-125PA, not a 500 Pa part);
+  - ~~which acrylic sheets were bought~~ **answered 2026-11-10: four 8 × 12 in sheets** (owner); each gives one window
+    up to about 305 mm long;
+  - ~~the SDP810 part number on the Mouser order~~ **answered 2026-11-10: Mouser 403-SDP810-125PA, maker's part
+    SDP810-125PA** (owner), the ±125 Pa part;
   - **filament on hand:** PLA (4 kg black is ordered; the tunnel needs roughly 3–4 kg in all) and PETG-CF (the loaded
     parts need roughly 0.5–1 kg; buy plain PETG only if less is left);
   - which **"check house" items** are at home: power strip, sealant, super glue and epoxy, heat-shrink, solder, steel
@@ -430,7 +432,15 @@ Owner tasks are physical or account actions that an agent cannot do.
      10 m/s or below (±125 Pa sensor); about 9.5 % blockage, so it needs a correction;
   3. a pitot traverse of the free jet leaving the open exit;
   4. a drag lineup of 19 mm printed shapes (disc, cups both ways, cone, teardrop) on the balance;
-  5. vortex-shedding tone of a 1/8 in rod (about 410–820 Hz at 6.5–13 m/s), recorded by phone or laptop.
+  5. vortex-shedding tone of a 1/8 in rod (about 410–820 Hz at 6.5–13 m/s), recorded by phone or laptop;
+  6. **added 2026-11-10 (owner asked about buying plastic cylinders from McMaster):** cylinder drag on the balance, a
+     rod standing from a floor insert to just under the lid. At 13 m/s, with C_D 1.0–1.2 assumed (textbook, agent's
+     memory, not checked): the 1/8 in brass rod already ordered about 3.2–3.9 gf at 3.2 % blockage; a 1/4 in Delrin rod
+     about 6.4–7.7 gf at 6.3 %; 3/8 in blocks 9.5 %, too much. The 3/4 in ball gives about 1.3 gf. Needs its own
+     holder, a floor-insert hole and a gap under the lid, and a cylinder-drag source reviewed in `resources/`; end gaps
+     and 2-D blockage make it a weaker reference than the sphere. Agent's advice: do not buy now; a 1/4 in acetal rod
+     costs about $1.80–2.60 a foot (Aircraft Spruce, Zoro, 2026-11-10; McMaster's price not seen). **Owner to say
+     whether sizing should leave room for it** (no cost now).
 
   Not possible here: the drag crisis (top Re about 2×10⁴), turbulence measurements (need a hot-wire), models wider
   than about 22 × 22 mm. Outcome and verify: defined if the owner takes one up.
@@ -504,7 +514,7 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-08: **Load-cell capacity chosen:** TAL221 100 g, two of them, with a SparkFun HX711. Datasheet reviewed
   ([TAL221 notes](resources/notes/TAL221.md)).
 - [x] 2026-11-08: **Ambient sensor chosen:** Adafruit BME280 (2652), with level shifting for 5 V
-  ([buy list](docs/buy_list.md) §7).
+  ([buy list](docs/buy_list.md) §7). Replaced on 2026-11-09 by the Waveshare BME280, which the owner ordered (below).
 - [x] 2026-11-08/09: **Full buy list written with the owner**, [docs/buy_list.md](docs/buy_list.md): 11 sections, about
   $315–505. Also recorded D-011 (fan; reopened 2026-11-09) and D-012 (no display or knob), and filed the owner's
   load-cell sketch ([session log](docs/sessions/2026-11-09-buy-list.md)).
@@ -534,3 +544,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   ([session log](docs/sessions/2026-11-10-parts-ordering.md)).
 - [x] 2026-11-10: Owner committed and pushed the parts-ordering session as `f4fa904` (`UP_TO_DATE`); the README was
   then updated to the current state ([session log](docs/sessions/2026-11-10-parts-ordering.md)).
+- [x] 2026-11-10: Owner committed and pushed the README follow-up as `f5616a3`; `/catchup` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-10-order-details-and-cylinders.md)).
+- [x] 2026-11-10: **Two sizing inputs recorded** (owner): the acrylic is four 8 × 12 in sheets, and the SDP810 order is
+  Mouser 403-SDP810-125PA (maker's part SDP810-125PA), the ±125 Pa part. The BME280 is now named as the Waveshare in
+  every live doc and the drawings' parts list ([session log](docs/sessions/2026-11-10-order-details-and-cylinders.md)).

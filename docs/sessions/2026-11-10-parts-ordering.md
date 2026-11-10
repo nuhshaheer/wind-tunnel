@@ -2,7 +2,7 @@
 
 - **Session ID:** 6e929582-3315-40a6-9c63-d9ec3312aea9 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** `f4fa904` (the wrap); the README follow-up (§13, end) not committed yet
+- **Commit:** `f4fa904` (the wrap); `f5616a3` (the README follow-up, §13 end)
 
 Started 2026-11-09, wrapped 2026-11-10. Buying advice and documentation only. **The owner ordered everything on the
 buy list except the fan.** Nothing arrived, was built or was tested.

@@ -32,7 +32,7 @@ and load-cell noise with the fan running). Choose the model before the fan stand
 
 | Item | Qty | Price | Link | Status |
 |---|---|---|---|---|
-| Sensirion SDP810-125Pa pressure sensor (Mouser 403-SDP810-125PA, DigiKey 1649-1073-ND) | 1 | $29–35 | [Mouser](https://www.mouser.com/c/?q=403-SDP810-125PA) | **Ordered** (2026-11-09, Mouser) |
+| Sensirion SDP810-125Pa pressure sensor (Mouser 403-SDP810-125PA, DigiKey 1649-1073-ND) | 1 | $29–35 | [Mouser](https://www.mouser.com/c/?q=403-SDP810-125PA) | **Ordered** (2026-11-09, Mouser; part number confirmed on the order 2026-11-10) |
 | TAL221 mini load cell, **100 g** (SparkFun SEN-14727) | 2 | $15.95 each | [SparkFun](https://www.sparkfun.com/mini-load-cell-100g-straight-bar-tal221.html) | **Ordered** (2026-11-09, SparkFun) |
 | SparkFun HX711 load-cell amplifier (SEN-13879) | 1 | $11.50 | [SparkFun](https://www.sparkfun.com/sparkfun-load-cell-amplifier-hx711.html) | **Ordered** (2026-11-09, SparkFun) |
 | **Waveshare BME280 Environmental Sensor** (instead of the Adafruit 2652). On arrival, before wiring SDA/SCL to the Mega: with only 5 V and GND connected, SDA and SCL read about 5 V; then chip ID 0x60 | 1 | | [Waveshare](https://www.waveshare.com/product/modules/sensors/bme280-environmental-sensor.htm) | **Ordered** (2026-11-09) |
@@ -75,7 +75,7 @@ and load-cell noise with the fan running). Choose the model before the fan stand
 | Item | Qty | Price | Link | Status |
 |---|---|---|---|---|
 | Neoprene sheet 40A, 1/16 in, no adhesive. **Bought: 2 sheets of 12 × 12 in** (owner, 2026-11-09/10). No single 480 mm strip fits, so wrap the fan collar with two ~240 mm pieces butted end to end, not overlapped | 2 | | | **Ordered** (reported 2026-11-10) |
-| Clear cast acrylic, 1/8 in. Which sheets (one 12 × 24 in, or four 8 × 12 in) not recorded | | | | **Ordered** (reported 2026-11-10) |
+| Clear cast acrylic, 1/8 in. **Bought: four 8 × 12 in sheets** (owner, 2026-11-10); each gives one window panel of about 300 × 120 mm | 4 | | | **Ordered** (reported 2026-11-10) |
 | Delrin (acetal) balls, 3/4 in, ±0.001 in. Sold only in tens: the spares are for drilling practice and press-fit trials | 1 pack of 10 | ~$2.78 each (bulk price) | [McMaster](https://www.mcmaster.com/products/acetal-balls/) | **Ordered** (reported 2026-11-10) |
 | Delrin (acetal) balls, 1 in, ±0.001 in. Sold only in tens | 1 pack of 10 | ~$4.42 each (bulk price) | [McMaster](https://www.mcmaster.com/products/acetal-balls/) | **Ordered** (reported 2026-11-10) |
 | Brass M3 heat-set inserts. Send the agent their length and outside diameter: the printed holes are sized to them | 1 pack of 100 | $11–20 | | **Ordered** (reported 2026-11-10) |

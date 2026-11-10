@@ -112,9 +112,9 @@ free-stream turbulence. The tunnel's sting, blockage and turbulence are this pro
 ### Blockage correction [Proposed]
 
 Not decided. From [Maskell1963](resources/notes/Maskell1963.md) and [Cooper1998](resources/notes/Cooper1998.md)
-(reviewed 2026-10-31). The test section is now 100 mm × 100 mm (D-008), but the sphere is not chosen, so the
-correction has not been computed for the real geometry (TODO P1). Percentages below are our arithmetic for
-C_D = 0.47.
+(reviewed 2026-10-31). The test section is now 100 mm × 100 mm (D-008), and the spheres were chosen on 2026-11-08
+(3/4 in, S/C 2.85 %, and 1 in, 5.07 %), but the correction has not yet been computed for them (TODO P1). Percentages
+below are our arithmetic for C_D = 0.47.
 
 - **Wake blockage (Maskell, closed test section):** q_c/q_u = C_Du/C_Dc = 1 + θ·C_Du·S/C.
   - θ = 2.5; C_Du is the measured, uncorrected drag coefficient; S is the sphere's frontal area; C is the
@@ -228,7 +228,7 @@ Section rules:
 | Section | Rule | Source |
 |---|---|---|
 | Wide-angle diffuser (fan outlet → settling chamber) | Equivalent cone opening at 30–45° (included angle). Assumed on 2026-11-01. **Superseded 2026-11-02 by Mehta1977 Fig. 5**: at h = 100 mm (A = 3.44), the minimum length is about 115 mm with two screens and 195 mm with one, so about 150–200 mm with two screens is proposed | [Mehta1977](resources/notes/Mehta1977.md) |
-| Settling chamber | 0.6–0.8 × its width: honeycomb, screens 0.2 widths apart, the last 0.2 widths before the contraction. **Added 2026-11-02:** for full turbulence decay, at least 500 wire diameters between screens and about 50 cell diameters from the honeycomb to the first screen. That is about 230–300 mm at h = 100 mm instead of 150–200 mm | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
+| Settling chamber | 0.6–0.8 × its width: honeycomb, screens 0.2 widths apart, the last 0.2 widths before the contraction. **Added 2026-11-02:** for full turbulence decay, at least 500 wire diameters between screens and about 50 cell diameters from the honeycomb to the first screen. That is about 230–300 mm at h = 100 mm instead of 150–200 mm. **2026-11-09:** with the chosen window screen and 6 mm printed cells, about 380–390 mm plus frames ([PROJECT_STATUS.md](PROJECT_STATUS.md) open question 15) | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
 | Contraction | 1.0 × its inlet width | [Bell1988](resources/notes/Bell1988.md), [Abdelhamed2014](resources/notes/Abdelhamed2014.md) |
 | Test section | 2.7–2.9 h: 0.5 h for the flow to settle, the reference reading 1.5√C before the sphere, 4√S behind it at 3–5 % blockage | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md) |
 | Exit diffuser (not planned) | Area ratio 2.5 at a 5° included angle: about 7.5 h | [Mehta1979](resources/notes/Mehta1979.md) |
@@ -337,7 +337,8 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
 
 ## Measurement and analysis approach [Proposed]
 
-1. Measure ambient p and T each session to compute ρ (an Adafruit BME280, chosen 2026-11-08).
+1. Measure ambient p and T each session to compute ρ (a Waveshare BME280, ordered 2026-11-09; the Adafruit 2652 was
+   the first choice, 2026-11-08).
    - The pitot-static tube measures q directly, and C_D = F/(q·A), so ρ does not enter C_D itself.
    - ρ is needed for the airspeed V = √(2q/ρ) and for Re, which picks the reference C_D.
    - **The SDP810's reading must be corrected for ambient pressure:** q = reading × 966 mbar / p_amb (about ×0.95 near

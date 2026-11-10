@@ -1,12 +1,13 @@
 # Project Status
 
 **Last updated:** 2026-11-10
-**Last commit:** `f4fa904` (2026-11-10, the parts-ordering session), pushed to `origin/main` (`UP_TO_DATE` on
-2026-11-10).
+**Last commit:** `f5616a3` (2026-11-10, the README follow-up to the parts-ordering session), pushed to `origin/main`
+(`UP_TO_DATE` on 2026-11-10).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the README update made after that commit (commands at the end of the
-  [session log](docs/sessions/2026-11-10-parts-ordering.md)'s §13).
+- **Not committed yet:** this session's updates: the acrylic sheets and the SDP810 order recorded, the BME280 named as
+  the Waveshare everywhere, stale entries fixed (commands in the
+  [session log](docs/sessions/2026-11-10-order-details-and-cylinders.md)'s §13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Ordered 2026-11-09/10: nearly
@@ -122,13 +123,13 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Fan-to-tunnel joint | Owner's design (2026-11-08) | The fan's collar, wrapped in one layer of 1/16 in 40A neoprene (ordered: 2 sheets of 12 × 12 in, reported 2026-11-10; no single 480 mm strip fits, so two ~240 mm pieces butted end to end), slides snugly into a printed inlet sized from the measured collar (paper strip ÷ π); duct tape seals it. The fan stands on its own feet and never touches the print. [Buy list](docs/buy_list.md) §1 |
 | Honeycomb + screens | **Screens ordered 2026-11-09 (owner)**; honeycomb printed | **Screens: aluminium window insect screen, Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll from Home Depot, ordered 2026-11-09.** The maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open (computed); price paid not recorded; wire count and diameter to be checked on arrival. Also checked 2026-11-09: a 35 × 35 × 0.011 in mesh (37.9 % open) rejected; McNichols' and New York Wire's 18 × 16 × 0.011 in screens suitable ([buy list](docs/buy_list.md) §3). Four or five screens (two or three in the diffuser, two in the settling chamber; Mehta1977/1979, Scheiman1981). Rejected: McMaster 30 × 30 filter mesh (0.012–0.013 in wire, 37–41 % open: about 11.8 m/s top speed and patchy flow), Online Metals 24 × 24 × 0.014 in (44 %), McNichols perforated sheet, a TWP quote of about $200, Zoro's $65.59 sheet (too expensive). **Honeycomb: printed (owner, 2026-11-08)**, for example 6 mm hexagons with 0.4 mm walls, about 50 mm long; straws as the upgrade. Details: [buy list](docs/buy_list.md) §3 |
 | Pitot tube | **Made in-house (owner, 2026-11-08)** | A 1/8 in brass total-pressure tube facing upstream, with wall static taps (four per station) at three stations: S (settling chamber), E (test-section entrance), M (model station). Probe − M gives q at the model position (flow map, calibration); S − E gives the airspeed during force runs, calibrated once against the probe (open question 10). Brass tube, 1/8 in silicone tubing and barbed tees **ordered** (reported 2026-11-10; [buy list](docs/buy_list.md) §5). The Dwyer 166-6 ($140–167) was not chosen |
-| Differential pressure sensor | **Ordered 2026-11-09 from Mouser** (owner; price paid not recorded; part number to confirm from the order): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
+| Differential pressure sensor | **Ordered 2026-11-09 from Mouser** (owner; price paid not recorded; **order confirmed 2026-11-10: Mouser 403-SDP810-125PA, maker's part SDP810-125PA**, the ±125 Pa part): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
 | Load cell + HX711 | **Ordered 2026-11-09 from SparkFun** (owner; price paid not recorded): **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
 | Ambient pressure / temperature sensor | **Ordered 2026-11-09 (owner): Waveshare BME280 Environmental Sensor**, instead of the Adafruit BME280 (2652, $14.95); seller and price paid not recorded | An RT9193-33 regulator and, per Waveshare's product page, an onboard 3.3/5 V level translator for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. On arrival: SDA and SCL read about 5 V with only power connected, then the chip ID reads 0x60 (not a BMP280's 0x58) ([buy list](docs/buy_list.md) §7) |
 | Display and knob | **Not needed (D-012, owner, 2026-11-08)** | All output goes to the laptop (the Arduino IDE's Serial Plotter for a live view) |
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
 | Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable top panel (about 8 per panel; D-014) and a side panel if one is made removable |
-| Acrylic sheet | **Ordered** (reported 2026-11-10): clear cast acrylic, 1/8 in (3.2 mm); whether one 12 × 24 in sheet or four 8 × 12 in sheets is not recorded | For the window panels; cut by scoring and snapping |
+| Acrylic sheet | **Ordered** (reported 2026-11-10): clear cast acrylic, 1/8 in (3.2 mm), **four 8 × 12 in sheets** (owner, 2026-11-10) | For the window panels; cut by scoring and snapping. Each sheet (203 × 305 mm) gives one panel of about 300 × 120 mm plus a strip about 80 mm wide, so a window can be up to about 305 mm long (our arithmetic) |
 | Mist or smoke generator (optional visualization) | Not decided; deferred to the end | The owner asked (2026-11-01) for one that makes thick smoke. Options compared in [TODO.md](TODO.md) P2; the agent's first choice is an ultrasonic mist maker |
 
 Budget: no fixed budget (owner, 2026-11-01), but price-conscious. **The full buy list,
@@ -148,8 +149,8 @@ checked).
 | Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`), and the repo copy rebuilds byte-identical to the published one |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c` and `f4fa904`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904` and `f5616a3`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -263,8 +264,16 @@ None. No experiment has been run.
     ([D-016](DECISIONS.md), Tentative).
   - Advice recorded: a later top-down light for mist; how to make the wall taps (print a pilot, drill to finish);
     inch drill sizes; a straight probe through the open exit as an idea; the fan inlet as a separate printed ring.
-  - Committed and pushed as `f4fa904`; the README was then brought up to date (not committed yet). See
+  - Committed and pushed as `f4fa904`; the README was then brought up to date, committed and pushed as `f5616a3`. See
     [the session log](docs/sessions/2026-11-10-parts-ordering.md).
+- 2026-11-10: order details and cylinder advice (documentation only; nothing arrived, built or tested).
+  - Recorded the owner's answers: the acrylic is four 8 × 12 in sheets, and the Mouser order is 403-SDP810-125PA (maker's
+    part SDP810-125PA), the ±125 Pa part.
+  - Named the BME280 as the Waveshare in PROJECT_BACKGROUND and the drawings' parts list (rebuilt); fixed stale
+    settling-chamber, diffuser-screen and sphere entries.
+  - Advised against buying cylinders now (a 3/8 in brass tube, then McMaster plastic rod): not needed for the
+    validation; a full-span 1/4 in Delrin rod would give about 6–8 gf at 13 m/s if a cylinder test is wanted later
+    (estimate). See [the session log](docs/sessions/2026-11-10-order-details-and-cylinders.md).
 
 ## 7. Data and analyses
 
@@ -540,10 +549,10 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-10-parts-ordering.md#13-manual-git-commands-as-given-to-the-owner), the
-     README follow-up at its end);
-   - send the agent the heat-set inserts' length and outside diameter, which acrylic sheets were bought (one 12 × 24 in
-     or four 8 × 12 in), and the SDP810 part number from the Mouser order;
+     [session log](docs/sessions/2026-11-10-order-details-and-cylinders.md#13-manual-git-commands-as-given-to-the-owner));
+   - say whether sizing should leave room for a cylinder test (a full-span rod on the balance; not planned; TODO P3);
+   - send the agent the heat-set inserts' length and outside diameter (answered 2026-11-10: the acrylic, four 8 × 12 in
+     sheets, and the SDP810 order, Mouser 403-SDP810-125PA);
    - report what is on hand: filament amounts (PLA, PETG-CF) and the "Check the house first" items in
      [docs/shopping_list.md](docs/shopping_list.md) (power strip, sealant, glue and epoxy, heat-shrink, solder, steel
      rule, files, hacksaw, tin snips);
@@ -583,6 +592,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c` and `f4fa904`). The account was `nuhshaheer-2007` until
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904` and `f5616a3`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`
