@@ -3,7 +3,9 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-09: nothing built; one part ordered (the aluminium window screen, 2026-11-09).**
+**Current configuration as of 2026-11-10: nothing built; nearly every part ordered (2026-11-09/10), including the
+aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711 and the Waveshare BME280.
+The fan is bought last. Order status: [shopping_list.md](shopping_list.md).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
@@ -49,10 +51,10 @@ with a guess. When the setup changes, update the **Current configuration** and a
 
 | Measurement | Sensor | Range | Calibration | Location | Status |
 |---|---|---|---|---|---|
-| Airspeed | **One Sensirion SDP810-125Pa** with a home-made 1/8 in brass total-pressure probe and wall-tap rings at S, E and M ([buy list](buy_list.md) §5) | ±125 Pa (full scale at 14.4 m/s) | Planned: inclined water manometer for the gain; ×966 mbar / p_amb correction on every reading ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)) | Probe − M at the model station; S − E (contraction drop) during force runs | Chosen 2026-11-08; to buy |
-| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: budget weight set, each piece weighed on a school lab balance, balance module laid on its side | Upright under the ball, in the load-cell box under the floor. The sting stands in a printed mount on the cell's top end, clamped by the owner's thumb-screw sting lock ([D-015](../DECISIONS.md), 2026-11-09) | Chosen 2026-11-08; to buy |
-| Ambient pressure | **Adafruit BME280** (2652) | | | In room air near the fan inlet | Chosen 2026-11-08; to buy |
-| Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; to buy |
+| Airspeed | **One Sensirion SDP810-125Pa** with a home-made 1/8 in brass total-pressure probe and wall-tap rings at S, E and M ([buy list](buy_list.md) §5) | ±125 Pa (full scale at 14.4 m/s) | Planned: inclined water manometer for the gain; ×966 mbar / p_amb correction on every reading ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)) | Probe − M at the model station; S − E (contraction drop) during force runs | Chosen 2026-11-08; **ordered 2026-11-09 (Mouser)** |
+| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: budget weight set, each piece weighed on a school lab balance, balance module laid on its side | Upright under the ball, in the load-cell box under the floor. The sting stands in a printed mount on the cell's top end, clamped by the owner's thumb-screw sting lock ([D-015](../DECISIONS.md), 2026-11-09) | Chosen 2026-11-08; **ordered 2026-11-09 (SparkFun)** |
+| Ambient pressure | **Waveshare BME280 Environmental Sensor** (onboard 3.3/5 V level translator per the maker; replaces the Adafruit 2652, owner 2026-11-09) | | | In room air near the fan inlet | Chosen 2026-11-08; **ordered 2026-11-09** |
+| Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; **ordered 2026-11-09** |
 | Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
 Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). Circuit: not designed. Proposed 2026-11-01:
@@ -78,7 +80,7 @@ wiring have not been checked against its schematic yet.
 
 | Model | Dimensions | Mount | Status |
 |---|---|---|---|
-| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own 1/8 in brass stem, which slides into a 5/32 in sleeve on a non-magnetic 1/8 in brass sting about 80–90 mm long; the sting passes inside a fixed, streamlined printed shield and a floor slot to an upright TAL221 in a closed box under the floor (as in Weakly2024) | Chosen; to buy |
+| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own non-magnetic 1/8 in brass sting about 80–90 mm long, swapped whole (no 5/32 in sleeve since 2026-11-09); the sting passes inside a fixed, streamlined printed shield and a floor slot to an upright TAL221 in a closed box under the floor (as in Weakly2024) | Chosen; to buy |
 | Airfoil | Unknown | Same sting, with a preset-angle adapter | Planned (after validation) |
 
 ## Parts on hand
@@ -144,3 +146,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-09 | Owner's shopping tracker added ([shopping_list.md](shopping_list.md)). Stale entries corrected: construction material (bolted flanges, PLA and PETG-CF) and the HX711 module (SparkFun, chosen 2026-11-08). Documentation only; nothing bought, built or tested | [2026-11-09](sessions/2026-11-09-shopping-list.md) |
 | 2026-11-09 | Preliminary drawing package added ([drawings/](drawings/README.md)). Owner's decisions from a new sketch: bolted flange joints (D-013), the top panel on magnets and replaceable floor inserts (D-014), the sting mount and thumb-screw sting lock (D-015). Documentation only; nothing bought, built or tested | [2026-11-09](sessions/2026-11-09-drawing-package.md) |
 | 2026-11-09 | First part ordered: the aluminium window screen (Saint-Gobain ADFORS FCS9222-M, Bright; 18 × 16, 0.011 in wire per the maker's spec, 66 % open); three diffuser screens planned (five in all). Nothing built or tested; the fan is still open (agent recommends the S6) | [2026-11-09](sessions/2026-11-09-fan-advice-and-screen-order.md) |
+| 2026-11-09/10 | Parts ordered: everything on the buy list except the fan (bought last). Changes: Waveshare BME280 instead of the Adafruit; stainless screws at the balance instead of brass; one full-length sting per ball, no 5/32 in sleeve ([D-016](../DECISIONS.md), Tentative). Nothing arrived, built or tested yet | [2026-11-10](sessions/2026-11-10-parts-ordering.md) |

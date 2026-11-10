@@ -17,21 +17,26 @@ Owner tasks are physical or account actions that an agent cannot do.
   - VEVOR VV-GDFJ-AC6: $53.90; 400 CFM and 300 Pa (seller's figures); AC motor with a speed controller; about
     11.3 m/s, about 73 % of the S6's force at top speed. Both validate.
   - Comparison and the fan-to-tunnel joint: [docs/buy_list.md](docs/buy_list.md) §1.
+  - **Timing (owner, 2026-11-10):** buy the fan later, when the prints are ready, so its 30-day return window covers
+    the real test. Agent's advice: buy it once the airspeed readout works (SDP810, probe and firmware), then measure the
+    top speed and the load-cell noise with the fan running inside the window; check the seller's return terms. Still
+    choose the model before the fan stand is designed (the two fans differ in size).
   - Outcome: a new decision superseding D-011; the model recorded in PROJECT_STATUS §3 and docs/experimental_setup.md.
     Verify: if the VEVOR is chosen, D-010's target is restated as "what the fan reaches, about 11 m/s".
-- [ ] **Owner: report what is on hand, then order the parts** in [docs/buy_list.md](docs/buy_list.md). Track them in
-  the owner's tracker, [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09): change each row's status To buy →
-  Ordered → Got it, and give the agent the part numbers when they arrive. **PLA:** the owner may need more rolls
-  (2026-11-09). Weigh the spools; the tunnel needs roughly 3–4 kg in all (estimate, firmed up at sizing).
-  - **Ordered so far:** the aluminium window screen (2026-11-09; Saint-Gobain ADFORS FCS9222-M, Bright).
-  - **PETG-CF:** the loaded parts need roughly 0.5–1 kg (estimate); weigh that spool too, and buy plain PETG only if
-    less is left.
-  - The owner will report on 2026-11-10: filament amounts (PLA, PETG-CF); super glue, epoxy, silicone, sandpaper, M3/M4
-    screws, rubber feet, duct tape, an acrylic scoring knife, a switched power strip, tin snips, files, a hacksaw.
-  - The electronics (one SDP810-125Pa, two TAL221 100 g, a SparkFun HX711, an Adafruit BME280) and most small parts do
-    not depend on the fan or on the sizing and can be ordered now.
-  - Outcome: each part On hand in the buy list, PROJECT_STATUS §3 and docs/experimental_setup.md, with part numbers.
-    Verify: the buy list's "To buy" items are all marked bought or deliberately dropped.
+- [ ] **Owner: report what is on hand and send the part details the sizing needs** (new 2026-11-10; everything but the
+  fan is ordered, see Done). Send the agent:
+  - the **heat-set inserts' length and outside diameter** (the printed holes are sized to them);
+  - **which acrylic sheets** were bought: one 12 × 24 in, or four 8 × 12 in (both give 305 mm windows);
+  - the **SDP810 part number** on the Mouser order (should be 403-SDP810-125PA, not a 500 Pa part);
+  - **filament on hand:** PLA (4 kg black is ordered; the tunnel needs roughly 3–4 kg in all) and PETG-CF (the loaded
+    parts need roughly 0.5–1 kg; buy plain PETG only if less is left);
+  - which **"check house" items** are at home: power strip, sealant, super glue and epoxy, heat-shrink, solder, steel
+    rule, files, hacksaw, tin snips;
+  - what the **school lab balance** reads to (PROJECT_STATUS open question 16).
+
+  As parts arrive, mark each row "Got it" in [docs/shopping_list.md](docs/shopping_list.md) and do its arrival check
+  (P2). Outcome: each part On hand in the buy list, PROJECT_STATUS §3 and docs/experimental_setup.md, with part numbers.
+  Verify: no "Ordered" row left once the parcels are in, and the sizing inputs above recorded.
 - [ ] **Owner: check the values the agent read from the three new datasheets** (2026-11-08): the checklists at the end
   of [resources/notes/SDP8xx.md](resources/notes/SDP8xx.md), [Sensirion2024.md](resources/notes/Sensirion2024.md)
   and [TAL221.md](resources/notes/TAL221.md). Verify: each notes file's "owner check pending" removed, or the error
@@ -135,8 +140,9 @@ Owner tasks are physical or account actions that an agent cannot do.
     - ~~the floor (sting slot and balance) stays fixed~~ (superseded by D-014: the floor inserts drop in from above,
       sit flush, land on pins and seal at their edges); the pitot goes through a fixed wall;
     - **keep magnets away from ferrous parts on the measured side of the balance**, and use a non-magnetic sting
-      (aluminium, brass or carbon fibre) and non-magnetic fasteners near it. A magnet pulling on a steel sting could
-      add a few grams-force, the same size as the drag;
+      (aluminium, brass or carbon fibre). (2026-11-09: stainless screws are fine near it; the 8 × 2 mm magnets pull on
+      even a plain steel M3 screw at 60 mm with only about 1 µN, so the brass screw set is dropped; buy list §4.) A
+      magnet right next to a steel sting could add a few grams-force, the same size as the drag;
     - holding force: test-section panels see little pressure in a blower with an open exit. A removable 500 mm
       settling-chamber panel would see about 15 N at 10 m/s and 60 N at 20 m/s (estimate), so it needs latches or
       many strong magnets;
@@ -144,17 +150,29 @@ Owner tasks are physical or account actions that an agent cannot do.
     - mark the magnet poles; one flipped magnet repels.
   - **Added 2026-11-08/09 [Proposed], from the buy-list session** ([docs/buy_list.md](docs/buy_list.md)):
     - Fan-to-tunnel joint: a printed inlet sized from the measured fan collar (plus one neoprene layer and about
-      0.5 mm), about 25–30 mm deep; test-print a 10 mm ring first.
+      0.5 mm), about 25–30 mm deep; test-print a 10 mm ring first. **2026-11-10:** make the inlet a separate ring that
+      bolts to the diffuser, so the diffuser can be printed before the fan arrives (the owner will buy the fan last).
     - Screens: aluminium window screen, with two or three in the diffuser. Consider placing the first slightly into
       the diffuser: at the fan outlet it costs about 24–28 Pa at 13 m/s. Use the §3 table for the fan pressure.
     - Honeycomb: printed (owner), for example 6 mm hexagons, 0.4 mm walls, about 50 mm long.
     - Wall-tap stations S (settling chamber), E (test-section entrance, at least 150 mm ahead of the sphere) and M
       (model station), four taps each: 0.8–1.0 mm holes drilled after printing, with printed bosses holding 1/8 in
-      brass stubs. Plus a probe guide across the section.
+      brass stubs. Plus a probe guide across the section. **Idea (agent, 2026-11-09; weigh at sizing):** a straight
+      probe entering through the open exit, facing upstream, on a printed stand outside the tunnel, needs no bend and
+      no wall hole, and comes out easily before force runs. **2026-11-09 (owner asked whether to print the holes):**
+      the file gets the stub socket, stopping about 1.5–2 mm short of the inside face, and a pilot dimple at the tap
+      position; the sensing hole itself is drilled with the pin vise, then the inside edge is flattened with 400–600
+      wet/dry on a flat block (no burr, no rounding). A 0.8–1.0 mm hole is only about two nozzle widths, so a
+      printed one comes out undersized, out of round or strung shut. The M taps matter most: their error goes
+      straight into q at the model (probe − M), while constant S and E errors are calibrated out. Practise on a
+      printed test coupon first.
     - The balance as a removable module that can lay on its side for calibration. The load cell stands upright under
       the ball, clamped only at its top end ([owner's sketch](docs/sketches/README.md)).
     - A sting shield about 7.5 mm wide (5 mm bore), streamlined, fixed to the sphere floor insert (D-014), up to about
-      5 mm below the ball; a 5/32 in sleeve at the sting top for the balls' 1/8 in stems.
+      5 mm below the ball; ~~a 5/32 in sleeve at the sting top for the balls' 1/8 in stems~~ **(2026-11-09,
+      [D-016](DECISIONS.md), Tentative): no sleeve; each ball, and the calibration hook, gets its own full-length 1/8 in brass sting, all cut
+      to the same length within about 0.5 mm. The drawings still show the sleeve (wtdata.py `sleeve_d` and its parts
+      row); update them at sizing.**
     - Panels: 1/8 in acrylic in printed frames with 8 × 2 mm magnet pockets (about 8.2–8.3 mm across, 2.2 mm deep).
     - Bolted flanges, M3 screws into brass heat-set inserts, foam tape, screens clamped between the flanges in printed
       frames (decided 2026-11-09, [D-013](DECISIONS.md)); printed feet under each section, no plywood base (owner).
@@ -242,8 +260,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: a short circuit description. Verify: supply rails compatible with each part (LM741 is not rail-to-rail
     and expects split supplies). Depends on the parts on hand (P0).
 - [ ] **Owner: buy hardware** per [docs/buy_list.md](docs/buy_list.md) (see P0). No fixed budget (owner,
-  2026-11-01), but price-conscious; the list totals about $315–505. Outcome: parts on hand. Verify: part numbers and
-  datasheets recorded in `docs/experimental_setup.md`.
+  2026-11-01), but price-conscious; the list totals about $315–505. **Everything but the fan ordered 2026-11-09/10**
+  (Done list); open until the parts arrive. Outcome: parts on hand. Verify: part numbers and datasheets recorded in
+  `docs/experimental_setup.md`.
 
 ## P2: Build and validate (build steps 2–6)
 
@@ -267,6 +286,12 @@ Owner tasks are physical or account actions that an agent cannot do.
   - The fan's position does not decide whether the streaks are smooth; the flow conditioning does.
   - Mist suits the tunnel type only weakly and should not decide blower vs suction.
   - Mist fades at high speed, so run visualization at low speed.
+  - **Lighting (owner, 2026-11-09; to be designed at the end, with the mist):** a light outside the test section,
+    shining down through the clear top panel onto the model against the dark (black PLA) far wall and floor. The owner's
+    reference was a photo of a display case lit by an LED strip along its top front edge. The light is only for mist,
+    so it is off during force and pressure runs (the load cell's zero moves about 0.01 g/°C, and the drag signal is
+    tens of µV). It needs no second clear side panel. The agent's first idea, a backlight behind the far side window,
+    suits silhouettes, not mist: it shines toward the camera and washes the streaks out.
   - Never run mist during force or pressure measurements. Water in the pitot lines or on the load cell corrupts
     readings, and humidity changes air density. Let the tunnel dry afterwards.
   - Use distilled water, and empty and dry the generator after each use. Ultrasonic foggers put whatever is in the
@@ -315,13 +340,19 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [ ] **Arrival checks for each new part** (owner; new 2026-11-08). Record each result with the date:
   - TAL221s: wire resistances (red–black about 1090 Ω, green–white about 1000 Ω, cross pairs, body open) and the
     no-load zero, as baselines for spotting damage later;
-  - BME280: chip ID 0x60, not a BMP280's 0x58;
+  - BME280 (Waveshare, ordered 2026-11-09): first, with only VCC (5 V) and GND connected, SDA and SCL read about 5 V
+    on the multimeter (level translator working; about 3.3 V means no shifting, so do not wire it to the Mega); then
+    chip ID 0x60, not a BMP280's 0x58;
   - SDP810: zero with both ports capped, within about 0.1 Pa;
   - calipers: new battery, return to 0.00, a known object measured;
   - window screen (ordered 2026-11-09): 18 and 16 wires per inch against the steel rule, one wire about 0.28 mm
-    (0.011 in), "Bright" bare aluminium; store it flat or loosely rolled, since creases do not come out.
+    (0.011 in), "Bright" bare aluminium; store it flat or loosely rolled, since creases do not come out;
+  - added 2026-11-10: barbed connectors, at least 10 tees and 2 straight couplers; brass rod, a true 1/8 in (3.18 mm),
+    not 3 mm, and straight when rolled on a table; brass tube, 1/8 in OD (the 1/8 in silicone tubing should seal on
+    it); acrylic, 1/8 in and acrylic rather than styrene; neoprene, 1/16 in and soft; the SDP810's label reads
+    125 Pa; the drill set has 0.8–1.0 mm and 3.0 mm bits.
 
-  Details: [docs/buy_list.md](docs/buy_list.md) §6, §7 and §10. Verify: values written into
+  Details: [docs/buy_list.md](docs/buy_list.md) §5, §6, §7 and §10. Verify: values written into
   docs/experimental_setup.md.
 - [ ] **Calibrate the pressure sensor against a home-made inclined water manometer** (new 2026-11-08). A water U-tube
   lying on a ramp at about 1 in 10 (100 Pa moves the menisci about 102 mm apart), teed onto the same taps as the
@@ -494,3 +525,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-09: **Screen chosen and ordered** (owner): Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll from
   Home Depot; 18 × 16, 0.011 in wire per the maker's spec, 66 % open. The first part ordered
   ([session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md)).
+- [x] 2026-11-09: Owner committed and pushed the fan-advice and screen-order session as `c768e2c`; `/catchup` confirmed
+  `UP_TO_DATE` ([session log](docs/sessions/2026-11-10-parts-ordering.md)).
+- [x] 2026-11-09/10: **Parts ordered: everything on the buy list except the fan** (owner), which is bought last so its
+  return window covers the real test. Changes on the way: Waveshare BME280 instead of the Adafruit; stainless screws
+  instead of a brass set; one full-length sting per ball instead of the 5/32 in sleeve ([D-016](DECISIONS.md),
+  Tentative); the 4-core cable optional; header strips tin-plated. Tracker: [docs/shopping_list.md](docs/shopping_list.md)
+  ([session log](docs/sessions/2026-11-10-parts-ordering.md)).

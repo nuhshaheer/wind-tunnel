@@ -25,10 +25,10 @@ without a chosen part.
 | 2. Tunnel body | Reviewed 2026-11-09: PLA, PETG-CF and a hardened nozzle on hand; printed feet, no plywood | about $30–90, plus any PLA top-up |
 | 3. Flow conditioning | **Screen ordered 2026-11-09** (aluminium insect screen, Saint-Gobain ADFORS FCS9222-M; five screens planned); printed honeycomb (owner) | about $10 (ordered) |
 | 4. Test section and model access | Proposed 2026-11-09; magnets on hand (8 × 2 mm) | about $20–29 |
-| 5. Airspeed | Reviewed 2026-11-08: make the probe, one sensor | about $47–70, plus $5–8 for the optional bender |
-| 6. Force balance and models | Reviewed 2026-11-08: two load cells, 3/4 in and 1 in balls (owner) | about $61–64; balls may cost more in small quantities |
-| 7. Ambient conditions | Proposed 2026-11-08 | $14.95 |
-| 8. Electronics and wiring | Reviewed 2026-11-08/09: no display or knob (D-012); breadboard then PCB, no shield | about $15–23, plus about $20–30 if wire, heat-shrink and solder are not on hand |
+| 5. Airspeed | Reviewed 2026-11-08: make the probe, one sensor. **SDP810-125Pa ordered 2026-11-09 (Mouser)** | about $47–70, plus $5–8 for the optional bender |
+| 6. Force balance and models | Reviewed 2026-11-08: two load cells, 3/4 in and 1 in balls (owner). **Both TAL221s and the HX711 ordered 2026-11-09 (SparkFun)** | about $61–64; balls may cost more in small quantities |
+| 7. Ambient conditions | Proposed 2026-11-08. **Waveshare BME280 ordered 2026-11-09** (instead of the Adafruit 2652) | $14.95 |
+| 8. Electronics and wiring | Reviewed 2026-11-08/09: no display or knob (D-012); breadboard then PCB, no shield. **Dupont jumpers and the TUOFENG hook-up wire ordered 2026-11-09**; the 4-core cable maybe not needed | about $15–23, plus about $20–30 if wire, heat-shrink and solder are not on hand |
 | 9. Calibration | Reviewed 2026-11-08: home-made manometer, budget weights checked on a school lab balance | about $28–56, less what is in the house |
 | 10. Tools (partly) | Calipers and hand drill on hand; battery, tube cutter, drill bits; files and hacksaw if not in the house | about $15–25, plus up to about $20 |
 | 11. Later and optional | Reviewed 2026-11-09: PCB with sockets after the breadboard test; cars with mist, lift maybe never | nothing now |
@@ -45,9 +45,9 @@ the S6** (2026-11-09; reasons in the notes below, "Choosing between the two").
 | Fan, **option 1** | **AC Infinity CLOUDLINE S6, model AI-CLS6**, with its 10-speed controller. EC motor; 425 CFM and 503 Pa (maker). About 13.0–13.4 m/s (estimate) | 1 | $99.00 (AC Infinity, 2026-11-08) | [acinfinity.com](https://acinfinity.com/hydroponics-growers/ventilation/inline-fan-systems/cloudline-pro-s6-quiet-inline-duct-fan-system-with-speed-controller-6-inch/) | Now | To buy, if chosen |
 | Fan, **option 2** | **VEVOR 6-inch inline duct fan, model VV-GDFJ-AC6**, with its variable speed controller. AC motor, 60 W, 2600 rpm; 400 CFM and 300 Pa (seller's figures); 306 × 255 × 212 mm, 2.84 kg. About 11.3 m/s (estimate) | 1 | $53.90 (listing pasted by the owner, 2026-11-09) | VEVOR | Now | To buy, if chosen |
 | Fan-to-tunnel joint | **Owner's design (2026-11-08):** a printed diffuser inlet about 25–30 mm deep, as small as possible: the fan's collar, wrapped in one layer of the neoprene, is a snug slide fit. Duct tape seals the outside of the joint | 1 | filament | Printed | After the fan arrives | Printed |
-| Neoprene sheet | **40A (soft), 1/16 in (1.6 mm) × 12 × 24 in**, smooth, no adhesive backing (Rubber-Cal 30-004-062). For the collar wrap and the stand-foot pads, with plenty spare | 2 (sold in pairs) | $6.89 each, $13.78 a pair (Zoro, 2026-11-08) | [Zoro](https://www.zoro.com/rubber-cal-neoprene-sheet-40a-smooth-finish-no-backing-0062-thick-x-12-width-x-24-length-black-30-004-062/i/G3210068/) | Now | To buy |
-| Duct tape | Cloth duct tape | 1 roll | about $5–10 (typical, not checked) | Hardware store | Now | Unknown (probably in the house) |
-| Fan stand feet | 4 soft rubber or silicone bumper feet, about 20–25 mm, the softest available | 4 | about $5–10 (typical, not checked) | Hardware store | Now | To buy |
+| Neoprene sheet | **40A (soft), 1/16 in (1.6 mm) × 12 × 24 in**, smooth, no adhesive backing (Rubber-Cal 30-004-062). For the collar wrap and the stand-foot pads, with plenty spare | 2 (sold in pairs) | $6.89 each, $13.78 a pair (Zoro, 2026-11-08) | [Zoro](https://www.zoro.com/rubber-cal-neoprene-sheet-40a-smooth-finish-no-backing-0062-thick-x-12-width-x-24-length-black-30-004-062/i/G3210068/) | Now | **Ordered** (reported 2026-11-10): 2 sheets of 12 × 12 in instead (owner); wrap the collar with two ~240 mm pieces butted end to end |
+| Duct tape | Cloth duct tape | 1 roll | about $5–10 (typical, not checked) | Hardware store | Now | **Ordered** (reported 2026-11-10) |
+| Fan stand feet | 4 soft rubber or silicone bumper feet, about 20–25 mm, the softest available. **Chosen (owner, 2026-11-09): a 20-pack of stick-on polyurethane feet, 0.78 × 0.38 in (about 20 × 10 mm), "soft" per the listing**, which also covers the tunnel's rubber pads (§2). Probably firmer than a "super soft" rubber 4-pack (1 × 0.437 in, metal insert) that was also considered; the neoprene sleeve does most of the isolating, and that 4-pack is the upgrade if the load-cell noise test with the fan on shows vibration getting through | 4 (of the 20) | about $5–10 (typical, not checked) | Hardware store | Now | **Ordered** (reported 2026-11-10): the 20-pack |
 | Fan stand | A printed or plywood cradle, separate from the tunnel base | 1 | filament or scrap wood | Printed | After sizing | Printed |
 | Inlet guard | A printed open grille over the fan inlet | 1 | filament | Printed | Later | Printed |
 | Power switch | A UL- or ETL-listed power strip with a lighted on/off switch, within reach at the bench. **Buy it; do not build it** (see notes). The fan has a US NEMA 5-15 plug | 1 | about $16–27 for the listings seen (2026-11-08) | Any hardware store | Now | Unknown (check the house first) |
@@ -122,16 +122,16 @@ Notes:
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Filament, PLA | **PLA** for the shells (diffuser, settling chamber, contraction, test-section frame), the printed honeycomb, boxes, the fan stand and the base feet: stiffest and most accurate. **Black** for the test section and contraction, for contrast in any later mist visualization and less glare in photos | 2.5–3 kg | about $15–20/kg for any top-up (typical, not checked) | Bambu, Amazon | After sizing | **On hand** (owner, 2026-11-09; amount unknown) |
+| Filament, PLA | **PLA** for the shells (diffuser, settling chamber, contraction, test-section frame), the printed honeycomb, boxes, the fan stand and the base feet: stiffest and most accurate. **Black** for the test section and contraction, for contrast in any later mist visualization and less glare in photos | 2.5–3 kg | about $15–20/kg for any top-up (typical, not checked) | Bambu, Amazon | After sizing | **On hand** (owner, 2026-11-09; amount unknown); **4 kg black ordered** (reported 2026-11-10) |
 | Filament for loaded parts | For anything clamped or under steady load: screen frames, the sting mount (D-015), overload stops, the load-cell base, the ball-drilling jig. **PETG-CF is on hand** (owner, 2026-11-09; amount unknown): stiffer than PETG and creeps less, but abrasive. Use it only with a hardened-steel nozzle; otherwise buy plain PETG | 0.5–1 kg | | | After sizing | **On hand:** PETG-CF, and a hardened-steel nozzle (owner, 2026-11-09). Nothing to buy unless the PETG-CF runs short |
-| Heat-set inserts | Brass, M3, for screws into printed parts | 1 pack of 100 | about $11–20 (listings) | Amazon, electronics distributors | Now | To buy |
-| Screws, nuts, washers | An M3 and M4 assortment (stainless) for joining segments; a small **brass** M3 set for anything near the balance | 1 + 1 | about $10–15 + $8–10 (typical, not checked) | Hardware store, Amazon | Now | To buy |
+| Heat-set inserts | Brass, M3, for screws into printed parts | 1 pack of 100 | about $11–20 (listings) | Amazon, electronics distributors | Now | **Ordered** (reported 2026-11-10); size (length × outside diameter) to be sent to the agent |
+| Screws, nuts, washers | An M3 and M4 assortment (stainless) for joining segments; a small **brass** M3 set for anything near the balance | 1 + 1 | about $10–15 + $8–10 (typical, not checked) | Hardware store, Amazon | Now | **Stainless assortment ordered** (owner, reported 2026-11-09). **Brass set dropped** (agent, 2026-11-09): stainless is fine at the balance too (§4, magnets note) |
 | Gasket for joints | The foam tape from §4, between bolted flanges | | | | | §4 |
 | Sealant | Clear silicone, for joints that never come apart | 1 tube | about $6 (typical, not checked) | Hardware store | After sizing | Unknown |
 | Glue | Super glue and 5-minute epoxy (brass stubs into printed walls, small repairs). Neither bonds the Delrin balls (§6) | 1 each | about $5–10 each (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
-| Contraction finish | Sandpaper, 220–600 grit; optional filler primer spray, for a smooth inside on the contraction | 1 set | about $10–15 (typical, not checked) | Hardware store | After sizing | Unknown |
+| Contraction finish | Sandpaper, 220–600 grit; optional filler primer spray, for a smooth inside on the contraction | 1 set | about $10–15 (typical, not checked) | Hardware store | After sizing | **Ordered** (reported 2026-11-10): wet/dry, 220–600 grit (owner) |
 | Base | **Printed feet under each section instead of a plywood board** (owner, 2026-11-09). The bolted, pinned box sections keep themselves in line; the balance module mounts to the test-section frame. The fan stands apart on its own feet | | filament | Printed | After sizing | Printed |
-| Rubber pads | Under the printed feet, so the tunnel sits steady and table vibration is damped. Pads cut from the spare neoprene (§1) also work | 6–8 | about $5 (typical, not checked) | Hardware store | After sizing | Unknown |
+| Rubber pads | Under the printed feet, so the tunnel sits steady and table vibration is damped. Pads cut from the spare neoprene (§1) also work | 6–8 | covered | Hardware store | After sizing | **Covered by the 20-pack of bumper feet chosen for the fan stand (§1; owner, 2026-11-09)** |
 
 **Subtotal:** about $30–90 (inserts, screws, glue, sealant, sandpaper, rubber pads), plus about $15–20 per kg of any
 PLA to add; less what is on hand. The owner will check the house for these on 2026-11-10.
@@ -332,10 +332,10 @@ the sting hole and the sting shield, and a plain insert for model cars.
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Window acrylic | **Clear acrylic, 1/8 in (3.2 mm), 12 × 24 in.** Cast is clearer and cuts more cleanly; extruded also works. Gives four or five panels of about 300 × 120 mm (the test section is 270–290 mm long) | 1 | $10.45, cast (Online Metals); Home Depot sells extruded sheets | Online Metals, Home Depot | Now | To buy |
-| Acrylic scoring knife | Cuts 1/8 in acrylic by scoring and snapping | 1 | about $5–10 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
+| Window acrylic | **Clear acrylic, 1/8 in (3.2 mm), 12 × 24 in.** Cast is clearer and cuts more cleanly; extruded also works. Gives four or five panels of about 300 × 120 mm (the test section is 270–290 mm long) | 1 | $10.45, cast (Online Metals); Home Depot sells extruded sheets | Online Metals, Home Depot | Now | **Ordered** (reported 2026-11-10); which sheets (one 12 × 24 in, or four 8 × 12 in) not recorded |
+| Acrylic scoring knife | Cuts 1/8 in acrylic by scoring and snapping | 1 | about $5–10 (typical, not checked) | Hardware store | Now | **Ordered** (reported 2026-11-10) |
 | Magnets | **On hand: round magnets 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed), embedded in the printed panel frames. About 8 per panel (4 in the panel, 4 in the frame), so about 16 for two panels, plus spares | | | | | **On hand: 43** (owner, 2026-11-09). Enough; nothing to buy |
-| Gasket | Thin closed-cell foam tape, about 1/8 in thick and 1/4–3/8 in wide, adhesive-backed (weatherstrip). Also seals the tunnel's bolted joints (§2) | 1 roll | about $5–8 (typical, not checked) | Hardware store | Now | To buy (owner: "need to buy this for sure", 2026-11-09) |
+| Gasket | Thin closed-cell foam tape, about 1/8 in thick and 1/4–3/8 in wide, adhesive-backed (weatherstrip). Also seals the tunnel's bolted joints (§2) | 1 roll | about $5–8 (typical, not checked) | Hardware store | Now | **Ordered** (reported 2026-11-10) |
 | Locating lips or pins | So each panel and floor insert lands in the same place every time, flush inside | | filament | Printed | After sizing | Printed |
 | Floor inserts | Two printed inserts that drop into the floor opening under the model ([D-014](../DECISIONS.md)): one with the sting hole and the sting shield, one plain for model cars. Size, hold-down and seal at sizing | 2 | filament | Printed | After sizing | Printed |
 | Probe guide | A printed guide that holds the probe and lets it move across the section for the flow map; holes plugged when not in use | 1 | filament | Printed | After sizing | Printed |
@@ -347,8 +347,14 @@ Notes:
 
 - **Holding force is tiny.** The test section sits near room pressure (a blower with an open exit), so the air pushes
   on a 300 × 120 mm panel with well under 1 N. The magnets mainly hold the panel in place; the lips locate it.
-- **Magnets and the balance:** the sting is brass, the load cell aluminium and the nearby screws brass, so the magnets
-  have nothing to pull on. Keep steel parts away from the balance's measured side. Mark the poles before embedding:
+- **Magnets and the balance:** the sting is brass and the load cell aluminium, so the magnets have nothing to pull on.
+  Keep steel parts away from the balance's measured side. **2026-11-09: stainless screws are fine there; the brass
+  set is dropped.** Our dipole estimate (one 8 × 2 mm neodymium magnet, Br about 1.2 T assumed): at 60 mm, the
+  closest a panel magnet could plausibly sit to the sting mount, the field is about 90 µT. It pulls on an M3 × 10 screw with about 0.001 µN
+  if weakly magnetic stainless, and about 1 µN even if plain steel. That is about 1 % of the 0.01 gf (98 µN) the
+  balance aims to resolve, and a steady pull cancels in the wind-off zero anyway, as long as the panel stays put
+  between the zero and the run. Check when built: the zero should not move when the top panel is lifted off and put
+  back. Mark the poles before embedding:
   one flipped magnet repels.
 - Pause the print to drop magnets into pockets, so they sit under a thin skin of plastic. For the owner's 8 × 2 mm
   magnets, start with pockets about 8.2–8.3 mm across and 2.2 mm deep, and adjust after a test print.
@@ -386,12 +392,12 @@ Sensor 1:  High ← probe    Low ← M ring  → q at the model position  → fl
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Pressure sensor | **Sensirion SDP810-125Pa** (order number 1-101597-01; DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | **1** (owner, 2026-11-08) | $29.39–33.88 (DigiKey), $32.21–34.72 (Mouser): search snapshots, 2026-11-08 | DigiKey or Mouser, in one order with the other electronics | Now | To buy |
+| Pressure sensor | **Sensirion SDP810-125Pa** (order number 1-101597-01; DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | **1** (owner, 2026-11-08) | $29.39–33.88 (DigiKey), $32.21–34.72 (Mouser): search snapshots, 2026-11-08 | DigiKey or Mouser, in one order with the other electronics | Now | **Ordered 2026-11-09 from Mouser** (owner; price paid not recorded; part number to confirm from the order) |
 | I²C multiplexer | A TCA9548A or PCA9548 8-channel breakout (for example Adafruit 2717 or 5626). Needed only if a second SDP810-125Pa is added: both answer at address 0x25. Check it runs at 5 V | 1 | Adafruit 5626 $9.15 at Jameco (2026-11-08) | Adafruit, DigiKey, Mouser | Only with a second sensor | Not needed now |
-| Probe and tap tube | **K&S round brass tube, 1/8 in OD × 12 in** (No. 8127): the total-pressure probe (about 150 mm) and 12 wall-tap stubs (about 20 mm each); the rest is spare | 2 | $1.79 (Ace Hardware) to $6.29 (Zoro), 2026-11-08 | Hardware or hobby store | Now | To buy |
-| Tubing | Silicone tubing, **1/8 in (3.2 mm) inside diameter**, about 1/16 in wall. Fits the brass tube directly, and stretches over the sensor's Ø3.5–5.2 mm barbs | about 10 ft (3 m) | about $8–12 (typical, not checked) | Hardware store, aquarium supply, Amazon | Now | To buy |
-| Barbed connectors | An assortment for 1/8 in tubing with at least 9 tees (3 per station, to join each station's four taps into one line) and at least 2 straight couplers (the swap points, see notes) | 1 assortment | about $6–10 (typical, not checked) | Same | Now | To buy |
-| Tube labels | Coloured tape or tags to mark the four lines: probe, M, S, E | | | | | Unknown (probably in the house) |
+| Probe and tap tube | **K&S round brass tube, 1/8 in OD × 12 in** (No. 8127): the total-pressure probe (about 150 mm) and 12 wall-tap stubs (about 20 mm each); the rest is spare | 2 | $1.79 (Ace Hardware) to $6.29 (Zoro), 2026-11-08 | Hardware or hobby store | Now | **Ordered** (reported 2026-11-10), 2 |
+| Tubing | Silicone tubing, **1/8 in (3.2 mm) inside diameter**, about 1/16 in wall. Fits the brass tube directly, and stretches over the sensor's Ø3.5–5.2 mm barbs | about 10 ft (3 m) | about $8–12 (typical, not checked) | Hardware store, aquarium supply, Amazon | Now | **Ordered** (reported 2026-11-10) |
+| Barbed connectors | An assortment for 1/8 in tubing with at least 9 tees (3 per station, to join each station's four taps into one line) and at least 2 straight couplers (the swap points, see notes) | 1 assortment | about $6–10 (typical, not checked) | Same | Now | **Ordered** (reported 2026-11-10); count at least 10 tees on arrival (9 + 1 for the manometer, §9) |
+| Tube labels | Coloured tape or tags to mark the four lines: probe, M, S, E | | | | | **Covered:** tape and Sharpies bought (reported 2026-11-10) |
 | Tube bender (optional) | A spring bender for 1/8 in tube, so the probe's 90° bend does not kink | 1 | about $5–8 (typical, not checked) | Hobby store | Now | To buy, optional |
 | Sensor wiring | Four thin wires soldered to each sensor's pins (2 mm pitch: no perfboard, no breadboard). From the wiring in §8 | | | | | §8 |
 | Standard pitot-static tube (alternative) | **Dwyer 166-6**: 1/8 in diameter, 6 in insertion, 3 in tip, stainless; a recognised standard design | 1 | $140.35–167.25 (Dwyer, distributors, 2026-11-08) | Dwyer, Transcat | | Not chosen: the owner chose to make the probe (2026-11-08) |
@@ -454,15 +460,15 @@ are from a short script (this session's log), with sphere drag from Eq. (19) and
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Load cell | **TAL221 100 g straight bar** (SparkFun SEN-14727): 0.6 mV/V, safe overload 150 g, M3 mounting. Buy the **100 g** model: the datasheet's "100~1500 g" is the range of models in the family, not one cell's range | **2** (owner, 2026-11-08, after first choosing 1): one in use, one spare that can later become the lift cell (open question 14) | $15.95 each (Electronics123 listing; check SparkFun's own price) | SparkFun, DigiKey | Now | To buy |
-| Load-cell amplifier | **SparkFun HX711 breakout** (SEN-13879): separate analog and digital supplies, 10 or 80 SPS selectable, documented schematic | 1 (a second only when a lift cell is added) | $11.50 (SparkFun listing) | SparkFun | Now | To buy |
-| Validation spheres | **Acetal (Delrin) balls, 3/4 in (19.05 mm) and 1 in (25.4 mm)**, ±0.001 in (sizes confirmed by the owner, 2026-11-08). Non-magnetic, smooth, easy to drill | 2 of each (spares for drilling mistakes) | about $2.78 (3/4 in) and $4.42 (1 in) each in packs of 100–250 at Zoro; small quantities from McMaster-Carr, price not seen | McMaster-Carr | After sizing | To buy |
-| Sting | Non-magnetic rod, about 85 mm: **K&S solid brass rod, 1/8 in** proposed. Diameter and material fixed at sizing (stiffness against the sphere's 100–150 Hz vortex shedding) | 1–2 | about $1–3 (typical, not checked) | Hardware or hobby store | After sizing | To buy |
+| Load cell | **TAL221 100 g straight bar** (SparkFun SEN-14727): 0.6 mV/V, safe overload 150 g, M3 mounting. Buy the **100 g** model: the datasheet's "100~1500 g" is the range of models in the family, not one cell's range | **2** (owner, 2026-11-08, after first choosing 1): one in use, one spare that can later become the lift cell (open question 14) | $15.95 each (Electronics123 listing; check SparkFun's own price) | SparkFun, DigiKey | Now | **Ordered 2026-11-09 from SparkFun, 2** (owner; price paid not recorded) |
+| Load-cell amplifier | **SparkFun HX711 breakout** (SEN-13879): separate analog and digital supplies, 10 or 80 SPS selectable, documented schematic | 1 (a second only when a lift cell is added) | $11.50 (SparkFun listing) | SparkFun | Now | **Ordered 2026-11-09 from SparkFun** (owner; price paid not recorded) |
+| Validation spheres | **Acetal (Delrin) balls, 3/4 in (19.05 mm) and 1 in (25.4 mm)**, ±0.001 in (sizes confirmed by the owner, 2026-11-08). Non-magnetic, smooth, easy to drill | 2 of each (spares for drilling mistakes). **2026-11-10: sold only in packs of 10 (owner), so one pack of each size;** the spares serve drilling practice and press-fit trials | about $2.78 (3/4 in) and $4.42 (1 in) each in packs of 100–250 at Zoro; small quantities from McMaster-Carr, price not seen | McMaster-Carr | After sizing | **Ordered** (reported 2026-11-10): one pack of 10 of each size |
+| Sting | Non-magnetic rod, about 85 mm: **K&S solid brass rod, 1/8 in** proposed. Diameter and material fixed at sizing (stiffness against the sphere's 100–150 Hz vortex shedding). **2026-11-09: one full-length sting per ball, plus one for the calibration hook**, all cut to the same length within about 0.5 mm; three 85 mm stings per 12 in rod. Any brand works if the rod is a true 1/8 in (3.18 mm), not 3 mm | 2 | about $1–3 (typical, not checked) | Hardware or hobby store | After sizing | **Ordered: 2 rods** (reported 2026-11-10): up to six ~85 mm stings, so spares |
 | Sting shield | A streamlined fairing fixed to the sphere floor insert (D-014) around the sting, not touching it, leaving about 5 mm of sting exposed below the sphere | 1 | filament | Printed | After sizing | Printed |
-| Sting mount, sting lock and overload stops | **Owner's design ([D-015](../DECISIONS.md), 2026-11-09):** a printed mount screwed to the load cell's top end, with a blind hole for the sting, and a hand screw from the side that clamps the sting without glue (the sting lock). The hand screw: a printed knob on a brass M3 screw from §2 (no extra cost) or a bought knurled brass thumb screw (price not checked), into a brass heat-set insert. Stops let the sting move only slightly past full scale | 1 set | filament | Printed | After sizing | Printed |
+| Sting mount, sting lock and overload stops | **Owner's design ([D-015](../DECISIONS.md), 2026-11-09):** a printed mount screwed to the load cell's top end, with a blind hole for the sting, and a hand screw from the side that clamps the sting without glue (the sting lock). The hand screw: a printed knob on an M3 screw from §2 (no extra cost; stainless is fine, 2026-11-09) or a bought knurled thumb screw (price not checked), into a brass heat-set insert. Stops let the sting move only slightly past full scale | 1 set | filament | Printed | After sizing | Printed |
 | Ball-to-sting joint | **Press fit**, not glue (acetal is hard to glue): a hole drilled to the ball's centre with a printed jig, slightly smaller than the rod (see notes) | | | | After sizing | Printed jig |
-| Ball stems and sting socket | K&S round brass tube, 5/32 in OD × 12 in: a short sleeve at the top of the sting, into which each ball's own 1/8 in stem slides (1/8 in fits inside 5/32 in) | 1 | about $2–3 (typical, not checked) | Hardware or hobby store | After sizing | To buy |
-| Load-cell screws | M3, **brass** (non-magnetic) near the balance | from §2 | | | | §2 |
+| Ball stems and sting socket | ~~K&S round brass tube, 5/32 in OD × 12 in: a short sleeve at the top of the sting, into which each ball's own 1/8 in stem slides~~ **Dropped 2026-11-09 ([D-016](../DECISIONS.md), Tentative):** each ball is press-fit on its own full-length sting (row above). D-015 already lifts the sting out to change balls, so the sleeve joint added nothing; one solid rod is also stiffer, and the ball height repeats because the sting bottoms in the mount's blind hole. The owner had found the 5/32 in tube would arrive only by 2026-11-19 | | | | | Not needed |
+| Load-cell screws | M3 from the §2 stainless assortment (brass dropped 2026-11-09; §4, magnets note). Short enough not to poke through the cell's tapped holes and touch anything | from §2 | | | | §2 |
 | Wiring | The cell's four wires soldered straight to the HX711 (no breadboard in the bridge; Weakly2024 lesson), and four wires from the HX711 to the Arduino | | | | | §8 |
 
 **Subtotal (2 load cells, 1 HX711, 4 balls, rod, sleeve tube; owner's choices 2026-11-08):** about $61–64 at the
@@ -533,8 +539,10 @@ Notes:
   glue let go. Use a press fit: drill slightly smaller than the 1/8 in (3.18 mm) stem, for example 3.1 mm, and press the
   stem in. Find the right drill size on the spare ball. (Some special adhesives with primers do bond acetal; not
   needed with a press fit.)
-- **Stems and socket (proposed):** each ball keeps its own short 1/8 in brass stem. The top of the sting is a short
-  5/32 in brass sleeve, and the stem slides into it, held by friction or a small set screw. Balls are swapped with the
+- **Stems and socket (proposed):** ~~each ball keeps its own short 1/8 in brass stem. The top of the sting is a short
+  5/32 in brass sleeve, and the stem slides into it, held by friction or a small set screw.~~ **2026-11-09:** each
+  ball is press-fit on its own full-length 1/8 in sting instead; roll each rod on a flat table first to check it is
+  straight. Balls are swapped with the
   sting lifted out of its mount (D-015, 2026-11-09), so nothing twists or pushes on the load cell. Design at sizing.
 - **Why not a bigger cell for safety:** a 1 kg TAL221 would survive more abuse, but its errors, given as % of full
   scale, would be 10 times larger in grams (0.5 g against a 0.3–2.3 g drag), and the HX711 noise about 6 times larger
@@ -550,7 +558,7 @@ Notes:
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Ambient sensor | **Adafruit BME280 breakout (product 2652)**: pressure, temperature and humidity, with a 3.3 V regulator and level shifting, so it works on the 5 V Mega | 1 | $14.95 (Adafruit listing) | Adafruit, DigiKey, Mouser | Now | To buy |
+| Ambient sensor | **Waveshare BME280 Environmental Sensor** (owner, 2026-11-09, instead of the Adafruit BME280 breakout, product 2652): pressure, temperature and humidity; an RT9193-33 3.3 V regulator (2.5–5.5 V input) and, per Waveshare's product page, an onboard voltage level translator for 3.3 V or 5 V, so it works on the 5 V Mega. I²C or SPI, address switch 0x76/0x77, 6-pin PH2.0 cable | 1 | $9.58 on sale at RobotShop US, plus shipping (2026-11-09); Adafruit's was $14.95 | Waveshare, RobotShop, Amazon | Now | **Ordered 2026-11-09** (owner; seller and price paid not recorded) |
 
 What it is for:
 
@@ -561,8 +569,13 @@ What it is for:
 Notes:
 
 - **Accuracy is not a worry.** Vendor pages give about ±1 hPa, which is 0.1 % in ρ and in the SDP810 correction.
-  Humidity changes ρ by under about 1 %, so even a BMP280 (no humidity) would do. The Adafruit board is chosen for its
-  5 V level shifting and because it is genuine.
+  Humidity changes ρ by under about 1 %, so even a BMP280 (no humidity) would do. The Adafruit board was chosen for its
+  5 V level shifting and because it is genuine. **2026-11-09:** the owner ordered the Waveshare board instead, because
+  Waveshare states the level translator. A WatangTech copy (WT-BME280, $14.30 on Amazon) was considered first; its
+  listing names the regulator but not the level shifting.
+- **5 V check on arrival, before SDA and SCL go to the Mega:** connect only VCC (5 V) and GND, then measure SDA and
+  SCL to GND. About 5 V means the translator works. About 3.3 V means there is no shifting: do not wire it straight to
+  the Mega.
 - **Fake modules:** cheap "BME280" boards are often BMP280 chips. Check on arrival: chip-ID register 0xD0 reads 0x60
   for a BME280 and 0x58 for a BMP280. Then breathe on it (humidity should jump) and warm it with a finger
   (temperature should rise): a test must show a change you caused.
@@ -583,11 +596,11 @@ On hand: the Elegoo Mega 2560 (working) and a USB A-to-B cable; the ECE kit, wit
 |---|---|---|---|---|---|---|
 | Display and knob, option A | "Full Graphic Smart Controller" 12864: a 128×64 graphic LCD, push-button rotary encoder, buzzer and SD-card slot on one board | | about $15–24 new (several listings, undated) | | | Not needed (D-012) |
 | Display and knob, option B | A 20×4 character LCD with an I²C backpack (PCF8574), plus a KY-040 push-button rotary encoder | | about $12–15 together (typical, not checked) | | | Not needed (D-012) |
-| Dupont jumper wires | Female-to-male and female-to-female, about 20 cm: modules and the display adapter to the Mega's header pins while developing | 1 pack each | about $5–8 (typical, not checked) | Amazon, electronics shops | Now | To buy |
+| Dupont jumper wires | Female-to-male and female-to-female, about 20 cm: modules to the Mega's header pins while developing | 1 pack each | about $5–8 (typical, not checked) | Amazon, electronics shops | Now | **Ordered 2026-11-09** (owner; which kinds not recorded) |
 | Mega prototyping shield | A perfboard shield that plugs onto the Mega, as a soldered in-between board | | about $5–10 (typical, not checked) | | | **Not needed:** the owner's plan is breadboard → test → PCB (2026-11-09) |
-| Header strips | Male and female, 0.1 in pitch | 1 assortment | about $5 (typical, not checked) | Same | Now | To buy |
-| Sensor cables | 4-core cable, shielded if available, about 3 m in all: HX711 (in the load-cell box) to the control box, SDP810 to the control box, BME280 to the control box. Keep each I²C run under about 1 m | about 3 m | about $5–10 (typical, not checked) | Hardware or electronics shop | Now | To buy |
-| Hook-up wire | Stranded 24–26 AWG in several colours (and 22 AWG solid for the breadboard). **2026-11-09:** 24 AWG stranded silicone, about 6 colours (for example the TUOFENG set the owner found): soft, so it pulls less on the load cell, and it does not melt back when soldered. The solid wire is probably not needed: the ECE kit's jumper-wire kit and the Dupont jumpers cover the breadboard | 1 set | about $10–15 (typical, not checked) | Same | Now | Unknown (may be on hand) |
+| Header strips | Male and female, 0.1 in pitch | 1 assortment | about $5 (typical, not checked) | Same | Now | **Ordered 2026-11-10** (owner): 40 tin-plated breakaway strips, $10 |
+| Sensor cables | 4-core cable, shielded if available, about 3 m in all: HX711 (in the load-cell box) to the control box, SDP810 to the control box, BME280 to the control box. Keep each I²C run under about 1 m | about 3 m | about $5–10 (typical, not checked) | Hardware or electronics shop | Now | **Maybe** (agent, 2026-11-09): four colours of the TUOFENG hook-up wire, twisted together with the hand drill, do the same job at these lengths (digital signals only; the load cell's analog leads stay in the balance box). Not ordered: the owner's "4-core cable tuofeng 24awg" turned out to be the hook-up wire set |
+| Hook-up wire | Stranded 24–26 AWG in several colours (and 22 AWG solid for the breadboard). **2026-11-09:** 24 AWG stranded silicone, about 6 colours (for example the TUOFENG set the owner found): soft, so it pulls less on the load cell, and it does not melt back when soldered. The solid wire is probably not needed: the ECE kit's jumper-wire kit and the Dupont jumpers cover the breadboard | 1 set | about $10–15 (typical, not checked) | Same | Now | **Ordered 2026-11-09** (owner): TUOFENG 24 AWG stranded silicone, 6 colours × 30 ft, tinned copper, $15.79 (Amazon) |
 | Heat-shrink tubing | Assortment | 1 | about $5–8 (typical, not checked) | Same | Now | Unknown |
 | Solder supplies | Rosin-core solder 0.6–0.8 mm, flux, desoldering wick | | | | Now | Unknown (the soldering station is on hand) |
 | Enclosures | An Arduino box and the load-cell box (cell and HX711 only) | 2 | filament | Printed | After sizing | Printed |
@@ -615,10 +628,10 @@ the pressure sensor's 3 % gain error against a water manometer (§5).
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Calibration masses | A budget 17-piece set, 10 mg to 100 g, with tweezers. Sellers claim ±0.003 g; not certified | 1 | about $20–40 (listings, 2026-11-08) | Amazon, scale shops | Now | To buy |
+| Calibration masses | A budget 17-piece set, 10 mg to 100 g, with tweezers. Sellers claim ±0.003 g; not certified | 1 | about $20–40 (listings, 2026-11-08) | Amazon, scale shops | Now | **Ordered** (reported 2026-11-10) (the 17-piece set) |
 | Thread and hook | Fine nylon thread or light fishing line, and a light hook (bent fine wire or printed) to hang masses at the ball's position | | a few dollars | | Now | Unknown (probably in the house) |
-| Manometer tubing | Clear vinyl tubing, 1/4 in (6.4 mm) inside diameter, about 2 m, for a U-tube lying on a sloped ramp | 1 | about $5–10 (typical, not checked) | Hardware store | Now | To buy |
-| Manometer fittings | Barbed reducers from 1/4 in to 1/8 in (2) to join the manometer to the 1/8 in pressure lines; one more 1/8 in tee (from the §5 assortment) | 2 | about $3–6 (typical, not checked) | Same | Now | To buy |
+| Manometer tubing | Clear vinyl tubing, 1/4 in (6.4 mm) inside diameter, about 2 m, for a U-tube lying on a sloped ramp | 1 | about $5–10 (typical, not checked) | Hardware store | Now | **Ordered** (reported 2026-11-10) |
+| Manometer fittings | Barbed reducers from 1/4 in to 1/8 in (2) to join the manometer to the 1/8 in pressure lines; one more 1/8 in tee (from the §5 assortment) | 2 | about $3–6 (typical, not checked) | Same | Now | **Ordered** (reported 2026-11-10) |
 | Manometer ramp | A long, straight, rigid ramp at about 1 in 10, with the tubing taped flat along it and the steel rule (§10) beside it | 1 | filament or scrap wood | Printed or wood | Later | Printed |
 | Spirit level | A small level, for the manometer ramp's base and for the tunnel and balance | | | | | On hand (owner, 2026-11-08) |
 | Lab balance | A school lab analytical balance, used once to weigh every calibration piece | | | | | Access available (owner, 2026-11-08) |
@@ -644,10 +657,11 @@ Notes:
   - **How the masses hang** (proposed 2026-11-09, after the owner asked how weights could sit on a round sting):
     nothing is balanced on the sting and nothing is glued. A **printed calibration attachment** (owner's idea) fits
     on the end of the sting in place of a ball, with a hook at the ball-centre height. Two ways to fit it:
-    - a printed cap that slides over the outside of the 5/32 in sleeve and bottoms on its end (a printed hole is easy
-      to tune with a test print);
-    - or a printed hook body on a short 1/8 in brass stem, which plugs into the sleeve exactly like a ball. Avoid a
-      printed 1/8 in peg: a 3 mm printed pin is weak and comes out out-of-round.
+    - ~~a printed cap that slides over the outside of the 5/32 in sleeve and bottoms on its end~~ (no sleeve since
+      2026-11-09);
+    - a printed hook body on **its own full-length 1/8 in brass sting**, cut to the same length as the ball stings,
+      with the hook at the ball-centre height; it goes into the sting mount exactly like a ball's sting (2026-11-09).
+      Avoid a printed 1/8 in peg: a 3 mm printed pin is weak and comes out out-of-round.
 
     A light printed pan (or a foil cup) hangs from the hook on a thread loop, and the masses go into the pan with
     tweezers. Keep the pan on a thread rather than fixed to the attachment: hanging, its pull always acts at the hook,
@@ -681,19 +695,20 @@ Notes:
 ## 10. Tools and consumables (partly reviewed 2026-11-08)
 
 On hand: multimeter, soldering station, bench power supply, workbench, the P1S printer. Unknown: drill bits, hex keys,
-zip ties, tape. Needed for the wall pressure taps (§5): a pin vise with micro drill bits of about 0.8–1.0 mm.
+zip ties, tape. Needed for the wall pressure taps (§5): a pin vise with micro drill bits of about 0.8–1.0 mm (inch
+equivalents: 1/32 in = 0.79 mm, or number drills #60–#67 = 1.02–0.81 mm; most fractional sets start at 1/16 in, too big).
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
 | Digital calipers | none: the owner has a pair, **6 in (150 mm) range** (2026-11-08). Model and accuracy not recorded | | | | | On hand (battery thought dead) |
 | Steel rule or tape measure | For anything over 150 mm: the 250 mm settling chamber, the tunnel length, acrylic panels. A 300 mm (12 in) steel rule reads to about 0.5 mm | 1 | a few dollars (typical, not checked) | Hardware store | Now | Unknown (probably in the house) |
-| Small tube cutter | A rotary cutter for small brass tube (for example K&S's): rolls a blade around the tube, giving a square end without crushing it. For the probe and the 12 tap stubs (§5) | 1 | about $8–12 (typical, not checked) | Hobby or hardware store | Now | To buy |
+| Small tube cutter | A rotary cutter for small brass tube (for example K&S's): rolls a blade around the tube, giving a square end without crushing it. For the probe and the 12 tap stubs (§5) | 1 | about $8–12 (typical, not checked) | Hobby or hardware store | Now | **Ordered** (reported 2026-11-10) |
 | Needle files or a deburring tool | To clean cut ends. The probe tip must be square and smooth; a burr inside a stub narrows it | 1 set | about $5–10 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
 | Junior hacksaw | For the solid brass sting rod (§6); the tube cutter is meant for tubes | 1 | about $5–10 (typical, not checked) | Hardware store | After sizing | Unknown (may be in the house) |
 | Drill | A hand drill, for the balls' centre holes (§6), used with the printed jig's long guide | | | | | On hand (owner, 2026-11-08) |
 | Tin snips | For cutting the stainless screen mesh (§3); old heavy scissors also work | 1 | about $10–15 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
-| Drill bits for the balls | About 3.0–3.1 mm (metric) for a press fit on the 1/8 in stems; settle the size on a spare ball | 1–2 | a few dollars each (typical, not checked) | Hardware store | After sizing | To buy |
-| Caliper battery | A 1.55 V button cell, size 44: **SR44 (silver oxide; also sold as 357 or 303)** preferred, LR44 (alkaline; AG13, A76) also fits. Check the size printed on the old cell or in the battery cover first | 1–2 | a few dollars (typical, not checked) | Hardware store, pharmacy | Now | To buy, unless one is in the house |
+| Drill bits for the balls | About 3.0–3.1 mm (metric) for a press fit on the 1/8 in stems; settle the size on a spare ball. **Inch equivalent (2026-11-09):** a #31 number drill (0.120 in, 3.05 mm), or #32 (2.95 mm) for a tighter fit. Not 7/64 in (2.78 mm, far too tight) or 1/8 in (3.18 mm, no grip) | 1–2 | a few dollars each (typical, not checked) | Hardware store | After sizing | **Ordered** (reported 2026-11-10): a 0.7–3.0 mm set (owner, 2026-11-09); a single 3.1 mm or #31 bit only if 3.0 mm is too tight |
+| Caliper battery | A 1.55 V button cell, size 44: **SR44 (silver oxide; also sold as 357 or 303)** preferred, LR44 (alkaline; AG13, A76) also fits. Check the size printed on the old cell or in the battery cover first | 1–2 | a few dollars (typical, not checked) | Hardware store, pharmacy | Now | **Ordered** (reported 2026-11-10): LR44 (owner, 2026-11-09) |
 
 Calipers notes:
 

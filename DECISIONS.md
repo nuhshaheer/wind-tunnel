@@ -374,3 +374,27 @@ Template:
   ([sketches](docs/sketches/README.md), [session log](docs/sessions/2026-11-09-drawing-package.md)); drawing sheet 8
   in [docs/drawings/](docs/drawings/README.md).
 - Status: Accepted (owner, 2026-11-09) as the concept. Details Proposed; sized in build step 1.
+
+## D-016: One full-length sting per ball; the 5/32 in sleeve is dropped
+
+- Date: 2026-11-09
+- Question: How does each ball join the sting, now that D-015 lifts the whole sting out to change balls? The buy list
+  (2026-11-08) planned a short 5/32 in brass sleeve at the top of the sting, into which each ball's own short 1/8 in
+  stem slid, held by friction or a set screw.
+- Decision: each ball is press-fit onto **its own full-length 1/8 in solid brass sting** (about 85 mm; length set at
+  sizing), and balls are changed by swapping the whole sting in the sting mount. The printed calibration hook gets its
+  own sting too, with the hook at the ball-centre height. All stings are cut to the same length within about 0.5 mm
+  and checked straight by rolling on a flat table. The 5/32 in tube is not bought.
+- Rationale: the sleeve existed so balls could be changed with the sting in place (2026-11-08); D-015 already lifts the
+  sting out, so the sleeve added a part and a sliding joint just below the ball, where the 100–150 Hz vortex shedding
+  shakes it. One solid rod is stiffer, and the ball height repeats because the sting bottoms in the mount's blind hole
+  and each stem's tip sits at its ball's centre. Two 12 in rods give up to six stings. The owner asked for an
+  alternative because the 5/32 in tube would arrive only by 2026-11-19.
+- Alternatives considered: the 5/32 in sleeve (2026-11-08); a printed sleeve or printed 1/8 in pegs (weak and out of
+  round); a 1/8 in tube as the sting with 3/32 in rod stems (about 36 % less stiff, our arithmetic).
+- Consequences: supersedes the sleeve in D-015's consequences line and in the buy list §6 and §9 (calibration
+  attachment). The drawings still show the sleeve (`docs/drawings/wtdata.py`, `sleeve_d` and its parts row) until the
+  sizing update.
+- Evidence / source: agent's proposal, 2026-11-09 ([session log](docs/sessions/2026-11-10-parts-ordering.md)); the
+  owner then ordered two 1/8 in brass rods and no 5/32 in tube.
+- Status: Tentative: the owner bought for it but has not stated acceptance in words. Confirm at sizing.

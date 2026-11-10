@@ -2,7 +2,7 @@
 
 - **Session ID:** c748d2ac-e6e6-4efd-a310-72cc5959c78c (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `c768e2c`
 
 Advice and documentation only. **The owner ordered the first part (the aluminium window screen).** Nothing was built or
 tested.
