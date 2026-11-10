@@ -1,18 +1,17 @@
 # Project Status
 
 **Last updated:** 2026-11-09
-**Last commit:** `0558370` (2026-11-09, the shopping-list session's follow-up), pushed to `origin/main` (`UP_TO_DATE`
-on 2026-11-09).
+**Last commit:** `507f71c` (2026-11-09, the drawing-package session), pushed to `origin/main` (`UP_TO_DATE` on
+2026-11-09).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the drawing-package session: the owner's 2026-11-09 sketch, a preliminary drawing package in
-  `docs/drawings/`, and D-013 to D-015 ([session log](docs/sessions/2026-11-09-drawing-package.md), with the commit
-  commands in §13).
+- **Not committed yet:** the fan-advice and screen-order session (documentation only;
+  [session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md), with the commit commands in §13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
-([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Nothing has been ordered.** The owner
-tracks orders in [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09): only what is still to buy, about
-$255–360 plus the fan. **A preliminary drawing package** of the whole tunnel (10 sheets, parts list, TBD register;
+([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). The first part is ordered: the
+aluminium window screen (2026-11-09). Everything else is still to buy.** The owner tracks orders in
+[docs/shopping_list.md](docs/shopping_list.md): about $245–350 still to buy, plus the fan. **A preliminary drawing package** of the whole tunnel (10 sheets, parts list, TBD register;
 pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md) (2026-11-09).
 - Decided:
   - segmented 3D printing (D-005);
@@ -26,12 +25,13 @@ pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md)
   - **bolted flange joints (D-013); the top panel lifting off on magnets, with replaceable floor inserts under the
     model (D-014); a printed sting mount with the owner's thumb-screw sting lock (D-015)** (owner, 2026-11-09).
 - **Open: the fan (D-011, Tentative since 2026-11-09).** The owner will choose on budget between the AC Infinity
-  CLOUDLINE S6 ($99; about 13.0–13.4 m/s, estimate) and the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s).
+  CLOUDLINE S6 ($99; about 13.0–13.4 m/s, estimate) and the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s). **The agent
+  recommends the S6** (2026-11-09; [buy list](docs/buy_list.md) §1).
 - Parts chosen in the buy list (owner, 2026-11-08/09):
   - one Sensirion SDP810-125Pa with a home-made brass total-pressure probe and wall taps;
   - two TAL221 100 g load cells, a SparkFun HX711 board and an Adafruit BME280;
   - 3/4 in and 1 in Delrin balls;
-  - aluminium window screen and a printed honeycomb.
+  - aluminium window screen (**ordered 2026-11-09**: Saint-Gobain ADFORS FCS9222-M) and a printed honeycomb.
 - Sixteen references reviewed:
   - tunnel design: Abdelhamed2014, Bell1988, Mehta1979, Mehta1977;
   - flow conditioning: Scheiman1981, Wieghardt1953;
@@ -92,7 +92,8 @@ in [docs/drawings/](docs/drawings/README.md).
 | Tunnel type | **Accepted (owner, 2026-11-01): open-circuit blower, fan at the front.** Proposed order: fan → flexible coupling → wide-angle diffuser with screens → settling chamber → contraction → test section → **open exit** (no exit diffuser; Tentative) | [D-007](DECISIONS.md) |
 | Test section size | **Accepted (owner, 2026-11-01): 100 mm × 100 mm.** Proposed length 270–290 mm. Estimated total length 1.15–1.3 m with a 6-inch fan (owner's first target was about 1 m; more is allowed) | [D-008](DECISIONS.md), [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget) |
 | Fan type | A 6-inch inline duct fan with its own speed controller, on its own stand. **Model open (D-011, Tentative): AC Infinity CLOUDLINE S6 or VEVOR VV-GDFJ-AC6** (§3). Fan-to-tunnel joint (owner's design, 2026-11-08): the fan collar, wrapped in one layer of neoprene, slides snugly into a printed inlet sized from the measured collar; duct tape seals it | [D-011](DECISIONS.md), [buy list](docs/buy_list.md) §1 |
-| Fan-to-chamber diffuser | Proposed (2026-11-02): area ratio 3.44 (152 mm round → 250 mm square), so the screens need K_sum ≥ 2.1. **Two screens (K ≈ 1.1–1.5 each) allow about 150–200 mm**; the minimum is about 115 mm with two screens, 195 mm with one and 335 mm with none. Below about 220 mm use curved walls or radiused inlet and outlet corners. Fillet the corners. **No flow straightener at the fan outlet**: the fan's swirl helps keep the diffuser attached. **2026-11-09:** with aluminium window screen (K about 0.75–0.85 at the fan outlet), plan **three** diffuser screens if the delivered wire is 0.010 in; the first screen at the fan outlet costs about 24–28 Pa at 13 m/s, so consider placing it slightly into the diffuser | [Mehta1977](resources/notes/Mehta1977.md) (Figs. 5 and 7, §6.1; owner-checked), [buy list](docs/buy_list.md) §3 |
+| Fan-to-chamber diffuser | Proposed (2026-11-02): area ratio 3.44 (152 mm round → 250 mm square), so the screens need K_sum ≥ 2.1. **Two screens (K ≈ 1.1–1.5 each) allow about 150–200 mm**; the minimum is about 115 mm with two screens, 195 mm with one and 335 mm with none. Below about 220 mm use curved walls or radiused inlet and outlet corners. Fillet the corners. **No flow straightener at the fan outlet**: the fan's swirl helps keep the diffuser attached. **2026-11-09:** with aluminium window screen (K about 0.75–0.85 at the fan outlet), plan **three** diffuser screens if the delivered wire is 0.010 in. **The ordered roll is 0.011 in (maker's spec,
+2026-11-09):** two diffuser screens give K_sum 2.15, just enough; three are planned for margin. The first screen at the fan outlet costs about 24–28 Pa at 13 m/s, so consider placing it slightly into the diffuser | [Mehta1977](resources/notes/Mehta1977.md) (Figs. 5 and 7, §6.1; owner-checked), [buy list](docs/buy_list.md) §3 |
 | Contraction | Proposed: contraction ratio 6.25 (250 mm → 100 mm square), 5th-order-polynomial wall, about 250 mm long (1.0 × inlet) | [Bell1988](resources/notes/Bell1988.md), [Abdelhamed2014](resources/notes/Abdelhamed2014.md), [Mehta1979](resources/notes/Mehta1979.md) |
 | Settling chamber | Proposed: 250 mm square. A honeycomb (cell length 7–10 diameters, cells of about 2–3 mm, thin walls), then one or two screens at least 58 % open, then about 50 mm (0.2 D) to the contraction. Add a capped port after the last screen for optional mist injection. **Length 150–200 mm** with Mehta1979's 0.2 D spacing; **about 230–300 mm** if spaced for full turbulence decay: at least 500 wire diameters between screens (about 75–125 mm) and about 50 cell diameters from the honeycomb to the first screen (2026-11-02). Decide at sizing. **2026-11-09:** two settling-chamber screens (four or five screens in all, per Mehta1977/1979); a **printed honeycomb** (owner; for example 6 mm hexagons, 0.4 mm walls, about 50 mm long), with straws as the upgrade; wall pressure taps (S) for the airspeed reference. **Found while drawing (2026-11-09; open question 15):** with the chosen window screen and 6 mm cells, full-decay spacing gives about 380–390 mm plus frames, not 230–300 mm (our arithmetic) | [Mehta1979](resources/notes/Mehta1979.md), [Mehta1977](resources/notes/Mehta1977.md), [Scheiman1981](resources/notes/Scheiman1981.md) |
 | Test section | Proposed: **closed** section with clear panels. Sphere at least about 0.5 D downstream of the contraction exit; sphere blockage about 3 % (at most 5 %); reference pressure reading at least 1.5√C upstream of the sphere; sphere at least 4√S from the test-section end. Together 2.7–2.9 h, i.e. 270–290 mm (estimate). **2026-11-08:** wall pressure taps at the entrance (E) and at the model station (M); a printed probe guide; a streamlined **sting shield** about 7.5 mm wide (5 mm hole for the 1/8 in sting) up to about 5 mm below the ball, because a bare sting would have about 115 % of the ball's drag. **2026-11-09 ([D-014](DECISIONS.md)):** the shield is fixed to a replaceable floor insert under the model | [Mehta1979](resources/notes/Mehta1979.md), [Cooper1998](resources/notes/Cooper1998.md), [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed) |
@@ -113,9 +114,9 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
 | Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor (no display or knob since D-012) |
 | USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
-| Blower / fan | To buy; **open between two (D-011, Tentative since 2026-11-09); the owner will choose on budget** | • **AC Infinity CLOUDLINE S6, model AI-CLS6**: $99.00; maker's page (read 2026-11-08): 425 CFM, 503 Pa, PWM-controlled EC motor, 10 speed levels, 32.0 cm long. Retailers list 402 CFM. About 13.0–13.4 m/s with five window screens (straight-line estimate; 12.3–12.7 at 90 % of the curve).<br>• **VEVOR 6-inch inline duct fan, model VV-GDFJ-AC6**: $53.90 (owner, 2026-11-09); seller's figures 400 CFM, 300 Pa, AC motor with a speed controller, 60 W. About 11.3 m/s (10.8). Its "34 dB" claim is unlikely, so its 300 Pa may be optimistic.<br>Both validate; the VEVOR gives about 73 % of the S6's force at top speed. Earlier candidates and the unsuitable fans: [2026-11-07 log](docs/sessions/2026-11-07-top-speed-and-fan-search.md). Estimates: [buy list](docs/buy_list.md) §1 |
+| Blower / fan | To buy; **open between two (D-011, Tentative since 2026-11-09); the owner will choose on budget. The agent recommends the S6 (2026-11-09)** | • **Why the S6 (agent, 2026-11-09; [buy list](docs/buy_list.md) §1):** about 2.0–2.1 m/s faster whatever the tunnel's true loss factor; maker's figures, where the VEVOR's 300 Pa is a seller's (at 250 Pa it would reach about 10.75 m/s, at 200 Pa about 10.0); an EC motor, likely steadier at low speed; a wider matched-Re range for the two-ball check.<br>• **AC Infinity CLOUDLINE S6, model AI-CLS6**: $99.00; maker's page (read 2026-11-08): 425 CFM, 503 Pa, PWM-controlled EC motor, 10 speed levels, 32.0 cm long. Retailers list 402 CFM. About 13.0–13.4 m/s with five window screens (straight-line estimate; 12.3–12.7 at 90 % of the curve).<br>• **VEVOR 6-inch inline duct fan, model VV-GDFJ-AC6**: $53.90 (owner, 2026-11-09); seller's figures 400 CFM, 300 Pa, AC motor with a speed controller, 60 W. About 11.3 m/s (10.8). Its "34 dB" claim is unlikely, so its 300 Pa may be optimistic.<br>Both validate; the VEVOR gives about 73 % of the S6's force at top speed. Earlier candidates and the unsuitable fans: [2026-11-07 log](docs/sessions/2026-11-07-top-speed-and-fan-search.md). Estimates: [buy list](docs/buy_list.md) §1 |
 | Fan-to-tunnel joint | Owner's design (2026-11-08) | The fan's collar, wrapped in one layer of 1/16 in 40A neoprene (to buy, $13.78 a pair), slides snugly into a printed inlet sized from the measured collar (paper strip ÷ π); duct tape seals it. The fan stands on its own feet and never touches the print. [Buy list](docs/buy_list.md) §1 |
-| Honeycomb + screens | Screens to buy; honeycomb printed | **Screens (proposed 2026-11-09): aluminium window insect screen, "bright aluminum", 18 × 16 mesh**, wire about 0.010–0.011 in, 66–69 % open; about $9.50 a 36 × 84 in roll (Home Depot). Four or five screens (two or three in the diffuser, two in the settling chamber; Mehta1977/1979, Scheiman1981). Rejected: McMaster 30 × 30 filter mesh (0.012–0.013 in wire, 37–41 % open: about 11.8 m/s top speed and patchy flow), Online Metals 24 × 24 × 0.014 in (44 %), McNichols perforated sheet, a TWP quote of about $200, Zoro's $65.59 sheet (too expensive). **Honeycomb: printed (owner, 2026-11-08)**, for example 6 mm hexagons with 0.4 mm walls, about 50 mm long; straws as the upgrade. Details: [buy list](docs/buy_list.md) §3 |
+| Honeycomb + screens | **Screens ordered 2026-11-09 (owner)**; honeycomb printed | **Screens: aluminium window insect screen, Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll from Home Depot, ordered 2026-11-09.** The maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open (computed); price paid not recorded; wire count and diameter to be checked on arrival. Also checked 2026-11-09: a 35 × 35 × 0.011 in mesh (37.9 % open) rejected; McNichols' and New York Wire's 18 × 16 × 0.011 in screens suitable ([buy list](docs/buy_list.md) §3). Four or five screens (two or three in the diffuser, two in the settling chamber; Mehta1977/1979, Scheiman1981). Rejected: McMaster 30 × 30 filter mesh (0.012–0.013 in wire, 37–41 % open: about 11.8 m/s top speed and patchy flow), Online Metals 24 × 24 × 0.014 in (44 %), McNichols perforated sheet, a TWP quote of about $200, Zoro's $65.59 sheet (too expensive). **Honeycomb: printed (owner, 2026-11-08)**, for example 6 mm hexagons with 0.4 mm walls, about 50 mm long; straws as the upgrade. Details: [buy list](docs/buy_list.md) §3 |
 | Pitot tube | **Made in-house (owner, 2026-11-08)** | A 1/8 in brass total-pressure tube facing upstream, with wall static taps (four per station) at three stations: S (settling chamber), E (test-section entrance), M (model station). Probe − M gives q at the model position (flow map, calibration); S − E gives the airspeed during force runs, calibrated once against the probe (open question 10). Brass tube, 1/8 in silicone tubing and barbed tees to buy ([buy list](docs/buy_list.md) §5). The Dwyer 166-6 ($140–167) was not chosen |
 | Differential pressure sensor | To buy: **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
 | Load cell + HX711 | To buy: **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
@@ -128,9 +129,9 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 
 Budget: no fixed budget (owner, 2026-11-01), but price-conscious. **The full buy list,
 [docs/buy_list.md](docs/buy_list.md), totals about $315–505 before tax and shipping** (2026-11-09; the low end
-with the VEVOR fan), plus up to about $100 for items that may already be in the house. Nothing has been ordered.
-The owner's tracker, [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09), lists what is still to buy with qty,
-price, link and status: about $255–360 plus the fan, and up to about $90–150 more for "check house" items if none are
+with the VEVOR fan), plus up to about $100 for items that may already be in the house. Only the screen is ordered
+(2026-11-09). The owner's tracker, [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09), lists what is still to
+buy with qty, price, link and status: about $245–350 plus the fan, and up to about $90–150 more for "check house" items if none are
 at home (our sums of the listed prices; many are typical prices, not checked).
 
 ## 4. Software and tooling
@@ -143,7 +144,7 @@ at home (our sums of the listed prices; many are typical prices, not checked).
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151` and `0558370`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370` and `507f71c`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -239,7 +240,15 @@ None. No experiment has been run.
   - Filed the owner's sketch of the flanges, the load cell and the test chamber, compressed from 10.2 MB to 0.4 MB.
   - Recorded the owner's decisions: bolted flange joints (D-013), the top panel on magnets and replaceable floor
     inserts (D-014), and the sting mount with a thumb-screw sting lock (D-015).
-  - Not committed yet. See [the session log](docs/sessions/2026-11-09-drawing-package.md).
+  - Committed and pushed as `507f71c`. See [the session log](docs/sessions/2026-11-09-drawing-package.md).
+- 2026-11-09: fan advice and the first order (documentation only; nothing built or tested).
+  - Recommended the S6 over the VEVOR, with worst cases if the VEVOR's 300 Pa is optimistic, and explained how the
+    top-speed and force estimates are made. The owner has not chosen yet.
+  - Listed other experiments the tunnel could do later (ideas, not chosen; TODO P3).
+  - Checked three mesh listings: a 35 × 35 × 0.011 in mesh (37.9 % open) is not suitable; McNichols' and New York
+    Wire's 18 × 16 × 0.011 in screens are.
+  - **The owner ordered the first part: the aluminium window screen** (Saint-Gobain ADFORS FCS9222-M, Bright).
+  - Not committed yet. See [the session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md).
 
 ## 7. Data and analyses
 
@@ -273,13 +282,16 @@ Estimates are spread across these files; all are **calculations from assumed val
   - the inclined-manometer resolution, and straw and filament counts.
 
   Scripts in the [session log](docs/sessions/2026-11-09-buy-list.md#5-commands-and-scripts-executed).
+- [docs/buy_list.md](docs/buy_list.md) §1 and §3 (2026-11-09): the S6-against-VEVOR comparison (top speed with lower
+  VEVOR pressures and other loss factors, force, matched-Re range) and the 35 × 35 mesh's loss. Scripts in the
+  [fan-advice log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md#5-commands-and-scripts-executed).
 
 ## 9. Bugs, equipment issues, blockers
 
-- **Blocked:** all physical work waits on buying hardware. Nothing has been ordered (2026-11-09).
+- **Blocked:** all physical work waits on buying hardware. Only the screen is ordered (2026-11-09).
   - The buy list is complete ([docs/buy_list.md](docs/buy_list.md)); orders are tracked in
     [docs/shopping_list.md](docs/shopping_list.md).
-  - Only the fan waits on a decision: S6 or VEVOR, on the owner's budget (D-011).
+  - Only the fan waits on a decision: S6 or VEVOR, on the owner's budget (D-011). The agent recommends the S6.
   - The electronics (SDP810, two TAL221, HX711, BME280) and most small parts do not depend on the fan or on the
     sizing, and can be ordered now.
   - The owner will check on 2026-11-10 which small items are already in the house (filament amounts, glue, sandpaper,
@@ -418,7 +430,8 @@ Estimates are spread across these files; all are **calculations from assumed val
 13. **Screens and honeycomb: bought or printed, and which mesh?** Added 2026-11-02. **Mostly answered 2026-11-09:**
     aluminium window insect screen (18 × 16 mesh, 66–69 % open, about $10 a roll), four or five screens, and a printed
     honeycomb (owner). Still open:
-    - two or three diffuser screens (decide after measuring the delivered wire, 0.010 or 0.011 in);
+    - two or three diffuser screens. **2026-11-09:** the ordered roll is 0.011 in wire (maker's spec), so two just
+      meet K_sum 2.1 (2.15); three are planned for margin, to be confirmed at sizing;
     - where the first diffuser screen sits (at the fan outlet it costs about 24–28 Pa at 13 m/s);
     - whether to measure a sample screen's pressure drop at about 2 m/s, where the formulas are extrapolated;
     - settling-chamber length: 150–200 mm, or about 380–390 mm plus frames with the chosen parts if spaced for full
@@ -494,10 +507,13 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-09-drawing-package.md#13-manual-git-commands-as-given-to-the-owner));
-   - report what is on hand (filament amounts; glue, epoxy, sandpaper, screws, rubber feet, duct tape, scoring knife,
-     power strip): the "Check the house first" section of [docs/shopping_list.md](docs/shopping_list.md);
-   - choose the fan, the S6 or the VEVOR, on budget (D-011), and record it as a new decision;
+     [session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md#13-manual-git-commands-as-given-to-the-owner));
+   - report what is on hand (filament amounts, including the PETG-CF spool; glue, epoxy, sandpaper, screws, rubber
+     feet, duct tape, scoring knife, power strip): the "Check the house first" section of
+     [docs/shopping_list.md](docs/shopping_list.md);
+   - choose the fan, the S6 or the VEVOR, on budget (D-011; the agent recommends the S6), and record it as a new
+     decision;
+   - when the screen arrives: count 18 and 16 wires per inch, check one wire reads about 0.28 mm, store it flat;
    - order the parts, tracking each in [docs/shopping_list.md](docs/shopping_list.md). The electronics and small parts
      can go now. Weigh the PLA spools to see whether more rolls are needed;
    - check the values read from the three new datasheets (checklists at the end of the
@@ -529,7 +545,7 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
-  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151` and
-  `0558370`). The account was `nuhshaheer-2007` until
+  `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
+  `0558370` and `507f71c`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

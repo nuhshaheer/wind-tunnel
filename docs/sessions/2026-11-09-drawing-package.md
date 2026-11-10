@@ -2,7 +2,7 @@
 
 - **Session ID:** 0a3230e1-1ea6-468a-b676-782bb6cccc8e (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `507f71c`
 
 Documentation and drawings only: nothing was bought, built or tested.
 

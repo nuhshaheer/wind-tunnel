@@ -9,7 +9,9 @@ Owner tasks are physical or account actions that an agent cannot do.
 ## P0: Now
 
 - [ ] **Owner: choose the fan, the S6 or the VEVOR** (D-011, Tentative since 2026-11-09; "ill consult my budget
-  and choose later"). Nothing has been ordered.
+  and choose later"). Not ordered yet. **The agent recommends the S6** (2026-11-09): about 2 m/s faster whatever the
+  tunnel's true loss factor, makers' figures rather than a seller's, and an EC motor that is likely steadier at low
+  speed; the VEVOR still validates if the $45 matters ([buy list](docs/buy_list.md) §1).
   - AC Infinity CLOUDLINE S6, model AI-CLS6: $99; 425 CFM and 503 Pa (maker); EC motor, 10 speed levels; about
     13.0–13.4 m/s with five window screens (straight-line estimate).
   - VEVOR VV-GDFJ-AC6: $53.90; 400 CFM and 300 Pa (seller's figures); AC motor with a speed controller; about
@@ -21,6 +23,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   the owner's tracker, [docs/shopping_list.md](docs/shopping_list.md) (2026-11-09): change each row's status To buy →
   Ordered → Got it, and give the agent the part numbers when they arrive. **PLA:** the owner may need more rolls
   (2026-11-09). Weigh the spools; the tunnel needs roughly 3–4 kg in all (estimate, firmed up at sizing).
+  - **Ordered so far:** the aluminium window screen (2026-11-09; Saint-Gobain ADFORS FCS9222-M, Bright).
+  - **PETG-CF:** the loaded parts need roughly 0.5–1 kg (estimate); weigh that spool too, and buy plain PETG only if
+    less is left.
   - The owner will report on 2026-11-10: filament amounts (PLA, PETG-CF); super glue, epoxy, silicone, sandpaper, M3/M4
     screws, rubber feet, duct tape, an acrylic scoring knife, a switched power strip, tin snips, files, a hacksaw.
   - The electronics (one SDP810-125Pa, two TAL221 100 g, a SparkFun HX711, an Adafruit BME280) and most small parts do
@@ -87,7 +92,8 @@ Owner tasks are physical or account actions that an agent cannot do.
       50 mm to the contraction.
       - Choose between Mehta1979's 0.2 D spacing (chamber about 150–200 mm) and full-decay spacing: 500 wire
         diameters between screens and about 50 cell diameters after the honeycomb (about 230–300 mm). See
-        PROJECT_STATUS open question 13.
+        PROJECT_STATUS open question 13. (2026-11-09: with the chosen screen and 6 mm cells, full decay gives about
+        380–390 mm plus frames; open question 15.)
     - Fan pressure: use the low-speed screen K at about 2 m/s (about 1.1–1.8, extrapolated from Wieghardt's
       formula), not the high-speed value.
     - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget). The diffuser comes out shorter
@@ -178,8 +184,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [ ] **Choose the screens and honeycomb** (new 2026-11-02). **Mostly done 2026-11-09** ([buy list](docs/buy_list.md)
   §3): aluminium window insect screen ("bright aluminum", 18 × 16 mesh, 66–69 % open, about $10 a roll), two or three
   in the diffuser and two in the settling chamber; a **printed honeycomb** (owner), with straws as the upgrade.
-  Remaining: measure the delivered screen's wire with the calipers and count its wires per inch, then settle two or
-  three diffuser screens.
+  **2026-11-09: screen ordered** (Saint-Gobain ADFORS FCS9222-M, Bright; maker's spec 18 × 16, 0.011 in wire, 66 %
+  open). With 0.011 in wire two diffuser screens just meet K_sum 2.1 (2.15), so three are planned for margin.
+  Remaining: on arrival, count its wires per inch and check one wire (about 0.28 mm; 0.36 mm or more would drop it
+  below 58 % open), then confirm three diffuser screens at sizing.
   - Screens: metal square-mesh, at least 58 % open; for example 20–30 wires/in with 0.19–0.23 mm wire (Scheiman1981
     Table 1). Two go in the diffuser and one or two in the settling chamber.
   - Honeycomb: bought thin-walled (paper or aluminium) or drinking straws rather than printed, unless a printed one
@@ -309,7 +317,9 @@ Owner tasks are physical or account actions that an agent cannot do.
     no-load zero, as baselines for spotting damage later;
   - BME280: chip ID 0x60, not a BMP280's 0x58;
   - SDP810: zero with both ports capped, within about 0.1 Pa;
-  - calipers: new battery, return to 0.00, a known object measured.
+  - calipers: new battery, return to 0.00, a known object measured;
+  - window screen (ordered 2026-11-09): 18 and 16 wires per inch against the steel rule, one wire about 0.28 mm
+    (0.011 in), "Bright" bare aluminium; store it flat or loosely rolled, since creases do not come out.
 
   Details: [docs/buy_list.md](docs/buy_list.md) §6, §7 and §10. Verify: values written into
   docs/experimental_setup.md.
@@ -379,6 +389,20 @@ Owner tasks are physical or account actions that an agent cannot do.
   - A standard reference shape exists: the Ahmed body (Ahmed et al. 1984, SAE 840300; citation from the agent's
     memory, not checked, not in `resources/`).
   - Outcome and verify: defined if the owner takes it up after validation.
+
+- [ ] **Ideas for later experiments (agent, 2026-11-09; the owner has not chosen any).** Details and numbers in the
+  [session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md#2-work-completed). All after the sphere
+  validation (D-001), except that (1) characterises the rig:
+  1. measure the fan's real curve: printed exit plates with different holes; flow from the test-section speed,
+     pressure from a tap after the fan (a water U-tube above 125 Pa). Tests the straight-line fan estimates;
+  2. pressure around a cylinder: a 3/8 in brass tube across the section with one tap, turned in 10° steps, at
+     10 m/s or below (±125 Pa sensor); about 9.5 % blockage, so it needs a correction;
+  3. a pitot traverse of the free jet leaving the open exit;
+  4. a drag lineup of 19 mm printed shapes (disc, cups both ways, cone, teardrop) on the balance;
+  5. vortex-shedding tone of a 1/8 in rod (about 410–820 Hz at 6.5–13 m/s), recorded by phone or laptop.
+
+  Not possible here: the drag crisis (top Re about 2×10⁴), turbulence measurements (need a hot-wire), models wider
+  than about 22 × 22 mm. Outcome and verify: defined if the owner takes one up.
 
 ## Done
 
@@ -465,3 +489,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   flange, load-cell and test-chamber sketch filed and compressed; D-013 (bolted flange joints), D-014 (top panel on
   magnets, floor inserts) and D-015 (sting mount and thumb-screw sting lock) recorded
   ([session log](docs/sessions/2026-11-09-drawing-package.md)).
+- [x] 2026-11-09: Owner committed and pushed the drawing-package session as `507f71c`; `/catchup` confirmed
+  `UP_TO_DATE` ([session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md)).
+- [x] 2026-11-09: **Screen chosen and ordered** (owner): Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll from
+  Home Depot; 18 × 16, 0.011 in wire per the maker's spec, 66 % open. The first part ordered
+  ([session log](docs/sessions/2026-11-09-fan-advice-and-screen-order.md)).

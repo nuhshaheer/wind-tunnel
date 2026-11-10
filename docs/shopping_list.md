@@ -12,7 +12,7 @@ been checked. Tax and shipping are not included.
 | | Rough cost |
 |---|---|
 | Fan | $53.90 (VEVOR) or $99.00 (S6) |
-| Everything else marked To buy | about $255–360 |
+| Everything else marked To buy | about $245–350 (the screen, about $10, ordered 2026-11-09) |
 | "Check house" items, if none are at home | up to about $90–150 more |
 | PLA | about $15–20 per kg, if you need more |
 
@@ -22,6 +22,9 @@ been checked. Tax and shipping are not included.
 |---|---|---|---|---|
 | AC Infinity CLOUDLINE S6, model AI-CLS6 (about 13 m/s) | 1 | $99.00 | [AC Infinity](https://acinfinity.com/cloudline-s6-quiet-inline-fan-6-with-speed-controller/) | Deciding |
 | *or* VEVOR 6" inline fan, model VV-GDFJ-AC6 (about 11.3 m/s) | 1 | $53.90 | your VEVOR listing (search the model number) | Deciding |
+
+The agent recommends the S6 (2026-11-09): about 2 m/s faster, makers' figures more trustworthy, likely steadier at low
+speed. The VEVOR still works if the $45 matters. Reasons and worst cases: [buy_list.md](buy_list.md) §1.
 
 ## Electronics (one order if you can, to share shipping)
 
@@ -39,7 +42,7 @@ been checked. Tax and shipping are not included.
 
 | Item | Qty | Price | Link | Status |
 |---|---|---|---|---|
-| Aluminium window screen, "bright aluminum", 18 × 16 mesh, 36 × 84 in roll (**not** fibreglass) | 1 roll | $9.49–9.68 | [Home Depot search](https://www.homedepot.com/s/bright%20aluminum%20screen) | To buy |
+| Aluminium window screen: **Saint-Gobain ADFORS FCS9222-M, Bright**, 36 × 84 in (7 ft) roll; maker's spec 18 × 16 mesh, 0.011 in wire, so 66 % open. On arrival: count the wires per inch and check one wire is about 0.28 mm | 1 roll | about $10 (price paid not recorded) | [Home Depot](https://www.homedepot.com/p/Saint-Gobain-ADFORS-36-in-x-84-in-Bright-Aluminum-Screen-Roll-for-Windows-and-Door-FCS9222-M/100397106) | **Ordered** (2026-11-09) |
 | Foam weatherstrip tape, ~1/8 in thick, 1/4–3/8 in wide, adhesive-backed | 1 roll | ~$5–8 | | To buy |
 | Silicone tubing, 1/8 in inside diameter | ~10 ft | ~$8–12 | | To buy |
 | Barbed connectors for 1/8 in tubing (at least 9 tees and 2 straight couplers) | 1 assortment | ~$6–10 | | To buy |
@@ -79,7 +82,9 @@ been checked. Tax and shipping are not included.
 |---|---|---|---|---|
 | PLA, black (contraction and test section) plus any colour for the rest | weigh your spools first; the tunnel needs roughly 3–4 kg in all (rough estimate, firmed up at sizing) | ~$15–20 per kg | [Bambu PLA Basic](https://us.store.bambulab.com/products/pla-basic-filament) | Maybe |
 
-PETG-CF is on hand and covers the loaded parts. Buy plain PETG only if it runs short.
+The loaded parts (screen frames, sting mount, stops, load-cell base, drilling jig) are printed in the PETG-CF you
+already have; they need roughly 0.5–1 kg (estimate). Weigh that spool too: buy plain PETG only if less than that is
+left. Fit the hardened-steel nozzle before printing PETG-CF.
 
 ## Check the house first
 

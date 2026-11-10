@@ -6,8 +6,9 @@ Everything the tunnel needs, from the fan to the screws, with what is already on
 owner. It is worked through category by category; a section marked **Not reviewed yet** lists what is expected there,
 without a chosen part.
 
-- **Status words** (as in the parts inventory): **On hand**, **To buy**, **Unknown** (not known whether the owner has
-  it). "Printed" means it comes off the P1S and costs only filament.
+- **Status words** (as in the parts inventory): **On hand**, **To buy**, **Ordered** (bought, not yet arrived; added
+  2026-11-09), **Unknown** (not known whether the owner has it). "Printed" means it comes off the P1S and costs only
+  filament.
 - **When:** **Now** = the choice does not depend on sizing; **After sizing** = the size or quantity comes from build step
   1 ([TODO.md](../TODO.md) P1); **Later** = build steps 2–7 or optional.
 - **Prices** are what a listing showed on the date given. They are guides, not quotes, and exclude tax and shipping.
@@ -22,7 +23,7 @@ without a chosen part.
 |---|---|---|
 | 1. Fan and air supply | Reviewed 2026-11-08/09; fan S6 or VEVOR (owner to choose) | about $118–123 with the S6, or $73–78 with the VEVOR, plus up to about $37 for duct tape and a power strip if not on hand |
 | 2. Tunnel body | Reviewed 2026-11-09: PLA, PETG-CF and a hardened nozzle on hand; printed feet, no plywood | about $30–90, plus any PLA top-up |
-| 3. Flow conditioning | Proposed 2026-11-09: aluminium insect screen (four or five screens); printed honeycomb (owner) | about $10 |
+| 3. Flow conditioning | **Screen ordered 2026-11-09** (aluminium insect screen, Saint-Gobain ADFORS FCS9222-M; five screens planned); printed honeycomb (owner) | about $10 (ordered) |
 | 4. Test section and model access | Proposed 2026-11-09; magnets on hand (8 × 2 mm) | about $20–29 |
 | 5. Airspeed | Reviewed 2026-11-08: make the probe, one sensor | about $47–70, plus $5–8 for the optional bender |
 | 6. Force balance and models | Reviewed 2026-11-08: two load cells, 3/4 in and 1 in balls (owner) | about $61–64; balls may cost more in small quantities |
@@ -36,7 +37,8 @@ without a chosen part.
 ## 1. Fan and air supply (reviewed 2026-11-08)
 
 Decided: [D-010](../DECISIONS.md) (13 m/s target). **The fan is open between two ([D-011](../DECISIONS.md),
-Tentative since 2026-11-09): the owner will choose on budget.** Nothing has been ordered yet.
+Tentative since 2026-11-09): the owner will choose on budget.** The fan has not been ordered. **The agent recommends
+the S6** (2026-11-09; reasons in the notes below, "Choosing between the two").
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
@@ -58,6 +60,23 @@ Notes:
   orientation. No fan curve, weight or collar diameter is given.
 - **Buy model AI-CLS6.** Retailers call it the "CLOUDLINE PRO S6" and list 402 CFM. AC Infinity's other 6-inch fans
   (for example the CLOUDLINE A6, $89.99) have not been checked against 13 m/s.
+- **Choosing between the two (agent's recommendation, 2026-11-09: the S6; the owner has not chosen).** Our
+  arithmetic, with the same straight-line model as below (fan needs 1.55 q₀; script in the
+  [2026-11-09 fan-advice log](sessions/2026-11-09-fan-advice-and-screen-order.md#5-commands-and-scripts-executed)):
+  - Top speed: S6 13.0–13.4 m/s (12.3–12.7 if the real curve gives 90 %), VEVOR 11.35 (10.8). If the VEVOR's
+    seller-listed 300 Pa is really 250 Pa: about 10.75 (10.3); 200 Pa: about 10.0 (9.6). Its listing also claims
+    34 dB, which is implausible for 400 CFM, so its pressure figure is the less trustworthy one.
+  - The gap holds whatever the true loss factor: for 1.25–1.75 q₀ the S6 (425 CFM) gives 14.1–13.0 m/s and the
+    VEVOR 12.0–10.9, so the S6 is about 2.0–2.1 m/s faster.
+  - Drag on the 3/4 in ball at top speed: 1.27 gf (13 m/s) against 0.95 gf (11.3 m/s); the TAL221's 0.05 g error
+    figure is 3.9 % against 5.3 % of it.
+  - Matched-Re pairs (3/4 in ball at V, 1 in ball at 0.75 V, 1 in ball from 6.5 m/s): the 1 in ball runs from 6.5 to
+    9.75 m/s with the S6, 6.5 to 8.5 m/s with the VEVOR. Predicted C_D rise (3/4 in at 6.5 m/s to 1 in at top speed):
+    9.2 % against 8.0 %.
+  - Low speed: an EC motor usually runs steadier at low settings than an AC fan on a knob controller (general
+    behaviour, not checked for these two). Most validation runs are at 6.5–10 m/s.
+  - Worst cases: if the VEVOR falls short, the S6 is likely bought anyway ($54 lost); the S6's worst case is about
+    12.3 m/s. The $45 difference is about 10 % of the buy list. The VEVOR still validates if the money is tight.
 - **Expected top speed** (estimate, straight-line fan curve): 13.5–14.1 m/s at 425 CFM. Real curves sag; at 80–90 %
   of the straight-line flow it is 12.0–13.3 m/s. The pitot will measure the real figure.
 - **Low end:** an old forum post gives about 144 CFM free air at speed 1, which would be about 4.7–4.9 m/s in the
@@ -136,7 +155,7 @@ Notes:
     to stay straight. PLA can sag slowly under steady load, so give each section its own feet, and check the alignment
     with the spirit level and a straight edge after assembly and now and then.
   - Bambu's own filament loads tuned P1S settings automatically; other brands work with some tuning.
-  - The load-cell mount is the one printed part where long-term stability matters most. Make it thick, in PETG, and
+  - The load-cell mount is the one printed part where long-term stability matters most. Make it thick, in PETG-CF, and
     revisit a metal bracket at sizing if the wind-off zero drifts.
 - **Filament estimate (rough, our arithmetic):** about 0.75 m² of tunnel wall at 2–3 mm thick is about 1.9–2.8 kg; the
   printed honeycomb about 0.5 kg; frames, boxes, stands and jigs about 0.5 kg; plus about 20 % for failed prints:
@@ -160,7 +179,7 @@ still follows Scheiman1981, and a second can be added later because the frames a
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Screens (proposed 2026-11-09) | **Aluminium window insect screen, "bright aluminum" (uncoated), 18 × 16 mesh**, wire about 0.010–0.011 in: 66–69 % open. A real woven-wire mesh. Not fibreglass, pet screen or solar screen | One 36 × 84 in roll (about 20 squares of 12 in) | about $9.49–9.68 (Saint-Gobain ADFORS rolls at Home Depot); Phifer sells the same in brite aluminium | Home Depot, hardware stores | Now | To buy |
+| Screens (proposed 2026-11-09) | **Aluminium window insect screen, "bright aluminum" (uncoated), 18 × 16 mesh**, wire about 0.010–0.011 in: 66–69 % open. A real woven-wire mesh. Not fibreglass, pet screen or solar screen | One 36 × 84 in roll (about 20 squares of 12 in) | about $9.49–9.68 (Saint-Gobain ADFORS rolls at Home Depot); Phifer sells the same in brite aluminium | Home Depot, hardware stores | Now | **Ordered** (owner, 2026-11-09: "screen ordered", right after choosing the Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in (7 ft) roll at [Home Depot](https://www.homedepot.com/p/Saint-Gobain-ADFORS-36-in-x-84-in-Bright-Aluminum-Screen-Roll-for-Windows-and-Door-FCS9222-M/100397106)). The maker's spec (pasted by the owner) gives 18 × 16 and 0.011 in "yarn diameter" for all three colours, so 66.1 % open (the 0.011 in row below). Price paid not recorded |
 | Screens (dropped) | TWP 24 mesh T304 stainless, 0.0075 in wire, 67 % open (SKU 024X024S0075), or 30 mesh T316 0.0065 in (SKU 030X030T0065) | | The $10 "from" price is a 3 × 3 in piece; the owner's quote for the needed size came to about $200 (2026-11-09): too expensive | TWP | | Not chosen |
 | Screens (alternative) | Stainless 24 × 24 mesh, 0.0075 in wire, 67.2 % open, one 48 × 48 in sheet (16 pieces of 12 × 12 in) | 1 | $65.59 (Zoro listing; its open area is given as both 67.2 % and 65 %); the owner finds it too expensive (2026-11-08) | Zoro | | Alternative |
 | Honeycomb | **Printed (owner's choice, 2026-11-08):** for example 6 mm hexagonal cells, single 0.4 mm walls, about 48–50 mm long, about 250 × 250 mm (fits the P1S bed in one piece). Straws stay the upgrade if the flow map shows a problem (see below) | 1 | filament | Printed | After sizing | Printed |
@@ -182,7 +201,11 @@ still follows Scheiman1981, and a second can be added later because the frames a
   bringing K_sum to about 2.85 (our arithmetic). Mehta1977 allows up to about 4–5 screens in a diffuser. With the 0.011 in version,
   two are just enough, if the diffuser stays at the planned 150–200 mm rather than the 115 mm minimum.
 - Measure the delivered screen's wire with the calipers and count the wires per inch against the steel rule, then
-  settle two or three.
+  settle two or three. **2026-11-09:** the ordered roll's maker spec gives 0.011 in, so two diffuser screens give
+  K_sum 2.15, just above 2.1. Plan three anyway for margin (the third costs about 8 Pa, roughly 0.1–0.2 m/s of top
+  speed; estimate): the calipers cannot reliably tell 0.010 in (0.254 mm) from 0.011 in (0.279 mm). On arrival,
+  count 18 and 16 wires per inch and check one wire reads about 0.28 mm. An 18 × 16 mesh drops below 58 % open only
+  with wire of 0.014 in (0.36 mm) or more (our arithmetic).
 - Insect screen is softer and less precise than wire cloth: handle it flat, avoid creases, and tension it evenly in
   the frame. Its wires at chamber speed (u₁d/βν about 51–59) are still below the eddy-shedding limit of 85.
 - **What the McMaster 41 % mesh would cost** (owner asked "what's the worst that can happen?", 2026-11-09): nothing
@@ -235,6 +258,29 @@ still follows Scheiman1981, and a second can be added later because the frames a
   area (agent's reasoning, not from the reviewed papers).
 - **Quick rule for any listing: woven wire cloth, about 20–30 mesh, with the open-area column reading 58 % or
   more.**
+  - Window-screen listings rarely give the open area. Compute it from the mesh and wire: for 18 × 16 with 0.011 in
+    wire, (1 − 18 × 0.011) × (1 − 16 × 0.011) = 0.661.
+  - **The wire must also be thin**, or the settling-chamber screens shed their own eddies: u₁d/(βν) below 85
+    ([Wieghardt1953](../resources/notes/Wieghardt1953.md) eq. (15)). At 66 % open and 2.1 m/s that means wire of
+    0.016 in or thinner, about 12 mesh or finer (our arithmetic). An 8 × 8 mesh with 0.023 in wire is also about 66 %
+    open but fails this.
+- **Listings checked 2026-11-09 (owner):**
+  - **35 × 35 mesh, 0.011 in wire, 0.0176 in opening, 37.87 % open, 1 × 2 ft for $17: not suitable.** Four screens
+    would lose about 177 Pa at 13 m/s (K about 3.96 at the fan outlet, 6.04 in the settling chamber), against about
+    38 Pa for the window screen; the S6's estimated top speed falls to about 11.4 m/s (10.9 at 90 %), the VEVOR's to
+    about 9.4 (9.1). Below 57 % open the flow also turns patchy. One sheet gives only two 10.5 in squares, so five
+    screens would need 2–3 sheets ($34–51). Script in the
+    [2026-11-09 fan-advice log](sessions/2026-11-09-fan-advice-and-screen-order.md#5-commands-and-scripts-executed).
+  - **New York Wire, 18 × 16, 0.011 in wire, bright aluminium, 48 × 84 in roll (UPC 011646101075): suitable**
+    (66.1 % open, computed). Price not seen.
+  - **McNichols item 3796113610 (Insect Screen series 3366): suitable.** Woven plain weave, bright aluminium, 18 × 16,
+    0.011 in wire, openings 0.0446 × 0.0515 in on a 0.0556 × 0.0625 in pitch, 66 % open (listed, and consistent with
+    the pitch). Sold as full coils of 36 or 48 in × 1200 in (100 ft), with cut sizes available; price not seen. The
+    same screen as the window-screen rolls, so price decides; a cut of about 24 × 36 in (six 10.5 in squares) is
+    enough.
+  - **Saint-Gobain ADFORS FCS9222-M at Home Depot: suitable, and ordered.** Its Home Depot page gives 18 × 16 but no
+    wire diameter; the maker's spec gives 0.011 in for bright, charcoal and black, in 7, 25 and 100 ft lengths. Bright
+    (bare aluminium) chosen: no finish to flake. The coloured versions would have been an acceptable second choice.
 - **TWP's online form cuts discs** (owner's screenshot, 2026-11-09). Values proposed: 15 in discs × 3 (or 4) for the
   10.5 in squares, since a square that size needs a circle at least 14.9 in across; a 7 in disc × 1 (or 2) for the fan-outlet
   screen; tolerance 0.025 in, the loosest; no certifications; no add-ons (measurement $50, ultrasonic cleaning $85).

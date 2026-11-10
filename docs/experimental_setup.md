@@ -3,7 +3,7 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-09: nothing built, nothing ordered.**
+**Current configuration as of 2026-11-09: nothing built; one part ordered (the aluminium window screen, 2026-11-09).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
@@ -43,7 +43,7 @@ with a guess. When the setup changes, update the **Current configuration** and a
 | Component | Value | Status / source |
 |---|---|---|
 | Honeycomb (cell size, length) | **Printed (owner, 2026-11-08)**, for example 6 mm hexagonal cells with 0.4 mm walls, about 50 mm long, ahead of the screens in the settling chamber. Straws (about 5 mm, 40 mm long) are the upgrade if the flow map shows a problem. The 2026-11-02 proposal was thin-walled cells of about 2–3 mm, 7–10 diameters long | Printed, after sizing ([buy list](buy_list.md) §3) |
-| Screens (number, mesh, open-area ratio) | **Proposed 2026-11-09: aluminium window insect screen ("bright aluminum", 18 × 16 mesh, wire about 0.010–0.011 in, 66–69 % open).** Two or three in the fan-to-chamber diffuser (K_sum ≥ 2.1; three if the wire is 0.010 in) and two in the settling chamber, at least 500 wire diameters apart. Estimated K about 0.75–0.85 at the fan outlet and 1.15–1.30 in the settling chamber; four or five screens lose about 33–48 Pa at 13 m/s (Wieghardt's formula; [buy list](buy_list.md) §3) | To buy (about $10 a roll); [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
+| Screens (number, mesh, open-area ratio) | **Proposed 2026-11-09: aluminium window insect screen ("bright aluminum", 18 × 16 mesh, wire about 0.010–0.011 in, 66–69 % open).** Two or three in the fan-to-chamber diffuser (K_sum ≥ 2.1; three if the wire is 0.010 in) and two in the settling chamber, at least 500 wire diameters apart. Estimated K about 0.75–0.85 at the fan outlet and 1.15–1.30 in the settling chamber; four or five screens lose about 33–48 Pa at 13 m/s (Wieghardt's formula; [buy list](buy_list.md) §3) | **Ordered 2026-11-09 (owner):** Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll; the maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open. With 0.011 in wire two diffuser screens just meet K_sum ≥ 2.1 (2.15); three are planned for margin (five in all). Wire count and diameter to be checked on arrival. [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
 
 ## Instrumentation
 
@@ -143,3 +143,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-08/09 | Buy list written ([buy_list.md](buy_list.md)). Instruments chosen: SDP810-125Pa with a home-made probe, two TAL221 100 g with a SparkFun HX711, an Adafruit BME280. Also chosen: 3/4 in and 1 in Delrin balls, aluminium window screen and a printed honeycomb. Target 13 m/s (D-010); no display (D-012); fan open between the S6 and the VEVOR (D-011). Parts on hand updated (documentation only; nothing bought, built or tested) | [2026-11-09](sessions/2026-11-09-buy-list.md) |
 | 2026-11-09 | Owner's shopping tracker added ([shopping_list.md](shopping_list.md)). Stale entries corrected: construction material (bolted flanges, PLA and PETG-CF) and the HX711 module (SparkFun, chosen 2026-11-08). Documentation only; nothing bought, built or tested | [2026-11-09](sessions/2026-11-09-shopping-list.md) |
 | 2026-11-09 | Preliminary drawing package added ([drawings/](drawings/README.md)). Owner's decisions from a new sketch: bolted flange joints (D-013), the top panel on magnets and replaceable floor inserts (D-014), the sting mount and thumb-screw sting lock (D-015). Documentation only; nothing bought, built or tested | [2026-11-09](sessions/2026-11-09-drawing-package.md) |
+| 2026-11-09 | First part ordered: the aluminium window screen (Saint-Gobain ADFORS FCS9222-M, Bright; 18 × 16, 0.011 in wire per the maker's spec, 66 % open); three diffuser screens planned (five in all). Nothing built or tested; the fan is still open (agent recommends the S6) | [2026-11-09](sessions/2026-11-09-fan-advice-and-screen-order.md) |
