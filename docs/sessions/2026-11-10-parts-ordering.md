@@ -2,7 +2,7 @@
 
 - **Session ID:** 6e929582-3315-40a6-9c63-d9ec3312aea9 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `f4fa904` (the wrap); the README follow-up (§13, end) not committed yet
 
 Started 2026-11-09, wrapped 2026-11-10. Buying advice and documentation only. **The owner ordered everything on the
 buy list except the fan.** Nothing arrived, was built or was tested.
@@ -82,6 +82,9 @@ buy list except the fan.** Nothing arrived, was built or was tested.
 - `TODO.md`: P0 order task replaced by a reporting task; P1 sizing notes (taps, sting, straight probe, inlet ring,
   fasteners); P2 lighting for mist and arrival checks; Done entries.
 - `DECISIONS.md`: D-016 appended.
+- `README.md` (owner asked after the wrap; not in `f4fa904`, see the follow-up in §13): status banner, hardware (on hand, ordered, still to buy, changed
+  from the original plan), build order marker, the Re-matched C_D in the deliverable, shopping-list description,
+  Python version.
 - `docs/buy_list.md`: statuses of every ordered row; BME280, sting, sleeve, fasteners, feet, drill sizes, magnets note,
   calibration attachment.
 - `docs/shopping_list.md`: rewritten statuses (2026-11-10).
@@ -226,3 +229,21 @@ python scripts/sync_status.py --fetch
 - **If the push is rejected** ("fetch first" / "non-fast-forward"): do not force-push. Run
   `git pull --rebase origin main`, then `python -m unittest discover -s tests`, then `git push origin HEAD`.
 - The last command should end with `STATE: UP_TO_DATE`.
+
+**Follow-up after the wrap.** The owner committed and pushed the 9 files above as `f4fa904` (2026-11-10;
+`sync_status.py --fetch`: `UP_TO_DATE`). Then, at the owner's request, the agent brought `README.md` up to date and
+recorded it here and in PROJECT_STATUS, TODO and the session index. Commands for that follow-up:
+
+```bash
+cd "C:/Users/nuhbm/OneDrive/Desktop/nuhs projects/2 - Wind Tunnel"
+python scripts/sync_status.py --fetch
+git status
+git diff
+git add README.md PROJECT_STATUS.md TODO.md docs/sessions/SESSION_LOG.md docs/sessions/2026-11-10-parts-ordering.md
+git diff --cached --stat
+git commit -m "Update the README to the current project state" -m "The README still described the original plan (nothing ordered, C_D about 0.47). It now gives the current status, the hardware on hand and ordered, what changed from the original plan, the Re-matched reference C_D (D-009) and the tested Python version. Backfills f4fa904."
+git push origin HEAD
+python scripts/sync_status.py --fetch
+```
+
+`git status` should show 5 paths staged before the commit.

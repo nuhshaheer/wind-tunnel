@@ -1,12 +1,12 @@
 # Project Status
 
 **Last updated:** 2026-11-10
-**Last commit:** `c768e2c` (2026-11-09, the fan-advice and screen-order session), pushed to `origin/main`
-(`UP_TO_DATE` on 2026-11-09 and 2026-11-10).
+**Last commit:** `f4fa904` (2026-11-10, the parts-ordering session), pushed to `origin/main` (`UP_TO_DATE` on
+2026-11-10).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the parts-ordering session of 2026-11-09/10 (documentation only;
-  [session log](docs/sessions/2026-11-10-parts-ordering.md), with the commit commands in §13).
+- **Not committed yet:** the README update made after that commit (commands at the end of the
+  [session log](docs/sessions/2026-11-10-parts-ordering.md)'s §13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Ordered 2026-11-09/10: nearly
@@ -149,7 +149,7 @@ checked).
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c` and `c768e2c`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c` and `f4fa904`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -263,7 +263,8 @@ None. No experiment has been run.
     ([D-016](DECISIONS.md), Tentative).
   - Advice recorded: a later top-down light for mist; how to make the wall taps (print a pilot, drill to finish);
     inch drill sizes; a straight probe through the open exit as an idea; the fan inlet as a separate printed ring.
-  - See [the session log](docs/sessions/2026-11-10-parts-ordering.md).
+  - Committed and pushed as `f4fa904`; the README was then brought up to date (not committed yet). See
+    [the session log](docs/sessions/2026-11-10-parts-ordering.md).
 
 ## 7. Data and analyses
 
@@ -539,7 +540,8 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-10-parts-ordering.md#13-manual-git-commands-as-given-to-the-owner));
+     [session log](docs/sessions/2026-11-10-parts-ordering.md#13-manual-git-commands-as-given-to-the-owner), the
+     README follow-up at its end);
    - send the agent the heat-set inserts' length and outside diameter, which acrylic sheets were bought (one 12 × 24 in
      or four 8 × 12 in), and the SDP810 part number from the Mouser order;
    - report what is on hand: filament amounts (PLA, PETG-CF) and the "Check the house first" items in
@@ -581,6 +583,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c` and `c768e2c`). The account was `nuhshaheer-2007` until
+  `0558370`, `507f71c`, `c768e2c` and `f4fa904`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

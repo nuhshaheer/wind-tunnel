@@ -532,3 +532,5 @@ Owner tasks are physical or account actions that an agent cannot do.
   instead of a brass set; one full-length sting per ball instead of the 5/32 in sleeve ([D-016](DECISIONS.md),
   Tentative); the 4-core cable optional; header strips tin-plated. Tracker: [docs/shopping_list.md](docs/shopping_list.md)
   ([session log](docs/sessions/2026-11-10-parts-ordering.md)).
+- [x] 2026-11-10: Owner committed and pushed the parts-ordering session as `f4fa904` (`UP_TO_DATE`); the README was
+  then updated to the current state ([session log](docs/sessions/2026-11-10-parts-ordering.md)).

@@ -1,48 +1,67 @@
 # Wind Tunnel
 
-> **Status (2026-11-09): planning / pre-build.** Nothing is built or ordered, and no data has been collected yet.
+> **Status (2026-11-10): planning / pre-build.** Every part except the fan is ordered (2026-11-09/10); nothing is
+> built yet and no data has been collected. Next: sizing the tunnel (build step 1) while the parts arrive.
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
-> The sphere's reference C_D is now matched to the test Reynolds number: about 0.42–0.445 at the planned Re, ±10 %
-> ([DECISIONS.md](DECISIONS.md) D-009). The "~0.47" below is from the original plan.
-> The hardware list below is also the original plan: the current, complete parts list is
-> [docs/buy_list.md](docs/buy_list.md), and the short tracker of what is still to buy is
+> The complete parts list is [docs/buy_list.md](docs/buy_list.md), and the order tracker is
 > [docs/shopping_list.md](docs/shopping_list.md).
 
 ## Goal
 Measure drag, and prove the tunnel reads true.
 
 ## What this project is about
-A small wind tunnel with my own instrumentation: flow conditioning, a pitot tube for airspeed, and a load cell for drag force, with signal conditioning built from my ECE kit. Before trusting any other result, I validate the tunnel by measuring something with a known answer: the drag coefficient of a sphere (~0.47). It's the same move as the 100 MΩ resistor on the STM.
+A small wind tunnel with my own instrumentation: flow conditioning, a pitot tube for airspeed, and a load cell for drag force, read through an interface board I design with parts from my ECE kit. Before trusting any other result, I validate the tunnel by measuring something with a known answer: the drag coefficient of a sphere (about 0.42–0.445 at this tunnel's Reynolds number, ±10 %; the original plan said ~0.47). It's the same move as the 100 MΩ resistor on the STM.
 
 ## Why it matters
 Of the three projects, this is the only one that shows me as a mechanical engineer doing fluids, which is the work aerospace companies hire MEs into.
 
-## Hardware
+## Hardware (as of 2026-11-10)
 
-### Have (instrumentation half, from the ECE kit)
-- LM741 / LM348 op-amps for signal conditioning
-- LM317 regulator for a clean sensor supply
+The tunnel: an open-circuit blower with the fan at the front, a 100 mm × 100 mm test section, 3D-printed in bolted
+segments, with a 13 m/s target top speed ([DECISIONS.md](DECISIONS.md) D-005, D-007, D-008, D-010, D-013).
+Reasons, prices and alternatives for every part: [docs/buy_list.md](docs/buy_list.md).
 
-### To buy
-- Blower / fan
-- Ducting
-- Honeycomb + screens (flow straightening)
-- Pitot tube
-- Differential pressure sensor
-- Load cell + HX711
-- Servo for the airfoil pitch mechanism
+### On hand
+- Bambu Lab P1S 3D printer, PLA, PETG-CF and a hardened-steel nozzle
+- Elegoo Mega 2560 (working: Blink upload verified 2026-11-02)
+- ECE2010 lab kit (op-amps, regulators, breadboard, jumpers)
+- Multimeter, soldering station, bench power supply, calipers, hand drill, spirit level, 43 magnets (8 × 2 mm), and
+  access to a school lab balance
+
+### Ordered (2026-11-09/10)
+- Airspeed: a Sensirion SDP810-125Pa differential pressure sensor, with a home-made brass pitot probe and wall
+  pressure taps
+- Drag: two TAL221 100 g load cells and a SparkFun HX711
+- Air density: a Waveshare BME280 (pressure, temperature, humidity)
+- Flow conditioning: aluminium window screen (the honeycomb is printed)
+- Validation models: 3/4 in and 1 in Delrin balls, each on its own brass sting
+- Build parts: black PLA, 1/8 in cast acrylic windows, heat-set inserts, screws, tubing and fittings, neoprene, tools
+  and a calibration weight set
+
+### Still to buy
+- The fan: AC Infinity CLOUDLINE S6 (recommended) or VEVOR 6-inch, bought last (D-011)
+
+### Changed from the original plan
+- No servo for the airfoil pitch: preset angles instead (2026-11-01)
+- No ducting: the fan's collar slides into a printed inlet
+- No bought pitot tube: made in-house from brass tube
+- No on-tunnel display or knob: all output goes to the laptop (D-012)
+- Op-amp signal conditioning probably not needed, because the sensors are digital (proposed); the circuit work goes
+  into an interface board, breadboard first, then a PCB
 
 ## Build order
-1. Size the contraction and test section
+1. Size the contraction and test section ← **next**
 2. Flow conditioning (honeycomb + screens)
 3. Map flow uniformity across the test section with the pitot tube
 4. Load cell and its conditioning circuit
 5. Calibrate against known weights
 6. Validation run (sphere Cd)
-7. Airfoil pitch attachment
+7. Airfoil tests at preset angles
 
 ## Result / deliverable
-The measured Cd of a sphere compared against the published value of ~0.47.
+The measured Cd of a sphere compared against the published value at the same Reynolds number: Brown and Lawler (2003)
+Eq. (19), about 0.42–0.445 for the planned runs, ±10 %, plus a check that Cd rises with Re as predicted
+([DECISIONS.md](DECISIONS.md) D-009). The original plan compared against ~0.47.
 
 ---
 
@@ -57,7 +76,7 @@ TODO.md                   Prioritized tasks with verification criteria
 docs/
   experimental_setup.md   The physical setup as built (Unknown until decided)
   buy_list.md             Everything to buy, what each part does, prices, and what is on hand
-  shopping_list.md        The owner's short tracker: item, qty, price, link, status (still to buy only)
+  shopping_list.md        The owner's order tracker: item, qty, price, link, status (To buy → Ordered → Got it)
   data_catalog.md         Every dataset/experiment and how it was processed
   sessions/               One log per work session + SESSION_LOG.md index
   sketches/               The owner's hand sketches of the tunnel (intent, not as built)
@@ -90,8 +109,8 @@ No analysis code exists yet, so there are no analysis commands to run.
 
 ## Requirements and checks
 
-The helper scripts need only Python 3 (standard library; Python 3.9 or newer expected, developed and tested with
-Python 3.13 on Windows 11, and also passing on 3.11 on 2026-11-02) and Git.
+The helper scripts need only Python 3 (standard library; Python 3.9 or newer expected) and Git. The tests pass on
+Python 3.11 on Windows 11 (last run 2026-11-10); earlier sessions used 3.13.
 
 ```bash
 python -m unittest discover -s tests -v   # tests for the helper scripts
