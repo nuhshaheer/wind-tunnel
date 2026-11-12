@@ -19,7 +19,9 @@ Of the three projects, this is the only one that shows me as a mechanical engine
 
 The tunnel: an open-circuit blower with the fan at the front, a 100 mm × 100 mm test section, 3D-printed in bolted
 segments, with a 13 m/s target top speed ([DECISIONS.md](DECISIONS.md) D-005, D-007, D-008, D-010, D-013).
-Reasons, prices and alternatives for every part: [docs/buy_list.md](docs/buy_list.md).
+The model sits on a brass sting that rises through a replaceable floor insert, with the sting shield attached to the
+insert; the top window lifts off on magnets, and the sting clamps into a printed mount on the load cell (D-014 to
+D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs/buy_list.md).
 
 ### On hand
 - Bambu Lab P1S 3D printer, PLA, PETG-CF and a hardened-steel nozzle

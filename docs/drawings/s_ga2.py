@@ -121,7 +121,7 @@ def sheet_ga2():
             ('J5', 'Chamber 20 → contraction 30', 'Bolted flange', 'As J2', 'Pins 98', 'Sh 5, 6'),
             ('J6', 'Contraction 30 → test section 40', 'Bolted flange; inside faces flush', 'As J2', 'Pins 98; no step', 'Sh 6, 7'),
             ('J7', 'Panels 42, 43 → frame 40', 'Lift-off panels', 'Magnets 45; gasket 46', 'Lips 47', 'Sh 7'),
-            ('J8', 'Balance plate 70 → frame 40', 'Removable module; mounting TBD', 'Brass M3 73', 'TBD', 'Sh 8'),
+            ('J8', 'Balance plate 70 → frame 40', 'Removable module; mounting TBD', 'Short M3 73', 'TBD', 'Sh 8'),
             ('J9', 'Every section → bench', 'Printed feet 99 (no plywood base)', 'Rubber pads 100', 'Flanges and pins', 'Sh 10'),
             ('J10', 'Test section → room', 'Open exit 52 (Tentative, D-007)', '—', '—', 'Sh 7')]
     for i, row in enumerate(rows):

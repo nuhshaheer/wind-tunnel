@@ -19,7 +19,7 @@ not_drawn = sorted(n for n in ITEM if n not in used)
 assert not missing_in_list, f'callouts without a parts-list row: {missing_in_list}'
 print('parts never drawn:', not_drawn)
 
-STATUS_CLS = {'To buy': 'buy', 'On hand': 'have', 'Printed': 'print', 'Printed (later)': 'print', 'Choice open': 'open',
+STATUS_CLS = {'To buy': 'buy', 'Ordered': 'ord', 'On hand': 'have', 'Printed': 'print', 'Printed (later)': 'print', 'Choice open': 'open',
               'Feature': 'feat', 'Check house': 'house', 'Printed + brass': 'print', 'To buy (tool)': 'buy', 'To buy / Printed': 'buy'}
 
 TBD_ROWS = [
@@ -28,7 +28,7 @@ TBD_ROWS = [
     ('Wall thickness, all printed shells', '3', 'Sizing (2–3 mm was only a filament estimate)', 'all'),
     ('Flange width, thickness, bolt count and pitch; insert length; pin size', '14 × 6, 12 bolts', 'Sizing (build step 1)', '10'),
     ('Diffuser length and wall form; corner fillet radius', '175, curved', 'Sizing within 150–200 (Mehta1977 Fig. 5)', '4'),
-    ('Screen 12b (third diffuser screen) and the position of 12a', 'both drawn', 'Measure the delivered screen wire: 0.010 in → three screens', '4'),
+    ('Positions of screens 12a and 12b (12b, the third diffuser screen, is planned for margin)', 'both drawn', 'Sizing; check the delivered wire is 0.011 in (≈0.28 mm), which gives K_sum 2.15 with two', '4'),
     ('Settling-chamber stations and length', '25 / 50 / 100 / 75 / 50', 'Choose spacing option A or B (sheet 5 table)', '5'),
     ('How 250 mm sections are split to fit the 256 mm bed', '—', 'Sizing: lengthwise halves or flat panels', '5, 6'),
     ('S taps, mist port: axial positions', 'after 12e', 'Sizing (both after the last screen)', '5'),
@@ -36,7 +36,7 @@ TBD_ROWS = [
     ('Side panel removable or fixed; panel size; taps in the removable top panel', 'top off, side TBD', 'Top comes off on magnets (owner, D-014); the side panel and the taps at sizing; see finding 2', '7'),
     ('M-station floor-tap offset; probe-guide position', 'offset 30', 'Sizing; the sting hole occupies the floor centre', '7'),
     ('Panel-frame, lip, gasket-ledge and magnet-skin sizes', 'concept only', 'Sizing; test-print the magnet pockets (8.2–8.3 × 2.2)', '7'),
-    ('Sleeve and stem lengths; mount hole fit and depth; thumb-screw length; stop gap; base form', 'layout', 'Sizing; test-print the hole on the delivered rod; stops set with a known mass at ≈120 g', '8'),
+    ('Sting length (all cut equal); mount hole fit and depth; thumb-screw length; stop gap; base form', 'layout', 'Sizing; test-print the hole on the delivered rod; stops set with a known mass at ≈120 g', '8'),
     ('Floor-insert size, ledge, hold-down and seal', '80 × 60, ledge 4', 'Sizing: fits inside the balance box, sits flush, lifts out through the top opening', '7, 8'),
     ('Load-cell box, balance plate and HX711 board sizes', 'layout', 'Sizing; board dimensions from the delivered part', '8'),
     ('Feet heights and size; fan-stand height', 'bench at −175', 'Balance-box clearance sets the tunnel centre-line height (finding 5)', '1, 3, 10'),
@@ -149,6 +149,7 @@ td.mono {{ font-family: var(--f-mono); font-size: 12.5px; }}
 .st.open {{ color: var(--tbd); border-color: var(--tbd); background: #fff3ec; }}
 .st.feat {{ color: var(--muted); border-color: var(--rule); background: #f6f7f8; }}
 .st.house {{ color: #5b4a8a; border-color: #b7a9e0; background: #f5f2fd; }}
+.st.ord {{ color: #0f5f66; border-color: #7fc0c4; background: #ecf7f8; }}
 ol.findings {{ margin: 0; padding-left: 22px; display: grid; gap: 10px; max-width: 110ch; }}
 footer.src {{ font-size: 13px; color: var(--muted); max-width: 110ch; }}
 @media (max-width: 640px) {{ header.top, section.doc {{ padding: 18px; }} }}
@@ -158,9 +159,9 @@ footer.src {{ font-size: 13px; color: var(--muted); max-width: 110ch; }}
 <header class="top">
   <div class="eyebrow">Wind tunnel · 100 × 100 mm open-circuit blower · owner N. Shaheer</div>
   <h1>Drawing package: assembly, sections and parts</h1>
-  <p class="lede">Ten sheets: the general arrangement, then each section from the fan to the open exit, the force balance, the airspeed instrumentation and the joints. Every dimension comes from the project documents at commit 0558370 (buy list, status, decisions and paper notes) and the owner’s sketch of 2026-11-09 (floor inserts, sting mount and sting lock). The sizing step (build step 1) has not been done, so most lengths are proposals and many are still to be decided. Undecided dimensions are marked TBD and drawn at layout values only.</p>
+  <p class="lede">Ten sheets: the general arrangement, then each section from the fan to the open exit, the force balance, the airspeed instrumentation and the joints. Every dimension comes from the project documents (at commit 0558370 for revision B, updated 2026-11-10 for revision C: buy list, status, decisions and paper notes) and the owner’s sketch of 2026-11-09 (floor inserts, sting mount and sting lock). The sizing step (build step 1) has not been done, so most lengths are proposals and many are still to be decided. Undecided dimensions are marked TBD and drawn at layout values only.</p>
   <span class="status">PRELIMINARY · PRE-SIZING · NOT FOR MANUFACTURE</span>
-  <p style="font-size:14px;margin:0;color:var(--muted)">Revision B, 2026-11-09: replaceable floor inserts (53, 54), the sting mount (65) and the thumb-screw sting lock (68) from the owner’s sketch (D-013 to D-015); general-arrangement leaders rerouted. Parts list, 2026-11-10: the Waveshare BME280 (89) and the acrylic as four 8 × 12 in sheets (42, 43), as ordered; the other rows’ statuses are still those of 2026-11-09, before the orders, and are updated at sizing. Generated by docs/drawings/ in the repo.</p>
+  <p style="font-size:14px;margin:0;color:var(--muted)">Revision B, 2026-11-09: replaceable floor inserts (53, 54), the sting mount (65) and the thumb-screw sting lock (68) from the owner’s sketch (D-013 to D-015); general-arrangement leaders rerouted. Revision C, 2026-11-10: each ball press-fit on its own full-length sting (63), so the ball stem (61) and the 5/32 in sting sleeve (62) are removed (D-016); stainless short M3 screws (73) at the balance instead of brass; the sting shield (64) shown attached to the sphere insert (53), lifting out with it (D-014); screen 12b planned for margin; every parts-list status brought up to the orders of 2026-11-09/10 (Waveshare BME280, acrylic as four 8 × 12 in sheets). Sizes are still pre-sizing. Generated by docs/drawings/ in the repo.</p>
   <div class="keyrow">
     <span><span class="k f">100</span>&nbsp; decided, datasheet or part spec</span>
     <span><span class="k p">150–200</span>&nbsp; proposed in the docs, not final</span>
@@ -187,7 +188,7 @@ footer.src {{ font-size: 13px; color: var(--muted); max-width: 110ch; }}
   <h2 style="margin-top:10px">Findings from drawing it out</h2>
   <p>Gaps that only showed up when the parts were placed together. Recorded in PROJECT_STATUS.md §11 (2026-11-09); none is resolved yet.</p>
   <ol class="findings">{finds}</ol>
-  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-012, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09.</footer>
+  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10.</footer>
 </section>
 </div>'''
     out = os.path.join(HERE, 'wind-tunnel-drawings.html')

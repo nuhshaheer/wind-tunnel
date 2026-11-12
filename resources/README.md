@@ -84,11 +84,12 @@ is Cooper1998 in the index). Citations and availability below were checked onlin
 been read yet, and spec values quoted here come from vendor pages or search summaries, not from datasheets in this
 folder: confirm them in the datasheet before using them.
 
-**Electronics, get now (free). Needed to choose the parts (TODO P1):**
+**Electronics (free). The parts were chosen on 2026-11-08; what is still wanted is marked below:**
 
 1. **Differential pressure sensor candidates.** This is the biggest gap: q enters C_D directly, and dynamic pressure
    is only about 15–240 Pa. Our arithmetic (ρ = 1.2 kg/m³): a ±125 Pa sensor reads up to about 14 m/s, ±249 Pa about
-   20 m/s, ±500 Pa about 29 m/s. Pick the range after the top speed is chosen.
+   20 m/s, ±500 Pa about 29 m/s. **Chosen 2026-11-08: one SDP810-125Pa** (ordered 2026-11-09), so the SDP3x and
+   HSC datasheets below are no longer needed.
    - Sensirion SDP3x, digital I²C, temperature compensated: SDP32 (±125 Pa) and SDP31 (±500 Pa). Sensirion's catalog
      lists zero-point accuracy 0.08 Pa (SDP32) and 0.1 Pa (SDP31).
      [SDP32 catalog page](https://sensirion.com/products/catalog/SDP32) (datasheet linked there).
@@ -113,14 +114,15 @@ folder: confirm them in the datasheet before using them.
    Added 2026-11-01, also in the owner's kit:
    - TI [LMC6484](https://www.ti.com/product/LMC6484). TI's page title: "Ultra-low Bias Current, Precision CMOS
      Rail-to-Rail Input and Output Quad Operational Amplifier", 3–15 V supply. It is the single-supply op-amp option.
-   - LM7805CT (5 V, 1 A regulator in TO-220), proposed for the servo supply. Distributors list it under onsemi
+   - LM7805CT (5 V, 1 A regulator in TO-220), first proposed for a servo supply (no servo is planned since the owner
+     chose preset angles, 2026-11-01). Distributors list it under onsemi
      (formerly Fairchild) and mark it obsolete, so take the datasheet from onsemi or from the
      [DigiKey listing](https://www.digikey.com/en/products/detail/onsemi/LM7805CT/458698). TI has no LM7805 product
      page.
 4. **Ambient pressure and temperature for air density:** Bosch BME280 (I²C pressure, temperature and humidity).
    Vendor pages give about ±1 hPa absolute pressure accuracy, about 0.1 % in ρ (our arithmetic).
    [Datasheet copy hosted by SparkFun](https://cdn.sparkfun.com/assets/5/3/0/f/7/BME280_Datasheet.pdf); prefer the
-   current revision from Bosch Sensortec.
+   current revision from Bosch Sensortec. **Still wanted:** the Waveshare BME280 board is ordered (2026-11-09).
 
 **Electronics background (free; useful, not blocking):**
 

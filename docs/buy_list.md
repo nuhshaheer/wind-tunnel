@@ -1,6 +1,6 @@
 # Buy List
 
-**Last updated:** 2026-11-09
+**Last updated:** 2026-11-10
 
 Everything the tunnel needs, from the fan to the screws, with what is already on hand. Started 2026-11-08 with the
 owner. It is worked through category by category; a section marked **Not reviewed yet** lists what is expected there,
@@ -21,16 +21,16 @@ without a chosen part.
 
 | Section | Status | Subtotal (to buy) |
 |---|---|---|
-| 1. Fan and air supply | Reviewed 2026-11-08/09; fan S6 or VEVOR (owner to choose) | about $118–123 with the S6, or $73–78 with the VEVOR, plus up to about $37 for duct tape and a power strip if not on hand |
-| 2. Tunnel body | Reviewed 2026-11-09: PLA, PETG-CF and a hardened nozzle on hand; printed feet, no plywood | about $30–90, plus any PLA top-up |
+| 1. Fan and air supply | Reviewed 2026-11-08/09; fan S6 or VEVOR (owner to choose; bought last). **Neoprene, duct tape and bumper feet ordered** (reported 2026-11-10) | about $118–123 with the S6, or $73–78 with the VEVOR, plus up to about $37 for duct tape and a power strip if not on hand |
+| 2. Tunnel body | Reviewed 2026-11-09: PLA, PETG-CF and a hardened nozzle on hand; printed feet, no plywood. **Heat-set inserts, the stainless screw assortment, sandpaper and 4 kg of black PLA ordered** (2026-11-09/10) | about $30–90, plus any PLA top-up |
 | 3. Flow conditioning | **Screen ordered 2026-11-09** (aluminium insect screen, Saint-Gobain ADFORS FCS9222-M; five screens planned); printed honeycomb (owner) | about $10 (ordered) |
-| 4. Test section and model access | Proposed 2026-11-09; magnets on hand (8 × 2 mm) | about $20–29 |
-| 5. Airspeed | Reviewed 2026-11-08: make the probe, one sensor. **SDP810-125Pa ordered 2026-11-09 (Mouser)** | about $47–70, plus $5–8 for the optional bender |
-| 6. Force balance and models | Reviewed 2026-11-08: two load cells, 3/4 in and 1 in balls (owner). **Both TAL221s and the HX711 ordered 2026-11-09 (SparkFun)** | about $61–64; balls may cost more in small quantities |
+| 4. Test section and model access | Proposed 2026-11-09; magnets on hand (8 × 2 mm); top panel on magnets and a replaceable floor insert with the sting shield attached (D-014). **Acrylic (four 8 × 12 in sheets), scoring knife and gasket tape ordered** (reported 2026-11-10) | about $20–29 |
+| 5. Airspeed | Reviewed 2026-11-08: make the probe, one sensor. **SDP810-125Pa ordered 2026-11-09 (Mouser); brass tube, silicone tubing and barbed fittings ordered** (reported 2026-11-10) | about $47–70, plus $5–8 for the optional bender |
+| 6. Force balance and models | Reviewed 2026-11-08: two load cells, 3/4 in and 1 in balls (owner). **Both TAL221s and the HX711 ordered 2026-11-09 (SparkFun); a pack of 10 of each ball and two 1/8 in brass rods for the stings ordered** (reported 2026-11-10); one sting per ball, no sleeve (D-016) | about $61–64; balls may cost more in small quantities |
 | 7. Ambient conditions | Proposed 2026-11-08. **Waveshare BME280 ordered 2026-11-09** (instead of the Adafruit 2652) | $14.95 |
 | 8. Electronics and wiring | Reviewed 2026-11-08/09: no display or knob (D-012); breadboard then PCB, no shield. **Dupont jumpers and the TUOFENG hook-up wire ordered 2026-11-09**; the 4-core cable maybe not needed | about $15–23, plus about $20–30 if wire, heat-shrink and solder are not on hand |
-| 9. Calibration | Reviewed 2026-11-08: home-made manometer, budget weights checked on a school lab balance | about $28–56, less what is in the house |
-| 10. Tools (partly) | Calipers and hand drill on hand; battery, tube cutter, drill bits; files and hacksaw if not in the house | about $15–25, plus up to about $20 |
+| 9. Calibration | Reviewed 2026-11-08: home-made manometer, budget weights checked on a school lab balance. **Weight set, manometer tubing and reducers ordered** (reported 2026-11-10) | about $28–56, less what is in the house |
+| 10. Tools (partly) | Calipers and hand drill on hand. **Battery, tube cutter, drill-bit set and pin vise ordered** (reported 2026-11-10); files and hacksaw if not in the house | about $15–25, plus up to about $20 |
 | 11. Later and optional | Reviewed 2026-11-09: PCB with sockets after the breadboard test; cars with mist, lift maybe never | nothing now |
 | **Total, sections 1–10** | Estimate, 2026-11-09 | **about $315–505** before tax and shipping (the low end with the VEVOR fan), plus up to about $100 for items that may already be in the house, and about $15–20 per kg of PLA if the spools on hand run short |
 
@@ -125,7 +125,7 @@ Notes:
 | Filament, PLA | **PLA** for the shells (diffuser, settling chamber, contraction, test-section frame), the printed honeycomb, boxes, the fan stand and the base feet: stiffest and most accurate. **Black** for the test section and contraction, for contrast in any later mist visualization and less glare in photos | 2.5–3 kg | about $15–20/kg for any top-up (typical, not checked) | Bambu, Amazon | After sizing | **On hand** (owner, 2026-11-09; amount unknown); **4 kg black ordered** (reported 2026-11-10) |
 | Filament for loaded parts | For anything clamped or under steady load: screen frames, the sting mount (D-015), overload stops, the load-cell base, the ball-drilling jig. **PETG-CF is on hand** (owner, 2026-11-09; amount unknown): stiffer than PETG and creeps less, but abrasive. Use it only with a hardened-steel nozzle; otherwise buy plain PETG | 0.5–1 kg | | | After sizing | **On hand:** PETG-CF, and a hardened-steel nozzle (owner, 2026-11-09). Nothing to buy unless the PETG-CF runs short |
 | Heat-set inserts | Brass, M3, for screws into printed parts | 1 pack of 100 | about $11–20 (listings) | Amazon, electronics distributors | Now | **Ordered** (reported 2026-11-10); size (length × outside diameter) to be sent to the agent |
-| Screws, nuts, washers | An M3 and M4 assortment (stainless) for joining segments; a small **brass** M3 set for anything near the balance | 1 + 1 | about $10–15 + $8–10 (typical, not checked) | Hardware store, Amazon | Now | **Stainless assortment ordered** (owner, reported 2026-11-09). **Brass set dropped** (agent, 2026-11-09): stainless is fine at the balance too (§4, magnets note) |
+| Screws, nuts, washers | An M3 and M4 assortment (stainless) for joining segments and at the balance; ~~a small **brass** M3 set for anything near the balance~~ | 1 | about $10–15 + $8–10 (typical, not checked) | Hardware store, Amazon | Now | **Stainless assortment ordered** (owner, reported 2026-11-09). **Brass set dropped** (agent, 2026-11-09): stainless is fine at the balance too (§4, magnets note) |
 | Gasket for joints | The foam tape from §4, between bolted flanges | | | | | §4 |
 | Sealant | Clear silicone, for joints that never come apart | 1 tube | about $6 (typical, not checked) | Hardware store | After sizing | Unknown |
 | Glue | Super glue and 5-minute epoxy (brass stubs into printed walls, small repairs). Neither bonds the Delrin balls (§6) | 1 each | about $5–10 each (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
@@ -471,8 +471,10 @@ are from a short script (this session's log), with sphere drag from Eq. (19) and
 | Load-cell screws | M3 from the §2 stainless assortment (brass dropped 2026-11-09; §4, magnets note). Short enough not to poke through the cell's tapped holes and touch anything | from §2 | | | | §2 |
 | Wiring | The cell's four wires soldered straight to the HX711 (no breadboard in the bridge; Weakly2024 lesson), and four wires from the HX711 to the Arduino | | | | | §8 |
 
-**Subtotal (2 load cells, 1 HX711, 4 balls, rod, sleeve tube; owner's choices 2026-11-08):** about $61–64 at the
-prices seen, more if McMaster's small-quantity ball prices are higher than the bulk prices used here.
+**Subtotal as first planned (2 load cells, 1 HX711, 4 balls, rod, and the 5/32 in sleeve tube since dropped; owner's
+choices 2026-11-08):** about $61–64 at the prices seen, more if McMaster's small-quantity ball prices are higher than
+the bulk prices used here. **As ordered (2026-11-09/10):** a pack of 10 of each ball size, two rods and no sleeve tube;
+prices paid not recorded.
 
 Notes:
 
@@ -480,7 +482,9 @@ Notes:
   the sphere's own drag (1.46 gf against 1.27 gf at 13 m/s). A 2 mm sting has about 75 %. Subtracting a drag as big as
   the one being measured, with unknown interference between the two, is the weakest point of balances like
   Weakly2024's. A fixed shield around all but about 5 mm of the sting cuts its drag to about 0.1–0.2 gf.
-  - The shield is fixed to the tunnel, so its own drag never reaches the load cell.
+  - The shield is attached to the sphere floor insert ([D-014](../DECISIONS.md)), which belongs to the tunnel, not the
+    balance, so its own drag never reaches the load cell. The insert and shield lift out together once the sting is
+    lifted out (D-015).
   - Its blockage is in place when the probe is calibrated at the sphere's position, so it is calibrated out.
   - It must never touch the sting. Check by tapping the shield with the wind off: the reading must not change.
   - **Proposed size** (owner asked, 2026-11-08; final at sizing): a 5 mm hole for the 1/8 in (3.18 mm) sting, which
@@ -532,12 +536,12 @@ Notes:
   - Drill to about the ball's radius (9.5 mm for 3/4 in, 12.7 mm for 1 in); a tape flag on the bit marks the depth. A
     drill press is best; a hand drill works with the long guide. Go slowly and back out often to clear the chips.
   - Needed accuracy is modest: about 0.5 mm off-centre changes nothing measurable. A tilted hole matters more, because
-    it tilts the sting where it meets the ball. Check by spinning the finished ball on its stem and watching for
+    it tilts the sting where it meets the ball. Check by spinning the finished ball on its sting and watching for
     wobble.
   - Try it on a spare ball first: that is what the spares are for.
-- **Fixing the ball on its stem:** acetal (Delrin) is one of the hardest plastics to glue; ordinary epoxy and super
-  glue let go. Use a press fit: drill slightly smaller than the 1/8 in (3.18 mm) stem, for example 3.1 mm, and press the
-  stem in. Find the right drill size on the spare ball. (Some special adhesives with primers do bond acetal; not
+- **Fixing the ball on its sting:** acetal (Delrin) is one of the hardest plastics to glue; ordinary epoxy and super
+  glue let go. Use a press fit: drill slightly smaller than the 1/8 in (3.18 mm) sting, for example 3.1 mm, and press
+  the sting in. Find the right drill size on the spare ball. (Some special adhesives with primers do bond acetal; not
   needed with a press fit.)
 - **Stems and socket (proposed):** ~~each ball keeps its own short 1/8 in brass stem. The top of the sting is a short
   5/32 in brass sleeve, and the stem slides into it, held by friction or a small set screw.~~ **2026-11-09:** each
@@ -579,8 +583,8 @@ Notes:
 - **Fake modules:** cheap "BME280" boards are often BMP280 chips. Check on arrival: chip-ID register 0xD0 reads 0x60
   for a BME280 and 0x58 for a BMP280. Then breathe on it (humidity should jump) and warm it with a finger
   (temperature should rise): a test must show a change you caused.
-- **Placement:** in room air near the fan inlet, on a short cable, away from the Arduino, the display and the fan
-  motor, whose heat would make it read warm.
+- **Placement:** in room air near the fan inlet, on a short cable, away from the Arduino and the fan motor
+  (no display since D-012), whose heat would make it read warm.
 - **I²C address:** 0x76 or 0x77; no clash with the SDP810 (0x25).
 
 ## 8. Electronics, controls and wiring (reviewed 2026-11-08)
@@ -670,11 +674,11 @@ Notes:
     the pan is a small bucket with a handle. A **fixed cup on top of the attachment** (owner asked, 2026-11-09) also
     works if a recess centres each mass over the ball's centre; what sets the lever arm is where the mass sits along
     the sting, not how high above it. It does not swing, but placement matters more than with a hanging pan.
-  - **On its side, the cell also carries the sting, sleeve, attachment and pan**: roughly 10–15 g (estimate; an 85 mm
+  - **On its side, the cell also carries the attachment's sting, the attachment and the pan**: roughly 10–15 g (estimate; an 85 mm
     1/8 in brass rod alone is about 5.7 g). That is a constant offset, zeroed out before adding masses; the
     calibration only needs the change in reading per gram. Set the slope with the 2–20 g pieces (the 50 g as a check)
     and **leave the 100 g piece out**: with the preload it would exceed the cell's 100 g rating. Weigh the pan on the school balance too, or zero the reading with it hanging. Hooking at the ball's
-    centre keeps the lever arm the same as in a run; a thread loop around the stem under the ball would pull about
+    centre keeps the lever arm the same as in a run; a thread loop around the sting below the ball position would pull about
     10–13 mm lower.
   - Hang the pan gently; the overload stops catch a slip (since D-015 there is no separate hold-still pin). Lower each
     mass in gently. Load in steps, then unload in
@@ -706,8 +710,8 @@ equivalents: 1/32 in = 0.79 mm, or number drills #60–#67 = 1.02–0.81 mm; mos
 | Needle files or a deburring tool | To clean cut ends. The probe tip must be square and smooth; a burr inside a stub narrows it | 1 set | about $5–10 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
 | Junior hacksaw | For the solid brass sting rod (§6); the tube cutter is meant for tubes | 1 | about $5–10 (typical, not checked) | Hardware store | After sizing | Unknown (may be in the house) |
 | Drill | A hand drill, for the balls' centre holes (§6), used with the printed jig's long guide | | | | | On hand (owner, 2026-11-08) |
-| Tin snips | For cutting the stainless screen mesh (§3); old heavy scissors also work | 1 | about $10–15 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
-| Drill bits for the balls | About 3.0–3.1 mm (metric) for a press fit on the 1/8 in stems; settle the size on a spare ball. **Inch equivalent (2026-11-09):** a #31 number drill (0.120 in, 3.05 mm), or #32 (2.95 mm) for a tighter fit. Not 7/64 in (2.78 mm, far too tight) or 1/8 in (3.18 mm, no grip) | 1–2 | a few dollars each (typical, not checked) | Hardware store | After sizing | **Ordered** (reported 2026-11-10): a 0.7–3.0 mm set (owner, 2026-11-09); a single 3.1 mm or #31 bit only if 3.0 mm is too tight |
+| Tin snips | For cutting the aluminium window screen (§3); old heavy scissors also work | 1 | about $10–15 (typical, not checked) | Hardware store | Now | Unknown (may be in the house) |
+| Drill bits for the balls | About 3.0–3.1 mm (metric) for a press fit on the 1/8 in stings; settle the size on a spare ball. **Inch equivalent (2026-11-09):** a #31 number drill (0.120 in, 3.05 mm), or #32 (2.95 mm) for a tighter fit. Not 7/64 in (2.78 mm, far too tight) or 1/8 in (3.18 mm, no grip) | 1–2 | a few dollars each (typical, not checked) | Hardware store | After sizing | **Ordered** (reported 2026-11-10): a 0.7–3.0 mm set (owner, 2026-11-09); a single 3.1 mm or #31 bit only if 3.0 mm is too tight |
 | Caliper battery | A 1.55 V button cell, size 44: **SR44 (silver oxide; also sold as 357 or 303)** preferred, LR44 (alkaline; AG13, A76) also fits. Check the size printed on the old cell or in the battery cover first | 1–2 | a few dollars (typical, not checked) | Hardware store, pharmacy | Now | **Ordered** (reported 2026-11-10): LR44 (owner, 2026-11-09) |
 
 Calipers notes:
@@ -720,10 +724,10 @@ Calipers notes:
   dies within weeks, take it out between uses.
 - **Check the calipers once they work**, following the lesson that a test must show a change you caused. Close the
   jaws and zero; open, close and confirm it returns to 0.00; then measure something of known size, such as a drill
-  bit's shank or a bearing ball, and record the error. A 0.03 mm error on a 20 mm sphere is 0.3 % in C_D, because area
-  goes with d².
+  bit's shank or a bearing ball, and record the error. A 0.03 mm error on the 3/4 in (19.05 mm) ball is 0.3 % in C_D,
+  because area goes with d².
 - **Range: 6 in (150 mm)** (owner, 2026-11-08). The things that need caliper accuracy are all well inside it: the
-  20 mm and 25 mm spheres (D-009 depends on their diameter), the sting, pins, screws and test-print fits. Over 150 mm,
+  3/4 in and 1 in balls (D-009 depends on their diameter), the sting, pins, screws and test-print fits. Over 150 mm,
   use the steel rule, or one of these:
   - **The fan's outlet collar** (about 150 mm, at or past the limit): wrap a paper strip around it, mark the overlap,
     and divide its length by π. A 1 mm error in the strip's length is about 0.3 mm in diameter, plenty for this

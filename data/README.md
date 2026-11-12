@@ -1,6 +1,6 @@
 # Data
 
-No experimental data has been collected yet (as of 2026-10-29). This file defines where data goes
+No experimental data has been collected yet (as of 2026-11-10). This file defines where data goes
 when it exists. The policy is recorded in [DECISIONS.md](../DECISIONS.md) (D-004) and every dataset is
 listed in [docs/data_catalog.md](../docs/data_catalog.md).
 

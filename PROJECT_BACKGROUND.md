@@ -288,6 +288,10 @@ rerun 2026-11-07 with a short Python script, kept in the
 
 At the slow end: 6.5 m/s gives q = 25 Pa and 0.33 / 0.52 gf; 5 m/s gives 15 Pa and 0.19 / 0.30 gf.
 
+The 20 and 25 mm spheres were the proposed sizes. The balls chosen on 2026-11-08, 3/4 in (19.05 mm) and 1 in
+(25.4 mm), give 0.30–1.27 gf and 0.54–2.31 gf at 6.5–13 m/s ([docs/buy_list.md](docs/buy_list.md) §6); their trend
+check is at the end of this section.
+
 Trend check (D-009), from the 20 mm sphere at 6.5 m/s (Re 8.6×10³, C_D 0.405) to the 25 mm sphere at the top speed:
 
 | Top speed | Re at the top | Eq. (19) C_D at the top | Predicted rise |
@@ -323,7 +327,8 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
   are, and they cannot be quantified until a cell is chosen.
 - **If the real fan reaches only 11–12 m/s, the validation still works**, with about 30 % less force at the top and
   a smaller predicted rise.
-- **Below about 6.5 m/s,** the 20 mm sphere's drag is only 0.2–0.3 gf, so fixed zero errors dominate.
+- **Below about 6.5 m/s,** the 20 mm sphere's drag is only 0.2–0.3 gf (the 3/4 in ball's, 0.30 gf at 6.5 m/s), so
+  fixed zero errors dominate.
 - **A bigger fan can be fitted later** if the airfoil or car tests need more speed. The fan has its own stand and a
   flexible coupling; a bigger one would need a new diffuser and a wider-range pressure sensor.
 - **Accepted 2026-11-08 as the target ([D-010](DECISIONS.md)).** Update 2026-11-08/09 (our arithmetic,
@@ -350,9 +355,13 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
    - During force runs, take the reference reading where its wake cannot reach the sphere: a probe off the
      centreline, or wall static taps calibrated against a pitot at the model position in the empty tunnel.
    - Place it at least 1.5√C upstream of the sphere ([Blockage correction](#blockage-correction-proposed)).
-3. Mount the model on a sting that passes through a floor slot to an upright straight-bar load cell outside the
-   tunnel, as Weakly2024 did. Drag bends the cell. Use a non-magnetic sting and fasteners if magnets hold panels
-   nearby (2026-11-01).
+3. Mount the model on a sting that passes through the floor to an upright straight-bar load cell outside the tunnel,
+   as Weakly2024 did. Drag bends the cell. Use a non-magnetic (brass) sting, since magnets hold the panels
+   (2026-11-01); stainless screws are fine at the balance, because the panel magnets pull on even a plain steel M3
+   screw with only about 1 µN (2026-11-09 estimate, [docs/buy_list.md](docs/buy_list.md) §4).
+   - **Floor and shield (owner, 2026-11-09; [D-014](DECISIONS.md)):** the floor under the model is a replaceable
+     sphere insert carrying the sting hole, with the streamlined sting shield attached to it; the insert and shield
+     lift out together once the sting is out. A plain insert replaces it for model cars.
    - Put only the load cell and HX711 in the closed box under the floor (the "electronics house" in the owner's
      sketch). The Arduino goes in a separate box on a cable, so handling it does not bump the balance and its heat
      does not drift the load cell (2026-11-01). No display or knob since D-012 (2026-11-08).
@@ -362,11 +371,12 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
      overload stops, and a low-twist model attachment (for example a push fit with a set screw). Re-zero with the wind
      off after every swap. **Decided 2026-11-09 ([D-015](DECISIONS.md)):** the sting stands in a printed mount on the
      cell's top end, clamped by the owner's thumb-screw sting lock; balls are changed with the sting lifted out, and
-     the separate hold-still pin is dropped. Overload stops stay.
+     the separate hold-still pin is dropped. Overload stops stay. Each ball is press-fit on its own full-length 1/8 in
+     brass sting, swapped whole, with no 5/32 in sleeve ([D-016](DECISIONS.md), Tentative, 2026-11-09).
 4. Calibrate the load cell with known masses across the expected force range (build step 5). Apply the load in the
    drag direction at the sphere's position. Proposed 2026-11-08/09: lay the removable balance module on its side so
-   gravity acts in the drag direction, and hang the masses in a pan from a printed attachment on the sting's end
-   (owner's idea), with no pulley, whose friction is unknown ([docs/buy_list.md](docs/buy_list.md) §9). Fit counts →
+   gravity acts in the drag direction, and hang the masses in a pan from a printed attachment on its own sting
+   (owner's idea; D-016), with no pulley, whose friction is unknown ([docs/buy_list.md](docs/buy_list.md) §9). Fit counts →
    newtons and record residuals.
 5. For each speed: wind-off tare → wind-on average → wind-off zero; repeat runs; subtract mount drag; compute C_D with uncertainty.
 6. Keep raw logs untouched in `data/raw/`; do all conversions in scripts (see [data/README.md](data/README.md)).

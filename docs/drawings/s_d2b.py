@@ -10,7 +10,7 @@ def sheet_test_section():
                 'Top panel lifts off on magnets (D-014); a removable side panel is TBD. Taps in the top panel would need unplugging at each swap.',
                 'Floor inserts (D-014): 53 has the shield, sting hole and M floor tap (offset TBD); 54 is plain, for cars. Both lift out from above.',
                 'Insert size, hold-down and seal TBD. It must sit flush (its front edge is just upstream of the ball) and land on two pins (47).',
-                'Brass sting and screws near the balance; no magnets near ferrous parts. Probe: empty tunnel only. Balance and inserts: sheet 8.'])
+                'Brass sting; stainless screws at the balance, no plain steel near it. Probe: empty tunnel only. Balance and inserts: sheet 8.'])
     s = 2.2
     v = View(80 - s * (C1 - 20), 330, s)
     X, Y = v.X, v.Y
@@ -186,8 +186,8 @@ def sheet_balance():
                ['The cell stands upright under the ball; the sting is clamped only to its top end, the bottom end to the base; screws along the wind.',
                 'Nothing touches the bar between its end blocks. Hold and clamp the cell only by its end blocks; short screws.',
                 'Sting lock 68 (D-015): a thumb screw clamps the sting in the mount’s blind hole, no glue. Hold the mount while turning the screw.',
-                'Shield fixed to the sphere insert 53, never touching the sting. Loosen 68 and lift the sting out before lifting out the insert.',
-                'Balls are press-fit on their stems (acetal cannot be glued): Ø3.0–3.1 hole drilled to the centre with a printed jig.',
+                'Shield 64 is attached to the sphere insert 53, never touching the sting. Lift the sting out (loosen 68), then lift out the insert.',
+                'Each ball is press-fit on its own full-length sting, swapped whole (D-016; acetal cannot be glued). Hole drilled with a jig.',
                 'Sensitive axis assumed across the 12 mm face (TAL221 notes): confirm on the delivered cell with a known mass.'])
     s = 3.4
     v = View(430 - s * XM, 200, s)
@@ -202,12 +202,8 @@ def sheet_balance():
     sh.circ(X(XM), Y(0), v.L(RB1), cls='hid')
     sh.a(f'<circle cx="{f(X(XM))}" cy="{f(Y(0))}" r="{f(v.L(RB))}" class="vis" style="fill:url(#hPETG)"/>')
     sh.rect(X(XM - 1.55), Y(0), v.L(3.1), v.L(RB), cls='vis2', fill='#ffffff')
-    stem_bot = -26
-    sh.rect(X(XM - P['sting_d'] / 2), Y(0), v.L(P['sting_d']), v.L(-stem_bot), cls='vis2', fill='url(#hBr)')
-    sl_top, sl_bot = -12, -30
-    sh.rect(X(XM - P['sleeve_d'] / 2), Y(sl_top), v.L(P['sleeve_d']), v.L(sl_top - sl_bot), cls='vis2', fill='url(#hBr)')
-    sh.rect(X(XM - P['sting_d'] / 2), Y(sl_top), v.L(P['sting_d']), v.L(sl_top - stem_bot), cls='vis2', fill='url(#hBr)')
-    sh.rect(X(XM - P['sting_d'] / 2), Y(sl_bot + 4), v.L(P['sting_d']), v.L(sl_bot + 4 - (CELL_TOP + 12)), cls='vis2', fill='url(#hBr)')
+    # one full-length sting from the ball's centre down to the mount: no sleeve, no separate stem (D-016)
+    sh.rect(X(XM - P['sting_d'] / 2), Y(0), v.L(P['sting_d']), v.L(-(CELL_TOP + 12)), cls='vis2', fill='url(#hBr)')
     for xs_ in (XM - 9, XM + 3):
         sh.rect(X(xs_), Y(-h - ft - 2), v.L(6), v.L(7), cls='vis2', fill='url(#hPETG)')
     sh.rect(X(XM - 7), Y(CELL_TOP + 12), v.L(14), v.L(19), cls='vis2', fill='url(#hPETG)')
@@ -245,12 +241,10 @@ def sheet_balance():
     sh.vdim(Y(0), Y(CELL_TOP), X(XM + 62), X(XM + 62), c3, '80–90\n(sting)', st='P', side='r')
     sh.hdim(X(XM - 3), X(XM + 3), Y(CELL_BOT) + 4, Y(CELL_BOT) + 4, Y(CELL_BOT) + 22, '6', st='F', tx=X(XM - 3) - 14)
     sh.lnote(X(XM + RB * 0.7), Y(RB * 0.7), X(XM + 26), Y(26), 'Ø19.05 · Ø25.4 dashed', st='F', anchor='start')
-    sh.lnote(X(XM + 1), Y(-RB / 2), X(XM + 26), Y(12), 'stem hole Ø3.0–3.1 × 9.5 deep (12.7 for 1 in)', st='P', anchor='start')
+    sh.lnote(X(XM + 1), Y(-RB / 2), X(XM + 26), Y(12), 'press-fit hole Ø3.0–3.1 × 9.5 deep (12.7 for 1 in)', st='P', anchor='start')
     sh.vtitle(X(XM), 812, 'VIEW A — SIDE SECTION ON CENTRE LINE', 'Wind left to right · 3/4 in ball shown, 1 in dashed')
     cl = 252
     B(sh, 60, X(XM - RB * 0.7), Y(RB * 0.7), cl, Y(14), side='l')
-    B(sh, 61, X(XM - 1.4), Y(-6), cl, Y(-6) + 6, side='l')
-    B(sh, 62, X(XM - 2), Y(-21), cl, Y(-21) + 4, side='l')
     B(sh, 64, X(XM - 6), Y(-38), cl, 302, side='l')
     B(sh, 53, X(XM - 25), Y(-h - 2.5), cl, 329, side='l')
     B(sh, 41, X(XM - 52), Y(-h - 3), cl - 40, 356, side='l')
@@ -262,7 +256,7 @@ def sheet_balance():
     B(sh, 66, X(XM - 3), Y(CELL_TOP - 25), cl, Y(CELL_TOP - 25) + 34, side='l')
     B(sh, 67, X(XM - 7), Y(-130), cl, Y(-130) + 16, side='l')
     Rb = 768
-    B(sh, 73, X(XM + 8), Y(CELL_TOP - 3.5 - P['cell_hole']), 330, Rb, name='Brass M3 screw')
+    B(sh, 73, X(XM + 8), Y(CELL_TOP - 3.5 - P['cell_hole']), 330, Rb, name='Short M3 screw')
     B(sh, 70, X(XM - 30), Y(-144), 175, Rb, name='Balance module plate')
     B(sh, 72, X(XM + 30), Y(-139), 470, Rb, name='HX711 amplifier board')
     B(sh, 71, X(XM + 45), Y(-150), 640, Rb, name='Load-cell box (size TBD)')

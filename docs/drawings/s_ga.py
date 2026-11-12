@@ -118,7 +118,7 @@ def sheet_ga1():
                ['Section on the tunnel centre line; fan, stand and feet shown in outside view.',
                 'Lengths marked TBD are drawn mid-range for layout only. Do not scale from the drawing.',
                 'Fan model open (D-011): body drawn as the AC Infinity S6 envelope, 200 × 320 × 212.',
-                'Screens 12a–12e: 12b only if the delivered wire is 0.010 in (drawn dashed).',
+                'Screens 12a–12e: 12b, the third diffuser screen, is planned for margin; its position is TBD (drawn dashed).',
                 'Joint positions inside the settling chamber and the test-section feet are layout only.',
                 'Ball drawn 3/4 in (solid) with the 1 in ball dashed. Wall thickness t = TBD everywhere.'])
     v = View(88, 432, 0.95)

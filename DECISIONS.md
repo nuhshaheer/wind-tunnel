@@ -374,6 +374,10 @@ Template:
   ([sketches](docs/sketches/README.md), [session log](docs/sessions/2026-11-09-drawing-package.md)); drawing sheet 8
   in [docs/drawings/](docs/drawings/README.md).
 - Status: Accepted (owner, 2026-11-09) as the concept. Details Proposed; sized in build step 1.
+  - Note (2026-11-10): two of the proposed details above have since changed. The ball stems and the 5/32 in sleeve
+    are dropped (D-016), and the screws at the balance, the sting-lock screw included, can be stainless: the brass
+    set was dropped on 2026-11-09 because the panel magnets pull on even a plain steel M3 screw with only about
+    1 µN ([docs/buy_list.md](docs/buy_list.md) §4).
 
 ## D-016: One full-length sting per ball; the 5/32 in sleeve is dropped
 
@@ -398,3 +402,7 @@ Template:
 - Evidence / source: agent's proposal, 2026-11-09 ([session log](docs/sessions/2026-11-10-parts-ordering.md)); the
   owner then ordered two 1/8 in brass rods and no 5/32 in tube.
 - Status: Tentative: the owner bought for it but has not stated acceptance in words. Confirm at sizing.
+  - Note (2026-11-10): the drawings no longer show the sleeve. Revision C draws one sting from the ball's centre to the
+    mount; `sleeve_d` and the stem and sleeve rows (items 61 and 62) are gone
+    ([docs/drawings/](docs/drawings/README.md);
+    [session log](docs/sessions/2026-11-10-consistency-audit.md)). The status above is unchanged.

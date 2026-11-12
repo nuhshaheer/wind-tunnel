@@ -4,14 +4,18 @@ The physical setup as it actually exists. **Unknown** means not yet decided or n
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
 **Current configuration as of 2026-11-10: nothing built; nearly every part ordered (2026-11-09/10), including the
-aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711, the Waveshare BME280 and
-four 8 × 12 in sheets of 1/8 in cast acrylic.
-The fan is bought last. Order status: [shopping_list.md](shopping_list.md).**
+aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711, the Waveshare BME280,
+four 8 × 12 in sheets of 1/8 in cast acrylic, the 3/4 in and 1 in Delrin balls and two 1/8 in brass rods for the
+stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
   - a 13 m/s target top speed ([D-010](../DECISIONS.md));
-  - no display or knob ([D-012](../DECISIONS.md)).
+  - no display or knob ([D-012](../DECISIONS.md));
+  - bolted flange joints ([D-013](../DECISIONS.md)); the top panel lifting off on magnets, and a replaceable floor
+    insert under the model with the sting shield attached to it ([D-014](../DECISIONS.md)); a printed sting mount with
+    a thumb-screw sting lock ([D-015](../DECISIONS.md)); one full-length sting per ball, no sleeve
+    ([D-016](../DECISIONS.md), Tentative).
 - The fan is open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6 ([D-011](../DECISIONS.md)).
 - Parts chosen and their prices: [buy_list.md](buy_list.md); the owner's tracker of what is still to buy:
   [shopping_list.md](shopping_list.md).
@@ -31,7 +35,7 @@ The fan is bought last. Order status: [shopping_list.md](shopping_list.md).**
 | Overall length | About 1.15–1.3 m including a 6-inch fan (estimate). The 2026-11-02 diffuser and settling-chamber changes roughly cancel; recompute at sizing. Owner's target: about 1 m, more allowed | Estimate 2026-11-01 |
 | Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins. **Joints (owner, 2026-11-09):** bolted flanges, M3 screws into brass heat-set inserts, foam tape between the faces, screens clamped between the flanges in printed frames. Proposed: PLA shells and PETG-CF for clamped or loaded parts (both on hand, amounts unknown) | Planned ([D-005](../DECISIONS.md)); joints Accepted ([D-013](../DECISIONS.md)), sizes TBD; filament Proposed ([buy list](buy_list.md) §2) |
 | Model access | One test chamber. **The top clear acrylic panel lifts off, held by magnets; the floor under the model is a replaceable insert:** a sphere insert carrying the sting hole and the sting shield, and a plain insert for model cars (owner, 2026-11-09). A removable side panel is still open. Proposed details: 1/8 in cast acrylic (four 8 × 12 in sheets ordered; owner, 2026-11-10) in a printed frame, located by pins or lips, flush inside, foam-gasketed; the inserts drop in from above onto a ledge, flush, on two pins; no magnets near ferrous parts of the balance; the sting lift-out and overload stops protect the load cell during swaps ([D-015](../DECISIONS.md)) | Accepted 2026-11-09 ([D-014](../DECISIONS.md)); details Proposed ([TODO.md](../TODO.md) P1 sizing task) |
-| CAD / drawings | No CAD yet. A preliminary 2D drawing package (pre-sizing, not for manufacture): [docs/drawings/](drawings/README.md), 2026-11-09. The owner's hand sketches: [sketches](sketches/README.md) | Drawings Implemented; design Proposed |
+| CAD / drawings | No CAD yet. A preliminary 2D drawing package (pre-sizing, not for manufacture): [docs/drawings/](drawings/README.md), 2026-11-09, revision C 2026-11-10 (no sleeve, stainless screws at the balance, statuses as ordered). The owner's hand sketches: [sketches](sketches/README.md) | Drawings Implemented; design Proposed |
 
 ## Flow generation and control
 
@@ -46,7 +50,7 @@ The fan is bought last. Order status: [shopping_list.md](shopping_list.md).**
 | Component | Value | Status / source |
 |---|---|---|
 | Honeycomb (cell size, length) | **Printed (owner, 2026-11-08)**, for example 6 mm hexagonal cells with 0.4 mm walls, about 50 mm long, ahead of the screens in the settling chamber. Straws (about 5 mm, 40 mm long) are the upgrade if the flow map shows a problem. The 2026-11-02 proposal was thin-walled cells of about 2–3 mm, 7–10 diameters long | Printed, after sizing ([buy list](buy_list.md) §3) |
-| Screens (number, mesh, open-area ratio) | **Proposed 2026-11-09: aluminium window insect screen ("bright aluminum", 18 × 16 mesh, wire about 0.010–0.011 in, 66–69 % open).** Two or three in the fan-to-chamber diffuser (K_sum ≥ 2.1; three if the wire is 0.010 in) and two in the settling chamber, at least 500 wire diameters apart. Estimated K about 0.75–0.85 at the fan outlet and 1.15–1.30 in the settling chamber; four or five screens lose about 33–48 Pa at 13 m/s (Wieghardt's formula; [buy list](buy_list.md) §3) | **Ordered 2026-11-09 (owner):** Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll; the maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open. With 0.011 in wire two diffuser screens just meet K_sum ≥ 2.1 (2.15); three are planned for margin (five in all). Wire count and diameter to be checked on arrival. [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
+| Screens (number, mesh, open-area ratio) | **Aluminium window insect screen ("bright aluminum", 18 × 16 mesh, 0.011 in wire per the maker, 66 % open; chosen 2026-11-09).** Three in the fan-to-chamber diffuser (planned for margin: two give K_sum 2.15, just over the 2.1 needed) and two in the settling chamber, at least 500 wire diameters apart. Estimated K about 0.75–0.85 at the fan outlet and 1.15–1.30 in the settling chamber; four or five screens lose about 33–48 Pa at 13 m/s (Wieghardt's formula; [buy list](buy_list.md) §3) | **Ordered 2026-11-09 (owner):** Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll; the maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open. With 0.011 in wire two diffuser screens just meet K_sum ≥ 2.1 (2.15); three are planned for margin (five in all). Wire count and diameter to be checked on arrival. [Scheiman1981](../resources/notes/Scheiman1981.md), [Mehta1977](../resources/notes/Mehta1977.md) |
 
 ## Instrumentation
 
@@ -64,8 +68,8 @@ the owner designs ([TODO.md](../TODO.md) P2).
 
 HX711 chip facts, confirmed from the Avia datasheet rev. V2.0 ([notes](../resources/notes/HX711.md)): 24-bit ADC,
 10 or 80 samples/s, channel A gain 128 or 64 (channel B fixed at 32), input noise 50 nV rms at gain 128 and 10 SPS.
-The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), to buy. Its excitation voltage and RATE
-wiring have not been checked against its schematic yet.
+The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), ordered 2026-11-09. Its excitation
+voltage and RATE wiring have not been checked against its schematic yet.
 
 ## Data acquisition
 
@@ -81,7 +85,7 @@ wiring have not been checked against its schematic yet.
 
 | Model | Dimensions | Mount | Status |
 |---|---|---|---|
-| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own non-magnetic 1/8 in brass sting about 80–90 mm long, swapped whole (no 5/32 in sleeve since 2026-11-09); the sting passes inside a fixed, streamlined printed shield and a floor slot to an upright TAL221 in a closed box under the floor (as in Weakly2024) | Chosen; to buy |
+| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own non-magnetic 1/8 in brass sting about 80–90 mm long, swapped whole (no 5/32 in sleeve since 2026-11-09; [D-016](../DECISIONS.md), Tentative). The sting rises through the sting hole of the replaceable sphere floor insert, inside a streamlined printed shield attached to that insert, which lifts out with it once the sting is out ([D-014](../DECISIONS.md)); below the floor it stands in the printed sting mount on an upright TAL221 in a closed box (as in Weakly2024; [D-015](../DECISIONS.md)) | Chosen; **ordered** (one pack of 10 of each size, reported 2026-11-10); brass rods for the stings ordered |
 | Airfoil | Unknown | Same sting, with a preset-angle adapter | Planned (after validation) |
 
 ## Parts on hand
@@ -93,7 +97,7 @@ Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (20
 | Bambu Lab P1S 3D printer | Owner, 2026-10-30 | Build volume 256 × 256 × 256 mm (manufacturer spec) |
 | Elegoo Mega 2560 | Owner, 2026-11-01 ("that is what it looks like at least"); main chip ATMEGA2560 (owner, 2026-11-02) | **Working:** Blink upload Verified 2026-11-02 (see Data acquisition). A USB A-to-B cable that carries data is on hand. Whether the board is printed "R3" is not recorded |
 | Magnets | Owner, 2026-11-01; count and size 2026-11-09 | **43, round, 8 mm × 2 mm**; probably neodymium (not confirmed); strength unknown |
-| Digital calipers | Owner, 2026-11-08 | 6 in (150 mm) range; model and accuracy unknown; battery thought dead (button cell, LR44/SR44 size) |
+| Digital calipers | Owner, 2026-11-08 | 6 in (150 mm) range; model and accuracy unknown; battery thought dead (button cell, LR44/SR44 size); an LR44 is ordered (reported 2026-11-10) |
 | Hand drill | Owner, 2026-11-08 | Model unknown |
 | Spirit level | Owner, 2026-11-08 | Size unknown |
 | Filament and nozzle | Owner, 2026-11-09 | PLA and PETG-CF, amounts unknown; a hardened-steel nozzle for the P1S |
@@ -149,3 +153,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-09 | First part ordered: the aluminium window screen (Saint-Gobain ADFORS FCS9222-M, Bright; 18 × 16, 0.011 in wire per the maker's spec, 66 % open); three diffuser screens planned (five in all). Nothing built or tested; the fan is still open (agent recommends the S6) | [2026-11-09](sessions/2026-11-09-fan-advice-and-screen-order.md) |
 | 2026-11-09/10 | Parts ordered: everything on the buy list except the fan (bought last). Changes: Waveshare BME280 instead of the Adafruit; stainless screws at the balance instead of brass; one full-length sting per ball, no 5/32 in sleeve ([D-016](../DECISIONS.md), Tentative). Nothing arrived, built or tested yet | [2026-11-10](sessions/2026-11-10-parts-ordering.md) |
 | 2026-11-10 | Order details recorded: four 8 × 12 in acrylic sheets; the SDP810 order confirmed as Mouser 403-SDP810-125PA. Stale settling-chamber and diffuser-screen entries updated. Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-order-details-and-cylinders.md) |
+| 2026-11-10 | Consistency audit against the latest decisions (owner's request): the sphere mount now described through the replaceable floor insert with the shield attached (D-014) instead of "a fixed shield and a floor slot"; balls, sting rods and HX711 marked ordered; screens as ordered; drawings revised to C (no sleeve or separate stems, stainless screws at the balance). Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-consistency-audit.md) |

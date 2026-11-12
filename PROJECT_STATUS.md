@@ -1,20 +1,22 @@
 # Project Status
 
-**Last updated:** 2026-11-10
-**Last commit:** `f5616a3` (2026-11-10, the README follow-up to the parts-ordering session), pushed to `origin/main`
-(`UP_TO_DATE` on 2026-11-10).
+**Last updated:** 2026-11-11
+**Last commit:** `2ac0809` (2026-11-10, the order-details session), pushed to `origin/main` (`UP_TO_DATE` on
+2026-11-10).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** this session's updates: the acrylic sheets and the SDP810 order recorded, the BME280 named as
-  the Waveshare everywhere, stale entries fixed (commands in the
-  [session log](docs/sessions/2026-11-10-order-details-and-cylinders.md)'s §13).
+- **Not committed yet:** a consistency audit of every folder against the latest decisions (owner's request,
+  2026-11-10): the sphere mount described through the replaceable floor insert with the shield attached (D-014), no
+  sleeve or separate ball stems in any live doc or drawing (D-016), stainless screws at the balance, statuses brought
+  up to the orders, and the drawings revised to C. Log and commit commands:
+  [2026-11-10 consistency audit](docs/sessions/2026-11-10-consistency-audit.md) (§13), wrapped 2026-11-11.
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Ordered 2026-11-09/10: nearly
 everything (all the sensors and boards, the screen, tubing and fittings, brass, balls, acrylic, fasteners, tools, 4 kg
 of black PLA). Still to buy: the fan (bought last, once the airspeed readout works), and any
 "check house" items not at home.** The owner tracks orders in [docs/shopping_list.md](docs/shopping_list.md). **A preliminary drawing package** of the whole tunnel (10 sheets, parts list, TBD register;
-pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md) (2026-11-09).
+pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md) (2026-11-09; revision C 2026-11-10).
 - Decided:
   - segmented 3D printing (D-005);
   - an open-circuit blower with the fan at the front (D-007);
@@ -146,11 +148,11 @@ checked).
 |---|---|
 | Data acquisition firmware | Planned; not started. Since D-012 (2026-11-08): log raw counts over USB to the laptop, which is also the live view (the Arduino IDE's Serial Plotter to start); no display or knob code. SDP810 commands and scale factor are in the [SDP8xx notes](resources/notes/SDP8xx.md) |
 | Analysis scripts (`analysis/`) | Planned; not started |
-| Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`), and the repo copy rebuilds byte-identical to the published one |
+| Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. **Revision C, 2026-11-10:** one full-length sting per ball, no sleeve or separate stems (D-016); stainless short M3 screws at the balance; the shield attached to the sphere floor insert; every parts-list status as ordered; the unused draft sheet code deleted (the page rebuilt byte-identical before the content changes). `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`). The owner's private published copy on claude.ai matched revision B and has not been republished as C (owner's call; TODO P0) |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904` and `f5616a3`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3` and `2ac0809`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -274,6 +276,15 @@ None. No experiment has been run.
   - Advised against buying cylinders now (a 3/8 in brass tube, then McMaster plastic rod): not needed for the
     validation; a full-span 1/4 in Delrin rod would give about 6–8 gf at 13 m/s if a cylinder test is wanted later
     (estimate). See [the session log](docs/sessions/2026-11-10-order-details-and-cylinders.md).
+  - Committed and pushed as `2ac0809`.
+- 2026-11-10: consistency audit (documentation only; nothing arrived, built or tested).
+  - At the owner's request, every folder checked against the latest decisions. Fixed: the sphere mount in
+    docs/experimental_setup.md and PROJECT_BACKGROUND ("a fixed shield and a floor slot" → the replaceable sphere
+    insert with the shield attached, D-014); leftover sleeve and stem wording (D-016); brass screws at the balance
+    (stainless since 2026-11-09); order statuses in the buy list summary, the setup and the drawings' parts list;
+    stale notes in the sketches, resources and data indexes. A dated note added to D-015.
+  - Drawings revised to C: the sleeve and stem (items 61, 62) removed and one sting drawn from the ball to the mount.
+  - See [the session log](docs/sessions/2026-11-10-consistency-audit.md).
 
 ## 7. Data and analyses
 
@@ -332,7 +343,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It has not recurred since: 20 tests in 7.9–11.3 s at every run from 2026-11-02 to 2026-11-09.
+  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-11.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -456,7 +467,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 
     **Owner, 2026-11-09 (D-015):** the sting lock is a printed mount on the cell's top end with a hand screw that
     clamps the sting; the sting is lifted out to change balls, and the separate hold-still pin is dropped. Still to
-    size in build step 1: the hole fit and depth, the screw length (printed knob on a brass M3 screw, or a bought
+    size in build step 1: the hole fit and depth, the screw length (printed knob on a stainless M3 screw, or a bought
     thumb screw) and the stop gap.
 13. **Screens and honeycomb: bought or printed, and which mesh?** Added 2026-11-02. **Mostly answered 2026-11-09:**
     aluminium window insect screen (18 × 16 mesh, 66–69 % open, about $10 a roll), four or five screens, and a printed
@@ -548,11 +559,14 @@ Worth noting:
 See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
-   - commit and push this session's changes (commands in the
-     [session log](docs/sessions/2026-11-10-order-details-and-cylinders.md#13-manual-git-commands-as-given-to-the-owner));
+   - commit and push the consistency audit (commands in the
+     [session log](docs/sessions/2026-11-10-consistency-audit.md#13-manual-git-commands-as-given-to-the-owner));
+   - say whether to republish the drawings' private claude.ai copy, which still shows revision B (TODO P0);
+   - say whether to shorten this file by moving its dated history (§6 and the history inside §2, §3 and §10) into the
+     session logs; it is about 600 lines against CLAUDE.md's "concise snapshot" (raised at the 2026-11-10 catch-up);
    - say whether sizing should leave room for a cylinder test (a full-span rod on the balance; not planned; TODO P3);
-   - send the agent the heat-set inserts' length and outside diameter (answered 2026-11-10: the acrylic, four 8 × 12 in
-     sheets, and the SDP810 order, Mouser 403-SDP810-125PA);
+   - send the agent the heat-set inserts' length and outside diameter (still open; the acrylic sheets and the SDP810
+     part number were answered on 2026-11-10);
    - report what is on hand: filament amounts (PLA, PETG-CF) and the "Check the house first" items in
      [docs/shopping_list.md](docs/shopping_list.md) (power strip, sealant, glue and epoxy, heat-shrink, solder, steel
      rule, files, hacksaw, tin snips);
@@ -566,7 +580,7 @@ See [TODO.md](TODO.md) for the full list. In order:
      [SDP8xx](resources/notes/SDP8xx.md), [Sensirion2024](resources/notes/Sensirion2024.md) and
      [TAL221](resources/notes/TAL221.md) notes);
    - still open from before: the settling-chamber spacing (open question 13), the bench supply's rating, and
-     confirming D-003, D-004, D-006 and D-007's open exit.
+     confirming D-003, D-004, D-006, D-007's open exit and D-016 (one sting per ball).
 2. **Agent, build step 1 (sizing):** detail the 100 mm tunnel with the parts now chosen.
    - Fan-to-chamber diffuser: Mehta1977, with two or three window-screen positions.
    - Settling-chamber stack: printed honeycomb, two screens (open question 13).
@@ -592,6 +606,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904` and `f5616a3`). The account was `nuhshaheer-2007` until
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3` and `2ac0809`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
 - Branch: `main`

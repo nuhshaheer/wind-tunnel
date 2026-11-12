@@ -305,7 +305,7 @@ class Sheet:
         out.append(f'<text x="{tx+10}" y="{y0+17}" class="tbs">WIND TUNNEL · 100 × 100 mm OPEN-CIRCUIT BLOWER · OWNER: N. SHAHEER</text>')
         out.append(f'<text x="{tx+10}" y="{y0+37}" class="tbt">{esc(self.title)}</text>')
         cells = [(tx, 'DWG NO', self.code), (tx + 105, 'SHEET', f'{self.no} OF {nsheets}'), (tx + 180, 'UNITS', 'mm'),
-                 (tx + 230, 'SCALE', self.scale_note), (tx + 335, 'DATE', '2026-11-09')]
+                 (tx + 230, 'SCALE', self.scale_note), (tx + 335, 'DATE', '2026-11-10')]
         for i, (cx, k, v) in enumerate(cells):
             if i:
                 out.append(f'<line x1="{cx}" y1="{y0+44}" x2="{cx}" y2="{y0+80}" class="thin"/>')
@@ -313,7 +313,7 @@ class Sheet:
         out.append(f'<text x="{tx+10}" y="{y0+97}" class="tbk">STATUS</text>')
         out.append(f'<text x="{tx+70}" y="{y0+97}" class="tbw">PRELIMINARY · PRE-SIZING · NOT FOR MANUFACTURE</text>')
         out.append(f'<text x="{tx+10}" y="{y0+114}" class="tbk">BASIS</text>')
-        out.append(f'<text x="{tx+70}" y="{y0+114}" class="tbv2">docs at 0558370 + owner sketch 2026-11-09 · Claude Code (agent)</text>')
+        out.append(f'<text x="{tx+70}" y="{y0+114}" class="tbv2">docs of 2026-11-10 + owner sketch 2026-11-09 · Claude Code (agent)</text>')
         return '\n'.join(out)
 
     def svg(self, nsheets, defs):

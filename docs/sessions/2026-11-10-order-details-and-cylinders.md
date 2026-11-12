@@ -2,7 +2,7 @@
 
 - **Session ID:** 3fc38569-3ca2-4f1d-909d-a2424715134b (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `2ac0809`
 
 A short session: buying advice and documentation only. Nothing arrived, was built or was tested.
 

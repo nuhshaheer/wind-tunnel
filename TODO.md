@@ -60,8 +60,14 @@ Owner tasks are physical or account actions that an agent cannot do.
   Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and docs/experimental_setup.md, citing the owner
   and date. Verify: open question 9 closed.
 - [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy),
-  D-006 (reference PDFs over 25 MB kept local only), D-007's open exit (no exit diffuser) and D-011 (the fan, above)
-  in [DECISIONS.md](DECISIONS.md). Verify: status changed to Accepted (or replaced by a new decision).
+  D-006 (reference PDFs over 25 MB kept local only), D-007's open exit (no exit diffuser), D-011 (the fan, above) and
+  D-016 (one full-length sting per ball, no sleeve; "confirm at sizing") in [DECISIONS.md](DECISIONS.md). Verify:
+  status changed to Accepted (or replaced by a new decision).
+- [ ] **Owner: say whether to republish the drawings' private claude.ai copy** (added 2026-11-10). It still shows
+  revision B (with the 5/32 in sleeve); the repo copy is revision C
+  ([docs/drawings/README.md](docs/drawings/README.md)). Agents republish only on the owner's go-ahead. Outcome: the
+  published copy matches `docs/drawings/wind-tunnel-drawings.html`, or a note that only the repo copy is kept. Verify:
+  the drawings README no longer says the published copy shows revision B.
 
 ## P1: Design and choose hardware (build step 1)
 
@@ -126,7 +132,7 @@ Owner tasks are physical or account actions that an agent cannot do.
       sphere at least 4√S from the end ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed));
     - choose where the airspeed reference is read (PROJECT_STATUS open question 10);
     - a capped mist port after the last screen, so optional visualization needs no later cutting;
-    - lean toward a blower with an open exit, because seams and the sting slot then barely leak (PROJECT_STATUS §2).
+    - lean toward a blower with an open exit, because seams and the sting hole then barely leak (PROJECT_STATUS §2).
       Decided 2026-11-01: blower (D-007).
   - Added 2026-11-01 [Proposed]: **model access through removable clear acrylic panels held by magnets** (owner's
     idea, preferred over a sliding panel). Owner's concept: one test chamber whose top and/or side panel comes off to
@@ -173,8 +179,7 @@ Owner tasks are physical or account actions that an agent cannot do.
     - A sting shield about 7.5 mm wide (5 mm bore), streamlined, fixed to the sphere floor insert (D-014), up to about
       5 mm below the ball; ~~a 5/32 in sleeve at the sting top for the balls' 1/8 in stems~~ **(2026-11-09,
       [D-016](DECISIONS.md), Tentative): no sleeve; each ball, and the calibration hook, gets its own full-length 1/8 in brass sting, all cut
-      to the same length within about 0.5 mm. The drawings still show the sleeve (wtdata.py `sleeve_d` and its parts
-      row); update them at sizing.**
+      to the same length within about 0.5 mm. The drawings show this since revision C (2026-11-10).**
     - Panels: 1/8 in acrylic in printed frames with 8 × 2 mm magnet pockets (about 8.2–8.3 mm across, 2.2 mm deep).
     - Bolted flanges, M3 screws into brass heat-set inserts, foam tape, screens clamped between the flanges in printed
       frames (decided 2026-11-09, [D-013](DECISIONS.md)); printed feet under each section, no plywood base (owner).
@@ -209,7 +214,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   Remaining: on arrival, count its wires per inch and check one wire (about 0.28 mm; 0.36 mm or more would drop it
   below 58 % open), then confirm three diffuser screens at sizing.
   - Screens: metal square-mesh, at least 58 % open; for example 20–30 wires/in with 0.19–0.23 mm wire (Scheiman1981
-    Table 1). Two go in the diffuser and one or two in the settling chamber.
+    Table 1). Two go in the diffuser and one or two in the settling chamber (2026-11-09: three in the diffuser and
+    two in the chamber, above).
   - Honeycomb: bought thin-walled (paper or aluminium) or drinking straws rather than printed, unless a printed one
     is shown to work. Cells about 2–3 mm, L/D 7–10. (Superseded 2026-11-09 by the owner's choice of a printed one; the
     flow map, build step 3, is the test.)
@@ -505,7 +511,8 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-08: **Target top airspeed confirmed:** 13 m/s, validation from about 6.5 m/s ([D-010](DECISIONS.md),
   owner). Not a must-have: 11–12 m/s still validates ([session log](docs/sessions/2026-11-09-buy-list.md)).
 - [x] 2026-11-08: **Sphere diameters and material chosen:** Delrin (acetal) balls, 3/4 in (2.85 % blockage) and 1 in
-  (5.07 %), ±0.001 in, two of each; press-fit on brass stems, drilled with a printed jig. The Re-matched pair: the
+  (5.07 %), ±0.001 in, two of each; press-fit on brass stems, drilled with a printed jig (2026-11-09/10: a pack of 10 of each ordered;
+  each ball on its own full-length sting, D-016). The Re-matched pair: the
   3/4 in ball at 13 m/s against the 1 in ball at 9.75 m/s ([buy list](docs/buy_list.md) §6).
 - [x] 2026-11-08: **Pressure sensor chosen:** one Sensirion SDP810-125Pa (owner chose one over two). Datasheet
   reviewed: 0.08 Pa + 3 % of reading, I²C 0x25, solder pins at 2 mm pitch. Ambient-pressure correction ×966 mbar /
@@ -549,3 +556,9 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-10: **Two sizing inputs recorded** (owner): the acrylic is four 8 × 12 in sheets, and the SDP810 order is
   Mouser 403-SDP810-125PA (maker's part SDP810-125PA), the ±125 Pa part. The BME280 is now named as the Waveshare in
   every live doc and the drawings' parts list ([session log](docs/sessions/2026-11-10-order-details-and-cylinders.md)).
+- [x] 2026-11-10: Owner committed and pushed the order-details session as `2ac0809`; `/catchup` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-10-consistency-audit.md)).
+- [x] 2026-11-10: **Consistency audit of every folder** (owner's request): the live docs and the drawings brought up to
+  the latest decisions: the replaceable sphere floor insert with the sting shield attached (D-014), one sting per ball
+  with no sleeve or separate stems (D-016), stainless screws at the balance, and the order statuses. Drawings revised
+  to C. Documentation only ([session log](docs/sessions/2026-11-10-consistency-audit.md)).

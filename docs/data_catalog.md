@@ -8,7 +8,7 @@ no paths. Repository paths written in backticks here are checked by `python scri
 
 | ID | Date | Objective | Status | Raw data | Processed / results |
 |---|---|---|---|---|---|
-| none | | No data has been collected (as of 2026-10-29) | | | |
+| none | | No data has been collected (as of 2026-11-10) | | | |
 
 Planned experiments (from the build order; no data yet): flow-uniformity map, load-cell calibration, sphere Cd
 validation. They get IDs (EXP-001, ...) when first run.

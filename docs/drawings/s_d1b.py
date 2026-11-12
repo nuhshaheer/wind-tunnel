@@ -133,7 +133,7 @@ def sheet_diffuser():
                 'Wall form TBD: curved (bell) walls, or straight walls with radiused ends, since 2θ exceeds 24° below about 220 mm.',
                 'Fillet the four corners (radius TBD): across the diagonal the expansion is about twice as steep as across the flats.',
                 'No honeycomb or flow straightener at the fan outlet: the fan’s swirl helps keep the diffuser flow attached.',
-                'Screen 12b only if the delivered wire is 0.010 in (K_sum 1.90 with two). Its joint position is TBD.',
+                'Screen 12b is planned for margin: two of the ordered 0.011 in wire give K_sum 2.15, just over 2.1. Its joint position is TBD.',
                 'Consider moving 12a slightly into the diffuser: at 1.5 × the outlet area its loss roughly halves (TBD).'])
     s = 1.75
     v = View(170 - s * (SOCK0 - 6), 450, s)

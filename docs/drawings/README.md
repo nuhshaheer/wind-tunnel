@@ -1,14 +1,22 @@
 # Drawings
 
 A **preliminary** engineering drawing package for the whole tunnel: 10 sheets, a parts list matching every numbered
-callout, a TBD register and the findings from drawing it. Revision B, 2026-11-09. **Pre-sizing, not for manufacture:**
+callout, a TBD register and the findings from drawing it. Revision C, 2026-11-10 (revision B, 2026-11-09). **Pre-sizing,
+not for manufacture:**
 build step 1 (sizing) has not been done, so most dimensions are proposals and many are TBD.
 
 - Open [wind-tunnel-drawings.html](wind-tunnel-drawings.html) in a browser. The owner also has a private published copy
-  at https://claude.ai/artifact/D8V6LeDybj3N6xJeeqzTzd (only the owner's account can open it).
-- Sources: the project docs at commit `0558370`, the owner's
-  [2026-11-09 sketch](../sketches/README.md) and decisions D-013 to D-015 ([DECISIONS.md](../../DECISIONS.md)).
-- Session: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md).
+  at https://claude.ai/artifact/D8V6LeDybj3N6xJeeqzTzd (only the owner's account can open it); it still shows
+  revision B until it is republished.
+- Sources: the project docs at commit `0558370` (revision B) and as of 2026-11-10 (revision C), the owner's
+  [2026-11-09 sketch](../sketches/README.md) and decisions D-013 to D-016 ([DECISIONS.md](../../DECISIONS.md)).
+- Revision C (2026-11-10): each ball sits on its own full-length sting (D-016), so the ball stem (61) and the 5/32 in
+  sting sleeve (62) are gone and their numbers are not reused; stainless short M3 screws (73) at the balance instead of
+  brass; the sting shield (64) is attached to the sphere floor insert (53) and lifts out with it (D-014); screen 12b is
+  planned for margin; every parts-list status follows the orders of 2026-11-09/10. The superseded draft sheet
+  functions were deleted from `s_d1.py`, `s_d2.py` and `s_d3.py` (the rebuilt page was byte-identical before and after).
+- Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
+  [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C).
 
 ## Reading the sheets
 
@@ -51,9 +59,9 @@ and prints any parts-list item that no sheet shows.
 | `wtsheets.py` | Stations along the tunnel, the balloon helper that records where each part appears, and the floor-insert helper |
 | `s_ga.py`, `s_ga2.py` | Sheets 1 and 2 |
 | `s_d1b.py` | Sheets 3–5 |
-| `s_d1.py` | Sheet 6 and shared helpers; its other sheet functions are superseded drafts, not used |
-| `s_d2b.py` | Sheets 7 and 8 (`s_d2.py`: shared balance helpers and superseded drafts) |
-| `s_d3b.py` | Sheets 9 and 10 (`s_d3.py`: a shared helper and superseded drafts) |
+| `s_d1.py` | Sheet 6 and the wall and flange helpers used by `s_d1b.py` |
+| `s_d2b.py` | Sheets 7 and 8 (`s_d2.py`: the shared shield and balance helpers) |
+| `s_d3b.py` | Sheets 9 and 10 (`s_d3.py`: one shared helper) |
 | `build.py` | Sheet order |
 | `page.py` | The HTML page: sheets, parts list, TBD register and findings |
 

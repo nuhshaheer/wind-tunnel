@@ -174,7 +174,7 @@ def sheet_joints():
                ['Joints bolt together rather than glue, so screen frames can come out for cleaning (buy list §2; refines D-005).',
                 'Flange width and thickness, bolt count and pitch, pin size, and insert length are TBD at sizing. Drawn at layout values.',
                 'Inside faces must meet with no step: a 1 mm step at the contraction exit disturbs the flow just ahead of the sphere.',
-                'Brass M3 screws near the balance; stainless elsewhere (M4 bolts are the alternative).',
+                'Stainless M3 screws throughout, short ones (73) at the balance; M4 bolts are the alternative.',
                 'No plywood base (owner): each section stands on its own printed feet. Check alignment with the spirit level and a straight edge.',
                 'Gasket arrangement either side of a screen frame is TBD; the docs specify foam tape between bolted flanges.'])
     s = 10
@@ -279,11 +279,11 @@ def sheet_joints():
     rows = [('95', 'Bolted flange', 'Printed on each segment end; width, thickness TBD'),
             ('96', 'Heat-set insert', 'M3 brass; pack of 100'),
             ('97', 'M3 screw', 'Stainless; M4 alternative'),
-            ('73', 'Brass M3 screw', 'Near the balance (non-magnetic)'),
+            ('73', 'Short M3 screw', 'Stainless; load cell, mount and stops'),
             ('98', 'Alignment pin and hole', 'Pins or dowels (D-005); size TBD'),
             ('46', 'Foam gasket tape', '≈3.2 thick × 6.4–9.5 wide, closed-cell'),
             ('99', 'Printed foot', 'Height TBD; no plywood base'),
-            ('100', 'Rubber pad', 'Or spare 1.6 mm neoprene')]
+            ('100', 'Rubber pad', 'Stick-on feet from the 20-pack (7)')]
     for i, (n_, a_, b_) in enumerate(rows):
         yy = ty + 24 + i * 22
         sh.circ(tx + 12, yy - 4, 11, cls='bal')
