@@ -2,7 +2,7 @@
 
 - **Session ID:** 90885266-4724-4915-ad78-adb18be8a46b (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `5cb8b7a`
 
 Documentation and drawings only. Nothing arrived, was built or was tested. The work ran on the evening of 2026-11-10
 (local time); the conversation was summarized once to free context, and `/wrap` ran on 2026-11-11.

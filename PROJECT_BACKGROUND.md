@@ -64,8 +64,14 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
   fan and the pressure sensor. The full buy list (2026-11-08/09) comes to about $315–505 before tax and shipping
   ([docs/buy_list.md](docs/buy_list.md); still to buy: [docs/shopping_list.md](docs/shopping_list.md)). On the fan, the owner is price-conscious: after the AC Infinity Cloudline S6
   ($99) was recommended, "im trying to find somethign more affordbale" (2026-11-05).
+- [Confirmed] Time: the owner has school and other commitments (2026-11-15). Weekly hours and any deadline are not
+  stated. Planning estimate (agent's, not a result): about 70–155 h of the owner's time to the sphere validation, roughly
+  mid-January to mid-May 2027 at 6–8 h a week; the breakdown and assumptions are in the
+  [2026-11-17 session log](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results).
+- [Confirmed] CAD: the owner is proficient in CAD and draws every printed part; the agent supplies dimension sheets,
+  the contraction points file and checks of the exported files (owner, 2026-11-15; [D-017](DECISIONS.md)).
 - Unknown: the fan model (open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6, [D-011](DECISIONS.md)), the
-  bench supply's rating, the room's free length around the tunnel.
+  bench supply's rating, the room's free length around the tunnel, the owner's CAD program.
 
 ## Governing equations [Standard]
 

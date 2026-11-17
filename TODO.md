@@ -34,7 +34,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     parts need roughly 0.5–1 kg; buy plain PETG only if less is left);
   - which **"check house" items** are at home: power strip, sealant, super glue and epoxy, heat-shrink, solder, steel
     rule, files, hacksaw, tin snips;
-  - what the **school lab balance** reads to (PROJECT_STATUS open question 16).
+  - what the **school lab balance** reads to (PROJECT_STATUS open question 16);
+  - **which CAD program** you use (added 2026-11-15; the contraction points file is made for it, D-017);
+  - optional: **hours a week and any deadline** (added 2026-11-15), to narrow the schedule estimate (about 70–155 h to
+    the validation; [session log](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results)).
 
   As parts arrive, mark each row "Got it" in [docs/shopping_list.md](docs/shopping_list.md) and do its arrival check
   (P2). Outcome: each part On hand in the buy list, PROJECT_STATUS §3 and docs/experimental_setup.md, with part numbers.
@@ -188,9 +191,19 @@ Owner tasks are physical or account actions that an agent cannot do.
     starting with the settling-chamber spacing and how the 250 mm sections split in cross-section. Then update the
     drawings: the numbers in `docs/drawings/wtdata.py`, `python docs/drawings/page.py`, and `preview.py` to check that
     no label overlaps ([docs/drawings/README.md](docs/drawings/README.md)).
-  - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, and a DECISIONS.md entry.
+  - **Added 2026-11-15 ([D-017](DECISIONS.md)):** the owner draws the CAD, so the sizing ends in one dimension sheet
+    per printed part (flanges, bolt pattern, walls, holes, clearances) and the contraction wall as a points file to
+    import as a spline (format for the owner's CAD program, still to be named).
+  - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, a DECISIONS.md entry, and
+    the dimension sheets and points file.
   - Verify: Reynolds number, blockage ratio, expected drag and fan duty recomputed for the chosen numbers (see
     [estimates](PROJECT_BACKGROUND.md#order-of-magnitude-estimates)); sphere blockage stays at a few percent or below.
+- [ ] **Owner: CAD every printed part from the dimension sheets** (new 2026-11-15, [D-017](DECISIONS.md)). Estimate
+  12–25 h (owner's own estimate about 10 h). Draw the flange and screen frame once and reuse them; print test coupons
+  (heat-set insert holes, magnet pockets, the sting hole, a 10 mm fan-ring test) before the large parts. Depends on
+  the sizing above. Outcome: STEP or STL files in `cad/` (D-004's size rule). Verify: the agent checks each export
+  (fits the 256 mm bed, key dimensions match the sizing, bolt holes line up between mating parts), and the coupons
+  fit.
 - [ ] **Owner: download the remaining electronics datasheets** on the resources "Wanted" list: Bosch BME280, TI
   LM741 / LM348 / LMC6484 / LM317 / LM7805, and the chosen fan's manual. **Done 2026-11-08 by the agent:** SDP8xx,
   TAL221 and Sensirion's signal-compensation note, filed with notes. No longer needed: SDP31/SDP32, Honeywell HSC,
@@ -562,3 +575,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   the latest decisions: the replaceable sphere floor insert with the sting shield attached (D-014), one sting per ball
   with no sleeve or separate stems (D-016), stainless screws at the balance, and the order statuses. Drawings revised
   to C. Documentation only ([session log](docs/sessions/2026-11-10-consistency-audit.md)).
+- [x] 2026-11-11: Owner committed and pushed the consistency audit as `5cb8b7a`; `/catchup` confirmed `UP_TO_DATE` on
+  2026-11-15 ([session log](docs/sessions/2026-11-17-time-estimates-and-cad.md)).
+- [x] 2026-11-15: **Who does the CAD decided** (owner): the owner draws every part; the agent supplies dimension sheets,
+  the contraction points file and STL checks ([D-017](DECISIONS.md)). Time estimates for the CAD and the whole project
+  recorded ([session log](docs/sessions/2026-11-17-time-estimates-and-cad.md)).

@@ -1,15 +1,13 @@
 # Project Status
 
-**Last updated:** 2026-11-11
-**Last commit:** `2ac0809` (2026-11-10, the order-details session), pushed to `origin/main` (`UP_TO_DATE` on
-2026-11-10).
+**Last updated:** 2026-11-17
+**Last commit:** `5cb8b7a` (2026-11-11, the consistency audit), pushed to `origin/main` (`UP_TO_DATE` on 2026-11-15
+and 2026-11-17).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** a consistency audit of every folder against the latest decisions (owner's request,
-  2026-11-10): the sphere mount described through the replaceable floor insert with the shield attached (D-014), no
-  sleeve or separate ball stems in any live doc or drawing (D-016), stainless screws at the balance, statuses brought
-  up to the orders, and the drawings revised to C. Log and commit commands:
-  [2026-11-10 consistency audit](docs/sessions/2026-11-10-consistency-audit.md) (§13), wrapped 2026-11-11.
+- **Not committed yet:** time estimates for the CAD and the whole project, and D-017 (the owner draws all the CAD).
+  Log and commit commands: [2026-11-17 time estimates and CAD](docs/sessions/2026-11-17-time-estimates-and-cad.md)
+  (§13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Ordered 2026-11-09/10: nearly
@@ -17,6 +15,10 @@ everything (all the sensors and boards, the screen, tubing and fittings, brass, 
 of black PLA). Still to buy: the fan (bought last, once the airspeed readout works), and any
 "check house" items not at home.** The owner tracks orders in [docs/shopping_list.md](docs/shopping_list.md). **A preliminary drawing package** of the whole tunnel (10 sheets, parts list, TBD register;
 pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md) (2026-11-09; revision C 2026-11-10).
+**The owner draws all the CAD from the sizing's dimension sheets (D-017, 2026-11-15).** Planning estimate (not a
+result): about 70–155 h of the owner's time to the sphere validation, roughly mid-January to mid-May 2027 at 6–8 h a
+week; the owner has school and other commitments
+([estimates](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results)).
 - Decided:
   - segmented 3D printing (D-005);
   - an open-circuit blower with the fan at the front (D-007);
@@ -28,7 +30,9 @@ pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md)
   - **no on-tunnel display or knob; all output on the laptop (D-012, 2026-11-08);**
   - **bolted flange joints (D-013); the top panel lifting off on magnets, with replaceable floor inserts under the
     model (D-014); a printed sting mount with the owner's thumb-screw sting lock (D-015)** (owner, 2026-11-09);
-  - one full-length 1/8 in brass sting per ball, no 5/32 in sleeve (D-016, **Tentative**, 2026-11-09).
+  - one full-length 1/8 in brass sting per ball, no 5/32 in sleeve (D-016, **Tentative**, 2026-11-09);
+  - **the owner draws all the CAD; the agent supplies dimension sheets, the contraction points file and checks of the
+    exported files (D-017, 2026-11-15).**
 - **Open: the fan (D-011, Tentative since 2026-11-09).** The owner will choose on budget between the AC Infinity
   CLOUDLINE S6 ($99; about 13.0–13.4 m/s, estimate) and the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s). **The agent
   recommends the S6** (2026-11-09; [buy list](docs/buy_list.md) §1).
@@ -151,8 +155,8 @@ checked).
 | Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. **Revision C, 2026-11-10:** one full-length sting per ball, no sleeve or separate stems (D-016); stainless short M3 screws at the balance; the shield attached to the sphere floor insert; every parts-list status as ordered; the unused draft sheet code deleted (the page rebuilt byte-identical before the content changes). `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`). The owner's private published copy on claude.ai matched revision B and has not been republished as C (owner's call; TODO P0) |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3` and `2ac0809`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809` and `5cb8b7a`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -284,7 +288,12 @@ None. No experiment has been run.
     (stainless since 2026-11-09); order statuses in the buy list summary, the setup and the drawings' parts list;
     stale notes in the sketches, resources and data indexes. A dated note added to D-015.
   - Drawings revised to C: the sleeve and stem (items 61, 62) removed and one sting drawn from the ball to the mount.
-  - See [the session log](docs/sessions/2026-11-10-consistency-audit.md).
+  - Committed and pushed as `5cb8b7a` (2026-11-11). See [the session log](docs/sessions/2026-11-10-consistency-audit.md).
+- 2026-11-15/17: time estimates and the CAD approach (planning only; nothing arrived, built or tested).
+  - Estimated the owner's time: CAD 12–25 h (the owner's own estimate about 10 h); the whole project to the sphere
+    validation about 70–155 h, roughly mid-January to mid-May 2027 at 6–8 h a week (estimates, not results).
+  - Discussed agent-drawn CAD (Python CAD scripts) and desktop control; neither chosen. The owner draws all the CAD
+    ([D-017](DECISIONS.md)). See [the session log](docs/sessions/2026-11-17-time-estimates-and-cad.md).
 
 ## 7. Data and analyses
 
@@ -324,6 +333,9 @@ Estimates are spread across these files; all are **calculations from assumed val
 - The [parts-ordering log](docs/sessions/2026-11-10-parts-ordering.md#6-measurements-and-results) (2026-11-09/10):
   the magnets' pull on screws at the balance, air heating by a light, the effect of humidity on density, press-fit
   interference for inch drill sizes, ball masses by material, and solder lengths for small calibration masses.
+- The [time-estimates log](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results)
+  (2026-11-15): CAD hours by part, the owner's hours by build stage, printer time and calendar time at assumed weekly
+  hours.
 
 ## 9. Bugs, equipment issues, blockers
 
@@ -343,7 +355,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-11.
+  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-17.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -559,8 +571,11 @@ Worth noting:
 See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
-   - commit and push the consistency audit (commands in the
-     [session log](docs/sessions/2026-11-10-consistency-audit.md#13-manual-git-commands-as-given-to-the-owner));
+   - commit and push this session (commands in the
+     [session log](docs/sessions/2026-11-17-time-estimates-and-cad.md#13-manual-git-commands-as-given-to-the-owner));
+   - say whether to start the sizing now, and whether any parcels have arrived (asked 2026-11-15);
+   - tell the agent which CAD program you use (the contraction points file is made for it; D-017), and, if you like,
+     your hours a week and any deadline, to narrow the schedule estimate;
    - say whether to republish the drawings' private claude.ai copy, which still shows revision B (TODO P0);
    - say whether to shorten this file by moving its dated history (§6 and the history inside §2, §3 and §10) into the
      session logs; it is about 600 lines against CLAUDE.md's "concise snapshot" (raised at the 2026-11-10 catch-up);
@@ -592,10 +607,14 @@ See [TODO.md](TODO.md) for the full list. In order:
    - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget), the fan pressure (with the screen
      losses in [buy list](docs/buy_list.md) §3) and the filament amount, and update the drawings: the numbers in
      `docs/drawings/wtdata.py`, then `python docs/drawings/page.py` ([README](docs/drawings/README.md)).
-3. **Agent, with sizing:** read Barlow1999 ch. 4 and 6 (instruments, the contraction-pressure method, test-section
+   - Deliver the results as one dimension sheet per printed part and the contraction wall as a points file, for the
+     owner's CAD ([D-017](DECISIONS.md)).
+3. **Owner, after sizing:** CAD each part (estimate 12–25 h), print test coupons (insert holes, magnet pockets, sting
+   hole, fan ring) before the large parts; the agent checks the exported STLs on request.
+4. **Agent, with sizing:** read Barlow1999 ch. 4 and 6 (instruments, the contraction-pressure method, test-section
    calibration) and ch. 9–10 (solid blockage).
-4. **Owner:** download the remaining electronics datasheets (BME280, LM741/LM348/LMC6484) and the chosen fan's manual.
-5. **When parts arrive (owner):** the first equipment checks:
+5. **Owner:** download the remaining electronics datasheets (BME280, LM741/LM348/LMC6484) and the chosen fan's manual.
+6. **When parts arrive (owner):** the first equipment checks:
    - the load cells' baseline resistances and zero;
    - the BME280 chip ID;
    - the SDP810 zero with the tubes capped;
@@ -606,6 +625,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3` and `2ac0809`). The account was `nuhshaheer-2007` until
-  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02).
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809` and `5cb8b7a`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02 and 2026-11-15).
 - Branch: `main`

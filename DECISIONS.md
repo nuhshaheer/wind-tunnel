@@ -406,3 +406,26 @@ Template:
     mount; `sleeve_d` and the stem and sleeve rows (items 61 and 62) are gone
     ([docs/drawings/](docs/drawings/README.md);
     [session log](docs/sessions/2026-11-10-consistency-audit.md)). The status above is unchanged.
+
+## D-017: The owner draws all the CAD; the agent supplies the numbers and checks
+
+- Date: 2026-11-15
+- Question: Who turns the sizing into printable 3D models, and how? After the time estimate, the owner asked whether an
+  agent (a Fable agent at max effort) could do the CAD, or control the owner's desktop.
+- Decision: the owner, already proficient in CAD, draws every printed part in their own CAD program. After sizing, the
+  agent supplies one dimension sheet per part (flanges, bolt pattern, walls, holes, clearances), the contraction wall as
+  a points file to import as a spline, and, when asked, a check of the exported files: each part fits the 256 mm bed,
+  the key dimensions match the sizing, and bolt holes line up between mating parts. Owner: "no its fine ill do the CAD
+  myself" (2026-11-15).
+- Rationale: the owner is fluent in CAD (owner's estimate about 10 h; the agent's 12–25 h including fixes after test
+  prints). Agent-written CAD would need a large new dependency and give STEP files without an editable feature
+  history. Desktop control works screenshot by screenshot, which is slower and less precise than the owner in a 3D
+  view, and is not available in the VS Code extension.
+- Alternatives considered: agent-written CAD scripts (CadQuery or build123d) exporting STEP and STL, about 3–6 h of
+  the owner's review instead of 12–25 h of drawing (estimate); an agent driving the owner's CAD program through
+  computer use in the Claude desktop app.
+- Consequences: build step 1 delivers dimension sheets and the points file, not models. The CAD program is not
+  recorded yet (asked 2026-11-15); the points file's format waits on it. Exported models go in `cad/` (README), under
+  D-004's size rule. The project's scripts stay standard-library only.
+- Evidence / source: the owner, in the [2026-11-17 session](docs/sessions/2026-11-17-time-estimates-and-cad.md).
+- Status: Accepted (owner, 2026-11-15).
