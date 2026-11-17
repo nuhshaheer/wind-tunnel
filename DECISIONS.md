@@ -429,3 +429,40 @@ Template:
   D-004's size rule. The project's scripts stay standard-library only.
 - Evidence / source: the owner, in the [2026-11-17 session](docs/sessions/2026-11-17-time-estimates-and-cad.md).
 - Status: Accepted (owner, 2026-11-15).
+  - Note (2026-11-17): the owner uses **Fusion 360**, so the contraction points file is made for Fusion's spline
+    import ([2026-11-17 sensor-circuit session](docs/sessions/2026-11-17-sensor-circuit-design.md)).
+
+## D-018: Sensor interface circuit: laptop USB power, one shared I²C bus, HX711 on pins 2 and 3, shield PCB later
+
+- Date: 2026-11-17
+- Question: How do the SDP810, the BME280 board and the HX711 connect to the Mega, what powers them, and what
+  becomes the PCB? The owner asked for a walk-through of the circuit once every ordered part had arrived.
+- Decision (agent's design, drawn as sheets 11 and 12 of the drawing package, revision D):
+  - Power: the laptop's USB port is the only supply for the electronics. The Mega's 5V pin feeds every sensor (about
+    100 mA in all against 500 mA available, estimate). The fan keeps its own mains supply (D-012).
+  - The SDP810 (0x25) and the Waveshare BME280 board (0x77, ADDR and CS left open) share the I²C bus on Mega pins 20
+    (SDA) and 21 (SCL), at 100 kHz.
+  - The HX711's DAT and CLK go to digital pins 2 and 3; its VCC and VDD both to +5 V; the load cell is soldered straight
+    to it (red E+, black E−, white A−, green A+).
+  - C1, 0.1 µF, across the SDP810's VDD and GND pins; C2, 10 µF, where 5 V enters the board. I²C pull-ups R1 and R2
+    (5.1 kΩ) are drawn but not fitted, because the BME280 board already pulls SDA and SCL up to 5 V through 4.7 kΩ.
+  - Three 4-pin connectors J1–J3, each 1 = +5V, 2 = GND, then the two signals. Breadboard first (the owner's plan,
+    2026-11-09); then a shield PCB that plugs onto the Mega and carries only J1–J3, C2 and the R1/R2 pads. The sensors
+    stay on cables. On an R3 board the shield can use the SDA/SCL pins next to AREF and be Uno-sized.
+- Rationale: every sensor already outputs numbers (or comes on a board, the HX711, that does), so no analog circuit or
+  op-amp is needed (open question 2). Pins 2 and 3 have no special job (0/1 are USB serial, 13 the LED, 20/21 I²C,
+  50–53 SPI). Everything runs at 5 V, the BME280 board has its own regulator and level translator, and USB has ample
+  current, so the shield needs no chips. A shield keeps the Mega unchanged and swappable.
+- Alternatives considered: an external supply (needed only for later extras such as a servo, lights or a mist maker,
+  or if USB noise proves to matter; the Mega's barrel jack takes 7–12 V); adding pull-ups now (the bus would sit at
+  about 1.9 kΩ with both, still within I²C limits, but unnecessary); a custom board with the ATmega2560 chip itself
+  (far harder, no benefit); locking Grove/JST-style connectors for J1–J3 (likely on the PCB; Dupont jumpers on the
+  breadboard; owner, 2026-11-17: order them when needed).
+- Evidence / source: [SDP8xx](resources/notes/SDP8xx.md), [HX711](resources/notes/HX711.md),
+  [TAL221](resources/notes/TAL221.md) and [WaveshareBME280](resources/notes/WaveshareBME280.md) notes; the
+  [drawing package](docs/drawings/README.md) sheets 11–12; the
+  [walk-through](docs/electronics_walkthrough.md); the
+  [2026-11-17 sensor-circuit session](docs/sessions/2026-11-17-sensor-circuit-design.md). Not built or tested. The
+  SparkFun HX711 board's pad labels and RATE setting are not yet checked on the delivered board.
+- Status: Tentative (agent's design, 2026-11-17). The owner has not confirmed it; the breadboard test (walk-through
+  §6) checks it. The PCB program (KiCad recommended, or EasyEDA) is the owner's choice, still open.

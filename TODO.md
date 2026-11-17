@@ -23,8 +23,8 @@ Owner tasks are physical or account actions that an agent cannot do.
     choose the model before the fan stand is designed (the two fans differ in size).
   - Outcome: a new decision superseding D-011; the model recorded in PROJECT_STATUS §3 and docs/experimental_setup.md.
     Verify: if the VEVOR is chosen, D-010's target is restated as "what the fan reaches, about 11 m/s".
-- [ ] **Owner: report what is on hand and send the part details the sizing needs** (new 2026-11-10; everything but the
-  fan is ordered, see Done). Send the agent:
+- [ ] **Owner: report what is on hand and send the part details the sizing needs** (new 2026-11-10; every ordered part
+  arrived by 2026-11-17, see Done). Send the agent:
   - the **heat-set inserts' length and outside diameter** (the printed holes are sized to them);
   - ~~which acrylic sheets were bought~~ **answered 2026-11-10: four 8 × 12 in sheets** (owner); each gives one window
     up to about 305 mm long;
@@ -35,16 +35,16 @@ Owner tasks are physical or account actions that an agent cannot do.
   - which **"check house" items** are at home: power strip, sealant, super glue and epoxy, heat-shrink, solder, steel
     rule, files, hacksaw, tin snips;
   - what the **school lab balance** reads to (PROJECT_STATUS open question 16);
-  - **which CAD program** you use (added 2026-11-15; the contraction points file is made for it, D-017);
+  - ~~which CAD program you use~~ **answered 2026-11-17: Fusion 360** (owner; note on D-017);
   - optional: **hours a week and any deadline** (added 2026-11-15), to narrow the schedule estimate (about 70–155 h to
     the validation; [session log](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results)).
 
-  As parts arrive, mark each row "Got it" in [docs/shopping_list.md](docs/shopping_list.md) and do its arrival check
-  (P2). Outcome: each part On hand in the buy list, PROJECT_STATUS §3 and docs/experimental_setup.md, with part numbers.
+  **Every ordered part arrived by 2026-11-17** (owner); [docs/shopping_list.md](docs/shopping_list.md) is marked "Got
+  it". Now do each arrival check (P2). Outcome: each part On hand in the buy list, PROJECT_STATUS §3 and docs/experimental_setup.md, with part numbers.
   Verify: no "Ordered" row left once the parcels are in, and the sizing inputs above recorded.
-- [ ] **Owner: check the values the agent read from the three new datasheets** (2026-11-08): the checklists at the end
-  of [resources/notes/SDP8xx.md](resources/notes/SDP8xx.md), [Sensirion2024.md](resources/notes/Sensirion2024.md)
-  and [TAL221.md](resources/notes/TAL221.md). Verify: each notes file's "owner check pending" removed, or the error
+- [ ] **Owner: check the values the agent read from four documents** (2026-11-08 and 2026-11-17): the checklists at
+  the end of [resources/notes/SDP8xx.md](resources/notes/SDP8xx.md), [Sensirion2024.md](resources/notes/Sensirion2024.md),
+  [TAL221.md](resources/notes/TAL221.md) and [WaveshareBME280.md](resources/notes/WaveshareBME280.md) (added 2026-11-17). Verify: each notes file's "owner check pending" removed, or the error
   corrected.
 - [ ] **Owner: finish the parts-on-hand list.** Recorded: the ECE kit, a multimeter, a soldering station, a bench
   power supply and a workbench (2026-11-01). Also recorded, 2026-11-08/09:
@@ -63,11 +63,12 @@ Owner tasks are physical or account actions that an agent cannot do.
   Outcome: each item recorded as "On hand" in PROJECT_STATUS.md §3 and docs/experimental_setup.md, citing the owner
   and date. Verify: open question 9 closed.
 - [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy),
-  D-006 (reference PDFs over 25 MB kept local only), D-007's open exit (no exit diffuser), D-011 (the fan, above) and
-  D-016 (one full-length sting per ball, no sleeve; "confirm at sizing") in [DECISIONS.md](DECISIONS.md). Verify:
+  D-006 (reference PDFs over 25 MB kept local only), D-007's open exit (no exit diffuser), D-011 (the fan, above),
+  D-016 (one full-length sting per ball, no sleeve; "confirm at sizing") and D-018 (the sensor circuit, agent's design,
+  2026-11-17; the breadboard test checks it) in [DECISIONS.md](DECISIONS.md). Verify:
   status changed to Accepted (or replaced by a new decision).
 - [ ] **Owner: say whether to republish the drawings' private claude.ai copy** (added 2026-11-10). It still shows
-  revision B (with the 5/32 in sleeve); the repo copy is revision C
+  revision B (with the 5/32 in sleeve); the repo copy is revision D, with the electrical sheets 11 and 12
   ([docs/drawings/README.md](docs/drawings/README.md)). Agents republish only on the owner's go-ahead. Outcome: the
   published copy matches `docs/drawings/wind-tunnel-drawings.html`, or a note that only the repo copy is kept. Verify:
   the drawings README no longer says the published copy shows revision B.
@@ -193,7 +194,7 @@ Owner tasks are physical or account actions that an agent cannot do.
     no label overlaps ([docs/drawings/README.md](docs/drawings/README.md)).
   - **Added 2026-11-15 ([D-017](DECISIONS.md)):** the owner draws the CAD, so the sizing ends in one dimension sheet
     per printed part (flanges, bolt pattern, walls, holes, clearances) and the contraction wall as a points file to
-    import as a spline (format for the owner's CAD program, still to be named).
+    import as a spline in Fusion 360 (the owner's CAD program, 2026-11-17).
   - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, a DECISIONS.md entry, and
     the dimension sheets and points file.
   - Verify: Reynolds number, blockage ratio, expected drag and fan duty recomputed for the chosen numbers (see
@@ -271,19 +272,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     (θ spread 1.85–2.8). The plan includes a two-sphere-size check (P2 validation run).
 - [ ] **Confirm the microcontroller / DAQ.** Candidate (2026-11-01): the owner's Elegoo Mega 2560 (5 V logic,
   I²C on pins 20/21). Weakly2024 used an Uno with one HX711 per load cell; the Mega does everything the Uno does,
-  with more pins. The board works: a modified Blink uploaded on 2026-11-02 (PROJECT_STATUS §3). Outcome: board recorded as chosen (D-entry). Verify: it reads the
+  with more pins. The board works: a modified Blink uploaded on 2026-11-02 (PROJECT_STATUS §3). The wiring is drawn (2026-11-17, sheet 12,
+  [D-018](DECISIONS.md)). Outcome: board recorded as chosen (D-entry). Verify: it reads the
   HX711 and the chosen pressure sensor at the planned sample rate (interface and logic voltage checked), and logs raw
   counts to a PC as CSV.
-- [ ] **Decide the role of the op-amp circuit** (LM741/LM348/LMC6484, LM317, LM7805).
-  - Proposed 2026-11-01: no op-amps in the measurement chain (the sensors are digital). The kit's regulators and
-    potentiometers serve the interface board instead (P2).
-  - Owner, 2026-11-09: the PCB gets DIP sockets for any chips such as op-amps, so they can be swapped.
-  - Outcome: a short circuit description. Verify: supply rails compatible with each part (LM741 is not rail-to-rail
-    and expects split supplies). Depends on the parts on hand (P0).
-- [ ] **Owner: buy hardware** per [docs/buy_list.md](docs/buy_list.md) (see P0). No fixed budget (owner,
-  2026-11-01), but price-conscious; the list totals about $315–505. **Everything but the fan ordered 2026-11-09/10**
-  (Done list); open until the parts arrive. Outcome: parts on hand. Verify: part numbers and datasheets recorded in
-  `docs/experimental_setup.md`.
 
 ## P2: Build and validate (build steps 2–6)
 
@@ -327,10 +319,25 @@ Owner tasks are physical or account actions that an agent cannot do.
 
   Outcome: a printed generator plus injection tube. Verify: visible streaklines in the test section at a stated speed
   (photo or video referenced in the data catalog).
+- [ ] **Owner (recommended): learn the circuit basics before wiring** (new 2026-11-17; the owner is new to
+  electronics). Read [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md) §2–5 and the "before wiring"
+  tutorials in its §9 (about 3–5 h, estimate), then each step's tutorials just before that step. Outcome: the owner can
+  answer the six questions in its §8. Verify: the owner explains them in their own words before the breadboard, or asks
+  about the ones that are unclear.
 - [ ] **Design and build the sensor interface board** (owner's plan, 2026-11-01: design the circuit, possibly test it
   on a breadboard, then turn it into a PCB). **Owner, 2026-11-09:** when the parts arrive, build it on the breadboard,
   test it, then order the PCB; no soldered prototyping shield in between.
-  - Proposed contents: a shield for the Mega 2560 holding:
+  - **2026-11-17: the circuit is drawn** (agent, at the owner's request): drawing package sheets 11 and 12
+    ([D-018](DECISIONS.md), Tentative), explained in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md).
+    The sensors stay on cables in their own places; the shield carries only three 4-pin connectors (J1–J3), C2 and empty
+    pads for pull-ups R1 and R2, because the BME280 board already has pull-ups. This supersedes the socket list below.
+    Next:
+    1. the breadboard, one sensor at a time (owner; walk-through §6);
+    2. the owner chooses the PCB program, **KiCad (recommended) or EasyEDA**, and draws sheet 12 in it; the agent
+       checks the exported net list against sheet 12;
+    3. the shield PCB and the J1–J3 connector type (locking Grove/JST-style plugs likely; owner, 2026-11-17: order
+       them when needed); optionally a small carrier board for the SDP810 in the same order.
+  - Proposed contents (2026-11-01/09; partly superseded on 2026-11-17, above): a shield for the Mega 2560 holding:
     - **female header sockets** for the HX711 module and the BME280, and a connector for the SDP810's cable (its pins
       are at 2 mm pitch), so modules plug in and can be swapped (owner's socket idea, 2026-11-09); DIP sockets for any
       chips;
@@ -340,7 +347,8 @@ Owner tasks are physical or account actions that an agent cannot do.
     No display or encoder headers (D-012, 2026-11-08). The servo-power and angle-dial inputs proposed earlier are no
     longer needed now that the owner has chosen preset angles (2026-11-01).
 
-    Route I²C to the SDA/SCL pins next to AREF so the board also fits an Uno. Design in KiCad (free).
+    Route I²C to the SDA/SCL pins next to AREF so the board also fits an Uno (if the Mega is an R3). PCB program: the
+    owner's choice (2026-11-17; PROJECT_STATUS open question 18).
   - A breadboard is fine for testing the digital wiring. **Solder the load-cell leads directly to the HX711**, with no
     breadboard in the bridge wiring (Weakly2024 lesson).
   - Outcome: schematic and PCB files in the repo (folder to be chosen when the first file exists), and an assembled
@@ -349,6 +357,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     zero with the wind off.
 - [ ] **Data-logging firmware** (replaces the 2026-11-01 "firmware with an on-tunnel display and knob menu", dropped by
   [D-012](DECISIONS.md) on 2026-11-08: all output goes to the laptop).
+  - **First, bring-up sketches** (agent, proposed 2026-11-17): an I²C scanner, then one commented sketch per sensor,
+    matching walk-through §6 steps 1–3, so each part is tested alone. Pins: SDA 20, SCL 21, HX711 DAT 2 and CLK 3
+    (D-018). Outcome: sketches in `firmware/`. Verify: the owner's bench results for each step, recorded in
+    docs/experimental_setup.md.
   - Read the HX711 (raw counts), the SDP810 (DP temperature compensation with "average till read", command 0x3615;
     240 counts/Pa; [SDP8xx notes](resources/notes/SDP8xx.md)) and the BME280; send CSV lines with a timestamp and a
     run flag over USB.
@@ -358,12 +370,14 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: firmware in the repo (folder `firmware/`, documented in data/README.md when the first file exists).
     Verify: each sensor's reading follows a change the owner causes (a known mass on the load cell, blowing on a
     pressure port, a finger on the BME280), and the logged sample rate is steady over 10 minutes.
-- [ ] **Arrival checks for each new part** (owner; new 2026-11-08). Record each result with the date:
+- [ ] **Arrival checks for each new part** (owner; new 2026-11-08). **Every part arrived by 2026-11-17; none checked
+  yet.** Record each result with the date:
   - TAL221s: wire resistances (red–black about 1090 Ω, green–white about 1000 Ω, cross pairs, body open) and the
     no-load zero, as baselines for spotting damage later;
   - BME280 (Waveshare, ordered 2026-11-09): first, with only VCC (5 V) and GND connected, SDA and SCL read about 5 V
     on the multimeter (level translator working; about 3.3 V means no shifting, so do not wire it to the Mega); then
-    chip ID 0x60, not a BMP280's 0x58;
+    chip ID 0x60, not a BMP280's 0x58 (Waveshare's schematic predicts 5 V: SDA and SCL are pulled up to VCC through
+    4.7 kΩ);
   - SDP810: zero with both ports capped, within about 0.1 Pa;
   - calipers: new battery, return to 0.00, a known object measured;
   - window screen (ordered 2026-11-09): 18 and 16 wires per inch against the steel rule, one wire about 0.28 mm
@@ -372,6 +386,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     not 3 mm, and straight when rolled on a table; brass tube, 1/8 in OD (the 1/8 in silicone tubing should seal on
     it); acrylic, 1/8 in and acrylic rather than styrene; neoprene, 1/16 in and soft; the SDP810's label reads
     125 Pa; the drill set has 0.8–1.0 mm and 3.0 mm bits.
+
+  - added 2026-11-17: the SparkFun HX711 board's pad labels and RATE jumper, and its excitation voltage (E+ to E−,
+    powered) once wired; which cable came with the BME280; whether the Mega is an R3 (SDA and SCL next to AREF), and its
+    pin-20-to-5V resistance measured unpowered (about 10 kΩ if it has its own pull-ups).
 
   Details: [docs/buy_list.md](docs/buy_list.md) §5, §6, §7 and §10. Verify: values written into
   docs/experimental_setup.md.
@@ -580,3 +598,13 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-15: **Who does the CAD decided** (owner): the owner draws every part; the agent supplies dimension sheets,
   the contraction points file and STL checks ([D-017](DECISIONS.md)). Time estimates for the CAD and the whole project
   recorded ([session log](docs/sessions/2026-11-17-time-estimates-and-cad.md)).
+- [x] 2026-11-17: Owner committed and pushed the time-estimates session as `ce69a57`; `/catchup` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-17-sensor-circuit-design.md)).
+- [x] 2026-11-17: **Every part ordered on 2026-11-09/10 arrived** (owner); the fan is still to buy (P0). Shopping list
+  marked "Got it"; arrival checks still to do (P2). Was P1 "Owner: buy hardware".
+- [x] 2026-11-17: **CAD program recorded:** Fusion 360 (owner; note on [D-017](DECISIONS.md)).
+- [x] 2026-11-17: **Sensor circuit drawn and explained** (agent, at the owner's request; documentation only): drawing
+  package revision D, sheets 11 (block diagram) and 12 (schematic, parts and net lists); [D-018](DECISIONS.md)
+  (Tentative), which also answers P1 "Decide the role of the op-amp circuit" (none); the Waveshare BME280 schematic
+  filed with notes; [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md) for a beginner
+  ([session log](docs/sessions/2026-11-17-sensor-circuit-design.md)).

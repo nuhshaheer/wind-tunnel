@@ -2,7 +2,7 @@
 
 - **Session ID:** 4dddb536-73db-480a-9aaf-1f52bf9a6275 (Claude Code, from the scratchpad path)
 - **Agent:** Claude Code (Opus 5.5), VS Code extension, Windows 11
-- **Commit:** not committed yet
+- **Commit:** `ce69a57`
 
 Planning conversation only. Nothing arrived, was built, drawn or tested, and no repository file changed before the
 wrap. Started 2026-11-15 with `/catchup`; `/wrap` ran on 2026-11-17.

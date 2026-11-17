@@ -3,10 +3,12 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-10: nothing built; nearly every part ordered (2026-11-09/10), including the
+**Current configuration as of 2026-11-17: nothing built. Every part ordered on 2026-11-09/10 has arrived (owner,
+2026-11-17; arrival checks not done yet), including the
 aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711, the Waveshare BME280,
 four 8 × 12 in sheets of 1/8 in cast acrylic, the 3/4 in and 1 in Delrin balls and two 1/8 in brass rods for the
-stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md).**
+stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md). The sensor circuit is drawn, not
+built ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
@@ -16,6 +18,8 @@ stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.m
     insert under the model with the sting shield attached to it ([D-014](../DECISIONS.md)); a printed sting mount with
     a thumb-screw sting lock ([D-015](../DECISIONS.md)); one full-length sting per ball, no sleeve
     ([D-016](../DECISIONS.md), Tentative).
+- The sensor circuit (Tentative, [D-018](../DECISIONS.md), 2026-11-17): laptop USB power; the SDP810 and BME280 on I²C
+  pins 20/21; the HX711 on pins 2/3; breadboard first, then a shield PCB on the Mega.
 - The fan is open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6 ([D-011](../DECISIONS.md)).
 - Parts chosen and their prices: [buy_list.md](buy_list.md); the owner's tracker of what is still to buy:
   [shopping_list.md](shopping_list.md).
@@ -56,26 +60,32 @@ stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.m
 
 | Measurement | Sensor | Range | Calibration | Location | Status |
 |---|---|---|---|---|---|
-| Airspeed | **One Sensirion SDP810-125Pa** with a home-made 1/8 in brass total-pressure probe and wall-tap rings at S, E and M ([buy list](buy_list.md) §5) | ±125 Pa (full scale at 14.4 m/s) | Planned: inclined water manometer for the gain; ×966 mbar / p_amb correction on every reading ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)) | Probe − M at the model station; S − E (contraction drop) during force runs | Chosen 2026-11-08; **ordered 2026-11-09 (Mouser 403-SDP810-125PA, maker's part SDP810-125PA; confirmed from the order 2026-11-10)** |
-| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: budget weight set, each piece weighed on a school lab balance, balance module laid on its side | Upright under the ball, in the load-cell box under the floor. The sting stands in a printed mount on the cell's top end, clamped by the owner's thumb-screw sting lock ([D-015](../DECISIONS.md), 2026-11-09) | Chosen 2026-11-08; **ordered 2026-11-09 (SparkFun)** |
-| Ambient pressure | **Waveshare BME280 Environmental Sensor** (onboard 3.3/5 V level translator per the maker; replaces the Adafruit 2652, owner 2026-11-09) | | | In room air near the fan inlet | Chosen 2026-11-08; **ordered 2026-11-09** |
-| Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; **ordered 2026-11-09** |
+| Airspeed | **One Sensirion SDP810-125Pa** with a home-made 1/8 in brass total-pressure probe and wall-tap rings at S, E and M ([buy list](buy_list.md) §5) | ±125 Pa (full scale at 14.4 m/s) | Planned: inclined water manometer for the gain; ×966 mbar / p_amb correction on every reading ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)) | Probe − M at the model station; S − E (contraction drop) during force runs | Chosen 2026-11-08; **ordered 2026-11-09 (Mouser 403-SDP810-125PA, maker's part SDP810-125PA; confirmed from the order 2026-11-10)**; **on hand since 2026-11-17** |
+| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: budget weight set, each piece weighed on a school lab balance, balance module laid on its side | Upright under the ball, in the load-cell box under the floor. The sting stands in a printed mount on the cell's top end, clamped by the owner's thumb-screw sting lock ([D-015](../DECISIONS.md), 2026-11-09) | Chosen 2026-11-08; **ordered 2026-11-09 (SparkFun)**; **on hand since 2026-11-17** |
+| Ambient pressure | **Waveshare BME280 Environmental Sensor** (onboard 3.3/5 V level translator per the maker; replaces the Adafruit 2652, owner 2026-11-09) | | | In room air near the fan inlet | Chosen 2026-11-08; **ordered 2026-11-09; on hand since 2026-11-17** |
+| Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; **ordered 2026-11-09; on hand since 2026-11-17** |
 | Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
-Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). Circuit: not designed. Proposed 2026-11-01:
+Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). **Circuit: designed on paper 2026-11-17, not
+built** ([D-018](../DECISIONS.md), Tentative; drawing package sheets 11–12; [walk-through](electronics_walkthrough.md)):
+the SDP810 and BME280 on I²C pins 20 (SDA) and 21 (SCL), the HX711 DAT and CLK on pins 2 and 3, C1 0.1 µF at the
+SDP810's pins, C2 10 µF at the 5 V entry, no extra pull-ups (the BME280 board has 4.7 kΩ to VCC on SDA and SCL,
+[notes](../resources/notes/WaveshareBME280.md)), all powered from the laptop's USB. Proposed 2026-11-01:
 digital sensors (HX711, I²C pressure sensor, BME280) with no op-amps in the measurement chain, on an interface board
 the owner designs ([TODO.md](../TODO.md) P2).
 
 HX711 chip facts, confirmed from the Avia datasheet rev. V2.0 ([notes](../resources/notes/HX711.md)): 24-bit ADC,
 10 or 80 samples/s, channel A gain 128 or 64 (channel B fixed at 32), input noise 50 nV rms at gain 128 and 10 SPS.
-The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), ordered 2026-11-09. Its excitation
-voltage and RATE wiring have not been checked against its schematic yet.
+The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), ordered 2026-11-09, on hand since
+2026-11-17. Its pad labels, excitation voltage and RATE setting are not checked yet (SparkFun's hookup guide refused
+automated reading on 2026-11-17; read them off the board).
 
 ## Data acquisition
 
 | Parameter | Value |
 |---|---|
 | Microcontroller / DAQ | Candidate: the owner's **Elegoo Mega 2560**, working. 2026-11-02: main chip ATMEGA2560 (owner); COM3, USB ID 2341:0042, serial number `13448474939351C0E828`; a modified Blink (200 ms delays) uploaded from Arduino IDE 2.3.10 with the AVR core 1.8.8, board "Arduino Mega or Mega 2560", and the "L" LED blinked faster. 5 V logic; I²C on pins 20 (SDA) and 21 (SCL) |
+| Wiring and power | Planned 2026-11-17 ([D-018](../DECISIONS.md), sheet 12): SDA 20, SCL 21, HX711 DAT 2 and CLK 3; everything powered from the laptop's USB through the Mega's 5V pin (about 100 mA in all, estimate). Not built |
 | Sample rate(s) | Unknown |
 | Synchronization between pressure and force | Unknown |
 | Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)), sent over USB to a laptop |
@@ -94,6 +104,7 @@ Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (20
 
 | Item | Source | Notes |
 |---|---|---|
+| Every part ordered on 2026-11-09/10 (sensors and boards, screen, tubing and fittings, brass, balls, acrylic, fasteners, tools, PLA) | Owner, 2026-11-17 ("all of the packages i bought have arrived") | Listed in [shopping_list.md](shopping_list.md), marked Got it. **Arrival checks not done yet**; the instruments are in the Instrumentation table above |
 | Bambu Lab P1S 3D printer | Owner, 2026-10-30 | Build volume 256 × 256 × 256 mm (manufacturer spec) |
 | Elegoo Mega 2560 | Owner, 2026-11-01 ("that is what it looks like at least"); main chip ATMEGA2560 (owner, 2026-11-02) | **Working:** Blink upload Verified 2026-11-02 (see Data acquisition). A USB A-to-B cable that carries data is on hand. Whether the board is printed "R3" is not recorded |
 | Magnets | Owner, 2026-11-01; count and size 2026-11-09 | **43, round, 8 mm × 2 mm**; probably neodymium (not confirmed); strength unknown |
@@ -154,3 +165,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-09/10 | Parts ordered: everything on the buy list except the fan (bought last). Changes: Waveshare BME280 instead of the Adafruit; stainless screws at the balance instead of brass; one full-length sting per ball, no 5/32 in sleeve ([D-016](../DECISIONS.md), Tentative). Nothing arrived, built or tested yet | [2026-11-10](sessions/2026-11-10-parts-ordering.md) |
 | 2026-11-10 | Order details recorded: four 8 × 12 in acrylic sheets; the SDP810 order confirmed as Mouser 403-SDP810-125PA. Stale settling-chamber and diffuser-screen entries updated. Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-order-details-and-cylinders.md) |
 | 2026-11-10 | Consistency audit against the latest decisions (owner's request): the sphere mount now described through the replaceable floor insert with the shield attached (D-014) instead of "a fixed shield and a floor slot"; balls, sting rods and HX711 marked ordered; screens as ordered; drawings revised to C (no sleeve or separate stems, stainless screws at the balance). Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-consistency-audit.md) |
+| 2026-11-17 | Every ordered part reported arrived (owner). Sensor circuit designed on paper: laptop USB power, one I²C bus for the SDP810 and BME280, the HX711 on pins 2/3, a shield PCB later ([D-018](../DECISIONS.md), Tentative; drawing package revision D, sheets 11–12; [walk-through](electronics_walkthrough.md)). Nothing wired or tested | [2026-11-17](sessions/2026-11-17-sensor-circuit-design.md) |

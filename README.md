@@ -1,7 +1,9 @@
 # Wind Tunnel
 
-> **Status (2026-11-10): planning / pre-build.** Every part except the fan is ordered (2026-11-09/10); nothing is
-> built yet and no data has been collected. Next: sizing the tunnel (build step 1) while the parts arrive.
+> **Status (2026-11-17): planning / pre-build.** Every part except the fan has arrived (2026-11-17); nothing is built
+> yet and no data has been collected. The sensor circuit is drawn (drawing package sheets 11–12) and explained in
+> [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md). Next: breadboarding the circuit, and sizing the
+> tunnel (build step 1).
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
 > The complete parts list is [docs/buy_list.md](docs/buy_list.md), and the order tracker is
 > [docs/shopping_list.md](docs/shopping_list.md).
@@ -15,7 +17,7 @@ A small wind tunnel with my own instrumentation: flow conditioning, a pitot tube
 ## Why it matters
 Of the three projects, this is the only one that shows me as a mechanical engineer doing fluids, which is the work aerospace companies hire MEs into.
 
-## Hardware (as of 2026-11-10)
+## Hardware (as of 2026-11-17)
 
 The tunnel: an open-circuit blower with the fan at the front, a 100 mm × 100 mm test section, 3D-printed in bolted
 segments, with a 13 m/s target top speed ([DECISIONS.md](DECISIONS.md) D-005, D-007, D-008, D-010, D-013).
@@ -30,7 +32,7 @@ D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs
 - Multimeter, soldering station, bench power supply, calipers, hand drill, spirit level, 43 magnets (8 × 2 mm), and
   access to a school lab balance
 
-### Ordered (2026-11-09/10)
+### Arrived 2026-11-17 (ordered 2026-11-09/10; not checked yet)
 - Airspeed: a Sensirion SDP810-125Pa differential pressure sensor, with a home-made brass pitot probe and wall
   pressure taps
 - Drag: two TAL221 100 g load cells and a SparkFun HX711
@@ -48,8 +50,9 @@ D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs
 - No ducting: the fan's collar slides into a printed inlet
 - No bought pitot tube: made in-house from brass tube
 - No on-tunnel display or knob: all output goes to the laptop (D-012)
-- Op-amp signal conditioning probably not needed, because the sensors are digital (proposed); the circuit work goes
-  into an interface board, breadboard first, then a PCB
+- No op-amp signal conditioning: the sensors are digital, so the circuit is an interface board (connectors, two
+  capacitors, optional pull-ups) on the laptop's USB power, breadboard first, then a PCB shield on the Mega
+  (D-018, Tentative, 2026-11-17)
 
 ## Build order
 1. Size the contraction and test section ← **next**
@@ -80,9 +83,11 @@ docs/
   buy_list.md             Everything to buy, what each part does, prices, and what is on hand
   shopping_list.md        The owner's order tracker: item, qty, price, link, status (To buy → Ordered → Got it)
   data_catalog.md         Every dataset/experiment and how it was processed
+  electronics_walkthrough.md  The sensor circuit explained step by step for a beginner, with bring-up steps
+  images/                 Pictures used by the docs (drawing snapshots, bench photos)
   sessions/               One log per work session + SESSION_LOG.md index
   sketches/               The owner's hand sketches of the tunnel (intent, not as built)
-  drawings/               Preliminary drawing package (HTML) and the Python scripts that generate it
+  drawings/               Preliminary drawing package (HTML: 10 mechanical + 2 electrical sheets) and its generator
 data/README.md            Data layout and rules (raw vs processed, naming, units, large files)
 resources/                Reference papers (PDFs) with reading notes; index and naming rules in resources/README.md
 scripts/                  Helper scripts used by /catchup and /wrap

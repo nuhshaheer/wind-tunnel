@@ -29,9 +29,11 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 - [Confirmed] Instrumentation is the owner's own: flow conditioning, pitot tube for airspeed, load cell for drag,
   signal conditioning built from an ECE kit (LM741/LM348 op-amps, LM317 regulator). The whole kit (WPI ECE2010
   Lab 2) is listed from its packing list in [docs/experimental_setup.md](docs/experimental_setup.md#parts-on-hand)
-  (2026-11-01).
+  (2026-11-01). Since 2026-11-17 the proposed circuit needs no op-amps or regulators, only the kit's capacitors and
+  resistors, because every sensor sends numbers ([D-018](DECISIONS.md), Tentative).
 - [Confirmed] The owner wants to design the sensor interface circuit: design it, maybe test it on a breadboard, then
-  turn it into a PCB (2026-11-01).
+  turn it into a PCB (2026-11-01). The agent drew it on 2026-11-17 at the owner's request (sheets 11–12 of the
+  drawing package); the owner breadboards it and draws the PCB.
 - [Confirmed] Microcontroller on hand: an Elegoo board the owner identifies as a Mega 2560 R3 by its appearance
   (2026-11-01). Its main chip reads ATMEGA2560, and a Blink upload worked on 2026-11-02
   ([PROJECT_STATUS.md](PROJECT_STATUS.md) §3).
@@ -69,9 +71,13 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
   mid-January to mid-May 2027 at 6–8 h a week; the breakdown and assumptions are in the
   [2026-11-17 session log](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results).
 - [Confirmed] CAD: the owner is proficient in CAD and draws every printed part; the agent supplies dimension sheets,
-  the contraction points file and checks of the exported files (owner, 2026-11-15; [D-017](DECISIONS.md)).
+  the contraction points file and checks of the exported files (owner, 2026-11-15; [D-017](DECISIONS.md)). The
+  owner's CAD program is Fusion 360 (owner, 2026-11-17).
+- [Confirmed] Electronics: the owner is a beginner, with no electronics background (owner, 2026-11-17), and wants to
+  understand the circuit, not only build it. Circuit work is explained step by step in
+  [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md).
 - Unknown: the fan model (open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6, [D-011](DECISIONS.md)), the
-  bench supply's rating, the room's free length around the tunnel, the owner's CAD program.
+  bench supply's rating, the room's free length around the tunnel.
 
 ## Governing equations [Standard]
 
@@ -520,7 +526,11 @@ Add lasting lessons here (with a link to the session log where they were learned
 - **Reading web PDFs** (2026-11-08, same log). The web-fetch agent cannot parse a binary PDF, but the harness saves it
   locally. Claude Code's Read cannot render PDF pages here (no `pdftoppm`). Extract the text and render pages with
   PyMuPDF (`python -I`, file path as an argument), then check tables and drawings on the page images. Some shop pages
-  (McMaster, Zoro, TWP prices) need a browser; ask the owner to paste the table.
+  (McMaster, Zoro, TWP prices) need a browser; ask the owner to paste the table. **2026-11-17:** SparkFun's tutorial
+  pages (learn.sparkfun.com) return HTTP 403 to the web-fetch agent, and Waveshare's product page returned 503; the
+  Waveshare wiki and its schematic PDF worked
+  ([session log](docs/sessions/2026-11-17-sensor-circuit-design.md#8-errors-failed-approaches-and-troubleshooting)).
+  For a board's pad labels or jumpers, the owner reading the delivered board is the more reliable source anyway.
 - **"Not committed yet" in the docs after the owner pushed is expected, not lost work** (2026-11-09,
   [session log](docs/sessions/2026-11-09-shopping-list.md#8-errors-failed-approaches-and-troubleshooting)).
   `/wrap` writes the docs before the owner commits, so a commit can never contain its own hash; the next `/wrap`

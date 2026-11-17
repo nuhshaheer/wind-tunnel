@@ -1,6 +1,6 @@
 # Data
 
-No experimental data has been collected yet (as of 2026-11-10). This file defines where data goes
+No experimental data has been collected yet (as of 2026-11-17). This file defines where data goes
 when it exists. The policy is recorded in [DECISIONS.md](../DECISIONS.md) (D-004) and every dataset is
 listed in [docs/data_catalog.md](../docs/data_catalog.md).
 
@@ -36,7 +36,8 @@ SI throughout: m, m/s, Pa, N, kg, K or degC (say which), s. Column headers carry
 ## Large files
 
 - CSV/text logs: committed directly (expected to be small).
-- Photos: compressed to roughly 2 MB or less before committing.
+- Photos: compressed to roughly 2 MB or less before committing. Photos and pictures that illustrate the docs go in
+  `docs/images/`, named `YYYY-MM-DD_short-description.ext`.
 - Videos: **not committed** (`.gitignore` excludes common video formats). Keep originals in external
   storage and record the location in the data catalog.
 - Any file over 25 MB is flagged by `python scripts/check_docs.py`; GitHub rejects files over 100 MB.

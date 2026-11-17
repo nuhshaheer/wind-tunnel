@@ -50,9 +50,15 @@ def f(v):
 
 
 class Sheet:
-    def __init__(self, no, code, title, subtitle, scale_note, notes):
+    def __init__(self, no, code, title, subtitle, scale_note, notes, kind='mech', date='2026-11-10',
+                 status='PRELIMINARY · PRE-SIZING · NOT FOR MANUFACTURE',
+                 basis='docs of 2026-11-10 + owner sketch 2026-11-09 · Claude Code (agent)', units='mm', key2=None):
+        """kind='mech' draws the mechanical key (dimension colours, line types); kind='elec' draws the electrical key,
+        with key2 naming the symbols listed in its second column ('wire', 'dot', 'tag', 'nc' or ('text', str))."""
         self.no, self.code, self.title, self.subtitle = no, code, title, subtitle
         self.scale_note, self.notes = scale_note, notes
+        self.kind, self.date, self.status, self.basis, self.units = kind, date, status, basis, units
+        self.key2 = key2 or []
         self.e = []
 
     def a(self, s):
@@ -269,6 +275,73 @@ class Sheet:
         # bottom strip
         y0 = 985
         out.append(f'<line x1="20" y1="{y0}" x2="{W-20}" y2="{y0}" class="brd2"/>')
+        if self.kind == 'elec':
+            self.elec_key(out, y0)
+        else:
+            self.mech_key(out, y0)
+        # notes
+        nx = 420
+        out.append(f'<line x1="{nx-10}" y1="{y0}" x2="{nx-10}" y2="{H-20}" class="brd2"/>')
+        out.append(f'<line x1="{290}" y1="{y0}" x2="{290}" y2="{H-20}" class="thin"/>')
+        out.append(f'<text x="{nx}" y="{y0+20}" class="kh">NOTES</text>')
+        yy = y0 + 38
+        for i, n in enumerate(self.notes):
+            out.append(f'<text x="{nx}" y="{yy}" class="nt"><tspan class="nn">{i+1}.</tspan> {esc(n)}</text>')
+            yy += 16
+        # title block
+        tx = 1130
+        out.append(f'<line x1="{tx}" y1="{y0}" x2="{tx}" y2="{H-20}" class="brd2"/>')
+        tbh = H - 20 - y0
+        out.append(f'<line x1="{tx}" y1="{y0+44}" x2="{W-20}" y2="{y0+44}" class="thin"/>')
+        out.append(f'<line x1="{tx}" y1="{y0+80}" x2="{W-20}" y2="{y0+80}" class="thin"/>')
+        out.append(f'<text x="{tx+10}" y="{y0+17}" class="tbs">WIND TUNNEL · 100 × 100 mm OPEN-CIRCUIT BLOWER · OWNER: N. SHAHEER</text>')
+        out.append(f'<text x="{tx+10}" y="{y0+37}" class="tbt">{esc(self.title)}</text>')
+        cells = [(tx, 'DWG NO', self.code), (tx + 105, 'SHEET', f'{self.no} OF {nsheets}'), (tx + 180, 'UNITS', self.units),
+                 (tx + 230, 'SCALE', self.scale_note), (tx + 335, 'DATE', self.date)]
+        for i, (cx, k, v) in enumerate(cells):
+            if i:
+                out.append(f'<line x1="{cx}" y1="{y0+44}" x2="{cx}" y2="{y0+80}" class="thin"/>')
+            out.append(f'<text x="{cx+8}" y="{y0+57}" class="tbk">{k}</text><text x="{cx+8}" y="{y0+74}" class="tbv">{esc(v)}</text>')
+        out.append(f'<text x="{tx+10}" y="{y0+97}" class="tbk">STATUS</text>')
+        out.append(f'<text x="{tx+70}" y="{y0+97}" class="tbw">{esc(self.status)}</text>')
+        out.append(f'<text x="{tx+10}" y="{y0+114}" class="tbk">BASIS</text>')
+        out.append(f'<text x="{tx+70}" y="{y0+114}" class="tbv2">{esc(self.basis)}</text>')
+        return '\n'.join(out)
+
+    def elec_key(self, out, y0):
+        """Key for electrical sheets: status colours, then the symbols named in key2."""
+        kx = 30
+        out.append(f'<text x="{kx}" y="{y0+20}" class="kh">KEY</text>')
+        rows = [('F', 'A1', 'Decided, datasheet or part spec'), ('P', 'D2', 'Proposed, not final'),
+                ('T', 'TBD', 'To check or decide')]
+        for i, (stc, sample, desc) in enumerate(rows):
+            yy = y0 + 40 + i * 18
+            out.append(f'<text x="{kx}" y="{yy}" class="dim {STN[stc]}" style="font-size:12px">{esc(sample)}</text>')
+            out.append(f'<text x="{kx+64}" y="{yy}" class="kt">{esc(desc)}</text>')
+        yy = y0 + 40 + 3 * 18
+        out.append(f'<text x="{kx}" y="{yy}" class="dim f" style="font-size:12px">NTS</text>')
+        out.append(f'<text x="{kx+64}" y="{yy}" class="kt">Not to scale</text>')
+        lx = 300
+        for i, k in enumerate(self.key2):
+            yy = y0 + 36 + i * 18
+            if isinstance(k, tuple):
+                out.append(f'<text x="{lx}" y="{yy+4}" class="kt">{esc(k[1])}</text>')
+            elif k == 'wire':
+                out.append(f'<line x1="{lx}" y1="{yy}" x2="{lx+40}" y2="{yy}" class="w"/><text x="{lx+48}" y="{yy+4}" class="kt">Wire</text>')
+            elif k == 'dot':
+                out.append(f'<line x1="{lx}" y1="{yy}" x2="{lx+40}" y2="{yy}" class="w"/><line x1="{lx+20}" y1="{yy}" x2="{lx+20}" y2="{yy+8}" class="w"/>'
+                           f'<circle cx="{lx+20}" cy="{yy}" r="3" class="jd"/><text x="{lx+48}" y="{yy+4}" class="kt">Joined</text>')
+            elif k == 'tag':
+                out.append(f'<polygon points="{lx},{yy} {lx+7},{yy-7} {lx+40},{yy-7} {lx+40},{yy+7} {lx+7},{yy+7}" class="tag"/>'
+                           f'<text x="{lx+24}" y="{yy+4}" class="tagt" text-anchor="middle" style="font-size:10px">SDA</text>'
+                           f'<text x="{lx+48}" y="{yy+4}" class="kt">Net label</text>')
+            elif k == 'nc':
+                out.append(f'<line x1="{lx}" y1="{yy}" x2="{lx+26}" y2="{yy}" class="w"/>'
+                           f'<line x1="{lx+21}" y1="{yy-5}" x2="{lx+31}" y2="{yy+5}" class="w"/><line x1="{lx+21}" y1="{yy+5}" x2="{lx+31}" y2="{yy-5}" class="w"/>'
+                           f'<text x="{lx+48}" y="{yy+4}" class="kt">Open (NC)</text>')
+
+    def mech_key(self, out, y0):
+        """Key for the mechanical sheets: dimension status colours, airflow and line types."""
         # key
         kx = 30
         out.append(f'<text x="{kx}" y="{y0+20}" class="kh">KEY</text>')
@@ -287,34 +360,6 @@ class Sheet:
         out.append(f'<line x1="{lx}" y1="{y0+54}" x2="{lx+40}" y2="{y0+54}" class="hid"/><text x="{lx+48}" y="{y0+58}" class="kt">Hidden</text>')
         out.append(f'<line x1="{lx}" y1="{y0+72}" x2="{lx+40}" y2="{y0+72}" class="ctr"/><text x="{lx+48}" y="{y0+76}" class="kt">Centre line</text>')
         out.append(f'<rect x="{lx}" y="{y0+84}" width="40" height="12" style="fill:url(#hPLA)" class="thin"/><text x="{lx+48}" y="{y0+94}" class="kt">Printed (cut)</text>')
-        # notes
-        nx = 420
-        out.append(f'<line x1="{nx-10}" y1="{y0}" x2="{nx-10}" y2="{H-20}" class="brd2"/>')
-        out.append(f'<line x1="{290}" y1="{y0}" x2="{290}" y2="{H-20}" class="thin"/>')
-        out.append(f'<text x="{nx}" y="{y0+20}" class="kh">NOTES</text>')
-        yy = y0 + 38
-        for i, n in enumerate(self.notes):
-            out.append(f'<text x="{nx}" y="{yy}" class="nt"><tspan class="nn">{i+1}.</tspan> {esc(n)}</text>')
-            yy += 16
-        # title block
-        tx = 1130
-        out.append(f'<line x1="{tx}" y1="{y0}" x2="{tx}" y2="{H-20}" class="brd2"/>')
-        tbh = H - 20 - y0
-        out.append(f'<line x1="{tx}" y1="{y0+44}" x2="{W-20}" y2="{y0+44}" class="thin"/>')
-        out.append(f'<line x1="{tx}" y1="{y0+80}" x2="{W-20}" y2="{y0+80}" class="thin"/>')
-        out.append(f'<text x="{tx+10}" y="{y0+17}" class="tbs">WIND TUNNEL · 100 × 100 mm OPEN-CIRCUIT BLOWER · OWNER: N. SHAHEER</text>')
-        out.append(f'<text x="{tx+10}" y="{y0+37}" class="tbt">{esc(self.title)}</text>')
-        cells = [(tx, 'DWG NO', self.code), (tx + 105, 'SHEET', f'{self.no} OF {nsheets}'), (tx + 180, 'UNITS', 'mm'),
-                 (tx + 230, 'SCALE', self.scale_note), (tx + 335, 'DATE', '2026-11-10')]
-        for i, (cx, k, v) in enumerate(cells):
-            if i:
-                out.append(f'<line x1="{cx}" y1="{y0+44}" x2="{cx}" y2="{y0+80}" class="thin"/>')
-            out.append(f'<text x="{cx+8}" y="{y0+57}" class="tbk">{k}</text><text x="{cx+8}" y="{y0+74}" class="tbv">{esc(v)}</text>')
-        out.append(f'<text x="{tx+10}" y="{y0+97}" class="tbk">STATUS</text>')
-        out.append(f'<text x="{tx+70}" y="{y0+97}" class="tbw">PRELIMINARY · PRE-SIZING · NOT FOR MANUFACTURE</text>')
-        out.append(f'<text x="{tx+10}" y="{y0+114}" class="tbk">BASIS</text>')
-        out.append(f'<text x="{tx+70}" y="{y0+114}" class="tbv2">docs of 2026-11-10 + owner sketch 2026-11-09 · Claude Code (agent)</text>')
-        return '\n'.join(out)
 
     def svg(self, nsheets, defs):
         body = '\n'.join(self.e)
@@ -393,4 +438,32 @@ CSS = f'''
 .sheet .tube{{stroke:#4f6f8f;stroke-width:2.2;fill:none}}
 .sheet .cable{{stroke:#6b4f8f;stroke-width:1.6;fill:none;stroke-dasharray:1 0}}
 .sheet .scr{{stroke:#4b5560;stroke-width:1.2;stroke-dasharray:2 2;fill:none}}
+.sheet .w{{stroke:{INK};stroke-width:1.5;fill:none;stroke-linejoin:round;stroke-linecap:round}}
+.sheet .jd{{fill:{INK};stroke:none}}
+.sheet .sym{{stroke:{INK};stroke-width:1.5;fill:#ffffff}}
+.sheet .tag{{stroke:{INK};stroke-width:1.1;fill:#ffffff}}
+.sheet text.tagt{{font-size:11.5px;font-weight:600;fill:{INK};font-family:"IBM Plex Mono","Consolas",monospace}}
+.sheet .rg{{stroke:#7a828e;stroke-width:1;fill:none;stroke-dasharray:9 5}}
+.sheet .rgi{{stroke:#9aa1ab;stroke-width:0.9;fill:#f7f8fa;stroke-dasharray:3 3}}
+.sheet .rgl{{font-size:11px;font-weight:700;letter-spacing:.08em;fill:#59606b}}
+.sheet text.pnum{{font-size:10.5px;fill:#59606b;font-family:"IBM Plex Mono","Consolas",monospace}}
+.sheet text.pnam{{font-size:12px;fill:{INK};font-family:"IBM Plex Mono","Consolas",monospace}}
+.sheet .ref{{font-size:15px;font-weight:700;fill:{INK}}}
+.sheet .eb{{stroke:{INK};stroke-width:1.4;fill:#ffffff}}
+.sheet .ebg{{stroke:{INK};stroke-width:1.4;fill:#f2f4f7}}
+.sheet .ebd{{stroke:#7a828e;stroke-width:1;fill:none;stroke-dasharray:5 4}}
+.sheet .bt{{font-size:14px;font-weight:700;fill:{INK}}}
+.sheet .bl{{font-size:12px;fill:#2a2f37}}
+.sheet .sdig{{stroke:#6b4f8f;stroke-width:2.4;fill:none;stroke-linejoin:round}}
+.sheet .sana{{stroke:{INK};stroke-width:1.4;fill:none;stroke-linejoin:round}}
+.sheet .spwr{{stroke:#c62828;stroke-width:2;fill:none;stroke-dasharray:8 5}}
+.sheet .susb{{stroke:{INK};stroke-width:3.6;fill:none;stroke-linejoin:round}}
+.sheet .stb{{stroke:#4f6f8f;stroke-width:4;fill:none;stroke-linejoin:round}}
+.sheet .sair{{stroke:{FLOW};stroke-width:4;fill:none;stroke-linejoin:round}}
+.sheet .smo{{stroke:#59606b;stroke-width:7;fill:none}}
+.sheet .smi{{stroke:#ffffff;stroke-width:3;fill:none}}
+.sheet .ll{{font-size:11.5px;fill:#3b4350}}
+.sheet .lld{{font-size:11.5px;font-weight:600;fill:#6b4f8f}}
+.sheet .llp{{font-size:11.5px;font-weight:600;fill:#c62828}}
+.sheet .llt{{font-size:11.5px;font-weight:600;fill:#4f6f8f}}
 '''

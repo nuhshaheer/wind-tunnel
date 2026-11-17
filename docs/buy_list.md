@@ -1,6 +1,9 @@
 # Buy List
 
-**Last updated:** 2026-11-10
+**Last updated:** 2026-11-17
+
+**2026-11-17: the owner reports that every part ordered on 2026-11-09/10 has arrived.** Read each **Ordered** status
+below as **On hand**; the per-row arrival checks are still to do ([TODO.md](../TODO.md) P2). The fan is still to buy.
 
 Everything the tunnel needs, from the fan to the screws, with what is already on hand. Started 2026-11-08 with the
 owner. It is worked through category by category; a section marked **Not reviewed yet** lists what is expected there,

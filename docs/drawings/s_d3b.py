@@ -10,7 +10,8 @@ def sheet_airspeed():
                 'Swap lines only at the couplers on the pigtails; check the wind-off zero returns within ≈0.1 Pa after each swap.',
                 'Every SDP810 reading × 966 mbar / p_amb (Sensirion2024); p_amb from the BME280. Keep lines ≤ 0.5 m and pairs equal.',
                 'Load-cell wires are soldered straight to the HX711 in the load-cell box: no breadboard in the bridge (Weakly2024).',
-                'I²C at 100 kHz; pull-ups on the interface board (values TBD at circuit design, TODO P2). Arduino pins for the HX711 TBD.'])
+                'I²C at 100 kHz. Pull-ups, Arduino pins and every connection: sheet 12 (WT-E02, revision D); block diagram: sheet 11.'],
+               date='2026-11-17')
     # ---------- detail H, wall tap 11:1 ----------
     s = 11
     v = View(300, 445, s)
@@ -151,7 +152,7 @@ def sheet_airspeed():
     sh.text(1279, 570, 'I²C', cls='sm', anchor='start')
     sh.text(1295, 622, 'SDA 20 · SCL 21', cls='sm', anchor='start')
     sh.path(f'M{x0 + 140},745 L1275,745 L1275,680 L1290,680', cls='cable')
-    sh.text(1295, 720, 'digital pins TBD', cls='sm', anchor='start', color=TBD)
+    sh.text(1295, 720, 'pins 2, 3 (sheet 12)', cls='sm', anchor='start', color=PROP)
     sh.path(f'M{x0 + 70},820 L{x0 + 70},770', cls='vis', extra='style="stroke:#a33;stroke-width:1.6"')
     sh.text(x0 + 78, 792, 'red E+ · black E− · green S+ · white S−', cls='sm', anchor='start')
     sh.text(x0 + 78, 808, 'soldered direct, in the load-cell box', cls='sm', anchor='start')

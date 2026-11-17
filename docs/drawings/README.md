@@ -1,7 +1,8 @@
 # Drawings
 
-A **preliminary** engineering drawing package for the whole tunnel: 10 sheets, a parts list matching every numbered
-callout, a TBD register and the findings from drawing it. Revision C, 2026-11-10 (revision B, 2026-11-09). **Pre-sizing,
+A **preliminary** engineering drawing package for the whole tunnel: 10 mechanical sheets and 2 electrical sheets, a
+parts list matching every numbered callout, a TBD register and the findings from drawing it. Revision D, 2026-11-17
+(revision C, 2026-11-10; revision B, 2026-11-09). **Pre-sizing,
 not for manufacture:**
 build step 1 (sizing) has not been done, so most dimensions are proposals and many are TBD.
 
@@ -15,6 +16,13 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
   brass; the sting shield (64) is attached to the sphere floor insert (53) and lifts out with it (D-014); screen 12b is
   planned for margin; every parts-list status follows the orders of 2026-11-09/10. The superseded draft sheet
   functions were deleted from `s_d1.py`, `s_d2.py` and `s_d3.py` (the rebuilt page was byte-identical before and after).
+- Revision D (2026-11-17): sheet 11, the system block diagram (what is measured → sensor → conditioning and ADC →
+  Arduino → laptop, plus power), and sheet 12, the interface schematic (every pin-to-pin connection with reference
+  designators, an electrical parts list and a net list). Sheet 9's wiring note and HX711 pins now point to sheet 12.
+  Parts-list statuses changed from Ordered to On hand (the owner reported every ordered part arrived, 2026-11-17).
+  Sources: the SDP8xx, HX711 and TAL221 notes, buy list §5–8 and Waveshare's BME280 schematic (read 2026-11-17).
+  These are documentation drawings; the editable circuit for the PCB will be drawn in an EDA program (TODO P2).
+  Sheets 1–8 and 10 are unchanged (`wtlib.py` was refactored with byte-identical output first).
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
   [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C).
 
@@ -39,6 +47,8 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
 | 8 | WT-06 | Force balance, sting mount and lock, floor inserts in plan, calibration set-up |
 | 9 | WT-07 | Pressure taps, probe, SDP810 and wiring |
 | 10 | WT-08 | Flanged joints, alignment and feet |
+| 11 | WT-E01 | Electrical: system block diagram (signal flow and power) |
+| 12 | WT-E02 | Electrical: interface schematic, electrical parts list and net list |
 
 ## Regenerating
 
@@ -55,13 +65,14 @@ and prints any parts-list item that no sheet shows.
 | File | What it holds |
 |---|---|
 | `wtdata.py` | Every dimension with its source, and the parts list (`ITEMS`). After sizing, change the numbers here first |
-| `wtlib.py` | Drawing primitives: lines, hatches, dimensions, callout balloons, airflow arrows, sheet frame and title block, styles |
+| `wtlib.py` | Drawing primitives: lines, hatches, dimensions, callout balloons, airflow arrows, sheet frame and title block (mechanical or electrical key), styles |
 | `wtsheets.py` | Stations along the tunnel, the balloon helper that records where each part appears, and the floor-insert helper |
 | `s_ga.py`, `s_ga2.py` | Sheets 1 and 2 |
 | `s_d1b.py` | Sheets 3–5 |
 | `s_d1.py` | Sheet 6 and the wall and flange helpers used by `s_d1b.py` |
 | `s_d2b.py` | Sheets 7 and 8 (`s_d2.py`: the shared shield and balance helpers) |
 | `s_d3b.py` | Sheets 9 and 10 (`s_d3.py`: one shared helper) |
+| `s_e.py` | Sheets 11 and 12 (electrical) and their symbol helpers: blocks, signal lines, +5V and ground symbols, net labels, resistor, capacitor, connector |
 | `build.py` | Sheet order |
 | `page.py` | The HTML page: sheets, parts list, TBD register and findings |
 
