@@ -449,6 +449,9 @@ PDFs and reading notes live in [resources/](resources/README.md).
   ×966 mbar / p_amb correction. Notes: [resources/notes/Sensirion2024.md](resources/notes/Sensirion2024.md).
 - HT Sensor (HTC), *TAL221 Miniature Load Cell*, datasheet. Reviewed 2026-11-08. The chosen load cell (100 g). Notes:
   [resources/notes/TAL221.md](resources/notes/TAL221.md).
+- Waveshare, *BME280 Environmental Sensor* board schematic, undated. Reviewed 2026-11-17. The ambient sensor board's
+  header, pull-ups and level translator. Notes:
+  [resources/notes/WaveshareBME280.md](resources/notes/WaveshareBME280.md).
 
 ### Not yet reviewed
 
@@ -540,3 +543,11 @@ Add lasting lessons here (with a link to the session log where they were learned
 - **A correlation's overall accuracy can hide a local offset** (2026-11-02, same log). Brown and Lawler's "81 % of
   points within ±5 %" is over all Re, yet at this project's Re their own data sit about 7 % above the curve. Check
   the data near the Re that matters, not just the headline fit statistic.
+- **Check which side a pinout drawing is viewed from** (2026-11-18,
+  [session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md)). The SDP8xx datasheet's p. 4 is a bottom view and p. 12 a top view, so the pin order
+  runs opposite ways. On a part with VDD next to GND, the wrong view reverses the power.
+- **In an angled photo, count header holes instead of reading the printed labels** (2026-11-18, same log). The header
+  stands above the board, so its holes appear shifted against the silkscreen. The Mega's power wires looked one or two
+  pins off until the holes were counted from the gap before A0. A meter reading settles it.
+- **Phone photos can carry a location** (2026-11-18, same log). Three of the owner's originals held an EXIF GPS block.
+  Re-encoded copies carry no metadata, so commit those and keep originals out of Git.

@@ -1,23 +1,26 @@
 # Project Status
 
-**Last updated:** 2026-11-17
-**Last commit:** `ce69a57` (2026-11-17, time estimates and D-017), pushed to `origin/main` (`UP_TO_DATE` on 2026-11-17).
+**Last updated:** 2026-11-18
+**Last commit:** `8904785` (2026-11-17, sensor circuit drawings, walk-through and D-018), pushed to `origin/main`
+(`UP_TO_DATE` on 2026-11-18).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the sensor circuit (drawing package revision D, sheets 11–12; D-018), the electronics
-  walk-through, the Waveshare BME280 schematic and notes, the parts marked arrived, and D-017's Fusion 360 note.
-  Log and commit commands: [2026-11-17 sensor circuit design](docs/sessions/2026-11-17-sensor-circuit-design.md) (§13).
+- **Not committed yet:** the first breadboard session: the power and BME280 cable readings, the delivered boards'
+  details, the walk-through corrections and eight compressed photos. Log and commit commands:
+  [2026-11-18 breadboard power and part checks](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md) (§13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Everything ordered on 2026-11-09/10 has
 arrived (owner, 2026-11-17): all the sensors and boards, the screen, tubing and fittings, brass, balls, acrylic,
-fasteners, tools, 4 kg of black PLA. Arrival checks not done yet. Still to buy: the fan (bought last, once the airspeed
+fasteners, tools, 4 kg of black PLA. Most arrival checks are not done yet. Still to buy: the fan (bought last, once the airspeed
 readout works), and any "check house" items not at home.** The owner tracks orders in
 [docs/shopping_list.md](docs/shopping_list.md). **A preliminary drawing package** of the whole tunnel (10 mechanical
 sheets, parts list, TBD register; pre-sizing, not for manufacture) is in [docs/drawings/](docs/drawings/README.md)
 (2026-11-09; revision C 2026-11-10). **Revision D (2026-11-17) adds the sensor circuit:** a system block diagram
 (sheet 11) and an interface schematic (sheet 12) with its parts and net lists ([D-018](DECISIONS.md), Tentative),
-explained for a beginner in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md). Not wired or tested yet.
+explained for a beginner in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md). **The breadboard is
+started (2026-11-18): the Mega, power rails, C2 and signal rows are wired, and the rails read 4.962 V. No sensor is
+connected or tested yet.**
 **The owner draws all the CAD from the sizing's dimension sheets (D-017, 2026-11-15), in Fusion 360 (owner,
 2026-11-17).** Planning estimate (not a result): about 70–155 h of the owner's time to the sphere validation, roughly
 mid-January to mid-May 2027 at 6–8 h a week; the owner has school and other commitments
@@ -67,7 +70,8 @@ mid-January to mid-May 2027 at 6–8 h a week; the owner has school and other co
   - access to a school lab balance;
   - since 2026-11-17, every part ordered on 2026-11-09/10 (owner: "all of the packages i bought have arrived"; arrival
     checks pending).
-- No hardware built, no data collected, no analysis code written.
+- The tunnel is not built. No experimental data, firmware or analysis code exists. The only thing built is the bench
+  breadboard's wiring ([as built](docs/experimental_setup.md#breadboard-as-built)).
 
 This is the authoritative snapshot of the project. Status labels used below:
 **Verified**, **Implemented, unverified**, **Preliminary result**, **In progress**, **Planned**,
@@ -91,7 +95,7 @@ scatter that much. Runs at several speeds must also show C_D rising with Re, abo
 | Drag force measured with load cell + HX711 | Planned |
 | Load cell calibrated against known weights | Planned |
 | Sphere Cd validation run (deliverable) | Planned. Reference and pass criterion: [D-009](DECISIONS.md) (Accepted 2026-11-02) |
-| Sensor interface circuit, designed by the owner: circuit → breadboard test → PCB | In progress: circuit drawn on paper 2026-11-17 (sheets 11–12, [D-018](DECISIONS.md), Tentative; the agent drew it at the owner's request, and the owner, a beginner in electronics, learns it from [the walk-through](docs/electronics_walkthrough.md) and will draw it in the PCB program). Breadboard next. Planned 2026-11-01 ([TODO.md](TODO.md) P2) |
+| Sensor interface circuit, designed by the owner: circuit → breadboard test → PCB | In progress: circuit drawn on paper 2026-11-17 (sheets 11–12, [D-018](DECISIONS.md), Tentative; the agent drew it at the owner's request, and the owner, a beginner in electronics, learns it from [the walk-through](docs/electronics_walkthrough.md) and will draw it in the PCB program). Breadboard started 2026-11-18: power wiring Verified by meter, no sensor connected yet. Planned 2026-11-01 ([TODO.md](TODO.md) P2) |
 | On-tunnel display with a knob and menu, like the Ender 3's | **Dropped (owner, 2026-11-08; [D-012](DECISIONS.md)):** "this isnt a device", so all output goes to the laptop. Planned 2026-11-01 |
 | Airfoil tests at set angles of attack | Planned (after validation). Owner, 2026-11-01: **preset angles** instead of the 2026-10-31 dial-and-servo idea, because a pivot would ruin the force measurement ([TODO.md](TODO.md) P3) |
 | Flow visualization with a water-mist generator | Planned, optional, **last** (owner, 2026-10-31). Only a capped injection port and a test-section window are planned now ([TODO.md](TODO.md) P2) |
@@ -130,16 +134,17 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | ECE2010 lab kit (WPI) | On hand, per its packing list (owner, 2026-11-01). Quantities are the packed ones, not counted | Includes LM741, LM348 and LMC6484 op-amps, LM311, 555, LM317T and LM7805CT regulators, transistors, MOSFETs, potentiometers (1 × 10 kΩ, 2 × 1 kΩ, 1 × 100 kΩ, 1 × 1 MΩ), resistors, capacitors, breadboard and jumper wires. No multimeter, soldering iron or power supply in the list (the owner has them separately) |
 | Tools | On hand (owner): multimeter, soldering station, bench power supply, access to a workbench (2026-11-01); **6 in (150 mm) digital calipers** (battery thought dead; LR44/SR44 size), a **hand drill** and a **spirit level** (2026-11-08); access to a **school lab balance** (2026-11-08) | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen. **Arrived by 2026-11-17 (ordered 2026-11-09/10):** tube cutter, a 0.7–3.0 mm drill-bit set, a pin vise, an LR44 for the calipers, an acrylic scoring knife ([buy list](docs/buy_list.md) §10) |
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
-| Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. Whether the board itself is marked "R3" is not yet recorded.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor (no display or knob since D-012). **Wiring planned 2026-11-17 (sheet 12, D-018):** SDA 20, SCL 21, HX711 DAT 2 and CLK 3, powered from the laptop's USB |
+| Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. The owner's 2026-11-18 photos show the R3 header layout: IOREF on the power header and pins marked SDA1 and SCL1 beside AREF. Whether those two pins join pins 20/21 is not measured.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor (no display or knob since D-012). **Wired to the breadboard 2026-11-18 (sheet 12, D-018; [as built](docs/experimental_setup.md#breadboard-as-built)):** SDA 20, SCL 21, HX711 DAT 2 and CLK 3, powered from the laptop's USB |
 | USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
 | Blower / fan | To buy; **open between two (D-011, Tentative since 2026-11-09); the owner will choose on budget. The agent recommends the S6 (2026-11-09)** | • **Why the S6 (agent, 2026-11-09; [buy list](docs/buy_list.md) §1):** about 2.0–2.1 m/s faster whatever the tunnel's true loss factor; maker's figures, where the VEVOR's 300 Pa is a seller's (at 250 Pa it would reach about 10.75 m/s, at 200 Pa about 10.0); an EC motor, likely steadier at low speed; a wider matched-Re range for the two-ball check.<br>• **AC Infinity CLOUDLINE S6, model AI-CLS6**: $99.00; maker's page (read 2026-11-08): 425 CFM, 503 Pa, PWM-controlled EC motor, 10 speed levels, 32.0 cm long. Retailers list 402 CFM. About 13.0–13.4 m/s with five window screens (straight-line estimate; 12.3–12.7 at 90 % of the curve).<br>• **VEVOR 6-inch inline duct fan, model VV-GDFJ-AC6**: $53.90 (owner, 2026-11-09); seller's figures 400 CFM, 300 Pa, AC motor with a speed controller, 60 W. About 11.3 m/s (10.8). Its "34 dB" claim is unlikely, so its 300 Pa may be optimistic.<br>Both validate; the VEVOR gives about 73 % of the S6's force at top speed. Earlier candidates and the unsuitable fans: [2026-11-07 log](docs/sessions/2026-11-07-top-speed-and-fan-search.md). Estimates: [buy list](docs/buy_list.md) §1 |
 | Fan-to-tunnel joint | Owner's design (2026-11-08) | The fan's collar, wrapped in one layer of 1/16 in 40A neoprene (on hand: 2 sheets of 12 × 12 in, arrived by 2026-11-17; no single 480 mm strip fits, so two ~240 mm pieces butted end to end), slides snugly into a printed inlet sized from the measured collar (paper strip ÷ π); duct tape seals it. The fan stands on its own feet and never touches the print. [Buy list](docs/buy_list.md) §1 |
 | Honeycomb + screens | **Screens on hand** (ordered 2026-11-09; arrived by 2026-11-17, owner; wire count not checked yet); honeycomb printed | **Screens: aluminium window insect screen, Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll from Home Depot, ordered 2026-11-09.** The maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open (computed); price paid not recorded; wire count and diameter to be checked on arrival. Also checked 2026-11-09: a 35 × 35 × 0.011 in mesh (37.9 % open) rejected; McNichols' and New York Wire's 18 × 16 × 0.011 in screens suitable ([buy list](docs/buy_list.md) §3). Four or five screens (two or three in the diffuser, two in the settling chamber; Mehta1977/1979, Scheiman1981). Rejected: McMaster 30 × 30 filter mesh (0.012–0.013 in wire, 37–41 % open: about 11.8 m/s top speed and patchy flow), Online Metals 24 × 24 × 0.014 in (44 %), McNichols perforated sheet, a TWP quote of about $200, Zoro's $65.59 sheet (too expensive). **Honeycomb: printed (owner, 2026-11-08)**, for example 6 mm hexagons with 0.4 mm walls, about 50 mm long; straws as the upgrade. Details: [buy list](docs/buy_list.md) §3 |
 | Pitot tube | **Made in-house (owner, 2026-11-08)** | A 1/8 in brass total-pressure tube facing upstream, with wall static taps (four per station) at three stations: S (settling chamber), E (test-section entrance), M (model station). Probe − M gives q at the model position (flow map, calibration); S − E gives the airspeed during force runs, calibrated once against the probe (open question 10). Brass tube, 1/8 in silicone tubing and barbed tees **on hand** (ordered, reported 2026-11-10; arrived by 2026-11-17; [buy list](docs/buy_list.md) §5). The Dwyer 166-6 ($140–167) was not chosen |
-| Differential pressure sensor | **On hand, arrived by 2026-11-17** (owner; arrival check pending). Ordered 2026-11-09 from Mouser (owner; price paid not recorded; **order confirmed 2026-11-10: Mouser 403-SDP810-125PA, maker's part SDP810-125PA**, the ±125 Pa part): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
-| Load cell + HX711 | **On hand, arrived by 2026-11-17** (owner; arrival checks pending). Ordered 2026-11-09 from SparkFun (owner; price paid not recorded): **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
-| Ambient pressure / temperature sensor | **On hand, arrived by 2026-11-17** (owner; arrival check pending): **Waveshare BME280 Environmental Sensor**, ordered 2026-11-09 instead of the Adafruit BME280 (2652, $14.95); seller and price paid not recorded | An RT9193-33 regulator and, per Waveshare's product page, an onboard 3.3/5 V level translator for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. On arrival: SDA and SCL read about 5 V with only power connected, then the chip ID reads 0x60 (not a BMP280's 0x58) ([buy list](docs/buy_list.md) §7). **Waveshare's schematic** (filed 2026-11-17, [notes](resources/notes/WaveshareBME280.md)): header 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS; 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR and CS, so the I²C address is 0x77 with ADDR left open and no extra pull-ups are needed |
-| Interface circuit | **Designed on paper 2026-11-17 ([D-018](DECISIONS.md), Tentative); not built** | Sheet 12 of the [drawing package](docs/drawings/README.md): SDP810 and BME280 on I²C pins 20/21, HX711 DAT/CLK on pins 2/3; C1 0.1 µF at the SDP810, C2 10 µF at the 5 V entry, R1/R2 5.1 kΩ pull-ups drawn but not fitted, connectors J1–J3. All from the ECE kit and parts on hand: nothing to buy. **Laptop USB is the only supply** (about 100 mA in all against 500 mA, estimate). Breadboard first, then a shield PCB (KiCad recommended, or EasyEDA; owner to choose). Explained in the [walk-through](docs/electronics_walkthrough.md) |
+| Differential pressure sensor | **On hand, arrived by 2026-11-17** (owner). The owner's photo shows `SDP810 - 125Pa`, `PN:1-101597-01`, the datasheet's order number; zero check pending. Ordered 2026-11-09 from Mouser (owner; price paid not recorded; **order confirmed 2026-11-10: Mouser 403-SDP810-125PA, maker's part SDP810-125PA**, the ±125 Pa part): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
+| Load cell + HX711 | **On hand, arrived by 2026-11-17** (owner). Photo, 2026-11-17: the HX711 board's pads are RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND; the load cell's wires are red, black, white and green. Electrical checks and the RATE jumper pending. Ordered 2026-11-09 from SparkFun (owner; price paid not recorded): **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
+| Ambient pressure / temperature sensor | **On hand, arrived by 2026-11-17** (owner; cable resistance check done 2026-11-18, the 5 V check and chip ID pending): **Waveshare BME280 Environmental Sensor**, ordered 2026-11-09 instead of the Adafruit BME280 (2652, $14.95); seller and price paid not recorded | An RT9193-33 regulator and, per Waveshare's product page, an onboard 3.3/5 V level translator for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. On arrival: SDA and SCL read about 5 V with only power connected, then the chip ID reads 0x60 (not a BMP280's 0x58) ([buy list](docs/buy_list.md) §7). **Waveshare's schematic** (filed 2026-11-17, [notes](resources/notes/WaveshareBME280.md)): header 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS; 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR and CS, so the I²C address is 0x77 with ADDR left open and no extra pull-ups are needed. **Delivered cable (photo):** a 6-pin plug to six female Dupont sockets; red, black, blue, yellow, orange, green are taken as VCC, GND, SDA, SCL, ADDR, CS (inferred from the wire order). **Measured 2026-11-18, unpowered:** red to blue, yellow, orange and green 4.605, 4.617, 4.597 and 4.617 kΩ; black to blue 145.3 kΩ |
+| Interface circuit | **Designed 2026-11-17 ([D-018](DECISIONS.md), Tentative). Breadboard In progress since 2026-11-18: power wiring Verified, no sensors yet** | Sheet 12 of the [drawing package](docs/drawings/README.md): SDP810 and BME280 on I²C pins 20/21, HX711 DAT/CLK on pins 2/3; C1 0.1 µF at the SDP810, C2 10 µF at the 5 V entry, R1/R2 5.1 kΩ pull-ups drawn but not fitted, connectors J1–J3. All from the ECE kit and parts on hand: nothing to buy. **Laptop USB is the only supply** (about 100 mA in all against 500 mA, estimate). Breadboard first, then a shield PCB (KiCad recommended, or EasyEDA; owner to choose). Explained in the [walk-through](docs/electronics_walkthrough.md). **Bench result 2026-11-18:** 4.962 V at both pairs of rails and across C2, with USB from the laptop (meter model Unknown; [as built](docs/experimental_setup.md#breadboard-as-built)) |
+| Ribbon cable and connector kit | **On hand** (owner's photo, 2026-11-17) | elechawk kit: 24 AWG 20-wire ribbon cable, PH2.0 "male" connectors 2P–8P, PH2.0 male crimp pins, heat-shrink. No crimp tool is shown. The parts look male, so they would not mate with the SDP810's male pins (open question 19) |
 | Display and knob | **Not needed (D-012, owner, 2026-11-08)** | All output goes to the laptop (the Arduino IDE's Serial Plotter for a live view) |
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
 | Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable top panel (about 8 per panel; D-014) and a side panel if one is made removable |
@@ -161,11 +166,11 @@ checked).
 | Data acquisition firmware | Planned; not started. Since D-012 (2026-11-08): log raw counts over USB to the laptop, which is also the live view (the Arduino IDE's Serial Plotter to start); no display or knob code. SDP810 commands and scale factor are in the [SDP8xx notes](resources/notes/SDP8xx.md). Pins and buses: sheet 12 ([D-018](DECISIONS.md)). Commented bring-up sketches (I²C scanner, BME280, SDP810, HX711), one per [walk-through](docs/electronics_walkthrough.md) step, proposed 2026-11-17; not written |
 | Analysis scripts (`analysis/`) | Planned; not started |
 | Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. **Revision C, 2026-11-10:** one full-length sting per ball, no sleeve or separate stems (D-016); stainless short M3 screws at the balance; the shield attached to the sphere floor insert; every parts-list status as ordered; the unused draft sheet code deleted (the page rebuilt byte-identical before the content changes). `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`). The owner's private published copy on claude.ai matched revision B and has not been republished as C or D (owner's call; TODO P0). **Revision D, 2026-11-17:** electrical sheets 11 (system block diagram) and 12 (interface schematic, electrical parts list, net list); sheet 9's wiring note and HX711 pins point to sheet 12; parts-list statuses Ordered → On hand. `wtlib.py` gained an electrical key and title-block fields, refactored first with byte-identical output |
-| Electronics walk-through ([docs/electronics_walkthrough.md](docs/electronics_walkthrough.md)) | Written 2026-11-17 for a beginner: the ideas needed, how the wiring and pins were decided, reading the schematic, power, the breadboard bring-up steps (Planned), breadboard to PCB, self-check questions, resources. Documentation only; not checked against built hardware |
+| Electronics walk-through ([docs/electronics_walkthrough.md](docs/electronics_walkthrough.md)) | Written 2026-11-17 for a beginner: the ideas needed, how the wiring and pins were decided, reading the schematic, power, the breadboard bring-up steps (Planned), breadboard to PCB, self-check questions, resources. Documentation only. Corrected 2026-11-18 from the delivered parts (HX711 pad names, SDP810 pin view, BME280 cable and first checks); the sensor steps are not yet tested |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a` and `ce69a57`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57` and `8904785`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -317,10 +322,18 @@ None. No experiment has been run.
     electronics background), with snapshots of sheets 11 and 12 in `docs/images/`.
   - Marked the arrived parts On hand (shopping list "Got it", a note in the buy list, the drawings' parts list). See
     [the session log](docs/sessions/2026-11-17-sensor-circuit-design.md).
+  - Committed and pushed as `8904785`.
+- 2026-11-17/18: first breadboard work (no sensor connected).
+  - Read the delivered parts from the owner's photos. The HX711 pads are named by wire colour, and the SDP810's pin order
+    must be read from the datasheet's bottom view; the walk-through is corrected.
+  - The owner wired the Mega, rails, C2 and signal rows. Continuity passed and the rails read 4.962 V.
+  - The BME280 cable's resistances matched the schematic. Its 5 V check is next. See
+    [the session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md).
 
 ## 7. Data and analyses
 
-No data collected. No analyses completed. See [docs/data_catalog.md](docs/data_catalog.md).
+No experimental data collected. No analyses completed. See [docs/data_catalog.md](docs/data_catalog.md). Bench checks of
+the electronics are in [docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built).
 
 ## 8. Results
 
@@ -364,7 +377,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 
 - **Blocked:** the tunnel's physical build waits on sizing (build step 1). The parts are here (every ordered part
     arrived by 2026-11-17); the arrival checks and the electronics bring-up
-    ([walk-through](docs/electronics_walkthrough.md) §6) need no sizing and can start now. The fan is bought last.
+    ([walk-through](docs/electronics_walkthrough.md) §6) need no sizing and are under way. The fan is bought last.
   - The buy list is complete ([docs/buy_list.md](docs/buy_list.md)); orders are tracked in
     [docs/shopping_list.md](docs/shopping_list.md).
   - Only the fan waits on a decision: S6 or VEVOR, on the owner's budget (D-011). The agent recommends the S6. The
@@ -373,16 +386,17 @@ Estimates are spread across these files; all are **calculations from assumed val
   - Still to report: the filament amounts on hand (PLA, PETG-CF), and which "check house" items are at home (power
     strip, sealant, glue and epoxy, heat-shrink, solder, steel rule, files, hacksaw, tin snips).
   - The microcontroller is no longer a blocker: the board works (2026-11-02, §3).
-- Unchecked (2026-11-17): the SparkFun HX711 board's pad labels and RATE jumper, the BME280's cable, and whether the
-  Mega is an R3 (open question 17). SparkFun's tutorial pages refused automated reading (HTTP 403), so the owner
-  reads the board itself.
+- Still unchecked (2026-11-18): the HX711's RATE jumper, the BME280's back labels and the SDP810's pin side (open
+  question 17). Not confirmed by the owner: that R1, R2, their two feed jumpers and a loose clipped wire near the Mega's
+  power header were removed. Sheet 12 still shows the HX711 chip's pad names (TODO P2).
+- Do not commit the owner's original photos in `docs/images/`: three contain an EXIF GPS block. Use the dated copies.
 - Resolved: the owner committed the 10.2 MiB sketch PDF uncompressed in `8fda08f` (under D-004's 25 MB limit). It stays
   in Git history.
 - No known software bugs.
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-17.
+  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-18.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -403,7 +417,8 @@ Estimates are spread across these files; all are **calculations from assumed val
    - a check that the chosen pressure sensor and BME280 board work at 5 V on its I²C pins (20/21). On paper both do:
      the SDP810 takes 2.7–5.5 V with I²C up to VDD + 0.3 V (datasheet), and the Waveshare BME280 has an onboard level translator (maker's page).
      To confirm on the breadboard;
-   - minor: whether the board is marked "R3", which tells whether SDA/SCL are also brought out next to AREF.
+   - **Answered from photos, 2026-11-18:** the board has the R3 layout, with pins marked SDA1 and SCL1 beside AREF.
+     Keep using pins 20/21 until the two are shown by continuity to be joined.
    - **2026-11-17:** the wiring is drawn (sheet 12, [D-018](DECISIONS.md)). Waveshare's schematic shows the level
      translator with 4.7 kΩ pull-ups to VCC, so the board's SDA and SCL should sit at 5 V; to confirm on the
      breadboard (walk-through §6, step 1). An R3 board would let the shield PCB be Uno-sized.
@@ -546,15 +561,20 @@ Estimates are spread across these files; all are **calculations from assumed val
     small check at 0.2–3 g needs about 0.001 g readability to know a 0.2 g mass to 1 %; at 0.01 g it is about ±5 %
     (our arithmetic). Owner to check the display or label. If it reads only to 0.01 g, use larger small masses or
     weigh several together.
-17. **Details to read off the delivered electronics** (added 2026-11-17; walk-through §6, step 0): the SparkFun HX711
-    board's pad labels and RATE jumper (10 or 80 samples/s); which cable came with the BME280 board; whether the Mega
-    is an R3 (SDA and SCL next to AREF); whether the Mega has its own I²C pull-ups (about 10 kΩ from pin 20 to 5V,
-    measured unpowered).
+17. **Details to read off the delivered electronics. Mostly answered 2026-11-17/18 from photos:** the HX711 pad labels
+    (by wire colour), the BME280 cable (6-pin plug to female Dupont sockets), and the Mega's R3 layout. Still open: the
+    HX711's RATE jumper (10 or 80 samples/s), and whether the Mega has its own I²C pull-ups (about 10 kΩ from pin 20 to
+    5V, measured unpowered with R1 removed).
 18. **Which PCB program?** Added 2026-11-17. The agent recommends **KiCad**: free and open, text files that live in
     the repo, widely used at work, and it exports a STEP model of the board for Fusion 360. EasyEDA is easier and orders
     boards from JLCPCB in one click. Fusion 360's electronics workspace is a third option (the free licence's limits
     not checked). The owner's choice (TODO P2). Also open for the PCB: the J1–J3 connector type (Dupont pins on the
     breadboard; locking Grove/JST-style plugs likely on the PCB, ordered when needed; owner, 2026-11-17).
+19. **How does the SDP810 connect?** Added 2026-11-18. Its pins are male, 0.5 mm wide at 2 mm spacing. The owner's PH2.0
+    kit looks male too, so it will not mate. Agent's suggestion: a pre-crimped female 4-pin JST PH 2.0 cable. JST's
+    contact is made for a 0.5 mm post at 2.0 mm pitch, but the fit on this sensor is unproven: only 2.7 ± 0.7 mm of pin
+    projects, its thickness is not stated, nothing latches or keys the plug, and C1 would move to the breadboard end.
+    Fallback: solder wires to the pins, as first planned. Owner's choice.
 
 ## 11. Important measurements and findings
 
@@ -613,6 +633,10 @@ Worth noting:
   50–80 mA, typical; SDP810 ≤ 5.5 mA; HX711 1.5 mA plus about 4.6 mA through the load cell; BME280 under 1 mA) against
   500 mA. A sagging supply cancels for the HX711 (ratiometric) and does not affect the two digital sensors. To check
   when built: the load-cell noise on battery against on the charger.
+- **A pinout drawing's viewing side can reverse the order** (2026-11-18). The SDP8xx datasheet's p. 4 drawing is the bottom
+  view and p. 12 the top view, so their pin orders run opposite ways. Reading the wrong one would swap VDD and GND.
+- **The breadboard's power wiring works** (2026-11-18, owner's meter, Verified for this wiring only): 4.962 V at the left
+  rails, the right rails and across C2, on the laptop's USB.
 
 ## 12. Highest-priority next steps
 
@@ -620,10 +644,12 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session (commands in the
-     [session log](docs/sessions/2026-11-17-sensor-circuit-design.md#13-manual-git-commands-as-given-to-the-owner));
-   - do the arrival checks now that everything is here (TODO P2), and read off the electronics details in open
-     question 17 (HX711 pad labels and RATE jumper, the BME280 cable, R3 or not);
-   - then start the breadboard, one sensor at a time, following [the walk-through](docs/electronics_walkthrough.md) §6;
+     [session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md#13-manual-git-commands-as-given-to-the-owner)), without the original photos;
+   - **finish the BME280's step 1** (TODO P0): confirm R1, R2, their feed jumpers and the clipped wire are gone, connect
+     only its power, and check that blue and yellow read about 5 V;
+   - choose how the SDP810 connects (open question 19);
+   - do the remaining arrival checks (TODO P2), and read the HX711's RATE jumper;
+   - then continue the breadboard, one sensor at a time, following [the walk-through](docs/electronics_walkthrough.md) §6;
    - choose the PCB program, KiCad (recommended) or EasyEDA (open question 18);
    - say whether to start the sizing now (asked 2026-11-15), and, if you like, your hours a week and any deadline, to
      narrow the schedule estimate;
@@ -646,7 +672,8 @@ See [TODO.md](TODO.md) for the full list. In order:
      [TAL221](resources/notes/TAL221.md) and [WaveshareBME280](resources/notes/WaveshareBME280.md) notes);
    - still open from before: the settling-chamber spacing (open question 13), the bench supply's rating, and
      confirming D-003, D-004, D-006, D-007's open exit and D-016 (one sting per ball).
-2. **Agent, for the bench (when the owner wants them):** commented bring-up sketches in `firmware/` (I²C scanner,
+2. **Agent, for the bench (when the owner wants them; the scanner is needed at the end of BME280 step 1):** commented
+   bring-up sketches in `firmware/` (I²C scanner,
    BME280 chip ID and readings, SDP810 continuous mode, HX711 raw counts), one per walk-through step; each result
    recorded in docs/experimental_setup.md.
 3. **Agent, build step 1 (sizing):** detail the 100 mm tunnel with the parts now chosen.
@@ -678,6 +705,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a` and `ce69a57`). The account was `nuhshaheer-2007` until
-  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15 and 2026-11-17).
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57` and `8904785`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17 and 2026-11-18).
 - Branch: `main`

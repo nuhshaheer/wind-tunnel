@@ -24,7 +24,11 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
   These are documentation drawings; the editable circuit for the PCB will be drawn in an EDA program (TODO P2).
   Sheets 1–8 and 10 are unchanged (`wtlib.py` was refactored with byte-identical output first).
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
-  [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C).
+  [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C);
+  [2026-11-17 sensor circuit design](../sessions/2026-11-17-sensor-circuit-design.md) (revision D).
+- Known difference (2026-11-18): sheet 12 shows the HX711 chip's names E+, E−, A−, A+. The delivered board labels those
+  pads RED, BLK, WHT and GRN ([walk-through](../electronics_walkthrough.md) §4). The sheet will change with the owner's
+  go-ahead (TODO P2).
 
 ## Reading the sheets
 

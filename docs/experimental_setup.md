@@ -3,12 +3,13 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-17: nothing built. Every part ordered on 2026-11-09/10 has arrived (owner,
-2026-11-17; arrival checks not done yet), including the
+**Current configuration as of 2026-11-18: the tunnel is not built. The bench breadboard is started: the Mega, power rails,
+C2 and signal rows are wired, with no sensor connected ([as built](#breadboard-as-built)). Every part ordered on
+2026-11-09/10 has arrived (owner, 2026-11-17; most arrival checks not done yet), including the
 aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711, the Waveshare BME280,
 four 8 × 12 in sheets of 1/8 in cast acrylic, the 3/4 in and 1 in Delrin balls and two 1/8 in brass rods for the
-stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md). The sensor circuit is drawn, not
-built ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).**
+stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md). The sensor circuit is drawn and its
+breadboard started ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
@@ -39,7 +40,7 @@ built ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-thro
 | Overall length | About 1.15–1.3 m including a 6-inch fan (estimate). The 2026-11-02 diffuser and settling-chamber changes roughly cancel; recompute at sizing. Owner's target: about 1 m, more allowed | Estimate 2026-11-01 |
 | Construction material | 3D-printed segments on the owner's Bambu Lab P1S, aligned with holes or pins. **Joints (owner, 2026-11-09):** bolted flanges, M3 screws into brass heat-set inserts, foam tape between the faces, screens clamped between the flanges in printed frames. Proposed: PLA shells and PETG-CF for clamped or loaded parts (both on hand, amounts unknown) | Planned ([D-005](../DECISIONS.md)); joints Accepted ([D-013](../DECISIONS.md)), sizes TBD; filament Proposed ([buy list](buy_list.md) §2) |
 | Model access | One test chamber. **The top clear acrylic panel lifts off, held by magnets; the floor under the model is a replaceable insert:** a sphere insert carrying the sting hole and the sting shield, and a plain insert for model cars (owner, 2026-11-09). A removable side panel is still open. Proposed details: 1/8 in cast acrylic (four 8 × 12 in sheets ordered; owner, 2026-11-10) in a printed frame, located by pins or lips, flush inside, foam-gasketed; the inserts drop in from above onto a ledge, flush, on two pins; no magnets near ferrous parts of the balance; the sting lift-out and overload stops protect the load cell during swaps ([D-015](../DECISIONS.md)) | Accepted 2026-11-09 ([D-014](../DECISIONS.md)); details Proposed ([TODO.md](../TODO.md) P1 sizing task) |
-| CAD / drawings | No CAD yet. A preliminary 2D drawing package (pre-sizing, not for manufacture): [docs/drawings/](drawings/README.md), 2026-11-09, revision C 2026-11-10 (no sleeve, stainless screws at the balance, statuses as ordered). The owner's hand sketches: [sketches](sketches/README.md) | Drawings Implemented; design Proposed |
+| CAD / drawings | No CAD yet. A preliminary 2D drawing package (pre-sizing, not for manufacture): [docs/drawings/](drawings/README.md), 2026-11-09, revision D 2026-11-17 (revision C: no sleeve, stainless screws at the balance; revision D: electrical sheets 11–12, statuses On hand). The owner's hand sketches: [sketches](sketches/README.md) | Drawings Implemented; design Proposed |
 
 ## Flow generation and control
 
@@ -66,8 +67,8 @@ built ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-thro
 | Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; **ordered 2026-11-09; on hand since 2026-11-17** |
 | Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
-Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). **Circuit: designed on paper 2026-11-17, not
-built** ([D-018](../DECISIONS.md), Tentative; drawing package sheets 11–12; [walk-through](electronics_walkthrough.md)):
+Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). **Circuit: designed on paper 2026-11-17; breadboard
+In progress since 2026-11-18** ([D-018](../DECISIONS.md), Tentative; drawing package sheets 11–12; [walk-through](electronics_walkthrough.md)):
 the SDP810 and BME280 on I²C pins 20 (SDA) and 21 (SCL), the HX711 DAT and CLK on pins 2 and 3, C1 0.1 µF at the
 SDP810's pins, C2 10 µF at the 5 V entry, no extra pull-ups (the BME280 board has 4.7 kΩ to VCC on SDA and SCL,
 [notes](../resources/notes/WaveshareBME280.md)), all powered from the laptop's USB. Proposed 2026-11-01:
@@ -77,25 +78,60 @@ the owner designs ([TODO.md](../TODO.md) P2).
 HX711 chip facts, confirmed from the Avia datasheet rev. V2.0 ([notes](../resources/notes/HX711.md)): 24-bit ADC,
 10 or 80 samples/s, channel A gain 128 or 64 (channel B fixed at 32), input noise 50 nV rms at gain 128 and 10 SPS.
 The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), ordered 2026-11-09, on hand since
-2026-11-17. Its pad labels, excitation voltage and RATE setting are not checked yet (SparkFun's hookup guide refused
-automated reading on 2026-11-17; read them off the board).
+2026-11-17. The owner's photo shows its pads labelled RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND. Its excitation
+voltage and RATE setting are not checked yet (the RATE jumper is not on the photographed side).
 
 ## Data acquisition
 
 | Parameter | Value |
 |---|---|
 | Microcontroller / DAQ | Candidate: the owner's **Elegoo Mega 2560**, working. 2026-11-02: main chip ATMEGA2560 (owner); COM3, USB ID 2341:0042, serial number `13448474939351C0E828`; a modified Blink (200 ms delays) uploaded from Arduino IDE 2.3.10 with the AVR core 1.8.8, board "Arduino Mega or Mega 2560", and the "L" LED blinked faster. 5 V logic; I²C on pins 20 (SDA) and 21 (SCL) |
-| Wiring and power | Planned 2026-11-17 ([D-018](../DECISIONS.md), sheet 12): SDA 20, SCL 21, HX711 DAT 2 and CLK 3; everything powered from the laptop's USB through the Mega's 5V pin (about 100 mA in all, estimate). Not built |
+| Wiring and power | Planned 2026-11-17 ([D-018](../DECISIONS.md), sheet 12): SDA 20, SCL 21, HX711 DAT 2 and CLK 3; everything powered from the laptop's USB through the Mega's 5V pin (about 100 mA in all, estimate). **Breadboard started 2026-11-18; no sensors connected** ([as built](#breadboard-as-built)) |
 | Sample rate(s) | Unknown |
 | Synchronization between pressure and force | Unknown |
 | Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)), sent over USB to a laptop |
 | Display and controls | **None ([D-012](../DECISIONS.md), owner, 2026-11-08):** all output on the laptop over USB (the Arduino IDE's Serial Plotter for a live view). Planned 2026-11-01 as a 20×4 LCD and knob menu; dropped |
 
+## Breadboard as built
+
+**Status: In progress (2026-11-18).** The owner wired this on the ECE kit's breadboard. No sensor is connected, and USB
+was unplugged at the end of the session. Row numbers are read from photos and may be off by one; check them on the board.
+
+| Connection | As built | Evidence |
+|---|---|---|
+| +5 V | Mega 5V → left + rail; left + → right + by a jumper at the bottom | Hole count in the photos; continuity; 4.962 V |
+| GND | Mega GND (first of the two beside 5V) → left − rail; left − → right − at the bottom | Hole count in the photos; continuity; 4.962 V |
+| C2 (10 µF, 50 V) | + leg in row 1 → + rail; other leg in row 6 → − rail | Photos; 4.962 V from row 1 to row 6. The stripe's side is seen only at an angle |
+| SDA | Mega pin 20 → row 24 → jumper → right half, about row 23 | Photos; the wire's end at the Mega is hidden |
+| SCL | Mega pin 21 → row 35 → jumper → right half, about row 39 | Photos |
+| HX711 DAT | Mega pin 2 → right half, about row 32 | Photos |
+| HX711 CLK | Mega pin 3 → right half, about row 33 | Photos |
+| R1, R2 | Two resistors whose bands look like 5.1 kΩ, each from the + rail through a feed jumper to the SDA or SCL row | Photos. Sheet 12 marks them not fitted; the agent advised removing them. **Whether they were removed: Unknown** |
+
+**Bench checks, 2026-11-18** (owner's meter, model and accuracy Unknown; uncertainty not quantified; USB from the laptop
+for the voltages). **Verified for this power wiring only:**
+
+| Check | Condition | Result |
+|---|---|---|
+| + to − at C2 | USB unplugged, continuity | No beep |
+| Left + to right +; left − to right − | USB unplugged, continuity | Beep on both |
+| Left + to left − | Powered, DC volts | 4.962 V |
+| Right + to right − | Powered, DC volts | 4.962 V |
+| C2 row 1 to row 6 | Powered, DC volts | 4.962 V |
+| BME280 cable, red to blue / yellow / orange / green | Unpowered, plugged into the board only | 4.605 / 4.617 / 4.597 / 4.617 kΩ |
+| BME280 cable, black to blue | Unpowered, plugged into the board only | 145.3 kΩ |
+
+Not done yet: the BME280's powered 5 V check, any I²C scan, and every SDP810, HX711 and load-cell test. Procedure and
+reasoning: [session log](sessions/2026-11-18-breadboard-power-and-part-checks.md).
+
+Photos: [overview 1](images/2026-11-18_breadboard-overview-1.jpg), [overview 2](images/2026-11-18_breadboard-overview-2.jpg),
+[C2 and R1](images/2026-11-18_breadboard-c2-and-r1.jpg), [signal rows](images/2026-11-18_breadboard-signal-rows.jpg).
+
 ## Test models
 
 | Model | Dimensions | Mount | Status |
 |---|---|---|---|
-| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own non-magnetic 1/8 in brass sting about 80–90 mm long, swapped whole (no 5/32 in sleeve since 2026-11-09; [D-016](../DECISIONS.md), Tentative). The sting rises through the sting hole of the replaceable sphere floor insert, inside a streamlined printed shield attached to that insert, which lifts out with it once the sting is out ([D-014](../DECISIONS.md)); below the floor it stands in the printed sting mount on an upright TAL221 in a closed box (as in Weakly2024; [D-015](../DECISIONS.md)) | Chosen; **ordered** (one pack of 10 of each size, reported 2026-11-10); brass rods for the stings ordered |
+| Validation sphere | **Delrin (acetal) balls, 3/4 in (19.05 mm, 2.85 % blockage) and 1 in (25.4 mm, 5.07 %), ±0.001 in** (owner, 2026-11-08), run at matched Re (3/4 in at 13 m/s against 1 in at 9.75 m/s). Reference C_D: Brown and Lawler Eq. (19) at each run's Re, ±10 % ([D-009](../DECISIONS.md)) | Proposed: each ball press-fit on its own non-magnetic 1/8 in brass sting about 80–90 mm long, swapped whole (no 5/32 in sleeve since 2026-11-09; [D-016](../DECISIONS.md), Tentative). The sting rises through the sting hole of the replaceable sphere floor insert, inside a streamlined printed shield attached to that insert, which lifts out with it once the sting is out ([D-014](../DECISIONS.md)); below the floor it stands in the printed sting mount on an upright TAL221 in a closed box (as in Weakly2024; [D-015](../DECISIONS.md)) | Chosen; **on hand since 2026-11-17** (one pack of 10 of each size, and the brass rods for the stings) |
 | Airfoil | Unknown | Same sting, with a preset-angle adapter | Planned (after validation) |
 
 ## Parts on hand
@@ -104,11 +140,12 @@ Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (20
 
 | Item | Source | Notes |
 |---|---|---|
-| Every part ordered on 2026-11-09/10 (sensors and boards, screen, tubing and fittings, brass, balls, acrylic, fasteners, tools, PLA) | Owner, 2026-11-17 ("all of the packages i bought have arrived") | Listed in [shopping_list.md](shopping_list.md), marked Got it. **Arrival checks not done yet**; the instruments are in the Instrumentation table above |
+| Every part ordered on 2026-11-09/10 (sensors and boards, screen, tubing and fittings, brass, balls, acrylic, fasteners, tools, PLA) | Owner, 2026-11-17 ("all of the packages i bought have arrived") | Listed in [shopping_list.md](shopping_list.md), marked Got it. **Most arrival checks not done yet**; the instruments are in the Instrumentation table above |
+| Ribbon cable and connector kit (elechawk) | Owner's [photo](images/2026-11-17_ph2-ribbon-connector-kit.jpg), 2026-11-17 | 24 AWG 20-wire ribbon, PH2.0 "male" connectors 2P–8P, PH2.0 male crimp pins, heat-shrink. No crimp tool shown; quantities not counted |
 | Bambu Lab P1S 3D printer | Owner, 2026-10-30 | Build volume 256 × 256 × 256 mm (manufacturer spec) |
-| Elegoo Mega 2560 | Owner, 2026-11-01 ("that is what it looks like at least"); main chip ATMEGA2560 (owner, 2026-11-02) | **Working:** Blink upload Verified 2026-11-02 (see Data acquisition). A USB A-to-B cable that carries data is on hand. Whether the board is printed "R3" is not recorded |
+| Elegoo Mega 2560 | Owner, 2026-11-01 ("that is what it looks like at least"); main chip ATMEGA2560 (owner, 2026-11-02) | **Working:** Blink upload Verified 2026-11-02 (see Data acquisition). A USB A-to-B cable that carries data is on hand. The 2026-11-18 photos show the R3 layout (IOREF; SDA1 and SCL1 beside AREF) |
 | Magnets | Owner, 2026-11-01; count and size 2026-11-09 | **43, round, 8 mm × 2 mm**; probably neodymium (not confirmed); strength unknown |
-| Digital calipers | Owner, 2026-11-08 | 6 in (150 mm) range; model and accuracy unknown; battery thought dead (button cell, LR44/SR44 size); an LR44 is ordered (reported 2026-11-10) |
+| Digital calipers | Owner, 2026-11-08 | 6 in (150 mm) range; model and accuracy unknown; battery thought dead (button cell, LR44/SR44 size); an LR44 is on hand since 2026-11-17 |
 | Hand drill | Owner, 2026-11-08 | Model unknown |
 | Spirit level | Owner, 2026-11-08 | Size unknown |
 | Filament and nozzle | Owner, 2026-11-09 | PLA and PETG-CF, amounts unknown; a hardened-steel nozzle for the P1S |
@@ -166,3 +203,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-10 | Order details recorded: four 8 × 12 in acrylic sheets; the SDP810 order confirmed as Mouser 403-SDP810-125PA. Stale settling-chamber and diffuser-screen entries updated. Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-order-details-and-cylinders.md) |
 | 2026-11-10 | Consistency audit against the latest decisions (owner's request): the sphere mount now described through the replaceable floor insert with the shield attached (D-014) instead of "a fixed shield and a floor slot"; balls, sting rods and HX711 marked ordered; screens as ordered; drawings revised to C (no sleeve or separate stems, stainless screws at the balance). Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-consistency-audit.md) |
 | 2026-11-17 | Every ordered part reported arrived (owner). Sensor circuit designed on paper: laptop USB power, one I²C bus for the SDP810 and BME280, the HX711 on pins 2/3, a shield PCB later ([D-018](../DECISIONS.md), Tentative; drawing package revision D, sheets 11–12; [walk-through](electronics_walkthrough.md)). Nothing wired or tested | [2026-11-17](sessions/2026-11-17-sensor-circuit-design.md) |
+| 2026-11-18 | Breadboard started by the owner: Mega power, rails, C2 and signal rows wired, no sensor connected; rails and C2 read 4.962 V; BME280 cable checked by resistance; delivered boards' labels recorded | [2026-11-18](sessions/2026-11-18-breadboard-power-and-part-checks.md) |

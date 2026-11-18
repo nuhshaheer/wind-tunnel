@@ -52,6 +52,15 @@ Our reading, 2026-11-17 (drawing package sheet 12 and [the walk-through](../../d
 - **The power-only arrival check is predicted to read about 5 V** on SDA and SCL (they are pulled up to VCC). About 3.3 V
   would contradict this schematic: stop and check before wiring SDA and SCL to the Mega.
 
+## The delivered board (added 2026-11-18)
+
+- Owner's [photo](../../docs/images/2026-11-17_bme280-board-and-cable.jpg): a 5-pin regulator, two 6-pin translator chips and
+  eight resistors marked 472 (4.7 kΩ), consistent with the schematic. No pin labels on the photographed side.
+- The cable is a white 6-pin plug to six female Dupont sockets. Its wire order at the plug is red, black, blue, yellow,
+  orange, green, taken as header pins 1–6 (inferred).
+- Owner's meter, unpowered, cable in the board: red to blue, yellow, orange and green 4.605, 4.617, 4.597 and 4.617 kΩ;
+  black to blue 145.3 kΩ. This fits red being VCC with four 4.7 kΩ pull-ups. It does not identify the four signal wires.
+
 ## References worth following up
 
 - Bosch's BME280 datasheet (on the resources "Wanted" list): chip ID 0xD0 = 0x60, accuracy, measurement modes.

@@ -466,3 +466,8 @@ Template:
   SparkFun HX711 board's pad labels and RATE setting are not yet checked on the delivered board.
 - Status: Tentative (agent's design, 2026-11-17). The owner has not confirmed it; the breadboard test (walk-through
   §6) checks it. The PCB program (KiCad recommended, or EasyEDA) is the owner's choice, still open.
+  - Note (2026-11-18): the delivered HX711 board labels its bridge pads RED, BLK, WHT and GRN (E+, E−, A−, A+ are the chip's
+    names), plus YLW, unused here. The owner built the breadboard's power wiring and it passed (4.962 V); R1 and R2 were
+    fitted there, though this decision leaves them out, and removal was advised but not confirmed. How the SDP810's pins
+    connect is open (PROJECT_STATUS open question 19). The design itself is unchanged
+    ([session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md)).

@@ -1,9 +1,9 @@
 # Wind Tunnel
 
-> **Status (2026-11-17): planning / pre-build.** Every part except the fan has arrived (2026-11-17); nothing is built
-> yet and no data has been collected. The sensor circuit is drawn (drawing package sheets 11–12) and explained in
-> [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md). Next: breadboarding the circuit, and sizing the
-> tunnel (build step 1).
+> **Status (2026-11-18): planning / pre-build.** Every part except the fan has arrived (2026-11-17). The tunnel is not
+> built and no experimental data exist. The sensor circuit is drawn (drawing package sheets 11–12) and explained in
+> [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md); its breadboard has working power wiring, with no
+> sensor connected yet. Next: bringing up the sensors one at a time, and sizing the tunnel (build step 1).
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
 > The complete parts list is [docs/buy_list.md](docs/buy_list.md), and the order tracker is
 > [docs/shopping_list.md](docs/shopping_list.md).
@@ -17,7 +17,7 @@ A small wind tunnel with my own instrumentation: flow conditioning, a pitot tube
 ## Why it matters
 Of the three projects, this is the only one that shows me as a mechanical engineer doing fluids, which is the work aerospace companies hire MEs into.
 
-## Hardware (as of 2026-11-17)
+## Hardware (as of 2026-11-18)
 
 The tunnel: an open-circuit blower with the fan at the front, a 100 mm × 100 mm test section, 3D-printed in bolted
 segments, with a 13 m/s target top speed ([DECISIONS.md](DECISIONS.md) D-005, D-007, D-008, D-010, D-013).
@@ -32,7 +32,7 @@ D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs
 - Multimeter, soldering station, bench power supply, calipers, hand drill, spirit level, 43 magnets (8 × 2 mm), and
   access to a school lab balance
 
-### Arrived 2026-11-17 (ordered 2026-11-09/10; not checked yet)
+### Arrived 2026-11-17 (ordered 2026-11-09/10; most checks still to do)
 - Airspeed: a Sensirion SDP810-125Pa differential pressure sensor, with a home-made brass pitot probe and wall
   pressure taps
 - Drag: two TAL221 100 g load cells and a SparkFun HX711
@@ -117,7 +117,7 @@ No analysis code exists yet, so there are no analysis commands to run.
 ## Requirements and checks
 
 The helper scripts need only Python 3 (standard library; Python 3.9 or newer expected) and Git. The tests pass on
-Python 3.11 on Windows 11 (last run 2026-11-10); earlier sessions used 3.13.
+Python 3.11 on Windows 11 (last run 2026-11-18); earlier sessions used 3.13.
 
 ```bash
 python -m unittest discover -s tests -v   # tests for the helper scripts

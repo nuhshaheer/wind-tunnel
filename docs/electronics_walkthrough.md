@@ -1,7 +1,8 @@
 # Sensor circuit walk-through
 
-**Status: Planned.** Nothing on this page is built or tested yet (written 2026-11-17). Numbers marked *estimate* are our
-arithmetic, not measurements. When a step is built and tested, record the result with its date in
+**Status: In progress.** The breadboard's power wiring passed its meter checks on 2026-11-18. No sensor has been connected
+or tested yet, so the sensor steps are still Planned (written 2026-11-17, corrected 2026-11-18 from the delivered parts).
+Numbers marked *estimate* are our arithmetic, not measurements. When a step is built and tested, record the result with its date in
 [experimental_setup.md](experimental_setup.md) and update this page.
 
 **Who this is for:** anyone building this tunnel's electronics with no electronics background. It explains *why* the
@@ -10,7 +11,8 @@ change it with confidence.
 
 **The drawings:** sheet 11 (block diagram) and sheet 12 (schematic) of the [drawing package](drawings/README.md).
 The pictures below are snapshots of revision D; the drawing package is the master copy. If they ever disagree, the
-drawing package wins.
+drawing package wins, with one known exception: sheet 12 shows the HX711 chip's names (E+, E−, A−, A+), while the
+delivered board labels those pads by wire colour (Section 4).
 
 Contents:
 
@@ -183,14 +185,21 @@ Always wire by the pin *numbers and names*, never by the position on the drawing
 - **A1, Arduino Mega 2560 (Elegoo).** Uses only 5V, GND, 20 (SDA), 21 (SCL), 2 and 3, plus the USB socket to the laptop.
 - **A3, Waveshare BME280 board.** Its 6-pin header is 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS (Waveshare's
   schematic). Leave **ADDR and CS unconnected**: the board pulls both high, which selects I²C mode at address 0x77.
-  Grounding ADDR would change the address to 0x76.
+  Grounding ADDR would change the address to 0x76. The delivered cable ends in six **female** sockets, which cannot plug
+  straight into a breadboard or the Mega: press a male header into the breadboard and plug them onto it. By their order
+  at the plug, the wires are red VCC, black GND, blue SDA, yellow SCL, orange ADDR and green CS (inferred; Section 6,
+  step 1 checks what it can).
 - **U1, SDP810-125Pa.** Four pins at 2 mm spacing, too close for a breadboard. Solder four thin wires straight to the
   pins (a quick joint, no flux near the two pressure ports) and solder **C1** across pins 2 (VDD) and 3 (GND), which
-  sit next to each other. Its two barbs take the pressure tubes (sheet 9).
-- **A2, SparkFun HX711 board, and LC1, the load cell.** The load cell's four wires solder **directly** to the HX711 board:
-  red → E+, black → E−, white → A−, green → A+ (TAL221 datasheet colours). On the other side, VCC and VDD both go to
-  +5 V (one powers the analog half, one the digital half), GND to ground, DAT to pin 2, CLK to pin 3. The B+ and B−
-  pads (a second channel) are not used. The board's exact pad labels are still to be checked on the delivered board.
+  sit next to each other. A female 2 mm plug is being considered instead (Section 10); C1 would then go at the breadboard
+  end. Its two barbs take the pressure tubes (sheet 9). **Looking straight at the pins, with the moulded SENSIRION
+  upright, they run SDA, GND, VDD, SCL from left to right, with a small "1" by SCL** (datasheet p. 4, bottom view). The
+  p. 12 drawing is seen from the other side, so its order runs the opposite way. Mixing them up swaps power and ground.
+- **A2, SparkFun HX711 board, and LC1, the load cell.** The load cell's four wires solder **directly** to the HX711 board,
+  each to the pad of its own colour: red → **RED**, black → **BLK**, white → **WHT**, green → **GRN**. (On the schematic
+  these are the chip's E+, E−, A− and A+.) **YLW** stays empty, because this cell has no yellow wire. On the other side,
+  VCC and VDD both go to +5 V (one powers the analog half, one the digital half), GND to ground, DAT to pin 2, CLK to
+  pin 3. Leave the two unlabelled pads near CLK and GND empty.
 - **J1–J3** are the plugs where each sensor's cable meets the interface. They all use the same order: **1 = +5V,
   2 = GND, then the two signals**.
 
@@ -222,7 +231,8 @@ other supply is needed for the electronics. The fan has its own mains supply and
 | BME280 board | under 1 mA |
 | **Total** | **about 100 mA**, against the 500 mA a USB 2.0 port supplies |
 
-USB voltage can sag a little (to about 4.7 V). That does not matter much: the SDP810 and BME280 keep their own
+This project's breadboard measured **4.962 V** at its rails on the laptop's USB (2026-11-18). USB voltage can sag a
+little (to about 4.7 V). That does not matter much: the SDP810 and BME280 keep their own
 calibration, and the HX711 measures the load cell *relative to its own supply*, so slow changes cancel.
 
 Two things to check once it works:
@@ -242,6 +252,8 @@ take 7–12 V on its barrel jack and make its own 5 V.
 - Nothing in this circuit touches mains. Keep it that way.
 - Solder with ventilation, and park the iron in its stand.
 - Add **one part at a time**, and test it before adding the next.
+- **Match the meter mode to the power.** Use continuity and resistance only with USB unplugged, and DC volts with USB
+  plugged in. A capacitor across the supply does not make the meter keep beeping; a steady beep from + to − means a short.
 
 **A breadboard in one sentence:** the holes in each short row of five are joined underneath, and the long rails along
 the edges are joined along their length. Use one rail for +5 V and one for GND.
@@ -251,24 +263,33 @@ the edges are joined along their length. Use one rail for +5 V and one for GND.
 - Do the arrival checks in [TODO.md](../TODO.md) (P2, "Arrival checks"), including the load cell's wire resistances
   (red–black about 1,090 Ω, green–white about 1,000 Ω), and record the results.
 - Look beside the Mega's AREF pin for two pins labelled SDA and SCL. If they are there, it is an R3 board (this matters
-  for the PCB, Section 7).
+  for the PCB, Section 7). This project's board has them, marked SDA1 and SCL1.
 - With the Mega **unpowered**, measure the resistance from pin 20 to the 5V pin. About 10 kΩ means the board has its
   own I²C pull-ups; much higher means it has none. Either is fine; just record it.
+- Wire the rails and C2, then test them before adding anything else. With USB unplugged, each + rail should beep to the
+  other + rail, each − rail to the other − rail, and + to − should not keep beeping. With USB plugged in, + to − should
+  read about 5 V on each side and across C2, red probe on +. This project read 4.962 V at all three (2026-11-18).
 
 ### Step 1: BME280 alone
 
-1. Connect **only** VCC to 5V and GND to GND. Plug in USB. Measure SDA to GND and SCL to GND with the multimeter.
+1. With USB unplugged and the cable in the board only, measure resistance from the red wire to blue, yellow, orange and
+   green: about 4.7 kΩ each. Black to blue should be far higher. (This project: 4.597–4.617 kΩ and 145.3 kΩ, 2026-11-18.)
+2. Press a male header into the breadboard and plug on red, black, blue and yellow. Leave orange and green loose. Connect
+   **only** red to +5 V and black to GND, and check both by continuity before powering.
+3. Plug in USB. Measure blue to GND and yellow to GND with the multimeter.
    - About **5 V**: the level translator works. Continue.
-   - About **3.3 V**: there is no translation. **Stop**; do not connect SDA and SCL to the Mega.
-2. Unplug, connect SDA to pin 20 and SCL to pin 21, plug in, and run an **I²C scanner** sketch (a short program that
-   calls every address and lists the ones that answer). Pass: it finds **0x77**.
-3. Read the chip-ID register (0xD0). Pass: **0x60**, a real BME280. (0x58 would mean a BMP280, which has no humidity.)
-4. Breathe on it: humidity should jump. Hold a fingertip on it: temperature should rise. A test must show a change you
+   - About **3.3 V** or near 0 V: **Stop**; do not connect SDA and SCL to the Mega.
+4. Unplug, connect blue (SDA) to pin 20 and yellow (SCL) to pin 21, plug in, and run an **I²C scanner** sketch (a short
+   program that calls every address and lists the ones that answer). Pass: it finds **0x77**. If it finds nothing, try
+   swapping blue and yellow.
+5. Read the chip-ID register (0xD0). Pass: **0x60**, a real BME280. (0x58 would mean a BMP280, which has no humidity.)
+6. Breathe on it: humidity should jump. Hold a fingertip on it: temperature should rise. A test must show a change you
    caused.
 
 ### Step 2: add the SDP810
 
-1. Solder the four wires and C1 (Section 4). Find pin 1 against the datasheet drawing (p. 12) **before** soldering.
+1. Solder the four wires and C1 (Section 4), or fit the chosen plug. Find pin 1 from the **pin side**, using the datasheet's
+   p. 4 bottom view, **before** connecting anything, and confirm each wire to its pin by continuity.
 2. Connect it to 5V, GND, 20 and 21 alongside the BME280. Pass: the scanner finds **0x25 and 0x77**.
 3. Start continuous measurement (command 0x3615) and read it; 240 counts = 1 Pa for this part.
 4. With both ports joined by a short tube (or capped), the reading should sit within about 0.1 Pa of zero. Blow gently
@@ -283,7 +304,7 @@ the edges are joined along their length. Use one rail for +5 V and one for GND.
 4. Read raw counts. Pass: steady with nothing on it. Then set a coin on the free end (a US penny is 2.5 g): the
    counts change, and return when it is removed.
    - **Do not press it with a finger.** The cell is rated 100 g and safe only to 150 g; a firm press is far more.
-5. Measure the voltage between E+ and E− (the excitation) and record it.
+5. Measure the voltage between the RED and BLK pads (the excitation, E+ and E−) and record it.
 
 ### Step 4: everything together
 
@@ -392,9 +413,12 @@ Learn each idea just before you need it.
 
 | Item | Status | Decided by |
 |---|---|---|
-| HX711 board pad labels and RATE jumper (10 or 80 samples/s) | To check | Reading the delivered SparkFun board |
-| Which cable came with the BME280 board | To check | Looking at the delivered board |
-| Is the Mega an R3 (SDA and SCL beside AREF)? | To check | Step 0 above |
+| HX711 board pad labels | **Answered 2026-11-17:** RED, BLK, WHT, GRN, YLW; VDD, VCC, DAT, CLK, GND | Owner's photo |
+| HX711 RATE jumper (10 or 80 samples/s) | To check | The back of the delivered board |
+| Which cable came with the BME280 board | **Answered 2026-11-17:** 6-pin plug to six female Dupont sockets | Owner's photo |
+| Which BME280 wire is which | Partly checked: red is VCC-side by resistance; the others inferred from their order | Back labels, or the I²C scan |
+| How the SDP810 connects | Open: soldered wires, or a pre-crimped female JST PH 2.0 cable (fit unproven) | Owner |
+| Is the Mega an R3 (SDA and SCL beside AREF)? | **Answered 2026-11-18:** yes, marked SDA1 and SCL1 | Owner's photos |
 | Do the Mega's own I²C pull-ups exist? | To check | Step 0 above |
 | Cable lengths W1–W3 | TBD | Box positions at sizing |
 | Connector type for J1–J3 on the PCB | TBD | Shield design |
@@ -405,6 +429,11 @@ Learn each idea just before you need it.
 Add photos as the build goes: one of each breadboard step, the solder joints on the SDP810 and the HX711, and the HX711
 board's pad labels. Put them in [docs/images/](images/) named `YYYY-MM-DD_short-description.jpg`, compressed to about
 2 MB or less ([data/README.md](../data/README.md)), and link them in the section they show.
+
+So far: the [BME280 board and cable](images/2026-11-17_bme280-board-and-cable.jpg), the
+[HX711 board and load cell](images/2026-11-17_hx711-board-and-tal221.jpg), the
+[SDP810](images/2026-11-17_sdp810-125pa.jpg) and the first
+[breadboard wiring](images/2026-11-18_breadboard-overview-2.jpg).
 
 ---
 

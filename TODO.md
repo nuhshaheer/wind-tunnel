@@ -8,6 +8,11 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
+- [ ] **Owner, at the bench: finish the BME280's step 1** (new 2026-11-18; exact steps in
+  [the session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md#12-recommended-first-task-for-the-next-agent)). First confirm that R1, R2, their
+  two feed jumpers and the loose clipped wire are gone. Connect only red and black, then measure blue and yellow against
+  GND. **Agent:** write the I²C scanner when the owner reaches it. Outcome: 0x77 found and chip ID 0x60 read. Verify: the
+  readings and scan result recorded in docs/experimental_setup.md.
 - [ ] **Owner: choose the fan, the S6 or the VEVOR** (D-011, Tentative since 2026-11-09; "ill consult my budget
   and choose later"). Not ordered yet. **The agent recommends the S6** (2026-11-09): about 2 m/s faster whatever the
   tunnel's true loss factor, makers' figures rather than a seller's, and an EC motor that is likely steadier at low
@@ -30,7 +35,7 @@ Owner tasks are physical or account actions that an agent cannot do.
     up to about 305 mm long;
   - ~~the SDP810 part number on the Mouser order~~ **answered 2026-11-10: Mouser 403-SDP810-125PA, maker's part
     SDP810-125PA** (owner), the ±125 Pa part;
-  - **filament on hand:** PLA (4 kg black is ordered; the tunnel needs roughly 3–4 kg in all) and PETG-CF (the loaded
+  - **filament on hand:** PLA (4 kg black arrived by 2026-11-17; the tunnel needs roughly 3–4 kg in all) and PETG-CF (the loaded
     parts need roughly 0.5–1 kg; buy plain PETG only if less is left);
   - which **"check house" items** are at home: power strip, sealant, super glue and epoxy, heat-shrink, solder, steel
     rule, files, hacksaw, tin snips;
@@ -56,7 +61,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   Still needed:
   - the bench supply's maximum voltage and current (on its label or front panel);
   - any other electronics the owner has (a photo works);
-  - minor: whether the Mega board is printed "R3" (the main chip already reads ATMEGA2560);
+  - ~~whether the Mega board is printed "R3"~~ **answered by the 2026-11-18 photos: R3 layout, with SDA1 and SCL1 beside
+    AREF**;
   - whether to file the ECE kit's packing list (`PartsListECE2010.pdf`, in the owner's Downloads folder) in the repo
     as evidence for the kit inventory (asked 2026-11-01, not answered).
 
@@ -331,7 +337,8 @@ Owner tasks are physical or account actions that an agent cannot do.
     ([D-018](DECISIONS.md), Tentative), explained in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md).
     The sensors stay on cables in their own places; the shield carries only three 4-pin connectors (J1–J3), C2 and empty
     pads for pull-ups R1 and R2, because the BME280 board already has pull-ups. This supersedes the socket list below.
-    Next:
+    **2026-11-18: the breadboard is started.** The Mega, power rails, C2 and signal rows are wired and the power passed
+    ([as built](docs/experimental_setup.md#breadboard-as-built)); no sensor is connected. Next:
     1. the breadboard, one sensor at a time (owner; walk-through §6);
     2. the owner chooses the PCB program, **KiCad (recommended) or EasyEDA**, and draws sheet 12 in it; the agent
        checks the exported net list against sheet 12;
@@ -355,6 +362,13 @@ Owner tasks are physical or account actions that an agent cannot do.
     board.
   - Verify: an I²C scan finds the pressure sensor and the BME280 through the board, and the HX711 gives a stable
     zero with the wind off.
+- [ ] **Owner: choose how the SDP810 connects** (new 2026-11-18; PROJECT_STATUS open question 19): a pre-crimped female
+  4-pin JST PH 2.0 cable (agent's suggestion; the fit is unproven and the plug can go on backwards) or wires soldered to
+  its pins. The owner's PH2.0 kit looks male and will not mate. Outcome: the connection chosen and C1's position recorded.
+  Verify: each wire traced to the correct pin by continuity, using the datasheet's p. 4 bottom view, before power.
+- [ ] **Update sheet 12 with the delivered HX711 pad names** (new 2026-11-18; waits for the owner's go-ahead): RED, BLK,
+  WHT, GRN and YLW instead of E+, E−, A−, A+; check whether the walk-through's snapshot needs replacing. Verify: `python
+  docs/drawings/page.py` rebuilds and `preview.py` shows no overlaps.
 - [ ] **Data-logging firmware** (replaces the 2026-11-01 "firmware with an on-tunnel display and knob menu", dropped by
   [D-012](DECISIONS.md) on 2026-11-08: all output goes to the laptop).
   - **First, bring-up sketches** (agent, proposed 2026-11-17): an I²C scanner, then one commented sketch per sensor,
@@ -370,8 +384,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: firmware in the repo (folder `firmware/`, documented in data/README.md when the first file exists).
     Verify: each sensor's reading follows a change the owner causes (a known mass on the load cell, blowing on a
     pressure port, a finger on the BME280), and the logged sample rate is steady over 10 minutes.
-- [ ] **Arrival checks for each new part** (owner; new 2026-11-08). **Every part arrived by 2026-11-17; none checked
-  yet.** Record each result with the date:
+- [ ] **Arrival checks for each new part** (owner; new 2026-11-08). **Every part arrived by 2026-11-17. Done so far (2026-11-17/18): the
+  SDP810's label and the BME280 cable's resistances; the HX711 board's labels are read. Everything below not marked done
+  is still open.** Record each result with the date:
   - TAL221s: wire resistances (red–black about 1090 Ω, green–white about 1000 Ω, cross pairs, body open) and the
     no-load zero, as baselines for spotting damage later;
   - BME280 (Waveshare, ordered 2026-11-09): first, with only VCC (5 V) and GND connected, SDA and SCL read about 5 V
@@ -387,9 +402,9 @@ Owner tasks are physical or account actions that an agent cannot do.
     it); acrylic, 1/8 in and acrylic rather than styrene; neoprene, 1/16 in and soft; the SDP810's label reads
     125 Pa; the drill set has 0.8–1.0 mm and 3.0 mm bits.
 
-  - added 2026-11-17: the SparkFun HX711 board's pad labels and RATE jumper, and its excitation voltage (E+ to E−,
-    powered) once wired; which cable came with the BME280; whether the Mega is an R3 (SDA and SCL next to AREF), and its
-    pin-20-to-5V resistance measured unpowered (about 10 kΩ if it has its own pull-ups).
+  - added 2026-11-17, updated 2026-11-18: the HX711's RATE jumper, and its excitation voltage (RED to BLK pads, powered)
+    once wired; the Mega's pin-20-to-5V resistance, unpowered and with R1 out (about 10 kΩ if it has its own pull-ups).
+    Answered from photos: the HX711 pad labels, the BME280's cable, the Mega's R3 layout.
 
   Details: [docs/buy_list.md](docs/buy_list.md) §5, §6, §7 and §10. Verify: values written into
   docs/experimental_setup.md.
@@ -608,3 +623,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   (Tentative), which also answers P1 "Decide the role of the op-amp circuit" (none); the Waveshare BME280 schematic
   filed with notes; [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md) for a beginner
   ([session log](docs/sessions/2026-11-17-sensor-circuit-design.md)).
+- [x] 2026-11-17: Owner committed and pushed the sensor-circuit session as `8904785`; `/catchup` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md)).
+- [x] 2026-11-18: **Breadboard power wiring checked** (owner): continuity passed and the rails and C2 read 4.962 V; no
+  sensor connected ([as built](docs/experimental_setup.md#breadboard-as-built)).
+- [x] 2026-11-18: **Delivered electronics read from photos and the walk-through corrected:** HX711 pad names, the SDP810's
+  pin view, the BME280 cable and first checks ([session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md)).

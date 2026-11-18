@@ -71,6 +71,10 @@ the gas (footnote 4), so it cannot replace the ambient sensor.
 
 **Mechanical** (pp. 4, 11–13):
 
+- **Pin views:** p. 4 is the bottom view (looking at the pins, SENSIRION upright): SDA, GND, VDD, SCL from left to right,
+  with "1" by SCL. p. 12 is the top view (sensor side): SCL, VDD, GND, SDA. Read 2026-11-18 from page images.
+- Exposed pins (p. 11, Fig. 2): 0.5 mm wide, projecting 2.7 ± 0.7 mm beyond the body. Their thickness is not given.
+- Delivered part (owner's photo, 2026-11-17): `SDP810 - 125Pa`, `PN:1-101597-01`, matching the order number above.
 - Pins (p. 4): 1 SCL, 2 VDD, 3 GND, 4 SDA. Footprint (p. 12): pins at −3, −1, +1 and +3 mm, so a **2 mm pitch**,
   Ø0.8 mm holes. The pins are 0.5 mm wide (p. 11). They do not fit 0.1 in (2.54 mm) perfboard.
 - SDP81x ports (p. 11, Fig. 2): barbs Ø5.2 ±0.2 mm at the widest, Ø3.5 ±0.2 mm at the tip; 12.6 ±0.2 mm apart;
@@ -133,3 +137,6 @@ Please confirm against the PDF (printed page = PDF page):
 6. p. 10, §6.5.1: the scale factor for the 125 Pa part.
 7. p. 11, Fig. 2: the two barb diameters, and the port spacing.
 8. p. 12, Fig. 3: the pin spacing.
+9. **Most important (added 2026-11-18):** p. 4, Table 1 drawing and p. 12, Fig. 3: read each one's pin names from left to
+   right, the "1" mark on p. 4, and which side each drawing is viewed from.
+10. p. 11, Fig. 2: the pin width and how far the pins project from the body.
