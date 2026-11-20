@@ -1,7 +1,8 @@
 # Wind Tunnel
 
-> **Status (2026-11-18): planning / pre-build.** Every part except the fan has arrived (2026-11-17). The tunnel is not
-> built and no experimental data exist. The sensor circuit is drawn (drawing package sheets 11–12) and explained in
+> **Status (2026-11-19): planning / pre-build.** Every part except the fan has arrived (2026-11-17). The tunnel is not
+> built. The only data so far are the calibration weights' true masses, weighed on a school balance (EXP-001,
+> 2026-11-19). The sensor circuit is drawn (drawing package sheets 11–12) and explained in
 > [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md); its breadboard has working power wiring, with no
 > sensor connected yet. Next: bringing up the sensors one at a time, and sizing the tunnel (build step 1).
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
@@ -84,6 +85,7 @@ docs/
   shopping_list.md        The owner's order tracker: item, qty, price, link, status (To buy → Ordered → Got it)
   data_catalog.md         Every dataset/experiment and how it was processed
   electronics_walkthrough.md  The sensor circuit explained step by step for a beginner, with bring-up steps
+  forms/                  Fill-in forms for lab and bench work (calibration-mass weighing sheet)
   images/                 Pictures used by the docs (drawing snapshots, bench photos)
   sessions/               One log per work session + SESSION_LOG.md index
   sketches/               The owner's hand sketches of the tunnel (intent, not as built)

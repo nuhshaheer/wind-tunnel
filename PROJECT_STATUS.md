@@ -1,13 +1,13 @@
 # Project Status
 
-**Last updated:** 2026-11-18
-**Last commit:** `8904785` (2026-11-17, sensor circuit drawings, walk-through and D-018), pushed to `origin/main`
-(`UP_TO_DATE` on 2026-11-18).
+**Last updated:** 2026-11-19
+**Last commit:** `ff2ac6e` (2026-11-18, breadboard power checks and delivered part details), pushed to `origin/main`
+(`UP_TO_DATE` on 2026-11-19).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the first breadboard session: the power and BME280 cable readings, the delivered boards'
-  details, the walk-through corrections and eight compressed photos. Log and commit commands:
-  [2026-11-18 breadboard power and part checks](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md) (§13).
+- **Not committed yet:** this session: the calibration weights weighed (EXP-001, the first dataset), the weighing
+  form, BME280 placement advice, and corrected weight-set and balance entries. Log and commit commands:
+  [2026-11-19 BME280 advice and mass weighing](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md) (§13).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Everything ordered on 2026-11-09/10 has
@@ -20,7 +20,8 @@ sheets, parts list, TBD register; pre-sizing, not for manufacture) is in [docs/d
 (sheet 11) and an interface schematic (sheet 12) with its parts and net lists ([D-018](DECISIONS.md), Tentative),
 explained for a beginner in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md). **The breadboard is
 started (2026-11-18): the Mega, power rails, C2 and signal rows are wired, and the rails read 4.962 V. No sensor is
-connected or tested yet.**
+connected or tested yet.** **The calibration weights are weighed (2026-11-19, [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)):** on the school's
+0.01 g balance they are −2.5 % to +1.1 % off their stamped values, so the measured masses are used.
 **The owner draws all the CAD from the sizing's dimension sheets (D-017, 2026-11-15), in Fusion 360 (owner,
 2026-11-17).** Planning estimate (not a result): about 70–155 h of the owner's time to the sphere validation, roughly
 mid-January to mid-May 2027 at 6–8 h a week; the owner has school and other commitments
@@ -67,11 +68,14 @@ mid-January to mid-May 2027 at 6–8 h a week; the owner has school and other co
   - tools: a multimeter, a soldering station, a bench power supply, 6 in digital calipers (battery may be dead), a
     hand drill and a spirit level;
   - for printing: PLA and PETG-CF (amounts unknown) and a hardened-steel nozzle;
-  - access to a school lab balance;
+  - access to a school lab balance (CGOLDENWALL HZ50002B, 5000 g, d = 0.01 g; used 2026-11-19);
+  - a calibration weight set: 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod (owner, 2026-11-19; the
+    only set bought, not the 17-piece set the buy list planned);
   - since 2026-11-17, every part ordered on 2026-11-09/10 (owner: "all of the packages i bought have arrived"; arrival
     checks pending).
-- The tunnel is not built. No experimental data, firmware or analysis code exists. The only thing built is the bench
-  breadboard's wiring ([as built](docs/experimental_setup.md#breadboard-as-built)).
+- The tunnel is not built. No firmware or analysis code exists. The only thing built is the bench breadboard's wiring
+  ([as built](docs/experimental_setup.md#breadboard-as-built)). The only data: the calibration weights' masses
+  ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), 2026-11-19).
 
 This is the authoritative snapshot of the project. Status labels used below:
 **Verified**, **Implemented, unverified**, **Preliminary result**, **In progress**, **Planned**,
@@ -93,7 +97,7 @@ scatter that much. Runs at several speeds must also show C_D rising with Re, abo
 | Tunnel built with flow conditioning | Planned (design research In progress) |
 | Airspeed measured with pitot tube + differential pressure sensor | Planned |
 | Drag force measured with load cell + HX711 | Planned |
-| Load cell calibrated against known weights | Planned |
+| Load cell calibrated against known weights | Planned. The masses were weighed on 2026-11-19 ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)) |
 | Sphere Cd validation run (deliverable) | Planned. Reference and pass criterion: [D-009](DECISIONS.md) (Accepted 2026-11-02) |
 | Sensor interface circuit, designed by the owner: circuit → breadboard test → PCB | In progress: circuit drawn on paper 2026-11-17 (sheets 11–12, [D-018](DECISIONS.md), Tentative; the agent drew it at the owner's request, and the owner, a beginner in electronics, learns it from [the walk-through](docs/electronics_walkthrough.md) and will draw it in the PCB program). Breadboard started 2026-11-18: power wiring Verified by meter, no sensor connected yet. Planned 2026-11-01 ([TODO.md](TODO.md) P2) |
 | On-tunnel display with a knob and menu, like the Ender 3's | **Dropped (owner, 2026-11-08; [D-012](DECISIONS.md)):** "this isnt a device", so all output goes to the laptop. Planned 2026-11-01 |
@@ -132,7 +136,7 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 |---|---|---|
 | Bambu Lab P1S 3D printer | On hand (owner has access, stated 2026-10-30) | Build volume 256 × 256 × 256 mm (manufacturer spec). **2026-11-09 (owner):** PLA and PETG-CF on hand (amounts unknown) and a hardened-steel nozzle, so PETG-CF can be printed |
 | ECE2010 lab kit (WPI) | On hand, per its packing list (owner, 2026-11-01). Quantities are the packed ones, not counted | Includes LM741, LM348 and LMC6484 op-amps, LM311, 555, LM317T and LM7805CT regulators, transistors, MOSFETs, potentiometers (1 × 10 kΩ, 2 × 1 kΩ, 1 × 100 kΩ, 1 × 1 MΩ), resistors, capacitors, breadboard and jumper wires. No multimeter, soldering iron or power supply in the list (the owner has them separately) |
-| Tools | On hand (owner): multimeter, soldering station, bench power supply, access to a workbench (2026-11-01); **6 in (150 mm) digital calipers** (battery thought dead; LR44/SR44 size), a **hand drill** and a **spirit level** (2026-11-08); access to a **school lab balance** (2026-11-08) | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen. **Arrived by 2026-11-17 (ordered 2026-11-09/10):** tube cutter, a 0.7–3.0 mm drill-bit set, a pin vise, an LR44 for the calipers, an acrylic scoring knife ([buy list](docs/buy_list.md) §10) |
+| Tools | On hand (owner): multimeter, soldering station, bench power supply, access to a workbench (2026-11-01); **6 in (150 mm) digital calipers** (battery thought dead; LR44/SR44 size), a **hand drill** and a **spirit level** (2026-11-08); access to a **school lab balance** (2026-11-08; a CGOLDENWALL HZ50002B, 5000 g, d = 0.01 g, owner 2026-11-19) | Models unknown. The bench supply's maximum voltage and current are unknown; they matter only if a 12 V DC fan is chosen. **Arrived by 2026-11-17 (ordered 2026-11-09/10):** tube cutter, a 0.7–3.0 mm drill-bit set, a pin vise, an LR44 for the calipers, an acrylic scoring knife ([buy list](docs/buy_list.md) §10) |
 | Other electronics | Unknown | The owner thinks more is on hand (2026-11-01); not listed yet |
 | Microcontroller | **On hand, working: Elegoo Mega 2560.** Blink upload **Verified** 2026-11-02 (owner's test) | Evidence, 2026-11-02:<br>• The owner read ATMEGA2560 on the main chip. The owner's 2026-11-18 photos show the R3 header layout: IOREF on the power header and pins marked SDA1 and SCL1 beside AREF. Whether those two pins join pins 20/21 is not measured.<br>• Windows listed it on COM3 with USB ID 2341:0042, which the Arduino AVR core (1.8.8, `boards.txt`) lists under "Arduino Mega or Mega 2560". USB serial number `13448474939351C0E828` identifies this board.<br>• The owner uploaded Blink with both delays changed from 1000 to 200 ms (Arduino IDE 2.3.10, board "Arduino Mega or Mega 2560", processor ATmega2560), and the "L" LED blinked faster. A faster blink proves the upload, because a blinking LED alone could be a factory-loaded sketch.<br>From the Mega 2560 Rev3 documentation (retailer pages; not checked on this board): 5 V logic; I²C on pins 20 (SDA) and 21 (SCL), also brought out next to AREF on R3 boards; ATmega16U2 USB-serial. Covers every planned sensor (no display or knob since D-012). **Wired to the breadboard 2026-11-18 (sheet 12, D-018; [as built](docs/experimental_setup.md#breadboard-as-built)):** SDA 20, SCL 21, HX711 DAT 2 and CLK 3, powered from the laptop's USB |
 | USB A-to-B cable for the board | On hand, carries data: the board enumerated on COM3 through it (2026-11-02) | The board's original cable was lost. The owner was ordering a UGREEN 5 ft cable (2026-11-01); which cable was used on 2026-11-02 is not recorded |
@@ -142,13 +146,14 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Pitot tube | **Made in-house (owner, 2026-11-08)** | A 1/8 in brass total-pressure tube facing upstream, with wall static taps (four per station) at three stations: S (settling chamber), E (test-section entrance), M (model station). Probe − M gives q at the model position (flow map, calibration); S − E gives the airspeed during force runs, calibrated once against the probe (open question 10). Brass tube, 1/8 in silicone tubing and barbed tees **on hand** (ordered, reported 2026-11-10; arrived by 2026-11-17; [buy list](docs/buy_list.md) §5). The Dwyer 166-6 ($140–167) was not chosen |
 | Differential pressure sensor | **On hand, arrived by 2026-11-17** (owner). The owner's photo shows `SDP810 - 125Pa`, `PN:1-101597-01`, the datasheet's order number; zero check pending. Ordered 2026-11-09 from Mouser (owner; price paid not recorded; **order confirmed 2026-11-10: Mouser 403-SDP810-125PA, maker's part SDP810-125PA**, the ±125 Pa part): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
 | Load cell + HX711 | **On hand, arrived by 2026-11-17** (owner). Photo, 2026-11-17: the HX711 board's pads are RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND; the load cell's wires are red, black, white and green. Electrical checks and the RATE jumper pending. Ordered 2026-11-09 from SparkFun (owner; price paid not recorded): **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
-| Ambient pressure / temperature sensor | **On hand, arrived by 2026-11-17** (owner; cable resistance check done 2026-11-18, the 5 V check and chip ID pending): **Waveshare BME280 Environmental Sensor**, ordered 2026-11-09 instead of the Adafruit BME280 (2652, $14.95); seller and price paid not recorded | An RT9193-33 regulator and, per Waveshare's product page, an onboard 3.3/5 V level translator for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. On arrival: SDA and SCL read about 5 V with only power connected, then the chip ID reads 0x60 (not a BMP280's 0x58) ([buy list](docs/buy_list.md) §7). **Waveshare's schematic** (filed 2026-11-17, [notes](resources/notes/WaveshareBME280.md)): header 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS; 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR and CS, so the I²C address is 0x77 with ADDR left open and no extra pull-ups are needed. **Delivered cable (photo):** a 6-pin plug to six female Dupont sockets; red, black, blue, yellow, orange, green are taken as VCC, GND, SDA, SCL, ADDR, CS (inferred from the wire order). **Measured 2026-11-18, unpowered:** red to blue, yellow, orange and green 4.605, 4.617, 4.597 and 4.617 kΩ; black to blue 145.3 kΩ |
+| Ambient pressure / temperature sensor | **On hand, arrived by 2026-11-17** (owner; cable resistance check done 2026-11-18, the 5 V check and chip ID pending): **Waveshare BME280 Environmental Sensor**, ordered 2026-11-09 instead of the Adafruit BME280 (2652, $14.95); seller and price paid not recorded | An RT9193-33 regulator and, per Waveshare's product page, an onboard 3.3/5 V level translator for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. **Placement (agent, 2026-11-19):** in room air near the fan inlet, in its own open, vented printed holder, not inside the tunnel and not in the Arduino box. Inside, the air differs from the room by at most about 0.15 % in pressure and under about 0.4 °C (fan heating; estimate assuming ≤ 60 W into 0.156 kg/s), which moves the reference C_D by about 0.02 %, while a board in the flow would disturb it. The fan heating is to be checked once with the fan running (TODO P2). On arrival: SDA and SCL read about 5 V with only power connected, then the chip ID reads 0x60 (not a BMP280's 0x58) ([buy list](docs/buy_list.md) §7). **Waveshare's schematic** (filed 2026-11-17, [notes](resources/notes/WaveshareBME280.md)): header 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS; 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR and CS, so the I²C address is 0x77 with ADDR left open and no extra pull-ups are needed. **Delivered cable (photo):** a 6-pin plug to six female Dupont sockets; red, black, blue, yellow, orange, green are taken as VCC, GND, SDA, SCL, ADDR, CS (inferred from the wire order). **Measured 2026-11-18, unpowered:** red to blue, yellow, orange and green 4.605, 4.617, 4.597 and 4.617 kΩ; black to blue 145.3 kΩ |
 | Interface circuit | **Designed 2026-11-17 ([D-018](DECISIONS.md), Tentative). Breadboard In progress since 2026-11-18: power wiring Verified, no sensors yet** | Sheet 12 of the [drawing package](docs/drawings/README.md): SDP810 and BME280 on I²C pins 20/21, HX711 DAT/CLK on pins 2/3; C1 0.1 µF at the SDP810, C2 10 µF at the 5 V entry, R1/R2 5.1 kΩ pull-ups drawn but not fitted, connectors J1–J3. All from the ECE kit and parts on hand: nothing to buy. **Laptop USB is the only supply** (about 100 mA in all against 500 mA, estimate). Breadboard first, then a shield PCB (KiCad recommended, or EasyEDA; owner to choose). Explained in the [walk-through](docs/electronics_walkthrough.md). **Bench result 2026-11-18:** 4.962 V at both pairs of rails and across C2, with USB from the laptop (meter model Unknown; [as built](docs/experimental_setup.md#breadboard-as-built)) |
 | Ribbon cable and connector kit | **On hand** (owner's photo, 2026-11-17) | elechawk kit: 24 AWG 20-wire ribbon cable, PH2.0 "male" connectors 2P–8P, PH2.0 male crimp pins, heat-shrink. No crimp tool is shown. The parts look male, so they would not mate with the SDP810's male pins (open question 19) |
 | Display and knob | **Not needed (D-012, owner, 2026-11-08)** | All output goes to the laptop (the Arduino IDE's Serial Plotter for a live view) |
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
 | Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable top panel (about 8 per panel; D-014) and a side panel if one is made removable |
 | Acrylic sheet | **On hand** (ordered, reported 2026-11-10; arrived by 2026-11-17): clear cast acrylic, 1/8 in (3.2 mm), **four 8 × 12 in sheets** (owner, 2026-11-10) | For the window panels; cut by scoring and snapping. Each sheet (203 × 305 mm) gives one panel of about 300 × 120 mm plus a strip about 80 mm wide, so a window can be up to about 305 mm long (our arithmetic) |
+| Calibration weights | **On hand** (owner, 2026-11-19) | The only set bought, from Amazon (listing and price not recorded): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod (10 g from the listing); the multiples labelled #1, #2, ... on tape. Not the 17-piece 10 mg–100 g set planned in the [buy list](docs/buy_list.md) §9. **Weighed 2026-11-19** ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): −2.5 % to +1.1 % off nominal; together 165.5 g, 175.3 g with the rod, more than the TAL221's 150 g safe overload |
 | Mist or smoke generator (optional visualization) | Not decided; deferred to the end | The owner asked (2026-11-01) for one that makes thick smoke. Options compared in [TODO.md](TODO.md) P2; the agent's first choice is an ultrasonic mist maker |
 
 Budget: no fixed budget (owner, 2026-11-01), but price-conscious. **The full buy list,
@@ -167,16 +172,19 @@ checked).
 | Analysis scripts (`analysis/`) | Planned; not started |
 | Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. **Revision C, 2026-11-10:** one full-length sting per ball, no sleeve or separate stems (D-016); stainless short M3 screws at the balance; the shield attached to the sphere floor insert; every parts-list status as ordered; the unused draft sheet code deleted (the page rebuilt byte-identical before the content changes). `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`). The owner's private published copy on claude.ai matched revision B and has not been republished as C or D (owner's call; TODO P0). **Revision D, 2026-11-17:** electrical sheets 11 (system block diagram) and 12 (interface schematic, electrical parts list, net list); sheet 9's wiring note and HX711 pins point to sheet 12; parts-list statuses Ordered → On hand. `wtlib.py` gained an electrical key and title-block fields, refactored first with byte-identical output |
 | Electronics walk-through ([docs/electronics_walkthrough.md](docs/electronics_walkthrough.md)) | Written 2026-11-17 for a beginner: the ideas needed, how the wiring and pins were decided, reading the schematic, power, the breadboard bring-up steps (Planned), breadboard to PCB, self-check questions, resources. Documentation only. Corrected 2026-11-18 from the delivered parts (HX711 pad names, SDP810 pin view, BME280 cable and first checks); the sensor steps are not yet tested |
+| Weighing form ([docs/forms/calibration-mass-weighing.xlsx](docs/forms/calibration-mass-weighing.xlsx)) | Implemented 2026-11-19 and used once ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): one sheet in Times New Roman (owner's request), the balance details, three readings per piece, and mean, spread and mean − nominal by formula; Excel computed them on the owner's copy. Reset to a blank template after the filled copy was filed in `data/raw/`. Built by an agent script in the scratchpad (not kept) |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57` and `8904785`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785` and `ff2ac6e`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
 - On 2026-11-02, `python` on the owner's PC was **3.11.0** in both Git Bash and PowerShell. The `py` launcher listed
   3.10, 3.11, 3.12 and 3.14, but no 3.13. The 20 tests pass under 3.11.
 - Git 2.54, Git LFS 3.7 (installed, not enabled), GitHub CLI 2.97.
+- openpyxl 3.1.5, installed for Python 3.11 by the agent on 2026-11-19 (`python -m pip install --user openpyxl`) to write
+  the weighing form; not a project dependency. LibreOffice is not installed.
 - Arduino IDE 2.3.10 with the Arduino AVR Boards core 1.8.8, installed by the owner on 2026-11-02 (versions read from
   the program file and the core's folder). `arduino-cli` is not installed.
 - Agents reading PDFs used `pdftotext` (Git for Windows) and PyMuPDF 1.28.2, which is installed on the owner's PC
@@ -185,7 +193,7 @@ Dependencies: Python 3 standard library only, developed with Python 3.13 on Wind
 
 ## 5. Current experiments
 
-None. No experiment has been run.
+None running. EXP-001, the calibration mass weighing (2026-11-19), is complete ([data catalog](docs/data_catalog.md#exp-001-calibration-mass-weighing)).
 
 ## 6. Work completed
 
@@ -329,17 +337,28 @@ None. No experiment has been run.
   - The owner wired the Mega, rails, C2 and signal rows. Continuity passed and the rails read 4.962 V.
   - The BME280 cable's resistances matched the schematic. Its 5 V check is next. See
     [the session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md).
+  - Committed and pushed as `ff2ac6e`.
+- 2026-11-19: BME280 advice and the calibration mass weighing.
+  - `/catchup`: `UP_TO_DATE` at `ff2ac6e`; the owner had moved the original photos out of the repo.
+  - Answered: what the BME280 is for, and why it stays in room air in its own vented holder rather than inside the
+    tunnel (estimates in §3).
+  - Made a weighing form in Times New Roman at the owner's request; at school the owner weighed every calibration
+    piece three times on a CGOLDENWALL HZ50002B (d = 0.01 g), re-zeroing before each reading. Filed as EXP-001, the
+    first dataset. The set is not the one the buy list planned; corrected in the buy list, shopping list and
+    drawings' parts list (item 76). Agent's advice: no pieces under 2 g are needed. See
+    [the session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md).
 
 ## 7. Data and analyses
 
-No experimental data collected. No analyses completed. See [docs/data_catalog.md](docs/data_catalog.md). Bench checks of
+One dataset: [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), the calibration weights' masses (2026-11-19). No analysis beyond the means the sheet
+computes. See [docs/data_catalog.md](docs/data_catalog.md). Bench checks of
 the electronics are in [docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built).
 
 ## 8. Results
 
 | Result | Status | Source |
 |---|---|---|
-| None yet | n/a | n/a |
+| True masses of the 14 calibration pieces and the hanging rod, each a mean of three readings, about ±0.01 g on the school balance; −2.5 % to +1.1 % off nominal | Preliminary result (the balance was not checked against a reference mass) | `data/raw/2026-11-19_EXP-001_calibration-mass-weighing/`; [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing) |
 
 Estimates are spread across these files; all are **calculations from assumed values, not results**:
 - [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#order-of-magnitude-estimates): sphere drag, printable contraction
@@ -389,14 +408,15 @@ Estimates are spread across these files; all are **calculations from assumed val
 - Still unchecked (2026-11-18): the HX711's RATE jumper, the BME280's back labels and the SDP810's pin side (open
   question 17). Not confirmed by the owner: that R1, R2, their two feed jumpers and a loose clipped wire near the Mega's
   power header were removed. Sheet 12 still shows the HX711 chip's pad names (TODO P2).
-- Do not commit the owner's original photos in `docs/images/`: three contain an EXIF GPS block. Use the dated copies.
+- Resolved by 2026-11-19: the owner's original photos (three with an EXIF GPS block) are out of the repo; only the
+  compressed copies are committed.
 - Resolved: the owner committed the 10.2 MiB sketch PDF uncompressed in `8fda08f` (under D-004's 25 MB limit). It stays
   in Git history.
 - No known software bugs.
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-18.
+  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-19.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -557,10 +577,15 @@ Estimates are spread across these files; all are **calculations from assumed val
     - **I²C length places the Arduino box:** with the BME280 near the fan inlet and the SDP810 near the test section,
       runs under about 1 m put the box near the middle of the tunnel;
     - **turning the sting-lock screw twists the load cell** unless the mount is held (D-015).
-16. **What does the school lab balance read to?** Added 2026-11-10. Every calibration mass is weighed on it, and the
+16. **What does the school lab balance read to? Answered 2026-11-19: 0.01 g** (CGOLDENWALL HZ50002B, capacity
+    5000 g; owner). Added 2026-11-10. Every calibration mass is weighed on it, and the
     small check at 0.2–3 g needs about 0.001 g readability to know a 0.2 g mass to 1 %; at 0.01 g it is about ±5 %
     (our arithmetic). Owner to check the display or label. If it reads only to 0.01 g, use larger small masses or
     weigh several together.
+    **2026-11-19:** 0.01 g is enough for the 2–50 g pieces (one step is 0.02–0.5 % of a piece). The set bought has no
+    pieces under 2 g, and none are needed: the drag range (0.3–2.3 g) lies between the wind-off zero and the 2 g
+    pieces, so the calibration interpolates (agent; [buy list](docs/buy_list.md) §9). The balance's own accuracy is
+    unknown.
 17. **Details to read off the delivered electronics. Mostly answered 2026-11-17/18 from photos:** the HX711 pad labels
     (by wire colour), the BME280 cable (6-pin plug to female Dupont sockets), and the Mega's R3 layout. Still open: the
     HX711's RATE jumper (10 or 80 samples/s), and whether the Mega has its own I²C pull-ups (about 10 kΩ from pin 20 to
@@ -637,6 +662,13 @@ Worth noting:
   view and p. 12 the top view, so their pin orders run opposite ways. Reading the wrong one would swap VDD and GND.
 - **The breadboard's power wiring works** (2026-11-18, owner's meter, Verified for this wiring only): 4.962 V at the left
   rails, the right rails and across C2, on the laptop's USB.
+- **The calibration weights are up to 2.5 % off their stamped values** (2026-11-19, [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), Preliminary
+  result). Both 20 g pieces are about 1.1 % light, both 5 g pieces 1.1 % heavy, one 2 g piece 2.5 % light. The errors go
+  both ways, so they belong to the pieces, not to the balance's scaling. Stamped values would put up to about 1 % into
+  the load cell's slope; the measured masses are used instead. Repeatability: about 0.008 g per reading.
+- **Inside or outside the tunnel makes almost no difference to the BME280's readings** (2026-11-19; our estimate):
+  at most about 0.15 % in pressure and under about 0.4 °C from fan heating, about 0.02 % in the reference C_D. Its
+  big job is the SDP810's ×966 mbar / p_amb correction (about 5 %), which needs only room pressure.
 
 ## 12. Highest-priority next steps
 
@@ -644,7 +676,7 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session (commands in the
-     [session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md#13-manual-git-commands-as-given-to-the-owner)), without the original photos;
+     [session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md#13-manual-git-commands-as-given-to-the-owner));
    - **finish the BME280's step 1** (TODO P0): confirm R1, R2, their feed jumpers and the clipped wire are gone, connect
      only its power, and check that blue and yellow read about 5 V;
    - choose how the SDP810 connects (open question 19);
@@ -663,7 +695,6 @@ See [TODO.md](TODO.md) for the full list. In order:
    - report what is on hand: filament amounts (PLA, PETG-CF) and the "Check the house first" items in
      [docs/shopping_list.md](docs/shopping_list.md) (power strip, sealant, glue and epoxy, heat-shrink, solder, steel
      rule, files, hacksaw, tin snips);
-   - check what the school lab balance reads to (open question 16);
    - choose the fan, the S6 or the VEVOR, on budget (D-011; the agent recommends the S6), and record it as a new
      decision;
    - the screen has arrived: count 18 and 16 wires per inch, check one wire reads about 0.28 mm, store it flat;
@@ -681,7 +712,7 @@ See [TODO.md](TODO.md) for the full list. In order:
    - Settling-chamber stack: printed honeycomb, two screens (open question 13).
    - Contraction, test section with S/E/M tap stations and the probe guide, the removable top panel with the 8 × 2 mm
      magnets, the two floor inserts (D-014), the removable balance module, sting shield, sting mount and lock
-     (D-015), and stops.
+     (D-015), stops, and a small vented holder for the BME280 (2026-11-19).
    - Settle the drawing findings (open question 15), starting with the settling-chamber spacing and how the 250 mm
      sections split.
    - Then recompute the [length budget](PROJECT_BACKGROUND.md#tunnel-length-budget), the fan pressure (with the screen
@@ -697,14 +728,15 @@ See [TODO.md](TODO.md) for the full list. In order:
 7. **Now that the parts are here (owner):** the first equipment checks:
    - the load cells' baseline resistances and zero;
    - the BME280 chip ID;
-   - the SDP810 zero with the tubes capped;
-   - weighing the calibration pieces on the school balance.
+   - the SDP810 zero with the tubes capped.
+
+   (The calibration pieces were weighed on 2026-11-19, EXP-001.)
 
 ## 13. Repository
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57` and `8904785`). The account was `nuhshaheer-2007` until
-  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17 and 2026-11-18).
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785` and `ff2ac6e`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18 and 2026-11-19).
 - Branch: `main`

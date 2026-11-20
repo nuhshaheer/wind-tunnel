@@ -23,6 +23,9 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
   Sources: the SDP8xx, HX711 and TAL221 notes, buy list §5–8 and Waveshare's BME280 schematic (read 2026-11-17).
   These are documentation drawings; the editable circuit for the PCB will be drawn in an EDA program (TODO P2).
   Sheets 1–8 and 10 are unchanged (`wtlib.py` was refactored with byte-identical output first).
+- Note on revision D (2026-11-19): parts-list item 76 now describes the weight set actually bought (50, 2 × 20, 6 × 10,
+  2 × 5 and 3 × 2 g plus a 10 g hanging rod, weighed in EXP-001) instead of the planned 17-piece 10 mg–100 g set. No
+  sheet changed ([session log](../sessions/2026-11-19-bme280-advice-and-mass-weighing.md)).
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
   [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C);
   [2026-11-17 sensor circuit design](../sessions/2026-11-17-sensor-circuit-design.md) (revision D).

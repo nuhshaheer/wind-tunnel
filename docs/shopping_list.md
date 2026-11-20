@@ -6,7 +6,7 @@ Other statuses: **Deciding**, **Maybe**, **Optional**, **Check house** (buy only
 Why each part was chosen, and the alternatives, are in [buy_list.md](buy_list.md). When something arrives, tell the
 agent so it can mark it On hand there too.
 
-**Last updated:** 2026-11-17. **Everything ordered on 2026-11-09/10 has arrived** (owner, 2026-11-17); arrival checks
+**Last updated:** 2026-11-19 (the weight set row). **Everything ordered on 2026-11-09/10 has arrived** (owner, 2026-11-17); arrival checks
 are still to do (TODO P2). Prices were seen on listings on 2026-11-08/09. A **~** means a typical price that has not
 been checked. Tax and shipping are not included. Prices paid are not recorded unless stated.
 
@@ -80,7 +80,7 @@ and load-cell noise with the fan running). Choose the model before the fan stand
 | Delrin (acetal) balls, 3/4 in, ±0.001 in. Sold only in tens: the spares are for drilling practice and press-fit trials | 1 pack of 10 | ~$2.78 each (bulk price) | [McMaster](https://www.mcmaster.com/products/acetal-balls/) | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
 | Delrin (acetal) balls, 1 in, ±0.001 in. Sold only in tens | 1 pack of 10 | ~$4.42 each (bulk price) | [McMaster](https://www.mcmaster.com/products/acetal-balls/) | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
 | Brass M3 heat-set inserts. Send the agent their length and outside diameter: the printed holes are sized to them | 1 pack of 100 | $11–20 | | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
-| Calibration weight set, 10 mg–100 g, 17 pieces, with tweezers (hung in a light pan on a thread from the printed hook) | 1 | $20–40 | | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
+| Calibration weight set, 10 mg–100 g, 17 pieces, with tweezers (hung in a light pan on a thread from the printed hook) | 1 | $20–40 | | **Got it** (2026-11-17); ordered (reported 2026-11-10). **2026-11-19 (owner): the set bought is different:** 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g plus a 10 g hanging rod, from Amazon; weighed ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)) |
 
 ## Filament
 

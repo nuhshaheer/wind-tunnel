@@ -62,8 +62,8 @@ breadboard started ([D-018](../DECISIONS.md), Tentative; drawing package sheet 1
 | Measurement | Sensor | Range | Calibration | Location | Status |
 |---|---|---|---|---|---|
 | Airspeed | **One Sensirion SDP810-125Pa** with a home-made 1/8 in brass total-pressure probe and wall-tap rings at S, E and M ([buy list](buy_list.md) §5) | ±125 Pa (full scale at 14.4 m/s) | Planned: inclined water manometer for the gain; ×966 mbar / p_amb correction on every reading ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)) | Probe − M at the model station; S − E (contraction drop) during force runs | Chosen 2026-11-08; **ordered 2026-11-09 (Mouser 403-SDP810-125PA, maker's part SDP810-125PA; confirmed from the order 2026-11-10)**; **on hand since 2026-11-17** |
-| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: budget weight set, each piece weighed on a school lab balance, balance module laid on its side | Upright under the ball, in the load-cell box under the floor. The sting stands in a printed mount on the cell's top end, clamped by the owner's thumb-screw sting lock ([D-015](../DECISIONS.md), 2026-11-09) | Chosen 2026-11-08; **ordered 2026-11-09 (SparkFun)**; **on hand since 2026-11-17** |
-| Ambient pressure | **Waveshare BME280 Environmental Sensor** (onboard 3.3/5 V level translator per the maker; replaces the Adafruit 2652, owner 2026-11-09) | | | In room air near the fan inlet | Chosen 2026-11-08; **ordered 2026-11-09; on hand since 2026-11-17** |
+| Drag force | **TAL221 100 g** straight-bar load cell (two bought, one spare) + **SparkFun HX711** | 100 g (safe overload 150 g) | Planned: balance module laid on its side, with the owner's weight set (50–2 g pieces and a hanging rod), each piece weighed on a school balance on 2026-11-19 ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)); the measured masses are used, not the stamped ones | Upright under the ball, in the load-cell box under the floor. The sting stands in a printed mount on the cell's top end, clamped by the owner's thumb-screw sting lock ([D-015](../DECISIONS.md), 2026-11-09) | Chosen 2026-11-08; **ordered 2026-11-09 (SparkFun)**; **on hand since 2026-11-17** |
+| Ambient pressure | **Waveshare BME280 Environmental Sensor** (onboard 3.3/5 V level translator per the maker; replaces the Adafruit 2652, owner 2026-11-09) | | | In room air near the fan inlet, in its own open, vented printed holder away from the Arduino, the fan motor and lamps (proposed 2026-11-19); not inside the tunnel | Chosen 2026-11-08; **ordered 2026-11-09; on hand since 2026-11-17** |
 | Ambient temperature | Same BME280 | | | | Chosen 2026-11-08; **ordered 2026-11-09; on hand since 2026-11-17** |
 | Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
@@ -136,7 +136,7 @@ Photos: [overview 1](images/2026-11-18_breadboard-overview-1.jpg), [overview 2](
 
 ## Parts on hand
 
-Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (2026-11-02).
+Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (2026-11-02); the calibration weights were weighed on 2026-11-19 (EXP-001).
 
 | Item | Source | Notes |
 |---|---|---|
@@ -149,7 +149,8 @@ Recorded 2026-11-01. Nothing here has been tested except the Mega 2560 board (20
 | Hand drill | Owner, 2026-11-08 | Model unknown |
 | Spirit level | Owner, 2026-11-08 | Size unknown |
 | Filament and nozzle | Owner, 2026-11-09 | PLA and PETG-CF, amounts unknown; a hardened-steel nozzle for the P1S |
-| School lab balance | Owner, 2026-11-08 (access) | Model and readability unknown; to be used once to weigh the calibration masses |
+| School lab balance | Owner, 2026-11-08 (access); model 2026-11-19 | CGOLDENWALL HZ50002B, capacity 5000 g, d = 0.01 g (owner); calibration status Unknown. Used 2026-11-19 to weigh the calibration masses ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)) |
+| Calibration weight set | Owner, 2026-11-19 | Bought on Amazon (listing not recorded): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod; the multiples labelled #1, #2, ... on tape. Measured masses in [EXP-001](data_catalog.md#exp-001-calibration-mass-weighing) |
 | Multimeter | Owner, 2026-11-01 | Model unknown |
 | Soldering station | Owner, 2026-11-01 | Model unknown |
 | Bench power supply | Owner, 2026-11-01 | Model, maximum voltage and current unknown |
@@ -204,3 +205,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-10 | Consistency audit against the latest decisions (owner's request): the sphere mount now described through the replaceable floor insert with the shield attached (D-014) instead of "a fixed shield and a floor slot"; balls, sting rods and HX711 marked ordered; screens as ordered; drawings revised to C (no sleeve or separate stems, stainless screws at the balance). Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-consistency-audit.md) |
 | 2026-11-17 | Every ordered part reported arrived (owner). Sensor circuit designed on paper: laptop USB power, one I²C bus for the SDP810 and BME280, the HX711 on pins 2/3, a shield PCB later ([D-018](../DECISIONS.md), Tentative; drawing package revision D, sheets 11–12; [walk-through](electronics_walkthrough.md)). Nothing wired or tested | [2026-11-17](sessions/2026-11-17-sensor-circuit-design.md) |
 | 2026-11-18 | Breadboard started by the owner: Mega power, rails, C2 and signal rows wired, no sensor connected; rails and C2 read 4.962 V; BME280 cable checked by resistance; delivered boards' labels recorded | [2026-11-18](sessions/2026-11-18-breadboard-power-and-part-checks.md) |
+| 2026-11-19 | Calibration weights weighed by the owner on the school balance (CGOLDENWALL HZ50002B, d = 0.01 g; EXP-001); the weight set recorded as bought. BME280 placement: room air near the fan inlet, in its own vented holder (proposed). Breadboard unchanged | [2026-11-19](sessions/2026-11-19-bme280-advice-and-mass-weighing.md) |

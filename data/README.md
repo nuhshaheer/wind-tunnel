@@ -1,7 +1,7 @@
 # Data
 
-No experimental data has been collected yet (as of 2026-11-17). This file defines where data goes
-when it exists. The policy is recorded in [DECISIONS.md](../DECISIONS.md) (D-004) and every dataset is
+The first dataset, EXP-001 (calibration mass weighing), was recorded on 2026-11-19. This file defines where data
+goes. The policy is recorded in [DECISIONS.md](../DECISIONS.md) (D-004) and every dataset is
 listed in [docs/data_catalog.md](../docs/data_catalog.md).
 
 ## Layout

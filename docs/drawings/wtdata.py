@@ -158,7 +158,7 @@ ITEMS = [
     (75, 'Calibration pan and thread', 'Light pan hung on a thread loop, so the pull always acts at the hook.',
      'Printed pan or foil cup; fine nylon thread or light fishing line', '1', 'a few dollars', 'Check house', 'buy_list §9'),
     (76, 'Calibration mass set', 'Known masses for the load-cell calibration; each piece weighed once on the school lab balance.',
-     'Budget 17-piece set, 10 mg–100 g (sellers claim ±0.003 g, not certified). Leave the 100 g piece out', '1', '$20–40', 'On hand', 'buy_list §9'),
+     'Amazon set (owner, 2026-11-19): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod; nothing under 2 g. Weighed 2026-11-19 on a 0.01 g balance (EXP-001): −2.5 % to +1.1 % off nominal, so the measured masses are used. Masses plus preload stay under 100 g', '1', 'not recorded', 'On hand', 'buy_list §9'),
     (80, 'Wall pressure tap hole', 'Small hole that senses the wall static pressure.',
      'Ø0.8–1.0 mm, drilled square to the wall after printing (pin vise), deburred inside', '12', 'pin vise + 0.7–3.0 mm bit set', 'On hand', 'buy_list §5, §10'),
     (81, 'Tap boss', 'Thickened spot outside the wall that holds the brass stub.',

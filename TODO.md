@@ -39,7 +39,7 @@ Owner tasks are physical or account actions that an agent cannot do.
     parts need roughly 0.5–1 kg; buy plain PETG only if less is left);
   - which **"check house" items** are at home: power strip, sealant, super glue and epoxy, heat-shrink, solder, steel
     rule, files, hacksaw, tin snips;
-  - what the **school lab balance** reads to (PROJECT_STATUS open question 16);
+  - ~~what the school lab balance reads to~~ **answered 2026-11-19: 0.01 g** (CGOLDENWALL HZ50002B, 5000 g; owner);
   - ~~which CAD program you use~~ **answered 2026-11-17: Fusion 360** (owner; note on D-017);
   - optional: **hours a week and any deadline** (added 2026-11-15), to narrow the schedule estimate (about 70–155 h to
     the validation; [session log](docs/sessions/2026-11-17-time-estimates-and-cad.md#6-measurements-and-results)).
@@ -56,7 +56,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   - 6 in calipers (battery to replace), a hand drill, a spirit level;
   - 43 magnets of 8 × 2 mm;
   - PLA, PETG-CF and a hardened-steel nozzle;
-  - school lab balance access.
+  - school lab balance access (a CGOLDENWALL HZ50002B, d = 0.01 g, 2026-11-19);
+  - a calibration weight set (50–2 g and a hanging rod; owner, 2026-11-19).
 
   Still needed:
   - the bench supply's maximum voltage and current (on its label or front panel);
@@ -201,6 +202,11 @@ Owner tasks are physical or account actions that an agent cannot do.
   - **Added 2026-11-15 ([D-017](DECISIONS.md)):** the owner draws the CAD, so the sizing ends in one dimension sheet
     per printed part (flanges, bolt pattern, walls, holes, clearances) and the contraction wall as a points file to
     import as a spline in Fusion 360 (the owner's CAD program, 2026-11-17).
+  - **Added 2026-11-19:** a small open, vented holder for the BME280 board, for room air near the fan inlet: slots on
+    every side with the sensor chip facing one, screws or a snap-in slot for the board (check whether it has mounting
+    holes), a zip-tie point for the cable, about 10 cm from the fan's motor body and out of lamp light or sunlight.
+    Not inside the tunnel and not in the Arduino box. The owner measures the board (outline, holes, connector side)
+    for its dimension sheet ([session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md)).
   - Outcome: a design note in `docs/experimental_setup.md` with dimensions and the reasoning, a DECISIONS.md entry, and
     the dimension sheets and points file.
   - Verify: Reynolds number, blockage ratio, expected drag and fan duty recomputed for the chosen numbers (see
@@ -421,8 +427,18 @@ Owner tasks are physical or account actions that an agent cannot do.
   at the ball's position from a budget 10 mg–100 g set (in a light pan hung from a printed attachment on the sting's
   end, with a hook at the ball's centre; owner's idea, 2026-11-09). Weigh every piece once on the school lab balance first, and
   record those masses as raw data. Set the slope with the 2–20 g pieces; check 0.2–3 g, where the drag is.
+  **2026-11-19: the masses are weighed** ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): the set bought is 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g
+  plus a 10 g hanging rod, each now known to about ±0.01 g; use these measured masses, not the stamped ones (up to
+  2.5 % off). It has nothing under 2 g; the drag range lies between the wind-off zero and the 2 g pieces, so no smaller
+  masses are needed (solder cut by length if a low-end check is ever wanted; buy list §9). Keep masses plus preload
+  under 100 g: the whole set is 165.5 g, 175.3 g with the rod. The hanging rod (9.80 g) may replace the pan.
   Outcome: calibration dataset and fit (counts → N). Verify:
   residuals and linearity reported; calibration file referenced from the data catalog.
+- [ ] **Check the fan's heating of the tunnel air with the BME280** (new 2026-11-19; after the fan arrives). Run the fan
+  at top speed for a few minutes, hold the BME280 on its cable in the jet a hand's width past the open exit, and compare
+  its temperature with the room reading at the fan inlet. Expected under about 0.4 °C (estimate). Outcome: the
+  difference recorded as a correction or an uncertainty. Verify: both readings and the difference written into
+  docs/experimental_setup.md; if it exceeds about 1 °C, revisit where the BME280 sits.
 - [ ] **Sphere Cd validation run.** Outcome: C_D with uncertainty at several Re, compared with the reference.
   - **Reference (D-009, 2026-11-02):** Brown and Lawler Eq. (19) at each run's Re, with a band of about ±10 %. The
     analysis script computes it per run; see the [Brown2003 notes](resources/notes/Brown2003.md).
@@ -629,3 +645,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   sensor connected ([as built](docs/experimental_setup.md#breadboard-as-built)).
 - [x] 2026-11-18: **Delivered electronics read from photos and the walk-through corrected:** HX711 pad names, the SDP810's
   pin view, the BME280 cable and first checks ([session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md)).
+- [x] 2026-11-18: Owner committed and pushed the breadboard session as `ff2ac6e` and moved the original photos out of
+  the repo; `/catchup` confirmed `UP_TO_DATE` on 2026-11-19 ([session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md)).
+- [x] 2026-11-19: **Calibration weights weighed** (owner, at school): each piece three times on a CGOLDENWALL HZ50002B
+  (d = 0.01 g), re-zeroed before every reading; −2.5 % to +1.1 % off nominal ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing); weighing form in
+  [docs/forms/](docs/forms/calibration-mass-weighing.xlsx)). Answers PROJECT_STATUS open question 16.

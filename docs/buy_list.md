@@ -1,6 +1,6 @@
 # Buy List
 
-**Last updated:** 2026-11-17
+**Last updated:** 2026-11-19 (§9: the weight set actually bought and the school balance; EXP-001)
 
 **2026-11-17: the owner reports that every part ordered on 2026-11-09/10 has arrived.** Read each **Ordered** status
 below as **On hand**; the per-row arrival checks are still to do ([TODO.md](../TODO.md) P2). The fan is still to buy.
@@ -635,13 +635,13 @@ the pressure sensor's 3 % gain error against a water manometer (§5).
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |
 |---|---|---|---|---|---|---|
-| Calibration masses | A budget 17-piece set, 10 mg to 100 g, with tweezers. Sellers claim ±0.003 g; not certified | 1 | about $20–40 (listings, 2026-11-08) | Amazon, scale shops | Now | **Ordered** (reported 2026-11-10) (the 17-piece set) |
+| Calibration masses | A budget 17-piece set, 10 mg to 100 g, with tweezers. Sellers claim ±0.003 g; not certified | 1 | about $20–40 (listings, 2026-11-08) | Amazon, scale shops | Now | **On hand, but a different set** (owner, 2026-11-19): the only set bought, from Amazon (listing and price not recorded): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod (nominal from the listing). Nothing under 2 g. Weighed 2026-11-19 ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)) |
 | Thread and hook | Fine nylon thread or light fishing line, and a light hook (bent fine wire or printed) to hang masses at the ball's position | | a few dollars | | Now | Unknown (probably in the house) |
 | Manometer tubing | Clear vinyl tubing, 1/4 in (6.4 mm) inside diameter, about 2 m, for a U-tube lying on a sloped ramp | 1 | about $5–10 (typical, not checked) | Hardware store | Now | **Ordered** (reported 2026-11-10) |
 | Manometer fittings | Barbed reducers from 1/4 in to 1/8 in (2) to join the manometer to the 1/8 in pressure lines; one more 1/8 in tee (from the §5 assortment) | 2 | about $3–6 (typical, not checked) | Same | Now | **Ordered** (reported 2026-11-10) |
 | Manometer ramp | A long, straight, rigid ramp at about 1 in 10, with the tubing taped flat along it and the steel rule (§10) beside it | 1 | filament or scrap wood | Printed or wood | Later | Printed |
 | Spirit level | A small level, for the manometer ramp's base and for the tunnel and balance | | | | | On hand (owner, 2026-11-08) |
-| Lab balance | A school lab analytical balance, used once to weigh every calibration piece | | | | | Access available (owner, 2026-11-08) |
+| Lab balance | A school lab analytical balance, used once to weigh every calibration piece | | | | | **Used 2026-11-19:** CGOLDENWALL HZ50002B, capacity 5000 g, d = 0.01 g (owner); calibration status Unknown ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)) |
 | Water, food colouring, dish soap | A drop of colouring makes the water visible; a drop of soap makes the meniscus even | | | | | Probably in the house |
 
 **Subtotal:** about $28–56 (weights, tubing, fittings), less whatever is already in the house.
@@ -657,6 +657,14 @@ Notes:
   - **The owner can use a school lab balance (2026-11-08).** Weigh every piece once and record the true masses,
     with the balance's model, its readability and the date. The cheap set then becomes an accurate one. Those
     readings are calibration data: they go in `data/raw/` with a data-catalog entry, like any measurement.
+  - **2026-11-19: the set bought has no pieces under 2 g** (owner), so the 200 mg–1 g and 10–50 mg points above do not
+    apply. On the school's 0.01 g balance every piece was weighed three times
+    ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)): each is now known to about ±0.01 g on that balance,
+    and they were −2.5 % to +1.1 % off their stamped values, so the calibration uses the measured masses. The drag
+    range (0.3–2.3 g) lies between the wind-off zero (0 g, exact) and the 2 g pieces, so the calibration interpolates
+    there rather than extrapolating. Smaller masses would only add a low-end check (for example, for the sting
+    rubbing on a stop). If one is wanted: solder, weighed as one long piece and cut by length (about 3.7 g/m for
+    0.8 mm lead-free, [2026-11-10 log](sessions/2026-11-10-parts-ordering.md#6-measurements-and-results)).
 - **Loading in the drag direction, with no pulley:** a pulley's friction is unknown and could be a large part of a 1 g
   load. Instead, design the balance (load cell, base and sting) as a module that comes out of the tunnel. Lay it on
   its side so gravity pulls along the drag direction (the load cell is then flat, the way it sits in a kitchen scale)
@@ -680,7 +688,9 @@ Notes:
   - **On its side, the cell also carries the attachment's sting, the attachment and the pan**: roughly 10–15 g (estimate; an 85 mm
     1/8 in brass rod alone is about 5.7 g). That is a constant offset, zeroed out before adding masses; the
     calibration only needs the change in reading per gram. Set the slope with the 2–20 g pieces (the 50 g as a check)
-    and **leave the 100 g piece out**: with the preload it would exceed the cell's 100 g rating. Weigh the pan on the school balance too, or zero the reading with it hanging. Hooking at the ball's
+    and **leave the 100 g piece out**: with the preload it would exceed the cell's 100 g rating (2026-11-19: the set
+    bought has no 100 g piece, but its pieces total 165.5 g, so still keep masses plus preload under 100 g). Its 10 g
+    hanging rod (9.80 g measured) might hang from the hook in place of the pan; check its shape at build step 5. Weigh the pan on the school balance too, or zero the reading with it hanging. Hooking at the ball's
     centre keeps the lever arm the same as in a run; a thread loop around the sting below the ball position would pull about
     10–13 mm lower.
   - Hang the pan gently; the overload stops catch a slip (since D-015 there is no separate hold-still pin). Lower each
