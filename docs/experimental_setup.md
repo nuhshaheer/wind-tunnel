@@ -3,13 +3,14 @@
 The physical setup as it actually exists. **Unknown** means not yet decided or not yet recorded. Do not replace it
 with a guess. When the setup changes, update the **Current configuration** and add a row to the **Change history**.
 
-**Current configuration as of 2026-11-18: the tunnel is not built. The bench breadboard is started: the Mega, power rails,
-C2 and signal rows are wired, with no sensor connected ([as built](#breadboard-as-built)). Every part ordered on
+**Current configuration as of 2026-11-23: the tunnel is not built. The bench breadboard carries the whole sensor circuit:
+the SDP810, the BME280 board and the HX711 with one TAL221 soldered to it, all wired as sheet 12 and each brought up
+with its own test sketch in `firmware/` ([as built](#breadboard-as-built)). Every part ordered on
 2026-11-09/10 has arrived (owner, 2026-11-17; most arrival checks not done yet), including the
 aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711, the Waveshare BME280,
 four 8 × 12 in sheets of 1/8 in cast acrylic, the 3/4 in and 1 in Delrin balls and two 1/8 in brass rods for the
-stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md). The sensor circuit is drawn and its
-breadboard started ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).**
+stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md). The sensor circuit is drawn and built on
+the breadboard ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
@@ -68,7 +69,7 @@ breadboard started ([D-018](../DECISIONS.md), Tentative; drawing package sheet 1
 | Airfoil angle of attack | Preset angles (owner, 2026-11-01), not a servo. Proposed: an indexed hub with a pin and holes at set angles | | | | Planned, build step 7 |
 
 Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). **Circuit: designed on paper 2026-11-17; breadboard
-In progress since 2026-11-18** ([D-018](../DECISIONS.md), Tentative; drawing package sheets 11–12; [walk-through](electronics_walkthrough.md)):
+started 2026-11-18 and completed 2026-11-23, every sensor reading** ([D-018](../DECISIONS.md), Tentative; drawing package sheets 11–12; [walk-through](electronics_walkthrough.md)):
 the SDP810 and BME280 on I²C pins 20 (SDA) and 21 (SCL), the HX711 DAT and CLK on pins 2 and 3, C1 0.1 µF at the
 SDP810's pins, C2 10 µF at the 5 V entry, no extra pull-ups (the BME280 board has 4.7 kΩ to VCC on SDA and SCL,
 [notes](../resources/notes/WaveshareBME280.md)), all powered from the laptop's USB. Proposed 2026-11-01:
@@ -78,24 +79,28 @@ the owner designs ([TODO.md](../TODO.md) P2).
 HX711 chip facts, confirmed from the Avia datasheet rev. V2.0 ([notes](../resources/notes/HX711.md)): 24-bit ADC,
 10 or 80 samples/s, channel A gain 128 or 64 (channel B fixed at 32), input noise 50 nV rms at gain 128 and 10 SPS.
 The module was chosen on 2026-11-08: the SparkFun HX711 breakout (SEN-13879), ordered 2026-11-09, on hand since
-2026-11-17. The owner's photo shows its pads labelled RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND. Its excitation
-voltage and RATE setting are not checked yet (the RATE jumper is not on the photographed side).
+2026-11-17. The owner's photo shows its pads labelled RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND. **RATE: the 10
+samples/s setting**, found from the reading interval (95.5 ms, 2026-11-23; [as built](#breadboard-as-built)); the jumper
+itself was not looked at. Excitation voltage (RED to BLK): not measured yet.
 
 ## Data acquisition
 
 | Parameter | Value |
 |---|---|
 | Microcontroller / DAQ | Candidate: the owner's **Elegoo Mega 2560**, working. 2026-11-02: main chip ATMEGA2560 (owner); COM3, USB ID 2341:0042, serial number `13448474939351C0E828`; a modified Blink (200 ms delays) uploaded from Arduino IDE 2.3.10 with the AVR core 1.8.8, board "Arduino Mega or Mega 2560", and the "L" LED blinked faster. 5 V logic; I²C on pins 20 (SDA) and 21 (SCL) |
-| Wiring and power | Planned 2026-11-17 ([D-018](../DECISIONS.md), sheet 12): SDA 20, SCL 21, HX711 DAT 2 and CLK 3; everything powered from the laptop's USB through the Mega's 5V pin (about 100 mA in all, estimate). **Breadboard started 2026-11-18; no sensors connected** ([as built](#breadboard-as-built)) |
-| Sample rate(s) | Unknown |
+| Wiring and power | Planned 2026-11-17 ([D-018](../DECISIONS.md), sheet 12): SDA 20, SCL 21, HX711 DAT 2 and CLK 3; everything powered from the laptop's USB through the Mega's 5V pin (about 100 mA in all, estimate). **Breadboard complete 2026-11-23: all three sensors connected and answering** ([as built](#breadboard-as-built)) |
+| Firmware | Bring-up sketches only, one per walk-through step ([firmware/README.md](../firmware/README.md)): `i2c_scan`, `hx711_raw_counts`, `sdp810_read`, `bme280_read` (2026-11-23; each run on the bench). No combined logging sketch yet (walk-through step 4) |
+| Sample rate(s) | Bench values, 2026-11-23: HX711 about 10.5 readings/s (RATE at 10 SPS); SDP810 in continuous "average till read" mode, read every 100 ms by `sdp810_read`; BME280 read once a second by `bme280_read` (library default oversampling). The logging rate is not chosen yet |
 | Synchronization between pressure and force | Unknown |
 | Logging format | Planned: CSV with units in column headers ([data/README.md](../data/README.md)), sent over USB to a laptop |
 | Display and controls | **None ([D-012](../DECISIONS.md), owner, 2026-11-08):** all output on the laptop over USB (the Arduino IDE's Serial Plotter for a live view). Planned 2026-11-01 as a 20×4 LCD and knob menu; dropped |
 
 ## Breadboard as built
 
-**Status: In progress (2026-11-18).** The owner wired this on the ECE kit's breadboard. No sensor is connected, and USB
-was unplugged at the end of the session. Row numbers are read from photos and may be off by one; check them on the board.
+**Status: complete as a bench circuit (2026-11-23).** The owner wired this on the ECE kit's breadboard: power and signal
+rows on 2026-11-18, then every sensor on 2026-11-23, each tested (results below). The table is the 2026-11-18 power and
+signal wiring; the sensor connections follow it. Row numbers are read from photos and may be off by one; check them on
+the board.
 
 | Connection | As built | Evidence |
 |---|---|---|
@@ -132,8 +137,168 @@ wire colour to its pin from the datasheet's p. 4 bottom view (owner to send a ph
 **Unknown**). C1 moves to the breadboard end of the cable. The I²C scan finding 0x25 is the real test
 ([PROJECT_STATUS](../PROJECT_STATUS.md) open question 19).
 
+**HX711 header (owner, 2026-11-23; Implemented, unverified).** A 5-way **female** header socket is soldered on the
+HX711 board's Arduino side (VDD, VCC, DAT, CLK, GND), so it connects with male-to-male jumpers and does not plug into
+the breadboard (the walk-through's step 3 assumed male pins; either works). Soldered at about 700 °F (371 °C). The owner
+reported checking it afterwards; the neighbouring-pin continuity results were not given as numbers. **TAL221 resistance
+check at the free wire ends** (owner, 2026-11-23, before soldering): red–black and green–white "about" the datasheet's
+1090 Ω and 1000 Ω; the exact readings were not recorded. The owner then soldered all four load-cell wires to the matching
+pads (red → RED, black → BLK, white → WHT, green → GRN; YLW empty), 2026-11-23. Bridge check between neighbouring pads:
+not yet reported. Test sketch for step 3: `firmware/hx711_raw_counts/hx711_raw_counts.ino` (written 2026-11-23, not yet
+compiled or run).
+
+**Whole circuit powered, 2026-11-23** (owner's meter, model and accuracy Unknown; USB from the laptop). Everything wired
+as sheet 12: BME280 (red +5 V, black GND, blue SDA, yellow SCL; orange ADDR and green CS open), HX711 (VDD and VCC
+joined to +5 V, DAT to pin 2, CLK to pin 3), SDP810 by its PH 2.0 cable (the owner located pin 1 by the moulded "1" and
+wired by pin number: 1 SCL, 2 VDD, 3 GND, 4 SDA), C1 at the breadboard end with its longer leg to +5 V. Whether R1 and
+R2 are still fitted: Unknown. Power LED on.
+
+| Check | Result |
+|---|---|
+| + rail to − rail | 4.947 V |
+| SDA row to − rail | 4.814 V |
+| SCL row to − rail | 4.815 V |
+
+SDA and SCL sit high, so the BME280 board's pull-ups work (its step 1 check passes).
+
+**I²C scan, 2026-11-23: Verified** (`firmware/i2c_scan/i2c_scan.ino`, uploaded from Arduino IDE 2.3.10, Serial
+Monitor at 115200 baud; owner's pasted output):
+
+```
+Scanning...
+  found 0x25  SDP810
+  found 0x77  BME280 board? chip ID 0x60 = BME280, correct
+```
+
+Both sensors answer at their design addresses on one bus at 100 kHz, and the BME280's chip ID is 0x60 (a genuine
+BME280, not a BMP280). The SDP810 answering also confirms its pin mapping and power. This verifies communication only;
+neither sensor's readings are checked yet.
+
+**HX711 first readings, 2026-11-23** (`firmware/hx711_raw_counts/hx711_raw_counts.ino`, first version: one line per
+reading; owner's pasted output, 14 consecutive lines). The load cell was taped down at its wire end with the other end
+overhanging (not clamped). The owner did a penny test during the run, but the 14 lines copied hold no step, so whether
+the penny was on during them is Unknown; the Serial Monitor appears to copy only the visible lines.
+
+| Quantity | Value | How found |
+|---|---|---|
+| Time between readings | 95–97 ms (mean 95.5 ms, 13 gaps) | `time_ms` column |
+| Sample rate | about 10.5 readings/s, so the **RATE jumper is at the 10 samples/s setting** (open question 17) | 1000 / 95.5 ms; the datasheet's 10 SPS is nominal for the internal oscillator |
+| Mean count | −14,818 counts | mean of 14 readings |
+| Scatter | standard deviation 26 counts; 78 counts from lowest to highest | 14 readings over 1.4 s |
+| Scatter in grams | about 0.002 g (0.0016–0.0027 g) | **estimate**, from the TAL221's rated 0.6 ± 0.15 mV/V (about 9,700–16,100 counts per gram, ratiometric); not a calibration |
+
+Preliminary: 1.4 s of data only, so slow drift is not measured. The HX711 reads and its noise is near the datasheet's
+floor (about 21 counts rms at 5 V excitation, gain 128, 10 SPS; our arithmetic). The sketch was then changed to print
+the mean of 10 readings per line (`AVERAGE_OVER = 10`) so a whole penny test fits on screen.
+
+**HX711 penny test, 2026-11-23: Verified that the load cell and HX711 read and respond** (walk-through §6 step 3 pass
+criteria: steady with nothing on, a clear change with a penny, back on removal). Same sketch with `AVERAGE_OVER = 10`
+(one line ≈ 955 ms, the mean of 10 readings). A first try was spoiled (owner: "i messed it up"; the copied lines moved
+by at most 252 counts). For the run below the cell lay flat on its 12 mm face, taped only at its wire end, with the
+rest overhanging; one US penny was set on the free end and lifted off by hand. Owner's pasted output:
+
+```
+78154,-14548
+79109,-14654
+80063,-14714
+81017,-14789
+81972,-14786
+82926,-14803
+83880,5259
+84835,18887
+85789,18479
+86744,18425
+87698,18454
+88652,18535
+89607,18018
+90561,-8651
+91515,-15094
+92470,-14969
+93425,-14869
+94380,-14810
+95334,-14825
+```
+
+| Quantity | Value | How found |
+|---|---|---|
+| Zero before | −14,793 counts | mean of the 3 lines before the penny (the first 3 were still drifting down, by about 250 counts over 3 s) |
+| Penny on | +18,466 counts (standard deviation 277 between lines) | mean of the 6 full lines with the penny on; the lines at 83880 and 90561 ms are part-on, part-off and left out |
+| **Step from the penny** | **about 33,300 counts** (33,259 against the zero before, 33,301 against the zero after) | difference of means |
+| Return to zero | −42 counts (about 0.003 g) | mean of the 3 last lines minus the zero before |
+| Counts per gram | about 13,300 if the penny is 2.5 g (US, 1983 or later), about 10,700 if 3.11 g (1982 or earlier, copper) | step / nominal penny mass. **The penny was not weighed and its year not recorded: Preliminary** |
+| Implied rated output | about 0.62 mV/V (2.5 g) or 0.50 mV/V (3.11 g); datasheet 0.6 ± 0.15 mV/V | counts per gram ÷ (256 × 2²³ / 100 g), ratiometric |
+
+Observed, not explained: after loading, the reading settled about 400 counts within a second and the last "on" line
+fell about 450 counts more; after unloading it undershot by about 300 counts and recovered over about 3 s. Likely the
+soft tape mount letting the bar sag and recover (not tested). Load-cell creep is to be measured on the real mount at the
+calibration (build step 5). Still to do for step 3: the excitation voltage across the RED and BLK pads.
+
+**SDP810 zero and direction, 2026-11-23: Verified that it reads, zeroes and has the right sign** (walk-through §6
+step 2). `firmware/sdp810_read/sdp810_read.ino`: continuous mode 0x3615 (average till read), 10 reads 100 ms apart per
+line, dp = raw / scale factor read from the sensor. **Not corrected for ambient pressure** (× 966 mbar / p_amb), which
+does not matter at zero. Owner's pasted output:
+
+- Start-up: `# scale factor read from the sensor: 240 counts per Pa (expected 240)`, so the part is the ±125 Pa one.
+- **Zero, High and Low barbs joined by a short loop of the 1/8 in silicone tubing:** 8 lines over 8 s, dp −0.018 to
+  −0.027 Pa (mean −0.022 Pa), sensor temperature 25.47–25.51 °C, 0 bad reads. Inside the datasheet's 0.08 Pa zero-point
+  accuracy.
+- **Direction:** a short tube on one barb, the owner breathing toward its open end from a few cm. High: up to +30.5 Pa
+  (+14.5, +29.7, +25.6, +30.5, +29.0, +11.9 on the lines with breath). Low: down to −31.6 Pa (−5.8, −29.9, −25.4, −31.6).
+  The owner identified High and Low this way.
+- With the ports open between breaths the reading sat at −0.03 to −0.10 Pa (room air movement at the open ports), and
+  the sensor's own temperature rose to 27.5 °C over about 2.5 min (its heater, hands and breath nearby; not air
+  temperature).
+
+Not verified: the span (3 % of reading in the datasheet), which needs the water-manometer calibration (buy list §9).
+
+**BME280 readings, 2026-11-23** (walk-through §6 step 1, item 6). `firmware/bme280_read/bme280_read.ino` with the
+Adafruit BME280 Library (version not yet recorded) at its default settings, one line per second. Owner's pasted
+output, summarized:
+
+| Period | Pressure | Temperature | Humidity | Notes |
+|---|---|---|---|---|
+| 0–10 s, untouched | 99,606.8–99,613.8 Pa | 23.23–23.31 °C | 44.4–44.6 % | `sdp_factor` = 96600 / p = 0.9697–0.9698 |
+| 11–29 s, breath, then a fingertip on the chip | unchanged (99,606–99,620 Pa) | up to 26.26 °C | up to 78.2 % | both respond: step 1 item 6 passes |
+| From 30 s | one line −12,878.8 Pa, 181.94 °C, 100 % | then 71,853.4 Pa, 23.90 °C, 80.2 % on every line for about a minute | | one more nonsense line at 49.6 s and one line of 90,476.4 Pa at 47.6 s |
+
+**Verified** for the first 30 s: the board reads plausible room values and responds to breath and touch. Accuracy is
+not checked against any reference.
+
+**Failure from 30 s (kept for the record).** It began while the owner touched the board for the fingertip test (the
+owner breathed and blew on the board and touched it during this run). Our
+interpretation, not tested: the nonsense lines are failed reads (the bus read as all ones), and the frozen values are
+the chip's power-on reset values. The chip appears to have lost power or reset, woke in sleep mode, and the library
+went on reading the unchanged data registers. The most likely cause is a momentary contact loss on the BME280's
+Dupont connections (VCC or GND); a static discharge from the fingertip is the other candidate. A wiggle test with the
+updated sketch is to tell them apart.
+
+**Re-test with the updated sketch, 2026-11-23** (after unplugging USB and reseating; owner breathed on the board,
+wiggled wires and held a fingertip on it). Owner's pasted output, about 46–73 s after start:
+
+- Pressure 99,616.0–99,633.4 Pa throughout; humidity rose to 85.4 % with breath; temperature rose to 31.43 °C with the
+  fingertip (still rising at the end).
+- At about 63 s the sketch printed `# BME280 not measuring (mode 0)` and set the chip up again; the next line
+  (99,624.6 Pa, 26.93 °C, 82.9 %) and all after it were normal. Mode 0 means the chip answered on the bus but had
+  reset to sleep mode, so SDA and SCL were connected at that moment; the likely cause is a brief loss of VCC or GND
+  contact while wiggling, or a static discharge (not yet known which wire was being moved).
+
+**BME280: Verified that it reads plausible values, responds to breath and touch, and that the sketch detects and
+recovers from a chip reset.** Its Dupont connections are not reliable under handling: a firmer connection (a male
+header strip in the breadboard, then the PCB's locking connectors, D-018) is needed, and the logging firmware must keep
+the reset check and flag affected lines. Action: the owner to reseat the connections; the sketch now checks the mode bits
+(register 0xF4) before each line and sets the chip up again, with a message, if it is not in normal mode. Lesson for
+the logging firmware: check for this and log it, so a reset never passes as data.
+
 Photos: [overview 1](images/2026-11-18_breadboard-overview-1.jpg), [overview 2](images/2026-11-18_breadboard-overview-2.jpg),
 [C2 and R1](images/2026-11-18_breadboard-c2-and-r1.jpg), [signal rows](images/2026-11-18_breadboard-signal-rows.jpg).
+
+Photos of the whole circuit, 2026-11-23 (owner's, taken after the tests; compressed copies without metadata):
+[close-up](images/2026-11-23_breadboard-complete-closeup.jpg), [view 1](images/2026-11-23_breadboard-complete-1.jpg),
+[view 2](images/2026-11-23_breadboard-complete-2.jpg), [from above](images/2026-11-23_breadboard-complete-top.jpg).
+Seen in them: two resistors still on the board beside the SDA and SCL rows, which look like R1 and R2 (bands not
+read), so they appear to be still fitted (harmless: pull-ups, and SDA and SCL read 4.81 V); the signal jumpers flagged
+with masking tape (CLK, DAT, SDA, SCL); the SDP810 cable's joints wrapped in blue tape at staggered positions; the
+BME280 at the end of a hanging bundle of jumpers; the load cell taped at the desk's edge with its free end overhanging.
 
 ## Test models
 
@@ -214,3 +379,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-17 | Every ordered part reported arrived (owner). Sensor circuit designed on paper: laptop USB power, one I²C bus for the SDP810 and BME280, the HX711 on pins 2/3, a shield PCB later ([D-018](../DECISIONS.md), Tentative; drawing package revision D, sheets 11–12; [walk-through](electronics_walkthrough.md)). Nothing wired or tested | [2026-11-17](sessions/2026-11-17-sensor-circuit-design.md) |
 | 2026-11-18 | Breadboard started by the owner: Mega power, rails, C2 and signal rows wired, no sensor connected; rails and C2 read 4.962 V; BME280 cable checked by resistance; delivered boards' labels recorded | [2026-11-18](sessions/2026-11-18-breadboard-power-and-part-checks.md) |
 | 2026-11-19 | Calibration weights weighed by the owner on the school balance (CGOLDENWALL HZ50002B, d = 0.01 g; EXP-001); the weight set recorded as bought. BME280 placement: room air near the fan inlet, in its own vented holder (proposed). Breadboard unchanged. After the wrap the owner pushed a ready-made PH 2.0 cable onto the SDP810's pins (stiff fit; not powered, colours not yet mapped to pins) | [2026-11-19](sessions/2026-11-19-bme280-advice-and-mass-weighing.md) |
+| 2026-11-23 | Breadboard completed by the owner: female header on the HX711, one TAL221 soldered to it, the SDP810's cable spliced to jumpers (taped joints), the BME280 on jumpers, C1 at the breadboard end. Rails 4.947 V, SDA/SCL 4.81 V. Four bring-up sketches in `firmware/`; I²C scan found 0x25 and 0x77 (chip ID 0x60); HX711 penny step about 33,300 counts at 10 SPS; SDP810 zero −0.022 Pa, scale 240, correct sign; BME280 99.6 kPa, responds to breath and touch, reset once under handling (detected and recovered) | [2026-11-23](sessions/2026-11-23-sensor-bring-up.md) |

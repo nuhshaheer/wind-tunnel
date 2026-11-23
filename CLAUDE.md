@@ -71,6 +71,9 @@ python -m unittest discover -s tests -v        # tests for the two scripts
 ## Engineering conventions
 
 - SI units everywhere (Pa, m/s, N, m, kg, K or degC stated). Units in CSV column names: `time_s,dp_Pa,force_N`.
+- Firmware (Arduino sketches) goes in `firmware/<name>/<name>.ino`, indexed in `firmware/README.md`; each sketch states
+  its wiring, output columns and units at the top and prints raw values (DECISIONS.md D-019). Agents cannot compile
+  sketches here (`arduino-cli` is not installed); the owner uploads them from the Arduino IDE.
 - Analysis code goes in `analysis/`, reads from `data/raw/` or `data/processed/`, and writes to `data/processed/` or
   `results/`. Each script states inputs, outputs and units at the top. Do not hard-code calibration constants without
   citing the calibration dataset.

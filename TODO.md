@@ -8,11 +8,22 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner, at the bench: finish the BME280's step 1** (new 2026-11-18; exact steps in
-  [the session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md#12-recommended-first-task-for-the-next-agent)). First confirm that R1, R2, their
-  two feed jumpers and the loose clipped wire are gone. Connect only red and black, then measure blue and yellow against
-  GND. **Agent:** write the I²C scanner when the owner reaches it. Outcome: 0x77 found and chip ID 0x60 read. Verify: the
-  readings and scan result recorded in docs/experimental_setup.md.
+- [ ] **Owner: close the 2026-11-23 bring-up** (new 2026-11-23; [session log](docs/sessions/2026-11-23-sensor-bring-up.md) §10). Send the agent:
+  - the penny's year (1983 or later is 2.5 g, 1982 or earlier probably 3.11 g), or better, its mass from the school
+    balance, to settle the counts-per-gram estimate (about 13,300 or 10,700 counts/g);
+  - the HX711's excitation voltage: USB in, DC volts, red probe on the RED pad, black on BLK (walk-through step 3 item 5);
+  - the Adafruit BME280 Library version (Library Manager);
+  - which wire was moving when the BME280 reset at about 63 s, if remembered.
+
+  And at the bench: mark the SDP810's High barb; firm up the BME280's connection (a 6-pin male header strip pressed
+  into the breadboard, and the hanging jumper bundle taped down); remove R1 and R2 to match sheet 12, or say to keep
+  them (the photos suggest they are still fitted; harmless). Outcome: each value recorded in
+  [docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built). Verify: the 2026-11-23 log's §10 items closed.
+- [ ] **Agent, with the owner at the bench: the combined logging sketch** (walk-through step 4; new 2026-11-23). One CSV
+  line per sample with time, HX711 counts, SDP810 dp (raw and × 96600 / p_amb), BME280 p, T and RH, and a flag column
+  for BME280 resets and failed reads, following [D-019](DECISIONS.md). Details in P2 "Data-logging firmware". Outcome:
+  `firmware/logger/` (name to confirm). Verify: a 10-minute run with a steady sample rate and every value responding to
+  a change the owner causes, recorded in docs/experimental_setup.md.
 - [ ] **Owner: choose the fan, the S6 or the VEVOR** (D-011, Tentative since 2026-11-09; "ill consult my budget
   and choose later"). Not ordered yet. **The agent recommends the S6** (2026-11-09): about 2 m/s faster whatever the
   tunnel's true loss factor, makers' figures rather than a seller's, and an EC motor that is likely steadier at low
@@ -71,8 +82,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   and date. Verify: open question 9 closed.
 - [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy),
   D-006 (reference PDFs over 25 MB kept local only), D-007's open exit (no exit diffuser), D-011 (the fan, above),
-  D-016 (one full-length sting per ball, no sleeve; "confirm at sizing") and D-018 (the sensor circuit, agent's design,
-  2026-11-17; the breadboard test checks it) in [DECISIONS.md](DECISIONS.md). Verify:
+  D-016 (one full-length sting per ball, no sleeve; "confirm at sizing") D-018 (the sensor circuit, agent's design,
+  2026-11-17; the breadboard test passed on 2026-11-23) and D-019 (bring-up firmware conventions, agent's choice,
+  2026-11-23) in [DECISIONS.md](DECISIONS.md). Verify:
   status changed to Accepted (or replaced by a new decision).
 - [ ] **Owner: say whether to republish the drawings' private claude.ai copy** (added 2026-11-10). It still shows
   revision B (with the 5/32 in sleeve); the repo copy is revision D, with the electrical sheets 11 and 12
@@ -379,8 +391,10 @@ Owner tasks are physical or account actions that an agent cannot do.
     The sensors stay on cables in their own places; the shield carries only three 4-pin connectors (J1–J3), C2 and empty
     pads for pull-ups R1 and R2, because the BME280 board already has pull-ups. This supersedes the socket list below.
     **2026-11-18: the breadboard is started.** The Mega, power rails, C2 and signal rows are wired and the power passed
-    ([as built](docs/experimental_setup.md#breadboard-as-built)); no sensor is connected. Next:
-    1. the breadboard, one sensor at a time (owner; walk-through §6);
+    ([as built](docs/experimental_setup.md#breadboard-as-built)); no sensor is connected. **2026-11-23: the breadboard is complete and every sensor reads**
+    ([as built](docs/experimental_setup.md#breadboard-as-built)). Next:
+    1. ~~the breadboard, one sensor at a time~~ (done 2026-11-23); the combined logging test (walk-through step 4,
+       P0) remains;
     2. the owner chooses the PCB program, **KiCad (recommended) or EasyEDA**, and draws sheet 12 in it; the agent
        checks the exported net list against sheet 12;
     3. the shield PCB and the J1–J3 connector type (locking Grove/JST-style plugs likely; owner, 2026-11-17: order
@@ -403,14 +417,6 @@ Owner tasks are physical or account actions that an agent cannot do.
     board.
   - Verify: an I²C scan finds the pressure sensor and the BME280 through the board, and the HX711 gives a stable
     zero with the wind off.
-- [ ] **Owner: choose how the SDP810 connects** (new 2026-11-18; PROJECT_STATUS open question 19): a pre-crimped female
-  4-pin JST PH 2.0 cable (agent's suggestion; the fit is unproven and the plug can go on backwards) or wires soldered to
-  its pins. The owner's PH2.0 kit looks male and will not mate. **2026-11-19: the ready-made 4-pin PH 2.0 cable the
-  owner bought lines up with the pins; it is a stiff fit, and the owner pushed it on** (answered: the SDP810 connects
-  by this cable; C1 moves to the breadboard end). Still to do before power: mark the plug's orientation (it has no
-  key), check the pins are straight, no short between neighbouring wires, and each wire colour matched to its pin from
-  the datasheet's p. 4 bottom view (photo to the agent). Outcome: the colour-to-pin map and C1's position recorded.
-  Verify: each wire traced to the correct pin by continuity, using the datasheet's p. 4 bottom view, before power.
 - [ ] **Update sheet 12 with the delivered HX711 pad names** (new 2026-11-18; waits for the owner's go-ahead): RED, BLK,
   WHT, GRN and YLW instead of E+, E−, A−, A+; check whether the walk-through's snapshot needs replacing. Verify: `python
   docs/drawings/page.py` rebuilds and `preview.py` shows no overlaps.
@@ -419,18 +425,25 @@ Owner tasks are physical or account actions that an agent cannot do.
   - **First, bring-up sketches** (agent, proposed 2026-11-17): an I²C scanner, then one commented sketch per sensor,
     matching walk-through §6 steps 1–3, so each part is tested alone. Pins: SDA 20, SCL 21, HX711 DAT 2 and CLK 3
     (D-018). Outcome: sketches in `firmware/`. Verify: the owner's bench results for each step, recorded in
-    docs/experimental_setup.md.
+    docs/experimental_setup.md. **Done 2026-11-23:** `i2c_scan`, `hx711_raw_counts`, `sdp810_read`, `bme280_read`
+    ([firmware/README.md](firmware/README.md), [D-019](DECISIONS.md)), all passing on the bench. Lessons for the logger:
+    flag BME280 resets (check its mode bits) and failed reads in a column, and stop the SDP810 before starting it.
   - Read the HX711 (raw counts), the SDP810 (DP temperature compensation with "average till read", command 0x3615;
     240 counts/Pa; [SDP8xx notes](resources/notes/SDP8xx.md)) and the BME280; send CSV lines with a timestamp and a
     run flag over USB.
   - Log raw values only. Calibration, the ×966 mbar / p_amb correction and C_D belong in the analysis scripts
     (CLAUDE.md conventions).
   - Live view: the Arduino IDE's Serial Plotter first; a laptop script later if needed.
-  - Outcome: firmware in the repo (folder `firmware/`, documented in data/README.md when the first file exists).
+  - Outcome: firmware in the repo (folder `firmware/`, documented in [firmware/README.md](firmware/README.md)).
     Verify: each sensor's reading follows a change the owner causes (a known mass on the load cell, blowing on a
     pressure port, a finger on the BME280), and the logged sample rate is steady over 10 minutes.
 - [ ] **Arrival checks for each new part** (owner; new 2026-11-08). **Every part arrived by 2026-11-17. Done so far (2026-11-17/18): the
-  SDP810's label and the BME280 cable's resistances; the HX711 board's labels are read. Everything below not marked done
+  SDP810's label and the BME280 cable's resistances; the HX711 board's labels are read. **Done 2026-11-23**
+  ([as built](docs/experimental_setup.md#breadboard-as-built)): the soldered TAL221's resistances at its free wire ends ("about" 1090 and 1000 Ω, exact values
+  not given; cross pairs and body not measured); the BME280's 4.81 V on SDA and SCL and chip ID 0x60; the SDP810's zero
+  (−0.022 Pa with the ports looped); the HX711's rate (10 SPS, from timing). Still open below: the spare TAL221, a
+  longer no-load zero on a firm mount, the HX711's excitation voltage, the Mega's own pull-ups, the calipers, the screen
+  and the 2026-11-10 items. Everything below not marked done
   is still open.** Record each result with the date:
   - TAL221s: wire resistances (red–black about 1090 Ω, green–white about 1000 Ω, cross pairs, body open) and the
     no-load zero, as baselines for spotting damage later. Measure the resistances at the free wire ends **before**
@@ -461,7 +474,9 @@ Owner tasks are physical or account actions that an agent cannot do.
   readings at several pressures agree after correction within the manometer's estimated ±1 %.
 - [ ] **Build the load cell and its conditioning circuit.** Solder the load-cell leads directly to the HX711, with no
   breadboard in the bridge wiring (lesson from Weakly2024). Verify: stable zero over several minutes with wind off;
-  noise recorded.
+  noise recorded. **2026-11-23:** one TAL221 soldered straight to the HX711's pads (owner); 1.4 s of zero gave a
+  standard deviation of 26 counts (about 0.002 g, estimate) on a taped mount. The several-minute zero waits for a firm
+  mount (the balance module, or a clamp).
 - [ ] **Calibrate the load cell against known weights.** Method proposed 2026-11-08 ([buy list](docs/buy_list.md)
   §9): lay the balance module on its side so gravity acts in the drag direction (no pulley friction), and hang masses
   at the ball's position from a budget 10 mg–100 g set (in a light pan hung from a printed attachment on the sting's
@@ -700,3 +715,13 @@ Owner tasks are physical or account actions that an agent cannot do.
   [Anthoine2004](resources/notes/Anthoine2004.md), [Bradshaw1964](resources/notes/Bradshaw1964.md); index rows marked
   Reviewed ([session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md), the 2026-11-19 session
   continued).
+- [x] 2026-11-23: The SDP810's connection chosen and proven: the ready-made PH 2.0 cable (pushed on 2026-11-19), its
+  wires spliced to jumpers and wired by pin number from the moulded "1"; the I²C scan found 0x25 and the sensor zeroes
+  and reads the right sign ([session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
+- [x] 2026-11-23: BME280 step 1 and the whole breadboard bring-up (owner at the bench; agent's sketches): rails 4.947 V,
+  SDA/SCL 4.81 V, scan 0x25 + 0x77 with chip ID 0x60; HX711 at 10 SPS with a penny step of about 33,300 counts; SDP810
+  scale 240, zero −0.022 Pa, correct sign; BME280 99.6 kPa, 23.3 °C, 44.5 %, responding to breath and touch, one reset
+  under handling detected and recovered ([as built](docs/experimental_setup.md#breadboard-as-built); [session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
+- [x] 2026-11-23: Bring-up sketches written (agent): `firmware/i2c_scan`, `hx711_raw_counts`, `sdp810_read`,
+  `bme280_read`, with [firmware/README.md](firmware/README.md) and [D-019](DECISIONS.md) (Tentative)
+  ([session log](docs/sessions/2026-11-23-sensor-bring-up.md)).

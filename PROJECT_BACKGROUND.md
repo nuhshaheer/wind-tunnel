@@ -566,3 +566,11 @@ Add lasting lessons here (with a link to the session log where they were learned
   pins off until the holes were counted from the gap before A0. A meter reading settles it.
 - **Phone photos can carry a location** (2026-11-18, same log). Three of the owner's originals held an EXIF GPS block.
   Re-encoded copies carry no metadata, so commit those and keep originals out of Git.
+- **A sensor that resets can keep producing plausible numbers** (2026-11-23,
+  [session log](docs/sessions/2026-11-23-sensor-bring-up.md)). The BME280 lost power for an instant while its Dupont
+  wiring was handled, woke asleep, and the library went on reporting 71,853.4 Pa, 23.90 °C and 80.2 % every second.
+  Firmware must check the sensor's state and flag a reset; a test must show a change the owner causes.
+- **A loaded tape mount creeps** (2026-11-23, same log). With the load cell taped down, the reading settled by
+  hundreds of counts for seconds after a penny went on or off. Judge drift and creep only on a firm mount.
+- **Copy serial output in short, averaged lines** (2026-11-23, same log). The Arduino IDE's Serial Monitor copied only
+  the lines on screen, which first hid the penny test. One averaged line per second fits a whole test on screen.

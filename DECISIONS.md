@@ -471,3 +471,37 @@ Template:
     fitted there, though this decision leaves them out, and removal was advised but not confirmed. How the SDP810's pins
     connect is open (PROJECT_STATUS open question 19). The design itself is unchanged
     ([session log](docs/sessions/2026-11-18-breadboard-power-and-part-checks.md)).
+  - Note (2026-11-23): **the breadboard test passed for every sensor** with this wiring: the I²C scan found the SDP810
+    (0x25) and the BME280 (0x77, chip ID 0x60) on one bus at 100 kHz and 5 V, and the HX711 read on pins 2 and 3 at
+    10 samples/s ([as built](docs/experimental_setup.md#breadboard-as-built)). The SDP810 connects by a ready-made PH 2.0
+    cable spliced to jumpers, with C1 at the breadboard end. Two resistors that look like R1 and R2 are still on the
+    board (photos); harmless as pull-ups (SDA and SCL read 4.81 V). The BME280 reset once when its Dupont wiring was
+    handled, which supports locking connectors on the PCB. The status stays Tentative until the owner confirms it
+    ([session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
+
+## D-019: Bring-up firmware: one plain Arduino sketch per sensor in `firmware/`
+
+- Date: 2026-11-23
+- Question: How are the sensors first read, and in what form is the firmware kept, now that the breadboard is built?
+- Decision (agent's choice while the owner was at the bench):
+  - one sketch per walk-through step, each in `firmware/<name>/<name>.ino` (the Arduino IDE needs the folder name to
+    match), stating its wiring, output columns and units at the top ([firmware/README.md](firmware/README.md));
+  - output over USB serial at 115200 baud as CSV lines with units in the header (`time_ms,dp_Pa,...`); lines starting
+    with `#` are messages; raw values are printed with no calibration applied, so calibration stays in the analysis
+    (as [HX711 notes](resources/notes/HX711.md) proposed: log raw counts);
+  - the HX711 and SDP810 are driven directly from their datasheets (no library): the HX711's 25-pulse read and the
+    SDP810's commands 0x3FF9 and 0x3615, CRC check and its reported scale factor;
+  - the BME280 uses the **Adafruit BME280 Library** (installed by the owner through the Library Manager; version not
+    yet recorded), because its compensation formulas are long and the library is widely used; the Bosch datasheet is
+    not yet in `resources/`;
+  - a sketch checks for the failures seen on the bench and says so: a missing HX711 reading, an SDP810 that is still
+    measuring after the Mega resets, and a BME280 that has reset to sleep mode (it is set up again).
+- Rationale: a beginner can upload one sketch at a time and see one sensor work; datasheet-only code for the two
+  simple protocols keeps the dependencies to one library; raw output keeps every number traceable.
+- Alternatives considered: libraries for all three (HX711 by bogde, Sensirion's SDP library), which add installs and
+  hide the protocol; writing the BME280 compensation by hand from the datasheet, which is not yet filed and would be
+  long code to check; one combined sketch from the start (that is walk-through step 4, next).
+- Evidence / source: the four sketches and their bench results, 2026-11-23
+  ([as built](docs/experimental_setup.md#breadboard-as-built); [session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
+- Status: Tentative (agent's choice; the owner has not confirmed it). The logging firmware (step 4) should follow the
+  same conventions unless replaced by a new decision.

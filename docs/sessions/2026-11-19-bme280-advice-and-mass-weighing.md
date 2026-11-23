@@ -3,7 +3,7 @@
 - **Session ID:** 7aeaf588-f591-40d7-8bbd-9e8c175822d0
 - **Agent:** Claude Opus 5.5 (Claude Code, VS Code extension)
 - **Commit:** `fd20afe` (the work up to the first `/wrap`, 2026-11-19); the continuation (2026-11-19 evening to
-  2026-11-22, second `/wrap`) not committed yet
+  2026-11-22, second `/wrap`) `604ee42`
 
 The session ran over four days with one conversation. Each section below covers the first part (to the first `/wrap`)
 and then, under **Continued**, the rest.

@@ -191,8 +191,8 @@ Always wire by the pin *numbers and names*, never by the position on the drawing
   step 1 checks what it can).
 - **U1, SDP810-125Pa.** Four pins at 2 mm spacing, too close for a breadboard. Solder four thin wires straight to the
   pins (a quick joint, no flux near the two pressure ports) and solder **C1** across pins 2 (VDD) and 3 (GND), which
-  sit next to each other. A female 2 mm plug is being considered instead (Section 10); C1 would then go at the breadboard
-  end. Its two barbs take the pressure tubes (sheet 9). **Looking straight at the pins, with the moulded SENSIRION
+  sit next to each other. As built (2026-11-19/23), a ready-made female PH 2.0 cable is pushed onto the pins instead (Section 10), and C1 sits at
+  the breadboard end. Its two barbs take the pressure tubes (sheet 9). **Looking straight at the pins, with the moulded SENSIRION
   upright, they run SDA, GND, VDD, SCL from left to right, with a small "1" by SCL** (datasheet p. 4, bottom view). The
   p. 12 drawing is seen from the other side, so its order runs the opposite way. Mixing them up swaps power and ground.
 - **A2, SparkFun HX711 board, and LC1, the load cell.** The load cell's four wires solder **directly** to the HX711 board,
@@ -298,7 +298,8 @@ the edges are joined along their length. Use one rail for +5 V and one for GND.
 ### Step 3: add the HX711 and load cell
 
 1. Solder the load cell's four wires to the HX711 board (colours in Section 4). Solder a header strip on the board's
-   other side so it plugs into the breadboard.
+   other side so it plugs into the breadboard. (Built 2026-11-23 with a **female** socket instead, joined by
+   male-to-male jumpers; either works.)
 2. Connect VCC and VDD to 5V, GND to GND, DAT to pin 2, CLK to pin 3.
 3. Hold one end of the load cell firmly (clamp it gently or screw it to a block) and leave the other end free.
 4. Read raw counts. Pass: steady with nothing on it. Then set a coin on the free end (a US penny is 2.5 g): the
@@ -307,6 +308,9 @@ the edges are joined along their length. Use one rail for +5 V and one for GND.
 5. Measure the voltage between the RED and BLK pads (the excitation, E+ and E−) and record it.
 
 ### Step 4: everything together
+
+The sketches for steps 1–3 are in [firmware/](../firmware/README.md); all passed on 2026-11-23
+([results](experimental_setup.md#breadboard-as-built)).
 
 One sketch reads all three and sends one CSV line per sample. Pass: every value responds to a change you cause, and the
 sample rate stays steady over 10 minutes (TODO P2, "Data-logging firmware").
@@ -414,10 +418,10 @@ Learn each idea just before you need it.
 | Item | Status | Decided by |
 |---|---|---|
 | HX711 board pad labels | **Answered 2026-11-17:** RED, BLK, WHT, GRN, YLW; VDD, VCC, DAT, CLK, GND | Owner's photo |
-| HX711 RATE jumper (10 or 80 samples/s) | To check | The back of the delivered board |
+| HX711 RATE jumper (10 or 80 samples/s) | **Answered 2026-11-23:** 10 samples/s (readings 95.5 ms apart; the jumper itself not looked at) | `firmware/hx711_raw_counts` timing |
 | Which cable came with the BME280 board | **Answered 2026-11-17:** 6-pin plug to six female Dupont sockets | Owner's photo |
-| Which BME280 wire is which | Partly checked: red is VCC-side by resistance; the others inferred from their order | Back labels, or the I²C scan |
-| How the SDP810 connects | Open: soldered wires, or a pre-crimped female JST PH 2.0 cable (fit unproven) | Owner |
+| Which BME280 wire is which | **Answered 2026-11-23:** red VCC, black GND, blue SDA, yellow SCL work as inferred (the board reads); orange and green left open | The I²C scan and `bme280_read` |
+| How the SDP810 connects | **Answered:** a ready-made PH 2.0 cable pushed onto its pins (2026-11-19), its wires spliced to jumpers; wired by pin number from the moulded "1" and confirmed by the scan and readings (2026-11-23) | Owner |
 | Is the Mega an R3 (SDA and SCL beside AREF)? | **Answered 2026-11-18:** yes, marked SDA1 and SCL1 | Owner's photos |
 | Do the Mega's own I²C pull-ups exist? | To check | Step 0 above |
 | Cable lengths W1–W3 | TBD | Box positions at sizing |
