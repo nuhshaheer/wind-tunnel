@@ -1,6 +1,7 @@
 # Buy List
 
-**Last updated:** 2026-11-19 (§9: the weight set actually bought and the school balance; EXP-001)
+**Last updated:** 2026-11-22 (§5: the airspeed method confirmed and the probe's angle tolerance corrected from
+Barlow1999); 2026-11-19 (§9: the weight set actually bought and the school balance; EXP-001)
 
 **2026-11-17: the owner reports that every part ordered on 2026-11-09/10 has arrived.** Read each **Ordered** status
 below as **On hand**; the per-row arrival checks are still to do ([TODO.md](../TODO.md) P2). The fan is still to buy.
@@ -369,7 +370,8 @@ Notes:
 The sensor's facts are from its datasheet, filed 2026-11-08 ([SDP8xx notes](../resources/notes/SDP8xx.md)), and
 Sensirion's compensation note ([Sensirion2024 notes](../resources/notes/Sensirion2024.md)).
 
-**Proposed layout** (agent, 2026-11-08; open question 10; confirm the method in Barlow1999 ch. 4 and 6). **The owner
+**Proposed layout** (agent, 2026-11-08; open question 10; **method confirmed 2026-11-22**: it is Barlow1999's standard
+speed-setting method, Eq. 6.6, with details in the [notes](../resources/notes/Barlow1999.md), ch. 4 and 6). **The owner
 chose to make the probe rather than buy one (2026-11-08).**
 
 ```text
@@ -431,6 +433,9 @@ Notes:
 - **Why make the probe instead of buying the Dwyer ($140–167):**
   - A plain tube facing the flow reads the total pressure almost regardless of its tip shape. Our understanding is
     within about 1 % of q for misalignment up to about ±10°; confirm in Barlow1999 ch. 4.
+    **Corrected 2026-11-22:** Barlow1999 (p. 154) says a square-nosed tube "begins to show errors near 8° flow
+    inclination," improved by chamfering the nose. Chamfer the outside of the tip and align the probe within a few
+    degrees ([notes](../resources/notes/Barlow1999.md), ch. 4).
   - The wall taps are needed anyway for the force-run reference.
   - The larger error is the sensor's 3 % span, and the money is better spent on calibrating it (§9).
   - A cheap drone pitot-static probe is not a good middle way: its static holes are not a standard design, and its

@@ -139,7 +139,11 @@ below are our arithmetic for C_D = 0.47.
   ±0.65 % of C_D at S/C = 3 % and ±1.1 % at 5 %.
 - **Solid blockage** (the sphere's own volume) is a separate term. Using Cooper's eq. (6.16) form it is about 0.6 %
   in q at S/C = 3 % and 1.2 % at 5 %, and up to half as much again with a sphere's effective volume of 1.5 V. Confirm
-  the formula in Barlow1999 ch. 9–10 before using it.
+  the formula in Barlow1999 ch. 9–10 before using it. **2026-11-22:** Barlow1999 ch. 10 gives the same form,
+  ε_sb = K V/C^{3/2}, with Thom's K = 0.96 for bodies of revolution, but no chart covers a sphere; the spread between
+  K = 0.96 and 1.5τ₁ (about 1.2) is about 0.08 % in ε for the 3/4 in ball and 0.2 % for the 1 in ball, to carry as a
+  systematic uncertainty
+  ([notes](resources/notes/Barlow1999.md), ch. 10). [Proposed]
 - **Check the correction experimentally:** measure two or more sphere sizes (different S/C) and confirm that the
   corrected C_D values agree.
 - **Limits:** keep Δq ≤ 0.1 q (S/C ≤ about 8.5 %), preferably about 3 %. Use a closed test section; open-jet
@@ -406,6 +410,19 @@ PDFs and reading notes live in [resources/](resources/README.md).
 
 ### Reviewed
 
+- J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. Reviewed 2026-11-22:
+  chapters 4 (pressure and flow measurement), 6 (test-section calibration), 7 (balances, support tare and
+  interference), 9–10 (wall corrections) and §§12.1–12.3 (uncertainty, design of experiments). A local-only copy is in
+  `resources/` (not in Git; see the index). Notes: [resources/notes/Barlow1999.md](resources/notes/Barlow1999.md).
+- T. Morel, "Comprehensive Design of Axisymmetric Wind Tunnel Contractions," *ASME J. Fluids Eng.*, June 1975,
+  pp. 225–233. Reviewed 2026-11-22. Contraction charts for matched cubics; a turbulent separation criterion for large
+  Reynolds numbers. Notes: [resources/notes/Morel1975.md](resources/notes/Morel1975.md).
+- J. Anthoine, D. Olivari, D. Portugaels, "Drag Coefficient Determination of Bluff Bodies – Analysis of Blockage
+  Effect," VKI Reprint 2004-24. Reviewed 2026-11-22. Blockage corrections for 2-D cylinders by flow regime. Notes:
+  [resources/notes/Anthoine2004.md](resources/notes/Anthoine2004.md).
+- P. Bradshaw, R. C. Pankhurst, "The design of low-speed wind tunnels," *Progress in Aerospace Sciences* 5, 1964.
+  Reviewed 2026-11-22. Design practice, screens, honeycombs, testing a new tunnel. Notes:
+  [resources/notes/Bradshaw1964.md](resources/notes/Bradshaw1964.md).
 - A. S. Abdelhamed, Y. El-S. Yassen, M. M. ElSakka, "Design optimization of three dimensional geometry of wind tunnel
   contraction," *Ain Shams Engineering Journal*, 2014, doi:10.1016/j.asej.2014.09.008. Reviewed 2026-10-30. Contraction
   ratio, length and wall profile. Notes: [resources/notes/Abdelhamed2014.md](resources/notes/Abdelhamed2014.md).
@@ -456,12 +473,10 @@ PDFs and reading notes live in [resources/](resources/README.md).
 ### Not yet reviewed
 
 These are standard sources suggested as starting points. Move each to "Reviewed" (with the relevant page or figure,
-and notes in `resources/`) when it is actually used. More papers are in `resources/` but not yet reviewed
-(Anthoine2004, Morel1975, Bradshaw1964 and the full AGARD-AG-336), and further candidates are under "Wanted"; both
-are in [resources/README.md](resources/README.md).
+and notes in `resources/`) when it is actually used. The full AGARD-AG-336 (Ewald1998) is in `resources/` but only its
+chapter 6 (Cooper1998) has been reviewed, and further candidates are under "Wanted"; both are in
+[resources/README.md](resources/README.md).
 
-- J. B. Barlow, W. H. Rae, A. Pope, *Low-Speed Wind Tunnel Testing*, 3rd ed., Wiley, 1999. Tunnel design, corrections,
-  blockage. A local-only copy is in `resources/` (not in Git; see the index).
 - E. Achenbach, "Experiments on the flow past spheres at very high Reynolds numbers," *Journal of Fluid Mechanics*
   54, 1972, pp. 565–575. Sphere drag and the drag crisis. Its abstract (checked online 2026-10-30) gives the range
   5×10⁴ ≤ Re ≤ 6×10⁶. That covers only the top of this project's planned Re (roughly 10⁴–10⁵ in the estimates

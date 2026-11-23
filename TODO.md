@@ -222,16 +222,46 @@ Owner tasks are physical or account actions that an agent cannot do.
   TAL221 and Sensirion's signal-compensation note, filed with notes. No longer needed: SDP31/SDP32, Honeywell HSC,
   TAL220 (parts chosen). Outcome: PDFs in `resources/`; an agent files them and writes notes. Verify: each has an index
   row marked "Reviewed".
-- [ ] **Review the remaining papers when their topic comes up.** Mehta1977 and Scheiman1981 were done 2026-11-02.
-  Remaining:
-  - Morel1975 (contraction);
-  - Anthoine2004 (blockage on cylinders);
-  - Bradshaw1964;
-  - Barlow1999 chapters 4, 6, 7, 9–10 and 12.2: instrumentation; test-section calibration and data systems; balances;
-    boundary corrections, needed to confirm the solid-blockage formula; uncertainty.
+- [ ] **Owner: check the 2026-11-22 paper notes against the PDFs** (new 2026-11-22). Each notes file ends with a
+  checklist, printed and PDF pages given; figure items are blind (read the value yourself):
+  [Barlow1999](resources/notes/Barlow1999.md) (13 items), [Morel1975](resources/notes/Morel1975.md) (6),
+  [Anthoine2004](resources/notes/Anthoine2004.md) (6), [Bradshaw1964](resources/notes/Bradshaw1964.md) (8). Barlow1999
+  is local only (not on GitHub). Outcome: each notes file records "Checked by the owner against the PDF, <date>",
+  with any disagreements.
+- [ ] **Decide which proposals from the 2026-11-22 reading to adopt** (owner, with the agent; new 2026-11-22). All are
+  Proposed, from the notes' "What it suggests" sections; none is decided:
+  1. Measure the sting's tare and interference with an image sting (a dummy shield hung from a spare top panel, plus a
+     stub on top of the ball), not by running the sting alone (Barlow1999 ch. 7). Needs parts in the sizing and CAD.
+  2. Seal the load-cell box, including the cable entry, so no air flows through the gap around the sting (Barlow1999
+     ch. 7).
+  3. Calibration procedure details: exercise the cell first, load up and down, repeat, small-load check, residual plot,
+     same HX711 and wiring as in the tunnel, g = 9.81 m/s² (within about 0.2 % of the true value at latitudes 25–60°;
+     the exact local value from Eq. 7.13 if the owner gives a rough latitude), a check weight each session, and a
+     zero-shift limit for repeating runs (Barlow1999 ch. 7).
+  4. Calibrate S − E with the floor insert and sting shield in place, at every fan setting, and fit any trend with speed
+     (Barlow1999 ch. 6; Bradshaw1964 p. 15). Leave the S and E lines connected during force runs.
+  5. Chamfer the total-pressure probe's tip and align it within a few degrees (Barlow1999 ch. 4: errors from about 8°).
+     Nothing new to buy (2026-11-22): the tube cutter, pin vise, drill bits and 220–600 sandpaper are on hand; needle
+     files are optional. Alignment comes from a printed guide in the CAD, then a check: turn the probe slightly each way
+     and set it in the middle of the range where the reading stays highest.
+  6. Put the E ring at least about 56 mm downstream of the contraction exit and the last screen about 60 mm before the
+     contraction (Morel1975).
+  7. Give each diffuser screen a short parallel land on both sides of its flange so it meets the walls square
+     (Bradshaw1964).
+  8. Add a coarse-grid repeat of one sphere run to the validation plan, to show whether free-stream turbulence matters
+     (Bradshaw1964). Proposed form (2026-11-22): a piece of 1/4 in galvanized hardware cloth (to buy, a few dollars;
+     open area well above 57 %), cut and clamped at a spare settling-chamber joint after the honeycomb like a screen;
+     the sizing leaves that joint. Recalibrate S − E with the grid in, run the same ball at the same Re three times with
+     and three times without it, alternating, and compare the change in C_D with the run-to-run scatter. Timing (owner,
+     2026-11-22): at the end, after the main validation runs; only the spare joint is needed at sizing, and the mesh is
+     bought later. Also a diagnostic if C_D falls outside the band.
+  9. Measure the empty tunnel's static-pressure gradient along the test section (a static probe or a long static tube)
+     for the horizontal-buoyancy correction (Barlow1999 chs. 6, 9–10).
+  10. Uncertainty method: block means for correlated samples, randomized or up-and-down speed order, and the C_D
+      budget structure in the Barlow1999 ch. 12 notes.
 
-  Outcome: a notes file per paper. Verify: each index row in [resources/README.md](resources/README.md) says
-  "Reviewed". Give the owner a checklist of values read from the PDFs to confirm (session log 2026-11-02).
+  Outcome: each item accepted, changed or rejected; accepted ones move into the sizing task, the calibration and
+  validation tasks, or a DECISIONS entry. Verify: no item above is left undecided.
 - [ ] **Choose the screens and honeycomb** (new 2026-11-02). **Mostly done 2026-11-09** ([buy list](docs/buy_list.md)
   §3): aluminium window insect screen ("bright aluminum", 18 × 16 mesh, 66–69 % open, about $10 a roll), two or three
   in the diffuser and two in the settling chamber; a **printed honeycomb** (owner), with straws as the upgrade.
@@ -279,6 +309,11 @@ Owner tasks are physical or account actions that an agent cannot do.
     [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed).
   - Still to do: confirm the solid-blockage formula in Barlow1999 ch. 9–10, then fix the method once the test section
     and sphere are chosen.
+  - **2026-11-22 (Barlow1999 ch. 10, [notes](resources/notes/Barlow1999.md)):** wake blockage (5/4)(S/C)C_Du (Maskell,
+    Eq. 10.9) plus solid blockage K(V/C^{3/2}), with Thom's K = 0.96 for bodies of revolution or about 1.5τ₁ for a
+    sphere's effective volume; no chart covers a sphere. Total +3.9 to +4.0 % in q for the 3/4 in ball and +7.4 to
+    +7.8 % for the 1 in ball (our arithmetic). The test section (100 mm) and balls are chosen, so the method can now be
+    proposed for decision; subtract horizontal buoyancy separately once the pressure gradient is measured.
   - Outcome: method and formula marked as chosen (D-entry).
   - Verify: the correction for the chosen sphere and test section is computed and stated with its uncertainty
     (θ spread 1.85–2.8). The plan includes a two-sphere-size check (P2 validation run).
@@ -370,7 +405,11 @@ Owner tasks are physical or account actions that an agent cannot do.
     zero with the wind off.
 - [ ] **Owner: choose how the SDP810 connects** (new 2026-11-18; PROJECT_STATUS open question 19): a pre-crimped female
   4-pin JST PH 2.0 cable (agent's suggestion; the fit is unproven and the plug can go on backwards) or wires soldered to
-  its pins. The owner's PH2.0 kit looks male and will not mate. Outcome: the connection chosen and C1's position recorded.
+  its pins. The owner's PH2.0 kit looks male and will not mate. **2026-11-19: the ready-made 4-pin PH 2.0 cable the
+  owner bought lines up with the pins; it is a stiff fit, and the owner pushed it on** (answered: the SDP810 connects
+  by this cable; C1 moves to the breadboard end). Still to do before power: mark the plug's orientation (it has no
+  key), check the pins are straight, no short between neighbouring wires, and each wire colour matched to its pin from
+  the datasheet's p. 4 bottom view (photo to the agent). Outcome: the colour-to-pin map and C1's position recorded.
   Verify: each wire traced to the correct pin by continuity, using the datasheet's p. 4 bottom view, before power.
 - [ ] **Update sheet 12 with the delivered HX711 pad names** (new 2026-11-18; waits for the owner's go-ahead): RED, BLK,
   WHT, GRN and YLW instead of E+, E−, A−, A+; check whether the walk-through's snapshot needs replacing. Verify: `python
@@ -394,7 +433,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   SDP810's label and the BME280 cable's resistances; the HX711 board's labels are read. Everything below not marked done
   is still open.** Record each result with the date:
   - TAL221s: wire resistances (red–black about 1090 Ω, green–white about 1000 Ω, cross pairs, body open) and the
-    no-load zero, as baselines for spotting damage later;
+    no-load zero, as baselines for spotting damage later. Measure the resistances at the free wire ends **before**
+    soldering to the HX711; afterwards the board's own parts are in the circuit and change the reading (2026-11-22);
   - BME280 (Waveshare, ordered 2026-11-09): first, with only VCC (5 V) and GND connected, SDA and SCL read about 5 V
     on the multimeter (level translator working; about 3.3 V means no shifting, so do not wire it to the Mega); then
     chip ID 0x60, not a BMP280's 0x58 (Waveshare's schematic predicts 5 V: SDA and SCL are pulled up to VCC through
@@ -650,3 +690,13 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-19: **Calibration weights weighed** (owner, at school): each piece three times on a CGOLDENWALL HZ50002B
   (d = 0.01 g), re-zeroed before every reading; −2.5 % to +1.1 % off nominal ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing); weighing form in
   [docs/forms/](docs/forms/calibration-mass-weighing.xlsx)). Answers PROJECT_STATUS open question 16.
+- [x] 2026-11-19: Owner committed and pushed the weighing session as `fd20afe`; `sync_status.py` confirmed
+  `UP_TO_DATE` on 2026-11-22 ([session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md)).
+- [x] 2026-11-19: **SDP810 cable fitted** (owner): the ready-made PH 2.0 cable is a stiff fit and is pushed on; not
+  powered. The before-power checks and the colour-to-pin map stay open (P2, SDP810 connection item).
+- [x] 2026-11-22: **Remaining papers reviewed** (agent, at the owner's request): Barlow1999 chapters 4, 6, 7, 9, 10 and
+  §§12.1–12.3; Morel1975; Anthoine2004; Bradshaw1964. Notes with owner checklists:
+  [Barlow1999](resources/notes/Barlow1999.md), [Morel1975](resources/notes/Morel1975.md),
+  [Anthoine2004](resources/notes/Anthoine2004.md), [Bradshaw1964](resources/notes/Bradshaw1964.md); index rows marked
+  Reviewed ([session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md), the 2026-11-19 session
+  continued).

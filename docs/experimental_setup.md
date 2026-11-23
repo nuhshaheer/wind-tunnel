@@ -124,6 +124,14 @@ for the voltages). **Verified for this power wiring only:**
 Not done yet: the BME280's powered 5 V check, any I²C scan, and every SDP810, HX711 and load-cell test. Procedure and
 reasoning: [session log](sessions/2026-11-18-breadboard-power-and-part-checks.md).
 
+**SDP810 cable (owner, 2026-11-19; Implemented, unverified).** A ready-made 4-pin JST PH 2.0 cable with metal contacts
+in its holes (seller not recorded) is pushed onto the sensor's four pins. It is a stiff fit ("it was just a bit hard to
+push"), not a misfit. It is not yet on the breadboard and has not been powered. The plug has no key, so before power:
+mark its orientation, check the pins are straight, check by continuity that no neighbouring wires short, and match each
+wire colour to its pin from the datasheet's p. 4 bottom view (owner to send a photo; the colour-to-pin map is
+**Unknown**). C1 moves to the breadboard end of the cable. The I²C scan finding 0x25 is the real test
+([PROJECT_STATUS](../PROJECT_STATUS.md) open question 19).
+
 Photos: [overview 1](images/2026-11-18_breadboard-overview-1.jpg), [overview 2](images/2026-11-18_breadboard-overview-2.jpg),
 [C2 and R1](images/2026-11-18_breadboard-c2-and-r1.jpg), [signal rows](images/2026-11-18_breadboard-signal-rows.jpg).
 
@@ -205,4 +213,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-10 | Consistency audit against the latest decisions (owner's request): the sphere mount now described through the replaceable floor insert with the shield attached (D-014) instead of "a fixed shield and a floor slot"; balls, sting rods and HX711 marked ordered; screens as ordered; drawings revised to C (no sleeve or separate stems, stainless screws at the balance). Documentation only; nothing arrived, built or tested | [2026-11-10](sessions/2026-11-10-consistency-audit.md) |
 | 2026-11-17 | Every ordered part reported arrived (owner). Sensor circuit designed on paper: laptop USB power, one I²C bus for the SDP810 and BME280, the HX711 on pins 2/3, a shield PCB later ([D-018](../DECISIONS.md), Tentative; drawing package revision D, sheets 11–12; [walk-through](electronics_walkthrough.md)). Nothing wired or tested | [2026-11-17](sessions/2026-11-17-sensor-circuit-design.md) |
 | 2026-11-18 | Breadboard started by the owner: Mega power, rails, C2 and signal rows wired, no sensor connected; rails and C2 read 4.962 V; BME280 cable checked by resistance; delivered boards' labels recorded | [2026-11-18](sessions/2026-11-18-breadboard-power-and-part-checks.md) |
-| 2026-11-19 | Calibration weights weighed by the owner on the school balance (CGOLDENWALL HZ50002B, d = 0.01 g; EXP-001); the weight set recorded as bought. BME280 placement: room air near the fan inlet, in its own vented holder (proposed). Breadboard unchanged | [2026-11-19](sessions/2026-11-19-bme280-advice-and-mass-weighing.md) |
+| 2026-11-19 | Calibration weights weighed by the owner on the school balance (CGOLDENWALL HZ50002B, d = 0.01 g; EXP-001); the weight set recorded as bought. BME280 placement: room air near the fan inlet, in its own vented holder (proposed). Breadboard unchanged. After the wrap the owner pushed a ready-made PH 2.0 cable onto the SDP810's pins (stiff fit; not powered, colours not yet mapped to pins) | [2026-11-19](sessions/2026-11-19-bme280-advice-and-mass-weighing.md) |

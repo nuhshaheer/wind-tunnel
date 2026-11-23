@@ -1,13 +1,15 @@
 # Project Status
 
-**Last updated:** 2026-11-19
-**Last commit:** `ff2ac6e` (2026-11-18, breadboard power checks and delivered part details), pushed to `origin/main`
-(`UP_TO_DATE` on 2026-11-19).
+**Last updated:** 2026-11-22
+**Last commit:** `fd20afe` (2026-11-19, calibration mass weighing EXP-001 and BME280 advice), pushed to `origin/main`
+(`UP_TO_DATE` on 2026-11-22).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** this session: the calibration weights weighed (EXP-001, the first dataset), the weighing
-  form, BME280 placement advice, and corrected weight-set and balance entries. Log and commit commands:
-  [2026-11-19 BME280 advice and mass weighing](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md) (§13).
+- **Not committed yet:** the SDP810 cable notes added after the 2026-11-19 `/wrap` (open question 19, TODO, the
+  setup) and the 2026-11-22 paper reviews: four new notes files (Barlow1999, Morel1975, Anthoine2004, Bradshaw1964),
+  the resources index, TODO, this file, PROJECT_BACKGROUND, the buy list and the Cooper1998 notes. Both continue the
+  2026-11-19 session, so they are logged in its log; commit commands there
+  ([§13](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md#13-manual-git-commands-as-given-to-the-owner)).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Everything ordered on 2026-11-09/10 has
@@ -176,7 +178,7 @@ checked).
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785` and `ff2ac6e`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e` and `fd20afe`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -347,6 +349,16 @@ None running. EXP-001, the calibration mass weighing (2026-11-19), is complete (
     first dataset. The set is not the one the buy list planned; corrected in the buy list, shopping list and
     drawings' parts list (item 76). Agent's advice: no pieces under 2 g are needed. See
     [the session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md).
+  - Committed and pushed as `fd20afe`.
+- 2026-11-19 to 2026-11-22: the same session, continued after its first `/wrap`.
+  - The owner pushed a ready-made PH 2.0 cable onto the SDP810's pins (a stiff fit; not powered yet; open question 19).
+  - Questions answered (advice only): another builder's sensor mounting from a video frame (pressure fittings through
+    the box wall, so nothing pulls on the sensor; not the same sensor as ours); the load-cell wire colours match the
+    HX711 pad names directly; the cell's own 110 mm wires can reach an HX711 placed beside it, so the TUOFENG wire is for
+    the HX711-to-Arduino cable; the calibration is done through the HX711, on the finished balance module.
+  - **Reviewed the remaining papers** at the owner's request: Barlow1999 chapters 4, 6, 7, 9, 10 and §§12.1–12.3,
+    Morel1975, Anthoine2004 and Bradshaw1964, with notes and owner checklists; ten proposals listed in TODO P1 for
+    decision (findings in §11). See [the session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md).
 
 ## 7. Data and analyses
 
@@ -503,11 +515,14 @@ Estimates are spread across these files; all are **calculations from assumed val
    The owner has not confirmed it.
 8. **Blockage correction for the sphere.** Proposed (2026-10-31): Maskell with θ = 2.5, plus a separate solid-blockage
    term ([PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#blockage-correction-proposed)). Still open:
-   - the solid-blockage formula (confirm in Barlow1999 ch. 9–10);
+   - the solid-blockage formula (confirm in Barlow1999 ch. 9–10). **2026-11-22:** Barlow gives Thom's
+     K V/C^{3/2} with K = 0.96 for bodies of revolution, but no chart covers a sphere; the total correction is worked
+     out in the [Barlow1999 notes](resources/notes/Barlow1999.md), ch. 10, and is ready to propose for decision;
    - whether Maskell's flat-plate theory holds for a sphere (Maskell §2.6 flags rounded bodies). Proposed check:
      two sphere sizes;
    - θ for a sphere (1.85–2.8 across the cases in the sources);
-   - Anthoine2004 (cylinders) not reviewed.
+   - Anthoine2004 (cylinders) reviewed 2026-11-22: for 2-D cylinders no correction works in every flow regime, which
+     matters only for a later cylinder test ([notes](resources/notes/Anthoine2004.md)).
 9. **What else is on hand? Mostly answered.** Recorded:
    - 2026-11-01: the ECE kit, a multimeter, a soldering station, a bench power supply and a workbench;
    - 2026-11-08/09: 6 in calipers, a hand drill, a spirit level, 43 magnets (8 × 2 mm), PLA, PETG-CF, a
@@ -531,6 +546,10 @@ Estimates are spread across these files; all are **calculations from assumed val
     chamber (S) and at the test-section entrance (E) give Δp = q × (1 − 1/6.25²) = 0.974 q in theory. The real factor
     is calibrated against a home-made total-pressure probe and wall taps at the model station (M) in the empty tunnel.
     One sensor reads both pairs by swapping tubes at two couplers. Still to confirm in Barlow1999 ch. 4 and 6.
+    **Confirmed 2026-11-22:** it is Barlow1999's standard method (Eq. 6.6). Refinements proposed from the reading (TODO
+    P1): calibrate with the sting shield in place and at every speed, keep the S and E lines undisturbed during force
+    runs, and place the E ring at least about 56 mm downstream of the contraction exit
+    ([Barlow1999 notes](resources/notes/Barlow1999.md), ch. 6; [Morel1975 notes](resources/notes/Morel1975.md)).
 11. **Fan speed control from the menu knob. No longer a goal (D-012, 2026-11-08):** there is no menu. The fan keeps
     its own controller, and the Arduino never switches mains. If the S6 is chosen, hobbyists report driving it with a
     10 V PWM signal on its UIS port (not confirmed; D-011).
@@ -599,7 +618,14 @@ Estimates are spread across these files; all are **calculations from assumed val
     kit looks male too, so it will not mate. Agent's suggestion: a pre-crimped female 4-pin JST PH 2.0 cable. JST's
     contact is made for a 0.5 mm post at 2.0 mm pitch, but the fit on this sensor is unproven: only 2.7 ± 0.7 mm of pin
     projects, its thickness is not stated, nothing latches or keys the plug, and C1 would move to the breadboard end.
-    Fallback: solder wires to the pins, as first planned. Owner's choice.
+    Fallback: solder wires to the pins, as first planned. Owner's choice. **2026-11-19 (owner): the plug the owner bought
+    for the SDP810 would not push onto its pins.** It is a ready-made 4-pin PH 2.0 cable with metal contacts in the
+    holes (seller not recorded); its holes line up with the pins, so the pitch is right, but it cannot be pushed on by
+    hand. **Later the same day the owner pushed it on: it is a stiff fit, not a misfit** ("it was just a bit hard to
+    push"). So the SDP810 connects by this cable (Implemented, unverified): C1 moves to the breadboard end, and the
+    plug has no key, so its orientation must be marked and each wire's pin confirmed against the datasheet's p. 4
+    bottom view before power. The I²C scan finding 0x25 is the real test. The soldering advice given in between is
+    no longer needed.
 
 ## 11. Important measurements and findings
 
@@ -669,6 +695,22 @@ Worth noting:
 - **Inside or outside the tunnel makes almost no difference to the BME280's readings** (2026-11-19; our estimate):
   at most about 0.15 % in pressure and under about 0.4 °C from fan heating, about 0.02 % in the reference C_D. Its
   big job is the SDP810's ×966 mbar / p_amb correction (about 5 %), which needs only room pressure.
+- **From the 2026-11-22 paper reviews** (literature, not measurements; [Barlow1999](resources/notes/Barlow1999.md),
+  [Bradshaw1964](resources/notes/Bradshaw1964.md), [Morel1975](resources/notes/Morel1975.md),
+  [Anthoine2004](resources/notes/Anthoine2004.md); owner check pending):
+  - **The sting's drag cannot be found by running the sting without the ball.** Tare plus interference is measured with
+    an image (mirror) support; Barlow puts it at 10–50 % of an airplane's minimum drag. Our estimate for the shielded
+    sting is 8–16 % of the 3/4 in ball's drag.
+  - **The planned S − E airspeed method is the textbook method** (Barlow Eq. 6.6). Bradshaw warns that in very small
+    tunnels its factor may vary with speed, so it is calibrated at every speed (already planned), with the sting shield
+    in place.
+  - **The home-made probe's angle tolerance is smaller than assumed:** a square-nosed tube starts to read low near 8°,
+    not ±10°.
+  - **Sphere blockage, worked out:** about +3.9–4.0 % in q for the 3/4 in ball and +7.4–7.8 % for the 1 in ball (wake
+    blockage about four-fifths of it); no published chart covers a sphere's solid blockage. Testing two sizes at the
+    same Re is Barlow's own check of the corrections.
+  - **Morel's contraction charts do not replace Bell1988 here:** their separation criterion assumes Re of order 10⁶; the
+    settling chamber here runs at about 4 × 10⁴.
 
 ## 12. Highest-priority next steps
 
@@ -679,7 +721,11 @@ See [TODO.md](TODO.md) for the full list. In order:
      [session log](docs/sessions/2026-11-19-bme280-advice-and-mass-weighing.md#13-manual-git-commands-as-given-to-the-owner));
    - **finish the BME280's step 1** (TODO P0): confirm R1, R2, their feed jumpers and the clipped wire are gone, connect
      only its power, and check that blue and yellow read about 5 V;
-   - choose how the SDP810 connects (open question 19);
+   - before the SDP810 gets power (open question 19): mark the plug's orientation, check the pins are straight, check
+     for shorts between neighbouring wires, and send the agent a photo with the SENSIRION side showing so it can map
+     the wire colours to pins;
+   - before soldering a TAL221 to the HX711: measure red to black (about 1090 Ω) and green to white (about 1000 Ω) at
+     the free wire ends (TODO P2 arrival checks);
    - do the remaining arrival checks (TODO P2), and read the HX711's RATE jumper;
    - then continue the breadboard, one sensor at a time, following [the walk-through](docs/electronics_walkthrough.md) §6;
    - choose the PCB program, KiCad (recommended) or EasyEDA (open question 18);
@@ -722,8 +768,10 @@ See [TODO.md](TODO.md) for the full list. In order:
      owner's CAD in Fusion 360 ([D-017](DECISIONS.md)).
 4. **Owner, after sizing:** CAD each part (estimate 12–25 h), print test coupons (insert holes, magnet pockets, sting
    hole, fan ring) before the large parts; the agent checks the exported STLs on request.
-5. **Agent, with sizing:** read Barlow1999 ch. 4 and 6 (instruments, the contraction-pressure method, test-section
-   calibration) and ch. 9–10 (solid blockage).
+5. **Owner, with the agent:** check the 2026-11-22 paper notes against the PDFs (checklists at the end of each notes
+   file), and decide which of the ten proposals from that reading to adopt (TODO P1; several affect the sizing and the
+   CAD: the image sting, the sealed load-cell box, the E-ring and last-screen positions, the diffuser screen lands).
+   The reading itself (Barlow1999 ch. 4, 6, 7, 9–10, 12; Morel1975; Anthoine2004; Bradshaw1964) was done 2026-11-22.
 6. **Owner:** download the remaining electronics datasheets (BME280, LM741/LM348/LMC6484) and the chosen fan's manual.
 7. **Now that the parts are here (owner):** the first equipment checks:
    - the load cells' baseline resistances and zero;
@@ -737,6 +785,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785` and `ff2ac6e`). The account was `nuhshaheer-2007` until
-  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18 and 2026-11-19).
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e` and `fd20afe`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18, 2026-11-19 and 2026-11-22).
 - Branch: `main`

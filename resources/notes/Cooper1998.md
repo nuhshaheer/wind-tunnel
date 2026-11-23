@@ -146,6 +146,9 @@ was computed 2026-10-31 with a short Python script (the formulas and assumptions
    - Using the sphere's effective volume of 1.5 V would raise these by half.
    - This is not negligible next to the wake term. Confirm the solid-blockage formula in Barlow1999 (boundary
      corrections, ch. 9–10) before using it.
+   - **2026-11-22:** Barlow1999 ch. 10 gives ε_sb = K₃τ₁V/C^{3/2} for bodies of revolution, or Thom's short form with
+     K = 0.96; no chart covers a sphere (d/l = 1). With K = 0.96, ε_sb is 0.35 % for the 3/4 in ball (0.7 % in q),
+     or about 0.43 % using 1.5 V with τ₁ ≈ 0.8 ([Barlow1999 notes](Barlow1999.md), ch. 10).
 5. **Support (sting or strut) blockage** takes the classical ½ (S/C) C_Dr term in (6.4), not θ.
 6. **Positions in the test section** (combine with Mehta1979: the model at least about 0.5 D downstream of the
    contraction exit).
