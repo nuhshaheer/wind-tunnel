@@ -192,7 +192,7 @@ footer.src {{ font-size: 13px; color: var(--muted); max-width: 110ch; }}
   <h2 style="margin-top:10px">Findings from drawing it out</h2>
   <p>Gaps that only showed up when the parts were placed together. Recorded in PROJECT_STATUS.md §11 (2026-11-09); none is resolved yet.</p>
   <ol class="findings">{finds}</ol>
-  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Electrical sheets: the SDP8xx, HX711 and TAL221 notes, buy list §5–8, and Waveshare’s BME280 Environmental Sensor schematic (read 2026-11-17). Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10; revision D 2026-11-17.</footer>
+  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Electrical sheets: the SDP8xx, HX711 and TAL221 notes, buy list §5–8, and Waveshare’s BME280 Environmental Sensor schematic (read 2026-11-17). Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10; revision D 2026-11-17; sheet 12 revision E 2026-11-23 (connector pin orders and C1 as in the KiCad shield, D-020).</footer>
 </section>
 </div>'''
     out = os.path.join(HERE, 'wind-tunnel-drawings.html')

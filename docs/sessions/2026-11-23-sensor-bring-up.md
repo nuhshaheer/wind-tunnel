@@ -2,7 +2,7 @@
 
 - **Session ID:** 550691f3-d7f2-473c-b161-23519e749225
 - **Agent:** Claude Opus 5.5 (Claude Code, VS Code extension)
-- **Commit:** not committed yet
+- **Commit:** `1ffd4a1`
 
 The conversation started on 2026-11-22 (evening, `/catchup`) and the bench work ran into 2026-11-23. Everything here was
 done by the owner at the bench, reported in the conversation, or written by the agent; the agent did no physical work.

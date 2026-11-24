@@ -4186,7 +4186,7 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <line x1="1465" y1="1029" x2="1465" y2="1065" class="thin"/>
 <text x="1473" y="1042" class="tbk">DATE</text><text x="1473" y="1059" class="tbv">2026-11-17</text>
 <text x="1140" y="1082" class="tbk">STATUS</text>
-<text x="1200" y="1082" class="tbw">PRELIMINARY · NOT YET BUILT OR TESTED</text>
+<text x="1200" y="1082" class="tbw">BREADBOARD TESTED · SHIELD PCB NOT YET MADE</text>
 <text x="1140" y="1099" class="tbk">BASIS</text>
 <text x="1200" y="1099" class="tbv2">docs + datasheet notes + Waveshare schematic · Claude Code (agent)</text></svg></div></section><section class="sheetwrap" id="sheet-12" aria-label="Sheet 12"><div class="sheethead"><span class="no">SHEET 12 OF 12</span><h2>ELECTRICAL: INTERFACE SCHEMATIC</h2><span class="code">WT-E02</span></div><div class="scroll"><svg viewBox="0 0 1600 1130" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="WT-E02 ELECTRICAL: INTERFACE SCHEMATIC" class="sheet"><rect x="0" y="0" width="1600" height="1130" fill="#ffffff"/><defs>
 <marker id="af" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" markerUnits="userSpaceOnUse" orient="auto-start-reverse"><path d="M0,1.6 L10,5 L0,8.4 z" fill="#15181d"/></marker>
@@ -4308,17 +4308,17 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="701" y="224" class="pnum" text-anchor="middle" >4</text>
 <path d="M664,220 L690,220" class="w" />
 <text x="701" y="108" class="ref" text-anchor="middle" style="font-size:14px" >J1</text>
-<path d="M664,130 L652,130" class="w" />
-<line x1="652" y1="121" x2="652" y2="139" class="w" style="stroke-width:2"/>
-<text x="647" y="134" class="pnam" text-anchor="end" style="font-weight:700" >+5V</text>
-<path d="M664,160 L654,160" class="w" />
-<line x1="654" y1="150" x2="654" y2="170" class="w" />
-<line x1="650" y1="153.5" x2="650" y2="166.5" class="w" />
-<line x1="646" y1="157" x2="646" y2="163" class="w" />
-<polygon points="664,190 657,182 626.3,182 626.3,198 657,198" class="tag" />
-<text x="641.65" y="194" class="tagt" text-anchor="middle" >SDA</text>
+<polygon points="664,130 657,122 626.3,122 626.3,138 657,138" class="tag" />
+<text x="641.65" y="134" class="tagt" text-anchor="middle" >SCL</text>
+<path d="M664,160 L652,160" class="w" />
+<line x1="652" y1="151" x2="652" y2="169" class="w" style="stroke-width:2"/>
+<text x="647" y="164" class="pnam" text-anchor="end" style="font-weight:700" >+5V</text>
+<path d="M664,190 L654,190" class="w" />
+<line x1="654" y1="180" x2="654" y2="200" class="w" />
+<line x1="650" y1="183.5" x2="650" y2="196.5" class="w" />
+<line x1="646" y1="187" x2="646" y2="193" class="w" />
 <polygon points="664,220 657,212 626.3,212 626.3,228 657,228" class="tag" />
-<text x="641.65" y="224" class="tagt" text-anchor="middle" >SCL</text>
+<text x="641.65" y="224" class="tagt" text-anchor="middle" >SDA</text>
 <path d="M712,130 L1014,130" class="w" />
 <path d="M712,160 L1014,160" class="w" />
 <path d="M712,190 L1014,190" class="w" />
@@ -4348,53 +4348,73 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <path d="M712,340 L1014,340" class="w" />
 <path d="M712,370 L1014,370" class="w" />
 <path d="M712,400 L1014,400" class="w" />
-<rect x="690" y="581" width="22" height="118" class="sym" />
-<text x="701" y="599" class="pnum" text-anchor="middle" >1</text>
+<rect x="690" y="551" width="22" height="148" class="sym" />
+<text x="701" y="569" class="pnum" text-anchor="middle" >1</text>
+<path d="M664,565 L690,565" class="w" />
+<text x="701" y="599" class="pnum" text-anchor="middle" >2</text>
 <path d="M664,595 L690,595" class="w" />
-<text x="701" y="629" class="pnum" text-anchor="middle" >2</text>
+<text x="701" y="629" class="pnum" text-anchor="middle" >3</text>
 <path d="M664,625 L690,625" class="w" />
-<text x="701" y="659" class="pnum" text-anchor="middle" >3</text>
+<text x="701" y="659" class="pnum" text-anchor="middle" >4</text>
 <path d="M664,655 L690,655" class="w" />
-<text x="701" y="689" class="pnum" text-anchor="middle" >4</text>
+<text x="701" y="689" class="pnum" text-anchor="middle" >5</text>
 <path d="M664,685 L690,685" class="w" />
-<text x="701" y="573" class="ref" text-anchor="middle" style="font-size:14px" >J3</text>
+<text x="701" y="543" class="ref" text-anchor="middle" style="font-size:14px" >J3</text>
+<path d="M664,565 L652,565" class="w" />
+<line x1="652" y1="556" x2="652" y2="574" class="w" style="stroke-width:2"/>
+<text x="647" y="569" class="pnam" text-anchor="end" style="font-weight:700" >+5V</text>
 <path d="M664,595 L652,595" class="w" />
 <line x1="652" y1="586" x2="652" y2="604" class="w" style="stroke-width:2"/>
 <text x="647" y="599" class="pnam" text-anchor="end" style="font-weight:700" >+5V</text>
-<path d="M664,625 L654,625" class="w" />
-<line x1="654" y1="615" x2="654" y2="635" class="w" />
-<line x1="650" y1="618.5" x2="650" y2="631.5" class="w" />
-<line x1="646" y1="622" x2="646" y2="628" class="w" />
+<polygon points="664,625 657,617 605.6,617 605.6,633 657,633" class="tag" />
+<text x="631.3" y="629" class="tagt" text-anchor="middle" >HX_DAT</text>
 <polygon points="664,655 657,647 605.6,647 605.6,663 657,663" class="tag" />
-<text x="631.3" y="659" class="tagt" text-anchor="middle" >HX_DAT</text>
-<polygon points="664,685 657,677 605.6,677 605.6,693 657,693" class="tag" />
-<text x="631.3" y="689" class="tagt" text-anchor="middle" >HX_CLK</text>
+<text x="631.3" y="659" class="tagt" text-anchor="middle" >HX_CLK</text>
+<path d="M664,685 L654,685" class="w" />
+<line x1="654" y1="675" x2="654" y2="695" class="w" />
+<line x1="650" y1="678.5" x2="650" y2="691.5" class="w" />
+<line x1="646" y1="682" x2="646" y2="688" class="w" />
+<path d="M712,565 L1014,565" class="w" />
 <path d="M712,595 L1014,595" class="w" />
 <path d="M712,625 L1014,625" class="w" />
 <path d="M712,655 L1014,655" class="w" />
 <path d="M712,685 L1014,685" class="w" />
 <ellipse cx="820" cy="175" rx="8" ry="55" class="thin"/>
 <text x="820" y="102" class="ref" text-anchor="middle" style="font-size:13px" >W1</text>
-<text x="820" y="116" class="ll" text-anchor="middle" style="fill:#c0410d" >4-core, length TBD</text>
+<text x="820" y="116" class="ll" text-anchor="middle" style="fill:#c0410d" >4 wires, length TBD</text>
 <ellipse cx="820" cy="355" rx="8" ry="55" class="thin"/>
 <text x="820" y="282" class="ref" text-anchor="middle" style="font-size:13px" >W2</text>
 <text x="820" y="296" class="ll" text-anchor="middle" style="fill:#c0410d" >4 of its 6 wires</text>
-<ellipse cx="820" cy="640" rx="8" ry="55" class="thin"/>
-<text x="820" y="567" class="ref" text-anchor="middle" style="font-size:13px" >W3</text>
-<text x="820" y="581" class="ll" text-anchor="middle" style="fill:#c0410d" >4-core, length TBD</text>
+<ellipse cx="820" cy="625" rx="8" ry="70" class="thin"/>
+<text x="820" y="537" class="ref" text-anchor="middle" style="font-size:13px" >W3</text>
+<text x="820" y="551" class="ll" text-anchor="middle" style="fill:#c0410d" >5 wires, length TBD</text>
+<path d="M560,250 L560,238" class="w" />
+<line x1="551" y1="238" x2="569" y2="238" class="w" style="stroke-width:2"/>
+<text x="560" y="232" class="pnam" text-anchor="middle" style="font-weight:700" >+5V</text>
+<path d="M560,250 L560,271" class="w" />
+<line x1="550" y1="271" x2="570" y2="271" class="w" style="stroke-width:2.4"/>
+<line x1="550" y1="279" x2="570" y2="279" class="w" style="stroke-width:2.4"/>
+<path d="M560,279 L560,300" class="w" />
+<path d="M560,300 L560,310" class="w" />
+<line x1="550" y1="310" x2="570" y2="310" class="w" />
+<line x1="553.5" y1="314" x2="566.5" y2="314" class="w" />
+<line x1="557" y1="318" x2="563" y2="318" class="w" />
+<text x="576" y="268" class="ref" text-anchor="start" style="font-size:13px" >C1</text>
+<text x="576" y="283" class="bl" text-anchor="start" style="font-size:11.5px" >0.1 µF</text>
+<text x="576" y="297" class="bl" text-anchor="start" style="font-size:11px" >next to J1</text>
 <rect x="1040" y="112" width="150" height="126" class="sym" />
 <path d="M1014,130 L1040,130" class="w" />
-<text x="1047" y="134" class="pnam" text-anchor="start" >VDD</text>
-<text x="1027" y="125" class="pnum" text-anchor="middle" >2</text>
+<text x="1047" y="134" class="pnam" text-anchor="start" >SCL</text>
+<text x="1027" y="125" class="pnum" text-anchor="middle" >1</text>
 <path d="M1014,160 L1040,160" class="w" />
-<text x="1047" y="164" class="pnam" text-anchor="start" >GND</text>
-<text x="1027" y="155" class="pnum" text-anchor="middle" >3</text>
+<text x="1047" y="164" class="pnam" text-anchor="start" >VDD</text>
+<text x="1027" y="155" class="pnum" text-anchor="middle" >2</text>
 <path d="M1014,190 L1040,190" class="w" />
-<text x="1047" y="194" class="pnam" text-anchor="start" >SDA</text>
-<text x="1027" y="185" class="pnum" text-anchor="middle" >4</text>
+<text x="1047" y="194" class="pnam" text-anchor="start" >GND</text>
+<text x="1027" y="185" class="pnum" text-anchor="middle" >3</text>
 <path d="M1014,220 L1040,220" class="w" />
-<text x="1047" y="224" class="pnam" text-anchor="start" >SCL</text>
-<text x="1027" y="215" class="pnum" text-anchor="middle" >1</text>
+<text x="1047" y="224" class="pnam" text-anchor="start" >SDA</text>
+<text x="1027" y="215" class="pnum" text-anchor="middle" >4</text>
 <path d="M1190,155 L1216,155" class="w" />
 <text x="1183" y="159" class="pnam" text-anchor="end" >H</text>
 <path d="M1190,195 L1216,195" class="w" />
@@ -4404,13 +4424,6 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="1232" y="159" class="llt" text-anchor="start" >H port ← S or P</text>
 <text x="1232" y="199" class="llt" text-anchor="start" >L port ← E or M</text>
 <text x="1232" y="176" class="ll" text-anchor="start" >tubes, sheet 9</text>
-<circle cx="975" cy="130" r="3.2" class="jd" />
-<circle cx="975" cy="160" r="3.2" class="jd" />
-<path d="M975,130 L975,141" class="w" />
-<line x1="965" y1="141" x2="985" y2="141" class="w" style="stroke-width:2.4"/>
-<line x1="965" y1="149" x2="985" y2="149" class="w" style="stroke-width:2.4"/>
-<path d="M975,149 L975,160" class="w" />
-<text x="962" y="149" class="bl" text-anchor="end" style="font-size:11.5px;font-weight:700" >C1 0.1 µF</text>
 <text x="1355" y="92" class="ref" text-anchor="start" style="font-size:16px" >U1</text>
 <text x="1355" y="110" class="bt" text-anchor="start" style="font-size:13px" >Sensirion SDP810-125Pa</text>
 <text x="1355" y="126" class="bl" text-anchor="start" style="font-size:11.5px" >item 87 · I²C 0x25</text>
@@ -4418,7 +4431,7 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="1355" y="166" class="bl" text-anchor="start" style="font-size:11.5px;font-weight:700" >Pins on the part, in order:</text>
 <text x="1355" y="182" class="pnam" text-anchor="start" style="font-size:11.5px" >1 SCL · 2 VDD · 3 GND · 4 SDA</text>
 <text x="1355" y="198" class="bl" text-anchor="start" style="font-size:11px" >2 mm pitch; find pin 1 on p. 12</text>
-<text x="1355" y="214" class="bl" text-anchor="start" style="font-size:11px" >C1 soldered across pins 2 and 3</text>
+<text x="1355" y="214" class="bl" text-anchor="start" style="font-size:11px" >C1 is on the shield, next to J1</text>
 <rect x="1040" y="292" width="150" height="186" class="sym" />
 <path d="M1014,310 L1040,310" class="w" />
 <text x="1047" y="314" class="pnam" text-anchor="start" >VCC</text>
@@ -4450,39 +4463,37 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="1210" y="390" class="bl" text-anchor="start" style="font-size:11.5px" >• level translator (2 × NDC7002N)</text>
 <text x="1210" y="406" class="bl" text-anchor="start" style="font-size:11.5px" >• 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR, CS</text>
 <text x="1210" y="426" class="bl" text-anchor="start" style="font-size:11.5px" >ADDR and CS open: pulled high, so I²C mode, 0x77</text>
-<text x="1210" y="446" class="bl" text-anchor="start" style="fill:#c0410d;font-size:11.5px" >Which cable came with it: check (TBD)</text>
+<text x="1210" y="446" class="bl" text-anchor="start" style="font-size:11.5px" >Its cable: 6-pin plug to six Dupont sockets</text>
 <rect x="1040" y="547" width="140" height="156" class="sym" />
 <path d="M1014,565 L1040,565" class="w" />
 <text x="1047" y="569" class="pnam" text-anchor="start" >VDD</text>
 <path d="M1014,595 L1040,595" class="w" />
 <text x="1047" y="599" class="pnam" text-anchor="start" >VCC</text>
 <path d="M1014,625 L1040,625" class="w" />
-<text x="1047" y="629" class="pnam" text-anchor="start" >GND</text>
+<text x="1047" y="629" class="pnam" text-anchor="start" >DAT</text>
 <path d="M1014,655 L1040,655" class="w" />
-<text x="1047" y="659" class="pnam" text-anchor="start" >DAT</text>
+<text x="1047" y="659" class="pnam" text-anchor="start" >CLK</text>
 <path d="M1014,685 L1040,685" class="w" />
-<text x="1047" y="689" class="pnam" text-anchor="start" >CLK</text>
+<text x="1047" y="689" class="pnam" text-anchor="start" >GND</text>
 <path d="M1180,580 L1206,580" class="w" />
-<text x="1173" y="584" class="pnam" text-anchor="end" >E+</text>
+<text x="1173" y="584" class="pnam" text-anchor="end" >RED</text>
 <path d="M1180,610 L1206,610" class="w" />
-<text x="1173" y="614" class="pnam" text-anchor="end" >E−</text>
+<text x="1173" y="614" class="pnam" text-anchor="end" >BLK</text>
 <path d="M1180,640 L1206,640" class="w" />
-<text x="1173" y="644" class="pnam" text-anchor="end" >A−</text>
+<text x="1173" y="644" class="pnam" text-anchor="end" >WHT</text>
 <path d="M1180,670 L1206,670" class="w" />
-<text x="1173" y="674" class="pnam" text-anchor="end" >A+</text>
-<path d="M1000,595 L1000,565 L1014,565" class="w" />
-<circle cx="1000" cy="595" r="3.2" class="jd" />
+<text x="1173" y="674" class="pnam" text-anchor="end" >GRN</text>
 <text x="1110" y="700" class="bl" text-anchor="middle" style="font-size:10.5px" >B+, B− unused</text>
 <text x="1040" y="720" class="bt" text-anchor="start" style="font-size:12.5px" >A2 · SparkFun HX711 breakout (SEN-13879) · item 72</text>
-<text x="1040" y="735" class="bl" text-anchor="start" style="fill:#c0410d;font-size:11.5px" >pad names and RATE jumper: check on the board (TBD)</text>
+<text x="1040" y="735" class="bl" text-anchor="start" style="font-size:11.5px" >header and pads as labelled on the board; RATE 10 samples/s</text>
 <path d="M1206,580 L1294,580" class="w" />
-<text x="1250" y="575" class="ll" text-anchor="middle" >red</text>
+<text x="1250" y="575" class="ll" text-anchor="middle" >red · E+</text>
 <path d="M1206,610 L1294,610" class="w" />
-<text x="1250" y="605" class="ll" text-anchor="middle" >black</text>
+<text x="1250" y="605" class="ll" text-anchor="middle" >black · E−</text>
 <path d="M1206,640 L1294,640" class="w" />
-<text x="1250" y="635" class="ll" text-anchor="middle" >white</text>
+<text x="1250" y="635" class="ll" text-anchor="middle" >white · A−</text>
 <path d="M1206,670 L1294,670" class="w" />
-<text x="1250" y="665" class="ll" text-anchor="middle" >green</text>
+<text x="1250" y="665" class="ll" text-anchor="middle" >green · A+</text>
 <text x="1250" y="692" class="ll" text-anchor="middle" >soldered direct,</text>
 <text x="1250" y="705" class="ll" text-anchor="middle" >no breadboard</text>
 <rect x="1320" y="562" width="100" height="126" class="sym" />
@@ -4551,7 +4562,7 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="34" y="896" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >C1</text>
 <text x="90" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >Capacitor</text>
 <text x="240" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >0.1 µF film, ECE kit</text>
-<text x="502" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >At U1 pins 2–3</text>
+<text x="502" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >Shield, by J1</text>
 <text x="636" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >On hand</text>
 <text x="748" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >—</text>
 <line x1="30" y1="901" x2="790" y2="901" class="thin" style="stroke:#d5d9de"/>
@@ -4570,15 +4581,15 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="748" y="928" class="tblc" text-anchor="start" style="font-size:11.5px" >—</text>
 <line x1="30" y1="933" x2="790" y2="933" class="thin" style="stroke:#d5d9de"/>
 <text x="34" y="944" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >J1–J3</text>
-<text x="90" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >Connector, 4-pin</text>
-<text x="240" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >0.1 in header; female socket on the PCB</text>
-<text x="502" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >Interface</text>
-<text x="636" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >On hand</text>
+<text x="90" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >Pin header, 2.54 mm</text>
+<text x="240" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >J1, J2 4-pin; J3 5-pin; for jumpers</text>
+<text x="502" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >Shield</text>
+<text x="636" y="944" class="tblc" text-anchor="start" style="fill:#c0410d;font-size:11.5px" >TBD: on hand?</text>
 <text x="748" y="944" class="tblc" text-anchor="start" style="font-size:11.5px" >—</text>
 <line x1="30" y1="949" x2="790" y2="949" class="thin" style="stroke:#d5d9de"/>
 <text x="34" y="960" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >W1–W4</text>
 <text x="90" y="960" class="tblc" text-anchor="start" style="font-size:11.5px" >Cables</text>
-<text x="240" y="960" class="tblc" text-anchor="start" style="font-size:11.5px" >W1–W3: 4 × 24 AWG twisted; W4: USB A–B</text>
+<text x="240" y="960" class="tblc" text-anchor="start" style="font-size:11.5px" >W1–W3: wires with Dupont ends; W4: USB A–B</text>
 <text x="502" y="960" class="tblc" text-anchor="start" style="font-size:11.5px" >Between boxes</text>
 <text x="636" y="960" class="tblc" text-anchor="start" style="fill:#c0410d;font-size:11.5px" >Lengths TBD</text>
 <text x="748" y="960" class="tblc" text-anchor="start" style="font-size:11.5px" >92, 93</text>
@@ -4589,19 +4600,19 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="1399" y="794" class="tblh" text-anchor="start" >NOTES</text>
 <line x1="810" y1="800" x2="1570" y2="800" class="vis2" />
 <text x="814" y="816" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >+5V</text>
-<text x="884" y="816" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 5V · C2+ · J1-1 · J2-1 · J3-1 · (R1, R2) → U1-2 VDD · A3-1 VCC · A2 VCC and VDD</text>
+<text x="884" y="816" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 5V · C1 · C2+ · J1-2 · J2-1 · J3-1, 2 · (R1, R2) → U1-2 VDD · A3-1 VCC · A2 VDD, VCC</text>
 <text x="1399" y="816" class="tblc" text-anchor="start" style="font-size:11.5px" >USB 5 V, ≈100 mA (est.)</text>
 <line x1="810" y1="821" x2="1570" y2="821" class="thin" style="stroke:#d5d9de"/>
 <text x="814" y="832" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >GND</text>
-<text x="884" y="832" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 GND · C2− · C1 · J1-2 · J2-2 · J3-2 → U1-3 · A3-2 · A2 GND</text>
+<text x="884" y="832" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 GND · C1 · C2− · J1-3 · J2-2 · J3-5 → U1-3 · A3-2 · A2 GND</text>
 <text x="1399" y="832" class="tblc" text-anchor="start" style="font-size:11.5px" >one common ground</text>
 <line x1="810" y1="837" x2="1570" y2="837" class="thin" style="stroke:#d5d9de"/>
 <text x="814" y="848" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >SDA</text>
-<text x="884" y="848" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 pin 20 · J1-3 · J2-3 · (R1) → U1-4 · A3-3</text>
+<text x="884" y="848" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 pin 20 · J1-4 · J2-3 · (R1) → U1-4 · A3-3</text>
 <text x="1399" y="848" class="tblc" text-anchor="start" style="font-size:11.5px" >I²C data, 100 kHz</text>
 <line x1="810" y1="853" x2="1570" y2="853" class="thin" style="stroke:#d5d9de"/>
 <text x="814" y="864" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >SCL</text>
-<text x="884" y="864" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 pin 21 · J1-4 · J2-4 · (R2) → U1-1 · A3-4</text>
+<text x="884" y="864" class="tblc" text-anchor="start" style="font-size:11.5px" >A1 pin 21 · J1-1 · J2-4 · (R2) → U1-1 · A3-4</text>
 <text x="1399" y="864" class="tblc" text-anchor="start" style="font-size:11.5px" >I²C clock, from A1</text>
 <line x1="810" y1="869" x2="1570" y2="869" class="thin" style="stroke:#d5d9de"/>
 <text x="814" y="880" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >HX_DAT</text>
@@ -4613,7 +4624,7 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="1399" y="896" class="tblc" text-anchor="start" style="font-size:11.5px" >clock from A1</text>
 <line x1="810" y1="901" x2="1570" y2="901" class="thin" style="stroke:#d5d9de"/>
 <text x="814" y="912" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >Bridge</text>
-<text x="884" y="912" class="tblc" text-anchor="start" style="font-size:11.5px" >A2 E+, E−, A−, A+ → LC1 red, black, white, green</text>
+<text x="884" y="912" class="tblc" text-anchor="start" style="font-size:11.5px" >A2 RED, BLK, WHT, GRN (E+, E−, A−, A+) → LC1 wires of the same colours</text>
 <text x="1399" y="912" class="tblc" text-anchor="start" style="font-size:11.5px" >soldered, balance box only</text>
 <line x1="810" y1="917" x2="1570" y2="917" class="thin" style="stroke:#d5d9de"/>
 <text x="814" y="928" class="tblc" text-anchor="start" style="font-size:11.5px;font-weight:700" >Open</text>
@@ -4655,10 +4666,10 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <text x="420" y="1005" class="kh">NOTES</text>
 <text x="420" y="1023" class="nt"><tspan class="nn">1.</tspan> Same label = same wire (SDA, SCL, HX_DAT, HX_CLK). All +5V symbols are one rail; all ground symbols one ground.</text>
 <text x="420" y="1039" class="nt"><tspan class="nn">2.</tspan> Pin numbers are each part’s own: U1 from the SDP8xx datasheet p. 4; A3 from Waveshare’s schematic (header H1).</text>
-<text x="420" y="1055" class="nt"><tspan class="nn">3.</tspan> D2, D3 and the J1–J3 pinouts are proposed. A2’s pad names follow the HX711 chip; check them on the SparkFun board.</text>
+<text x="420" y="1055" class="nt"><tspan class="nn">3.</tspan> J1–J3 follow each part’s own pin order, so each cable runs pin 1 to pin 1 (D-020). A2 is drawn as its board is labelled.</text>
 <text x="420" y="1071" class="nt"><tspan class="nn">4.</tspan> R1, R2 not fitted (DNP): A3 already has 4.7 kΩ pull-ups to 5 V. Fit them only to run U1 without A3 on the bus.</text>
 <text x="420" y="1087" class="nt"><tspan class="nn">5.</tspan> LC1’s wires are soldered straight to A2, never through the breadboard (Weakly2024). No mains on this sheet (D-012).</text>
-<text x="420" y="1103" class="nt"><tspan class="nn">6.</tspan> Bring-up: A3 alone (SDA, SCL ≈ 5 V, scan 0x77, chip ID 0x60), then U1 (0x25), then A2 + LC1. Not built yet.</text>
+<text x="420" y="1103" class="nt"><tspan class="nn">6.</tspan> Breadboard built and every sensor read, 2026-11-23. Shield PCB designed in KiCad (PCB/arduino_shield, D-020), not made.</text>
 <line x1="1130" y1="985" x2="1130" y2="1110" class="brd2"/>
 <line x1="1130" y1="1029" x2="1580" y2="1029" class="thin"/>
 <line x1="1130" y1="1065" x2="1580" y2="1065" class="thin"/>
@@ -4672,9 +4683,9 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
 <line x1="1360" y1="1029" x2="1360" y2="1065" class="thin"/>
 <text x="1368" y="1042" class="tbk">SCALE</text><text x="1368" y="1059" class="tbv">NTS</text>
 <line x1="1465" y1="1029" x2="1465" y2="1065" class="thin"/>
-<text x="1473" y="1042" class="tbk">DATE</text><text x="1473" y="1059" class="tbv">2026-11-17</text>
+<text x="1473" y="1042" class="tbk">DATE</text><text x="1473" y="1059" class="tbv">2026-11-23</text>
 <text x="1140" y="1082" class="tbk">STATUS</text>
-<text x="1200" y="1082" class="tbw">PRELIMINARY · NOT YET BUILT OR TESTED</text>
+<text x="1200" y="1082" class="tbw">BREADBOARD TESTED · SHIELD PCB NOT YET MADE</text>
 <text x="1140" y="1099" class="tbk">BASIS</text>
 <text x="1200" y="1099" class="tbv2">docs + datasheet notes + Waveshare schematic · Claude Code (agent)</text></svg></div></section>
 <section class="doc" id="parts" aria-label="Parts list">
@@ -4693,6 +4704,6 @@ footer.src { font-size: 13px; color: var(--muted); max-width: 110ch; }
   <h2 style="margin-top:10px">Findings from drawing it out</h2>
   <p>Gaps that only showed up when the parts were placed together. Recorded in PROJECT_STATUS.md §11 (2026-11-09); none is resolved yet.</p>
   <ol class="findings"><li><strong>Settling-chamber length grows with the chosen parts.</strong> The docs’ 230–300 mm “full decay” length assumed 0.15–0.25 mm wire and 2–3 mm cells. With the chosen window screen (0.010–0.011 in wire: 500 d = 127–140 mm) and 6 mm printed cells (≥150 mm after the honeycomb), the same rules give about 380–390 mm plus frames. Mehta1979’s 0.2 D spacing gives about 200 mm. Our arithmetic; decide at sizing.</li><li><strong>Taps “one per wall” meet the lift-off panels.</strong> The top panel (and possibly a side panel) covers the E and M stations, so taps there would have to be unplugged at every model swap. Options: taps only in fixed walls, or panels that stop short of the stations.</li><li><strong>The M-station floor tap cannot sit at the floor centre.</strong> The sting hole and shield are there. The floor tap needs an offset (drawn 30 mm upstream, TBD) or the station uses three taps. It now sits in the sphere insert (53), so its tube is unplugged whenever the insert comes out.</li><li><strong>250 mm sections need splitting in cross-section, not only along the flow.</strong> A 250 mm square duct plus walls and flanges is wider than the 256 mm P1S bed, so each chamber and contraction-inlet segment must be printed in halves or as flat panels (D-005 covers segments along the flow only).</li><li><strong>The balance box sets the tunnel’s height.</strong> At layout values the box hangs to about 158 mm below the centre line, lower than the chamber’s flanges (142 mm). The test-section feet are therefore the tallest, and the fan stand must match the resulting centre-line height.</li><li><strong>I²C length limits where the Arduino box can go.</strong> With the BME280 near the fan inlet and the SDP810 near the test section, each run under about 1 m puts the Arduino box near the middle of the tunnel.</li><li><strong>Turning the sting-lock knob twists the load cell.</strong> The twist from the thumb screw (68) goes through the mount into the 100 g cell unless the mount is held. The screw is drawn along the wind, so any twist that gets through bends the cell in its stiff sideways direction (if the sensitive axis is as assumed on sheet 8). Hold the mount through the insert opening while turning. Our reasoning; not quantified.</li></ol>
-  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Electrical sheets: the SDP8xx, HX711 and TAL221 notes, buy list §5–8, and Waveshare’s BME280 Environmental Sensor schematic (read 2026-11-17). Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10; revision D 2026-11-17.</footer>
+  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Electrical sheets: the SDP8xx, HX711 and TAL221 notes, buy list §5–8, and Waveshare’s BME280 Environmental Sensor schematic (read 2026-11-17). Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10; revision D 2026-11-17; sheet 12 revision E 2026-11-23 (connector pin orders and C1 as in the KiCad shield, D-020).</footer>
 </section>
 </div>

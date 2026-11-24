@@ -10,7 +10,9 @@ with its own test sketch in `firmware/` ([as built](#breadboard-as-built)). Ever
 aluminium window screen, the SDP810-125Pa, two TAL221 100 g load cells, the SparkFun HX711, the Waveshare BME280,
 four 8 × 12 in sheets of 1/8 in cast acrylic, the 3/4 in and 1 in Delrin balls and two 1/8 in brass rods for the
 stings. The fan is bought last. Order status: [shopping_list.md](shopping_list.md). The sensor circuit is drawn and built on
-the breadboard ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).**
+the breadboard ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [walk-through](electronics_walkthrough.md)).
+The shield PCB that replaces the breadboard is designed but not made ([shield PCB](#shield-pcb-designed-not-made),
+[D-020](../DECISIONS.md), 2026-11-23).**
 - Decided so far:
   - an open-circuit blower with the fan at the front ([D-007](../DECISIONS.md));
   - a 100 mm × 100 mm test section ([D-008](../DECISIONS.md));
@@ -21,7 +23,8 @@ the breadboard ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [
     a thumb-screw sting lock ([D-015](../DECISIONS.md)); one full-length sting per ball, no sleeve
     ([D-016](../DECISIONS.md), Tentative).
 - The sensor circuit (Tentative, [D-018](../DECISIONS.md), 2026-11-17): laptop USB power; the SDP810 and BME280 on I²C
-  pins 20/21; the HX711 on pins 2/3; breadboard first, then a shield PCB on the Mega.
+  pins 20/21; the HX711 on pins 2/3; breadboard first, then a shield PCB on the Mega. The shield
+  ([D-020](../DECISIONS.md), owner, 2026-11-23): KiCad, jumper-wire headers in each part's pin order, not yet ordered.
 - The fan is open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6 ([D-011](../DECISIONS.md)).
 - Parts chosen and their prices: [buy_list.md](buy_list.md); the owner's tracker of what is still to buy:
   [shopping_list.md](shopping_list.md).
@@ -71,7 +74,7 @@ the breadboard ([D-018](../DECISIONS.md), Tentative; drawing package sheet 12; [
 Signal conditioning parts on hand: see [Parts on hand](#parts-on-hand). **Circuit: designed on paper 2026-11-17; breadboard
 started 2026-11-18 and completed 2026-11-23, every sensor reading** ([D-018](../DECISIONS.md), Tentative; drawing package sheets 11–12; [walk-through](electronics_walkthrough.md)):
 the SDP810 and BME280 on I²C pins 20 (SDA) and 21 (SCL), the HX711 DAT and CLK on pins 2 and 3, C1 0.1 µF at the
-SDP810's pins, C2 10 µF at the 5 V entry, no extra pull-ups (the BME280 board has 4.7 kΩ to VCC on SDA and SCL,
+SDP810 (as built: at the cable's breadboard end, and probably 1 µF; owner's recollection, 2026-11-23), C2 10 µF at the 5 V entry, no extra pull-ups (the BME280 board has 4.7 kΩ to VCC on SDA and SCL,
 [notes](../resources/notes/WaveshareBME280.md)), all powered from the laptop's USB. Proposed 2026-11-01:
 digital sensors (HX711, I²C pressure sensor, BME280) with no op-amps in the measurement chain, on an interface board
 the owner designs ([TODO.md](../TODO.md) P2).
@@ -126,12 +129,13 @@ for the voltages). **Verified for this power wiring only:**
 | BME280 cable, red to blue / yellow / orange / green | Unpowered, plugged into the board only | 4.605 / 4.617 / 4.597 / 4.617 kΩ |
 | BME280 cable, black to blue | Unpowered, plugged into the board only | 145.3 kΩ |
 
-Not done yet: the BME280's powered 5 V check, any I²C scan, and every SDP810, HX711 and load-cell test. Procedure and
-reasoning: [session log](sessions/2026-11-18-breadboard-power-and-part-checks.md).
+Not done on 2026-11-18: the BME280's powered 5 V check, any I²C scan, and every SDP810, HX711 and load-cell test (all
+done on 2026-11-23, below). Procedure and reasoning: [session log](sessions/2026-11-18-breadboard-power-and-part-checks.md).
 
 **SDP810 cable (owner, 2026-11-19; Implemented, unverified).** A ready-made 4-pin JST PH 2.0 cable with metal contacts
 in its holes (seller not recorded) is pushed onto the sensor's four pins. It is a stiff fit ("it was just a bit hard to
-push"), not a misfit. It is not yet on the breadboard and has not been powered. The plug has no key, so before power:
+push"), not a misfit. As of 2026-11-19 it was not on the breadboard and had not been powered (it was wired and worked on
+2026-11-23, below). The plug has no key, so before power:
 mark its orientation, check the pins are straight, check by continuity that no neighbouring wires short, and match each
 wire colour to its pin from the datasheet's p. 4 bottom view (owner to send a photo; the colour-to-pin map is
 **Unknown**). C1 moves to the breadboard end of the cable. The I²C scan finding 0x25 is the real test
@@ -144,13 +148,15 @@ reported checking it afterwards; the neighbouring-pin continuity results were no
 check at the free wire ends** (owner, 2026-11-23, before soldering): red–black and green–white "about" the datasheet's
 1090 Ω and 1000 Ω; the exact readings were not recorded. The owner then soldered all four load-cell wires to the matching
 pads (red → RED, black → BLK, white → WHT, green → GRN; YLW empty), 2026-11-23. Bridge check between neighbouring pads:
-not yet reported. Test sketch for step 3: `firmware/hx711_raw_counts/hx711_raw_counts.ino` (written 2026-11-23, not yet
-compiled or run).
+not yet reported. Test sketch for step 3: `firmware/hx711_raw_counts/hx711_raw_counts.ino` (written 2026-11-23 and run
+the same day, below).
 
 **Whole circuit powered, 2026-11-23** (owner's meter, model and accuracy Unknown; USB from the laptop). Everything wired
 as sheet 12: BME280 (red +5 V, black GND, blue SDA, yellow SCL; orange ADDR and green CS open), HX711 (VDD and VCC
 joined to +5 V, DAT to pin 2, CLK to pin 3), SDP810 by its PH 2.0 cable (the owner located pin 1 by the moulded "1" and
-wired by pin number: 1 SCL, 2 VDD, 3 GND, 4 SDA), C1 at the breadboard end with its longer leg to +5 V. Whether R1 and
+wired by pin number: 1 SCL, 2 VDD, 3 GND, 4 SDA), C1 at the breadboard end with its longer leg to +5 V (the owner later
+recalled it is **1 µF, not 0.1 µF**, 2026-11-23: likely, since the kit's 1 µF parts are leaded electrolytics and its
+0.1 µF parts mylar; marking not read). Whether R1 and
 R2 are still fitted: Unknown. Power LED on.
 
 | Check | Result |
@@ -300,6 +306,30 @@ read), so they appear to be still fitted (harmless: pull-ups, and SDA and SCL re
 with masking tape (CLK, DAT, SDA, SCL); the SDP810 cable's joints wrapped in blue tape at staggered positions; the
 BME280 at the end of a hanging bundle of jumpers; the load cell taped at the desk's edge with its free end overhanging.
 
+## Shield PCB (designed, not made)
+
+**Status: Implemented, unverified (2026-11-23).** The owner drew a shield for the Mega in KiCad 10 from KiCad's
+Arduino Mega shield template; it carries what the breadboard carries ([D-020](../DECISIONS.md),
+[session log](sessions/2026-11-23-sensor-shield-pcb.md)). Files: `PCB/arduino_shield/` (design) and `PCB/arduino_shield/gerbers/` (manufacturing files).
+Not ordered, built or tested.
+
+| Item | As designed |
+|---|---|
+| Board | Full Mega outline, 101.6 × 53.34 mm; 2 copper layers, 1.6 mm; 0.25 mm tracks, 5 vias, no copper fill |
+| To the Mega | The template's headers P1–P7 (all Mega pins; only 5V, GND, SDA/SCL beside AREF, 20/21, 2 and 3 are used, and the duplicate 5V, GND and I²C pins are joined in copper) and six 3.2 mm mounting holes |
+| J1, SDP810 | 4-pin 2.54 mm header: 1 SCL, 2 +5V, 3 GND, 4 SDA (the sensor's own order) |
+| J2, BME280 board | 4-pin 2.54 mm header: 1 +5V, 2 GND, 3 SDA, 4 SCL (the board's header order; ADDR and CS stay unconnected) |
+| J3, HX711 board | 5-pin 2.54 mm header: 1 +5V (VDD), 2 +5V (VCC), 3 DAT (Mega pin 2), 4 CLK (pin 3), 5 GND (the board's header order) |
+| C1 | 0.1 µF film beside J1, +5V to GND; footprint 5.0 mm lead spacing (**placeholder, not measured**) |
+| C2 | 10 µF 50 V electrolytic by the Mega's 5V pin; footprint 5 mm diameter, 2.0 mm lead spacing (**placeholder, not measured**) |
+| R1, R2 | 5.1 kΩ pads for SDA and SCL pull-ups, marked "do not populate" |
+| Silkscreen | Each connector's sensor and pin names; "By: Nuh Shaheer 2026" |
+| Checks | Final ERC: 0 errors (69 warnings: the template's labels on unused pins). Final DRC with schematic parity: 0 unconnected items, 0 parity issues, 9 harmless warnings |
+
+Jumper wires plug onto J1–J3 (male pins or female sockets fit the same holes; to choose at soldering). Every cable runs
+pin 1 to pin 1. The breadboard stays the working circuit until the shield is made and passes the same checks: an I²C
+scan finding 0x25 and 0x77 through it, and a steady HX711 zero.
+
 ## Test models
 
 | Model | Dimensions | Mount | Status |
@@ -380,3 +410,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-18 | Breadboard started by the owner: Mega power, rails, C2 and signal rows wired, no sensor connected; rails and C2 read 4.962 V; BME280 cable checked by resistance; delivered boards' labels recorded | [2026-11-18](sessions/2026-11-18-breadboard-power-and-part-checks.md) |
 | 2026-11-19 | Calibration weights weighed by the owner on the school balance (CGOLDENWALL HZ50002B, d = 0.01 g; EXP-001); the weight set recorded as bought. BME280 placement: room air near the fan inlet, in its own vented holder (proposed). Breadboard unchanged. After the wrap the owner pushed a ready-made PH 2.0 cable onto the SDP810's pins (stiff fit; not powered, colours not yet mapped to pins) | [2026-11-19](sessions/2026-11-19-bme280-advice-and-mass-weighing.md) |
 | 2026-11-23 | Breadboard completed by the owner: female header on the HX711, one TAL221 soldered to it, the SDP810's cable spliced to jumpers (taped joints), the BME280 on jumpers, C1 at the breadboard end. Rails 4.947 V, SDA/SCL 4.81 V. Four bring-up sketches in `firmware/`; I²C scan found 0x25 and 0x77 (chip ID 0x60); HX711 penny step about 33,300 counts at 10 SPS; SDP810 zero −0.022 Pa, scale 240, correct sign; BME280 99.6 kPa, responds to breath and touch, reset once under handling (detected and recovered) | [2026-11-23](sessions/2026-11-23-sensor-bring-up.md) |
+| 2026-11-23 | Shield PCB designed by the owner in KiCad (not made): jumper-wire headers J1–J3 in each part's pin order, five-pin J3, C1 beside J1, R1/R2 unfitted pads, full Mega size, Gerbers ready ([D-020](../DECISIONS.md); [shield PCB](#shield-pcb-designed-not-made)). The owner recalls the breadboard's C1 is 1 µF. Sheet 12 redrawn as revision E. Breadboard unchanged | [2026-11-23 shield PCB](sessions/2026-11-23-sensor-shield-pcb.md) |

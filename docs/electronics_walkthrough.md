@@ -156,6 +156,10 @@ numbers itself or comes on a board (the HX711) that does it.
 
 ![Sheet 12: interface schematic](images/2026-11-17_sheet12-schematic-revD.png)
 
+*This snapshot is revision D. Since 2026-11-23 sheet 12 is revision E: J1–J3 follow each part's own pin order, J3 has
+five pins, C1 sits on the shield, and the HX711 shows its board's pad names ([D-020](../DECISIONS.md); open
+[the drawings](drawings/wind-tunnel-drawings.html) for the current sheet).*
+
 ### Symbols and labels
 
 | You see | It means |
@@ -176,9 +180,10 @@ numbers itself or comes on a board (the HX711) that does it.
 | DNP | Do not place: the part is planned but not fitted |
 | Black / blue / orange text | Decided or from a datasheet / proposed / still to check (TBD) |
 
-**Important: symbols are drawn by function, not by the physical pin order.** The SDP810's pins are drawn VDD, GND,
-SDA, SCL so the wires run straight, but on the real part the order is **1 SCL, 2 VDD, 3 GND, 4 SDA** (datasheet p. 4).
-Always wire by the pin *numbers and names*, never by the position on the drawing.
+**Important: symbols are drawn by function, not by the physical pin order.** In revision D the SDP810's pins were drawn
+VDD, GND, SDA, SCL so the wires ran straight, but on the real part the order is **1 SCL, 2 VDD, 3 GND, 4 SDA**
+(datasheet p. 4). Always wire by the pin *numbers and names*, never by the position on the drawing. Revision E draws the
+SDP810 and the HX711 in their real order, because the shield's connectors now copy it (see J1–J3 below).
 
 ### Part by part
 
@@ -200,8 +205,14 @@ Always wire by the pin *numbers and names*, never by the position on the drawing
   these are the chip's E+, E−, A− and A+.) **YLW** stays empty, because this cell has no yellow wire. On the other side,
   VCC and VDD both go to +5 V (one powers the analog half, one the digital half), GND to ground, DAT to pin 2, CLK to
   pin 3. Leave the two unlabelled pads near CLK and GND empty.
-- **J1–J3** are the plugs where each sensor's cable meets the interface. They all use the same order: **1 = +5V,
-  2 = GND, then the two signals**.
+- **J1–J3** are the plugs where each sensor's cable meets the interface. In revision D they all used the same order,
+  **1 = +5V, 2 = GND, then the two signals**. That is fine for loose jumpers, but a cable with a plug at each end keeps
+  its wires in order, so on the shield PCB (2026-11-23, [D-020](../DECISIONS.md)) **each connector copies its part's
+  own order** and every cable runs pin 1 to pin 1:
+  - **J1 (SDP810):** 1 SCL, 2 +5V, 3 GND, 4 SDA;
+  - **J2 (BME280 board):** 1 +5V, 2 GND, 3 SDA, 4 SCL;
+  - **J3 (HX711 board):** 1 +5V (to VDD), 2 +5V (to VCC), 3 DAT (pin 2), 4 CLK (pin 3), 5 GND. Five pins, so the
+    shield joins VDD and VCC and the cable needs no jumper at the HX711.
 
 ### Bench wiring table
 
@@ -347,18 +358,27 @@ so if the breadboard works, the PCB will too.
   Mega (about 69 × 53 mm) instead of its full length.
 - **Connectors:** plain 0.1 in pins with Dupont jumpers are fine on the bench. For real runs, **locking 4-pin plugs**
   (the white Grove/JST style) cannot wiggle loose or go in backwards, and ready-made cables need no crimping tool.
-  Choose when designing the shield.
+  **Chosen 2026-11-23 (owner): plain 2.54 mm pin headers for the jumper wires already on hand**, each numbered in its
+  part's own pin order and labelled on the board's silkscreen.
+- **As designed (2026-11-23, [D-020](../DECISIONS.md)):** the owner drew the shield in KiCad 10 from its Arduino Mega
+  shield template (`PCB/arduino_shield/`), full Mega size (101.6 × 53.34 mm), two copper layers. Three lessons from
+  drawing it: a KiCad symbol for a bare chip (BME280, HX711) brings the chip's tiny footprint, so a board that arrives
+  by cable is drawn as a **connector**; the template marks the Mega's USB socket and power jack, and parts must stay out
+  of those outlines; and tracks need room around mounting holes and header pads, where solder can bridge. Not yet
+  ordered ([session log](sessions/2026-11-23-sensor-shield-pcb.md)).
 - **Optional second board:** a thumbnail-sized carrier for the SDP810 (the sensor, C1, a 4-pin connector and two screw
   holes) would solve its awkward 2 mm pins and its mounting at once, in the same order as the shield.
 
-**The steps in a PCB program** (KiCad is recommended, see [Open items](#10-open-items)):
+**The steps in a PCB program** (KiCad, chosen 2026-11-23; see [Open items](#10-open-items)):
 
 1. **Schematic:** draw sheet 12.
 2. **Footprints:** choose each part's physical shape (0.1 in header pins, the capacitor's lead spacing).
 3. **Layout:** board outline matching the Mega, connectors at the edge, then draw the traces.
 4. **Design rule check:** the program flags traces too close together and unconnected pins.
 5. **Export the Gerber files** and upload them to a board maker (JLCPCB, PCBWay, OSH Park). Small boards usually cost a
-   few dollars for five, plus shipping (check current prices).
+   few dollars for five, plus shipping (check current prices). Export **all seven layers** (F.Cu, B.Cu, F.Silkscreen,
+   B.Silkscreen, F.Mask, B.Mask, Edge.Cuts) plus the drill files; the first export on 2026-11-23 missed the board
+   outline and the solder masks.
 6. **Solder:** every part is through-hole (leads through holes), the easiest kind to hand-solder.
 
 ## 8. Check yourself
@@ -425,8 +445,9 @@ Learn each idea just before you need it.
 | Is the Mega an R3 (SDA and SCL beside AREF)? | **Answered 2026-11-18:** yes, marked SDA1 and SCL1 | Owner's photos |
 | Do the Mega's own I²C pull-ups exist? | To check | Step 0 above |
 | Cable lengths W1–W3 | TBD | Box positions at sizing |
-| Connector type for J1–J3 on the PCB | TBD | Shield design |
-| PCB program: KiCad (recommended) or EasyEDA | Owner to choose (2026-11-17) | Owner |
+| Connector type for J1–J3 on the PCB | **Answered 2026-11-23:** 2.54 mm pin headers for jumper wires, each in its part's pin order ([D-020](../DECISIONS.md)) | Owner |
+| PCB program: KiCad (recommended) or EasyEDA | **Answered 2026-11-23: KiCad 10** | Owner |
+| Is the breadboard's C1 0.1 µF or 1 µF? | The owner recalls 1 µF (2026-11-23); read its marking. Either works; the datasheet names no value | Owner |
 
 ## 11. Photos
 

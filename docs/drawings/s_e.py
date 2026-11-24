@@ -1,16 +1,21 @@
-"""Sheets 11-12, electrical (revision D, 2026-11-17): the system block diagram and the interface schematic.
+"""Sheets 11-12, electrical (revision D, 2026-11-17; sheet 12 revised E, 2026-11-23): the system block diagram and the
+interface schematic.
 
 Sources: resources/notes/SDP8xx.md (U1 pins, address, supply), HX711.md and TAL221.md (bridge, wire colours),
 docs/buy_list.md §5-8, and Waveshare's "BME280 Environmental Sensor" schematic, read 2026-11-17 (header H1 pin order
 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS; 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR and CS; RT9193-33 regulator;
-NDC7002N level translator). The SparkFun HX711 pad labels are not yet checked on the delivered board.
+NDC7002N level translator). The SparkFun HX711 header and pad names are as on the delivered board (owner's photo,
+2026-11-17). Revision E (2026-11-23): J1-J3 follow each part's own pin order so every cable runs pin 1 to pin 1, J3 has
+five pins (VDD and VCC both on +5V), and C1 sits on the shield beside J1, as in the KiCad shield PCB/arduino_shield
+(D-020).
 """
 import wtsheets
 from wtlib import *
 
 DIG, PWR, TUBEC, MECH = '#6b4f8f', '#c62828', '#4f6f8f', '#59606b'
-DATE = '2026-11-17'
-STATUS = 'PRELIMINARY · NOT YET BUILT OR TESTED'
+DATE = '2026-11-17'      # sheet 11 (revision D)
+DATE_E = '2026-11-23'    # sheet 12 (revision E)
+STATUS = 'BREADBOARD TESTED · SHIELD PCB NOT YET MADE'
 BASIS = 'docs + datasheet notes + Waveshare schematic · Claude Code (agent)'
 WARN = []   # text that may not fit its box; printed by check_fit()
 
@@ -344,11 +349,11 @@ def sheet_schematic():
     sh = Sheet(12, 'WT-E02', 'ELECTRICAL: INTERFACE SCHEMATIC', '', 'NTS',
                ['Same label = same wire (SDA, SCL, HX_DAT, HX_CLK). All +5V symbols are one rail; all ground symbols one ground.',
                 'Pin numbers are each part’s own: U1 from the SDP8xx datasheet p. 4; A3 from Waveshare’s schematic (header H1).',
-                'D2, D3 and the J1–J3 pinouts are proposed. A2’s pad names follow the HX711 chip; check them on the SparkFun board.',
+                'J1–J3 follow each part’s own pin order, so each cable runs pin 1 to pin 1 (D-020). A2 is drawn as its board is labelled.',
                 'R1, R2 not fitted (DNP): A3 already has 4.7 kΩ pull-ups to 5 V. Fit them only to run U1 without A3 on the bus.',
                 'LC1’s wires are soldered straight to A2, never through the breadboard (Weakly2024). No mains on this sheet (D-012).',
-                'Bring-up: A3 alone (SDA, SCL ≈ 5 V, scan 0x77, chip ID 0x60), then U1 (0x25), then A2 + LC1. Not built yet.'],
-               kind='elec', date=DATE, status=STATUS, basis=BASIS, units='SI', key2=['wire', 'dot', 'tag', 'nc'])
+                'Breadboard built and every sensor read, 2026-11-23. Shield PCB designed in KiCad (PCB/arduino_shield, D-020), not made.'],
+               kind='elec', date=DATE_E, status=STATUS, basis=BASIS, units='SI', key2=['wire', 'dot', 'tag', 'nc'])
     sh.a(EDEFS)
     used(sh, 66, 71, 72, 87, 88, 89, 90, 91, 92, 93)
 
@@ -403,31 +408,40 @@ def sheet_schematic():
         sh.text(x + 12, 488, '5.1 kΩ', cls='bl', size=11.5)
         sh.text(x + 12, 502, 'DNP', cls='bl', size=11.5, color=PROP, weight=700)
 
-    J1, J2, J3 = [130, 160, 190, 220], [310, 340, 370, 400], [595, 625, 655, 685]
-    for ys, ref, s3, s4 in ((J1, 'J1', 'SDA', 'SCL'), (J2, 'J2', 'SDA', 'SCL'), (J3, 'J3', 'HX_DAT', 'HX_CLK')):
+    # Revision E: each connector follows its part's own pin order, so every cable runs pin 1 to pin 1 (D-020).
+    J1, J2, J3 = [130, 160, 190, 220], [310, 340, 370, 400], [565, 595, 625, 655, 685]
+    for ys, ref, nets in ((J1, 'J1', ('SCL', '+5V', 'GND', 'SDA')), (J2, 'J2', ('+5V', 'GND', 'SDA', 'SCL')),
+                          (J3, 'J3', ('+5V', '+5V', 'HX_DAT', 'HX_CLK', 'GND'))):
         conn(sh, 690, ys, ref)
-        pwr(sh, 664, ys[0], d='l')
-        gnd(sh, 664, ys[1], d='l')
-        tag(sh, 664, ys[2], s3, d='l')
-        tag(sh, 664, ys[3], s4, d='l')
+        for y, net in zip(ys, nets):
+            if net == '+5V':
+                pwr(sh, 664, y, d='l')
+            elif net == 'GND':
+                gnd(sh, 664, y, d='l')
+            else:
+                tag(sh, 664, y, net, d='l')
         for y in ys:
             wire(sh, [(712, y), (1014, y)])
-    cable(sh, 820, J1, 'W1', '4-core, length TBD')
+    cable(sh, 820, J1, 'W1', '4 wires, length TBD')
     cable(sh, 820, J2, 'W2', '4 of its 6 wires')
-    cable(sh, 820, J3, 'W3', '4-core, length TBD')
+    cable(sh, 820, J3, 'W3', '5 wires, length TBD')
+
+    # C1 moved onto the shield, beside J1 (revision E; on the breadboard it sat at the cable's board end).
+    pwr(sh, 560, 250)
+    cap_v(sh, 560, 250, 300)
+    gnd(sh, 560, 300)
+    sh.text(576, 268, 'C1', cls='ref', size=13)
+    sh.text(576, 283, '0.1 µF', cls='bl', size=11.5)
+    sh.text(576, 297, 'next to J1', cls='bl', size=11)
 
     # ---------- U1, SDP810 ----------
-    part(sh, 1040, 150, pins_l=[(130, 'VDD', '2', None), (160, 'GND', '3', None), (190, 'SDA', '4', None), (220, 'SCL', '1', None)],
+    part(sh, 1040, 150, pins_l=[(130, 'SCL', '1', None), (160, 'VDD', '2', None), (190, 'GND', '3', None), (220, 'SDA', '4', None)],
          pins_r=[(155, 'H', '', None), (195, 'L', '', None)])
     for y in (155, 195):
         sh.circ(1220, y, 4, cls='sym')
     sh.text(1232, 159, 'H port ← S or P', cls='llt')
     sh.text(1232, 199, 'L port ← E or M', cls='llt')
     sh.text(1232, 176, 'tubes, sheet 9', cls='ll')
-    dot(sh, 975, 130)
-    dot(sh, 975, 160)
-    cap_v(sh, 975, 130, 160)
-    sh.text(962, 149, 'C1 0.1 µF', cls='bl', size=11.5, anchor='end', weight=700)
     tx = 1355
     sh.text(tx, 92, 'U1', cls='ref', size=16)
     sh.text(tx, 110, 'Sensirion SDP810-125Pa', cls='bt', size=13)
@@ -436,7 +450,7 @@ def sheet_schematic():
     sh.text(tx, 166, 'Pins on the part, in order:', cls='bl', size=11.5, weight=700)
     sh.text(tx, 182, '1 SCL · 2 VDD · 3 GND · 4 SDA', cls='pnam', size=11.5)
     sh.text(tx, 198, '2 mm pitch; find pin 1 on p. 12', cls='bl', size=11)
-    sh.text(tx, 214, 'C1 soldered across pins 2 and 3', cls='bl', size=11)
+    sh.text(tx, 214, 'C1 is on the shield, next to J1', cls='bl', size=11)
 
     # ---------- A3, BME280 ----------
     part(sh, 1040, 150, pins_l=[(310, 'VCC', '1', None), (340, 'GND', '2', None), (370, 'SDA', '3', None), (400, 'SCL', '4', None),
@@ -452,18 +466,16 @@ def sheet_schematic():
     sh.text(tx, 390, '• level translator (2 × NDC7002N)', cls='bl', size=11.5)
     sh.text(tx, 406, '• 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR, CS', cls='bl', size=11.5)
     sh.text(tx, 426, 'ADDR and CS open: pulled high, so I²C mode, 0x77', cls='bl', size=11.5)
-    sh.text(tx, 446, 'Which cable came with it: check (TBD)', cls='bl', size=11.5, color=TBD)
+    sh.text(tx, 446, 'Its cable: 6-pin plug to six Dupont sockets', cls='bl', size=11.5)
 
     # ---------- A2, HX711, and LC1 ----------
-    top, bot = part(sh, 1040, 140, pins_l=[(565, 'VDD', '', None), (595, 'VCC', '', None), (625, 'GND', '', None),
-                                           (655, 'DAT', '', None), (685, 'CLK', '', None)],
-                    pins_r=[(580, 'E+', '', None), (610, 'E−', '', None), (640, 'A−', '', None), (670, 'A+', '', None)])
-    wire(sh, [(1000, 595), (1000, 565), (1014, 565)])
-    dot(sh, 1000, 595)
+    top, bot = part(sh, 1040, 140, pins_l=[(565, 'VDD', '', None), (595, 'VCC', '', None), (625, 'DAT', '', None),
+                                           (655, 'CLK', '', None), (685, 'GND', '', None)],
+                    pins_r=[(580, 'RED', '', None), (610, 'BLK', '', None), (640, 'WHT', '', None), (670, 'GRN', '', None)])
     sh.text(1110, 700, 'B+, B− unused', cls='bl', size=10.5, anchor='middle')
     sh.text(1040, bot + 17, 'A2 · SparkFun HX711 breakout (SEN-13879) · item 72', cls='bt', size=12.5)
-    sh.text(1040, bot + 32, 'pad names and RATE jumper: check on the board (TBD)', cls='bl', size=11.5, color=TBD)
-    for y, colour in ((580, 'red'), (610, 'black'), (640, 'white'), (670, 'green')):
+    sh.text(1040, bot + 32, 'header and pads as labelled on the board; RATE 10 samples/s', cls='bl', size=11.5)
+    for y, colour in ((580, 'red · E+'), (610, 'black · E−'), (640, 'white · A−'), (670, 'green · A+')):
         wire(sh, [(1206, y), (1294, y)])
         sh.text(1250, y - 5, colour, cls='ll', anchor='middle')
     sh.text(1250, 692, 'soldered direct,', cls='ll', anchor='middle')
@@ -495,20 +507,20 @@ def sheet_schematic():
            ('A3', 'Ambient sensor board', 'Waveshare BME280 Environmental Sensor', 'Room air, fan inlet', 'On hand', '89'),
            ('U1', 'Differential pressure', 'Sensirion SDP810-125Pa', 'Sensor bracket', 'On hand', '87'),
            ('LC1', 'Load cell', 'TAL221 100 g (the second is a spare)', 'Balance box', 'On hand', '66'),
-           ('C1', 'Capacitor', '0.1 µF film, ECE kit', 'At U1 pins 2–3', 'On hand', '—'),
+           ('C1', 'Capacitor', '0.1 µF film, ECE kit', 'Shield, by J1', 'On hand', '—'),
            ('C2', 'Capacitor', '10 µF 50 V electrolytic, ECE kit', 'Interface, 5 V in', 'On hand', '—'),
            ('R1, R2', 'I²C pull-up', '5.1 kΩ ¼ W, ECE kit', 'Interface', 'DNP (note 4)', '—'),
-           ('J1–J3', 'Connector, 4-pin', '0.1 in header; female socket on the PCB', 'Interface', 'On hand', '—'),
-           ('W1–W4', 'Cables', 'W1–W3: 4 × 24 AWG twisted; W4: USB A–B', 'Between boxes', 'Lengths TBD', '92, 93')],
+           ('J1–J3', 'Pin header, 2.54 mm', 'J1, J2 4-pin; J3 5-pin; for jumpers', 'Shield', 'TBD: on hand?', '—'),
+           ('W1–W4', 'Cables', 'W1–W3: wires with Dupont ends; W4: USB A–B', 'Between boxes', 'Lengths TBD', '92, 93')],
           colour=bom_colour)
     end = table(sh, 810, 774, 'CONNECTIONS (NET LIST)', [('NET', 70), ('JOINS', 515), ('NOTES', 175)],
-                [('+5V', 'A1 5V · C2+ · J1-1 · J2-1 · J3-1 · (R1, R2) → U1-2 VDD · A3-1 VCC · A2 VCC and VDD', 'USB 5 V, ≈100 mA (est.)'),
-                 ('GND', 'A1 GND · C2− · C1 · J1-2 · J2-2 · J3-2 → U1-3 · A3-2 · A2 GND', 'one common ground'),
-                 ('SDA', 'A1 pin 20 · J1-3 · J2-3 · (R1) → U1-4 · A3-3', 'I²C data, 100 kHz'),
-                 ('SCL', 'A1 pin 21 · J1-4 · J2-4 · (R2) → U1-1 · A3-4', 'I²C clock, from A1'),
+                [('+5V', 'A1 5V · C1 · C2+ · J1-2 · J2-1 · J3-1, 2 · (R1, R2) → U1-2 VDD · A3-1 VCC · A2 VDD, VCC', 'USB 5 V, ≈100 mA (est.)'),
+                 ('GND', 'A1 GND · C1 · C2− · J1-3 · J2-2 · J3-5 → U1-3 · A3-2 · A2 GND', 'one common ground'),
+                 ('SDA', 'A1 pin 20 · J1-4 · J2-3 · (R1) → U1-4 · A3-3', 'I²C data, 100 kHz'),
+                 ('SCL', 'A1 pin 21 · J1-1 · J2-4 · (R2) → U1-1 · A3-4', 'I²C clock, from A1'),
                  ('HX_DAT', 'A1 pin 2 · J3-3 → A2 DAT', 'data out of the HX711'),
                  ('HX_CLK', 'A1 pin 3 · J3-4 → A2 CLK', 'clock from A1'),
-                 ('Bridge', 'A2 E+, E−, A−, A+ → LC1 red, black, white, green', 'soldered, balance box only'),
+                 ('Bridge', 'A2 RED, BLK, WHT, GRN (E+, E−, A−, A+) → LC1 wires of the same colours', 'soldered, balance box only'),
                  ('Open', 'A3-5 ADDR, A3-6 CS; A2 B+, B− (channel B)', 'not connected')])
     sh.text(810, end + 6, 'J1-3 means connector J1, pin 3; U1-4 means part U1, pin 4. Arrows read “board side → remote part”.', cls='ll')
     return sh

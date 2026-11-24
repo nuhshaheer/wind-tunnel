@@ -8,12 +8,25 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
+- [ ] **Owner: measure the two capacitors, then order the shield PCB** (new 2026-11-23; [D-020](DECISIONS.md);
+  [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)). With the calipers: C1's (0.1 µF mylar) lead spacing, and C2's (10 µF) can diameter and lead
+  spacing. The placeholder footprints assume 5.0 mm for C1, and 5 mm diameter with 2.0 mm spacing for C2.
+  - If they match: zip the 10 files in `PCB/arduino_shield/gerbers/` (flat, no folder inside) and upload to JLCPCB.
+    Check its preview shows 2 layers and 101.6 × 53.34 mm, keep 1.6 mm, HASL, 1 oz; check whether the length (just over
+    100 mm) changes the price.
+  - If not: in KiCad, give C1 or C2 the matching footprint, Update PCB from Schematic, fix any track the new pads touch,
+    re-export the Gerbers (7 layers: F/B.Cu, F/B.Silkscreen, F/B.Mask, Edge.Cuts) and drill files into `gerbers/`, and
+    have the agent recheck them (`kicad-cli pcb drc --schematic-parity` on a copy, as in the session log §5).
+  - Outcome: the order placed (date, quantity, price) recorded in PROJECT_STATUS §3 and docs/shopping_list.md. Verify:
+    the uploaded files are the ones in `gerbers/` at the commit that records the order.
 - [ ] **Owner: close the 2026-11-23 bring-up** (new 2026-11-23; [session log](docs/sessions/2026-11-23-sensor-bring-up.md) §10). Send the agent:
   - the penny's year (1983 or later is 2.5 g, 1982 or earlier probably 3.11 g), or better, its mass from the school
     balance, to settle the counts-per-gram estimate (about 13,300 or 10,700 counts/g);
   - the HX711's excitation voltage: USB in, DC volts, red probe on the RED pad, black on BLK (walk-through step 3 item 5);
   - the Adafruit BME280 Library version (Library Manager);
-  - which wire was moving when the BME280 reset at about 63 s, if remembered.
+  - which wire was moving when the BME280 reset at about 63 s, if remembered;
+  - the marking on the capacitor in the breadboard's C1 position (the owner recalls 1 µF rather than 0.1 µF,
+    2026-11-23).
 
   And at the bench: mark the SDP810's High barb; firm up the BME280's connection (a 6-pin male header strip pressed
   into the breadboard, and the hanging jumper bundle taped down); remove R1 and R2 to match sheet 12, or say to keep
@@ -87,7 +100,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   2026-11-23) in [DECISIONS.md](DECISIONS.md). Verify:
   status changed to Accepted (or replaced by a new decision).
 - [ ] **Owner: say whether to republish the drawings' private claude.ai copy** (added 2026-11-10). It still shows
-  revision B (with the 5/32 in sleeve); the repo copy is revision D, with the electrical sheets 11 and 12
+  revision B (with the 5/32 in sleeve); the repo copy is revision D, with the electrical sheets 11 and 12 (sheet 12 at
+  revision E since 2026-11-23)
   ([docs/drawings/README.md](docs/drawings/README.md)). Agents republish only on the owner's go-ahead. Outcome: the
   published copy matches `docs/drawings/wind-tunnel-drawings.html`, or a note that only the repo copy is kept. Verify:
   the drawings README no longer says the published copy shows revision B.
@@ -395,10 +409,13 @@ Owner tasks are physical or account actions that an agent cannot do.
     ([as built](docs/experimental_setup.md#breadboard-as-built)). Next:
     1. ~~the breadboard, one sensor at a time~~ (done 2026-11-23); the combined logging test (walk-through step 4,
        P0) remains;
-    2. the owner chooses the PCB program, **KiCad (recommended) or EasyEDA**, and draws sheet 12 in it; the agent
-       checks the exported net list against sheet 12;
-    3. the shield PCB and the J1–J3 connector type (locking Grove/JST-style plugs likely; owner, 2026-11-17: order
-       them when needed); optionally a small carrier board for the SDP810 in the same order.
+    2. ~~the owner chooses the PCB program and draws sheet 12 in it~~ **done 2026-11-23: KiCad 10**, the shield drawn
+       by the owner and checked by the agent ([D-020](DECISIONS.md), [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md));
+    3. ~~the shield PCB and the J1–J3 connector type~~ **designed 2026-11-23:** 2.54 mm pin headers for jumper wires,
+       each in its part's pin order; Gerbers in `PCB/arduino_shield/gerbers/`. Next: the capacitor measurements and the
+       order (P0); then solder it (the 40 header strips on hand should supply the 99 pins; count the male ones; with plain male pins,
+       check the shield clears the Mega's USB socket and tape the socket's top if it touches) and run the checks below.
+       The optional SDP810 carrier board was not drawn.
   - Proposed contents (2026-11-01/09; partly superseded on 2026-11-17, above): a shield for the Mega 2560 holding:
     - **female header sockets** for the HX711 module and the BME280, and a connector for the SDP810's cable (its pins
       are at 2 mm pitch), so modules plug in and can be swapped (owner's socket idea, 2026-11-09); DIP sockets for any
@@ -413,13 +430,14 @@ Owner tasks are physical or account actions that an agent cannot do.
     owner's choice (2026-11-17; PROJECT_STATUS open question 18).
   - A breadboard is fine for testing the digital wiring. **Solder the load-cell leads directly to the HX711**, with no
     breadboard in the bridge wiring (Weakly2024 lesson).
-  - Outcome: schematic and PCB files in the repo (folder to be chosen when the first file exists), and an assembled
+  - Outcome: schematic and PCB files in the repo (`PCB/arduino_shield/`, since 2026-11-23), and an assembled
     board.
   - Verify: an I²C scan finds the pressure sensor and the BME280 through the board, and the HX711 gives a stable
     zero with the wind off.
-- [ ] **Update sheet 12 with the delivered HX711 pad names** (new 2026-11-18; waits for the owner's go-ahead): RED, BLK,
-  WHT, GRN and YLW instead of E+, E−, A−, A+; check whether the walk-through's snapshot needs replacing. Verify: `python
-  docs/drawings/page.py` rebuilds and `preview.py` shows no overlaps.
+- [ ] **Replace the walk-through's sheet 12 snapshot** (`docs/images/2026-11-17_sheet12-schematic-revD.png`) with
+  revision E (new 2026-11-23). Sheet 12 now shows the delivered HX711 pad names and the shield's pin orders, but Edge's
+  headless screenshots stopped working during the 2026-11-23 wrap, so no new snapshot was made. Verify: `python
+  docs/drawings/preview.py 12` writes a PNG that shows "J1 … SCL" at pin 1, and the walk-through links it.
 - [ ] **Data-logging firmware** (replaces the 2026-11-01 "firmware with an on-tunnel display and knob menu", dropped by
   [D-012](DECISIONS.md) on 2026-11-08: all output goes to the laptop).
   - **First, bring-up sketches** (agent, proposed 2026-11-17): an I²C scanner, then one commented sketch per sensor,
@@ -725,3 +743,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-23: Bring-up sketches written (agent): `firmware/i2c_scan`, `hx711_raw_counts`, `sdp810_read`,
   `bme280_read`, with [firmware/README.md](firmware/README.md) and [D-019](DECISIONS.md) (Tentative)
   ([session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
+- [x] 2026-11-23: PCB program chosen: KiCad 10 (owner; PROJECT_STATUS open question 18) ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
+- [x] 2026-11-23: Shield PCB designed (owner, agent checking): `PCB/arduino_shield/`, final ERC no errors, DRC 0
+  unconnected items and 0 parity issues, Gerbers and drill files checked; not ordered ([D-020](DECISIONS.md);
+  [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
+- [x] 2026-11-23: Sheet 12 redrawn as revision E (agent, at the wrap): connectors in each part's pin order, five-pin J3,
+  C1 on the shield, the HX711's delivered pad names (replaces the 2026-11-18 task "Update sheet 12 with the delivered
+  HX711 pad names") ([drawings README](docs/drawings/README.md); [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).

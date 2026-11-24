@@ -61,6 +61,18 @@ docs/drawings/png/
 *.bak
 *.tmp
 
+# --- KiCad (PCB/): keep the .kicad_pro/.kicad_sch/.kicad_pcb, fp-lib-table, local footprint libraries and the
+#     gerbers/ folder; ignore the per-user state, locks, backups and KiCad 10's local history, which is a Git
+#     repository of its own (2026-11-23, D-020). The upload zip is rebuilt from gerbers/ when needed. ---
+PCB/**/.history/
+PCB/**/~*.lck
+PCB/**/*.lck
+PCB/**/*.kicad_prl
+PCB/**/fp-info-cache
+PCB/**/*-backups/
+PCB/**/_autosave-*
+PCB/**/*.zip
+
 # --- OS, sync client and editor clutter ---
 .DS_Store
 Thumbs.db

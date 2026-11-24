@@ -1,8 +1,8 @@
 # Drawings
 
 A **preliminary** engineering drawing package for the whole tunnel: 10 mechanical sheets and 2 electrical sheets, a
-parts list matching every numbered callout, a TBD register and the findings from drawing it. Revision D, 2026-11-17
-(revision C, 2026-11-10; revision B, 2026-11-09). **Pre-sizing,
+parts list matching every numbered callout, a TBD register and the findings from drawing it. Revision D, 2026-11-17,
+with sheet 12 at revision E, 2026-11-23 (revision C, 2026-11-10; revision B, 2026-11-09). **Pre-sizing,
 not for manufacture:**
 build step 1 (sizing) has not been done, so most dimensions are proposals and many are TBD.
 
@@ -28,10 +28,20 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
   sheet changed ([session log](../sessions/2026-11-19-bme280-advice-and-mass-weighing.md)).
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
   [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C);
-  [2026-11-17 sensor circuit design](../sessions/2026-11-17-sensor-circuit-design.md) (revision D).
-- Known difference (2026-11-18): sheet 12 shows the HX711 chip's names E+, E−, A−, A+. The delivered board labels those
-  pads RED, BLK, WHT and GRN ([walk-through](../electronics_walkthrough.md) §4). The sheet will change with the owner's
-  go-ahead (TODO P2).
+  [2026-11-17 sensor circuit design](../sessions/2026-11-17-sensor-circuit-design.md) (revision D);
+  [2026-11-23 sensor shield PCB](../sessions/2026-11-23-sensor-shield-pcb.md) (sheet 12, revision E).
+- Known difference (2026-11-18), **resolved in revision E**: sheet 12 showed the HX711 chip's names E+, E−, A−, A+. The
+  delivered board labels those pads RED, BLK, WHT and GRN ([walk-through](../electronics_walkthrough.md) §4).
+- Revision E of sheet 12 (2026-11-23), made while the owner drew the shield PCB in KiCad
+  ([D-020](../../DECISIONS.md); `PCB/arduino_shield/`): J1–J3 now follow each part's own pin order, so every cable runs
+  pin 1 to pin 1 (J1 = SCL, +5V, GND, SDA like the SDP810; J2 = the BME280 board's order; J3 = the HX711 header's
+  VDD, VCC, DAT, CLK, GND, with VDD and VCC both on +5V); C1 sits on the shield beside J1 instead of at the sensor; the
+  HX711 is drawn in its board order with its pad names; the parts list, net list, notes and status line follow. The
+  earlier order (1 +5V, 2 GND, 3 and 4 signals) was correct for loose jumpers but would need crossed wires in a plug-in
+  cable. Sheets 1–11 are unchanged. The owner agreed to straight cables in the session and was told sheet 12 would be
+  redrawn at the wrap ([session log](../sessions/2026-11-23-sensor-shield-pcb.md)). Checked: `page.py` rebuilt with
+  `parts never drawn: []`; a preview of the changed layout showed no overlaps, but Edge stopped producing screenshots
+  before the last text-only edits (shorter cable notes, a parts-list wording) could be previewed.
 
 ## Reading the sheets
 
@@ -55,7 +65,7 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
 | 9 | WT-07 | Pressure taps, probe, SDP810 and wiring |
 | 10 | WT-08 | Flanged joints, alignment and feet |
 | 11 | WT-E01 | Electrical: system block diagram (signal flow and power) |
-| 12 | WT-E02 | Electrical: interface schematic, electrical parts list and net list |
+| 12 | WT-E02 | Electrical: interface schematic, electrical parts list and net list (revision E, 2026-11-23) |
 
 ## Regenerating
 

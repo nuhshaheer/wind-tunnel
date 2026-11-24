@@ -478,6 +478,12 @@ Template:
     board (photos); harmless as pull-ups (SDA and SCL read 4.81 V). The BME280 reset once when its Dupont wiring was
     handled, which supports locking connectors on the PCB. The status stays Tentative until the owner confirms it
     ([session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
+  - Note (2026-11-23, later the same day): the shield PCB is designed, and three details here changed with it
+    ([D-020](#d-020-shield-pcb-kicad-on-the-mega-shield-template-pin-headers-for-jumper-wires-each-connector-in-its-parts-pin-order)):
+    J1–J3 now follow each part's own pin order instead of "1 = +5V, 2 = GND, then the two signals"; J3 has five pins,
+    with the HX711's VDD and VCC both on +5V at the shield; and C1 sits on the shield beside J1. The connectors are
+    2.54 mm pin headers for Dupont jumper wires, not locking plugs (owner). The PCB program is KiCad. The rest of this
+    decision (USB power, one I²C bus on pins 20/21, the HX711 on pins 2 and 3, R1/R2 not fitted) is unchanged.
 
 ## D-019: Bring-up firmware: one plain Arduino sketch per sensor in `firmware/`
 
@@ -505,3 +511,44 @@ Template:
   ([as built](docs/experimental_setup.md#breadboard-as-built); [session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
 - Status: Tentative (agent's choice; the owner has not confirmed it). The logging firmware (step 4) should follow the
   same conventions unless replaced by a new decision.
+
+## D-020: Shield PCB: KiCad on the Mega shield template, pin headers for jumper wires, each connector in its part's pin order
+
+- Date: 2026-11-23
+- Question: How does the breadboard circuit of D-018 become the shield PCB: which program, which connectors, in what
+  pin order, and what goes on the board?
+- Decision (the owner drew it; choices made at the computer with the agent checking each save):
+  - **KiCad 10.0.7** (owner; answers PROJECT_STATUS open question 18), starting from KiCad's Arduino Mega shield
+    template, which places the Mega's headers (P1–P7), its six mounting holes and outlines of the USB socket, power
+    jack and ICSP header. Files in `PCB/arduino_shield/`; the manufacturing files in `PCB/arduino_shield/gerbers/`.
+  - **J1–J3 are plain 2.54 mm pin headers for Dupont jumper wires** (owner: "i just have general elegoo jumper
+    wires"), footprints `PinHeader_1x04` (J1, J2) and `PinHeader_1x05` (J3). Male pins or female sockets fit the same
+    holes and can be chosen when soldering.
+  - **Each connector follows its part's own pin order, so every cable runs pin 1 to pin 1** (owner: "we prolly wnat
+    stright cables"): J1 = SCL, +5V, GND, SDA (the SDP810's pins 1–4); J2 = +5V, GND, SDA, SCL (the Waveshare
+    board's header order); J3 = +5V, +5V, HX_DAT (Mega pin 2), HX_CLK (pin 3), GND (the SparkFun HX711 header's VDD,
+    VCC, DAT, CLK, GND, top to bottom in the owner's 2026-11-17 photo).
+  - **J3 has five pins and joins VDD and VCC to +5V on the shield** (the owner's sketch), so no jumper is needed at the
+    HX711 end.
+  - **On the shield:** C1 0.1 µF beside J1 (it rode at the cable's board end on the breadboard), C2 10 µF at the 5 V
+    entry, R1 and R2 5.1 kΩ as "do not populate" pads, and silkscreen labels naming each connector and its pins.
+  - **Board:** the Mega's full size, 101.6 × 53.34 mm, two copper layers, 1.6 mm, 0.25 mm tracks, five vias, no
+    ground fill (the agent advised it is not needed at 100 kHz I²C and about 100 mA; the load cell's microvolt signal
+    never reaches the shield). The template's duplicate Mega pins (two GND on P1, +5V and GND on P7, SDA/SCL beside
+    AREF and on pins 20/21) are all joined in copper, so the shield does not rely on the Mega linking them inside.
+  - **C1's and C2's footprints are placeholders** (`C_Disc_D5.0mm_W2.5mm_P5.00mm`,
+    `CP_Radial_D5.0mm_P2.00mm`) until the owner measures the parts' lead spacing and C2's diameter.
+- Rationale: a plug-in cable keeps its wires in order, so a connector numbered differently from its part needs
+  crossed wires; with sheet 12's earlier order a straight cable would have put 5 V on the SDP810's SCL pin and ground
+  on its VDD pin. Jumper-wire headers use parts already on hand (40 header strips) and match the breadboard. A
+  full-size template places every header and hole correctly for a beginner.
+- Alternatives considered: sheet 12's uniform order (1 +5V, 2 GND, 3–4 signals) with hand-crossed cables; a separate
+  adapter board at the HX711 to join VDD and VCC (owner's first idea; two more contacts that can work loose); a
+  solder bridge between the HX711's VDD and VCC pins; locking JST PH or Grove-style plugs (D-018's suggestion; the
+  owner chose jumpers); an Uno-sized board using only the SDA/SCL pins beside AREF; EasyEDA.
+- Evidence / source: the KiCad files; the final checks of 2026-11-23 (ERC: 69 warnings, all the template's single-use
+  pin labels, 0 errors; DRC with schematic parity: 0 unconnected items, 0 parity issues, 9 ignorable warnings); the
+  Gerber and drill files checked against the board ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
+  Not made or tested: the shield has not been ordered.
+- Status: Accepted (owner, 2026-11-23) for the program, the connectors, their pin orders and the five-pin J3. The C1
+  and C2 footprints stay Tentative until measured. Sheet 12 was redrawn to match (revision E, 2026-11-23).

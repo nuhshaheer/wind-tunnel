@@ -4,8 +4,10 @@
 > built. The only data so far are the calibration weights' true masses, weighed on a school balance (EXP-001,
 > 2026-11-19). The sensor circuit is drawn (drawing package sheets 11–12), explained in
 > [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md), and built on a breadboard, where every sensor
-> reads with its bring-up sketch in [firmware/](firmware/README.md) (2026-11-23; nothing calibrated yet). Next: a
-> combined logging sketch, and sizing the tunnel (build step 1).
+> reads with its bring-up sketch in [firmware/](firmware/README.md) (2026-11-23; nothing calibrated yet). The shield
+> PCB that will replace the breadboard is designed in KiCad ([PCB/arduino_shield/](PCB/arduino_shield/), 2026-11-23;
+> not yet ordered). Next: measure two capacitors and order the shield, a combined logging sketch, and sizing the
+> tunnel (build step 1).
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
 > The complete parts list is [docs/buy_list.md](docs/buy_list.md), and the order tracker is
 > [docs/shopping_list.md](docs/shopping_list.md).
@@ -93,6 +95,7 @@ docs/
   drawings/               Preliminary drawing package (HTML: 10 mechanical + 2 electrical sheets) and its generator
 data/README.md            Data layout and rules (raw vs processed, naming, units, large files)
 firmware/                 Arduino sketches for the Mega 2560 (one folder per sketch); index in firmware/README.md
+PCB/arduino_shield/       The owner's KiCad 10 project for the sensor shield (D-020); gerbers/ holds the manufacturing files
 resources/                Reference papers (PDFs) with reading notes; index and naming rules in resources/README.md
 scripts/                  Helper scripts used by /catchup and /wrap
 tests/                    Tests for the helper scripts

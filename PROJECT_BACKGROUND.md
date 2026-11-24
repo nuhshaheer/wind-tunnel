@@ -574,3 +574,11 @@ Add lasting lessons here (with a link to the session log where they were learned
   hundreds of counts for seconds after a penny went on or off. Judge drift and creep only on a firm mount.
 - **Copy serial output in short, averaged lines** (2026-11-23, same log). The Arduino IDE's Serial Monitor copied only
   the lines on screen, which first hid the penny test. One averaged line per second fits a whole test on screen.
+- **Number a connector the way its part is numbered** (2026-11-23, [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)). A schematic only records
+  which pin joins which, so sheet 12 gave every connector the same tidy order; loose jumpers did not care, but a cable
+  with a plug at each end keeps its wires in order, and a straight cable from that J1 would have put 5 V on the SDP810's
+  SCL pin. Copy each part's own pin order onto its connector, and check the order on the real part (a photo), not on a
+  drawing.
+- **Check every layer a board maker needs before uploading** (2026-11-23, same log). The first Gerber export had the
+  copper and silkscreen but no board outline and no solder masks. A two-layer through-hole board needs seven Gerbers
+  (F/B.Cu, F/B.Silkscreen, F/B.Mask, Edge.Cuts) plus the drill files.
