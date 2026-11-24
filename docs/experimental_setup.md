@@ -330,6 +330,23 @@ Jumper wires plug onto J1–J3 (male pins or female sockets fit the same holes; 
 pin 1 to pin 1. The breadboard stays the working circuit until the shield is made and passes the same checks: an I²C
 scan finding 0x25 and 0x77 through it, and a steady HX711 zero.
 
+## Bench load-cell scale (to print)
+
+**Status: Planned (2026-11-24).** A printed kitchen-scale fixture for the TAL221, to hold it firmly on the bench before
+the balance module exists: "TAL221 Load Cell Scale" by Thingiverse user bwilless (thing:4665143, Creative Commons
+Attribution), filed unchanged in `cad/third-party/tal221-scale-bwilless/` ([note on D-017](../DECISIONS.md)). Not printed yet.
+
+| Item | From the design files (not measured on a print) |
+|---|---|
+| Base | Horseshoe, 71 × 106 × 8.5 mm. The cell's fixed (wire) end screws onto a raised block: two Ø3.2 mm holes 6 mm apart, a 2.5 mm deep recess underneath for the screw heads |
+| Pan | Ø60 mm, 15 mm tall, on the cell's free end: two Ø3.2 mm holes 6 mm apart through a 10 mm hub, a 5 mm deep recess on top for the screw heads. Print upside down (its underside is a shallow cone) |
+| Fit to the TAL221 | Hole pairs 39.9 mm apart and a 6 mm gap between base and pan, matching the datasheet's 40 mm span and 6 mm thickness ([TAL221 notes](../resources/notes/TAL221.md)) |
+| Screws | M3, about 10 mm (base, button or pan head) and 20 mm (pan, with nuts at an untapped end): estimates, to check with calipers |
+| Load limit | The pan (about 7–17 g, estimate) rests on the cell all the time. Keep at most about 80 g on it and never press it: there is no overload stop, and the TAL221's safe overload is 150 g |
+
+Uses: the several-minute no-load zero on a firm mount (TODO P2) and calibration practice with the EXP-001 masses. Both
+are practice; the tunnel's calibration is done on the balance module.
+
 ## Test models
 
 | Model | Dimensions | Mount | Status |
@@ -411,3 +428,4 @@ See [PROJECT_BACKGROUND.md](../PROJECT_BACKGROUND.md#known-sources-of-uncertaint
 | 2026-11-19 | Calibration weights weighed by the owner on the school balance (CGOLDENWALL HZ50002B, d = 0.01 g; EXP-001); the weight set recorded as bought. BME280 placement: room air near the fan inlet, in its own vented holder (proposed). Breadboard unchanged. After the wrap the owner pushed a ready-made PH 2.0 cable onto the SDP810's pins (stiff fit; not powered, colours not yet mapped to pins) | [2026-11-19](sessions/2026-11-19-bme280-advice-and-mass-weighing.md) |
 | 2026-11-23 | Breadboard completed by the owner: female header on the HX711, one TAL221 soldered to it, the SDP810's cable spliced to jumpers (taped joints), the BME280 on jumpers, C1 at the breadboard end. Rails 4.947 V, SDA/SCL 4.81 V. Four bring-up sketches in `firmware/`; I²C scan found 0x25 and 0x77 (chip ID 0x60); HX711 penny step about 33,300 counts at 10 SPS; SDP810 zero −0.022 Pa, scale 240, correct sign; BME280 99.6 kPa, responds to breath and touch, reset once under handling (detected and recovered) | [2026-11-23](sessions/2026-11-23-sensor-bring-up.md) |
 | 2026-11-23 | Shield PCB designed by the owner in KiCad (not made): jumper-wire headers J1–J3 in each part's pin order, five-pin J3, C1 beside J1, R1/R2 unfitted pads, full Mega size, Gerbers ready ([D-020](../DECISIONS.md); [shield PCB](#shield-pcb-designed-not-made)). The owner recalls the breadboard's C1 is 1 µF. Sheet 12 redrawn as revision E. Breadboard unchanged | [2026-11-23 shield PCB](sessions/2026-11-23-sensor-shield-pcb.md) |
+| 2026-11-24 | A printable TAL221 bench scale filed (Thingiverse thing:4665143 by bwilless, CC BY) in `cad/third-party/`; checked against the TAL221 notes; not printed ([bench scale](#bench-load-cell-scale-to-print)) | [2026-11-23 shield PCB, continued](sessions/2026-11-23-sensor-shield-pcb.md) |

@@ -19,6 +19,18 @@ Owner tasks are physical or account actions that an agent cannot do.
     have the agent recheck them (`kicad-cli pcb drc --schematic-parity` on a copy, as in the session log §5).
   - Outcome: the order placed (date, quantity, price) recorded in PROJECT_STATUS §3 and docs/shopping_list.md. Verify:
     the uploaded files are the ones in `gerbers/` at the commit that records the order.
+- [ ] **Owner: print the TAL221 bench scale and run a several-minute zero on it** (new 2026-11-24; optional, but it
+  gives the load cell the firm mount the 2026-11-23 penny test lacked). Files: `cad/third-party/tal221-scale-bwilless/` ([setup](docs/experimental_setup.md#bench-load-cell-scale-to-print)).
+  - Print the base as it comes and the pan upside down; PLA, 3–4 walls; clean the 3.2 mm holes with the 3.0 mm bit if a
+    screw sticks.
+  - Mount the TAL221 that is soldered to the HX711, wire end on the base. Screws about M3 × 10 (button or pan head)
+    under the base and M3 × 20 at the pan (nuts if that end is untapped); check lengths with calipers first.
+  - Never press the pan; keep at most about 80 g on it.
+  - Run `hx711_raw_counts` for several minutes with nothing on the pan, then, if wanted, add the EXP-001 masses one at a
+    time (practice, not the tunnel's calibration). Plan how to keep minutes of output first: the Serial Monitor copies
+    only the visible lines.
+  - Outcome: the zero's drift and scatter over minutes, recorded in docs/experimental_setup.md (or as a dataset if the
+    owner wants it kept). Verify: the reading returns within the 2026-11-23 scatter (about 26 counts) after each load.
 - [ ] **Owner: close the 2026-11-23 bring-up** (new 2026-11-23; [session log](docs/sessions/2026-11-23-sensor-bring-up.md) §10). Send the agent:
   - the penny's year (1983 or later is 2.5 g, 1982 or earlier probably 3.11 g), or better, its mass from the school
     balance, to settle the counts-per-gram estimate (about 13,300 or 10,700 counts/g);
@@ -494,7 +506,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   breadboard in the bridge wiring (lesson from Weakly2024). Verify: stable zero over several minutes with wind off;
   noise recorded. **2026-11-23:** one TAL221 soldered straight to the HX711's pads (owner); 1.4 s of zero gave a
   standard deviation of 26 counts (about 0.002 g, estimate) on a taped mount. The several-minute zero waits for a firm
-  mount (the balance module, or a clamp).
+  mount (the balance module, or a clamp). **2026-11-24:** a printable bench scale for the TAL221 is filed in
+  `cad/third-party/tal221-scale-bwilless/` (P0 task above).
 - [ ] **Calibrate the load cell against known weights.** Method proposed 2026-11-08 ([buy list](docs/buy_list.md)
   §9): lay the balance module on its side so gravity acts in the drag direction (no pulley friction), and hang masses
   at the ball's position from a budget 10 mg–100 g set (in a light pan hung from a printed attachment on the sting's
@@ -747,6 +760,9 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-23: Shield PCB designed (owner, agent checking): `PCB/arduino_shield/`, final ERC no errors, DRC 0
   unconnected items and 0 parity issues, Gerbers and drill files checked; not ordered ([D-020](DECISIONS.md);
   [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
+- [x] 2026-11-24: Shield PCB session committed and pushed as `f10f315` (owner) ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
+- [x] 2026-11-24: A printable TAL221 bench-scale design found (owner) and checked against the TAL221 notes (agent);
+  filed in `cad/third-party/tal221-scale-bwilless/` ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
 - [x] 2026-11-23: Sheet 12 redrawn as revision E (agent, at the wrap): connectors in each part's pin order, five-pin J3,
   C1 on the shield, the HX711's delivered pad names (replaces the 2026-11-18 task "Update sheet 12 with the delivered
   HX711 pad names") ([drawings README](docs/drawings/README.md); [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).

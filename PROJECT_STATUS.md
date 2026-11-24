@@ -1,13 +1,14 @@
 # Project Status
 
-**Last updated:** 2026-11-23
-**Last commit:** `1ffd4a1` (2026-11-23, sensor bring-up on the breadboard), pushed to `origin/main` (`UP_TO_DATE` at
-the 2026-11-23 wrap).
+**Last updated:** 2026-11-24
+**Last commit:** `f10f315` (2026-11-23, sensor shield PCB), pushed to `origin/main` (`UP_TO_DATE` at the 2026-11-24
+wrap).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the 2026-11-23 sensor shield PCB: the owner's KiCad project and its Gerbers in
-  `PCB/arduino_shield/`, D-020, sheet 12 revision E, `.gitignore` entries for KiCad and the documentation updates. Commit
-  commands: [its log §13](docs/sessions/2026-11-23-sensor-shield-pcb.md#13-manual-git-commands-as-given-to-the-owner).
+- **Not committed yet:** the 2026-11-24 continuation: a downloaded TAL221 bench-scale design in `cad/third-party/tal221-scale-bwilless/`, a note on
+  D-017 and the documentation updates. Commit commands:
+  [the session log §13](docs/sessions/2026-11-23-sensor-shield-pcb.md#13-manual-git-commands-as-given-to-the-owner)
+  ("Continued").
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Everything ordered on 2026-11-09/10 has
@@ -23,7 +24,9 @@ the whole sensor circuit, and every sensor reads (2026-11-23):** the I²C scan f
 moves the load cell's reading, the SDP810 zeroes within 0.03 Pa with the right sign, and the BME280 reads room values
 ([as built](docs/experimental_setup.md#breadboard-as-built)). Nothing is calibrated yet. **The shield PCB is designed
 (2026-11-23, [D-020](DECISIONS.md)):** the owner drew it in KiCad 10 (`PCB/arduino_shield/`); its checks pass and its
-Gerbers are ready, but it is not ordered until the two capacitors' lead spacing is measured. **The calibration weights are weighed (2026-11-19, [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)):** on the school's
+Gerbers are ready, but it is not ordered until the two capacitors' lead spacing is measured. **A printable TAL221 bench
+scale** (a downloaded design, CC BY, in `cad/third-party/tal221-scale-bwilless/`; 2026-11-24) will give the load cell a firm mount on the bench; not
+printed yet. **The calibration weights are weighed (2026-11-19, [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)):** on the school's
 0.01 g balance they are −2.5 % to +1.1 % off their stamped values, so the measured masses are used.
 **The owner draws all the CAD from the sizing's dimension sheets (D-017, 2026-11-15), in Fusion 360 (owner,
 2026-11-17).** Planning estimate (not a result): about 70–155 h of the owner's time to the sphere validation, roughly
@@ -163,6 +166,7 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
 | Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable top panel (about 8 per panel; D-014) and a side panel if one is made removable |
 | Acrylic sheet | **On hand** (ordered, reported 2026-11-10; arrived by 2026-11-17): clear cast acrylic, 1/8 in (3.2 mm), **four 8 × 12 in sheets** (owner, 2026-11-10) | For the window panels; cut by scoring and snapping. Each sheet (203 × 305 mm) gives one panel of about 300 × 120 mm plus a strip about 80 mm wide, so a window can be up to about 305 mm long (our arithmetic) |
+| TAL221 bench scale (printed fixture) | **Planned: design filed 2026-11-24, not printed** | "TAL221 Load Cell Scale" by Thingiverse user bwilless (thing:4665143, CC BY), in `cad/third-party/tal221-scale-bwilless/` ([setup](docs/experimental_setup.md#bench-load-cell-scale-to-print)). A horseshoe base holds the cell's fixed end; a Ø60 mm pan sits on the free end. The STLs match the TAL221 notes (Ø3.2 mm holes 6 mm apart, 39.9 mm span, a 6 mm gap for the cell). No overload stop: keep at most about 80 g on the pan, never press it. For the several-minute zero and calibration practice |
 | Calibration weights | **On hand** (owner, 2026-11-19) | The only set bought, from Amazon (listing and price not recorded): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod (10 g from the listing); the multiples labelled #1, #2, ... on tape. Not the 17-piece 10 mg–100 g set planned in the [buy list](docs/buy_list.md) §9. **Weighed 2026-11-19** ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): −2.5 % to +1.1 % off nominal; together 165.5 g, 175.3 g with the rod, more than the TAL221's 150 g safe overload |
 | Mist or smoke generator (optional visualization) | Not decided; deferred to the end | The owner asked (2026-11-01) for one that makes thick smoke. Options compared in [TODO.md](TODO.md) P2; the agent's first choice is an ultrasonic mist maker |
 
@@ -187,7 +191,7 @@ checked).
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
 | `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19, 2026-11-22, 2026-11-23); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42` and `1ffd4a1`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1` and `f10f315`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -398,6 +402,10 @@ The bench bring-up of every sensor (2026-11-23) is recorded as bench checks, not
   - Final ERC no errors, DRC 0 unconnected items; Gerbers re-exported with the outline and masks, checked and zipped for
     JLCPCB; not ordered ([D-020](DECISIONS.md)). The owner recalls using 1 µF for C1 on the breadboard.
   - At the wrap: sheet 12 redrawn as revision E. See [the session log](docs/sessions/2026-11-23-sensor-shield-pcb.md).
+  - Committed and pushed as `f10f315`.
+- 2026-11-24: the same session, continued after its first `/wrap`: confirmed the KiCad project is on GitHub; the owner
+  found a printable TAL221 bench scale (Thingiverse, CC BY), which the agent checked against the TAL221 notes and filed
+  in `cad/third-party/tal221-scale-bwilless/` (note on [D-017](DECISIONS.md)). Nothing printed.
 
 ## 7. Data and analyses
 
@@ -815,7 +823,9 @@ See [TODO.md](TODO.md) for the full list. In order:
      [TAL221](resources/notes/TAL221.md) and [WaveshareBME280](resources/notes/WaveshareBME280.md) notes);
    - still open from before: the settling-chamber spacing (open question 13), the bench supply's rating, and
      confirming D-003, D-004, D-006, D-007's open exit, D-016, D-018 and D-019.
-   - when the boards arrive: solder the shield (the header strips on hand should cover its 99 pins) and test it (TODO P2).
+   - when the boards arrive: solder the shield (the header strips on hand should cover its 99 pins) and test it (TODO P2);
+   - optional, at the bench: print the TAL221 bench scale (base as is, pan upside down), mount the soldered cell and run
+     a several-minute zero (TODO P0).
 2. **Agent, with the owner at the bench: the combined logging sketch** (walk-through step 4, TODO P0): one CSV line per
    sample with every sensor and a flag column for BME280 resets and failed reads (D-019), then a 10-minute run with a
    steady sample rate.
@@ -840,7 +850,7 @@ See [TODO.md](TODO.md) for the full list. In order:
 6. **Owner:** download the remaining electronics datasheets (Bosch BME280, LM741/LM348/LMC6484) and the chosen fan's
    manual.
 7. **Owner, remaining equipment checks** (TODO P2): the spare TAL221's resistances, a several-minute load-cell zero on a
-   firm mount, the Mega's own I²C pull-ups, the calipers, the screen and the 2026-11-10 items. (Done 2026-11-23: the
+   firm mount (the bench scale, 2026-11-24), the Mega's own I²C pull-ups, the calipers, the screen and the 2026-11-10 items. (Done 2026-11-23: the
    soldered TAL221's resistances, the BME280's 5 V check and chip ID, the SDP810's zero, the HX711's rate.)
 
 ## 13. Repository
@@ -848,6 +858,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42` and `1ffd4a1`). The account was `nuhshaheer-2007` until
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1` and `f10f315`). The account was `nuhshaheer-2007` until
   2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-22 and 2026-11-23).
 - Branch: `main`

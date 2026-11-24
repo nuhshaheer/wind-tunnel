@@ -431,6 +431,10 @@ Template:
 - Status: Accepted (owner, 2026-11-15).
   - Note (2026-11-17): the owner uses **Fusion 360**, so the contraction points file is made for Fusion's spline
     import ([2026-11-17 sensor-circuit session](docs/sessions/2026-11-17-sensor-circuit-design.md)).
+  - Note (2026-11-24): this decision covers the tunnel's parts. For **bench fixtures** the owner may print a design
+    made by someone else when its licence allows; it is kept unchanged in `cad/third-party/<name>/` with its licence and
+    source, and the agent checks it against our parts. First case: a TAL221 bench scale by Thingiverse user bwilless
+    (CC BY), in `cad/third-party/tal221-scale-bwilless/` ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
 
 ## D-018: Sensor interface circuit: laptop USB power, one shared I²C bus, HX711 on pins 2 and 3, shield PCB later
 

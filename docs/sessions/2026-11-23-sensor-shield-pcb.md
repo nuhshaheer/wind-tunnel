@@ -1,12 +1,14 @@
-# 2026-11-23: Sensor shield PCB
+# 2026-11-23: Sensor shield PCB (continued to 2026-11-24: TAL221 bench scale)
 
 - **Session ID:** e4d5711c-146b-47b6-898b-d52b33c074f3
 - **Agent:** Claude Opus 5.5 (Claude Code, VS Code extension)
-- **Commit:** not committed yet
+- **Commit:** `f10f315` (the work up to the first `/wrap`, 2026-11-23); the continuation (2026-11-24): not committed
+  yet
 
 The owner drew the shield PCB in KiCad from about 16:00 to 22:50; the agent checked each saved version by exporting
 from a copy in its scratchpad and answered the owner's questions. The agent did no physical work, and the owner did no
-bench work this session (away from home for part of it).
+bench work this session (away from home for part of it). After the first `/wrap` the session continued past midnight;
+that part is marked **Continued** in each section.
 
 ## 1. Starting state and objective
 
@@ -19,6 +21,11 @@ bench work this session (away from home for part of it).
   before the bring-up ("not yet on the breadboard and has not been powered", "Not done yet: … any I²C scan", the HX711
   sketch "not yet compiled or run").
 - Objective (owner's): "im gonna start working on the pcb design", the shield PCB of D-018.
+
+- **Continued:** the owner committed and pushed `f10f315` ("Design the sensor shield PCB in KiCad"; 34 files, the
+  same list as §13; `sync_status.py`: `UP_TO_DATE`; GitHub's `PCB/` folder identical to the local commit, none of the
+  ignored KiCad files included). The owner then asked whether the KiCad board should be pushed too (it was, in
+  `f10f315`), and added a design found online for a TAL221 bench scale. Objective: print it.
 
 ## 2. Work completed
 
@@ -90,6 +97,27 @@ bench work this session (away from home for part of it).
   board order with its pad names, parts and net lists); D-020 and a note on D-018; `.gitignore` entries for KiCad; the
   catch-up discrepancies fixed; documentation below.
 
+**Continued (2026-11-24):**
+
+- **What is pushed:** confirmed with `git ls-tree origin/main -- PCB/` that the `.kicad_pro`, `.kicad_sch`,
+  `.kicad_pcb`, `fp-lib-table`, the mounting-hole library and `gerbers/` are on GitHub; explained why `.history/`, the
+  lock files, `.kicad_prl` and the zip stay local.
+- **The TAL221 bench scale.** The owner downloaded "TAL221 Load Cell Scale" by Thingiverse user bwilless
+  (thing:4665143; link and licence as given in the download's README.txt and LICENSE.txt: Creative Commons -
+  Attribution; the page itself was not opened) into a new folder `CAD files/`. Two STL parts (a horseshoe base holding
+  the cell's fixed end on a raised block; a Ø60 mm pan on the free end) and three pictures. The agent checked the STLs
+  against the TAL221 datasheet notes (§6, §7) and advised: print the base as it comes and the pan upside down (its
+  underside is a shallow cone that would overhang); 3–4 walls; button- or pan-head M3 screws under the base (the
+  recess is 2.5 mm deep), about M3 × 10 there and M3 × 20 at the pan, with nuts if that end of the cell has clearance
+  holes (estimates; check the cell's end thickness with calipers); use the TAL221 already soldered to the HX711; keep
+  the load on the pan at or below about 80 g and never press it, since the design has no overload stop (safe overload
+  150 g in all; the pan itself about 7–17 g). Use: the several-minute zero on a firm mount and calibration practice with
+  the EXP-001 masses, both practice only; the tunnel's calibration stays on the balance module.
+- **Filed:** at the owner's request ("move it"), the 7 files moved unchanged to `cad/third-party/tal221-scale-bwilless/`
+  and the empty `CAD files/` folder removed.
+- **At the second wrap:** a note on D-017 (third-party bench fixtures), the scale in docs/experimental_setup.md,
+  PROJECT_STATUS, TODO, README (`cad/` in the layout), CLAUDE.md (where CAD goes), the `f10f315` backfill.
+
 ## 3. Files and equipment affected
 
 - New (owner's KiCad project): `PCB/arduino_shield/arduino_shield.kicad_pro`, `.kicad_sch`, `.kicad_pcb`,
@@ -104,9 +132,17 @@ bench work this session (away from home for part of it).
   `docs/sessions/2026-11-23-sensor-bring-up.md` (commit backfilled), `docs/sessions/SESSION_LOG.md`, this log.
 - Equipment: none touched.
 
+- **Continued:** new `cad/third-party/tal221-scale-bwilless/` (`LICENSE.txt`, `README.txt`,
+  `files/TAL221ScaleBaseV2.stl`, `files/TAL221ScaleTopV2.stl`, `images/Pic2.jpg`, `images/Pic3.jpg`,
+  `images/TAL221ScaleBaseV2.png`; 908 KB in all); the empty `CAD files/` folder removed. Edited at the second wrap:
+  `PROJECT_STATUS.md`, `TODO.md`, `DECISIONS.md`, `README.md`, `CLAUDE.md`, `docs/experimental_setup.md`,
+  `docs/sessions/SESSION_LOG.md`, this log.
+
 ## 4. Experimental procedures performed
 
 None. No physical work this session. The C1 value on the breadboard is the owner's recollection, not a check.
+
+**Continued:** none. Nothing printed or assembled yet.
 
 ## 5. Commands and scripts executed
 
@@ -138,6 +174,17 @@ python docs/drawings/page.py                                # parts never drawn:
 python docs/drawings/preview.py 12                          # rendered once; later runs produced no new PNG (§8)
 ```
 
+**Continued:**
+
+```bash
+git ls-tree -r --name-only origin/main -- PCB/ && git diff --quiet HEAD origin/main -- PCB/   # PCB on GitHub
+python -I <scratchpad>/stl_check.py cad/third-party/tal221-scale-bwilless/files/*.stl
+#   binary STL reader; edges not shared by exactly two triangles (0 = closed mesh); horizontal slices at 5, 30, 50,
+#   70 and 95 % of the height, listing small closed loops (holes) with centre, size and equivalent diameter
+# Part volumes by signed tetrahedra (inline python -I), x 1.24 g/cm3 for solid PLA
+mkdir -p cad/third-party && mv "CAD files/TAL221 Load Cell Scale - thing4665143 - by bwilless" cad/third-party/tal221-scale-bwilless && rmdir "CAD files"
+```
+
 ## 6. Measurements and results
 
 No measurements. Design facts of the shield as drawn (`PCB/arduino_shield/`, saves of 20:41 and 22:47; **Implemented,
@@ -154,6 +201,19 @@ unverified**: not made or tested):
 | SCL | J1-1, J2-4, P2-1 (SCL beside AREF), P6-8 (pin 21), R2-2 |
 | HX711 data and clock | J3-3 to P4-6 (Mega pin 2); J3-4 to P4-5 (Mega pin 3) |
 | C1, C2 footprints | 5.0 mm and 2.0 mm lead spacing: placeholders, not measured |
+
+**Continued.** No measurements. Geometry read from the downloaded STL files (design values, not measured on a print):
+
+| Part | Size (mm) | Holes |
+|---|---|---|
+| Base (`TAL221ScaleBaseV2.stl`) | 71.02 × 105.82 × 8.50 | Two Ø3.2 holes 6.0 apart through the top 6 mm of the raised block, over a 6.1 × 12.1 mm recess 2.5 mm deep in the underside (screw heads) |
+| Pan (`TAL221ScaleTopV2.stl`) | Ø60 × 15.0 | Two Ø3.2 holes 6.0 apart through a 10 mm hub at the pan's centre, under a 6.1 × 12.1 mm recess 5 mm deep in the top (screw heads) |
+
+The two files share one coordinate frame: the base's top is at z = 0 and the pan's underside at z = 6, a 6 mm gap
+that matches the TAL221's 6 mm thickness, and the two hole pairs are 39.9 mm apart along the cell (TAL221 notes: 40 mm
+end to end, 6 mm across, Ø3.2 clearance and M3 tapped holes). Solid volumes 13.3 cm³ (base) and 13.9 cm³ (pan), so
+17 g each if printed solid in PLA; a normal infill gives roughly 7–17 g for the pan (estimate), carried by the cell
+at all times.
 
 ## 7. Tests, calibration checks and validation
 
@@ -176,6 +236,11 @@ unverified**: not made or tested):
 - **Not performed:** any physical check; the capacitor measurements; the C1 value on the breadboard; ordering; the
   beep test between pins 20/21 and SDA1/SCL1 (no longer needed: the shield joins them in copper).
 
+- **Continued:** both STL meshes closed (0 edges not shared by exactly two triangles); hole diameters, pair spacing,
+  span and the 6 mm gap consistent with the TAL221 notes; both parts fit the P1S's 256 mm bed. At the second wrap:
+  20 tests OK and `check_docs.py` 0 failures, 0 warnings (§13, continued). **Not checked:** a print, the fit of a real cell or
+  screws, which end of the delivered cell is tapped, the Thingiverse page.
+
 ## 8. Errors, failed approaches and troubleshooting
 
 - **Chip symbols instead of connectors** (owner's first schematic): explained and replaced.
@@ -193,6 +258,8 @@ unverified**: not made or tested):
 - **A GND connectivity script** (union-find over tracks and pads) failed to parse most pads; abandoned in favour of the
   DRC's unconnected list.
 
+- **Continued:** none.
+
 ## 9. Decisions and reasoning
 
 - [D-020](../../DECISIONS.md) (Accepted by the owner except the capacitor footprints): KiCad on the Mega shield
@@ -202,6 +269,11 @@ unverified**: not made or tested):
 - Agent's choices: placeholders for the capacitor footprints; commit the `gerbers/` folder (small text files, the exact
   set prepared for ordering) and ignore the zip, KiCad's history, locks and per-user state; redraw sheet 12 at the wrap
   (announced to the owner during the session, not objected to).
+
+- **Continued:** the owner chose a downloaded design for a bench fixture; the agent proposed filing third-party designs
+  under `cad/third-party/<name>/` with their licence and source, and the owner agreed ("move it"). Recorded as a note on
+  [D-017](../../DECISIONS.md): the owner still draws every tunnel part; downloaded designs for bench fixtures are
+  allowed when their licence permits and are credited.
 
 ## 10. Open questions and blockers
 
@@ -214,6 +286,10 @@ unverified**: not made or tested):
 - Still open from before: the four bring-up answers (penny, excitation voltage, library version, which wire moved),
   R1/R2 on the breadboard, the Mega's own I²C pull-ups, the drawings' published copy (revision B).
 
+- **Continued:** screw types and lengths for the scale (heads no taller than 2.5 mm under the base); which end of the
+  delivered TAL221 is tapped; the pan's printed mass (it is the scale's tare); how to capture several minutes of HX711
+  output (the Serial Monitor copies only the visible lines; the logging sketch, TODO P0, or another capture method).
+
 ## 11. Remaining tasks
 
 - **Owner:** measure the capacitors; order the shield from JLCPCB with the zip if the footprints fit; commit and push
@@ -222,12 +298,20 @@ unverified**: not made or tested):
 - **Later:** assemble the shield and test it: an I²C scan through the board finds 0x25 and 0x77, and the HX711 gives a
   steady zero (TODO P2).
 
+- **Continued:** **owner:** print the scale (base as is, pan upside down), mount the soldered TAL221, then run a
+  several-minute zero and, if wanted, calibration practice with the EXP-001 masses (TODO P0). **Agent:** help plan the
+  capture of minutes of data, and record the results as a dataset if the owner wants them kept.
+
 ## 12. Recommended first task for the next agent
 
 Ask whether the owner has measured the two capacitors. If they match the placeholders (C1 5.0 mm lead spacing; C2 5 mm
 diameter and 2.0 mm spacing), the owner can order with `PCB/arduino_shield/gerbers/` (zip it flat). If not, have the
 owner pick the matching footprint, run Update PCB, re-export into `gerbers/`, and recheck with `kicad-cli pcb drc
 --schematic-parity` on a copy. Then, with the owner at the bench, write the combined logging sketch (TODO P0).
+
+**Continued (2026-11-24):** the first task is unchanged (measure the capacitors, then order the shield). If the owner
+has printed the TAL221 scale, also ask for the screws used, the pan's mass on the school balance or kitchen scale, and
+plan the several-minute zero (TODO P0).
 
 ## 13. Manual Git commands (as given to the owner)
 
@@ -263,3 +347,22 @@ python scripts/sync_status.py --fetch
 - **If the push is rejected** ("fetch first" / "non-fast-forward"): do not force-push. Run
   `git pull --rebase origin main`, then `python -m unittest discover -s tests`, then `git push origin HEAD`.
 - **Check:** the last command should end with `STATE: UP_TO_DATE`.
+
+**Continued (second `/wrap`, 2026-11-24).** State: `UP_TO_DATE` at `f10f315`; nothing staged. Checks after editing:
+`python -m unittest discover -s tests -v` 20 tests OK in 26.0 s; `python scripts/check_docs.py` 0 failures, 0 warnings
+(962 links and anchors resolve, 153 committable files, none over 25 MiB). 8 files modified, 7 new.
+
+```bash
+cd "C:/Users/nuhbm/OneDrive/Desktop/nuhs projects/2 - Wind Tunnel"
+python scripts/sync_status.py --fetch
+git status
+git diff --stat
+git add PROJECT_STATUS.md TODO.md DECISIONS.md README.md CLAUDE.md docs/experimental_setup.md
+git add docs/sessions/SESSION_LOG.md docs/sessions/2026-11-23-sensor-shield-pcb.md
+git add cad/third-party/tal221-scale-bwilless
+git status
+git diff --cached --stat
+git commit -m "File a printable TAL221 bench scale design" -m "Adds Thingiverse thing 4665143 by bwilless (CC BY; licence and source kept with the files) under cad/third-party/ as a firm mount for the load cell's zero and calibration practice. The STLs were checked against the TAL221 datasheet notes: 3.2 mm holes 6 mm apart, 40 mm span, a 6 mm gap for the cell. Notes D-017 on third-party bench fixtures and backfills f10f315."
+git push origin HEAD
+python scripts/sync_status.py --fetch
+```

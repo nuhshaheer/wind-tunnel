@@ -96,13 +96,14 @@ docs/
 data/README.md            Data layout and rules (raw vs processed, naming, units, large files)
 firmware/                 Arduino sketches for the Mega 2560 (one folder per sketch); index in firmware/README.md
 PCB/arduino_shield/       The owner's KiCad 10 project for the sensor shield (D-020); gerbers/ holds the manufacturing files
+cad/                      CAD exports; third-party/ holds downloaded designs with their licence (a TAL221 bench scale)
 resources/                Reference papers (PDFs) with reading notes; index and naming rules in resources/README.md
 scripts/                  Helper scripts used by /catchup and /wrap
 tests/                    Tests for the helper scripts
 .claude/                  Agent commands (skills/) and the no-push permission rule (settings.json)
 ```
 
-Folders such as `data/raw/`, `data/processed/`, `analysis/`, `results/` and `cad/` are created when their first file
+Folders such as `data/raw/`, `data/processed/`, `analysis/` and `results/` are created when their first file
 exists (see [data/README.md](data/README.md)).
 
 ## Documentation

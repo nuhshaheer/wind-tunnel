@@ -74,6 +74,8 @@ python -m unittest discover -s tests -v        # tests for the two scripts
 - Firmware (Arduino sketches) goes in `firmware/<name>/<name>.ino`, indexed in `firmware/README.md`; each sketch states
   its wiring, output columns and units at the top and prints raw values (DECISIONS.md D-019). Agents cannot compile
   sketches here (`arduino-cli` is not installed); the owner uploads them from the Arduino IDE.
+- CAD: the owner draws the tunnel's parts (D-017) and exports go in `cad/`. Downloaded designs (bench fixtures only)
+  go unchanged in `cad/third-party/<name>/` with their licence and source file (note on D-017, 2026-11-24).
 - PCB designs go in `PCB/<name>/` as KiCad 10 projects drawn by the owner (D-020); manufacturing files in
   `PCB/<name>/gerbers/`. KiCad's `.history/`, lock files, `.kicad_prl` and upload zips are ignored by Git. Agents check
   a design with `kicad-cli` (`C:/Program Files/KiCad/10.0/bin/kicad-cli.exe`: net list, ERC, DRC with
