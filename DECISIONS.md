@@ -488,6 +488,12 @@ Template:
     with the HX711's VDD and VCC both on +5V at the shield; and C1 sits on the shield beside J1. The connectors are
     2.54 mm pin headers for Dupont jumper wires, not locking plugs (owner). The PCB program is KiCad. The rest of this
     decision (USB power, one I²C bus on pins 20/21, the HX711 on pins 2 and 3, R1/R2 not fitted) is unchanged.
+  - Note (2026-11-26): **the breadboard now matches the shield and passes.** The old C1 was a 1 µF electrolytic (its
+    marking, owner); the owner replaced it with the kit's 0.1 µF film capacitor and removed R1, R2 and their +5 V feed
+    wires. The I²C scan still finds 0x25 and 0x77 and the SDP810 zeroes within ±0.08 Pa with 0 bad reads, so the
+    BME280 board's pull-ups alone are enough on the bench
+    ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)). Status still Tentative until
+    the owner confirms.
 
 ## D-019: Bring-up firmware: one plain Arduino sketch per sensor in `firmware/`
 
@@ -515,6 +521,11 @@ Template:
   ([as built](docs/experimental_setup.md#breadboard-as-built); [session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
 - Status: Tentative (agent's choice; the owner has not confirmed it). The logging firmware (step 4) should follow the
   same conventions unless replaced by a new decision.
+  - Note (2026-11-26): for EXP-002 the owner set `hx711_raw_counts` to `AVERAGE_OVER = 1` (every raw reading, about
+    10.5 lines/s) at the agent's request, because the lines were captured to a file (D-021) rather than copied from the
+    Serial Monitor. The committed sketch now has 1; the agent recommends keeping it (raw readings show disturbances
+    that a 1 s mean would hide); the owner may set it back to 10 for watching the Serial Monitor
+    ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)).
 
 ## D-020: Shield PCB: KiCad on the Mega shield template, pin headers for jumper wires, each connector in its part's pin order
 
@@ -556,3 +567,36 @@ Template:
   Not made or tested: the shield has not been ordered.
 - Status: Accepted (owner, 2026-11-23) for the program, the connectors, their pin orders and the five-pin J3. The C1
   and C2 footprints stay Tentative until measured. Sheet 12 was redrawn to match (revision E, 2026-11-23).
+  - Note (2026-11-26): **the C1 and C2 footprints are Accepted and the shield is ordered.** The owner measured C2's lead
+    spacing at about 2.0 mm (matching) and C1's (the kit's 0.1 µF film, 108.9 nF) at 6.5–6.7 mm unbent, to be bent to
+    the 5.0 mm holes; the board has room for both bodies (nearest other pad 6.6–6.7 mm from each part's centre). The
+    0.1 µF film passed as C1 on the breadboard. The owner then filled in the schematic's title block (revision 1) and
+    ordered 5 boards from JLCPCB (order Y6-12005915A, OSP finish) with the zip of `gerbers/` as committed in `397c671`;
+    a KiCad local-history restore the same night left the copper unchanged (checked against `397c671`)
+    ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)).
+
+## D-021: Capture serial data to CSV with `scripts/serial_capture.ps1` (PowerShell), stamped with the PC's clock
+
+- Date: 2026-11-26
+- Question: How does data from the Mega reach a file? The Arduino IDE's Serial Monitor copies only the lines on screen,
+  so minutes of HX711 data for EXP-002 (and later every tunnel run) could not be kept by copy and paste.
+- Decision (agent's choice while the owner was at the bench):
+  - `scripts/serial_capture.ps1` opens the port (COM3, 115200 baud), writes every line the board sends to a new CSV file,
+    unchanged except for a `pc_time` column in front (the PC's local time, ISO 8601 with milliseconds and UTC offset),
+    flushes each line to disk at once, and stops on Ctrl+C, after `-Seconds`, or when a `-StopFile` appears.
+  - It refuses to overwrite an existing file and opens the port before creating the file, so `data/raw/` is never
+    overwritten and a busy port leaves nothing behind.
+  - It uses Windows PowerShell 5.1 and .NET's `System.IO.Ports.SerialPort`, both part of Windows. This is an exception
+    to "helper scripts are Python standard library only" (CLAUDE.md), because the standard library has no serial port
+    and the alternative, pyserial, is an install.
+  - Opening the port resets the Mega, so each file starts with the sketch's messages and header; buffer leftovers from
+    before the reset may come first and are skipped by the analysis. The Arduino IDE must be closed (it holds the port).
+- Rationale: nothing to install; no lost lines; the PC time lines the data up with notes of what was done when; the board's
+  own `time_ms` column is kept for the sample timing.
+- Alternatives considered: copying from the Serial Monitor in chunks (loses lines); printing one averaged line every
+  10 s so a run fits on screen (loses information); Python with pyserial (an install); a Python ctypes serial reader
+  (long, untested code); a terminal program with logging such as PuTTY (an install, and no time stamps by default).
+- Evidence / source: used for EXP-002 run02, 20,180 lines over 32 min with a steady 95 ms interval
+  ([data catalog](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale)); run01 is the empty file left
+  by the first version, which created the file before opening the port. No automated test.
+- Status: Tentative (agent's choice, 2026-11-26; the owner has not confirmed it).

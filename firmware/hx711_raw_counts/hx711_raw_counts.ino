@@ -32,7 +32,7 @@
 const uint8_t PIN_DAT = 2;
 const uint8_t PIN_CLK = 3;
 const bool FOR_PLOTTER = false;
-const uint8_t AVERAGE_OVER = 10;
+const uint8_t AVERAGE_OVER = 1;
 
 void setup() {
   Serial.begin(115200);

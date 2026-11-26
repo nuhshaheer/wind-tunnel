@@ -402,7 +402,10 @@ What this implies [Proposed by the agent, 2026-11-05; not confirmed by the owner
 Pressure-sensor offset and drift; load-cell creep and temperature drift; mount (sting) drag and interference; blockage;
 flow non-uniformity and turbulence intensity; sphere diameter and surface finish; ρ from ambient conditions; vibration
 from the fan coupling into the balance; magnetic pull between panel magnets and any ferrous part on the measured side of
-the balance (added 2026-11-01). None has been quantified yet.
+the balance (added 2026-11-01). **The first one measured (2026-11-26,
+[EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale), Preliminary): the load cell's zero**
+wanders (10 s means sd about 0.005 g) and lags after a load (0.01–0.02 g), about 2–8 % of the smallest expected drag;
+its sensitivity and straightness are far better (under 0.1 %). The others are not quantified yet.
 
 ## References
 
@@ -582,3 +585,14 @@ Add lasting lessons here (with a link to the session log where they were learned
 - **Check every layer a board maker needs before uploading** (2026-11-23, same log). The first Gerber export had the
   copper and silkscreen but no board outline and no solder masks. A two-layer through-hole board needs seven Gerbers
   (F/B.Cu, F/B.Silkscreen, F/B.Mask, Edge.Cuts) plus the drill files.
+- **Record serial data to a file, not from the Serial Monitor** (2026-11-26,
+  [session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)). `scripts/serial_capture.ps1` keeps
+  every line with the PC's time (D-021), so raw readings need no averaging on the board. Close the Arduino IDE first:
+  it holds COM3, and "Access to the port 'COM3' is denied" means something else has the port.
+- **Compare a design file by its content after an editor rewrites it** (2026-11-26, same log). A KiCad local-history
+  restore and a save produced a 230-line diff in the board file, but its tracks, vias, footprints, nets and outline were
+  identical to the commit: KiCad had only reordered tracks and changed plot settings. Compare those as sets (on a copy)
+  before deciding a board changed.
+- **On a load cell, measure the zero as carefully as the slope** (2026-11-26, same log). EXP-002 found the cell
+  straight to 0.025 g over 80 g, but its zero wandered and lagged by 0.005–0.025 g, which at 0.3 g of drag is the larger
+  error. Plan zeros right before and after every reading.

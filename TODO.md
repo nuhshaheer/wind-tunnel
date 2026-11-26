@@ -8,45 +8,34 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 ## P0: Now
 
-- [ ] **Owner: measure the two capacitors, then order the shield PCB** (new 2026-11-23; [D-020](DECISIONS.md);
-  [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)). With the calipers: C1's (0.1 µF mylar) lead spacing, and C2's (10 µF) can diameter and lead
-  spacing. The placeholder footprints assume 5.0 mm for C1, and 5 mm diameter with 2.0 mm spacing for C2.
-  - If they match: zip the 10 files in `PCB/arduino_shield/gerbers/` (flat, no folder inside) and upload to JLCPCB.
-    Check its preview shows 2 layers and 101.6 × 53.34 mm, keep 1.6 mm, HASL, 1 oz; check whether the length (just over
-    100 mm) changes the price.
-  - If not: in KiCad, give C1 or C2 the matching footprint, Update PCB from Schematic, fix any track the new pads touch,
-    re-export the Gerbers (7 layers: F/B.Cu, F/B.Silkscreen, F/B.Mask, Edge.Cuts) and drill files into `gerbers/`, and
-    have the agent recheck them (`kicad-cli pcb drc --schematic-parity` on a copy, as in the session log §5).
-  - Outcome: the order placed (date, quantity, price) recorded in PROJECT_STATUS §3 and docs/shopping_list.md. Verify:
-    the uploaded files are the ones in `gerbers/` at the commit that records the order.
-- [ ] **Owner: print the TAL221 bench scale and run a several-minute zero on it** (new 2026-11-24; optional, but it
-  gives the load cell the firm mount the 2026-11-23 penny test lacked). Files: `cad/third-party/tal221-scale-bwilless/` ([setup](docs/experimental_setup.md#bench-load-cell-scale-to-print)).
-  - Print the base as it comes and the pan upside down; PLA, 3–4 walls; clean the 3.2 mm holes with the 3.0 mm bit if a
-    screw sticks.
-  - Mount the TAL221 that is soldered to the HX711, wire end on the base. Screws about M3 × 10 (button or pan head)
-    under the base and M3 × 20 at the pan (nuts if that end is untapped); check lengths with calipers first.
-  - Never press the pan; keep at most about 80 g on it.
-  - Run `hx711_raw_counts` for several minutes with nothing on the pan, then, if wanted, add the EXP-001 masses one at a
-    time (practice, not the tunnel's calibration). Plan how to keep minutes of output first: the Serial Monitor copies
-    only the visible lines.
-  - Outcome: the zero's drift and scatter over minutes, recorded in docs/experimental_setup.md (or as a dataset if the
-    owner wants it kept). Verify: the reading returns within the 2026-11-23 scatter (about 26 counts) after each load.
-- [ ] **Owner: close the 2026-11-23 bring-up** (new 2026-11-23; [session log](docs/sessions/2026-11-23-sensor-bring-up.md) §10). Send the agent:
-  - the penny's year (1983 or later is 2.5 g, 1982 or earlier probably 3.11 g), or better, its mass from the school
-    balance, to settle the counts-per-gram estimate (about 13,300 or 10,700 counts/g);
+- [ ] **Start the sizing for the CAD (build step 1)** (owner's go-ahead 2026-11-25: "Then we can get started on working
+  on the CAD"; [D-017](DECISIONS.md)). The full task is P1 "Size the contraction and test section".
+  - **Owner first:** the heat-set inserts' length and outside diameter (calipers; and the thread size if the bag shows
+    it). Every flange hole is sized from them.
+  - **Agent:** start with the parts that wait on no open choice: the contraction (250 → 100 mm square, 5th-order wall,
+    about 250 mm; the points file for Fusion 360's spline import), the test section, and the test coupons (insert holes,
+    magnet pockets, sting hole, a fan-ring slice).
+  - **Owner, with the agent:** the settling-chamber spacing (about 200 mm compact, or about 390 mm plus frames for full
+    turbulence decay; open questions 13 and 15) and the five 2026-11-22 proposals that change the shape (P1: #1 image
+    sting, #2 sealed load-cell box, #6 E-ring and last-screen positions, #7 screen lands, #8 a spare joint). The fan
+    model is needed only for the fan ring and stand.
+  - Outcome: one dimension sheet per part and the contraction points file. Verify: as in the P1 sizing task.
+- [ ] **Owner: close the 2026-11-23 bring-up** (new 2026-11-23; [session log](docs/sessions/2026-11-23-sensor-bring-up.md) §10).
+  **Answered 2026-11-26:** the penny was 2.5 g (2.43 g at the EXP-002 sensitivity); the old C1 was marked 1 µF and is
+  replaced by the 0.1 µF film; R1 and R2 are removed. Still to send the agent:
   - the HX711's excitation voltage: USB in, DC volts, red probe on the RED pad, black on BLK (walk-through step 3 item 5);
   - the Adafruit BME280 Library version (Library Manager);
   - which wire was moving when the BME280 reset at about 63 s, if remembered;
-  - the marking on the capacitor in the breadboard's C1 position (the owner recalls 1 µF rather than 0.1 µF,
-    2026-11-23).
+  - that the two +5 V wires that fed R1 and R2 are out (implied on 2026-11-26, not stated).
 
-  And at the bench: mark the SDP810's High barb; firm up the BME280's connection (a 6-pin male header strip pressed
-  into the breadboard, and the hanging jumper bundle taped down); remove R1 and R2 to match sheet 12, or say to keep
-  them (the photos suggest they are still fitted; harmless). Outcome: each value recorded in
-  [docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built). Verify: the 2026-11-23 log's §10 items closed.
+  And at the bench: mark the SDP810's High barb (asked 2026-11-26; not confirmed); firm up the BME280's connection (a
+  6-pin male header strip pressed into the breadboard, and the hanging jumper bundle taped down). Outcome: each value
+  recorded in [docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built). Verify: the 2026-11-23 log's
+  §10 items closed.
 - [ ] **Agent, with the owner at the bench: the combined logging sketch** (walk-through step 4; new 2026-11-23). One CSV
   line per sample with time, HX711 counts, SDP810 dp (raw and × 96600 / p_amb), BME280 p, T and RH, and a flag column
-  for BME280 resets and failed reads, following [D-019](DECISIONS.md). Details in P2 "Data-logging firmware". Outcome:
+  for BME280 resets and failed reads, following [D-019](DECISIONS.md). Details in P2 "Data-logging firmware". Since
+  2026-11-26 the output can be recorded with `scripts/serial_capture.ps1` ([D-021](DECISIONS.md)). Outcome:
   `firmware/logger/` (name to confirm). Verify: a 10-minute run with a steady sample rate and every value responding to
   a change the owner causes, recorded in docs/experimental_setup.md.
 - [ ] **Owner: choose the fan, the S6 or the VEVOR** (D-011, Tentative since 2026-11-09; "ill consult my budget
@@ -108,8 +97,10 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [ ] **Owner: confirm or change the tentative decisions** D-003 (private visibility), D-004 (data and LFS policy),
   D-006 (reference PDFs over 25 MB kept local only), D-007's open exit (no exit diffuser), D-011 (the fan, above),
   D-016 (one full-length sting per ball, no sleeve; "confirm at sizing") D-018 (the sensor circuit, agent's design,
-  2026-11-17; the breadboard test passed on 2026-11-23) and D-019 (bring-up firmware conventions, agent's choice,
-  2026-11-23) in [DECISIONS.md](DECISIONS.md). Verify:
+  2026-11-17; the breadboard test passed on 2026-11-23, and again in the shield's configuration on 2026-11-26), D-019
+  (bring-up firmware conventions, agent's choice, 2026-11-23; including whether `hx711_raw_counts` keeps
+  `AVERAGE_OVER = 1`, the agent's recommendation, or goes back to 10) and D-021 (serial capture with
+  `scripts/serial_capture.ps1`, agent's choice, 2026-11-26) in [DECISIONS.md](DECISIONS.md). Verify:
   status changed to Accepted (or replaced by a new decision).
 - [ ] **Owner: say whether to republish the drawings' private claude.ai copy** (added 2026-11-10). It still shows
   revision B (with the 5/32 in sleeve); the repo copy is revision D, with the electrical sheets 11 and 12 (sheet 12 at
@@ -424,10 +415,13 @@ Owner tasks are physical or account actions that an agent cannot do.
     2. ~~the owner chooses the PCB program and draws sheet 12 in it~~ **done 2026-11-23: KiCad 10**, the shield drawn
        by the owner and checked by the agent ([D-020](DECISIONS.md), [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md));
     3. ~~the shield PCB and the J1–J3 connector type~~ **designed 2026-11-23:** 2.54 mm pin headers for jumper wires,
-       each in its part's pin order; Gerbers in `PCB/arduino_shield/gerbers/`. Next: the capacitor measurements and the
-       order (P0); then solder it (the 40 header strips on hand should supply the 99 pins; count the male ones; with plain male pins,
-       check the shield clears the Mega's USB socket and tape the socket's top if it touches) and run the checks below.
-       The optional SDP810 carrier board was not drawn.
+       each in its part's pin order; Gerbers in `PCB/arduino_shield/gerbers/`. ~~The capacitor measurements and the
+       order~~ **ordered 2026-11-26** (JLCPCB Y6-12005915A, 5 boards, OSP finish; arrival about 6–8 December,
+       estimate). The breadboard already matches the shield and passes (2026-11-26). **Next, when the boards arrive:**
+       keep them sealed until soldering (OSP), hold them by the edges; solder the headers (the 40 strips on hand should
+       supply the 99 pins; count the male ones), C1 (the 0.1 µF film, legs bent to 5 mm) and C2 (+ leg to +5V); leave
+       R1 and R2 empty; with plain male pins, check the shield clears the Mega's USB socket and tape the socket's top if
+       it touches; then run the checks below. The optional SDP810 carrier board was not drawn.
   - Proposed contents (2026-11-01/09; partly superseded on 2026-11-17, above): a shield for the Mega 2560 holding:
     - **female header sockets** for the HX711 module and the BME280, and a connector for the SDP810's cable (its pins
       are at 2 mm pitch), so modules plug in and can be swapped (owner's socket idea, 2026-11-09); DIP sockets for any
@@ -463,7 +457,8 @@ Owner tasks are physical or account actions that an agent cannot do.
     run flag over USB.
   - Log raw values only. Calibration, the ×966 mbar / p_amb correction and C_D belong in the analysis scripts
     (CLAUDE.md conventions).
-  - Live view: the Arduino IDE's Serial Plotter first; a laptop script later if needed.
+  - Live view: the Arduino IDE's Serial Plotter first; a laptop script later if needed. Recording to a file:
+    `scripts/serial_capture.ps1` ([D-021](DECISIONS.md), 2026-11-26; the IDE must be closed while it runs).
   - Outcome: firmware in the repo (folder `firmware/`, documented in [firmware/README.md](firmware/README.md)).
     Verify: each sensor's reading follows a change the owner causes (a known mass on the load cell, blowing on a
     pressure port, a finger on the BME280), and the logged sample rate is steady over 10 minutes.
@@ -471,9 +466,10 @@ Owner tasks are physical or account actions that an agent cannot do.
   SDP810's label and the BME280 cable's resistances; the HX711 board's labels are read. **Done 2026-11-23**
   ([as built](docs/experimental_setup.md#breadboard-as-built)): the soldered TAL221's resistances at its free wire ends ("about" 1090 and 1000 Ω, exact values
   not given; cross pairs and body not measured); the BME280's 4.81 V on SDA and SCL and chip ID 0x60; the SDP810's zero
-  (−0.022 Pa with the ports looped); the HX711's rate (10 SPS, from timing). Still open below: the spare TAL221, a
-  longer no-load zero on a firm mount, the HX711's excitation voltage, the Mega's own pull-ups, the calipers, the screen
-  and the 2026-11-10 items. Everything below not marked done
+  (−0.022 Pa with the ports looped); the HX711's rate (10 SPS, from timing). **Done 2026-11-26:** a several-minute
+  no-load zero on a firm mount (the printed bench scale, [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale));
+  the calipers work (used for the capacitor leads). Still open below: the spare TAL221, the HX711's excitation voltage,
+  the Mega's own pull-ups, the screen and the 2026-11-10 items. Everything below not marked done
   is still open.** Record each result with the date:
   - TAL221s: wire resistances (red–black about 1090 Ω, green–white about 1000 Ω, cross pairs, body open) and the
     no-load zero, as baselines for spotting damage later. Measure the resistances at the free wire ends **before**
@@ -507,7 +503,10 @@ Owner tasks are physical or account actions that an agent cannot do.
   noise recorded. **2026-11-23:** one TAL221 soldered straight to the HX711's pads (owner); 1.4 s of zero gave a
   standard deviation of 26 counts (about 0.002 g, estimate) on a taped mount. The several-minute zero waits for a firm
   mount (the balance module, or a clamp). **2026-11-24:** a printable bench scale for the TAL221 is filed in
-  `cad/third-party/tal221-scale-bwilless/` (P0 task above).
+  `cad/third-party/tal221-scale-bwilless/`. **2026-11-26: done on the bench scale**
+  ([EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale)): reading noise sd 40 counts
+  (0.003 g), 10 s means sd 0.0045 g after 3 min, about 5× the taped cell's scatter on 2026-11-23 (cause not tested).
+  Remains: the same checks on the balance module once built.
 - [ ] **Calibrate the load cell against known weights.** Method proposed 2026-11-08 ([buy list](docs/buy_list.md)
   §9): lay the balance module on its side so gravity acts in the drag direction (no pulley friction), and hang masses
   at the ball's position from a budget 10 mg–100 g set (in a light pan hung from a printed attachment on the sting's
@@ -518,8 +517,23 @@ Owner tasks are physical or account actions that an agent cannot do.
   2.5 % off). It has nothing under 2 g; the drag range lies between the wind-off zero and the 2 g pieces, so no smaller
   masses are needed (solder cut by length if a low-end check is ever wanted; buy list §9). Keep masses plus preload
   under 100 g: the whole set is 165.5 g, 175.3 g with the rod. The hanging rod (9.80 g) may replace the pan.
+  **2026-11-26, bench practice ([EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale),
+  Preliminary):** on the printed scale the cell gives 13,727.5 counts/g, straight within 0.025 g from 2 to 79 g (the
+  0–11 g slope within 0.14 % of the 0–79 g slope), so the 2–50 g pieces can set the slope for the 0.3–2.3 g drag range.
+  Lessons for the real calibration: record with `scripts/serial_capture.ps1`; take a zero before and after each load
+  (the zero lags 0.01–0.02 g after larger loads, and hysteresis and drift could not be separated with zeros only at the
+  ends); go up and down; place each mass at one marked spot; lift weights straight off (tweezer bumps); log the BME280's
+  temperature alongside; and keep heavy loads off the cell for a while before drag runs.
   Outcome: calibration dataset and fit (counts → N). Verify:
   residuals and linearity reported; calibration file referenced from the data catalog.
+- [ ] **Optional bench follow-ups to EXP-002** (new 2026-11-26; on the printed scale, any time before the balance
+  module). Each a short recording with `scripts/serial_capture.ps1`:
+  - noise source: the 10 s zero with a box over the scale against without, and on the laptop's battery against on its
+    charger (the reading noise is about 5× the 2026-11-23 taped-cell figure);
+  - hysteresis against drift: one load cycle with an empty-pan zero between every load;
+  - temperature: the BME280 logged beside the HX711 for an hour of empty pan.
+
+  Outcome: each result in the data catalog (EXP-003 onward). Verify: the cause of the extra noise named, or ruled out.
 - [ ] **Check the fan's heating of the tunnel air with the BME280** (new 2026-11-19; after the fan arrives). Run the fan
   at top speed for a few minutes, hold the BME280 on its cable in the jet a hand's width past the open exit, and compare
   its temperature with the room reading at the fan inlet. Expected under about 0.4 °C (estimate). Outcome: the
@@ -766,3 +780,19 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-23: Sheet 12 redrawn as revision E (agent, at the wrap): connectors in each part's pin order, five-pin J3,
   C1 on the shield, the HX711's delivered pad names (replaces the 2026-11-18 task "Update sheet 12 with the delivered
   HX711 pad names") ([drawings README](docs/drawings/README.md); [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
+- [x] 2026-11-24: The bench-scale continuation committed and pushed as `397c671` (owner); `/catchup` confirmed
+  `UP_TO_DATE` on 2026-11-25 ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)).
+- [x] 2026-11-26: The shield's capacitors measured (owner): C2's lead spacing matches; C1 (0.1 µF film, 108.9 nF) has
+  legs 6.5–6.7 mm apart, bent to the 5.0 mm holes; the agent checked the room on the board. No footprint change
+  ([D-020](DECISIONS.md); [session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)).
+- [x] 2026-11-26: The breadboard brought to the shield's configuration (owner): C1 the 0.1 µF film (the old one was
+  1 µF), R1 and R2 removed; scan, SDP810 zero and sign pass ([as built](docs/experimental_setup.md#breadboard-as-built)).
+- [x] 2026-11-26: **Shield PCB ordered** (owner): JLCPCB Y6-12005915A, 5 boards, OSP, from the zip of `gerbers/` as
+  committed in `397c671`; schematic title block filled in, revision 1
+  ([shield PCB](docs/experimental_setup.md#shield-pcb-ordered-not-received)).
+- [x] 2026-11-26: TAL221 bench scale printed and the cell mounted (owner); **EXP-002** recorded and analysed:
+  13,727.5 counts/g, straight within 0.025 g to 79 g, zero wander and lag 0.005–0.025 g (Preliminary;
+  [data catalog](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale)). Replaces the P0 task "print the
+  TAL221 bench scale and run a several-minute zero on it".
+- [x] 2026-11-26: `scripts/serial_capture.ps1` written and used ([D-021](DECISIONS.md)); `analysis/exp002_bench_scale.py`
+  written, the project's first analysis script ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)).

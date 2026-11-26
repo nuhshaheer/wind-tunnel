@@ -5,7 +5,14 @@
 	(uuid "e63e39d7-6ac0-4ffd-8aa3-1841a4541b55")
 	(paper "A4")
 	(title_block
-		(date "mar. 31 mars 2015")
+		(title "Wind Tunnel Sensor Shield (Arduino Mega)")
+		(date "2026-11-25")
+		(rev "1")
+		(company "Nuh Shaheer")
+		(comment 1 "SDP810 + BME280 on I2C (pins 20/21), HX711 on pins 2/3")
+		(comment 2 "R1, R2 do not populate: pull-ups are on the BME280 board")
+		(comment 3 "C2 electrolytic: + to +5V")
+		(comment 4 "See DECISIONS.md D-018, D-020; drawing sheet 12 rev E")
 	)
 	(lib_symbols
 		(symbol "Connector_Generic:Conn_01x04"
@@ -3318,7 +3325,7 @@
 	)
 	(text "* Indicates a PWM-capable pin"
 		(exclude_from_sim no)
-		(at 177.8 180.34 0)
+		(at 177.8 164.338 0)
 		(effects
 			(font
 				(size 1.27 1.27)

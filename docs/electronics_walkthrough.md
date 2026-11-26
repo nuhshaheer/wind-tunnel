@@ -447,7 +447,7 @@ Learn each idea just before you need it.
 | Cable lengths W1–W3 | TBD | Box positions at sizing |
 | Connector type for J1–J3 on the PCB | **Answered 2026-11-23:** 2.54 mm pin headers for jumper wires, each in its part's pin order ([D-020](../DECISIONS.md)) | Owner |
 | PCB program: KiCad (recommended) or EasyEDA | **Answered 2026-11-23: KiCad 10** | Owner |
-| Is the breadboard's C1 0.1 µF or 1 µF? | The owner recalls 1 µF (2026-11-23); read its marking. Either works; the datasheet names no value | Owner |
+| Is the breadboard's C1 0.1 µF or 1 µF? | **Answered 2026-11-26:** it was 1 µF (marking); replaced by the kit's 0.1 µF film (108.9 nF), which also works, as on the shield. R1 and R2 also removed: the BME280 board's pull-ups alone carry the bus | Owner |
 
 ## 11. Photos
 

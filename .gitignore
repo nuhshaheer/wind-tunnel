@@ -71,6 +71,7 @@ PCB/**/*.kicad_prl
 PCB/**/fp-info-cache
 PCB/**/*-backups/
 PCB/**/_autosave-*
+PCB/**/_restore_backup*/
 PCB/**/*.zip
 
 # --- OS, sync client and editor clutter ---

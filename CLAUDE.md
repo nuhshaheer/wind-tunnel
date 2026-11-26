@@ -52,6 +52,14 @@ python scripts/check_docs.py                   # documentation consistency, size
 python -m unittest discover -s tests -v        # tests for the two scripts
 ```
 
+One exception to "standard library only": `scripts/serial_capture.ps1` (Windows PowerShell 5.1, built in) records the
+Mega's serial output to a new CSV in `data/raw/` with the PC's time on every line (DECISIONS.md D-021). The Arduino IDE
+must be closed while it runs (it holds COM3). An agent can run it in the background and stop it with `-StopFile`:
+
+```bash
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\serial_capture.ps1 -Port COM3 -OutFile data\raw\<folder>\run01.csv
+```
+
 ## Documentation rules
 
 - **Status labels** for work and results (use exactly): Verified, Implemented, unverified, Preliminary result,

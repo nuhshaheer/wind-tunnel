@@ -1,0 +1,60 @@
+EXP-002 bench scale: TAL221 100 g + SparkFun HX711 (gain 128, 10 SPS), printed scale, 2026-11-26
+raw: data\raw\2026-11-26_EXP-002_tal221-bench-scale\run02.csv  (20151 readings after the first second)
+script: analysis/exp002_bench_scale.py; level of each state = mean of its last 20 s
+
+Straight-line fit, all 23 states (0 to 79.440 g, up and down):
+  sensitivity  13727.5 counts/g  (standard error 1.4, 0.010 %)
+               1.399e+06 counts/N with g = 9.81 m/s^2
+  intercept    160739 counts (empty pan, including the printed pan's own weight)
+  residuals    max |r| 0.0249 g, rms 0.0120 g  (0.025 % of the 100 g rating)
+Low range only (states 0-8, 0 to 10.963 g): 13705.9 counts/g (se 14.3); max |r| 0.0140 g
+Full range only (states 8-20, 0 to 79.440 g): 13725.4 counts/g (se 1.0); max |r| 0.0127 g
+Low-range slope minus full-range slope: -0.142 %
+
+Each state (g): load, level, residual from the all-states fit
+   0    0.000 g      160723.0  -0.0012 g   empty
+   1    1.983 g      187743.0  -0.0159 g   2g#1
+   2    3.933 g      214487.3  -0.0176 g   2g#1+2g#2
+   3    5.906 g      241474.4  -0.0247 g   2g#1+2g#2+2g#3
+   4   10.963 g      311055.4  -0.0130 g   2g#1+2g#2+2g#3+5g#1
+   5    5.906 g      241782.4  -0.0023 g   2g#1+2g#2+2g#3
+   6    3.933 g      214681.8  -0.0035 g   2g#1+2g#2
+   7    1.983 g      187876.9  -0.0061 g   2g#1
+   8    0.000 g      160903.1  +0.0120 g   empty
+   9    9.940 g      297236.4  +0.0034 g   10g#1
+  10   19.983 g      434985.0  -0.0051 g   10g#1+10g#2
+  11   29.950 g      571856.1  -0.0015 g   10g#1+10g#2+10g#3
+  12   49.713 g      843182.5  +0.0008 g   10g#1+10g#2+10g#3+20g#1
+  13   69.500 g     1114799.0  +0.0001 g   10g#1+10g#2+10g#3+20g#1+20g#2
+  14   79.440 g     1251177.0  -0.0052 g   10g#1+10g#2+10g#3+20g#1+20g#2+10g#4
+  15   69.500 g     1114856.1  +0.0043 g   10g#1+10g#2+10g#3+20g#1+20g#2
+  16   49.713 g      843351.8  +0.0131 g   10g#1+10g#2+10g#3+20g#1
+  17   29.950 g      572032.8  +0.0114 g   10g#1+10g#2+10g#3
+  18   19.983 g      435172.2  +0.0085 g   10g#1+10g#2
+  19    9.940 g      297293.8  +0.0076 g   10g#1
+  20    0.000 g      161047.5  +0.0225 g   empty
+  21   50.097 g      848272.1  -0.0125 g   50g
+  22    0.000 g      161080.3  +0.0249 g   empty
+
+Hysteresis (down minus up, same load), g:
+    1.983 g: +0.0098 g
+    3.933 g: +0.0142 g
+    5.906 g: +0.0224 g
+    9.940 g: +0.0042 g
+   19.983 g: +0.0136 g
+   29.950 g: +0.0129 g
+   49.713 g: +0.0123 g
+   69.500 g: +0.0042 g
+Return to zero, g:
+  after the low-range cycle (state 8 - state 0):   +0.0131 g
+  after the full-range cycle (state 20 - state 8): +0.0105 g
+  after 5 min at 50 g (state 22 - state 20):       +0.0024 g
+  whole run (state 22 - state 0):                  +0.0260 g
+
+Creep at 50.097 g (360 s steady): 30 s means span 0.0097 g; last minus first +0.0083 g
+Zero, first empty stretch (536 s): 10 s means span 0.0337 g, sd 0.0085 g; first-to-last -0.0142 g
+  after the first 3 min: 10 s means sd 0.0045 g, span 0.0172 g
+Noise: reading-to-reading sd within 1.4 s windows (median) 40 counts = 0.0029 g
+
+Implied cell output 0.639 mV/V at 100 g (assumes excitation = the HX711's AVDD reference; TAL221 datasheet 0.6 +/- 0.15 mV/V)
+2026-11-23 penny step (about 33,300 counts) at this sensitivity: 2.43 g

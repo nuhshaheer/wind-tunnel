@@ -6,7 +6,7 @@ Other statuses: **Deciding**, **Maybe**, **Optional**, **Check house** (buy only
 Why each part was chosen, and the alternatives, are in [buy_list.md](buy_list.md). When something arrives, tell the
 agent so it can mark it On hand there too.
 
-**Last updated:** 2026-11-19 (the weight set row). **Everything ordered on 2026-11-09/10 has arrived** (owner, 2026-11-17); arrival checks
+**Last updated:** 2026-11-26 (the shield PCB order). **Everything ordered on 2026-11-09/10 has arrived** (owner, 2026-11-17); arrival checks
 are still to do (TODO P2). Prices were seen on listings on 2026-11-08/09. A **~** means a typical price that has not
 been checked. Tax and shipping are not included. Prices paid are not recorded unless stated.
 
@@ -43,6 +43,7 @@ also supply the shield PCB's pins: P1–P7 to the Mega (five 1 × 8, one 1 × 10
 rows) and J1–J3 (4, 4 and 5 pins), 99 pins in all, which should fit within the set (the male/female split is not
 counted; [D-020](../DECISIONS.md)) | 40 strips | $10 | [Amazon search](https://www.amazon.com/s?k=male+female+header+strip+assortment+2.54mm) | **Got it** (2026-11-17); ordered (2026-11-10) |
 | 4-core cable, shielded if possible. **Maybe not needed:** four colours of the TUOFENG hook-up wire twisted together with the hand drill do the same job | ~3 m | ~$5–10 | [Amazon search](https://www.amazon.com/s?k=4+conductor+shielded+cable+24awg) | Maybe |
+| **Sensor shield PCB** (the owner's KiCad design, `PCB/arduino_shield/`, [D-020](../DECISIONS.md)): JLCPCB order Y6-12005915A, 2 layers, 101.6 × 53.34 mm, 1.6 mm, green, **OSP finish** (keep sealed until soldering), flying-probe test; build 2 days, shipping 8–10 days | 5 boards | not recorded | JLCPCB | **Ordered** (2026-11-26); arrival about 6–8 December (estimate) |
 
 ## Hardware store
 

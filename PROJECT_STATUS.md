@@ -1,14 +1,14 @@
 # Project Status
 
-**Last updated:** 2026-11-24
-**Last commit:** `f10f315` (2026-11-23, sensor shield PCB), pushed to `origin/main` (`UP_TO_DATE` at the 2026-11-24
-wrap).
+**Last updated:** 2026-11-26
+**Last commit:** `397c671` (2026-11-24, TAL221 bench-scale design), pushed to `origin/main` (`UP_TO_DATE` at the
+2026-11-26 wrap).
 - The repo is https://github.com/nuhshaheer/wind-tunnel (account renamed from `nuhshaheer-2007` on 2026-11-02; the old
   URL redirects).
-- **Not committed yet:** the 2026-11-24 continuation: a downloaded TAL221 bench-scale design in `cad/third-party/tal221-scale-bwilless/`, a note on
-  D-017 and the documentation updates. Commit commands:
-  [the session log §13](docs/sessions/2026-11-23-sensor-shield-pcb.md#13-manual-git-commands-as-given-to-the-owner)
-  ("Continued").
+- **Not committed yet:** the 2026-11-25/26 session: the shield order, the breadboard in the shield's configuration,
+  EXP-002 (raw data, analysis script, results), `scripts/serial_capture.ps1` (D-021), the owner's KiCad title block and
+  the documentation updates. Commit commands:
+  [the session log §13](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md#13-manual-git-commands-as-given-to-the-owner).
 
 **Current stage:** Planning / pre-build. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Everything ordered on 2026-11-09/10 has
@@ -22,11 +22,14 @@ sheets, parts list, TBD register; pre-sizing, not for manufacture) is in [docs/d
 explained for a beginner in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md). **The breadboard carries
 the whole sensor circuit, and every sensor reads (2026-11-23):** the I²C scan finds the SDP810 and the BME280, a penny
 moves the load cell's reading, the SDP810 zeroes within 0.03 Pa with the right sign, and the BME280 reads room values
-([as built](docs/experimental_setup.md#breadboard-as-built)). Nothing is calibrated yet. **The shield PCB is designed
-(2026-11-23, [D-020](DECISIONS.md)):** the owner drew it in KiCad 10 (`PCB/arduino_shield/`); its checks pass and its
-Gerbers are ready, but it is not ordered until the two capacitors' lead spacing is measured. **A printable TAL221 bench
-scale** (a downloaded design, CC BY, in `cad/third-party/tal221-scale-bwilless/`; 2026-11-24) will give the load cell a firm mount on the bench; not
-printed yet. **The calibration weights are weighed (2026-11-19, [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)):** on the school's
+([as built](docs/experimental_setup.md#breadboard-as-built)). Since 2026-11-26 the breadboard matches the shield
+(C1 the 0.1 µF film, R1 and R2 removed) and still passes. **The shield PCB is ordered (2026-11-26, [D-020](DECISIONS.md)):**
+the owner drew it in KiCad 10 (`PCB/arduino_shield/`); both capacitors fit their footprints, and JLCPCB is making 5
+boards (OSP finish; arrival about 6–8 December, estimate). **The load cell is characterised on the bench
+(2026-11-26, [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale), Preliminary):** on the printed
+TAL221 bench scale it gives 13,727.5 counts/g, straight within 0.025 g from 2 to 79 g; **its zero (wander and lag of
+0.005–0.025 g) is what limits the drag measurement**, 2–8 % of the smallest drag. The tunnel's own calibration is still
+to come, on the balance module. **The calibration weights are weighed (2026-11-19, [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)):** on the school's
 0.01 g balance they are −2.5 % to +1.1 % off their stamped values, so the measured masses are used.
 **The owner draws all the CAD from the sizing's dimension sheets (D-017, 2026-11-15), in Fusion 360 (owner,
 2026-11-17).** Planning estimate (not a result): about 70–155 h of the owner's time to the sphere validation, roughly
@@ -52,7 +55,10 @@ mid-January to mid-May 2027 at 6–8 h a week; the owner has school and other co
   - bring-up firmware: one plain sketch per sensor in `firmware/`, raw CSV output, the Adafruit library for the BME280
     only (D-019, **Tentative**, agent's choice, 2026-11-23);
   - **the shield PCB (D-020, owner, 2026-11-23):** KiCad, the Mega shield template, 2.54 mm pin headers for jumper
-    wires, each connector in its part's own pin order so every cable runs straight, a five-pin J3, C1 on the shield.
+    wires, each connector in its part's own pin order so every cable runs straight, a five-pin J3, C1 on the shield;
+    the capacitor footprints confirmed and the board ordered on 2026-11-26;
+  - serial data captured to CSV by `scripts/serial_capture.ps1`, with the PC's time on every line (D-021,
+    **Tentative**, agent's choice, 2026-11-26).
 - **Open: the fan (D-011, Tentative since 2026-11-09).** The owner will choose on budget between the AC Infinity
   CLOUDLINE S6 ($99; about 13.0–13.4 m/s, estimate) and the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s). **The agent
   recommends the S6** (2026-11-09; [buy list](docs/buy_list.md) §1).
@@ -85,10 +91,12 @@ mid-January to mid-May 2027 at 6–8 h a week; the owner has school and other co
     only set bought, not the 17-piece set the buy list planned);
   - since 2026-11-17, every part ordered on 2026-11-09/10 (owner: "all of the packages i bought have arrived"; arrival
     checks pending).
-- The tunnel is not built. No analysis code exists; the firmware is four bring-up sketches
-  ([firmware/README.md](firmware/README.md), 2026-11-23). The only thing built is the bench breadboard with every sensor
-  ([as built](docs/experimental_setup.md#breadboard-as-built)); the shield PCB exists as a design only (2026-11-23). The only data: the calibration weights' masses
-  ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), 2026-11-19).
+- The tunnel is not built. The firmware is four bring-up sketches ([firmware/README.md](firmware/README.md),
+  2026-11-23); the only analysis code is `analysis/exp002_bench_scale.py` (2026-11-26). Built so far: the bench
+  breadboard with every sensor ([as built](docs/experimental_setup.md#breadboard-as-built)) and the printed TAL221 bench
+  scale; the shield PCB is ordered, not received. Data: the calibration weights' masses
+  ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), 2026-11-19) and the load cell on the bench scale
+  ([EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale), 2026-11-26).
 
 This is the authoritative snapshot of the project. Status labels used below:
 **Verified**, **Implemented, unverified**, **Preliminary result**, **In progress**, **Planned**,
@@ -108,11 +116,11 @@ scatter that much. Runs at several speeds must also show C_D rising with Re, abo
 | Objective | Status |
 |---|---|
 | Tunnel built with flow conditioning | Planned (design research In progress) |
-| Airspeed measured with pitot tube + differential pressure sensor | Planned. The SDP810 reads on the bench: zero −0.022 Pa, correct sign (2026-11-23) |
-| Drag force measured with load cell + HX711 | Planned. The load cell and HX711 read on the bench: a penny moves the reading about 33,300 counts (2026-11-23) |
-| Load cell calibrated against known weights | Planned. The masses were weighed on 2026-11-19 ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)) |
+| Airspeed measured with pitot tube + differential pressure sensor | Planned. The SDP810 reads on the bench: zeros −0.022 to −0.075 Pa (2026-11-23 and 2026-11-26, inside its ±0.08 Pa), correct sign |
+| Drag force measured with load cell + HX711 | Planned. On the printed bench scale (2026-11-26, [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale), Preliminary): 13,727.5 counts/g, straight within 0.025 g to 79 g; zero wander and lag 0.005–0.025 g |
+| Load cell calibrated against known weights | Planned on the balance module. Bench practice done (EXP-002) with the masses weighed on 2026-11-19 ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)) |
 | Sphere Cd validation run (deliverable) | Planned. Reference and pass criterion: [D-009](DECISIONS.md) (Accepted 2026-11-02) |
-| Sensor interface circuit, designed by the owner: circuit → breadboard test → PCB | In progress: circuit drawn on paper 2026-11-17 (sheets 11–12, [D-018](DECISIONS.md), Tentative; the agent drew it at the owner's request, and the owner, a beginner in electronics, learns it from [the walk-through](docs/electronics_walkthrough.md) and will draw it in the PCB program). Breadboard started 2026-11-18 (power wiring Verified by meter) and **completed 2026-11-23: every sensor connected and reading** ([as built](docs/experimental_setup.md#breadboard-as-built)). **Shield PCB designed by the owner in KiCad, 2026-11-23** ([D-020](DECISIONS.md), `PCB/arduino_shield/`): checks pass, Gerbers ready, not ordered. Planned 2026-11-01 ([TODO.md](TODO.md) P2) |
+| Sensor interface circuit, designed by the owner: circuit → breadboard test → PCB | In progress: circuit drawn on paper 2026-11-17 (sheets 11–12, [D-018](DECISIONS.md), Tentative; the agent drew it at the owner's request, and the owner, a beginner in electronics, learns it from [the walk-through](docs/electronics_walkthrough.md) and will draw it in the PCB program). Breadboard started 2026-11-18 (power wiring Verified by meter) and **completed 2026-11-23: every sensor connected and reading** ([as built](docs/experimental_setup.md#breadboard-as-built)). **Shield PCB designed by the owner in KiCad, 2026-11-23** ([D-020](DECISIONS.md), `PCB/arduino_shield/`): checks pass; **ordered 2026-11-26** (JLCPCB, 5 boards), after the breadboard was brought to the same configuration and passed. Planned 2026-11-01 ([TODO.md](TODO.md) P2) |
 | On-tunnel display with a knob and menu, like the Ender 3's | **Dropped (owner, 2026-11-08; [D-012](DECISIONS.md)):** "this isnt a device", so all output goes to the laptop. Planned 2026-11-01 |
 | Airfoil tests at set angles of attack | Planned (after validation). Owner, 2026-11-01: **preset angles** instead of the 2026-10-31 dial-and-servo idea, because a pivot would ruin the force measurement ([TODO.md](TODO.md) P3) |
 | Flow visualization with a water-mist generator | Planned, optional, **last** (owner, 2026-10-31). Only a capped injection port and a test-section window are planned now ([TODO.md](TODO.md) P2) |
@@ -157,17 +165,17 @@ listings on 2026-11-01 unless marked otherwise; they are guides, not quotes.
 | Fan-to-tunnel joint | Owner's design (2026-11-08) | The fan's collar, wrapped in one layer of 1/16 in 40A neoprene (on hand: 2 sheets of 12 × 12 in, arrived by 2026-11-17; no single 480 mm strip fits, so two ~240 mm pieces butted end to end), slides snugly into a printed inlet sized from the measured collar (paper strip ÷ π); duct tape seals it. The fan stands on its own feet and never touches the print. [Buy list](docs/buy_list.md) §1 |
 | Honeycomb + screens | **Screens on hand** (ordered 2026-11-09; arrived by 2026-11-17, owner; wire count not checked yet); honeycomb printed | **Screens: aluminium window insect screen, Saint-Gobain ADFORS FCS9222-M, Bright, 36 × 84 in roll from Home Depot, ordered 2026-11-09.** The maker's spec gives 18 × 16 mesh and 0.011 in wire, so 66.1 % open (computed); price paid not recorded; wire count and diameter to be checked on arrival. Also checked 2026-11-09: a 35 × 35 × 0.011 in mesh (37.9 % open) rejected; McNichols' and New York Wire's 18 × 16 × 0.011 in screens suitable ([buy list](docs/buy_list.md) §3). Four or five screens (two or three in the diffuser, two in the settling chamber; Mehta1977/1979, Scheiman1981). Rejected: McMaster 30 × 30 filter mesh (0.012–0.013 in wire, 37–41 % open: about 11.8 m/s top speed and patchy flow), Online Metals 24 × 24 × 0.014 in (44 %), McNichols perforated sheet, a TWP quote of about $200, Zoro's $65.59 sheet (too expensive). **Honeycomb: printed (owner, 2026-11-08)**, for example 6 mm hexagons with 0.4 mm walls, about 50 mm long; straws as the upgrade. Details: [buy list](docs/buy_list.md) §3 |
 | Pitot tube | **Made in-house (owner, 2026-11-08)** | A 1/8 in brass total-pressure tube facing upstream, with wall static taps (four per station) at three stations: S (settling chamber), E (test-section entrance), M (model station). Probe − M gives q at the model position (flow map, calibration); S − E gives the airspeed during force runs, calibrated once against the probe (open question 10). Brass tube, 1/8 in silicone tubing and barbed tees **on hand** (ordered, reported 2026-11-10; arrived by 2026-11-17; [buy list](docs/buy_list.md) §5). The Dwyer 166-6 ($140–167) was not chosen |
-| Differential pressure sensor | **On hand, arrived by 2026-11-17** (owner). The owner's photo shows `SDP810 - 125Pa`, `PN:1-101597-01`, the datasheet's order number. **On the breadboard, 2026-11-23: it reports scale factor 240 (the ±125 Pa part), zeroes at −0.022 Pa with the ports looped and reads + on High, − on Low (Verified for function; span not calibrated).** Connected by a PH 2.0 cable spliced to jumpers. Ordered 2026-11-09 from Mouser (owner; price paid not recorded; **order confirmed 2026-11-10: Mouser 403-SDP810-125PA, maker's part SDP810-125PA**, the ±125 Pa part): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
-| Load cell + HX711 | **On hand, arrived by 2026-11-17** (owner). Photo, 2026-11-17: the HX711 board's pads are RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND; the load cell's wires are red, black, white and green. **2026-11-23:** one TAL221 soldered straight to the HX711's pads after a resistance check at its free wire ends ("about" 1090 and 1000 Ω), and a female header on the HX711's Arduino side. RATE at 10 samples/s (from the 95.5 ms reading interval). A penny moves the reading about 33,300 counts, about 13,300 counts per gram if the penny is 2.5 g (Verified response; the size is Preliminary). Excitation voltage not measured yet. Ordered 2026-11-09 from SparkFun (owner; price paid not recorded): **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
+| Differential pressure sensor | **On hand, arrived by 2026-11-17** (owner). The owner's photo shows `SDP810 - 125Pa`, `PN:1-101597-01`, the datasheet's order number. **On the breadboard, 2026-11-23: it reports scale factor 240 (the ±125 Pa part), zeroes at −0.022 Pa with the ports looped and reads + on High, − on Low (Verified for function; span not calibrated).** **2026-11-26, with the 0.1 µF film as C1 and no R1/R2: zero −0.042 Pa, later −0.075 Pa (chip 2 °C warmer), correct sign, 0 bad reads.** Connected by a PH 2.0 cable spliced to jumpers. Ordered 2026-11-09 from Mouser (owner; price paid not recorded; **order confirmed 2026-11-10: Mouser 403-SDP810-125PA, maker's part SDP810-125PA**, the ±125 Pa part): **one Sensirion SDP810-125Pa** (owner chose one, 2026-11-08), $29–35 (DigiKey 1649-1073-ND, Mouser 403-SDP810-125PA) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/SDP8xx.md)): 0.08 Pa + 3 % of reading; 2.7–5.5 V; I²C address 0x25 on every 125 Pa part (a second sensor would need a multiplexer); four solder pins at 2 mm pitch; Ø3.5/5.2 mm barbs. **Every reading must be multiplied by 966 mbar / p_amb** (×0.95 at sea level; [Sensirion2024 notes](resources/notes/Sensirion2024.md)). Tubes are swapped between probe/M and S/E at two couplers on short pigtails |
+| Load cell + HX711 | **On hand, arrived by 2026-11-17** (owner). Photo, 2026-11-17: the HX711 board's pads are RED, BLK, WHT, GRN, YLW and VDD, VCC, DAT, CLK, GND; the load cell's wires are red, black, white and green. **2026-11-23:** one TAL221 soldered straight to the HX711's pads after a resistance check at its free wire ends ("about" 1090 and 1000 Ω), and a female header on the HX711's Arduino side. RATE at 10 samples/s (from the 95.5 ms reading interval). A penny moves the reading about 33,300 counts (Verified response). **2026-11-26, on the printed bench scale ([EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale), Preliminary): 13,727.5 counts/g (0.639 mV/V), straight within 0.025 g from 2 to 79 g, hysteresis up to 0.022 g, creep +0.008 g in 6 min at 50 g, zero wander and lag 0.005–0.025 g, reading noise 0.003 g; the penny was 2.5 g.** Excitation voltage not measured yet. Ordered 2026-11-09 from SparkFun (owner; price paid not recorded): **two TAL221 100 g** (SparkFun SEN-14727, about $16 each; one spare/possible lift cell; owner, 2026-11-08) and **one SparkFun HX711** (SEN-13879, $11.50) | Datasheet reviewed 2026-11-08 ([notes](resources/notes/TAL221.md)): 0.6 ± 0.15 mV/V, safe overload 150 % (150 g), errors ±0.05 % FS each, zero tempco ±0.1 % FS/10 °C. At gram loads the %FS figures are unspecified, so build step 5 must measure them. Drag 0.30–1.27 gf (3/4 in ball) and 0.54–2.31 gf (1 in) at 6.5–13 m/s (estimate) |
 | Ambient pressure / temperature sensor | **On hand, arrived by 2026-11-17** (owner; cable resistance check 2026-11-18. **2026-11-23: SDA and SCL 4.81 V, chip ID 0x60, reads 99.6 kPa, 23.3 °C and 44.5 %, and responds to breath and touch. It reset once when its Dupont wiring was handled; the sketch detects that and sets it up again**): **Waveshare BME280 Environmental Sensor**, ordered 2026-11-09 instead of the Adafruit BME280 (2652, $14.95); seller and price paid not recorded | An RT9193-33 regulator and, per Waveshare's product page, an onboard 3.3/5 V level translator for the 5 V Mega. Gives air density and the SDP810's ambient-pressure correction. **Placement (agent, 2026-11-19):** in room air near the fan inlet, in its own open, vented printed holder, not inside the tunnel and not in the Arduino box. Inside, the air differs from the room by at most about 0.15 % in pressure and under about 0.4 °C (fan heating; estimate assuming ≤ 60 W into 0.156 kg/s), which moves the reference C_D by about 0.02 %, while a board in the flow would disturb it. The fan heating is to be checked once with the fan running (TODO P2). On arrival: SDA and SCL read about 5 V with only power connected, then the chip ID reads 0x60 (not a BMP280's 0x58) ([buy list](docs/buy_list.md) §7). **Waveshare's schematic** (filed 2026-11-17, [notes](resources/notes/WaveshareBME280.md)): header 1 VCC, 2 GND, 3 SDA, 4 SCL, 5 ADDR, 6 CS; 4.7 kΩ pull-ups to VCC on SDA, SCL, ADDR and CS, so the I²C address is 0x77 with ADDR left open and no extra pull-ups are needed. **Delivered cable (photo):** a 6-pin plug to six female Dupont sockets; red, black, blue, yellow, orange, green are taken as VCC, GND, SDA, SCL, ADDR, CS (inferred from the wire order). **Measured 2026-11-18, unpowered:** red to blue, yellow, orange and green 4.605, 4.617, 4.597 and 4.617 kΩ; black to blue 145.3 kΩ |
-| Interface circuit | **Designed 2026-11-17 ([D-018](DECISIONS.md), Tentative). Breadboard complete 2026-11-23: every sensor reads** | Sheet 12 of the [drawing package](docs/drawings/README.md): SDP810 and BME280 on I²C pins 20/21, HX711 DAT/CLK on pins 2/3; C1 0.1 µF at the SDP810, C2 10 µF at the 5 V entry, R1/R2 5.1 kΩ pull-ups drawn but not fitted, connectors J1–J3. All from the ECE kit and parts on hand: nothing to buy. **Laptop USB is the only supply** (about 100 mA in all against 500 mA, estimate). Breadboard first, then a shield PCB (KiCad recommended, or EasyEDA; owner to choose). Explained in the [walk-through](docs/electronics_walkthrough.md). **Bench result 2026-11-18:** 4.962 V at both pairs of rails and across C2, with USB from the laptop (meter model Unknown; [as built](docs/experimental_setup.md#breadboard-as-built)). **2026-11-23, every sensor connected:** 4.947 V on the rails, SDA and SCL 4.81 V; the I²C scan finds 0x25 and 0x77. Two resistors that look like R1 and R2 are still on the board (photos; harmless). **C1 on the breadboard is probably 1 µF, not 0.1 µF** (owner's recollection, 2026-11-23; to confirm from its marking); the SDP810 read correctly with it, and the SDP8xx datasheet names no value. **Shield PCB designed 2026-11-23 ([D-020](DECISIONS.md), Implemented, unverified):** J1–J3 are 2.54 mm headers for jumper wires in each part's pin order (J1 SCL, +5V, GND, SDA; J2 +5V, GND, SDA, SCL; J3 +5V, +5V, DAT, CLK, GND); C1 0.1 µF beside J1, C2 at the 5 V entry, R1/R2 unfitted pads; 101.6 × 53.34 mm, 2 layers; Gerbers in `PCB/arduino_shield/gerbers/`. Not ordered: the C1 and C2 footprints are placeholders until measured |
+| Interface circuit | **Designed 2026-11-17 ([D-018](DECISIONS.md), Tentative). Breadboard complete 2026-11-23: every sensor reads** | Sheet 12 of the [drawing package](docs/drawings/README.md): SDP810 and BME280 on I²C pins 20/21, HX711 DAT/CLK on pins 2/3; C1 0.1 µF at the SDP810, C2 10 µF at the 5 V entry, R1/R2 5.1 kΩ pull-ups drawn but not fitted, connectors J1–J3. All from the ECE kit and parts on hand: nothing to buy. **Laptop USB is the only supply** (about 100 mA in all against 500 mA, estimate). Breadboard first, then a shield PCB (KiCad recommended, or EasyEDA; owner to choose). Explained in the [walk-through](docs/electronics_walkthrough.md). **Bench result 2026-11-18:** 4.962 V at both pairs of rails and across C2, with USB from the laptop (meter model Unknown; [as built](docs/experimental_setup.md#breadboard-as-built)). **2026-11-23, every sensor connected:** 4.947 V on the rails, SDA and SCL 4.81 V; the I²C scan finds 0x25 and 0x77. **2026-11-26: the breadboard matches the shield.** The old C1 was a 1 µF electrolytic (marking read by the owner), now the kit's 0.1 µF film (108.9 nF); R1, R2 and their +5 V wires are removed; the scan, the SDP810's zero and its sign still pass, so the BME280 board's pull-ups alone carry the bus. **Shield PCB designed 2026-11-23 ([D-020](DECISIONS.md), Implemented, unverified):** J1–J3 are 2.54 mm headers for jumper wires in each part's pin order (J1 SCL, +5V, GND, SDA; J2 +5V, GND, SDA, SCL; J3 +5V, +5V, DAT, CLK, GND); C1 0.1 µF beside J1, C2 at the 5 V entry, R1/R2 unfitted pads; 101.6 × 53.34 mm, 2 layers; Gerbers in `PCB/arduino_shield/gerbers/`. **Ordered 2026-11-26** (owner; JLCPCB order Y6-12005915A, 5 boards, OSP finish, flying-probe test; price not recorded; arrival about 6–8 December, estimate) after both capacitors were found to fit; schematic title block filled in (revision 1) |
 | Ribbon cable and connector kit | **On hand** (owner's photo, 2026-11-17) | elechawk kit: 24 AWG 20-wire ribbon cable, PH2.0 "male" connectors 2P–8P, PH2.0 male crimp pins, heat-shrink. No crimp tool is shown. The parts look male, so they would not mate with the SDP810's male pins (open question 19) |
 | Display and knob | **Not needed (D-012, owner, 2026-11-08)** | All output goes to the laptop (the Arduino IDE's Serial Plotter for a live view) |
 | Servo (airfoil pitch) | Probably not needed | The owner switched to preset angles of attack (2026-11-01). The 2026-10-31 dial-and-servo idea is kept in [TODO.md](TODO.md) P3 for reference |
 | Magnets | **On hand: 43, round, 8 mm × 2 mm** (owner, 2026-11-09; probably neodymium, not confirmed) | Enough for the removable top panel (about 8 per panel; D-014) and a side panel if one is made removable |
 | Acrylic sheet | **On hand** (ordered, reported 2026-11-10; arrived by 2026-11-17): clear cast acrylic, 1/8 in (3.2 mm), **four 8 × 12 in sheets** (owner, 2026-11-10) | For the window panels; cut by scoring and snapping. Each sheet (203 × 305 mm) gives one panel of about 300 × 120 mm plus a strip about 80 mm wide, so a window can be up to about 305 mm long (our arithmetic) |
-| TAL221 bench scale (printed fixture) | **Planned: design filed 2026-11-24, not printed** | "TAL221 Load Cell Scale" by Thingiverse user bwilless (thing:4665143, CC BY), in `cad/third-party/tal221-scale-bwilless/` ([setup](docs/experimental_setup.md#bench-load-cell-scale-to-print)). A horseshoe base holds the cell's fixed end; a Ø60 mm pan sits on the free end. The STLs match the TAL221 notes (Ø3.2 mm holes 6 mm apart, 39.9 mm span, a 6 mm gap for the cell). No overload stop: keep at most about 80 g on the pan, never press it. For the several-minute zero and calibration practice |
-| Calibration weights | **On hand** (owner, 2026-11-19) | The only set bought, from Amazon (listing and price not recorded): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod (10 g from the listing); the multiples labelled #1, #2, ... on tape. Not the 17-piece 10 mg–100 g set planned in the [buy list](docs/buy_list.md) §9. **Weighed 2026-11-19** ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): −2.5 % to +1.1 % off nominal; together 165.5 g, 175.3 g with the rod, more than the TAL221's 150 g safe overload |
+| TAL221 bench scale (printed fixture) | **Printed and in use (owner, 2026-11-26)**: PLA, 20 % infill; the soldered TAL221 mounted on it | "TAL221 Load Cell Scale" by Thingiverse user bwilless (thing:4665143, CC BY), in `cad/third-party/tal221-scale-bwilless/` ([setup](docs/experimental_setup.md#bench-load-cell-scale-printed)). A horseshoe base holds the cell's fixed end; a Ø60 mm pan sits on the free end. The STLs match the TAL221 notes (Ø3.2 mm holes 6 mm apart, 39.9 mm span, a 6 mm gap for the cell). Pan about 9.34 g (slicer estimate). The designer specifies M3 × 10 screws at the base and M3 × 20 with nuts at the pan. No overload stop: keep at most about 80 g on the pan, never press it. Used for [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale) |
+| Calibration weights | **On hand** (owner, 2026-11-19) | The only set bought, from Amazon (listing and price not recorded): 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g, plus a 10 g hanging rod (10 g from the listing); the multiples labelled #1, #2, ... on tape. Not the 17-piece 10 mg–100 g set planned in the [buy list](docs/buy_list.md) §9. **Weighed 2026-11-19** ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): −2.5 % to +1.1 % off nominal; together 165.5 g, 175.3 g with the rod, more than the TAL221's 150 g safe overload. Used on the bench scale in EXP-002 (2026-11-26; up to 79.44 g at once) |
 | Mist or smoke generator (optional visualization) | Not decided; deferred to the end | The owner asked (2026-11-01) for one that makes thick smoke. Options compared in [TODO.md](TODO.md) P2; the agent's first choice is an ultrasonic mist maker |
 
 Budget: no fixed budget (owner, 2026-11-01), but price-conscious. **The full buy list,
@@ -182,16 +190,17 @@ checked).
 
 | Component | Status |
 |---|---|
-| Data acquisition firmware | **Bring-up sketches Implemented and run on the bench, 2026-11-23** ([firmware/README.md](firmware/README.md), [D-019](DECISIONS.md), Tentative): `i2c_scan`, `hx711_raw_counts`, `sdp810_read`, `bme280_read`, each passing its walk-through test. **The logging firmware (one CSV line with every sensor, walk-through step 4) is Planned, not started.** Since D-012 (2026-11-08): log raw counts over USB to the laptop, which is also the live view (the Arduino IDE's Serial Plotter to start); no display or knob code. SDP810 commands and scale factor are in the [SDP8xx notes](resources/notes/SDP8xx.md). Pins and buses: sheet 12 ([D-018](DECISIONS.md)). Bring-up sketches proposed 2026-11-17, written 2026-11-23 |
-| Analysis scripts (`analysis/`) | Planned; not started |
+| Data acquisition firmware | **Bring-up sketches Implemented and run on the bench, 2026-11-23** ([firmware/README.md](firmware/README.md), [D-019](DECISIONS.md), Tentative): `i2c_scan`, `hx711_raw_counts`, `sdp810_read`, `bme280_read`, each passing its walk-through test. `hx711_raw_counts` set to `AVERAGE_OVER = 1` (every raw reading) for EXP-002 on 2026-11-26 (D-019 note; the owner may set 10 again). **The logging firmware (one CSV line with every sensor, walk-through step 4) is Planned, not started.** Since D-012 (2026-11-08): log raw counts over USB to the laptop, which is also the live view (the Arduino IDE's Serial Plotter to start); no display or knob code. SDP810 commands and scale factor are in the [SDP8xx notes](resources/notes/SDP8xx.md). Pins and buses: sheet 12 ([D-018](DECISIONS.md)). Bring-up sketches proposed 2026-11-17, written 2026-11-23 |
+| Analysis scripts (`analysis/`) | **`analysis/exp002_bench_scale.py` Implemented 2026-11-26** (standard library only): finds the load states in an HX711 log, fits counts against mass, and reports hysteresis, zero return, creep, drift and noise; run on EXP-002 (`python analysis/exp002_bench_scale.py`). The tunnel's analysis (C_D, blockage, airspeed) is Planned, not started |
+| Serial capture (`scripts/serial_capture.ps1`) | **Implemented 2026-11-26 and used once** ([D-021](DECISIONS.md), Tentative): records every line from the Mega to a new CSV with the PC's time in front; refuses to overwrite; Windows PowerShell 5.1, nothing to install. EXP-002 run02: 20,180 lines over 32 min, steady 95 ms interval. No automated test. Close the Arduino IDE first (it holds COM3) |
 | Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. **Revision C, 2026-11-10:** one full-length sting per ball, no sleeve or separate stems (D-016); stainless short M3 screws at the balance; the shield attached to the sphere floor insert; every parts-list status as ordered; the unused draft sheet code deleted (the page rebuilt byte-identical before the content changes). `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`). The owner's private published copy on claude.ai matched revision B and has not been republished as C or D (owner's call; TODO P0). **Revision D, 2026-11-17:** electrical sheets 11 (system block diagram) and 12 (interface schematic, electrical parts list, net list); sheet 9's wiring note and HX711 pins point to sheet 12; parts-list statuses Ordered → On hand. `wtlib.py` gained an electrical key and title-block fields, refactored first with byte-identical output. **Sheet 12 revision E, 2026-11-23:** the connectors in each part's pin order (straight cables), a five-pin J3, C1 on the shield, the HX711 in board order with its pad names (D-020); sheets 1–11 unchanged; the last text-only edits could not be previewed (Edge stopped writing screenshots) |
 | Electronics walk-through ([docs/electronics_walkthrough.md](docs/electronics_walkthrough.md)) | Written 2026-11-17 for a beginner: the ideas needed, how the wiring and pins were decided, reading the schematic, power, the breadboard bring-up steps (Planned), breadboard to PCB, self-check questions, resources. Documentation only. Corrected 2026-11-18 from the delivered parts (HX711 pad names, SDP810 pin view, BME280 cable and first checks); steps 1–3 done on the bench 2026-11-23; §7 and §10 updated 2026-11-23 for the shield PCB (pin order, connector type, KiCad) |
-| Shield PCB (`PCB/arduino_shield/`, KiCad 10) | **Implemented, unverified (2026-11-23):** drawn by the owner from KiCad's Arduino Mega shield template ([D-020](DECISIONS.md)). Final ERC: 69 warnings, all the template's labels on unused pins, 0 errors. Final DRC with schematic parity: 0 unconnected items, 0 parity issues, 9 harmless warnings. Gerbers (7 layers) and drill files in `gerbers/`, checked by the agent (layers, outline 101.6 × 53.34 mm, 112 pads and 113 mask openings per side, 118 holes); not ordered, not made. Agents check it with `kicad-cli` on a copy (commands in the [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md#5-commands-and-scripts-executed)) |
+| Shield PCB (`PCB/arduino_shield/`, KiCad 10) | **Implemented, unverified (2026-11-23); ordered 2026-11-26:** drawn by the owner from KiCad's Arduino Mega shield template ([D-020](DECISIONS.md)). Final ERC: 69 warnings, all the template's labels on unused pins, 0 errors. Final DRC with schematic parity: 0 unconnected items, 0 parity issues, 9 harmless warnings. Gerbers (7 layers) and drill files in `gerbers/`, checked by the agent (layers, outline 101.6 × 53.34 mm, 112 pads and 113 mask openings per side, 118 holes); ordered from JLCPCB with these files (zip checked byte for byte), not received. **2026-11-26:** title block filled in (revision 1); a KiCad local-history restore that night changed only the title block, one note's position and the plot settings (copper, nets and outline compared with `397c671`: identical). Agents check it with `kicad-cli` on a copy (commands in the [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md#5-commands-and-scripts-executed)) |
 | Weighing form ([docs/forms/calibration-mass-weighing.xlsx](docs/forms/calibration-mass-weighing.xlsx)) | Implemented 2026-11-19 and used once ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): one sheet in Times New Roman (owner's request), the balance details, three readings per piece, and mean, spread and mean − nominal by formula; Excel computed them on the owner's copy. Reset to a blank template after the filled copy was filed in `data/raw/`. Built by an agent script in the scratchpad (not kept) |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19, 2026-11-22, 2026-11-23); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1` and `f10f315`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19, 2026-11-22, 2026-11-23, 2026-11-25); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1`, `f10f315` and `397c671`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
@@ -209,14 +218,20 @@ Dependencies: Python 3 standard library only, developed with Python 3.13 on Wind
   `C:/Program Files/KiCad/10.0/`. Its `kicad-cli` lets agents export the net list, run ERC and DRC and plot PDFs from
   a copy of the project without opening it.
 - Pillow 12.1.1 is installed for Python 3.11 (used 2026-11-23 to strip and compress photos); not a project dependency.
+- Windows PowerShell 5.1 (part of Windows) runs `scripts/serial_capture.ps1` through .NET's
+  `System.IO.Ports.SerialPort` (D-021); nothing to install. The Mega shows as `Arduino Mega 2560 (COM3)` on this PC
+  (2026-11-26).
 - Agents reading PDFs used `pdftotext` (Git for Windows) and PyMuPDF 1.28.2, which is installed on the owner's PC
   (Python 3.11). Neither is a project dependency. Claude Code's own PDF page rendering needs `pdftoppm` (poppler),
   which is not installed (2026-11-08), so render pages with PyMuPDF instead.
 
 ## 5. Current experiments
 
-None running. EXP-001, the calibration mass weighing (2026-11-19), is complete ([data catalog](docs/data_catalog.md#exp-001-calibration-mass-weighing)).
-The bench bring-up of every sensor (2026-11-23) is recorded as bench checks, not a dataset ([as built](docs/experimental_setup.md#breadboard-as-built)).
+None running. Complete: EXP-001, the calibration mass weighing (2026-11-19,
+[data catalog](docs/data_catalog.md#exp-001-calibration-mass-weighing)), and EXP-002, the load cell on the printed bench
+scale (2026-11-26, [data catalog](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale)). The bench
+bring-up of every sensor (2026-11-23) and the 2026-11-26 breadboard checks are recorded as bench checks, not datasets
+([as built](docs/experimental_setup.md#breadboard-as-built)).
 
 ## 6. Work completed
 
@@ -405,14 +420,27 @@ The bench bring-up of every sensor (2026-11-23) is recorded as bench checks, not
   - Committed and pushed as `f10f315`.
 - 2026-11-24: the same session, continued after its first `/wrap`: confirmed the KiCad project is on GitHub; the owner
   found a printable TAL221 bench scale (Thingiverse, CC BY), which the agent checked against the TAL221 notes and filed
-  in `cad/third-party/tal221-scale-bwilless/` (note on [D-017](DECISIONS.md)). Nothing printed.
+  in `cad/third-party/tal221-scale-bwilless/` (note on [D-017](DECISIONS.md)). Nothing printed. Committed and pushed as
+  `397c671`.
+- 2026-11-25/26: the shield order and the load-cell bench test.
+  - `/catchup`: `UP_TO_DATE` at `397c671`; nothing left unpushed.
+  - The owner measured the shield's capacitors: C2 fits; C1 (0.1 µF film, 108.9 nF) fits with its legs bent to 5 mm.
+    The old breadboard C1 was 1 µF. With the 0.1 µF film as C1 and then R1 and R2 removed, the scan, the SDP810's zero
+    and its sign still pass, so the breadboard now matches the shield.
+  - The owner filled in the schematic's title block and **ordered 5 shield boards from JLCPCB** (OSP finish). A KiCad
+    local-history restore the same night was checked: the copper is unchanged.
+  - The owner printed the TAL221 bench scale and mounted the cell. The agent wrote `scripts/serial_capture.ps1`
+    ([D-021](DECISIONS.md)) and recorded **EXP-002** (32 min, 23 load states from 0 to 79.44 g, a 6-minute creep test),
+    then analysed it with `analysis/exp002_bench_scale.py`. See [the session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md).
 
 ## 7. Data and analyses
 
-One dataset: [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), the calibration weights' masses (2026-11-19). No analysis beyond the means the sheet
-computes. See [docs/data_catalog.md](docs/data_catalog.md). Bench checks of
-the electronics, including the pasted sketch outputs of 2026-11-23, are in
-[docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built).
+Two datasets: [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing), the calibration weights' masses
+(2026-11-19; the means are computed in its sheet), and [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale),
+the load cell on the printed bench scale (2026-11-26; raw `data/raw/2026-11-26_EXP-002_tal221-bench-scale/`, analysed
+by `python analysis/exp002_bench_scale.py` into `data/processed/` and `results/`). See
+[docs/data_catalog.md](docs/data_catalog.md). Bench checks of the electronics, including the pasted sketch outputs of
+2026-11-23 and 2026-11-26, are in [docs/experimental_setup.md](docs/experimental_setup.md#breadboard-as-built).
 
 ## 8. Results
 
@@ -420,7 +448,9 @@ the electronics, including the pasted sketch outputs of 2026-11-23, are in
 |---|---|---|
 | True masses of the 14 calibration pieces and the hanging rod, each a mean of three readings, about ±0.01 g on the school balance; −2.5 % to +1.1 % off nominal | Preliminary result (the balance was not checked against a reference mass) | `data/raw/2026-11-19_EXP-001_calibration-mass-weighing/`; [EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing) |
 | Every sensor reads on the breadboard: I²C scan 0x25 + 0x77 (chip ID 0x60); SDP810 scale 240, zero −0.022 Pa (looped), correct sign; HX711 at 10 SPS, zero scatter 26 counts over 1.4 s, a penny step of about 33,300 counts; BME280 99.6 kPa, 23.3 °C, 44.5 %, responding | Verified for function only (no calibration) | Bench checks, 2026-11-23: [as built](docs/experimental_setup.md#breadboard-as-built); sketches in `firmware/` |
-| Load-cell sensitivity about 13,300 counts per gram (0.62 mV/V) if the penny is 2.5 g; 10,700 (0.50 mV/V) if 3.11 g | Preliminary result (penny not weighed; taped mount) | Same |
+| Load-cell sensitivity about 13,300 counts per gram (0.62 mV/V) if the penny is 2.5 g; 10,700 (0.50 mV/V) if 3.11 g | Superseded by EXP-002 below: the penny was 2.5 g (2.43 g at 13,727.5 counts/g) | Same |
+| Shield configuration on the breadboard (0.1 µF film C1, no R1/R2): scan 0x25 + 0x77 (ID 0x60); SDP810 zero −0.042 Pa, then −0.075 Pa (chip 2 °C warmer); correct sign; 0 bad reads | Verified for function only | Bench checks, 2026-11-26: [as built](docs/experimental_setup.md#breadboard-as-built) |
+| Load cell on the printed bench scale: **13,727.5 counts/g** (se 1.4; 1.399 × 10⁶ counts/N at g = 9.81); straight-line residuals max 0.025 g (rms 0.012 g) from 0 to 79.44 g; 0–11 g slope 0.14 % below the 0–79 g slope; hysteresis +0.004 to +0.022 g; zero return +0.011 to +0.013 g per cycle, +0.026 g over 32 min; creep +0.008 g in 6 min at 50 g; zero 10 s means sd 0.0045 g after 3 min; reading noise 0.003 g | Preliminary result (one run; unchecked balance; temperature not logged; printed scale, not the tunnel's balance) | `data/raw/2026-11-26_EXP-002_tal221-bench-scale/`; `analysis/exp002_bench_scale.py`; `results/2026-11-26_EXP-002_bench-scale-summary.txt`; [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale) |
 
 Estimates are spread across these files; all are **calculations from assumed values, not results**:
 - [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#order-of-magnitude-estimates): sphere drag, printable contraction
@@ -467,14 +497,18 @@ Estimates are spread across these files; all are **calculations from assumed val
   - Still to report: the filament amounts on hand (PLA, PETG-CF), and which "check house" items are at home (power
     strip, sealant, glue and epoxy, heat-shrink, solder, steel rule, files, hacksaw, tin snips).
   - The microcontroller is no longer a blocker: the board works (2026-11-02, §3).
-- **The shield PCB order waits on two measurements** (2026-11-23): C1's lead spacing and C2's diameter and lead spacing
-  must match the placeholder footprints (5.0 mm; 5 mm and 2.0 mm) before the Gerbers are uploaded (TODO P0).
-- Still open (2026-11-23): the HX711's excitation voltage; the penny's mass; the Adafruit library version; which
-  capacitor is in the breadboard's C1 position (owner recalls 1 µF). Two resistors
-  that look like R1 and R2 are still on the board (photos; harmless as pull-ups); whether the loose clipped wire near
-  the Mega's power header was removed is not confirmed. Sheet 12 still shows the HX711 chip's pad names (TODO P2).
-  Answered 2026-11-23: the RATE setting (10 SPS, from timing), the SDP810's pin order (by the moulded "1"; the scan and
-  readings confirm it) and the BME280's wires (it reads).
+- **Resolved 2026-11-26: the shield order.** Both capacitors fit their footprints and the boards are ordered (5, from
+  JLCPCB; arrival about 6–8 December, estimate). When they arrive: keep them sealed until soldering (OSP finish), then
+  solder and test (TODO P2).
+- Still open: the HX711's excitation voltage; the Adafruit library version; which wire moved when the BME280 reset;
+  whether the SDP810's High barb is marked; whether the two +5 V wires that fed R1 and R2 are out (implied 2026-11-26,
+  not stated); whether the loose clipped wire near the Mega's power header was removed. Answered 2026-11-23: the RATE
+  setting (10 SPS, from timing), the SDP810's pin order and the BME280's wires. **Answered 2026-11-26:** the penny was
+  2.5 g (EXP-002); the old C1 was 1 µF (now the 0.1 µF film); R1 and R2 are removed.
+- **The HX711's reading noise on the bench scale is about 5× the 2026-11-23 figure** (sd 40 counts against 26 counts
+  on the taped cell, EXP-002). Likely vibration or air movement on the 60 mm pan (not tested); a box over the scale and
+  battery against charger would tell (TODO P2, optional follow-ups). It averages out; the zero's slow wander matters
+  more.
 - **Equipment issue (2026-11-23): the BME280 resets when its Dupont wiring is handled.** It then sleeps and repeats its
   reset values (71,853.4 Pa, 23.90 °C, 80.2 %). `bme280_read` now checks its mode and sets it up again, with a message.
   Fix: a firmer connection (a male header strip in the breadboard, the hanging bundle taped down; locking connectors on
@@ -487,7 +521,7 @@ Estimates are spread across these files; all are **calculations from assumed val
 - Watch: at the 2026-11-02 `/wrap` the test suite took about 28 minutes (1,662.7 s) instead of the usual 13–16 s, and
   all 20 tests still passed. Cause unknown, not investigated. If it recurs, run the tests with `-v` to see which one
   stalls ([session log](docs/sessions/2026-11-02-cd-reference-and-flow-conditioning.md#8-errors-failed-approaches-and-troubleshooting)).
-  It has not recurred since: 20 tests in 7.9–21.9 s at every run from 2026-11-02 to 2026-11-19.
+  It has not recurred since: 20 tests in 7.9–27.2 s at every run from 2026-11-02 to 2026-11-26.
 - Network (resolved 2026-10-31): the PC lost its IPv4 address, which blocked GitHub and some other sites. If
   `FETCH_FAILED` with "Could not resolve host" comes back, see Lessons learned in
   [PROJECT_BACKGROUND.md](PROJECT_BACKGROUND.md#lessons-learned).
@@ -790,7 +824,16 @@ design are summarized in the notes under `resources/notes/`. Worth noting:
   so a straight cable from that J1 would have put 5 V on the SDP810's SCL pin and ground on its VDD pin. The shield's
   connectors now follow each part's own order ([D-020](DECISIONS.md)).
 - **The SDP8xx datasheet names no decoupling capacitor** (2026-11-23, text search of the PDF). The 0.1 µF on sheet 12
-  was the agent's choice; the bench readings of 2026-11-23 were taken with what the owner recalls as 1 µF.
+  was the agent's choice; the bench readings of 2026-11-23 were taken with a 1 µF part (its marking, read 2026-11-26),
+  and those of 2026-11-26 with the 0.1 µF film. Both work.
+- **The load cell's zero, not its sensitivity, limits the drag measurement** (2026-11-26,
+  [EXP-002](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale), Preliminary). On the printed bench
+  scale the TAL221 and HX711 are straight to better than 0.025 g from 2 to 79 g, and the 0–11 g slope matches the
+  0–79 g slope within 0.14 %, so calibrating with the 2–50 g pieces and reading 0.3–2.3 g in between is justified (the
+  2026-11-08 worry that the %FS error figures might swamp gram loads did not show at this level). But the zero wanders
+  (10 s means sd 0.0045 g) and lags after a load (0.01–0.02 g, +0.026 g over 32 min): 2–8 % of the smallest drag (0.3 g,
+  the 3/4 in ball at 6.5 m/s), about 1–2 % at 13 m/s. So every drag reading needs a wind-off zero right before and
+  after it, repeated cycles, and no heavy load on the cell shortly before.
 
 ## 12. Highest-priority next steps
 
@@ -798,21 +841,21 @@ See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
    - commit and push this session (commands in the
-     [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md#13-manual-git-commands-as-given-to-the-owner));
-   - **measure the two capacitors** (C1's lead spacing; C2's diameter and lead spacing). If they fit the placeholder
-     footprints, order the shield from JLCPCB with `PCB/arduino_shield/gerbers/` zipped; if not, swap the footprint,
-     re-export and have the agent recheck (TODO P0). Also read the marking on the breadboard's C1;
-   - **close the bring-up** (TODO P0): the penny's year or mass, the HX711's excitation voltage (RED to BLK), the
-     Adafruit BME280 Library version, and which wire moved when the BME280 reset; mark the SDP810's High barb; firm up
-     the BME280's connection; remove R1 and R2 or say to keep them;
-   - say whether to start the sizing now (asked 2026-11-15), and, if you like, your hours a week and any deadline, to
-     narrow the schedule estimate;
+     [session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md#13-manual-git-commands-as-given-to-the-owner));
+   - **for the sizing (started at the owner's word, 2026-11-25): measure the heat-set inserts' length and outside
+     diameter** (TODO P0), then settle the settling-chamber spacing and the five shape-changing proposals with the
+     agent;
+   - **when the shield boards arrive** (about 6–8 December): keep them sealed until soldering (OSP), then solder and test
+     (TODO P2);
+   - **close the bring-up** (TODO P0): the HX711's excitation voltage (RED to BLK), the Adafruit BME280 Library
+     version, which wire moved when the BME280 reset, and that the R1/R2 +5 V wires are out; mark the SDP810's High
+     barb; firm up the BME280's connection;
+   - if you like, your hours a week and any deadline, to narrow the schedule estimate;
    - say whether to republish the drawings' private claude.ai copy, which still shows revision B; the repo copy is
      revision D (TODO P0);
    - say whether to shorten this file by moving its dated history (§6 and the history inside §2, §3 and §10) into the
      session logs; it is about 800 lines against CLAUDE.md's "concise snapshot" (raised at the 2026-11-10 catch-up);
    - say whether sizing should leave room for a cylinder test (a full-span rod on the balance; not planned; TODO P3);
-   - send the agent the heat-set inserts' length and outside diameter;
    - report what is on hand: filament amounts (PLA, PETG-CF) and the "Check the house first" items in
      [docs/shopping_list.md](docs/shopping_list.md);
    - choose the fan, the S6 or the VEVOR, on budget (D-011; the agent recommends the S6), and record it as a new
@@ -821,15 +864,10 @@ See [TODO.md](TODO.md) for the full list. In order:
    - check the values read from four documents (checklists at the end of the
      [SDP8xx](resources/notes/SDP8xx.md), [Sensirion2024](resources/notes/Sensirion2024.md),
      [TAL221](resources/notes/TAL221.md) and [WaveshareBME280](resources/notes/WaveshareBME280.md) notes);
-   - still open from before: the settling-chamber spacing (open question 13), the bench supply's rating, and
-     confirming D-003, D-004, D-006, D-007's open exit, D-016, D-018 and D-019.
-   - when the boards arrive: solder the shield (the header strips on hand should cover its 99 pins) and test it (TODO P2);
-   - optional, at the bench: print the TAL221 bench scale (base as is, pan upside down), mount the soldered cell and run
-     a several-minute zero (TODO P0).
-2. **Agent, with the owner at the bench: the combined logging sketch** (walk-through step 4, TODO P0): one CSV line per
-   sample with every sensor and a flag column for BME280 resets and failed reads (D-019), then a 10-minute run with a
-   steady sample rate.
-3. **Agent, build step 1 (sizing):** detail the 100 mm tunnel with the parts now chosen.
+   - still open from before: the bench supply's rating, and confirming D-003, D-004, D-006, D-007's open exit, D-016,
+     D-018, D-019 (and whether `hx711_raw_counts` keeps `AVERAGE_OVER = 1`) and D-021.
+2. **Agent, build step 1 (sizing), first:** detail the 100 mm tunnel with the parts now chosen, starting with the
+   contraction (points file for Fusion 360), the test section and the test coupons, which wait on no open choice.
    - Fan-to-chamber diffuser: Mehta1977, with two or three window-screen positions.
    - Settling-chamber stack: printed honeycomb, two screens (open question 13).
    - Contraction, test section with S/E/M tap stations and the probe guide, the removable top panel with the 8 × 2 mm
@@ -842,6 +880,9 @@ See [TODO.md](TODO.md) for the full list. In order:
      `docs/drawings/wtdata.py`, then `python docs/drawings/page.py` ([README](docs/drawings/README.md)).
    - Deliver the results as one dimension sheet per printed part and the contraction wall as a points file, for the
      owner's CAD in Fusion 360 ([D-017](DECISIONS.md)).
+3. **Agent, with the owner at the bench: the combined logging sketch** (walk-through step 4, TODO P0): one CSV line per
+   sample with every sensor and a flag column for BME280 resets and failed reads (D-019), recorded with
+   `scripts/serial_capture.ps1` (D-021), then a 10-minute run with a steady sample rate.
 4. **Owner, after sizing:** CAD each part (estimate 12–25 h), print test coupons (insert holes, magnet pockets, sting
    hole, fan ring) before the large parts; the agent checks the exported STLs on request.
 5. **Owner, with the agent:** check the 2026-11-22 paper notes against the PDFs (checklists at the end of each notes
@@ -849,15 +890,16 @@ See [TODO.md](TODO.md) for the full list. In order:
    CAD: the image sting, the sealed load-cell box, the E-ring and last-screen positions, the diffuser screen lands).
 6. **Owner:** download the remaining electronics datasheets (Bosch BME280, LM741/LM348/LMC6484) and the chosen fan's
    manual.
-7. **Owner, remaining equipment checks** (TODO P2): the spare TAL221's resistances, a several-minute load-cell zero on a
-   firm mount (the bench scale, 2026-11-24), the Mega's own I²C pull-ups, the calipers, the screen and the 2026-11-10 items. (Done 2026-11-23: the
-   soldered TAL221's resistances, the BME280's 5 V check and chip ID, the SDP810's zero, the HX711's rate.)
+7. **Owner, remaining equipment checks** (TODO P2): the spare TAL221's resistances, the Mega's own I²C pull-ups, the
+   screen and the 2026-11-10 items. (Done 2026-11-23: the soldered TAL221's resistances, the BME280's 5 V check and chip
+   ID, the SDP810's zero, the HX711's rate. Done 2026-11-26: a several-minute load-cell zero on a firm mount, EXP-002;
+   the calipers work.) Optional: the EXP-002 follow-ups (noise source, hysteresis against drift, temperature; TODO P2).
 
 ## 13. Repository
 
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (private; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1` and `f10f315`). The account was `nuhshaheer-2007` until
-  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-22 and 2026-11-23).
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1`, `f10f315` and `397c671`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-22, 2026-11-23 and 2026-11-25).
 - Branch: `main`
