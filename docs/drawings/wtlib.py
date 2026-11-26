@@ -50,9 +50,9 @@ def f(v):
 
 
 class Sheet:
-    def __init__(self, no, code, title, subtitle, scale_note, notes, kind='mech', date='2026-11-10',
-                 status='PRELIMINARY · PRE-SIZING · NOT FOR MANUFACTURE',
-                 basis='docs of 2026-11-10 + owner sketch 2026-11-09 · Claude Code (agent)', units='mm', key2=None):
+    def __init__(self, no, code, title, subtitle, scale_note, notes, kind='mech', date='2026-11-26',
+                 status='REVISION F · SIZED 2026-11-26 · CAD FROM cad/sizing',
+                 basis='decisions D-022 to D-031 + cad/sizing sheets · Claude Code (agent)', units='mm', key2=None):
         """kind='mech' draws the mechanical key (dimension colours, line types); kind='elec' draws the electrical key,
         with key2 naming the symbols listed in its second column ('wire', 'dot', 'tag', 'nc' or ('text', str))."""
         self.no, self.code, self.title, self.subtitle = no, code, title, subtitle
@@ -345,8 +345,8 @@ class Sheet:
         # key
         kx = 30
         out.append(f'<text x="{kx}" y="{y0+20}" class="kh">KEY</text>')
-        rows = [('F', '120', 'Decided, datasheet or part spec'), ('P', '150–200', 'Proposed in the docs, not final'),
-                ('T', 'TBD', 'To be decided (build step 1)')]
+        rows = [('F', '120', 'Decided, datasheet or part spec'), ('P', '12', 'Proposed in cad/sizing, not final'),
+                ('T', 'TBD', 'Still open: measure or test')]
         for i, (stc, sample, desc) in enumerate(rows):
             yy = y0 + 40 + i * 18
             out.append(f'<text x="{kx}" y="{yy}" class="dim {STN[stc]}" style="font-size:12px">{esc(sample)}</text>')

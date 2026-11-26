@@ -7,11 +7,11 @@ from s_d1 import wall_section, flange_pair
 def sheet_fan():
     sh = Sheet(3, 'WT-01', 'FAN, STAND AND FAN-TO-TUNNEL JOINT', '', 'NTS',
                ['The fan never touches the print: every contact at the joint is neoprene on plastic (buy list §1).',
-                'Fan model open (D-011). Body drawn as the S6 envelope; all fan dimensions TBD until it is chosen.',
+                'Fan: AC Infinity CLOUDLINE S6, model AI-CLS6 (D-025); body 200 × 320 × 212 (maker). Bought last, once the airspeed readout works.',
                 'Measure the outlet collar on arrival (paper strip ÷ π) before printing the socket; print a 10 mm test ring first.',
                 'The stand carries the fan; the tunnel does not hold it. Stand feet: soft bumpers about 20–25 mm (buy list §1).',
                 'Turn the controller down before switching on: it restarts at its last speed. Mains never goes to the Arduino.',
-                'Screen 12a, frame 13 and flange 95 at joint J2: sheets 4 and 10. Socket depth 25–30 is dimensioned on sheet 4.'])
+                'The inlet ring (10) is its own print, bolted to the diffuser with screen 12a between (cad/sizing/diffuser.md). Socket depth 28.'])
     v = View(150, 432, 1.45)
     X, Y = v.X, v.Y
     cr = P['collar_D'] / 2
@@ -23,7 +23,7 @@ def sheet_fan():
     for xx in (110, 210):
         sh.line(X(xx), Y(P['fan_H'] / 2), X(xx), Y(-P['fan_H'] / 2), cls='thin')
     sh.text(X(160), Y(8), 'FAN BODY', cls='sm', anchor='middle')
-    sh.text(X(160), Y(-8), 'MODEL TBD (D-011)', cls='sm', anchor='middle', color=TBD)
+    sh.text(X(160), Y(-8), 'AC INFINITY S6 (D-025)', cls='sm', anchor='middle', color=FIX)
     sh.rect(X(-14), Y(cr + 6), v.L(8), v.L(2 * cr + 12), cls='vis2')
     for k in range(-5, 6):
         sh.line(X(-14), Y(k * 13), X(-6), Y(k * 13), cls='thin')
@@ -52,8 +52,8 @@ def sheet_fan():
     sh.flow(X(60), Y(40), 60)
     sh.vdim(Y(cr), Y(-cr), X(0), X(0), X(-40), 'Ø TBD\n(measure)', st='T', side='l')
     sh.lnote(X(286), Y(95), X(268), Y(70) + 4, 'gap TBD (> 0)', st='T', anchor='end')
-    sh.hdim(X(0), X(P['fan_L']), Y(-175) + 4, Y(-175) + 4, Y(-175) + 46, 'TBD  (S6: 320 overall)', st='T')
-    sh.vdim(Y(0), Y(-175), X(D0 + 20), X(D0 + 20), X(D0 + 60), 'TBD', st='T', side='r')
+    sh.hdim(X(0), X(P['fan_L']), Y(-175) + 4, Y(-175) + 4, Y(-175) + 46, '320 (S6, maker)', st='F')
+    sh.vdim(Y(0), Y(-175), X(D0 + 20), X(D0 + 20), X(D0 + 60), '175', st='P', side='r')
     sh.detail_circle(X(D0 - 12), Y(RS + 2), 44, 'B')
     sh.vtitle(X(150), Y(-175) + 92, 'VIEW A — SIDE ELEVATION', 'Socket and diffuser start in section · fan, stand, controller outside view')
     B(sh, 8, X(-10), Y(60), 70, 150)
@@ -87,11 +87,11 @@ def sheet_fan():
     # dims and notes
     sh.vdim(Yb(cr + P['wrap_t']), Yb(cr), Xb(SOCK0 - 4), Xb(SOCK0 - 4), Xb(xa + 6), '1.6', st='F', side='l', ty=Yb(cr) - 5)
     sh.lnote(Xb(SOCK0 + 10), Yb(RS) + 1, Xb(SOCK0 - 6), Yb(71.5), 'clearance ≈0.25 per side', st='P', anchor='start')
-    sh.lnote(Xb(SOCK0 + 16), Yb(RS + 2), 845, Yb(RS + 2) + 4, 't TBD', st='T', anchor='end')
+    sh.lnote(Xb(SOCK0 + 16), Yb(RS + 2), 845, Yb(RS + 2) + 4, 't 3', st='P', anchor='end')
     sh.lnote(Xb(cend + 1), Yb(cr - 0.5), Xb(xb) + 10, Yb(cr - 0.5) + 4, 'end gap TBD', st='T', anchor='start')
     sh.text(Xb((xa + xb) / 2), 600, 'DETAIL B — COLLAR IN SOCKET (10:1)', cls='vt', anchor='middle')
     sh.line(Xb((xa + xb) / 2) - 150, 604, Xb((xa + xb) / 2) + 150, 604, cls='vtu')
-    sh.text(Xb((xa + xb) / 2), 621, 'Upper wall, section on centre line · socket depth 25–30 (sheet 4)', cls='vs', anchor='middle')
+    sh.text(Xb((xa + xb) / 2), 621, 'Upper wall, section on centre line · socket depth 28 (sheet 4)', cls='vs', anchor='middle')
     B(sh, 5, Xb(SOCK0 + 6), Yb(RS + P['sock_wall'] + 0.4), 1000, 140, side='l')
     B(sh, 10, Xb(SOCK0 + 9), Yb(RS + 1.5), 1090, 95)
     B(sh, 95, Xb(D0 - 5), Yb(top_r - 3), 1185, 140, name='Bolted flange')
@@ -107,7 +107,7 @@ def sheet_fan():
     sh.text(bx + 12, by + 68, 'Example: D_collar = 150 → ID ≈ 153.7 mm (6.05 in). Owner’s first figure: 6.25 in (158.75 mm).', cls='lbl')
     sh.text(bx + 12, by + 88, 'Step loss at 13 m/s: < 0.1 Pa at 153.7, ≈0.4 Pa at 158.75, against ≈150 Pa from the fan (buy list §1).', cls='lbl')
     tx, ty = 820, 785
-    sh.text(tx, ty, 'FAN CANDIDATES (D-011, owner to choose) — published figures, not measured', cls='kh')
+    sh.text(tx, ty, 'FANS COMPARED — S6 CHOSEN (D-025) · published figures, not measured', cls='kh')
     cols = [0, 170, 450]
     for c, hd in zip(cols, ['', 'AC INFINITY CLOUDLINE S6 (AI-CLS6)', 'VEVOR VV-GDFJ-AC6']):
         sh.text(tx + c, ty + 20, hd, cls='tblh')
@@ -129,12 +129,12 @@ def sheet_fan():
 # =====================================================================================
 def sheet_diffuser():
     sh = Sheet(4, 'WT-02', 'WIDE-ANGLE DIFFUSER', '', 'NTS',
-               ['Mehta1977 Fig. 5: area ratio 3.44 needs screens with K_sum ≥ 2.1. Two screens allow about 115 mm minimum.',
-                'Wall form TBD: curved (bell) walls, or straight walls with radiused ends, since 2θ exceeds 24° below about 220 mm.',
-                'Fillet the four corners (radius TBD): across the diagonal the expansion is about twice as steep as across the flats.',
+               ['Area ratio 3.44 needs screens with K_sum ≥ 2.1 (Mehta1977); three screens give ≈3.2, 175 long (D-026).',
+                'Walls: one smooth S-curve loft from Ø152 to the 250 square through two rails (cad/sizing/profiles.py); 2θ 45.6° at most across the flats.',
+                'Sharp corners, matching the chamber: the diagonal expands about twice as steeply; 12b sits at the steepest point.',
                 'No honeycomb or flow straightener at the fan outlet: the fan’s swirl helps keep the diffuser flow attached.',
-                'Screen 12b is planned for margin: two of the ordered 0.011 in wire give K_sum 2.15, just over 2.1. Its joint position is TBD.',
-                'Consider moving 12a slightly into the diffuser: at 1.5 × the outlet area its loss roughly halves (TBD).'])
+                'Front half (to the mid joint) prints in one piece, 231 across; back half as four corner pieces glued at mid-wall seams (D-023).',
+                'Screen frames: two 2 mm layers; M3 × 16 at screen joints; foam tape on the screw-flange side (cad/sizing/diffuser.md).'])
     s = 1.75
     v = View(170 - s * (SOCK0 - 6), 450, s)
     X, Y = v.X, v.Y
@@ -143,28 +143,29 @@ def sheet_diffuser():
         yt = s_ * (RS + P['sock_wall']) if s_ > 0 else -RS
         sh.rect(X(SOCK0), Y(yt), v.L(D0 - 2 - P['fl_t'] - SOCK0), v.L(P['sock_wall']), cls='vis2', fill='url(#hPLA)')
     flange_pair(sh, v, D0, RS, RS, frame=True)
-    wall_section(sh, v, D0 + 2 + P['fl_t'], D1 - 2 - P['fl_t'])
-    wall_section(sh, v, D0 + 2 + P['fl_t'], D1 - 2 - P['fl_t'], top=False)
+    for xa_, xb_ in ((D0 + 2 + P['fl_t'], XDM - 2 - P['fl_t']), (XDM + 2 + P['fl_t'], D1 - 2 - P['fl_t'])):
+        wall_section(sh, v, xa_, xb_)
+        wall_section(sh, v, xa_, xb_, top=False)
+    flange_pair(sh, v, XDM, r_in(XDM), r_in(XDM), frame=True)
     flange_pair(sh, v, D1, HALF, HALF, frame=True)
     for s_ in (1, -1):
         yt = s_ * (HALF + T) if s_ > 0 else -HALF
         sh.rect(X(D1 + 2 + P['fl_t']), Y(yt), v.L(xr - D1 - 2 - P['fl_t']), v.L(T), cls='vis2', fill='url(#hPLA)')
     sh.breakline(X(xr), Y(HALF + T + 6), Y(-HALF - T - 6))
     xmid = (D0 + D1) / 2
-    sh.line(X(xmid), Y(r_in(xmid)), X(xmid), Y(-r_in(xmid)), cls='hid')
     for xs_, tag in ((D0, '12a'), (xmid, '12b'), (D1, '12c')):
         sh.text(X(xs_) + 5, Y(-r_in(xs_)) - 8, tag, cls='sm', anchor='start')
     sh.centre(X(SOCK0 - 4), Y(0), X(xr + 6), Y(0))
     sh.flow(X(D0 + 50), Y(-30), 62)
-    sh.lnote(X(D0 + 70), Y(-r_in(D0 + 70) - T / 2), X(D0 + 22), Y(-62), 'wall t TBD · wall form TBD', st='T', anchor='start')
-    sh.lnote(X(D1 - 4), Y(HALF + T + P['fl_w'] - 3), X(xr) + 30, Y(HALF + 34), 'flange TBD', st='T', anchor='start')
+    sh.lnote(X(D0 + 50), Y(-r_in(D0 + 50) - T / 2), X(D0 + 22), Y(-62), 'wall 3 · S-curve loft (rails file)', st='P', anchor='start')
+    sh.lnote(X(D1 - 4), Y(HALF + T + P['fl_w'] - 3), X(xr) + 30, Y(HALF + 34), 'flange 12 beyond the wall', st='P', anchor='start')
     yb_ = Y(-HALF - T - P['fl_w'])
-    sh.hdim(X(SOCK0), X(D0), Y(-RS - P['sock_wall']) + 4, Y(-RS - P['sock_wall']) + 4, yb_ + 34, '25–30', st='P', tx=X(SOCK0) - 30, ty=yb_ + 29)
-    sh.hdim(X(D0), X(D1), yb_ + 4, yb_ + 4, yb_ + 34, '150–200', st='P')
-    sh.hdim(X(D0), X(xmid), yb_ + 4, None, yb_ + 66, '12b: TBD (mid-length)', st='T')
-    sh.vdim(Y(HALF), Y(-HALF), X(D1), X(D1), X(xr) + 40, '250', st='P', side='r')
+    sh.hdim(X(SOCK0), X(D0), Y(-RS - P['sock_wall']) + 4, Y(-RS - P['sock_wall']) + 4, yb_ + 34, '28', st='P', tx=X(SOCK0) - 30, ty=yb_ + 29)
+    sh.hdim(X(D0), X(D1), yb_ + 4, yb_ + 4, yb_ + 34, '175', st='F')
+    sh.hdim(X(D0), X(xmid), yb_ + 4, None, yb_ + 66, '87.5 to the 12b joint', st='F')
+    sh.vdim(Y(HALF), Y(-HALF), X(D1), X(D1), X(xr) + 40, '250', st='F', side='r')
     sh.vdim(Y(RS), Y(-RS), X(SOCK0), X(SOCK0), X(SOCK0) - 44, 'Ø ID\n(sheet 3)', st='P', side='l')
-    sh.vtitle(X((D0 + D1) / 2), yb_ + 112, 'SECTION A–A — ON CENTRE LINE', 'Flow left to right · screens dashed grey · optional 12b dashed black')
+    sh.vtitle(X((D0 + D1) / 2), yb_ + 112, 'SECTION A–A — ON CENTRE LINE', 'Flow left to right · three screens in frames at the inlet, mid and exit joints')
     R1, R2 = 78, 128
     B(sh, 10, X(SOCK0 + 8), Y(RS + P['sock_wall']), 130, R1)
     B(sh, 95, X(D0 - 4), Y(RS + T + P['fl_w']), 300, R1)
@@ -180,7 +181,7 @@ def sheet_diffuser():
     Xb, Yb = vb.X, vb.Y
     rr = HALF + T + P['fl_w']
     sh.rect(Xb(-rr), Yb(rr), vb.L(2 * rr), vb.L(2 * rr), cls='vis2')
-    sh.rect(Xb(-HALF), Yb(HALF), vb.L(2 * HALF), vb.L(2 * HALF), cls='hid', rx=vb.L(12))
+    sh.rect(Xb(-HALF), Yb(HALF), vb.L(2 * HALF), vb.L(2 * HALF), cls='hid')
     sh.circ(Xb(0), Yb(0), vb.L(RS + P['sock_wall']), cls='vis', fill='#ffffff')
     sh.circ(Xb(0), Yb(0), vb.L(RS), cls='vis2', fill='url(#hScr)')
     for a in (45, 135, 225, 315):
@@ -189,8 +190,8 @@ def sheet_diffuser():
     sh.centre(Xb(-rr - 14), Yb(0), Xb(rr + 14), Yb(0))
     sh.centre(Xb(0), Yb(rr + 14), Xb(0), Yb(-rr - 14))
     sh.vdim(Yb(HALF), Yb(-HALF), Xb(HALF), Xb(HALF), Xb(rr) + 22, '250', st='P', side='r')
-    sh.hdim(Xb(-rr), Xb(rr), Yb(rr) - 4, Yb(rr) - 4, Yb(rr) - 26, 'flange TBD', st='T')
-    sh.lnote(Xb(-HALF + 3), Yb(HALF - 3), Xb(-rr) - 10, Yb(rr) - 40, 'corner fillet R TBD', st='T', anchor='end')
+    sh.hdim(Xb(-rr), Xb(rr), Yb(rr) - 4, Yb(rr) - 4, Yb(rr) - 26, '280 (J250 flange)', st='P')
+    sh.lnote(Xb(-HALF + 3), Yb(HALF - 3), Xb(-rr) - 10, Yb(rr) - 40, 'sharp corners', st='P', anchor='end')
     sh.lnote(Xb(-RS * 0.7), Yb(-RS * 0.7), Xb(-rr) - 10, Yb(-rr) + 30, 'Ø socket ID\n(sheet 3)', st='P', anchor='end')
     sh.flow(Xb(rr) + 28, Yb(-rr) + 18, d='d', label='FLOW: AWAY')
     sh.vtitle(1235, Yb(-rr) + 68, 'VIEW B — FROM THE FAN SIDE', 'Looking downstream; screen 12a shaded in the socket')
@@ -202,9 +203,9 @@ def sheet_diffuser():
     for c, hd in zip(cols, ['SCREEN', 'POSITION', 'LOCAL SPEED', 'K (0.010–0.011 in wire)', 'LOSS']):
         sh.text(tx + c, ty + 20, hd, cls='tblh')
     rows = [('12a', 'Diffuser inlet', '≈7.4 m/s', '0.75–0.85', '24–28 Pa'),
-            ('12b', 'Middle (optional)', '≈3.7 m/s', '≈0.95', '≈8 Pa'),
+            ('12b', 'Mid joint (x = 87.5)', '≈3.7 m/s', '≈0.95', '≈8 Pa'),
             ('12c', 'Diffuser exit', '≈2.1 m/s', '1.15–1.30', '3.0–3.4 Pa'),
-            ('Σ', 'Two screens (12a + 12c)', '', '1.90–2.15 (need ≥ 2.1)', '')]
+            ('Σ', 'Three screens (D-026)', '', '≈2.9–3.1 (need ≥ 2.1)', '≈35–40 Pa')]
     for i, row in enumerate(rows):
         yy = ty + 38 + i * 18.5
         for c, cell in zip(cols, row):
@@ -217,17 +218,17 @@ def sheet_diffuser():
 def sheet_chamber():
     sh = Sheet(5, 'WT-03', 'SETTLING CHAMBER, HONEYCOMB AND SCREENS', '', 'NTS',
                ['Order in the flow: honeycomb first, then screens (Mehta1979). The last screen must be more than 57 % open.',
-                'Station spacings are TBD; the two options are compared in the table. Drawn at layout values only.',
-                'Joints sit at the honeycomb frame and at each screen so the frames come out for cleaning (layout only).',
-                'S taps and mist port: positions TBD, both after the last screen. The side-wall S tap is seen in the far wall.',
-                'The 250 mm section plus walls exceeds the 256 mm P1S bed: how each segment is split is TBD (D-005).',
-                'Upgrade if the flow map shows a problem: 5 mm drinking straws, 40 mm long, in the same frame.'])
+                'Compact spacing, 275 in all (D-027): honeycomb 25 after 12c, 50 to 12d, 50 to 12e, 100 to the contraction.',
+                'Joints at each screen, so the frames come out; the honeycomb slides out of C1 once C2 is off (corner stops and spacers).',
+                'S taps 25 after 12e and 75 before the contraction, one per wall beside its seam (D-023); mist port at 65 after 12e.',
+                'Each 250 section prints as four identical corner pieces glued at mid-wall seams (D-023); walls 3.',
+                'Upgrade if the flow map shows a problem: 5 mm drinking straws in place of the printed honeycomb.'])
     s = 1.45
     x0 = D1 - 18
     v = View(110 - s * x0, 455, s)
     X, Y = v.X, v.Y
     xr = C0 + 26
-    for xa, xb in ((D1, HC0), (HC0, SC1), (SC1, SC2), (SC2, C0)):
+    for xa, xb in ((D1, SC1), (SC1, SC2), (SC2, C0)):
         for s_ in (1, -1):
             yt = s_ * (HALF + T) if s_ > 0 else -HALF
             sh.rect(X(xa + 2 + P['fl_t']), Y(yt), v.L(xb - xa - 4 - 2 * P['fl_t']), v.L(T), cls='vis2', fill='url(#hPLA)')
@@ -236,7 +237,6 @@ def sheet_chamber():
         sh.rect(X(x0), Y(yt), v.L(D1 - 2 - P['fl_t'] - x0), v.L(T), cls='vis2', fill='url(#hPLA)')
     sh.breakline(X(x0), Y(HALF + T + 6), Y(-HALF - T - 6))
     flange_pair(sh, v, D1, HALF, HALF, frame=True)
-    flange_pair(sh, v, HC0, HALF, HALF)
     flange_pair(sh, v, SC1, HALF, HALF, frame=True)
     flange_pair(sh, v, SC2, HALF, HALF, frame=True)
     flange_pair(sh, v, C0, HALF, HALF)
@@ -261,16 +261,16 @@ def sheet_chamber():
     sh.centre(X(x0 - 6), Y(0), X(xr + 8), Y(0))
     sh.flow(X(HC1 + 30), Y(-40), 62)
     sh.cutline(X(HC0 + 2 + P['hc_L'] / 2), Y(HALF + T + P['fl_w']) - 16, Y(-HALF - T - P['fl_w']) + 16, 'B')
-    sh.hdim(X(XS_TAP), X(C0), Y(HALF) + 4, Y(HALF) + 4, Y(104), 'TBD', st='T', tx=X(XS_TAP) - 22, ty=Y(104) + 4)
+    sh.hdim(X(XS_TAP), X(C0), Y(HALF) + 4, Y(HALF) + 4, Y(104), '75', st='P', tx=X(XS_TAP) - 22, ty=Y(104) + 4)
     yb = Y(-HALF - T - P['fl_w'])
     yd = yb + 40
-    for xa, xb, lab, st in ((D1, HC0 + 2, 'TBD', 'T'), (HC0 + 2, HC1 + 2, '48–50', 'P'), (HC1 + 2, SC1, 'TBD', 'T'), (SC1, SC2, 'TBD', 'T'), (SC2, C0, '50', 'P')):
+    for xa, xb, lab, st in ((D1, HC0 + 2, '25', 'F'), (HC0 + 2, HC1 + 2, '50', 'F'), (HC1 + 2, SC1, '50', 'F'), (SC1, SC2, '50', 'F'), (SC2, C0, '100', 'F')):
         sh.hdim(X(xa), X(xb), yb + 4, yb + 4, yd, lab, st=st)
-    sh.hdim(X(D1), X(C0), yd + 6, yd + 6, yd + 40, 'TBD (see table)', st='T')
-    sh.vdim(Y(HALF), Y(-HALF), X(x0), X(x0), X(x0) - 30, '250', st='P', side='l')
+    sh.hdim(X(D1), X(C0), yd + 6, yd + 6, yd + 40, '275 (D-027)', st='F')
+    sh.vdim(Y(HALF), Y(-HALF), X(x0), X(x0), X(x0) - 30, '250', st='F', side='l')
     sh.vtitle(X((D1 + C0) / 2), yd + 84, 'SECTION A–A — ON CENTRE LINE', 'Flow left to right')
     R1, R2 = 70, 122
-    B(sh, 22, X(HC0 + 20), Y(HALF - 2), 150, R1)
+    B(sh, 22, X(HC0 + 20), Y(HALF - 2), 150, R1, name='Honeycomb stops')
     B(sh, 21, X(HC0 + 32), Y(60), 216, R2)
     B(sh, 20, X(620), Y(HALF + T), 300, R1)
     B(sh, 95, X(SC1 - 4), Y(HALF + T + P['fl_w']), 384, R2, name='Bolted flange')
@@ -303,8 +303,10 @@ def sheet_chamber():
     sh.text(Xb(-HALF / 2), Yb(-HALF / 2) + 27, 'quadrant only', cls='sm', anchor='middle')
     sh.centre(Xb(-rr), Yb(0), Xb(rr), Yb(0))
     sh.centre(Xb(0), Yb(rr), Xb(0), Yb(-rr))
-    sh.hdim(Xb(-HALF + 4), Xb(HALF - 4), Yb(HALF + T) - 4, Yb(HALF + T) - 4, Yb(HALF + T) - 26, '≈250 (fits the P1S bed in one piece)', st='P')
-    sh.vdim(Yb(HALF), Yb(-HALF), Xb(HALF + T), Xb(HALF + T), Xb(HALF + T) + 22, '250', st='P', side='r')
+    sh.hdim(Xb(-HALF + 4), Xb(HALF - 4), Yb(HALF + T) - 4, Yb(HALF + T) - 4, Yb(HALF + T) - 26, '249.4 honeycomb (fits the bed in one piece)', st='P')
+    sh.vdim(Yb(HALF), Yb(-HALF), Xb(HALF + T), Xb(HALF + T), Xb(HALF + T) + 22, '250', st='F', side='r')
+    for sx_, sy_ in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+        sh.line(Xb(sx_ * HALF if sx_ else -3), Yb(sy_ * HALF if sy_ else -3), Xb(sx_ * (HALF + T) if sx_ else 3), Yb(sy_ * (HALF + T) if sy_ else 3), cls='vis', extra='style="stroke:#c0410d;stroke-width:2.2"')
     sh.flow(1448, Yb(HALF) + 6, d='d', label='FLOW: AWAY')
     sh.detail_circle(Xb(72), Yb(72), 18, 'C')
     sh.vtitle(1235, Yb(-HALF - T) + 40, 'SECTION B–B — THROUGH THE HONEYCOMB', 'Looking downstream')
@@ -325,13 +327,13 @@ def sheet_chamber():
     sh.text(Xc(3 * a) + 60, 936, 'At 2.1 m/s the 0.4 mm wall wakes (Re ≈ 56) die out before the first screen (buy list §3).', cls='vs', anchor='start')
 
     tx, ty = 1060, 700
-    sh.text(tx, ty, 'STATION SPACING — OPTIONS (decide at sizing)', cls='kh')
-    rows = [('', 'A: 0.2 D (Mehta1979)', 'B: full decay'),
-            ('Diffuser exit → honeycomb', 'TBD', 'TBD'),
-            ('Honeycomb → 12d', '50', '≥150 (buy list); 50 cells = 300'),
-            ('12d → 12e', '50', '≥500 wire Ø = 127–140 *'),
-            ('12e → contraction', '50', '50'),
-            ('Chamber length', '≈200 + frames', '≈380–390 + frames *')]
+    sh.text(tx, ty, 'STATION SPACING — COMPACT CHOSEN (D-027)', cls='kh')
+    rows = [('', 'Chosen: 0.2 D (Mehta1979)', 'Not chosen: full decay'),
+            ('Diffuser exit → honeycomb', '25', '25'),
+            ('Honeycomb → 12d', '50', '≥150 (6 mm cells)'),
+            ('12d → 12e', '50', '500 wire Ø = 140 *'),
+            ('12e → contraction', '100', '100'),
+            ('Chamber length', '275', '≈465 *')]
     for i, (a_, b_, c_) in enumerate(rows):
         yy = ty + 22 + i * 19
         cl = 'tblh' if i == 0 else 'tblc'
@@ -340,6 +342,6 @@ def sheet_chamber():
         sh.text(tx + 300, yy, c_, cls=cl)
         if i:
             sh.line(tx, yy + 6, tx + 500, yy + 6, cls='thin', extra='stroke-opacity="0.22"')
-    sh.text(tx, ty + 22 + 6 * 19 + 2, '* Our arithmetic with the chosen 0.010–0.011 in screen wire and 6 mm cells.', cls='sm')
-    sh.text(tx, ty + 22 + 6 * 19 + 18, '  The docs’ 230–300 mm figure assumed 0.15–0.25 mm wire and 2–3 mm cells.', cls='sm')
+    sh.text(tx, ty + 22 + 6 * 19 + 2, '* Our arithmetic with the 0.011 in screen wire and 6 mm cells. S taps 25 after 12e.', cls='sm')
+    sh.text(tx, ty + 22 + 6 * 19 + 18, '  Orange ticks in section B–B: the glued mid-wall seams of the corner pieces (D-023).', cls='sm')
     return sh

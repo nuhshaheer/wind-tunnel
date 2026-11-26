@@ -40,8 +40,8 @@ without a chosen part.
 
 ## 1. Fan and air supply (reviewed 2026-11-08)
 
-Decided: [D-010](../DECISIONS.md) (13 m/s target). **The fan is open between two ([D-011](../DECISIONS.md),
-Tentative since 2026-11-09): the owner will choose on budget.** The fan has not been ordered. **The agent recommends
+Decided: [D-010](../DECISIONS.md) (13 m/s target). **Chosen 2026-11-26: the AC Infinity CLOUDLINE S6
+([D-025](../DECISIONS.md)).** History: open between two ([D-011](../DECISIONS.md), 2026-11-09), chosen on budget. The fan has not been ordered. **The agent recommends
 the S6** (2026-11-09; reasons in the notes below, "Choosing between the two").
 
 | Item | What to buy | Qty | Price seen | Where | When | Status |

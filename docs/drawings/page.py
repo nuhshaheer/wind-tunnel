@@ -23,45 +23,32 @@ STATUS_CLS = {'To buy': 'buy', 'Ordered': 'ord', 'On hand': 'have', 'Printed': '
               'Feature': 'feat', 'Check house': 'house', 'Printed + brass': 'print', 'To buy (tool)': 'buy', 'To buy / Printed': 'buy'}
 
 TBD_ROWS = [
-    ('Fan model and every fan dimension', 'S6 envelope 200 × 320 × 212', 'Owner’s budget choice (D-011); then measure the outlet collar', '1–3'),
-    ('Outlet collar Ø and socket ID', 'collar 150, socket ≈153.7', 'Measure the collar (paper strip ÷ π); socket = collar + 3.2 + ≈0.5; 10 mm test ring', '3, 4'),
-    ('Wall thickness, all printed shells', '3', 'Sizing (2–3 mm was only a filament estimate)', 'all'),
-    ('Flange width, thickness, bolt count and pitch; insert length; pin size', '14 × 6, 12 bolts', 'Sizing (build step 1)', '10'),
-    ('Diffuser length and wall form; corner fillet radius', '175, curved', 'Sizing within 150–200 (Mehta1977 Fig. 5)', '4'),
-    ('Positions of screens 12a and 12b (12b, the third diffuser screen, is planned for margin)', 'both drawn', 'Sizing; check the delivered wire is 0.011 in (≈0.28 mm), which gives K_sum 2.15 with two', '4'),
-    ('Settling-chamber stations and length', '25 / 50 / 100 / 75 / 50', 'Choose spacing option A or B (sheet 5 table)', '5'),
-    ('How 250 mm sections are split to fit the 256 mm bed', '—', 'Sizing: lengthwise halves or flat panels', '5, 6'),
-    ('S taps, mist port: axial positions', 'after 12e', 'Sizing (both after the last screen)', '5'),
-    ('Test-section length', '280', '270–290 from the station rules; the 1 in ball sets 4√S = 90', '7'),
-    ('Side panel removable or fixed; panel size; taps in the removable top panel', 'top off, side TBD', 'Top comes off on magnets (owner, D-014); the side panel and the taps at sizing; see finding 2', '7'),
-    ('M-station floor-tap offset; probe-guide position', 'offset 30', 'Sizing; the sting hole occupies the floor centre', '7'),
-    ('Panel-frame, lip, gasket-ledge and magnet-skin sizes', 'concept only', 'Sizing; test-print the magnet pockets (8.2–8.3 × 2.2)', '7'),
-    ('Sting length (all cut equal); mount hole fit and depth; thumb-screw length; stop gap; base form', 'layout', 'Sizing; test-print the hole on the delivered rod; stops set with a known mass at ≈120 g', '8'),
-    ('Floor-insert size, ledge, hold-down and seal', '80 × 60, ledge 4', 'Sizing: fits inside the balance box, sits flush, lifts out through the top opening', '7, 8'),
-    ('Load-cell box, balance plate and HX711 board sizes', 'layout', 'Sizing; board dimensions from the delivered part', '8'),
-    ('Feet heights and size; fan-stand height', 'bench at −175', 'Balance-box clearance sets the tunnel centre-line height (finding 5)', '1, 3, 10'),
-    ('Arduino box, BME280 and SDP810 bracket positions', 'schematic', 'I²C runs under ≈1 m (finding 6)', '2, 9'),
-    ('Overall length', '≈1325 drawn', 'Sum of the above; docs estimate 1150–1300 including the fan', '1'),
-    ('HX711 board pad names and RATE setting (10 or 80 SPS)', 'chip names: E+, E−, A−, A+, VCC, VDD', 'Read them off the delivered SparkFun board', '12'),
-    ('Cable lengths W1–W3 and wire colours', 'length TBD', 'Box positions at sizing (finding 6); one colour per signal at assembly', '12'),
-    ('Pull-ups R1, R2 fitted or not', 'DNP', 'Bring-up: fit only if the SDP810 must run without the BME280 on the bus', '12'),
+    ('Fan collar diameter and inlet-ring socket ID', 'collar 150, socket ≈153.7', 'Measure the S6’s collar on arrival (paper strip ÷ π); socket = collar + 3.2 + ≈0.5; coupon C7', '3, 4'),
+    ('Diffuser inlet diameter against the collar’s inside', 'Ø152', 'Match the loft’s inlet circle to the collar’s inside diameter on arrival', '4'),
+    ('Hole sizes: inserts, screw clearance, magnet pockets, tap-stub sockets', 'Ø4.0, Ø3.4, Ø8.3, Ø3.3', 'Test coupons C1–C4 (cad/sizing/coupons.md), printed with the real settings', '7, 9, 10'),
+    ('Sting fit in the mount', 'Ø3.3', 'Coupon C6 on the delivered rod', '8'),
+    ('Fan-stand height', 'axis 175', 'The S6’s outlet axis height above its base, measured on arrival', '1, 3'),
+    ('Load-cell mounting holes', 'as drawn', 'Read off the cell: which end is tapped M3 and which has Ø3.2 clearance (TAL221 notes)', '8'),
+    ('Balance-module rails and door size', '≈80 × 70 door', 'Draw the box around the real module', '8'),
+    ('BME280 holder', 'schematic', 'Measure the board (outline, holes, connector side)', '2'),
+    ('Cable lengths W1–W3 and wire colours', 'length TBD', 'Box positions are now set (cad/sizing/supports.md); one colour per signal at assembly', '12'),
 ]
 
 FINDINGS = [
-    ('Settling-chamber length grows with the chosen parts.',
-     'The docs’ 230–300 mm “full decay” length assumed 0.15–0.25 mm wire and 2–3 mm cells. With the chosen window screen (0.010–0.011 in wire: 500 d = 127–140 mm) and 6 mm printed cells (≥150 mm after the honeycomb), the same rules give about 380–390 mm plus frames. Mehta1979’s 0.2 D spacing gives about 200 mm. Our arithmetic; decide at sizing.'),
-    ('Taps “one per wall” meet the lift-off panels.',
-     'The top panel (and possibly a side panel) covers the E and M stations, so taps there would have to be unplugged at every model swap. Options: taps only in fixed walls, or panels that stop short of the stations.'),
-    ('The M-station floor tap cannot sit at the floor centre.',
-     'The sting hole and shield are there. The floor tap needs an offset (drawn 30 mm upstream, TBD) or the station uses three taps. It now sits in the sphere insert (53), so its tube is unplugged whenever the insert comes out.'),
-    ('250 mm sections need splitting in cross-section, not only along the flow.',
-     'A 250 mm square duct plus walls and flanges is wider than the 256 mm P1S bed, so each chamber and contraction-inlet segment must be printed in halves or as flat panels (D-005 covers segments along the flow only).'),
-    ('The balance box sets the tunnel’s height.',
-     'At layout values the box hangs to about 158 mm below the centre line, lower than the chamber’s flanges (142 mm). The test-section feet are therefore the tallest, and the fan stand must match the resulting centre-line height.'),
-    ('I²C length limits where the Arduino box can go.',
-     'With the BME280 near the fan inlet and the SDP810 near the test section, each run under about 1 m puts the Arduino box near the middle of the tunnel.'),
-    ('Turning the sting-lock knob twists the load cell.',
-     'The twist from the thumb screw (68) goes through the mount into the 100 g cell unless the mount is held. The screw is drawn along the wind, so any twist that gets through bends the cell in its stiff sideways direction (if the sensitive axis is as assumed on sheet 8). Hold the mount through the insert opening while turning. Our reasoning; not quantified.'),
+    ('Settling-chamber length grows with the chosen parts. Resolved:',
+     'compact spacing, 275 in all (D-027). Full-decay spacing would have been about 465.'),
+    ('Taps “one per wall” meet the lift-off panels. Resolved:',
+     'E sits in a printed entrance band closed on all four sides; M uses one tap in each side wall, 12 above the floor; no tap is in the lift-off panel (D-024).'),
+    ('The M-station floor tap cannot sit at the floor centre. Resolved:',
+     'the floor tap is dropped; M has two side-wall taps (D-024).'),
+    ('250 mm sections need splitting in cross-section. Resolved:',
+     'each prints as four identical corner pieces glued at mid-wall seams (D-023); the contraction splits at x = 82, so its exit is one seamless piece.'),
+    ('The balance box sets the tunnel’s height. Resolved:',
+     'with the mount stacked on the cell the box reaches 145 below the axis, the chamber’s flanges 140; the axis stands 175 above the bench, so the box clears by 30 (cad/sizing/supports.md).'),
+    ('I²C length limits where the Arduino box can go. Placed:',
+     'on the bench beside the contraction, with the SDP810 on the black wall near the test-section entrance and the BME280 on the fan stand (Proposed).'),
+    ('Turning the sting-lock knob twists the load cell. Still a caution:',
+     'the screw stays along the wind, so any twist that gets through bends the cell in its stiff direction; hold the mount while turning (D-015).'),
 ]
 
 
@@ -163,9 +150,9 @@ footer.src {{ font-size: 13px; color: var(--muted); max-width: 110ch; }}
 <header class="top">
   <div class="eyebrow">Wind tunnel · 100 × 100 mm open-circuit blower · owner N. Shaheer</div>
   <h1>Drawing package: assembly, sections and parts</h1>
-  <p class="lede">Twelve sheets: the general arrangement, then each section from the fan to the open exit, the force balance, the airspeed instrumentation and the joints, and (since revision D) two electrical sheets, the system block diagram and the interface schematic. Every dimension comes from the project documents (at commit 0558370 for revision B, updated 2026-11-10 for revision C: buy list, status, decisions and paper notes) and the owner’s sketch of 2026-11-09 (floor inserts, sting mount and sting lock). The sizing step (build step 1) has not been done, so most lengths are proposals and many are still to be decided. Undecided dimensions are marked TBD and drawn at layout values only.</p>
-  <span class="status">PRELIMINARY · PRE-SIZING · NOT FOR MANUFACTURE</span>
-  <p style="font-size:14px;margin:0;color:var(--muted)">Revision B, 2026-11-09: replaceable floor inserts (53, 54), the sting mount (65) and the thumb-screw sting lock (68) from the owner’s sketch (D-013 to D-015); general-arrangement leaders rerouted. Revision C, 2026-11-10: each ball press-fit on its own full-length sting (63), so the ball stem (61) and the 5/32 in sting sleeve (62) are removed (D-016); stainless short M3 screws (73) at the balance instead of brass; the sting shield (64) shown attached to the sphere insert (53), lifting out with it (D-014); screen 12b planned for margin; every parts-list status brought up to the orders of 2026-11-09/10 (Waveshare BME280, acrylic as four 8 × 12 in sheets). Revision D, 2026-11-17: electrical sheets 11 (system block diagram) and 12 (interface schematic, with its electrical parts list and net list); sheet 9’s wiring note and HX711 pins now point to sheet 12; parts-list statuses Ordered → On hand (the owner reported every ordered part arrived, 2026-11-17; arrival checks pending). Note, 2026-11-19: parts-list item 76 now describes the weight set actually bought. Nothing electrical is built or tested yet. Sizes are still pre-sizing. Generated by docs/drawings/ in the repo.</p>
+  <p class="lede">Twelve sheets: the general arrangement, then each section from the fan to the open exit, the force balance, the airspeed instrumentation and the joints, and (since revision D) two electrical sheets, the system block diagram and the interface schematic. Every dimension comes from the project documents (at commit 0558370 for revision B, updated 2026-11-10 for revision C: buy list, status, decisions and paper notes) and the owner’s sketch of 2026-11-09 (floor inserts, sting mount and sting lock). Revision F (2026-11-26) carries the sizing of build step 1: decisions D-022 to D-031 and the dimension sheets in cad/sizing/, from which the owner draws the CAD. Black dimensions are decided, blue are proposals in those sheets, and orange TBD marks what still needs a measurement or a test print.</p>
+  <span class="status">REVISION F · SIZED 2026-11-26 · CAD FROM cad/sizing</span>
+  <p style="font-size:14px;margin:0;color:var(--muted)">Revision B, 2026-11-09: replaceable floor inserts (53, 54), the sting mount (65) and the thumb-screw sting lock (68) from the owner’s sketch (D-013 to D-015); general-arrangement leaders rerouted. Revision C, 2026-11-10: each ball press-fit on its own full-length sting (63), so the ball stem (61) and the 5/32 in sting sleeve (62) are removed (D-016); stainless short M3 screws (73) at the balance instead of brass; the sting shield (64) shown attached to the sphere insert (53), lifting out with it (D-014); screen 12b planned for margin; every parts-list status brought up to the orders of 2026-11-09/10 (Waveshare BME280, acrylic as four 8 × 12 in sheets). Revision D, 2026-11-17: electrical sheets 11 (system block diagram) and 12 (interface schematic, with its electrical parts list and net list); sheet 9’s wiring note and HX711 pins now point to sheet 12; parts-list statuses Ordered → On hand (the owner reported every ordered part arrived, 2026-11-17; arrival checks pending). Note, 2026-11-19: parts-list item 76 now describes the weight set actually bought. Revision F, 2026-11-26: sized from decisions D-022 to D-031 (250 mm chamber and 250 mm 5th-order contraction; four-corner-piece split; 310 mm test section in two prints with one window and a black wall; E and M taps; the S6 fan; three-screen 175 mm diffuser; compact 275 mm chamber; sealed load-cell box with a door; image sting, items 55–57; probe through the open exit); flanges 12 beyond the wall with M3 × 5 inserts. Generated by docs/drawings/ in the repo.</p>
   <div class="keyrow">
     <span><span class="k f">100</span>&nbsp; decided, datasheet or part spec</span>
     <span><span class="k p">150–200</span>&nbsp; proposed in the docs, not final</span>
@@ -185,14 +172,14 @@ footer.src {{ font-size: 13px; color: var(--muted); max-width: 110ch; }}
 </section>
 <section class="doc" id="tbd" aria-label="TBD register">
   <h2>TBD register</h2>
-  <p>What is still open on these drawings, the value drawn only to place it, and what decides it. Most close in build step 1 (sizing); the fan closes on the owner’s choice.</p>
+  <p>What is still open after the sizing: mostly measurements of delivered parts and test prints. The value drawn only places it.</p>
   <div class="tablewrap"><table>
     <thead><tr><th>Open item</th><th>Drawn as (layout only)</th><th>Decided by</th><th>Sheets</th></tr></thead>
     <tbody>{tbd}</tbody></table></div>
   <h2 style="margin-top:10px">Findings from drawing it out</h2>
-  <p>Gaps that only showed up when the parts were placed together. Recorded in PROJECT_STATUS.md §11 (2026-11-09); none is resolved yet.</p>
+  <p>Gaps that showed up when the parts were first placed together (2026-11-09), and how the sizing of 2026-11-26 settled them.</p>
   <ol class="findings">{finds}</ol>
-  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Electrical sheets: the SDP8xx, HX711 and TAL221 notes, buy list §5–8, and Waveshare’s BME280 Environmental Sensor schematic (read 2026-11-17). Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10; revision D 2026-11-17; sheet 12 revision E 2026-11-23 (connector pin orders and C1 as in the KiCad shield, D-020).</footer>
+  <footer class="src">Sources: docs/buy_list.md §1–11, PROJECT_STATUS.md §2–3 and §10, DECISIONS.md D-005 to D-016, docs/shopping_list.md, PROJECT_BACKGROUND.md, and the notes for Bell1988, Mehta1977, Mehta1979, Cooper1998, TAL221, SDP8xx and Sensirion2024, and the owner’s sketch docs/sketches/2026-11-09_flange-load-cell-test-chamber-notes-1.pdf. Electrical sheets: the SDP8xx, HX711 and TAL221 notes, buy list §5–8, and Waveshare’s BME280 Environmental Sensor schematic (read 2026-11-17). Where a figure is our arithmetic it says so. Drawn by Claude Code (agent), 2026-11-09; revision C 2026-11-10; revision D 2026-11-17; sheet 12 revision E 2026-11-23 (connector pin orders and C1 as in the KiCad shield, D-020); revision F 2026-11-26 (sizing, D-022 to D-031; cad/sizing/).</footer>
 </section>
 </div>'''
     out = os.path.join(HERE, 'wind-tunnel-drawings.html')

@@ -33,9 +33,14 @@ C0 = SC2 + P['s2_c']                             # contraction inlet
 C1 = C0 + P['con_L']                             # contraction exit / test section inlet
 T1 = C1 + P['ts_L']                              # exit
 XE = C1 + P['xE']
-XS_TAP = SC2 + 15                                # layout only (position TBD)
-XMIST = SC2 + 35                                 # layout only (position TBD)
+XS_TAP = SC2 + 25                                # S taps: 25 after 12e, 75 before the contraction (D-027)
+XMIST = SC2 + 65                                 # mist port (cad/sizing/settling_chamber.md)
 XM = C1 + P['xM']
+XDM = (D0 + D1) / 2                              # diffuser mid joint, screen 12b (D-026)
+XCJ = C0 + 82                                    # contraction split, joint J220 (D-023)
+XTJ = C1 + 245                                   # test section front body -> extension (D-024)
+JOINTS = (D0, XDM, D1, SC1, SC2, C0, XCJ, C1, XTJ)
+FEET = (D1, C0, C1, C1 + 290)                    # cradles: three joints and the extension (clear of the load-cell box)
 RS = (P['collar_D'] + 2 * P['wrap_t'] + P['clear']) / 2   # socket inner radius (layout)
 HALF = P['ch'] / 2
 T = P['t']
@@ -69,8 +74,8 @@ def wall_poly(v, xa, xb, top=True, n=60, t=T):
 
 
 
-# ---------- floor insert (owner's sketch, 2026-11-09). Sizes are layout only: TBD ----------
-INS_HL, INS_HW, INS_LEDGE = 40, 30, 4
+# ---------- floor insert (D-014; cad/sizing/balance.md): 60 along x 70 across, ledge 4 ----------
+INS_HL, INS_HW, INS_LEDGE = 30, 35, 4
 
 
 def floor_run(sh, X, Y, x0, x1, e0, e1, top, t, hole=None, fix='url(#hPLAk)', ins='url(#hPLAr)', cls='vis2'):

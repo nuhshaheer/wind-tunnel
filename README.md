@@ -1,13 +1,15 @@
 # Wind Tunnel
 
-> **Status (2026-11-26): planning / pre-build.** Every part except the fan has arrived (2026-11-17). The tunnel is not
-> built. The sensor circuit is drawn (drawing package sheets 11–12), explained in
+> **Status (2026-11-26): pre-build, sized; CAD next.** Every part except the fan has arrived (2026-11-17). The tunnel
+> is not built, but it is fully sized (build step 1, 2026-11-26): every printed part has a dimension sheet, with points
+> files for Fusion 360, in [cad/sizing/](cad/sizing/README.md), and the
+> [drawing package](docs/drawings/README.md) is at revision F. The sensor circuit is drawn (drawing package sheets 11–12), explained in
 > [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md), and built on a breadboard, where every sensor
 > reads with its bring-up sketch in [firmware/](firmware/README.md) (2026-11-23). The shield PCB that will replace the
 > breadboard is designed in KiCad ([PCB/arduino_shield/](PCB/arduino_shield/)) and **ordered (2026-11-26)**. Data so far:
 > the calibration weights' true masses (EXP-001, 2026-11-19) and the load cell on a printed bench scale (EXP-002,
-> 2026-11-26: 13,727.5 counts/g, straight within 0.025 g; its zero is the limit; Preliminary). Next: sizing the tunnel
-> for the CAD (build step 1) and a combined logging sketch.
+> 2026-11-26: 13,727.5 counts/g, straight within 0.025 g; its zero is the limit; Preliminary). Next: the CAD, starting
+> with test coupons, and a combined logging sketch.
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
 > The complete parts list is [docs/buy_list.md](docs/buy_list.md), and the order tracker is
 > [docs/shopping_list.md](docs/shopping_list.md).
@@ -21,10 +23,13 @@ A small wind tunnel with my own instrumentation: flow conditioning, a pitot tube
 ## Why it matters
 Of the three projects, this is the only one that shows me as a mechanical engineer doing fluids, which is the work aerospace companies hire MEs into.
 
-## Hardware (as of 2026-11-18)
+## Hardware (as of 2026-11-26)
 
 The tunnel: an open-circuit blower with the fan at the front, a 100 mm × 100 mm test section, 3D-printed in bolted
 segments, with a 13 m/s target top speed ([DECISIONS.md](DECISIONS.md) D-005, D-007, D-008, D-010, D-013).
+Sized on 2026-11-26 (D-022 to D-030): a 175 mm three-screen diffuser, a 275 mm settling chamber with a printed
+honeycomb, a 250 mm 5th-order contraction (ratio 6.25) and a 310 mm test section, about 1.34 m in all with the fan;
+the 250 mm sections print as four corner pieces glued together.
 The model sits on a brass sting that rises through a replaceable floor insert, with the sting shield attached to the
 insert; the top window lifts off on magnets, and the sting clamps into a printed mount on the load cell (D-014 to
 D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs/buy_list.md).
@@ -33,8 +38,8 @@ D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs
 - Bambu Lab P1S 3D printer, PLA, PETG-CF and a hardened-steel nozzle
 - Elegoo Mega 2560 (working: Blink upload verified 2026-11-02)
 - ECE2010 lab kit (op-amps, regulators, breadboard, jumpers)
-- Multimeter, soldering station, bench power supply, calipers, hand drill, spirit level, 43 magnets (8 × 2 mm), and
-  access to a school lab balance
+- Soldering station, bench power supply, calipers, hand drill, spirit level, 43 magnets (8 × 2 mm), access to a school
+  lab balance, and a borrowed multimeter (my own is on order)
 
 ### Arrived 2026-11-17 (ordered 2026-11-09/10; most checks still to do)
 - Airspeed: a Sensirion SDP810-125Pa differential pressure sensor, with a home-made brass pitot probe and wall
@@ -47,7 +52,7 @@ D-016). Reasons, prices and alternatives for every part: [docs/buy_list.md](docs
   and a calibration weight set
 
 ### Still to buy
-- The fan: AC Infinity CLOUDLINE S6 (recommended) or VEVOR 6-inch, bought last (D-011)
+- The fan: AC Infinity CLOUDLINE S6 (D-025), bought last, once the airspeed readout works
 
 ### Changed from the original plan
 - No servo for the airfoil pitch: preset angles instead (2026-11-01)
@@ -154,7 +159,7 @@ They are plain Markdown, so other agents can follow them by reading the files.
 
 ## Pushing to GitHub (manual)
 
-GitHub repository: https://github.com/nuhshaheer/wind-tunnel (private; the account was `nuhshaheer-2007` until
+GitHub repository: https://github.com/nuhshaheer/wind-tunnel (public since 2026-11-26, D-031; the account was `nuhshaheer-2007` until
 2026-11-02, and the old URL redirects). Remote `origin`, branch `main`.
 Run in PowerShell or Git Bash (the VS Code terminal is fine):
 

@@ -75,8 +75,9 @@ Not stored here: videos stay out of Git (D-004). Summaries come from transcripts
   them here, or keep them in this folder with a `.gitignore` entry and list them in the index as "local only", in
   backticks rather than as a link (so the link check passes on a fresh clone). See D-006 (Tentative). PDFs are
   stored as binary (`.gitattributes`).
-- The repository is private (D-003, Tentative). Before making it public, check each paper's licence and replace any
-  PDF that may not be redistributed with a link.
+- **The repository is public since 2026-11-26 (D-031).** Several publisher PDFs here may not be redistributed
+  (Brown2003, Mehta1979, Wieghardt1953, Roos1971, Mehta1977, Morel1975; others to check). The owner is to choose:
+  replace them with links, also purge them from the Git history, or leave them (TODO P0).
 
 ## Wanted
 

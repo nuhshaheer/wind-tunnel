@@ -67,6 +67,7 @@ Template:
   `slam-robot` repo, and can be made public later (`gh repo edit --visibility public`). 2026-11-02: the owner renamed
   the GitHub account to `nuhshaheer`, so the repo is now `nuhshaheer/wind-tunnel`. The old URL redirects; this is not a
   change of decision.
+  - Note (2026-11-26): **the owner made the repository public** to showcase the project ("just to showcase the project so recruiters can see what im working on"). The private visibility is superseded by D-031; the rest of this decision stands.
 
 ## D-004: Data management: raw data immutable; videos external; no Git LFS yet
 
@@ -83,6 +84,7 @@ Template:
   keep all data outside Git (rejected: breaks reproducibility of the analysis).
 - Evidence / source: no data or binary files exist yet (inspected 2026-10-29).
 - Status: Tentative. A default chosen by the setup agent. Owner to confirm; revisit when the first CAD files or videos exist.
+  - Note (2026-11-26): **Accepted by the owner** ("d21 and d4 look good", build-step-1 session), after a plain-language explanation: raw data never edited, results recomputed by scripts, videos kept out of Git and linked, photos compressed, no Git LFS until something needs it.
 
 ## D-005: Print the tunnel in segments on the Bambu Lab P1S
 
@@ -122,6 +124,7 @@ Template:
 - Evidence / source: [2026-10-31 session log](docs/sessions/2026-10-31-reference-library-and-electronics.md).
 - Status: Tentative. Chosen by the agent following D-004; the owner has not confirmed it. Consequence: a fresh clone
   from GitHub on a machine without OneDrive lacks these two files.
+  - Note (2026-11-26): **Accepted by the owner** (build-step-1 session: "everything other decision looks good").
 
 ## D-007: Open-circuit blower tunnel, fan at the front
 
@@ -149,6 +152,7 @@ Template:
 - Evidence / source: [2026-11-01 session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md).
 - Status: Accepted (blower, fan at the front; owner). Open exit: Tentative (agent's proposal, not objected to, not
   confirmed).
+  - Note (2026-11-26): **the open exit (no exit diffuser) is Accepted by the owner** (build-step-1 session).
 
 ## D-008: 100 mm × 100 mm test section
 
@@ -267,6 +271,7 @@ Template:
     curve), the S6 about 13.0–13.4 m/s (12.3–12.7).
   - The VEVOR gives about 73 % of the S6's force at top speed. Its figures are the seller's.
   - Both validate. The fan-to-tunnel joint, the stand and the pressure sensor suit either.
+  - **Superseded by D-025 (2026-11-26): the owner chose the S6.**
   - Record the final choice as a new decision that supersedes this one. Purchase: To buy.
 
 ## D-012: No on-tunnel display or knob; all output on the laptop
@@ -406,6 +411,7 @@ Template:
     mount; `sleeve_d` and the stem and sleeve rows (items 61 and 62) are gone
     ([docs/drawings/](docs/drawings/README.md);
     [session log](docs/sessions/2026-11-10-consistency-audit.md)). The status above is unchanged.
+  - Note (2026-11-26): **Accepted by the owner** (build-step-1 session): one full-length 1/8 in brass sting per ball, no sleeve.
 
 ## D-017: The owner draws all the CAD; the agent supplies the numbers and checks
 
@@ -494,6 +500,7 @@ Template:
     BME280 board's pull-ups alone are enough on the bench
     ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)). Status still Tentative until
     the owner confirms.
+  - Note (2026-11-26): **Accepted by the owner** (build-step-1 session), after the breadboard passed on 2026-11-23 and in the shield's configuration on 2026-11-26.
 
 ## D-019: Bring-up firmware: one plain Arduino sketch per sensor in `firmware/`
 
@@ -526,6 +533,7 @@ Template:
     Serial Monitor. The committed sketch now has 1; the agent recommends keeping it (raw readings show disturbances
     that a 1 s mean would hide); the owner may set it back to 10 for watching the Serial Monitor
     ([session log](docs/sessions/2026-11-26-shield-order-and-load-cell-bench-test.md)).
+  - Note (2026-11-26): **Accepted by the owner** (build-step-1 session), with `AVERAGE_OVER = 1` (every raw reading) as the committed default in `hx711_raw_counts`.
 
 ## D-020: Shield PCB: KiCad on the Mega shield template, pin headers for jumper wires, each connector in its part's pin order
 
@@ -600,3 +608,245 @@ Template:
   ([data catalog](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale)); run01 is the empty file left
   by the first version, which created the file before opening the port. No automated test.
 - Status: Tentative (agent's choice, 2026-11-26; the owner has not confirmed it).
+  - Note (2026-11-26): **Accepted by the owner** ("d21 and d4 look good", build-step-1 session).
+
+## D-022: Settling chamber 250 mm square inside (contraction ratio 6.25); contraction 250 mm long, 5th-order wall
+
+- Date: 2026-11-26
+- Question: With the 100 mm test section fixed (D-008), how big is the settling chamber, and how long is the
+  contraction and what wall curve does it follow? These set the contraction's points file, the first sizing output for
+  the owner's CAD (D-017).
+- Decision:
+  - **Settling chamber 250 × 250 mm inside**, so the contraction ratio is 6.25 (owner: "250mm").
+  - **Contraction 250 mm long** (1.0 × inlet height), square at every station, sharp inside corners like the test
+    section, with the **5th-order polynomial wall** on the half-width: y = 125 − 75 (6s⁵ − 15s⁴ + 10s³), s = x / 250 mm.
+    Points file and sheet: `cad/sizing/` ([contraction sheet](cad/sizing/contraction.md)).
+- Rationale (agent's comparison, 2026-11-26; theory and design rules, not measurements):
+  - 250 mm is the smallest chamber inside the 6–9 contraction-ratio range that Mehta1979 and Bell1988 recommend for
+    small tunnels. It leaves 16 % of the chamber's streamwise speed unevenness at the test section (1/c) and 5.4 % of
+    its streamwise turbulence (Batchelor factor), against 21 % and 8.4 % at 220 mm.
+  - The cost is splitting: 250 mm plus walls and flanges is wider than the 256 mm bed, so the chamber, the diffuser's
+    exit and the contraction's inlet end are printed in pieces. All of these are where the air moves at about a fifth
+    of the test-section speed (q about 3 % of the test section's), so seams there matter little. The contraction is one
+    seamless piece from about 80 mm onward to its exit.
+  - Length: Bell1988 found separation near the inlet below 0.89 × the inlet height (223 mm here). A longer contraction
+    only evens out the exit flow, which has evened out anyway by the time it reaches the ball about 200 mm downstream
+    (exit unevenness falls to a tenth within about 0.37 exit heights; Bell1988 notes, Morel1975 notes).
+  - Curve: in Bell1988 (c = 7.7) the 3rd-order wall left the exit less even (0.0102 against 0.0040), and the 7th-order
+    wall and matched cubics separated at the inlet; the 5th-order wall did neither. It is a closed-form curve, and two
+    built tunnels used it.
+- Alternatives considered:
+  - **220 mm chamber (c = 4.84):** every part prints whole (no splitting), two diffuser screens with margin, about
+    470 g of PLA for the contraction shell instead of about 690 g, a shorter tunnel. Rejected by the owner: below the
+    recommended range, and a poor flow map would mean reprinting the chamber, diffuser and contraction.
+  - **280–300 mm (c = 7.8–9):** better flow on paper, but three or four diffuser screens, about 1.0–1.2 kg for the
+    contraction shell and more splitting, for diminishing gains.
+  - Contraction length 223 mm (Bell's minimum) or 280–335 mm; 3rd- and 7th-order walls, matched cubics, Abdelhamed2014's
+    optimised profile (needs digitised points; not validated on a built tunnel).
+- Evidence / source: the owner's answer in the 2026-11-26 build-step-1 session; the comparison by
+  `python cad/sizing/contraction.py` and a scratchpad script (numbers in the session log);
+  [Bell1988](resources/notes/Bell1988.md), [Mehta1979](resources/notes/Mehta1979.md),
+  [Morel1975](resources/notes/Morel1975.md) and [Mehta1977](resources/notes/Mehta1977.md) notes.
+- Status: Accepted (owner, 2026-11-26) for the 250 mm chamber. The 250 mm length and the 5th-order wall were put to
+  the owner in the same question, with the agent's recommendation, and the owner answered "250mm" without objecting;
+  recorded as Accepted on that basis. The wall thickness, flanges, joint position and the way the 250 mm sections are
+  split stay open.
+
+## D-023: Print each 250 mm section as four identical corner pieces, glued at mid-wall seams (option A)
+
+- Date: 2026-11-26
+- Question: The settling chamber, the wide end of the diffuser and the first 82 mm of the contraction are 280 mm across
+  with their flanges (D-022), wider than the P1S's 256 mm bed. How are they printed?
+- Decision (owner: "yea option A looks the best"):
+  - Each 250 mm section, and the contraction's inlet ring (x = 0 to 82 mm), is printed as **four identical L-shaped
+    corner pieces**, each carrying its share of both flanges, and **glued into one rigid section**. The four seams sit in
+    the middle of the walls and run along the flow; the corners have no seam.
+  - **In the section with the S pressure taps, each piece carries one tap about 20 mm beside its seam** (the owner's
+    layout), so the four pieces stay identical and each tap's boss sits wholly on one piece.
+  - The contraction from x = 82 mm to its exit is one seamless piece (joint size: inside 219.7 mm, flange 249.7 mm).
+- Rationale: halves do not fit (280 × 140 mm needs 297 mm even across the diagonal); the corner pieces are about
+  140 × 140 mm, two to a plate; flanges printed on the pieces put every bolt hole where the CAD puts it; the seams sit
+  where the air moves at about a fifth of the test-section speed or less (dynamic pressure about 3–4 % of the test
+  section's), while the corners, where the boundary layer is weakest, stay whole; the same method works for the curved
+  diffuser end and contraction inlet. The static pressure is the same across the settling chamber (slow, straight
+  flow), so a tap 20 mm off the middle of the wall reads the same as one in the middle, and a seam along the flow barely
+  disturbs the pressure beside it.
+- Alternatives considered: **option B**, four flat wall panels in a pinwheel plus a four-bar frame at each flange
+  (panels 253 mm wide on the 256 mm bed, 280 mm bars fit only across the diagonal, two seams at every corner, bolt holes
+  through two parts; the flat panels would give the smoothest inside face but do not suit the curved diffuser and
+  contraction walls); a pinwheel of unequal corner pieces with the seams 40 mm off-centre and the taps mid-wall (the
+  agent's first fix when the owner asked where the taps go; the owner's layout keeps the simpler symmetric pieces);
+  a 220 mm chamber needing no split (rejected in D-022).
+- Evidence / source: the owner's choice in the 2026-11-26 session, made from the agent's to-scale drawings (private
+  page on claude.ai, "Splitting the 250 mm Sections": https://claude.ai/artifact/UFEmwtqjkPqvZEFhCvpwqZ); joint and
+  flange numbers in [cad/sizing/flanges.md](cad/sizing/flanges.md).
+- Status: Accepted (owner, 2026-11-26) for the four-piece split, the mid-wall seams and the tap layout. The flange
+  sizes, bolt patterns, gluing method and the S ring's position along the chamber are Proposed in
+  `cad/sizing/flanges.md`, to be settled with the test coupons and the settling-chamber sheet.
+
+## D-024: Test section 310 mm long in two prints; one clear window and one black printed wall; E and M tap positions
+
+- Date: 2026-11-26
+- Question: How long is the 100 × 100 mm test section (D-008), how is it built when it is longer than the 256 mm bed,
+  which walls are clear, and where do the E and M pressure taps go now that the top panel lifts off (D-014)?
+- Decision (owner: "310mm, one window, taps as drawn"):
+  - **Length 310 mm**, built as a **245 mm front body printed in one piece** and a **65 mm extension**, joined by a
+    bolted flange 26 mm behind the ball. Positions from the test-section entrance: E taps at 56 mm, the ball's centre at
+    206 mm, the open exit at 310 mm.
+  - **One clear acrylic window** on the camera side (above a 20 mm printed rail) and **a black printed wall** on the
+    other side; the lift-off acrylic top panel of D-014 and the floor insert stay as decided.
+  - **E: one tap in each of the four walls** of a printed entrance band (0–80 mm, closed on all sides), at 56 mm.
+    **M: one tap in each side wall** at the ball's station (206 mm), 12 mm above the floor. The M floor tap of the old
+    drawings is dropped.
+- Rationale (agent's layout, from the reference notes' rules; not measured):
+  - E at least 0.5 D₂ (56 mm) after the contraction exit, where the wall pressure has settled (Morel1975 notes); the ball
+    at least 1.5√C = 150 mm after the reference pressure (Cooper1998 notes); at least 4√S (90 mm for the 1 in ball,
+    preferred; 2√S minimum) between the ball's base and the end of the test section (PROJECT_BACKGROUND, blockage
+    positions). Together about 309 mm, so 310. At 270 mm the 1 in ball gets only about 2.3√S.
+  - No test section that long prints in one piece; a joint behind the ball cannot disturb the ball's drag, while one
+    ahead of it could.
+  - E is used in every force run, so it must sit in fixed walls, never on the lift-off panel; M is used only on
+    calibration days. Two M taps on opposite printed walls need no drilling in acrylic and stay below the line of sight
+    to the ball; the static pressure is the same across the empty test section, so 12 mm up reads like mid-height.
+  - The black wall is the background for mist photographs later, stiffens the body and carries taps.
+- Alternatives considered: 270 mm (minimum wake room only); a joint ahead of the ball; two clear side windows (no dark
+  background, M taps through acrylic); E or M taps in the lift-off panel; an M tap on the floor insert 30 mm upstream of
+  the sting (old drawings).
+- Evidence / source: the owner's choice in the 2026-11-26 session from the agent's to-scale drawing (private page on
+  claude.ai, "Test Section Layout": https://claude.ai/artifact/8apGKDE8i8ndfXCnXVSCdT); the sheet
+  [cad/sizing/test_section.md](cad/sizing/test_section.md).
+- Status: Accepted (owner, 2026-11-26) for the length and its split, the window and black wall, and the E and M
+  positions. Wall details, the window's mounting, the top panel and the floor insert's size are Proposed in the sheet
+  (the insert and balance box in their own sheet).
+
+## D-025: Fan: AC Infinity CLOUDLINE S6 (supersedes D-011)
+
+- Date: 2026-11-26
+- Question: D-011 left the fan open between the AC Infinity CLOUDLINE S6 and the VEVOR VV-GDFJ-AC6. Which one?
+- Decision: **the AC Infinity CLOUDLINE S6, model AI-CLS6** (owner, 2026-11-26, the agent's recommendation). It is still
+  bought last, once the airspeed readout works, so its return window covers the real test (owner, 2026-11-10).
+- Rationale: about 13.0–13.4 m/s against about 11.3 m/s (straight-line estimates, five window screens), so D-010's
+  13 m/s target stands; the maker's figures (425 CFM, 503 Pa) rather than a seller's; an EC motor with 10 speed levels,
+  likely steadier at low speed. The fan inlet ring and stand can now be sized from the S6 (200 × 320 × 212 mm, maker's
+  page); the collar diameter is measured on arrival.
+- Alternatives considered: the VEVOR VV-GDFJ-AC6 ($53.90; about 11.3 m/s, about 73 % of the S6's force at top speed).
+- Evidence / source: [buy list](docs/buy_list.md) §1; D-011.
+- Status: Accepted (owner, 2026-11-26).
+
+## D-026: Wide-angle diffuser: three screens, 175 mm long
+
+- Date: 2026-11-26
+- Question: How many screens does the diffuser from the fan's 152 mm round outlet to the 250 mm chamber carry, and how
+  long is it?
+- Decision: **three window screens (12a at the inlet, 12b at the middle, 12c at the exit), 175 mm long** (owner,
+  2026-11-26, the agent's recommendation).
+- Rationale: area ratio 3.44 needs the screens' K to total at least 2.1 (A < 1.14 K_sum + 1, Mehta1977/Mehta1979).
+  Two of the 0.011 in window screens give about 2.15, almost no margin; three give about 3.2 for about 8 Pa more fan
+  pressure (about 1–2 % of the S6's). With three screens Mehta1977's Fig. 5 allows about 100 mm; 175 mm leaves margin.
+  The middle screen needs a joint at mid-length, which also splits the diffuser into two prints.
+- Alternatives considered: two screens and 200 mm (one joint and frame fewer, K margin about 2 %).
+- Evidence / source: [Mehta1977 notes](resources/notes/Mehta1977.md); [buy list](docs/buy_list.md) §3; drawing sheet
+  WT-02.
+- Status: Accepted (owner, 2026-11-26). Wall shape, corner fillets and the screen frames are in the diffuser sheet
+  (`cad/sizing/diffuser.md`, Proposed).
+
+## D-027: Settling chamber: compact spacing, about 275 mm
+
+- Date: 2026-11-26
+- Question: How far apart are the honeycomb, the two chamber screens and the contraction?
+- Decision: **compact spacing** (owner, 2026-11-26, the agent's recommendation): from the diffuser's exit screen, about
+  25 mm to the honeycomb (50 long), 50 mm to screen 1, 50 mm to screen 2 (Mehta1979's 0.2 D), then about 100 mm to the
+  contraction so the S taps fit after the last screen and at least about 70 mm before the contraction (D-023, Morel1975
+  notes). About 275 mm in all; the tunnel is about 1.36 m long with the S6.
+- Rationale: the validation runs at Re of about 8,000–22,000, far below the drag crisis, where a little more
+  free-stream turbulence matters least; the coarse-grid check (TODO P1 proposal #8) will show whether it matters at
+  all. Shorter, less filament, fewer prints.
+- Alternatives considered: full-decay spacing (500 wire diameters, 140 mm, between screens and about 150 mm after the
+  honeycomb; Mehta1977): about 465 mm and a 1.55 m tunnel.
+- Evidence / source: [Mehta1979](resources/notes/Mehta1979.md) and [Mehta1977](resources/notes/Mehta1977.md) notes;
+  PROJECT_STATUS open questions 13 and 15.
+- Status: Accepted (owner, 2026-11-26). Section lengths and the honeycomb's mounting are in the settling-chamber sheet
+  (`cad/sizing/settling_chamber.md`, Proposed).
+
+## D-028: Seal the load-cell box, with a gasketed access door for model changes
+
+- Date: 2026-11-26
+- Question: Barlow1999 (ch. 7) warns that air flowing through the gap around a support pushes on it. Should the box
+  under the floor that holds the load cell be sealed, and how is the model then changed?
+- Decision (owner: "sealed load cell box is fine", 2026-11-26, with the need to get in to change models):
+  - The box is **airtight except for the gap around the sting**, which stays open so the sting touches nothing. Foam
+    tape seals its joints and the joint with the tunnel floor; the cable leaves through a grommet or a hole sealed with
+    silicone.
+  - **An access door in the side of the box** (camera side, Proposed), gasketed with the foam tape and held by magnets
+    or two thumb screws, lets the owner reach the sting lock to change the ball (3/4 in, 1 in) or, later, a cylinder or
+    an airfoil on its own sting: top panel off, door open, loosen the lock, lift the sting out, fit the next one,
+    tighten, close.
+- Rationale: with every other path closed, the gap is a dead end; the box fills to the test section's pressure and the
+  air in it stays still, so nothing flows along the sting (Barlow1999 notes, ch. 7, pp. 265 and 278). The still air
+  also steadies the cell's temperature. A seal only matters during runs, so a door that opens is fine.
+- Alternatives considered: an unsealed box (gap flow that changes from run to run); sealing the gap itself (would touch
+  the sting and carry force); a sting-lock knob passed through the box wall on a sealed shaft (more parts).
+- Evidence / source: 2026-11-22 proposal #2 (TODO P1); [Barlow1999 notes](resources/notes/Barlow1999.md); the drawing on
+  the owner's private page "Test Section Layout" (https://claude.ai/artifact/8apGKDE8i8ndfXCnXVSCdT).
+- Status: Accepted (owner, 2026-11-26). Door size, position and fastening are Proposed in the balance sheet.
+
+## D-029: Measure the sting's tare and interference with an image sting
+
+- Date: 2026-11-26
+- Question: How is the drag of the sting showing below the ball (tare) and its effect on the flow round the ball
+  (interference) found and removed?
+- Decision (owner: "im fine with doing it", 2026-11-26): **the image method adapted for a sphere** (2026-11-22 proposal #1):
+  - Run 1, normal: ball on its sting; the balance reads ball + T + I.
+  - Run 2, with the image: a **dummy shield**, a mirror copy of the floor shield, hangs from a **spare printed top panel**
+    (so its drag goes to the tunnel), and a **5 mm stub of sting is pressed into the top of the ball** (so its drag goes
+    to the balance), entering the dummy shield's bore without touching. The balance reads ball + 2T + 2I.
+  - Ball alone = Run 1 − (Run 2 − Run 1), at the same speed, runs back to back.
+  - The stub needs a second hole, at the top, so **one spare ball of each size is drilled as the "image ball"**; the
+    normal balls keep one hole. The ball-drilling jig drills both poles.
+  - **The shield stops about 5 mm below the ball** (as planned since 2026-11-08), not closer.
+- Rationale: the exposed sting is about 8–16 % of the 3/4 in ball's drag at 13 m/s (estimate), too large to ignore and
+  too uncertain to estimate. Running the sting without the ball misses the interference (Barlow1999, pp. 264 and 271).
+  A smaller gap would not remove the need: the interference remains at any gap, and Barlow advises ending shields well
+  below the model, accepting a well-defined tare and measuring it, because a shield close to the model can drive flow
+  along it (p. 278). Weakly2024 subtracted nothing for its sphere (63.5 mm ball, 1.6 mm sting), so it is no guide here.
+- Alternatives considered: no correction (Weakly2024's sphere test); sting-alone subtraction (Weakly2024's wing tests;
+  misses interference); a 2–3 mm gap (less tare, more interference risk, still needs the image runs).
+- Evidence / source: [Barlow1999 notes](resources/notes/Barlow1999.md) ch. 7; [Weakly2024 notes](resources/notes/Weakly2024.md);
+  the drawing on the owner's private page "Test Section Layout".
+- Status: Accepted (owner, 2026-11-26). The image panel and stub are sized in the balance sheet.
+
+## D-030: Calibration probe: a straight probe through the open exit, on a stand outside the tunnel
+
+- Date: 2026-11-26
+- Question: How does the total-pressure probe reach the model station for the flow map and the S − E calibration
+  (open question 10; buy list §5)?
+- Decision (owner, 2026-11-26, the agent's recommendation): **a straight 1/8 in brass probe, facing upstream, entering
+  through the open exit** and held on a printed stand outside the tunnel, with a printed guide or grid so its tip can be
+  set at known positions across the section. It is in the tunnel only for calibration and the flow map, never in force
+  runs. Its static partner is the M taps (D-024).
+- Rationale: no hole in the test section to plug and keep flush; no bend in the probe; easy to move for the flow map;
+  out of the way during force runs. The probe stem lies downstream of its tip, where it barely affects the total
+  pressure the tip reads.
+- Alternatives considered: a port in the black wall at the ball's station with a bent probe and a flush plug for force
+  runs; a bought pitot-static tube (Dwyer 166-6, not chosen 2026-11-08).
+- Evidence / source: agent's idea of 2026-11-09 (TODO P1); [buy list](docs/buy_list.md) §5;
+  [Barlow1999 notes](resources/notes/Barlow1999.md) ch. 4 (align within a few degrees; chamfer the tip).
+- Status: Accepted (owner, 2026-11-26). The stand and guide are sized in the calibration sheet.
+
+## D-031: The repository is public (supersedes D-003's private visibility)
+
+- Date: 2026-11-26
+- Question: Should the GitHub repository stay private?
+- Decision: **public** (the owner changed it before the 2026-11-26 session's second half: "i made the repo public just to
+  showcase the project so recruiters can see what im working on"; checked with `gh repo view`: PUBLIC).
+- Consequences (agent, 2026-11-26):
+  - **Copyrighted PDFs.** `resources/` holds publisher PDFs that were kept only because the repository was private
+    (resources/README.md; PROJECT_STATUS §9): at least Brown2003 (ASCE, "for personal use only"), Mehta1979 and
+    Wieghardt1953 (Cambridge Core terms), Roos1971 (AIAA), Mehta1977 (Pergamon), Morel1975 (ASME); also to check:
+    Abdelhamed2014, Anthoine2004, Bradshaw1964 (Crown copyright reprint), Maskell1963, Morrison2013 and Weakly2024. The
+    NASA reports (Bell1988, Scheiman1981), AGARD's Cooper1998 ("no restrictions on its distribution") and the vendor
+    datasheets are fine. The notes files are the project's own writing and stay. Removing a PDF from the current files
+    does not remove it from the Git history; that needs a history rewrite and a force push, which only the owner can
+    do. The owner's choice is pending.
+  - Everything else in the repository is the owner's own work. Photos were stripped of GPS data (2026-11-18/23).
+- Status: Accepted (owner, 2026-11-26). The handling of the copyrighted PDFs is open.

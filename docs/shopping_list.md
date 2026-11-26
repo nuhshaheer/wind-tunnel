@@ -6,23 +6,23 @@ Other statuses: **Deciding**, **Maybe**, **Optional**, **Check house** (buy only
 Why each part was chosen, and the alternatives, are in [buy_list.md](buy_list.md). When something arrives, tell the
 agent so it can mark it On hand there too.
 
-**Last updated:** 2026-11-26 (the shield PCB order). **Everything ordered on 2026-11-09/10 has arrived** (owner, 2026-11-17); arrival checks
+**Last updated:** 2026-11-26 (the shield PCB order; later the same day, tools for the build and the inserts' sizes). **Everything ordered on 2026-11-09/10 has arrived** (owner, 2026-11-17); arrival checks
 are still to do (TODO P2). Prices were seen on listings on 2026-11-08/09. A **~** means a typical price that has not
 been checked. Tax and shipping are not included. Prices paid are not recorded unless stated.
 
 | | Rough cost |
 |---|---|
-| Fan | $53.90 (VEVOR) or $99.00 (S6); **bought last** (owner, 2026-11-10), once the airspeed readout works |
+| Fan | $99.00, the S6 (chosen 2026-11-26, D-025); **bought last** (owner, 2026-11-10), once the airspeed readout works |
 | Everything else marked To buy | nothing: **everything ordered 2026-11-09/10 has arrived** (owner, 2026-11-17) |
 | "Check house" items, if none are at home | up to about $65–100 more (solder not priced) |
 | PLA | 4 kg black arrived (2026-11-17); about $15–20 per kg if more is needed |
 
-## Fan (still deciding; buy last)
+## Fan (chosen 2026-11-26: the S6, D-025; buy last)
 
 | Item | Qty | Price | Link | Status |
 |---|---|---|---|---|
-| AC Infinity CLOUDLINE S6, model AI-CLS6 (about 13 m/s) | 1 | $99.00 | [AC Infinity](https://acinfinity.com/cloudline-s6-quiet-inline-fan-6-with-speed-controller/) | Deciding |
-| *or* VEVOR 6" inline fan, model VV-GDFJ-AC6 (about 11.3 m/s) | 1 | $53.90 | your VEVOR listing (search the model number) | Deciding |
+| AC Infinity CLOUDLINE S6, model AI-CLS6 (about 13 m/s) | 1 | $99.00 | [AC Infinity](https://acinfinity.com/cloudline-s6-quiet-inline-fan-6-with-speed-controller/) | **To buy, last** (chosen 2026-11-26, D-025) |
+| *or* VEVOR 6" inline fan, model VV-GDFJ-AC6 (about 11.3 m/s) | 1 | $53.90 | your VEVOR listing (search the model number) | Not chosen (2026-11-26) |
 
 The agent recommends the S6 (2026-11-09): about 2 m/s faster, makers' figures more trustworthy, likely steadier at low
 speed. The VEVOR still works if the $45 matters. Reasons and worst cases: [buy_list.md](buy_list.md) §1. **Timing
@@ -83,7 +83,7 @@ counted; [D-020](../DECISIONS.md)) | 40 strips | $10 | [Amazon search](https://w
 | Clear cast acrylic, 1/8 in. **Bought: four 8 × 12 in sheets** (owner, 2026-11-10); each gives one window panel of about 300 × 120 mm | 4 | | | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
 | Delrin (acetal) balls, 3/4 in, ±0.001 in. Sold only in tens: the spares are for drilling practice and press-fit trials | 1 pack of 10 | ~$2.78 each (bulk price) | [McMaster](https://www.mcmaster.com/products/acetal-balls/) | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
 | Delrin (acetal) balls, 1 in, ±0.001 in. Sold only in tens | 1 pack of 10 | ~$4.42 each (bulk price) | [McMaster](https://www.mcmaster.com/products/acetal-balls/) | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
-| Brass M3 heat-set inserts. Send the agent their length and outside diameter: the printed holes are sized to them | 1 pack of 100 | $11–20 | | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
+| Brass M3 heat-set inserts. **Bought: a Kadrick M2–M5 kit** (owner's photo of the listing, 2026-11-26). M3 lengths 3, 4, 5, 6 and 8 mm (50, 50, 50, 40 and 40 pieces); the listing gives M3 outside diameters 4.5 mm (top, d1) and 3.9 mm (bottom, d2), thread pitch 0.5 mm. Check one insert with the calipers; the printed holes are sized from the coupon | 1 kit | $11–20 | | **Got it** (2026-11-17); ordered (reported 2026-11-10) |
 | Calibration weight set, 10 mg–100 g, 17 pieces, with tweezers (hung in a light pan on a thread from the printed hook) | 1 | $20–40 | | **Got it** (2026-11-17); ordered (reported 2026-11-10). **2026-11-19 (owner): the set bought is different:** 50, 2 × 20, 6 × 10, 2 × 5 and 3 × 2 g plus a 10 g hanging rod, from Amazon; weighed ([EXP-001](data_catalog.md#exp-001-calibration-mass-weighing)) |
 
 ## Filament
@@ -96,6 +96,15 @@ The loaded parts (screen frames, sting mount, stops, load-cell base, drilling ji
 already have; they need roughly 0.5–1 kg (estimate). Weigh that spool too: buy plain PETG only if less than that is
 left. Fit the hardened-steel nozzle before printing PETG-CF.
 
+## Tools for the build (added 2026-11-26)
+
+| Item | Qty | Price | Link | Status |
+|---|---|---|---|---|
+| **Heat-set insert tip with an M3 size, Hakko T18 series** (fits the FX-888DX). Presses the brass inserts in straight; a pointed soldering tip can catch an insert and pull it back out. Sets of several sizes are common | 1 set | about $11–26 (listings seen 2026-11-26) | [Amazon search](https://www.amazon.com/s?k=T18+heat+set+insert+tip+M3) | To buy |
+| Flush cutters (trim the shield's pin leads flat) | 1 | ~$5–10 | | To buy |
+| Heat gun, two settings (owner: about 500 °F and 800 °F). For heat-shrink tubing; **keep it away from the printed parts and the acrylic** (PLA softens at about 55–60 °C) | 1 | not checked | | To buy |
+| Multimeter, your own (until now a friend's FNIRSI DST-201). **Chosen: AstroAI True RMS 6000-count auto-ranging** (owner, 2026-11-26): DC volts to 0.001 V on its 6 V range, resistance, continuity beeper, capacitance. First jobs: the shield's checks when it arrives, the HX711's excitation voltage | 1 | ~$20–35 | | To buy |
+
 ## Check the house first
 
 | Item | Qty | Price | Link | Status |
@@ -106,7 +115,7 @@ left. Fit the hardened-steel nozzle before printing PETG-CF.
 | Rubber pads under the tunnel's feet | 6–8 | | | Covered by the 20-pack of bumper feet (above) |
 | Hook-up wire, **24 AWG stranded, silicone, about 6 colours**: TUOFENG, 6 colours × 30 ft, tinned copper. No solid wire needed: the ECE kit's jumpers cover the breadboard | 1 set | $15.79 | [Amazon search](https://www.amazon.com/s?k=TUOFENG+24+AWG+stranded+silicone+wire+6+colors) | **Got it** (2026-11-17); ordered (2026-11-09) |
 | Heat-shrink tubing | 1 assortment | ~$5–8 | | Check house |
-| Solder (0.6–0.8 mm rosin core), flux, desoldering wick | | not checked | | Check house |
+| Solder (0.6–0.8 mm rosin core), flux, desoldering wick | | not checked | | **Got it** (at home, owner, 2026-11-26) |
 | Steel rule, 300 mm / 12 in | 1 | a few $ | | Check house |
 | Needle files or a deburring tool | 1 set | ~$5–10 | | Check house |
 | Junior hacksaw | 1 | ~$5–10 | | Check house |

@@ -76,8 +76,9 @@ Source: the original README, written 2026-10-25 and kept in [README.md](README.m
 - [Confirmed] Electronics: the owner is a beginner, with no electronics background (owner, 2026-11-17), and wants to
   understand the circuit, not only build it. Circuit work is explained step by step in
   [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md).
-- Unknown: the fan model (open between the AC Infinity S6 and the VEVOR VV-GDFJ-AC6, [D-011](DECISIONS.md)), the
-  bench supply's rating, the room's free length around the tunnel.
+- [Confirmed] The fan: the AC Infinity CLOUDLINE S6 ([D-025](DECISIONS.md), 2026-11-26). The tunnel is sized
+  (D-022 to D-030): about 1.34 m long, its axis 175 mm above the bench ([cad/sizing/](cad/sizing/README.md)).
+- Unknown: the bench supply's rating, the room's free length around the tunnel.
 
 ## Governing equations [Standard]
 

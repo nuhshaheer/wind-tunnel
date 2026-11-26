@@ -4,12 +4,12 @@ from wtsheets import *
 
 def sheet_ga2():
     sh = Sheet(2, 'WT-00-2', 'GENERAL ARRANGEMENT — PLAN, EXIT VIEW, JOINTS', '', 'NTS',
-               ['Plan from above. Off-tunnel items (controller, sensors, Arduino box) are schematic; positions TBD.',
+               ['Plan from above. Off-tunnel items are schematic: Arduino box beside the contraction, BME280 on the fan stand (cad/sizing/supports.md).',
                 'Keep each I²C run (SDP810, BME280) under about 1 m: this limits where the Arduino box can go.',
-                'Tap stations have four taps, one per wall. Taps in removable panels are an open question (register).',
-                'The M-station floor tap cannot sit at the sting hole; its offset is TBD. The probe line is on sheet 9.',
-                'Load-cell box and feet hidden under the tunnel (dashed). Tubes in the force-run set-up: S → High, E → Low.',
-                'Joint schedule lists every connection between sections; flange, bolt and pin sizes are TBD (sheet 10).'])
+                'S and E: four taps, one per wall, in fixed walls. M: one tap in each side wall at the ball, 12 above the floor (D-024).',
+                'Top panel 80–235 lifts off; one clear window on the camera side (near), black printed wall opposite (D-024).',
+                'Load-cell box (sealed, D-028) and feet hidden under the tunnel (dashed). Force runs: S → High, E → Low.',
+                'Joint schedule lists every connection; flanges, bolt patterns and screws on sheet 10 and in cad/sizing/flanges.md.'])
     v = View(88, 330, 0.95)
     X, Y = v.X, v.Y
     cr = P['collar_D'] / 2
@@ -26,7 +26,7 @@ def sheet_ga2():
         for s_ in (1, -1):
             pts = [v.P(xa + (xb - xa) * i / 60, s_ * (r_in(xa + (xb - xa) * i / 60) + T)) for i in range(61)]
             sh.pl(pts, cls='vis')
-    for xj in (D0, D1, HC0, SC1, SC2, C0, C1):
+    for xj in JOINTS:
         r = r_in(xj - 0.01) if xj != D0 else RS
         r2 = r_in(xj + 0.01) if xj != C1 else h
         rr = max(r, r2) + T + P['fl_w']
@@ -37,13 +37,13 @@ def sheet_ga2():
     # test section from above
     sh.rect(X(C1), Y(h + 12), v.L(P['ts_L']), v.L(2 * (h + 12)), cls='vis')
     sh.rect(X(C1 + 12), Y(h + 10), v.L(P['ts_L'] - 24), v.L(2 * (h + 10)), cls='vis2')
-    sh.rect(X(C1 + 20), Y(h + 3), v.L(P['ts_L'] - 40), v.L(2 * h + 6), cls='fill-acr')
+    sh.rect(X(C1 + 80), Y(h + 3), v.L(155), v.L(2 * h + 6), cls='fill-acr')
     sh.circ(X(XM), Y(0), v.L(P['ball34'] / 2), cls='vis2', fill='#f4f4f2')
     sh.path(f'M{f(X(XM-7.5))},{f(Y(0))} Q{f(X(XM-7.5))},{f(Y(3.75))} {f(X(XM))},{f(Y(3.75))} L{f(X(XM+15))},{f(Y(0))} '
             f'L{f(X(XM))},{f(Y(-3.75))} Q{f(X(XM-7.5))},{f(Y(-3.75))} {f(X(XM-7.5))},{f(Y(0))} Z', cls='hid')
-    for mx, my in ((C1 + 19, h + 6), (T1 - 19, h + 6), (C1 + 19, -h - 6), (T1 - 19, -h - 6)):
+    for mx, my in ((C1 + 86, h + 6), (C1 + 229, h + 6), (C1 + 86, -h - 6), (C1 + 229, -h - 6)):
         sh.circ(X(mx), Y(my), v.L(4), cls='vis2', fill='#3a3f47')
-    sh.rect(X(XM - 45), Y(45), v.L(90), v.L(90), cls='hid')
+    sh.rect(X(XM - 50), Y(45), v.L(100), v.L(90), cls='hid')
     # mist port and taps
     sh.circ(X(XMIST), Y(0), v.L(10), cls='vis2', fill='#ffffff')
     sh.circ(X(XMIST), Y(0), v.L(8), cls='thin')
@@ -52,8 +52,8 @@ def sheet_ga2():
         for s_ in (1, -1):
             y0, y1 = s_ * yo, s_ * (yo + 12)
             sh.rect(X(xt) - 1.6, Y(max(y0, y1)), 3.2, v.L(12), cls='vis2', fill='url(#hBr)')
-    for fx in (462, 590, 712, 830, C1 + 17, T1 - 37):
-        sh.rect(X(fx), Y(60), v.L(20), v.L(120), cls='hid')
+    for fx in FEET:
+        sh.rect(X(fx - 10), Y(60), v.L(20), v.L(120), cls='hid')
     sh.centre(X(-40), Y(0), X(T1 + 30), Y(0))
     sh.flow(X(C0 + 40), Y(-90), 60)
     sh.flow(X(C1 + 30), Y(-24), 56)
@@ -89,7 +89,7 @@ def sheet_ga2():
     B(sh, 30, X(C0 + 150), Y(r_in(C0 + 150) + T), 1010, R1)
     B(sh, 42, X(C1 + 120), Y(30), 1150, R1)
     B(sh, 60, X(XM) + 4, Y(4), 1230, R2)
-    B(sh, 45, X(T1 - 19), Y(h + 6) - 3, 1380, R2, suffix=' (4 per panel shown)')
+    B(sh, 45, X(C1 + 229), Y(h + 6) - 3, 1380, R2, suffix=' (4 per panel shown)')
 
     # callouts, near side
     Q1, Q2 = 618, 660
@@ -114,16 +114,16 @@ def sheet_ga2():
     for c, hd in zip(cols, ['JOINT', 'BETWEEN', 'CONNECTION', 'FASTENERS AND SEAL', 'ALIGNMENT', 'DETAIL']):
         sh.text(jx + c, jy + 22, hd, cls='tblh')
     sh.line(jx, jy + 28, jx + 1000, jy + 28, cls='thin')
-    rows = [('J1', 'Fan collar 3 → socket 10', 'Slide fit; fan on its own stand', 'Neoprene wrap 4; duct tape 5', 'Snug fit (test ring)', 'Sh 3'),
-            ('J2', 'Socket 10 → diffuser 11', 'Bolted flange; clamps screen 12a', 'Inserts 96, screws 97, gasket 46', 'Pins 98', 'Sh 4, 10'),
-            ('J3', 'Diffuser 11 → chamber 20', 'Bolted flange; clamps screen 12c', 'As J2', 'Pins 98', 'Sh 4, 10'),
-            ('J4', 'Chamber joints (3, TBD)', 'Bolted; honeycomb frame, 12d, 12e', 'As J2; positions TBD', 'Pins 98', 'Sh 5, 10'),
-            ('J5', 'Chamber 20 → contraction 30', 'Bolted flange', 'As J2', 'Pins 98', 'Sh 5, 6'),
-            ('J6', 'Contraction 30 → test section 40', 'Bolted flange; inside faces flush', 'As J2', 'Pins 98; no step', 'Sh 6, 7'),
-            ('J7', 'Panels 42, 43 → frame 40', 'Lift-off panels', 'Magnets 45; gasket 46', 'Lips 47', 'Sh 7'),
-            ('J8', 'Balance plate 70 → frame 40', 'Removable module; mounting TBD', 'Short M3 73', 'TBD', 'Sh 8'),
-            ('J9', 'Every section → bench', 'Printed feet 99 (no plywood base)', 'Rubber pads 100', 'Flanges and pins', 'Sh 10'),
-            ('J10', 'Test section → room', 'Open exit 52 (Tentative, D-007)', '—', '—', 'Sh 7')]
+    rows = [('J1', 'Fan collar 3 → inlet ring 10', 'Slide fit; fan on its own stand', 'Neoprene wrap 4; duct tape 5', 'Snug fit (coupon C7)', 'Sh 3'),
+            ('J2', 'Screen joints (5)', 'Flanges clamp frame 13 (12a–12e)', 'M3 × 16 into inserts 96; tape 46', 'Bolts', 'Sh 4, 5, 10'),
+            ('J3', 'Chamber 20 → contraction 30', 'J250, 12 bolts', 'M3 × 12; tape 46', 'Bolts; straightedge', 'Sh 5, 6'),
+            ('J4', 'Contraction ring → one-piece part (x = 82)', 'J220, 12 bolts', 'M3 × 12; tape 46', 'Bolts', 'Sh 6, 10'),
+            ('J5', 'Contraction 30 → test section 40', 'J100, 8 bolts; step down only', 'M3 × 12; tape 46', '2 pins 98', 'Sh 6, 7'),
+            ('J6', 'Front body → extension (x = 245)', 'J100, 8 bolts', 'M3 × 12; tape 46', 'Bolts', 'Sh 7'),
+            ('J7', 'Top panel 42 / image panel 55 → body 40', 'Lift-off', 'Magnets 45; tape 46', 'Lips 47', 'Sh 7, 8'),
+            ('J8', 'Load-cell box 71 → floor 41; door', 'Bolted, sealed (D-028)', '4 M3; tape; door magnets', 'Bosses', 'Sh 8'),
+            ('J9', 'Joints → bench', 'Cradles 99 (not bolted)', 'Bumper pads 100', 'Lips', 'Sh 10'),
+            ('J10', 'Test section → room', 'Open exit 52 (D-007)', '—', '—', 'Sh 7')]
     for i, row in enumerate(rows):
         yy = jy + 44 + i * 18.6
         for c, cell in zip(cols, row):
@@ -141,7 +141,7 @@ def sheet_ga2():
     sh.rect(Xe(-h - 6), Ye(h + 12), ve.L(2 * h + 12), ve.L(12 - P['acr_t']), cls='vis2', fill='url(#hPLA)')
     sh.circ(Xe(0), Ye(0), ve.L(P['ball34'] / 2), cls='vis2', fill='#f4f4f2')
     sh.rect(Xe(-3.75), Ye(-P['ball34'] / 2 - 5), ve.L(7.5), ve.L(50 - P['ball34'] / 2 - 5), cls='vis2', fill='#ffffff')
-    sh.rect(Xe(-45), Ye(-h - 6), ve.L(90), ve.L(158 - h - 6), cls='vis2')
+    sh.rect(Xe(-45), Ye(-h - 6), ve.L(90), ve.L(145 - h - 6), cls='vis2')
     for fx in (-60, 40):
         sh.rect(Xe(fx), Ye(-h - 12), ve.L(20), ve.L(170 - h - 12), cls='hid')
     sh.line(Xe(-rr - 20), Ye(-175), Xe(rr + 20), Ye(-175), cls='vis2')
@@ -149,7 +149,7 @@ def sheet_ga2():
     sh.centre(Xe(0), Ye(rr + 15), Xe(0), Ye(-180))
     sh.hdim(Xe(-h), Xe(h), Ye(h + 12) - 4, Ye(h + 12) - 4, Ye(rr) - 14, '100', st='F')
     sh.vdim(Ye(h), Ye(-h), Xe(-h), Xe(-h), Xe(-rr) - 14, '100', st='F', side='l')
-    sh.vdim(Ye(HALF), Ye(-HALF), Xe(HALF), Xe(HALF), Xe(rr) + 16, '250', st='P', side='r')
+    sh.vdim(Ye(HALF), Ye(-HALF), Xe(HALF), Xe(HALF), Xe(rr) + 16, '250', st='F', side='r')
     sh.flow(1240, 936, d='d', label='FLOW: AWAY FROM VIEWER')
     sh.vtitle(1345, 960, 'VIEW A — EXIT END', 'Looking upstream')
     return sh

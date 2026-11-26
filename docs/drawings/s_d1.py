@@ -35,12 +35,12 @@ def flange_pair(sh, v, xj, r_left, r_right, both=True, frame=False, fill='url(#h
 # =====================================================================================
 def sheet_contraction():
     sh = Sheet(6, 'WT-04', 'CONTRACTION (250 × 250 → 100 × 100, CR 6.25)', '', 'NTS',
-               ['Wall shape: 5th-order polynomial (Bell1988), zero slope and curvature at both ends, inflection at mid-length.',
-                'Each of the four walls follows the same half-width curve: a square section, outside Bell1988’s tested range.',
-                'Length 250 = 1.0 × inlet (Bell1988 minimum 0.89 at c = 7.7). Contraction ratio 6.25 (Mehta1979: 6–9).',
-                'Print in black PLA; sand the inside 220–600 grit. Keep internal segment joints away from the exit (D-005).',
-                'Segment split TBD: the 250 inlet plus walls exceeds the 256 mm bed. Inside faces must meet with no step.',
-                'Optional small 45° corner fillets (Mehta1979) must not end abruptly in the test section: TBD.'])
+               ['Wall shape: 5th-order polynomial (Bell1988), zero slope and curvature at both ends, inflection at mid-length (D-022).',
+                'Each of the four walls follows the same half-width curve; points file for Fusion in cad/sizing/ (cm, ImportSplineCSV).',
+                'Length 250 = 1.0 × inlet (Bell1988 minimum 0.89 at c = 7.7). Contraction ratio 6.25 (Mehta1979: 6–9). Walls 3.',
+                'Split at x = 82 (joint J220, 249.7 across): an inlet ring of four corner pieces (D-023), then one seamless part to the exit.',
+                'Print the one-piece part standing on its exit flange; walls lean at most 29.4°; 45° chamfer under the top flange.',
+                'Sand across the flow with a flat block (each wall is straight across); 220–600 grit, wet. Sharp corners, no fillets.'])
     s = 1.7
     x0 = C0 - 24
     v = View(110 - s * x0, 445, s)
@@ -52,8 +52,10 @@ def sheet_contraction():
         sh.rect(X(x0), Y(yt), v.L(C0 - 2 - P['fl_t'] - x0), v.L(T), cls='vis2', fill='url(#hPLA)')
     sh.breakline(X(x0), Y(HALF + T + 6), Y(-HALF - T - 6))
     flange_pair(sh, v, C0, HALF, HALF)
-    for top in (True, False):
-        sh.pl(wall_poly(v, C0 + 2 + P['fl_t'], C1 - 2 - P['fl_t'], top, n=80), cls='vis2', close=True, fill='url(#hPLAk)')
+    for xa_, xb_ in ((C0 + 2 + P['fl_t'], XCJ - 2 - P['fl_t']), (XCJ + 2 + P['fl_t'], C1 - 2 - P['fl_t'])):
+        for top in (True, False):
+            sh.pl(wall_poly(v, xa_, xb_, top, n=60), cls='vis2', close=True, fill='url(#hPLAk)')
+    flange_pair(sh, v, XCJ, r_in(XCJ), r_in(XCJ))
     flange_pair(sh, v, C1, P['ts'] / 2, P['ts'] / 2)
     for s_ in (1, -1):
         yt = s_ * (P['ts'] / 2 + T) if s_ > 0 else -P['ts'] / 2
@@ -74,22 +76,23 @@ def sheet_contraction():
     # dims
     yt_ = Y(HALF + T + P['fl_w'])
     yb_ = Y(-HALF - T - P['fl_w'])
-    sh.hdim(X(C0), X(C1), yb_ + 4, Y(-P['ts'] / 2 - T - P['fl_w']) + 4, yb_ + 40, '250', st='P')
-    sh.vdim(Y(HALF), Y(-HALF), X(C0), X(C0), X(x0) - 30, '250', st='P', side='l')
+    sh.hdim(X(C0), X(C1), yb_ + 4, Y(-P['ts'] / 2 - T - P['fl_w']) + 4, yb_ + 40, '250', st='F')
+    sh.hdim(X(C0), X(XCJ), yt_ - 4, Y(r_in(XCJ) + T + P['fl_w']) - 4, yt_ - 22, '82: joint J220', st='P')
+    sh.vdim(Y(HALF), Y(-HALF), X(C0), X(C0), X(x0) - 30, '250', st='F', side='l')
     sh.vdim(Y(50), Y(-50), X(C1), X(C1), X(xr) + 30, '100', st='F', side='r')
-    sh.lnote(X(C0 + 200), Y(-contraction_half(0.8) - T / 2), X(C0 + 210), Y(-HALF + 6), 'wall t TBD', st='T', anchor='start')
-    sh.lnote(X(C1 + 3), Y(-P['ts'] / 2 - T - P['fl_w'] + 3), X(C1 + 40), Y(-HALF - 18), 'flange TBD', st='T', anchor='start')
+    sh.lnote(X(C0 + 200), Y(-contraction_half(0.8) - T / 2), X(C0 + 210), Y(-HALF + 6), 'wall 3', st='P', anchor='start')
+    sh.lnote(X(C1 + 3), Y(-P['ts'] / 2 - T - P['fl_w'] + 3), X(C1 + 40), Y(-HALF - 18), 'flange 12 beyond the wall (J100)', st='P', anchor='start')
     sh.vtitle(X((C0 + C1) / 2), Y(-HALF - T - P['fl_w']) + 88, 'SECTION A–A — ON CENTRE LINE', 'Dotted lines: ordinate stations 0–10 (table below)')
     # callouts
     B(sh, 20, X(x0 + 6), Y(HALF + T), 90, 80, name='Settling-chamber shell (end)')
-    B(sh, 95, X(C0 - 4), Y(HALF + T + P['fl_w']), 300, 80, name='Bolted flange (joint J5)')
+    B(sh, 95, X(C0 - 4), Y(HALF + T + P['fl_w']), 300, 80, name='Bolted flange (J250, joint J3)')
     B(sh, 30, X(C0 + 70), Y(contraction_half(0.28) + T), 470, 130)
-    B(sh, 98, X(C1 + 4), Y(P['ts'] / 2 + T + P['fl_w'] - 3), 650, 80, name='Alignment pin and hole (J6)')
-    B(sh, 40, X(xr - 8), Y(P['ts'] / 2 + T), 820, 130, name='Test-section frame (start)')
+    B(sh, 98, X(C1 + 4), Y(P['ts'] / 2 + T + P['fl_w'] - 3), 650, 80, name='Alignment pins (J100, joint J5)')
+    B(sh, 40, X(xr - 8), Y(P['ts'] / 2 + T), 820, 130, name='Test-section body (start)')
 
     # ordinate table
     tx, ty = 70, 840
-    sh.text(tx, ty, 'WALL ORDINATES — y = 125 − 75 · (6ξ⁵ − 15ξ⁴ + 10ξ³), ξ = x / 250   (proposed; Bell1988)', cls='kh')
+    sh.text(tx, ty, 'WALL ORDINATES — y = 125 − 75 · (6ξ⁵ − 15ξ⁴ + 10ξ³), ξ = x / 250   (D-022; Bell1988)', cls='kh')
     sh.text(tx, ty + 24, 'Station', cls='tblh')
     sh.text(tx, ty + 44, 'x (mm)', cls='tblh')
     sh.text(tx, ty + 64, 'half-width y', cls='tblh')
@@ -115,10 +118,12 @@ def sheet_contraction():
         sh.line(Xe(sx * HALF), Ye(sy * HALF), Xe(sx * 50), Ye(sy * 50), cls='vis2')
     sh.centre(Xe(-rr - 12), Ye(0), Xe(rr + 12), Ye(0))
     sh.centre(Xe(0), Ye(rr + 12), Xe(0), Ye(-rr - 12))
-    sh.vdim(Ye(HALF), Ye(-HALF), Xe(HALF), Xe(HALF), Xe(rr) + 20, '250', st='P', side='r')
+    sh.vdim(Ye(HALF), Ye(-HALF), Xe(HALF), Xe(HALF), Xe(rr) + 20, '250', st='F', side='r')
+    for sx_, sy_ in ((0, 1), (0, -1), (1, 0), (-1, 0)):
+        sh.line(Xe(sx_ * HALF if sx_ else -2), Ye(sy_ * HALF if sy_ else -2), Xe(sx_ * rr if sx_ else 2), Ye(sy_ * rr if sy_ else 2), cls='vis', extra='style="stroke:#c0410d;stroke-width:2.2"')
     sh.hdim(Xe(-50), Xe(50), Ye(50) - 4, Ye(50) - 4, Ye(HALF) + 22, '100', st='F')
     sh.flow(Xe(-rr) - 4, Ye(-rr) - 2 + 30, d='d', label=None)
-    sh.vtitle(1290, Ye(-rr) + 38, 'VIEW B — INLET END', 'Looking downstream, into the contraction')
+    sh.vtitle(1290, Ye(-rr) + 38, 'VIEW B — INLET END', 'Looking downstream · orange: glued seams of the inlet ring (D-023)')
     ve2 = View(1290, 690, 0.78)
     X2, Y2 = ve2.X, ve2.Y
     r2 = P['ts'] / 2 + T + P['fl_w']
@@ -127,7 +132,7 @@ def sheet_contraction():
     sh.centre(X2(-HALF - 12), Y2(0), X2(HALF + 12), Y2(0))
     sh.centre(X2(0), Y2(HALF + 12), X2(0), Y2(-HALF - 12))
     sh.vdim(Y2(50), Y2(-50), X2(50), X2(50), X2(r2) + 20, '100', st='F', side='r')
-    sh.hdim(X2(-r2), X2(r2), Y2(-r2) + 4, Y2(-r2) + 4, Y2(-r2) + 26, 'flange TBD', st='T')
+    sh.hdim(X2(-r2), X2(r2), Y2(-r2) + 4, Y2(-r2) + 4, Y2(-r2) + 26, '130 (J100 flange)', st='P')
     sh.vtitle(1290, Y2(-HALF) + 38, 'VIEW C — EXIT END', 'Looking upstream, into the contraction exit')
     sh.flow(X2(-HALF) - 4, Y2(-HALF) + 4, d='o', label=None)
     return sh

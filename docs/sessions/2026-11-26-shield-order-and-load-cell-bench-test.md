@@ -2,7 +2,7 @@
 
 - **Session ID:** 26e4ecb4-355a-4670-bb0f-77007555aa40
 - **Agent:** Claude Opus 5.5 (Claude Code, VS Code extension)
-- **Commit:** not committed yet
+- **Commit:** `ac895a3`
 
 Started on the evening of 2026-11-25 and ran past 02:00 on 2026-11-26. The owner did the bench work and KiCad edits; the
 agent checked files, recorded the load-cell data straight from the Mega's USB port and analysed it.

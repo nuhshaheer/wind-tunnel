@@ -33,7 +33,7 @@ def draw_tunnel_side(sh, v, detail=True):
         for top in (True, False):
             sh.pl(wall_poly(v, xa, xb, top), cls='fill-wall', close=True)
     # flanges / joints
-    for xj in (D0, D1, HC0, SC1, SC2, C0, C1):
+    for xj in JOINTS:
         r = r_in(xj - 0.01) if xj != D0 else RS
         r2 = r_in(xj + 0.01) if xj != C1 else P['ts'] / 2
         rr = max(r, r2) + T + P['fl_w']
@@ -44,7 +44,7 @@ def draw_tunnel_side(sh, v, detail=True):
                 y1, y2 = s * (ri + T), s * rr
                 sh.rect(X(xa), Y(max(y1, y2)), v.L(xb - xa), v.L(abs(y2 - y1)), cls='fill-wall')
     # screens
-    for xs_, tag, opt in ((D0, '12a', False), ((D0 + D1) / 2, '12b', True), (D1, '12c', False), (SC1, '12d', False), (SC2, '12e', False)):
+    for xs_, tag, opt in ((D0, '12a', False), (XDM, '12b', False), (D1, '12c', False), (SC1, '12d', False), (SC2, '12e', False)):
         r = r_in(xs_)
         sh.line(X(xs_), Y(r), X(xs_), Y(-r), cls='hid' if opt else 'scr')
         left = tag == '12c'
@@ -65,15 +65,14 @@ def draw_tunnel_side(sh, v, detail=True):
     sh.rect(X(xmist - 10), Y(HALF + T + 26), v.L(20), v.L(6), cls='vis2', fill='#ffffff')
     # test section
     h = P['ts'] / 2
-    for xa in (C1, T1 - 12):
-        sh.rect(X(xa), Y(h + 12), v.L(12), v.L(12), fill='url(#hPLAk)', cls='vis2')
-    for xa in (C1 + 12, T1 - 26):
-        sh.rect(X(xa), Y(h + 10), v.L(14), v.L(10), fill='url(#hPLA)', cls='vis2')
-    sh.rect(X(C1 + 20), Y(h + P['acr_t']), v.L(P['ts_L'] - 40), v.L(P['acr_t']), cls='fill-acr')
+    for xa, xb in ((C1, C1 + 80), (C1 + 235, T1)):
+        sh.rect(X(xa), Y(h + T), v.L(xb - xa), v.L(T), fill='url(#hPLAk)', cls='vis2')
+    sh.rect(X(C1 + 80), Y(h + P['acr_t']), v.L(155), v.L(P['acr_t']), cls='fill-acr')
     ft = P['floor_t']
     floor_run(sh, X, Y, C1, T1, XM - INS_HL, XM + INS_HL, -h, ft, hole=(XM - 2.5, XM + 2.5))
-    for xt in (XE, XM - 30):
-        sh.rect(X(xt) - 2, Y(-h - ft), 4, v.L(12), cls='vis2', fill='url(#hBr)')
+    sh.rect(X(XE) - 2, Y(-h - ft), 4, v.L(12), cls='vis2', fill='url(#hBr)')
+    sh.rect(X(XE) - 2, Y(h + T + 12), 4, v.L(12), cls='vis2', fill='url(#hBr)')
+    sh.circ(X(XM), Y(-h + 12), 3, cls='vis2', fill='url(#hBr)')
     rb = P['ball34'] / 2
     sh.circ(X(XM), Y(0), v.L(P['ball1'] / 2), cls='hid')
     sh.circ(X(XM), Y(0), v.L(rb), cls='vis', fill='#f4f4f2')
@@ -81,21 +80,20 @@ def draw_tunnel_side(sh, v, detail=True):
     st_ = -rb - P['shield_gap']
     sh.path(f'M{f(X(XM-7.5))},{f(Y(-h))} L{f(X(XM-7.5))},{f(Y(st_-3))} Q{f(X(XM-7.5))},{f(Y(st_))} {f(X(XM-4))},{f(Y(st_))} '
             f'L{f(X(XM+15))},{f(Y(st_))} L{f(X(XM+15))},{f(Y(-h))} Z', cls='vis2', fill='url(#hPLA)')
-    bx0, bx1, by0, by1 = XM - 45, XM + 45, -h - ft, -158
+    bx0, bx1, by0, by1 = XM - 50, XM + 50, -h - ft, -145
     sh.rect(X(bx0), Y(by0), v.L(bx1 - bx0), v.L(by0 - by1), cls='vis2')
     sh.rect(X(bx0 + 3), Y(by0), v.L(bx1 - bx0 - 6), v.L(by0 - by1 - 3), cls='thin')
-    sh.rect(X(bx0 + 4), Y(-149), v.L(bx1 - bx0 - 8), v.L(6), fill='url(#hPETG)', cls='vis2')
-    sh.rect(X(XM - 3), Y(-85), v.L(6), v.L(47), fill='url(#hAl)', cls='vis2')
-    sh.rect(X(XM - 7), Y(-73), v.L(14), v.L(19), fill='url(#hPETG)', cls='vis2')
-    sh.rect(X(XM - 12), Y(-76.5), v.L(5), v.L(3), fill='#b9bec6', cls='vis2')
-    sh.rect(X(XM - 17), Y(-75), v.L(5), v.L(6), fill='#ead9a4', cls='vis2')
-    sh.rect(X(XM - 7), Y(-122), v.L(14), v.L(27), fill='url(#hPETG)', cls='vis2')
-    sh.rect(X(XM + 16), Y(-140), v.L(24), v.L(3), cls='fill-pcb')
+    sh.rect(X(bx0 + 4), Y(-136), v.L(bx1 - bx0 - 8), v.L(6), fill='url(#hPETG)', cls='vis2')
+    sh.rect(X(XM - 3), Y(-87), v.L(6), v.L(47), fill='url(#hAl)', cls='vis2')
+    sh.rect(X(XM - 7), Y(-75), v.L(14), v.L(19), fill='url(#hPETG)', cls='vis2')
+    sh.rect(X(XM - 12), Y(-78.5), v.L(5), v.L(3), fill='#b9bec6', cls='vis2')
+    sh.rect(X(XM - 17), Y(-77), v.L(5), v.L(6), fill='#ead9a4', cls='vis2')
+    sh.rect(X(XM - 7), Y(-124), v.L(14), v.L(12), fill='url(#hPETG)', cls='vis2')
+    sh.rect(X(XM + 16), Y(-131), v.L(24), v.L(3), cls='fill-pcb')
     for sx in (-11, 6):
         sh.rect(X(XM + sx), Y(-60), v.L(5), v.L(8), fill='url(#hPETG)', cls='vis2')
     # feet and pads
-    feet = [(462, -(r_in(472) + T)), (590, -HALF - T), (712, -HALF - T), (830, -(r_in(840) + T)),
-            (C1 + 17, -h - 12), (T1 - 37, -h - 12)]
+    feet = [(xj - 10, -(max(r_in(xj - 0.01), r_in(xj + 0.01)) + T + (P['fl_w'] if xj in JOINTS else 0))) for xj in FEET]
     for fx, ytop in feet:
         sh.rect(X(fx), Y(ytop), v.L(20), v.L(ytop + 170), fill='url(#hPLA)', cls='vis2')
         sh.rect(X(fx), Y(-170), v.L(20), v.L(5), cls='fill-neo')
@@ -115,12 +113,12 @@ def bench_line(sh, v, x0, x1, yb=-175):
 
 def sheet_ga1():
     sh = Sheet(1, 'WT-00-1', 'GENERAL ARRANGEMENT — SIDE ELEVATION', '', 'NTS',
-               ['Section on the tunnel centre line; fan, stand and feet shown in outside view.',
-                'Lengths marked TBD are drawn mid-range for layout only. Do not scale from the drawing.',
-                'Fan model open (D-011): body drawn as the AC Infinity S6 envelope, 200 × 320 × 212.',
-                'Screens 12a–12e: 12b, the third diffuser screen, is planned for margin; its position is TBD (drawn dashed).',
-                'Joint positions inside the settling chamber and the test-section feet are layout only.',
-                'Ball drawn 3/4 in (solid) with the 1 in ball dashed. Wall thickness t = TBD everywhere.'])
+               ['Section on the tunnel centre line; fan, stand and feet shown in outside view. Axis 175 above the bench.',
+                'Sized 2026-11-26 (D-022 to D-031). Each part is detailed for the CAD in cad/sizing/; do not scale from the drawing.',
+                'Fan: AC Infinity CLOUDLINE S6 (D-025), 200 × 320 × 212 (maker). Screens 12a–12c in the diffuser (D-026), 12d–12e in the chamber.',
+                '250 mm sections print as four corner pieces glued at mid-wall seams (D-023); the contraction splits at x = 82.',
+                'Test section 310: front body 245 + extension 65 (D-024). E taps 56 in, ball at 206, M taps in the side walls.',
+                'Ball drawn 3/4 in (solid) with the 1 in dashed. Walls 3; flanges 12 beyond the wall (sheet 10).'])
     v = View(88, 432, 0.95)
     X, Y = v.X, v.Y
     k = draw_tunnel_side(sh, v)
@@ -136,12 +134,12 @@ def sheet_ga1():
     # dimension chain
     yb = Y(-175)
     yd1, yd2 = yb + 104, yb + 150
-    for xa, xb, lab, st, nm in ((0, P['fan_L'], 'TBD', 'T', 'FAN · D-011 OPEN'), (D0, D1, '150–200', 'P', 'DIFFUSER'),
-                                (D1, C0, 'TBD', 'T', 'SETTLING CHAMBER'), (C0, C1, '250', 'P', 'CONTRACTION'),
-                                (C1, T1, '270–290', 'P', 'TEST SECTION')):
+    for xa, xb, lab, st, nm in ((0, P['fan_L'], '320', 'F', 'FAN · S6 (D-025)'), (D0, D1, '175', 'F', 'DIFFUSER'),
+                                (D1, C0, '275', 'F', 'SETTLING CHAMBER'), (C0, C1, '250', 'F', 'CONTRACTION'),
+                                (C1, T1, '310', 'F', 'TEST SECTION')):
         sh.hdim(X(xa), X(xb), yb + 4, yb + 4, yd1, lab, st=st)
         sh.text((X(xa) + X(xb)) / 2, yd1 + 17, nm, cls='sm', anchor='middle')
-    sh.hdim(X(0), X(T1), yd1 + 6, yd1 + 6, yd2, 'TBD   (docs estimate 1150–1300 incl. fan)', st='T')
+    sh.hdim(X(0), X(T1), yd1 + 6, yd1 + 6, yd2, '≈1330  (fan inlet to the open exit)', st='P')
     sh.vtitle(X(T1 / 2), yd2 + 42, 'SIDE ELEVATION — SECTION ON TUNNEL CENTRE LINE',
               'Fan, stand, feet and balance box in outside view where not cut')
 
@@ -175,11 +173,11 @@ def sheet_ga1():
     Rb = yb + 48
     B(sh, 7, X(91), Y(-160), 100, Rb)
     B(sh, 6, X(160), Y(-135), 250, Rb)
-    B(sh, 99, X(472), Y(-150), 440, Rb)
-    B(sh, 100, X(600), Y(-172), 640, Rb)
+    B(sh, 99, X(FEET[0]), Y(-150), 440, Rb)
+    B(sh, 100, X(FEET[1]), Y(-172), 640, Rb)
     B(sh, 13, X(SC1 + 3), Y(-HALF - T - P['fl_w']), 740, Rb)
     B(sh, 48, X(XE), Y(-h - 16), 1126, Rb, side='d', name='Tap station E')
-    B(sh, 49, X(XM - 30), Y(-h - 16), 1250, Rb, side='d', name='Tap station M')
+    B(sh, 49, X(XM), Y(-h + 12), 1250, Rb, side='d', name='Tap station M')
 
     # section index
     tx0, ty0 = 88, 838

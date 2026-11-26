@@ -1,10 +1,10 @@
 # Drawings
 
-A **preliminary** engineering drawing package for the whole tunnel: 10 mechanical sheets and 2 electrical sheets, a
-parts list matching every numbered callout, a TBD register and the findings from drawing it. Revision D, 2026-11-17,
-with sheet 12 at revision E, 2026-11-23 (revision C, 2026-11-10; revision B, 2026-11-09). **Pre-sizing,
-not for manufacture:**
-build step 1 (sizing) has not been done, so most dimensions are proposals and many are TBD.
+An engineering drawing package for the whole tunnel: 10 mechanical sheets and 2 electrical sheets, a parts list
+matching every numbered callout, a TBD register and the findings from drawing it. **Revision F, 2026-11-26: sized**
+(build step 1, decisions D-022 to D-031). The owner draws the CAD from the dimension sheets in
+[cad/sizing/](../../cad/sizing/README.md), which hold every number and its status; these sheets are the overview.
+Earlier: revision D 2026-11-17 with sheet 12 at revision E 2026-11-23; revision C 2026-11-10; revision B 2026-11-09.
 
 - Open [wind-tunnel-drawings.html](wind-tunnel-drawings.html) in a browser. The owner also has a private published copy
   at https://claude.ai/artifact/D8V6LeDybj3N6xJeeqzTzd (only the owner's account can open it); it still shows
@@ -26,6 +26,16 @@ build step 1 (sizing) has not been done, so most dimensions are proposals and ma
 - Note on revision D (2026-11-19): parts-list item 76 now describes the weight set actually bought (50, 2 × 20, 6 × 10,
   2 × 5 and 3 × 2 g plus a 10 g hanging rod, weighed in EXP-001) instead of the planned 17-piece 10 mg–100 g set. No
   sheet changed ([session log](../sessions/2026-11-19-bme280-advice-and-mass-weighing.md)).
+- Revision F (2026-11-26), from the sizing (D-022 to D-031 and `cad/sizing/`): stations from the decided lengths
+  (diffuser 175 with screen 12b at its mid joint, settling chamber 275 with compact spacing, contraction split at x = 82,
+  test section 310 as a 245 mm front body and a 65 mm extension); the S6 fan; flanges 12 beyond a 3 mm wall with M3 × 5
+  inserts, the J250/J220/J100 bolt patterns and the glued mid-wall seams of the corner pieces (orange ticks); E taps in
+  the printed entrance band, M taps in the side walls (the M floor tap is gone); one window and a black wall; the sealed
+  load-cell box with a door, its bottom 145 below the axis and the axis 175 above the bench; the image run (view H on
+  sheet 8, items 55–57); the probe through the open exit; feet as four cradles, one under the extension clear of the
+  box. Parts-list entries updated and the TBD register reduced to measurements and test prints; the findings marked
+  resolved. Title blocks read "REVISION F · SIZED 2026-11-26 · CAD FROM cad/sizing". Checked: `page.py` prints
+  `parts never drawn: []`; every changed sheet previewed and the overlaps found were fixed.
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
   [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C);
   [2026-11-17 sensor circuit design](../sessions/2026-11-17-sensor-circuit-design.md) (revision D);
