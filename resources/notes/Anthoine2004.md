@@ -4,7 +4,7 @@
   Blockage Effect," von Karman Institute for Fluid Dynamics, Reprint 2004-24; presented at COST Action C14, *Impact of
   Wind and Storm on City Life and Built Environment*, Rhode-Saint-Genèse, Belgium, 5–7 May 2004. Paper pages E.7.1 to
   E.7.10.
-- Copy in this folder: [Anthoine2004_bluff-body-drag-blockage-effect.pdf](../Anthoine2004_bluff-body-drag-blockage-effect.pdf)
+- Copy in this folder: `Anthoine2004_bluff-body-drag-blockage-effect.pdf` (local only, not in Git since 2026-11-26: D-031)
   (was `rp200424.pdf372046978rp200424.pdf`). Twelve PDF pages: a VKI reprint cover (which lists "P. Cosyn" instead of
   J. Anthoine), a blank page, then the paper. **Paper page E.7.n = PDF page n + 2.**
 - Reviewed: 2026-11-22 by Claude Code (Opus 5.5): full text from the text layer (clean); Eqs. (3)–(6) and Fig. 4

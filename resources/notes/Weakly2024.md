@@ -5,7 +5,7 @@
   2024, Paper ID #41981. [Paper page](https://nemo.asee.org/public/conferences/344/papers/41981/view).
   Fabrication files and code: https://sung.seas.upenn.edu/publications/wind-tunnel-force-balance/ (per the paper;
   not opened).
-- Copy in this folder: [Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf](../Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf)
+- Copy in this folder: `Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf` (local only, not in Git since 2026-11-26: D-031)
   (15 MB, 23 pages). The owner added it on 2026-10-31 as `ASEE_Wind_Tunnel_Paperfinal.pdf`. Final conference version.
 - Reviewed: 2026-10-31 by Claude Code. Read the full text. Checked against page images: Table 1 (cost, p. 7) and
   Fig. 2 (circuit, p. 6). Other figures were read from their captions and text only.

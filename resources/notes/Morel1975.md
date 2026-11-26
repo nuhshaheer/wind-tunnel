@@ -2,7 +2,7 @@
 
 - Citation: T. Morel, "Comprehensive Design of Axisymmetric Wind Tunnel Contractions," *ASME Journal of Fluids
   Engineering*, June 1975, pp. 225–233 (ASME Paper 75-FE-17). Author at General Motors Research Laboratories.
-- Copy in this folder: [Morel1975_axisymmetric-contraction-design.pdf](../Morel1975_axisymmetric-contraction-design.pdf)
+- Copy in this folder: `Morel1975_axisymmetric-contraction-design.pdf` (local only, not in Git since 2026-11-26: D-031)
   (was `morel1975.pdf`). Nine pages; printed page = PDF page + 224. The copy carries an ASME Digital Collection
   download stamp dated 08/06/2013; keep it out of a public repository.
   - **Text layer:** PDF page 1 holds two overlapping OCR copies of the same text (the "doubled characters" noted in the

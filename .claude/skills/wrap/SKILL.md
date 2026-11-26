@@ -50,7 +50,7 @@ Update every file whose content is now wrong or incomplete, and only those. Do n
 | `PROJECT_STATUS.md` | **Every wrap.** Reflect the whole current state; set `**Last updated:**` to today; update stage, tables, blockers, open questions, next steps, last commit. |
 | `TODO.md` | **Every wrap.** Move finished tasks to Done (date + session-log link), add new tasks with outcome + verification, re-prioritize. |
 | Session log + `docs/sessions/SESSION_LOG.md` | **Every wrap.** See below. |
-| `DECISIONS.md` | A meaningful technical decision was made or reversed (append; supersede, never delete). |
+| `DECISIONS.md` | A meaningful technical decision was made or reversed (append; supersede, never delete). Put the current status first on the entry's Status line, and update the register in `PROJECT_STATUS.md` ("Decisions: what is decided and what is not") to match. |
 | `docs/experimental_setup.md` | Equipment, dimensions, sensors, wiring, DAQ settings or procedures changed (update current config + change history). |
 | `docs/data_catalog.md` | Data was acquired, processed or analysed, or a result was produced. |
 | `PROJECT_BACKGROUND.md` | Lasting context changed: goals, constraints, governing approach, references reviewed, lessons learned. |
@@ -114,7 +114,8 @@ Rerun `python scripts/check_docs.py` after editing. It must report **0 failures*
 - [ ] Every result links to its data and analysis script; every catalogued path exists; every data folder is catalogued.
 - [ ] `TODO.md` matches the status (no done items open, no open items marked done).
 - [ ] The session log records what actually happened, including failures and checks not performed.
-- [ ] Decisions and open questions are written down.
+- [ ] Decisions and open questions are written down. The register in `PROJECT_STATUS.md` matches the first words of
+  every Status line in `DECISIONS.md`, and no document still calls an Accepted decision Tentative or open.
 - [ ] No invented numbers, specs, citations or results.
 - [ ] A new agent could find the next task from `PROJECT_STATUS.md` + `TODO.md` + this session log alone.
 

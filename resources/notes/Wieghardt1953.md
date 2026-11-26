@@ -3,7 +3,7 @@
 - Citation: K. E. G. Wieghardt, "On the Resistance of Screens," *The Aeronautical Quarterly* 4, February 1953,
   pp. 186–192. doi:10.1017/S0001925900000871. The author was formerly at the Admiralty Research Laboratory,
   Teddington, then at Hamburg University.
-- Copy in this folder: [Wieghardt1953_resistance-of-screens.pdf](../Wieghardt1953_resistance-of-screens.pdf). The owner
+- Copy in this folder: `Wieghardt1953_resistance-of-screens.pdf` (local only, not in Git since 2026-11-26: D-031). The owner
   added it on 2026-11-02 as `wieghardt1953.pdf`.
   - Scanned journal pages with a text layer, 7 PDF pages: **PDF page = journal page − 185**.
   - Cambridge Core download stamp (Purdue University Libraries, 6 January 2018), "subject to the Cambridge Core terms of

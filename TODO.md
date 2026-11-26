@@ -15,18 +15,27 @@ Owner tasks are physical or account actions that an agent cannot do.
     one-piece part), the test section (front body, extension, top panel, image panel, floor inserts), the settling
     chamber, the diffuser, the balance (box, door, module, mount, shield), the supports. The fan's inlet ring waits on
     the S6's collar (coupon C7).
+  - **In progress (started 2026-11-26,
+    [log](docs/sessions/2026-11-26-pdfs-decisions-register-and-cad-start.md)).** The owner is drawing the parts
+    first and will print the coupons before any big part. Drawn in Fusion, not exported:
+    - the diffuser, whole: a curved loft with a 3 mm shell, the round insert flange and the J250 screw flange;
+    - the fan inlet ring, on the 6 in collar placeholder;
+    - screen 12a's frame;
+    - settling chamber C1 with its corner wedges.
+
+    Next:
+    - chambers C2 and C3;
+    - the diffuser cut at x = 87.5 with its mid flanges, then D2 into four corner pieces;
+    - the chambers into corner pieces with pin holes;
+    - the honeycomb, the 50 mm corner spacers, and screen frames 12b–12e.
+  - **Owner, before drawing C3:** choose the mist port's place
+    ([options](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26); it lands on a glued seam).
+  - **Owner, also:**
+    - say whether the S6 is being bought now ("im buying the s6", 2026-11-26) or last, as D-025 says;
+    - once it arrives, measure its collar and update `collar_d`, so the ring's socket follows.
   - Estimate 12–25 h (owner's own estimate about 10 h).
   - Outcome: STEP or STL exports in `cad/` (D-004's size rule). Verify: the agent checks each export (fits the 256 mm
     bed, key dimensions match the sheets, bolt holes line up between mating parts), and the coupons fit.
-- [ ] **Owner: decide on the copyrighted PDFs now that the repository is public** ([D-031](DECISIONS.md), 2026-11-26).
-  - Not redistributable: Brown2003, Mehta1979, Wieghardt1953, Roos1971, Mehta1977, Morel1975. To check: Abdelhamed2014,
-    Anthoine2004, Bradshaw1964, Maskell1963, Morrison2013, Weakly2024. Fine: the NASA reports, Cooper1998 (AGARD), the
-    datasheets.
-  - Options: (a) replace them with links in [resources/README.md](resources/README.md), keeping the local copies
-    (ignored by Git) and the notes; (b) also purge them from the Git history (a rewrite and force-push only the owner
-    can do; the agent gives the commands); (c) leave them.
-  - Outcome: the choice carried out and recorded on D-031. Verify: for (a) or (b), `git ls-files resources` lists only
-    redistributable PDFs.
 - [ ] **Owner: buy the build tools** (2026-11-26; [shopping list](docs/shopping_list.md), "Tools for the build"): a
   T18 heat-set insert tip set with an M3 size, the AstroAI 6000-count multimeter, flush cutters, a heat gun (optional
   for the tunnel). Outcome: each marked "Got it". Verify: the insert tip used on coupon C1.
@@ -100,9 +109,9 @@ Owner tasks are physical or account actions that an agent cannot do.
 
 - [ ] **Owner (recommended, optional): read the two key references.** The owner has not read the references yet
   (2026-11-01).
-  - Read in full: [Mehta1979](resources/Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf) (rules for every
+  - Read in full: [Mehta1979](resources/notes/Mehta1979.md) (rules for every
     part of a small blower tunnel) and
-    [Weakly2024](resources/Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf) (a student balance with an
+    [Weakly2024](resources/notes/Weakly2024.md) (a student balance with an
     Arduino, HX711 and a sphere, and what went wrong).
   - Notes only: Bell1988, Maskell1963, Cooper1998 and HX711 in [resources/notes/](resources/notes/). The agent reads
     the rest when their topic comes up.
@@ -176,7 +185,8 @@ Owner tasks are physical or account actions that an agent cannot do.
   - Outcome: method and formula marked as chosen (D-entry).
   - Verify: the correction for the chosen sphere and test section is computed and stated with its uncertainty
     (θ spread 1.85–2.8). The plan includes a two-sphere-size check (P2 validation run).
-- [ ] **Confirm the microcontroller / DAQ.** **Mostly met (2026-11-26 catch-up):** all three sensors read on the Mega
+- [ ] **Confirm the microcontroller / DAQ.** **The board is decided:** the Mega 2560 is part of
+  [D-018](DECISIONS.md) (Accepted 2026-11-26), so that entry is the D-entry this task asked for. **Mostly met (2026-11-26 catch-up):** all three sensors read on the Mega
   (2026-11-23) and HX711 counts were logged to CSV (EXP-002); only the combined logging at the planned rate is left, which
   is the P0 logging-sketch task. Candidate (2026-11-01): the owner's Elegoo Mega 2560 (5 V logic,
   I²C on pins 20/21). Weakly2024 used an Uno with one HX711 per load cell; the Mega does everything the Uno does,
@@ -236,7 +246,7 @@ Owner tasks are physical or account actions that an agent cannot do.
   on a breadboard, then turn it into a PCB). **Owner, 2026-11-09:** when the parts arrive, build it on the breadboard,
   test it, then order the PCB; no soldered prototyping shield in between.
   - **2026-11-17: the circuit is drawn** (agent, at the owner's request): drawing package sheets 11 and 12
-    ([D-018](DECISIONS.md), Tentative), explained in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md).
+    ([D-018](DECISIONS.md), Tentative then; Accepted 2026-11-26), explained in [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md).
     The sensors stay on cables in their own places; the shield carries only three 4-pin connectors (J1–J3), C2 and empty
     pads for pull-ups R1 and R2, because the BME280 board already has pull-ups. This supersedes the socket list below.
     **2026-11-18: the breadboard is started.** The Mega, power rails, C2 and signal rows are wired and the power passed
@@ -541,7 +551,7 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-09/10: **Parts ordered: everything on the buy list except the fan** (owner), which is bought last so its
   return window covers the real test. Changes on the way: Waveshare BME280 instead of the Adafruit; stainless screws
   instead of a brass set; one full-length sting per ball instead of the 5/32 in sleeve ([D-016](DECISIONS.md),
-  Tentative); the 4-core cable optional; header strips tin-plated. Tracker: [docs/shopping_list.md](docs/shopping_list.md)
+  Tentative then; Accepted 2026-11-26); the 4-core cable optional; header strips tin-plated. Tracker: [docs/shopping_list.md](docs/shopping_list.md)
   ([session log](docs/sessions/2026-11-10-parts-ordering.md)).
 - [x] 2026-11-10: Owner committed and pushed the parts-ordering session as `f4fa904` (`UP_TO_DATE`); the README was
   then updated to the current state ([session log](docs/sessions/2026-11-10-parts-ordering.md)).
@@ -568,7 +578,7 @@ Owner tasks are physical or account actions that an agent cannot do.
 - [x] 2026-11-17: **CAD program recorded:** Fusion 360 (owner; note on [D-017](DECISIONS.md)).
 - [x] 2026-11-17: **Sensor circuit drawn and explained** (agent, at the owner's request; documentation only): drawing
   package revision D, sheets 11 (block diagram) and 12 (schematic, parts and net lists); [D-018](DECISIONS.md)
-  (Tentative), which also answers P1 "Decide the role of the op-amp circuit" (none); the Waveshare BME280 schematic
+  (Tentative then; Accepted 2026-11-26), which also answers P1 "Decide the role of the op-amp circuit" (none); the Waveshare BME280 schematic
   filed with notes; [docs/electronics_walkthrough.md](docs/electronics_walkthrough.md) for a beginner
   ([session log](docs/sessions/2026-11-17-sensor-circuit-design.md)).
 - [x] 2026-11-17: Owner committed and pushed the sensor-circuit session as `8904785`; `/catchup` confirmed `UP_TO_DATE`
@@ -600,7 +610,7 @@ Owner tasks are physical or account actions that an agent cannot do.
   scale 240, zero −0.022 Pa, correct sign; BME280 99.6 kPa, 23.3 °C, 44.5 %, responding to breath and touch, one reset
   under handling detected and recovered ([as built](docs/experimental_setup.md#breadboard-as-built); [session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
 - [x] 2026-11-23: Bring-up sketches written (agent): `firmware/i2c_scan`, `hx711_raw_counts`, `sdp810_read`,
-  `bme280_read`, with [firmware/README.md](firmware/README.md) and [D-019](DECISIONS.md) (Tentative)
+  `bme280_read`, with [firmware/README.md](firmware/README.md) and [D-019](DECISIONS.md) (Tentative then; Accepted 2026-11-26)
   ([session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
 - [x] 2026-11-23: PCB program chosen: KiCad 10 (owner; PROJECT_STATUS open question 18) ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
 - [x] 2026-11-23: Shield PCB designed (owner, agent checking): `PCB/arduino_shield/`, final ERC no errors, DRC 0
@@ -643,3 +653,21 @@ Owner tasks are physical or account actions that an agent cannot do.
   the tentative decisions".
 - [x] 2026-11-26: The 2026-11-15 P1 task "Owner: CAD every printed part from the dimension sheets" moved to P0 as "CAD
   from the sizing sheets, test coupons first", now that the sheets exist.
+- [x] 2026-11-26: **Copyrighted PDFs out of the public repository's current files** (owner chose option (a); note on
+  [D-031](DECISIONS.md)). 13 PDFs untracked with `git rm --cached` and listed in `.gitignore`; the local copies are
+  unchanged (all 23 PDFs byte-identical by SHA-256 before and after). [resources/README.md](resources/README.md) links
+  each one online, and the notes no longer link the files. Verified: `git ls-files resources` lists 8 PDFs, all
+  NASA, AGARD or vendor datasheets. Not done: the copies in the Git history (option (b), not chosen). Replaces the P0
+  "decide on the copyrighted PDFs" task ([session log](docs/sessions/2026-11-26-pdfs-decisions-register-and-cad-start.md)).
+- [x] 2026-11-26: **Decisions register** in [PROJECT_STATUS.md](PROJECT_STATUS.md#decisions-what-is-decided-and-what-is-not):
+  - what is decided, what the owner chose outside DECISIONS.md, and what is not decided yet;
+  - every Status line in DECISIONS.md now starts with its current status;
+  - the rule is in CLAUDE.md and `/wrap`.
+
+  Verified by reading every Status line against the register
+  ([session log](docs/sessions/2026-11-26-pdfs-decisions-register-and-cad-start.md)).
+- [x] 2026-11-26: **The contraction and diffuser curves drawn without importing points.** They are exact control point
+  splines (degree 5 and degree 3). `contraction.py` and `profiles.py` print the control points and check them against
+  the equations (2.2 × 10⁻¹³ mm and below). Sheets: [cad/sizing/README.md](cad/sizing/README.md),
+  [contraction.md](cad/sizing/contraction.md) and [diffuser.md](cad/sizing/diffuser.md)
+  ([session log](docs/sessions/2026-11-26-pdfs-decisions-register-and-cad-start.md)).

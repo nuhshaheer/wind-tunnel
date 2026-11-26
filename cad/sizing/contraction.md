@@ -47,11 +47,34 @@ A spline through these points matches the equation to about 0.001 mm (our estima
 
 ### Drawing it in Fusion 360 (suggestions)
 
+**The wall curve is exactly a degree-5 control point spline (agent, 2026-11-26).** Fusion has no equation-curve tool,
+but this curve does not need one. The polynomial 6s⁵ − 15s⁴ + 10s³ is a Bézier curve whose six control points are
+evenly spaced along the flow: three at the inlet half-width and three at the exit's. `python cad/sizing/contraction.py`
+prints them and checks them against the equation: 2.2 × 10⁻¹³ mm apart over 2001 points, i.e. identical.
+
+| Control point | 0 | 1 | 2 | 3 | 4 | 5 |
+|---|---|---|---|---|---|---|
+| x (mm) | 0 | 50 | 100 | 150 | 200 | 250 |
+| y, half-width (mm) | 125 | 125 | 125 | 50 | 50 | 50 |
+
+**Option A (recommended): a control point spline driven by parameters.** Nothing to import, exact, and it follows the
+parameters if a size ever changes.
+1. Sketch → Create → Spline → **Control Point Spline**, degree **5** (set it in the command dialog), six points.
+2. Constrain the control polygon: points 0–1–2 on one horizontal line at `sc_in/2`, points 3–4–5 on one at `ts_in/2`,
+   each horizontal gap `con_len/5` (parameters in [README.md](README.md)). The ends come out with zero slope and
+   zero curvature by themselves, so no tangent constraints are needed.
+3. **Check it:** a vertical construction line at x = 50 must cut the curve at y = 120.656, and one at x = 125 at
+   y = 87.500 (Inspect → Measure). If not, the spline's degree is not 5; say so before going on.
+
+**Option B: import the points file.**
 1. Run the sample script: Utilities → Add-Ins → Scripts and Add-Ins (Shift+S) → *ImportSplineCSV*, and pick the cm
    file. It makes a sketch on the XY plane.
 2. **Check the import before using it:** the spline must start at (0, 125), pass (125, 87.5) and end at (250, 50) in mm.
    If it is 10 times too big, the script version treats numbers differently: say so and the agent makes a mm file.
 3. Add horizontal tangent constraints at both ends of the spline, so the wall meets the neighbouring walls flat.
+
+Then, either way:
+
 4. **An exact square duct from one curve:** mirror the curve about the axis to get the closed profile between +y and −y.
    Extrude it as a solid across the flow, then extrude the same profile turned 90° about the flow axis, and intersect
    the two bodies. The result is the air volume, square at every x. Shell it or subtract it from a larger body to get the

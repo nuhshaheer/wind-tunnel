@@ -70,7 +70,13 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\serial_capture.ps1 -
 - One session log per working session: `docs/sessions/YYYY-MM-DD-short-topic.md`, listed once in
   `docs/sessions/SESSION_LOG.md`. Rerunning `/wrap` in the same session updates the same log. Never delete or rewrite
   old logs (filling in a missing commit hash is fine).
-- `DECISIONS.md`: append-only. Supersede old decisions instead of deleting them.
+- `DECISIONS.md`: append-only. Supersede old decisions instead of deleting them. The first words of each Status line
+  are the current status. When a status changes, put the new one first, keep the old wording after it and add a dated
+  note.
+- **Decided vs not decided:** check the register in `PROJECT_STATUS.md` ("Decisions: what is decided and what is not")
+  before treating anything as settled. Only the owner decides. An agent's recommendation, a "Proposed" value in
+  `cad/sizing/` or an owner's silence is not a decision. When a decision is made or changes, update DECISIONS.md, the
+  register and every doc that quotes the old status in the same session.
 - Record **failed experiments and dead ends** in the session log (and in the data catalog if data was taken). They are results too.
 - Record **uncertainty** with every number: units, how it was measured, error estimate or "not quantified".
 - Separate raw observation → processed result → interpretation. Do not state a scientific conclusion the data does not support.
@@ -97,7 +103,8 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\serial_capture.ps1 -
 - Drawings: `docs/drawings/` is generated (`python docs/drawings/page.py`); change the numbers in `wtdata.py` and
   rebuild, never hand-edit the HTML. See `docs/drawings/README.md`.
 - Reference papers go in `resources/` with a notes file in `resources/notes/`; naming, notes template and index are
-  in `resources/README.md`. Read a paper's notes before opening its PDF, and cite the notes file when a paper informs
+  in `resources/README.md`. The repository is public: a PDF that is not clearly redistributable (journal and conference
+  papers, publisher downloads) is listed in `.gitignore` and linked online, never committed (D-031). Read a paper's notes before opening its PDF, and cite the notes file when a paper informs
   a design choice.
 - Run the tests and `scripts/check_docs.py` before finishing any session that changed code or docs.
 - Commit messages: imperative summary line (≤ 72 chars), body explaining why.

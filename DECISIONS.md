@@ -4,7 +4,9 @@ Chronological record of significant technical decisions. **Never delete an entry
 new entry and set the old one's status to `Superseded by D-NNN`.
 
 Status values: **Accepted** (decided by the owner), **Tentative** (proposed or defaulted, owner has not confirmed),
-**Superseded**, **Rejected**.
+**Superseded**, **Rejected**. **The first words of each Status line give the current status.** When it changes, put the
+new status first on that line and add a dated note below it, keeping the old wording. Everything at a glance:
+[PROJECT_STATUS.md, "Decisions: what is decided and what is not"](PROJECT_STATUS.md#decisions-what-is-decided-and-what-is-not).
 
 Template:
 
@@ -45,7 +47,7 @@ Template:
 - Rationale: Low-cost, buildable instrumentation the owner controls end to end.
 - Alternatives considered: not recorded.
 - Evidence / source: original README hardware list.
-- Status: Accepted as the approach. Specific parts (sensor ranges, load-cell capacity, microcontroller) are **not
+- Status: Accepted as the approach; **the parts were chosen on 2026-11-08** (note below). Earlier: specific parts (sensor ranges, load-cell capacity, microcontroller) are **not
   chosen**; see open questions in [PROJECT_STATUS.md](PROJECT_STATUS.md). Note 2026-11-09: the specific parts were
   chosen by the owner on 2026-11-08 in [docs/buy_list.md](docs/buy_list.md) (one SDP810-125Pa, TAL221 100 g load
   cells, a SparkFun HX711; the Elegoo Mega 2560 as the candidate board). The ECE kit's role is open question 2 (proposed:
@@ -63,7 +65,7 @@ Template:
   The helper scripts make the git-safety and consistency checks repeatable instead of relying on each agent's judgement.
 - Alternatives considered: `.claude/commands/` (older mechanism; skills supersede it); instructions only, without a deny rule (weaker).
 - Evidence / source: [2026-10-29 session log](docs/sessions/2026-10-29-github-setup-and-agent-handoff.md).
-- Status: Accepted (requested by the owner). Repo visibility **private** is Tentative: it matches the owner's
+- Status: Accepted (requested by the owner); **the private visibility is superseded by D-031 (public, 2026-11-26)**. Earlier: repo visibility **private** is Tentative: it matches the owner's
   `slam-robot` repo, and can be made public later (`gh repo edit --visibility public`). 2026-11-02: the owner renamed
   the GitHub account to `nuhshaheer`, so the repo is now `nuhshaheer/wind-tunnel`. The old URL redirects; this is not a
   change of decision.
@@ -83,7 +85,7 @@ Template:
 - Alternatives considered: enable LFS now for images and CAD (deferred); commit everything (rejected: size limits);
   keep all data outside Git (rejected: breaks reproducibility of the analysis).
 - Evidence / source: no data or binary files exist yet (inspected 2026-10-29).
-- Status: Tentative. A default chosen by the setup agent. Owner to confirm; revisit when the first CAD files or videos exist.
+- Status: **Accepted (owner, 2026-11-26)** (see the note below; the wording that follows is the earlier status, kept for the record): Tentative. A default chosen by the setup agent. Owner to confirm; revisit when the first CAD files or videos exist.
   - Note (2026-11-26): **Accepted by the owner** ("d21 and d4 look good", build-step-1 session), after a plain-language explanation: raw data never edited, results recomputed by scripts, videos kept out of Git and linked, photos compressed, no Git LFS until something needs it.
 
 ## D-005: Print the tunnel in segments on the Bambu Lab P1S
@@ -122,7 +124,7 @@ Template:
 - Alternatives considered: external storage with a link (D-004's wording; adds a second place to look); committing
   them (exceeds the D-004 limit); Git LFS (not enabled, D-004).
 - Evidence / source: [2026-10-31 session log](docs/sessions/2026-10-31-reference-library-and-electronics.md).
-- Status: Tentative. Chosen by the agent following D-004; the owner has not confirmed it. Consequence: a fresh clone
+- Status: **Accepted (owner, 2026-11-26)** (see the note below; the wording that follows is the earlier status, kept for the record): Tentative. Chosen by the agent following D-004; the owner has not confirmed it. Consequence: a fresh clone
   from GitHub on a machine without OneDrive lacks these two files.
   - Note (2026-11-26): **Accepted by the owner** (build-step-1 session: "everything other decision looks good").
 
@@ -150,8 +152,8 @@ Template:
   screen ([TODO.md](TODO.md) P2). The settling chamber runs above room pressure, so any removable panel there needs
   latches or strong magnets.
 - Evidence / source: [2026-11-01 session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md).
-- Status: Accepted (blower, fan at the front; owner). Open exit: Tentative (agent's proposal, not objected to, not
-  confirmed).
+- Status: Accepted (blower, fan at the front; owner). **Open exit: Accepted (owner, 2026-11-26; note below).** Earlier:
+  open exit Tentative (agent's proposal, not objected to, not confirmed).
   - Note (2026-11-26): **the open exit (no exit diffuser) is Accepted by the owner** (build-step-1 session).
 
 ## D-008: 100 mm × 100 mm test section
@@ -177,7 +179,8 @@ Template:
   - Re for a 20 mm sphere is about 1.3×10⁴ at 10 m/s, inside the subcritical C_D plateau.
   - Proposed, not decided: contraction ratio 6.25 (250 mm settling chamber), test section 270–290 mm long.
 - Evidence / source: [2026-11-01 session log](docs/sessions/2026-11-01-parts-review-and-kit-inventory.md).
-- Status: Accepted (100 mm × 100 mm cross-section; owner). Contraction ratio and section lengths: Tentative.
+- Status: Accepted (100 mm × 100 mm cross-section; owner). **Contraction ratio and section lengths: decided by D-022
+  (ratio 6.25) and D-024 (test section 310 mm), 2026-11-26.** Earlier: contraction ratio and section lengths: Tentative.
 
 ## D-009: Sphere validation reference: Brown and Lawler Eq. (19) at each run's Re, ±10 % band, plus a trend check
 
@@ -264,7 +267,7 @@ Template:
     No source found confirms the pinout; not relied on.
 - Evidence / source: [AC Infinity product page](https://acinfinity.com/hydroponics-growers/ventilation/inline-fan-systems/cloudline-pro-s6-quiet-inline-duct-fan-system-with-speed-controller-6-inch/)
   (read 2026-11-08); estimate script in this session's log.
-- Status: **Tentative since 2026-11-09.** Accepted by the owner on 2026-11-08; reopened the next day, when the owner
+- Status: **Superseded by D-025 (2026-11-26): the S6.** Earlier: **Tentative since 2026-11-09.** Accepted by the owner on 2026-11-08; reopened the next day, when the owner
   found the VEVOR VV-GDFJ-AC6 (400 CFM, 300 Pa listed, AC motor with a speed controller) at $53.90. The owner will
   choose between the two on budget: "put either or, i havent ordered anything yet" (2026-11-09).
   - Estimates (straight-line fan curves, five window screens): the VEVOR reaches about 11.3 m/s (10.8 at 90 % of its
@@ -406,7 +409,7 @@ Template:
   sizing update.
 - Evidence / source: agent's proposal, 2026-11-09 ([session log](docs/sessions/2026-11-10-parts-ordering.md)); the
   owner then ordered two 1/8 in brass rods and no 5/32 in tube.
-- Status: Tentative: the owner bought for it but has not stated acceptance in words. Confirm at sizing.
+- Status: **Accepted (owner, 2026-11-26)** (see the note below; the wording that follows is the earlier status, kept for the record): Tentative: the owner bought for it but has not stated acceptance in words. Confirm at sizing.
   - Note (2026-11-10): the drawings no longer show the sleeve. Revision C draws one sting from the ball's centre to the
     mount; `sleeve_d` and the stem and sleeve rows (items 61 and 62) are gone
     ([docs/drawings/](docs/drawings/README.md);
@@ -474,7 +477,7 @@ Template:
   [walk-through](docs/electronics_walkthrough.md); the
   [2026-11-17 sensor-circuit session](docs/sessions/2026-11-17-sensor-circuit-design.md). Not built or tested. The
   SparkFun HX711 board's pad labels and RATE setting are not yet checked on the delivered board.
-- Status: Tentative (agent's design, 2026-11-17). The owner has not confirmed it; the breadboard test (walk-through
+- Status: **Accepted (owner, 2026-11-26)** (see the note below; the wording that follows is the earlier status, kept for the record). **The PCB program is KiCad (D-020).** Earlier: Tentative (agent's design, 2026-11-17). The owner has not confirmed it; the breadboard test (walk-through
   §6) checks it. The PCB program (KiCad recommended, or EasyEDA) is the owner's choice, still open.
   - Note (2026-11-18): the delivered HX711 board labels its bridge pads RED, BLK, WHT and GRN (E+, E−, A−, A+ are the chip's
     names), plus YLW, unused here. The owner built the breadboard's power wiring and it passed (4.962 V); R1 and R2 were
@@ -526,7 +529,7 @@ Template:
   long code to check; one combined sketch from the start (that is walk-through step 4, next).
 - Evidence / source: the four sketches and their bench results, 2026-11-23
   ([as built](docs/experimental_setup.md#breadboard-as-built); [session log](docs/sessions/2026-11-23-sensor-bring-up.md)).
-- Status: Tentative (agent's choice; the owner has not confirmed it). The logging firmware (step 4) should follow the
+- Status: **Accepted (owner, 2026-11-26, with `AVERAGE_OVER = 1`)** (see the note below; the wording that follows is the earlier status, kept for the record): Tentative (agent's choice; the owner has not confirmed it). The logging firmware (step 4) should follow the
   same conventions unless replaced by a new decision.
   - Note (2026-11-26): for EXP-002 the owner set `hx711_raw_counts` to `AVERAGE_OVER = 1` (every raw reading, about
     10.5 lines/s) at the agent's request, because the lines were captured to a file (D-021) rather than copied from the
@@ -573,7 +576,8 @@ Template:
   pin labels, 0 errors; DRC with schematic parity: 0 unconnected items, 0 parity issues, 9 ignorable warnings); the
   Gerber and drill files checked against the board ([session log](docs/sessions/2026-11-23-sensor-shield-pcb.md)).
   Not made or tested: the shield has not been ordered.
-- Status: Accepted (owner, 2026-11-23) for the program, the connectors, their pin orders and the five-pin J3. The C1
+- Status: Accepted (owner, 2026-11-23) for the program, the connectors, their pin orders and the five-pin J3; **the C1
+  and C2 footprints Accepted and the boards ordered 2026-11-26 (note below)**. Earlier: the C1
   and C2 footprints stay Tentative until measured. Sheet 12 was redrawn to match (revision E, 2026-11-23).
   - Note (2026-11-26): **the C1 and C2 footprints are Accepted and the shield is ordered.** The owner measured C2's lead
     spacing at about 2.0 mm (matching) and C1's (the kit's 0.1 µF film, 108.9 nF) at 6.5–6.7 mm unbent, to be bent to
@@ -607,7 +611,7 @@ Template:
 - Evidence / source: used for EXP-002 run02, 20,180 lines over 32 min with a steady 95 ms interval
   ([data catalog](docs/data_catalog.md#exp-002-load-cell-on-the-printed-bench-scale)); run01 is the empty file left
   by the first version, which created the file before opening the port. No automated test.
-- Status: Tentative (agent's choice, 2026-11-26; the owner has not confirmed it).
+- Status: **Accepted (owner, 2026-11-26)** (see the note below; the wording that follows is the earlier status, kept for the record): Tentative (agent's choice, 2026-11-26; the owner has not confirmed it).
   - Note (2026-11-26): **Accepted by the owner** ("d21 and d4 look good", build-step-1 session).
 
 ## D-022: Settling chamber 250 mm square inside (contraction ratio 6.25); contraction 250 mm long, 5th-order wall
@@ -767,6 +771,9 @@ Template:
   PROJECT_STATUS open questions 13 and 15.
 - Status: Accepted (owner, 2026-11-26). Section lengths and the honeycomb's mounting are in the settling-chamber sheet
   (`cad/sizing/settling_chamber.md`, Proposed).
+  - Note (2026-11-26, later session): the sheets give the overall length as **about 1.34 m** from the fan's inlet face to
+    the open exit ([settling-chamber sheet](cad/sizing/settling_chamber.md), with a collar overlap of 28 mm). That is
+    the figure to use. The "about 1.36 m" above is from the same session, and its reference points were not recorded.
 
 ## D-028: Seal the load-cell box, with a gasketed access door for model changes
 
@@ -831,7 +838,9 @@ Template:
   runs; a bought pitot-static tube (Dwyer 166-6, not chosen 2026-11-08).
 - Evidence / source: agent's idea of 2026-11-09 (TODO P1); [buy list](docs/buy_list.md) §5;
   [Barlow1999 notes](resources/notes/Barlow1999.md) ch. 4 (align within a few degrees; chamfer the tip).
-- Status: Accepted (owner, 2026-11-26). The stand and guide are sized in the calibration sheet.
+- Status: Accepted (owner, 2026-11-26). The stand and guide are sized in the supports sheet
+  ([cad/sizing/supports.md](cad/sizing/supports.md), "Probe stand"; corrected 2026-11-26: there is no separate calibration
+  sheet).
 
 ## D-031: The repository is public (supersedes D-003's private visibility)
 
@@ -849,4 +858,22 @@ Template:
     does not remove it from the Git history; that needs a history rewrite and a force push, which only the owner can
     do. The owner's choice is pending.
   - Everything else in the repository is the owner's own work. Photos were stripped of GPS data (2026-11-18/23).
-- Status: Accepted (owner, 2026-11-26). The handling of the copyrighted PDFs is open.
+- Status: Accepted (owner, 2026-11-26). **The copyrighted PDFs: option (a), 2026-11-26 (note below).** Earlier: the
+  handling of the copyrighted PDFs is open.
+- **Note, 2026-11-26 (later session): the PDFs are handled by option (a)** (owner: "do a"). The agent untracked 13
+  PDFs with `git rm --cached` and listed them in `.gitignore`, so they stay on the owner's machine:
+  - Abdelhamed2014, Anthoine2004, Bradshaw1964, Brown2003, Maskell1963, Mehta1977, Mehta1979, Morel1975, Morrison2013
+    (both files), Roos1971, Weakly2024 and Wieghardt1953.
+  - The six marked "to check" went too, because none of the copies states a licence that allows redistribution.
+    Bradshaw1964 says "Crown copyright", Weakly2024 "©American Society for Engineering Education, 2024". The
+    Abdelhamed2014, Anthoine2004 and Morrison2013 copies say nothing. Maskell1963 has no text layer to search.
+  - The index in `resources/README.md` links each one online instead: a DOI, a publisher or repository page, or
+    "none found". Five links were found by web search on 2026-11-26 and not opened (Bradshaw1964 and Mehta1977 DOIs from
+    the Scilit index, Maskell1963 on Cranfield's AERADE repository). The rest were already in the notes.
+  - Still in Git: Bell1988 and Scheiman1981 (NASA), Cooper1998 (AGARD, "no restrictions on its distribution") and the
+    datasheets (HX711, SDP8xx, Sensirion2024, TAL221, WaveshareBME280).
+  - **Not done (options (b)):** the files remain in the Git history (every commit up to `f210b9e`), so they can still
+    be downloaded from old commits on GitHub. Removing them from the history would need a rewrite and a force push by
+    the owner.
+  - A fresh clone has the notes but not these PDFs, like Barlow1999 and Ewald1998 (D-006). New papers follow the
+    licence step in `resources/README.md`.

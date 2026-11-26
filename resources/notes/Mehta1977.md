@@ -2,7 +2,7 @@
 
 - Citation: R. D. Mehta, "The aerodynamic design of blower tunnels with wide-angle diffusers," *Progress in Aerospace
   Sciences* 18, 1977, pp. 59–120 (Pergamon Press). Department of Aeronautics, Imperial College, London.
-- Copy in this folder: [Mehta1977_blower-tunnels-wide-angle-diffusers.pdf](../Mehta1977_blower-tunnels-wide-angle-diffusers.pdf)
+- Copy in this folder: `Mehta1977_blower-tunnels-wide-angle-diffusers.pdf` (local only, not in Git since 2026-11-26: D-031)
   (was `mehta1979.pdf`). Scanned journal pages with an OCR text layer, 62 PDF pages.
   **PDF page = journal page − 58** (PDF p. 1 = p. 59).
 - Reviewed: 2026-11-02 by Claude Code. Read in full:

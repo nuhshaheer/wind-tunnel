@@ -42,10 +42,29 @@ Positions are measured from the section's centre line, across the flow.
 - **Why so few bolts** (estimate): at 13 m/s the inside is only about 100 Pa above the room, which is about 6 N on a whole
   250 mm wall. Between bolts 90 mm apart, a 6 mm PLA flange bends about 0.03 mm under the foam's push (assuming
   20 kPa on a 6.4 mm tape and E = 2.5 GPa). That is far less than the foam squeezes, so the seal stays even.
-- **Inserts needed** (estimate): about 5–7 J250 joints, depending on how the screens are laid out (settling-chamber
-  sheet), plus one J220, one J100 and the joints at the fan end. That is about 90–110 inserts. Use the 5 mm ones (50)
-  and the 4 mm ones (50) in the flanges: a 6 mm deep hole takes both. Keep the 6 and 8 mm ones for the balance and panel
-  frames.
+- **Joints, inserts and screws** (counted from the sheets, 2026-11-26; replaces the first estimate of 5–7 J250 joints and
+  90–110 inserts): **9 bolted joints, 18 flanges.** Every part has an insert flange upstream and a screw flange
+  downstream, except the fan inlet ring (socket upstream) and the test-section extension (open exit).
+
+  | Joint | Bolts | Screen | Screws |
+  |---|---|---|---|
+  | Fan inlet ring → diffuser D1 (round) | 6 | 12a | M3 × 16 |
+  | D1 → D2 (mid-diffuser) | 12 | 12b | M3 × 16 |
+  | D2 → chamber C1, C1 → C2, C2 → C3 (J250) | 12 each | 12c, 12d, 12e | M3 × 16 |
+  | C3 → contraction inlet ring (J250) | 12 | none | M3 × 12 |
+  | Inlet ring → one-piece contraction (J220) | 12 | none | M3 × 12 |
+  | Contraction → test section (J100) | 8, plus 2 pins | none | M3 × 12 |
+  | Front body → extension (J100) | 8 | none | M3 × 12 |
+
+  **94 inserts and 94 screws: 54 × M3 × 16 and 40 × M3 × 12.** Use the 5 mm (50) and 4 mm (50) inserts in the
+  flanges, since a 6 mm deep hole takes both. That leaves only 6 spare. If more are needed, a 6 mm insert fits a 7
+  deep hole: at the bolt line the chamfer under the insert flange adds about 6 to its 8. Keep the 6 and 8 mm ones for
+  the balance and the panel frames. How many M3 × 12 and × 16 the screw assortment holds is not recorded yet.
+- **Why the flange runs all the way round, not as corner tabs** (owner asked, 2026-11-26):
+  - The foam tape needs a continuous face to seal against; the chamber runs about 100 Pa above the room at 13 m/s.
+  - The screen frames must be clamped all round, or air slips around the screens' edges.
+  - With bolts only at the corners (268 apart instead of about 90), the flange would bend about 80 times as much
+    between bolts. That is about 2 mm, as much as the foam squeezes (estimate, scaled from the figure above).
 
 ## Lining up the inside walls at a joint
 
@@ -70,7 +89,10 @@ Positions are measured from the section's centre line, across the flow.
 - **Length:** a piece can be up to about 250 long (the bed height is 256).
 - **Joining:**
   - In each seam face, drill two Ø1.9–2.0 holes, 6 deep, in each flange. Short pieces of 1.75 mm filament go in these
-    as pins, four per seam.
+    as pins, four per seam. **Positions (Proposed, agent, 2026-11-26):** at mid-thickness of the flange, 130 and 136
+    from the section's centre line (2 and 8 beyond the wall's outside). That leaves 4 of plastic to the inside face
+    and 3 to the flange edge. Model them at `pin_d`; the horizontal holes print slightly oval, so run the drill through
+    them after printing.
   - Glue the whole seam with 5-minute epoxy, which fills gaps and gives time to line things up.
   - Glue with the four screw-flange faces down on a flat surface, so they end up in one plane.
   - Check the insert-flange face with a straightedge, then sand the inside seam flush (220 → 400 grit).

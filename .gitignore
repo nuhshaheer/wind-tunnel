@@ -50,6 +50,23 @@ cmake-build-*/
 resources/Barlow1999_low-speed-wind-tunnel-testing-3rd-ed.pdf
 resources/Ewald1998_wind-tunnel-wall-correction-AGARD-AG-336.pdf
 
+# --- Publisher PDFs that may not be redistributed, or whose licence is unclear: the repository is public
+#     (D-031, option (a), 2026-11-26). Kept locally; resources/README.md links each publisher's page. A new paper
+#     that is not clearly redistributable gets a line here before it is filed. ---
+resources/Abdelhamed2014_wind-tunnel-contraction-optimization.pdf
+resources/Anthoine2004_bluff-body-drag-blockage-effect.pdf
+resources/Bradshaw1964_design-of-low-speed-wind-tunnels.pdf
+resources/Brown2003_sphere-drag-settling-velocity-revisited.pdf
+resources/Maskell1963_blockage-bluff-bodies-closed-tunnel.pdf
+resources/Mehta1977_blower-tunnels-wide-angle-diffusers.pdf
+resources/Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf
+resources/Morel1975_axisymmetric-contraction-design.pdf
+resources/Morrison2013_exam-data-correlations-sheet.pdf
+resources/Morrison2013_sphere-drag-correlation.pdf
+resources/Roos1971_sphere-and-disk-drag.pdf
+resources/Weakly2024_low-cost-lift-drag-balance-educational-tunnel.pdf
+resources/Wieghardt1953_resistance-of-screens.pdf
+
 # --- Local scratch space (never committed) ---
 scratch/
 tmp/

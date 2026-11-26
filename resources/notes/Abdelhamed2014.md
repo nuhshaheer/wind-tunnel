@@ -3,7 +3,7 @@
 - Citation: A. S. Abdelhamed, Y. El-S. Yassen, M. M. ElSakka (Port-Said University, Egypt), "Design optimization of
   three dimensional geometry of wind tunnel contraction," *Ain Shams Engineering Journal*, 2014.
   doi:10.1016/j.asej.2014.09.008
-- Copy in this folder: [Abdelhamed2014_wind-tunnel-contraction-optimization.pdf](../Abdelhamed2014_wind-tunnel-contraction-optimization.pdf),
+- Copy in this folder: `Abdelhamed2014_wind-tunnel-contraction-optimization.pdf` (local only, not in Git since 2026-11-26: D-031),
   8 pages, "article in press" version (no volume or page numbers). The owner added it on 2026-10-30 as
   `Design_optimization_of_three_dimensional_geometry_-1.pdf`. Page numbers below refer to this PDF.
 - Reviewed: 2026-10-30 by Claude Code: full text, and Figures 1, 3, 4, 5, 6, 10 and 11, viewed by extracting the PDF's

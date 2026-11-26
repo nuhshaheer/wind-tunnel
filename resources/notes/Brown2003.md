@@ -3,7 +3,7 @@
 - Citation: P. P. Brown, D. F. Lawler, "Sphere Drag and Settling Velocity Revisited," *Journal of Environmental
   Engineering* 129(3), March 2003, pp. 222–231. doi:10.1061/(ASCE)0733-9372(2003)129:3(222). University of Texas at
   Austin.
-- Copy in this folder: [Brown2003_sphere-drag-settling-velocity-revisited.pdf](../Brown2003_sphere-drag-settling-velocity-revisited.pdf).
+- Copy in this folder: `Brown2003_sphere-drag-settling-velocity-revisited.pdf` (local only, not in Git since 2026-11-26: D-031).
   The owner added it on 2026-11-02 as `brown2003.pdf`.
   - Publisher's PDF with a text layer, 10 pages: **PDF page = journal page − 221**.
   - Stamped "Copyright ASCE. For personal use only; all rights reserved". Keep it out of a public repository (D-003).

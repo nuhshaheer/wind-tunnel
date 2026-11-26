@@ -2,7 +2,7 @@
 
 - Citation: E. C. Maskell, "A Theory of the Blockage Effects on Bluff Bodies and Stalled Wings in a Closed Wind
   Tunnel," Aeronautical Research Council R&M 3400, November 1963 (HMSO, 1965; replaces RAE Report Aero 2685).
-- Copy in this folder: [Maskell1963_blockage-bluff-bodies-closed-tunnel.pdf](../Maskell1963_blockage-bluff-bodies-closed-tunnel.pdf)
+- Copy in this folder: `Maskell1963_blockage-bluff-bodies-closed-tunnel.pdf` (local only, not in Git since 2026-11-26: D-031)
   (was `arc-rm-3400.pdf`). A 27-page scan with **no text layer**, carrying a college-library stamp.
   - **PDF page = report page + 1.** PDF page 1 is the cover; report pp. 1–18 are text, tables, symbols and
     references; pp. 19–24 are Figs. 1–11; PDF pages 26–27 are HMSO back matter.

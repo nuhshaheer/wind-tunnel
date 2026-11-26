@@ -6,9 +6,9 @@
   F. A. Morrison, *An Introduction to Fluid Mechanics*, Cambridge University Press, 2013: "Figure 8.13 on page 625"
   (handout) or "Morrison equation 8.83" (exam sheet).
 - Copies in this folder:
-  - [Morrison2013_sphere-drag-correlation.pdf](../Morrison2013_sphere-drag-correlation.pdf), the 2-page handout
+  - `Morrison2013_sphere-drag-correlation.pdf` (local only, not in Git since 2026-11-26: D-031), the 2-page handout
     (was `DataCorrelationForSphereDrag2013.pdf`). **Use this one.**
-  - [Morrison2013_exam-data-correlations-sheet.pdf](../Morrison2013_exam-data-correlations-sheet.pdf), the CM3110
+  - `Morrison2013_exam-data-correlations-sheet.pdf` (local only, not in Git since 2026-11-26: D-031), the CM3110
     "Data Correlations for Examinations" sheet, 4 pages; pipe friction on pp. 1–2, sphere on pp. 3–4 (was
     `DataCorrelationsforExaminations2013.pdf`). It prints a different version of the correlation, with a typo.
 - Reviewed: 2026-11-02 by Claude Code. Read both files in full. Every equation and constant was read from zoomed page

@@ -11,7 +11,9 @@ Outputs (written next to this file; units in the names):
     contraction_wall_fusion_cm.csv  x,y,z in CENTIMETRES, no header: for Fusion 360's ImportSplineCSV sample script,
                                     which reads values as cm (Fusion's internal unit). x along the flow, y half-width.
     contraction_wall_mm.csv         the same curve in mm with a header and extra columns, for people.
-    It also prints the station table, slopes, curvature, joint positions and a filament estimate (stdout).
+    It also prints the station table, slopes, curvature, joint positions and a filament estimate (stdout), and the
+    6 control points of a degree-5 control point spline that IS this curve (a Bezier curve, checked against the
+    equation), for drawing it in Fusion without importing points.
 
 Run from the repository root:  python cad/sizing/contraction.py
 Standard library only.
@@ -46,6 +48,14 @@ def dy(x):
 def d2y(x):
     s = x / L
     return -(H_I - H_E) / L**2 * 60 * s * (1 - s) * (1 - 2 * s)
+
+
+def bezier(cps, t):
+    """Point at parameter t on the Bezier curve with control points cps (de Casteljau)."""
+    pts = [tuple(p) for p in cps]
+    while len(pts) > 1:
+        pts = [((1 - t) * a[0] + t * b[0], (1 - t) * a[1] + t * b[1]) for a, b in zip(pts, pts[1:])]
+    return pts[0]
 
 
 def bisect(f, a, b, n=80):
@@ -111,6 +121,14 @@ def main():
     vol_cm3 = area * T_WALL / 1000
     print(f'\nInside surface {area / 100:.0f} cm^2; a solid {T_WALL:.1f} mm shell is about {vol_cm3:.0f} cm^3, '
           f'{vol_cm3 * PLA_DENSITY:.0f} g of PLA (estimate; flanges not included)')
+
+    # The same curve as a degree-5 Bezier: 6s^5 - 15s^4 + 10s^3 is B3 + B4 + B5 in the Bernstein basis, so the control
+    # points sit every L/5 along the flow, the first three at the inlet half-width and the last three at the exit's.
+    cps = [(L * k / 5, H_I if k < 3 else H_E) for k in range(6)]
+    err = max(abs(bezier(cps, i / 2000)[1] - y(bezier(cps, i / 2000)[0])) for i in range(2001))
+    print()
+    print('Control point spline, degree 5 (exact): ' + ', '.join(f'({cx:.1f}, {cy:.1f})' for cx, cy in cps)
+          + f' mm; largest difference from the equation {err:.1e} mm over 2001 points')
     print(f'\nWrote {len(xs)} points: contraction_wall_fusion_cm.csv (cm) and contraction_wall_mm.csv (mm)')
 
 

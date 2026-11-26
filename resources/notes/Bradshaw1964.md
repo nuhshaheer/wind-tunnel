@@ -3,7 +3,7 @@
 - Citation: P. Bradshaw, R. C. Pankhurst, "The design of low-speed wind tunnels," *Progress in Aerospace Sciences* 5,
   1964, p. 1 (journal details from the earlier citation check; this copy states "Crown copyright. Reprinted from NPL Aero
   Report 1039").
-- Copy in this folder: [Bradshaw1964_design-of-low-speed-wind-tunnels.pdf](../Bradshaw1964_design-of-low-speed-wind-tunnels.pdf)
+- Copy in this folder: `Bradshaw1964_design-of-low-speed-wind-tunnels.pdf` (local only, not in Git since 2026-11-26: D-031)
   (was `bradshaw1964.pdf`). 69 PDF pages; **printed page = PDF page.** Scanned with a usable text layer; several
   formulas and all the figures are garbled in the text layer.
 - Reviewed: 2026-11-22 by Claude Code (Opus 5.5). Read in full from the text layer: §§1–5 and 7–16. §6 (axial-fan

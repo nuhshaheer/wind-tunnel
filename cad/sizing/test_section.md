@@ -62,12 +62,13 @@ height above the floor's inside face. y is across, from the centre line; the win
 
 ## Still open
 
-1. The floor insert, sting shield, sting hole and balance box: next sheet. It also decides how tall the tunnel stands,
-   because the balance box hangs lowest (PROJECT_STATUS open question 15).
-2. The calibration probe: a straight probe through the open exit on a stand, or a plugged port in the black wall at
-   x = 206 (calibration sheet).
-3. The image-sting proposal (TODO P1, 2026-11-22 proposal #1) would need a spare top panel with a mount. Decide before the
-   top panel's CAD.
+Items 1–3 were open when this sheet was written and were settled later on 2026-11-26:
+
+1. ~~The floor insert, sting shield, sting hole and balance box~~: in the [balance sheet](balance.md), which also sets the
+   tunnel's height ([supports sheet](supports.md)).
+2. ~~The calibration probe~~: **D-030**, a straight probe through the open exit on a stand
+   ([supports sheet](supports.md), "Probe stand"). No port in the black wall.
+3. ~~The image-sting proposal~~: **D-029**, the image panel and stub in the [balance sheet](balance.md).
 4. A window-pocket coupon (C8) if the owner wants to test the flush window before the full body.
 
 Sources: D-008, D-013, D-014, D-022, D-023 and D-024 in [DECISIONS.md](../../DECISIONS.md);

@@ -2,7 +2,7 @@
 
 - Citation: R. D. Mehta, P. Bradshaw, "Design rules for small low speed wind tunnels," *The Aeronautical Journal*
   83(827), November 1979, pp. 443–449 (Technical Note, Paper No. 718). doi:10.1017/S0001924000031985
-- Copy in this folder: [Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf](../Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf).
+- Copy in this folder: `Mehta1979_design-rules-small-low-speed-wind-tunnels.pdf` (local only, not in Git since 2026-11-26: D-031).
   Scanned journal pages with an OCR text layer. The owner added it on 2026-10-30 as `10.1017S0001924000031985.pdf`
   (the DOI).
   - **PDF pages 1–7 are journal pp. 443–449, this paper.** PDF page = journal page − 442.

@@ -14,6 +14,9 @@ Outputs (written next to this file; units in the names; Fusion's ImportSplineCSV
     shield_section_cm.csv          x, y, z in cm, no header: the closed shield outline in the floor plane
                                    (x along the flow from the nose, y across), trailing edge cut blunt at 0.8 mm
     profiles_mm.csv                the same diffuser numbers in mm with a header, for reading
+    stdout also gives the 4 control points of a degree-3 control point spline that IS each diffuser rail (a Bezier
+    curve, checked against the equation), for drawing the rails in Fusion without importing points. The shield's NACA
+    section has a square-root term and no such exact form, so it stays a points file.
 
 Run from the repository root:  python cad/sizing/profiles.py
 Standard library only.
@@ -37,6 +40,14 @@ TE_MIN = 0.8          # mm, thinnest trailing edge that prints with a 0.4 mm noz
 
 def smooth(u):
     return u * u * (3 - 2 * u)
+
+
+def bezier(cps, t):
+    """Point at parameter t on the Bezier curve with control points cps (de Casteljau)."""
+    pts = [tuple(p) for p in cps]
+    while len(pts) > 1:
+        pts = [((1 - t) * a[0] + t * b[0], (1 - t) * a[1] + t * b[1]) for a, b in zip(pts, pts[1:])]
+    return pts[0]
 
 
 def naca_half(xc):
@@ -78,6 +89,13 @@ def main():
             f.write(f'{x / 10:.5f},{y / 10:.5f},0\n')
 
     print(f'diffuser: {len(xs)} rail points each; flats 76 -> 125, diagonal 76 -> {H1_DIAG:.2f} mm')
+    # 3u^2 - 2u^3 is B2 + B3 in the cubic Bernstein basis: control points every L/3, two at h0 and two at h1.
+    for name, h1 in (('flats', H1_FLAT), ('diagonal', H1_DIAG)):
+        cps = [(0.0, H0), (L_DIFF / 3, H0), (2 * L_DIFF / 3, h1), (L_DIFF, h1)]
+        err = max(abs(bezier(cps, i / 2000)[1] - (H0 + (h1 - H0) * smooth(bezier(cps, i / 2000)[0] / L_DIFF)))
+                  for i in range(2001))
+        print(f'diffuser {name} rail, control point spline degree 3 (exact): '
+              + ', '.join(f'({cx:.3f}, {cy:.3f})' for cx, cy in cps) + f' mm; largest difference {err:.1e} mm')
     print(f'shield: max half-thickness {naca_half(0.3):.3f} mm at 30 % chord; cut at x = {xcut * CHORD:.2f} mm '
           f'(blunt edge {2 * naca_half(xcut):.2f} mm); bore Ø5 at x = {0.3 * CHORD:.2f} mm leaves '
           f'{naca_half(0.3) - 2.5:.2f} mm of wall each side; {len(outline)} outline points')
