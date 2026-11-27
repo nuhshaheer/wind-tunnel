@@ -24,26 +24,35 @@ Owner tasks are physical or account actions that an agent cannot do.
     - the diffuser, whole: 189 overall, the 175 curve plus its end flanges (owner kept it);
     - the fan inlet ring: a straight Ø156.1 socket 27 deep (owner kept it), on the 6 in collar placeholder.
 
+    **Exported and checked 2026-11-27** ([log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md); with `scripts/check_mesh.py`, `/check-cad`):
+    - settling chamber C2, whole (passed first time);
+    - settling chamber C3, whole: four S taps (Ø8 boss, Ø3.3 socket, Ø0.9 hole) and the mist port (Ø8 boss, Ø4.5 stub,
+      Ø3.3 hole) on the camera-side piece;
+    - the contraction in two parts: the inlet ring (0–82) and the one-piece part (82–250, exit flange with 8 holes and
+      2 pin holes), glued at 82 with 4 filament pins ([D-032](DECISIONS.md)).
+
     Drawn, not exported: screen 12a's frame. Next:
-    - chambers C2 and C3 (flanges as on C1, chamfer under the insert flange, no corner blocks);
+    - the corner-piece cuts, with filament-pin holes in the seam faces: C2 first (simplest), then C1, C3 (its
+      mist-port piece is its own model) and the contraction's inlet ring;
     - the diffuser cut at the middle of its curve: 87.5 from the curve's start, 95.5 from the round flange's face.
       Flanges go around the wall there with no straight length added; D2's insert flange gets the chamfer, D1's screw
       flange doesn't. Then D2 into four corner pieces;
-    - the chambers into corner pieces with pin holes;
-    - the 50 mm corner spacers and screen frames 12b–12e, after the spacer choice below.
+    - the 50 mm corner spacers and screen frames 12b–12e, after the spacer choice below;
+    - the test section: its front flange's two pins must match the contraction's exit, at (−29.5, 59) and (29.5, −59).
   - **Owner, before drawing the spacers and 12d's frame:** choose what the spacers push on. Proposed: four small corner
     tabs on the upstream layer of 12d's frame, spacers 50 long
     ([settling_chamber.md](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26)).
   - **Owner, each part:** export it as 3MF to `cad/main cad files/` for the agent to check. Check chamfers are Chamfer,
     not Fillet, and that each part is one body.
-  - **Owner, before drawing C3:** choose the mist port's place
-    ([options](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26); it lands on a glued seam).
+  - ~~Owner, before drawing C3: choose the mist port's place~~ **answered 2026-11-27: one port, on the camera-side
+    corner piece** ([settling-chamber sheet](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26)).
   - **Owner, also:**
     - say whether the S6 is being bought now ("im buying the s6", 2026-11-26) or last, as D-025 says;
     - once it arrives, measure its collar and update `collar_d`, so the ring's socket follows.
   - Estimate 12–25 h (owner's own estimate about 10 h).
-  - Outcome: STEP or STL exports in `cad/` (D-004's size rule). Verify: the agent checks each export (fits the 256 mm
-    bed, key dimensions match the sheets, bolt holes line up between mating parts), and the coupons fit.
+  - Outcome: 3MF exports in `cad/main cad files/` (D-004's size rule). Verify: the agent runs `/check-cad` on each
+    export (one closed body, fits the 256 mm bed or will once split, key dimensions match the sheets, mating holes line
+    up), and the coupons fit.
 - [ ] **Owner: buy the build tools** (2026-11-26; [shopping list](docs/shopping_list.md), "Tools for the build"): a
   T18 heat-set insert tip set with an M3 size, the AstroAI 6000-count multimeter, flush cutters, a heat gun (optional
   for the tunnel). Outcome: each marked "Got it". Verify: the insert tip used on coupon C1.
@@ -235,6 +244,14 @@ Owner tasks are physical or account actions that an agent cannot do.
     readings, and humidity changes air density. Let the tunnel dry afterwards.
   - Use distilled water, and empty and dry the generator after each use. Ultrasonic foggers put whatever is in the
     water (minerals, microbes from standing water) into the air. Keep the mains supply dry.
+  - **The port (2026-11-27; owner: one port, camera side; design Proposed):** C3's port takes a 15 mm silicone
+    sleeve. Measurements: a 23 mm brass-rod plug. Mist at the wall: a 1/8 in barbed reducer and the mist hose. Mist past
+    the ball: a straight 1/8 in brass tube about 170 long, end soldered shut, a Ø1.2 hole near the end turned to face
+    downstream ([settling-chamber sheet](cad/sizing/settling_chamber.md)). The tube's small wake reaches the ball
+    during mist runs only; a smoke wire would disturb less.
+  - **The mist maker's place:** on its own tray or stand, below the port (about 195 mm above the bench) so condensed
+    water drains back down the hose; on the camera side, away from the load-cell box and the Arduino; not touching the
+    tunnel; a short hose. Its holder goes in the supports sheet when the mist is designed.
   - Generator options, compared 2026-11-01 after the owner asked for one that makes thick smoke:
     - **ultrasonic mist maker** (Aki's approach): water, cool, no residue, cheap; fades at high speed. The agent's
       first choice;
@@ -299,10 +316,6 @@ Owner tasks are physical or account actions that an agent cannot do.
   register's collar row at 150/153.7 (now 152.4/156.1). Do it once more parts are drawn
   ([drawings README](docs/drawings/README.md)). Verify: `python docs/drawings/page.py` rebuilds with
   `parts never drawn: []`, the changed sheets previewed, and the README's "Known differences" list cleared.
-- [ ] **Optional, agent: keep the 3MF export checker in the repo** (new 2026-11-26). This session's section-cutting
-  scripts (a standard-library 3MF reader, a plane-section and ray tool) were scratch work. A kept script in `cad/`
-  would make each export check rerunnable. Outcome: a script with its command in `cad/sizing/README.md`. Verify: it
-  reproduces this session's numbers on the four exports.
 - [ ] **Data-logging firmware** (replaces the 2026-11-01 "firmware with an on-tunnel display and knob menu", dropped by
   [D-012](DECISIONS.md) on 2026-11-08: all output goes to the laptop).
   - **First, bring-up sketches** (agent, proposed 2026-11-17): an I²C scanner, then one commented sketch per sensor,
@@ -695,3 +708,14 @@ Owner tasks are physical or account actions that an agent cannot do.
   fixed by the owner in two rounds: C1 in six bodies, the missing chamfers (then fillets instead of chamfers) and a
   tapered socket. Owner's decisions: the diffuser 189 overall and the socket 27 deep (notes on D-026 and D-027); the
   tunnel is about 1.40 m long ([session log](docs/sessions/2026-11-26-first-cad-exports-checked.md)).
+- [x] 2026-11-26: Owner committed and pushed the CAD-exports session as `163e568`; `/catchup` confirmed `UP_TO_DATE`
+  ([session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md)).
+- [x] 2026-11-27: **The 3MF export checker kept in the repo** (owner's request; was an optional P2 task):
+  `scripts/check_mesh.py` (info, layers, cut, match), 15 tests in `tests/test_check_mesh.py`, and the `/check-cad`
+  skill. It reproduces the 2026-11-26 numbers on the first four exports ([session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md)).
+- [x] 2026-11-27: **Settling chambers C2 and C3 drawn and checked** (C3 in three rounds: back holes, tap boss and
+  socket sizes, four taps, a separate body), and **the mist port's place chosen** by the owner: one port on the
+  camera-side piece ([session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md)).
+- [x] 2026-11-27: **The contraction drawn and checked** in two parts, its inside within 0.029 mm of the equation. The
+  J220 screws could not be assembled behind the sloping wall; the owner chose a glued joint ([D-032](DECISIONS.md);
+  [session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md)).

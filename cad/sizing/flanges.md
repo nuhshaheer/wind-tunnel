@@ -33,7 +33,7 @@ Positions are measured from the section's centre line, across the flow.
 | Joint | Where | Inside | Flange outside | Bolt square (centres) | Bolts | Spacing |
 |---|---|---|---|---|---|---|
 | **J250** | diffuser exit → settling chamber, between chamber sections, chamber → contraction | 250 | 280 | 268 | **12:** four corners (±134, ±134), and two per side at ±45 from the middle: (±45, ±134), (±134, ±45) | 89–90 |
-| **J220** | contraction inlet ring → one-piece contraction, at x = 82 | 219.7 | 249.7 | 237.7 | **12:** four corners (±118.8, ±118.8), and two per side at ±45 from the middle | 74–90 |
+| **J220** | contraction inlet ring → one-piece contraction, at x = 82 | 219.7 | 249.7 | none | **Glued, no bolts ([D-032](../../DECISIONS.md), owner, 2026-11-27):** both flanges 6 thick, 4 filament pins in Ø2.0 × 5 holes at the corners (±118.85, ±118.85). The bolted pattern first proposed here (12 on a 237.7 square) could not be assembled; see "Screw room" below | — |
 | **J100** | contraction exit → test section | 100 | 130 | 118 | **8:** four corners (±59, ±59) and the middle of each side (0, ±59), (±59, 0) | 59 |
 
 - **No bolt in the middle of a side on a split section:** that is where the glued seam is. With bolts at ±45 the seam
@@ -43,7 +43,7 @@ Positions are measured from the section's centre line, across the flow.
   250 mm wall. Between bolts 90 mm apart, a 6 mm PLA flange bends about 0.03 mm under the foam's push (assuming
   20 kPa on a 6.4 mm tape and E = 2.5 GPa). That is far less than the foam squeezes, so the seal stays even.
 - **Joints, inserts and screws** (counted from the sheets, 2026-11-26; replaces the first estimate of 5–7 J250 joints and
-  90–110 inserts): **9 bolted joints, 18 flanges.** Every part has an insert flange upstream and a screw flange
+  90–110 inserts): **8 bolted joints and 1 glued (J220, D-032, 2026-11-27).** Every part has an insert flange upstream and a screw flange
   downstream, except the fan inlet ring (socket upstream) and the test-section extension (open exit).
 
   | Joint | Bolts | Screen | Screws |
@@ -52,12 +52,12 @@ Positions are measured from the section's centre line, across the flow.
   | D1 → D2 (mid-diffuser) | 12 | 12b | M3 × 16 |
   | D2 → chamber C1, C1 → C2, C2 → C3 (J250) | 12 each | 12c, 12d, 12e | M3 × 16 |
   | C3 → contraction inlet ring (J250) | 12 | none | M3 × 12 |
-  | Inlet ring → one-piece contraction (J220) | 12 | none | M3 × 12 |
+  | Inlet ring → one-piece contraction (J220) | glued (D-032): 4 filament pins | none | none |
   | Contraction → test section (J100) | 8, plus 2 pins | none | M3 × 12 |
   | Front body → extension (J100) | 8 | none | M3 × 12 |
 
-  **94 inserts and 94 screws: 54 × M3 × 16 and 40 × M3 × 12.** Use the 5 mm (50) and 4 mm (50) inserts in the
-  flanges, since a 6 mm deep hole takes both. That leaves only 6 spare. If more are needed, a 6 mm insert fits a 7
+  **82 inserts and 82 screws: 54 × M3 × 16 and 28 × M3 × 12** (94 and 40 before J220 was glued, 2026-11-27). Use the
+  5 mm (50) and 4 mm (50) inserts in the flanges, since a 6 mm deep hole takes both. That leaves 18 spare. If more are needed, a 6 mm insert fits a 7
   deep hole: at the bolt line the chamfer under the insert flange adds about 6 to its 8. Keep the 6 and 8 mm ones for
   the balance and the panel frames. How many M3 × 12 and × 16 the screw assortment holds is not recorded yet.
 - **Why the flange runs all the way round, not as corner tabs** (owner asked, 2026-11-26):
@@ -68,7 +68,7 @@ Positions are measured from the section's centre line, across the flow.
 
 ## Lining up the inside walls at a joint
 
-- **Slow joints (J250, J220):** the screws in Ø3.4 holes locate each section to within about ±0.2. Before tightening,
+- **Slow joints (J250):** the screws in Ø3.4 holes locate each section to within about ±0.2. Before tightening,
   lay a straightedge across the joint inside and push the walls flush, then tighten in a cross pattern.
 - **J100, where the air is fastest:**
   - Add two Ø3.2 holes for pins, diagonally opposite on the bolt line, halfway between a corner bolt and a mid-side
@@ -76,6 +76,23 @@ Positions are measured from the section's centre line, across the flow.
   - Make the test section's opening about 0.3 bigger than the contraction's exit (100.3 against 100.0). Any mismatch
     that is left is then a small step down, away from the flow, never a step up into it.
   - Settled in the test-section sheet.
+
+## Screw room behind a sloping wall (found 2026-11-27)
+
+A screw goes in from upstream and needs about **18 mm of straight, empty room** behind its screw flange (an M3 × 12 is
+15 long with its Ø5.5 × 3 head). The bolt line 6 beyond the wall gives that only where the wall behind the flange is
+straight or leans away from the bolt line. Measured on the owner's exported contraction (agent, 2026-11-27):
+
+| Joint | Wall behind the screw flange | Room behind the screws | Result |
+|---|---|---|---|
+| J250, C3 → contraction | C3's wall, straight at 128; bolt line 134 | unlimited | works |
+| J220, at x = 82 | the inlet ring's wall leans outward toward the inlet: it reaches the head's edge (116.1) 1.4 behind the flange and the bolt line (118.85) 9 behind it | 9 mm | **cannot be assembled**; glued instead (D-032) |
+| J100, contraction exit | the wall flares outward upstream, crossing the bolt line (59) about 51 behind the exit flange | about 50 mm | works (an L-key or a short driver) |
+
+The bolts at J220 cannot move outward either: the one-piece part prints whole on the 256 bed, which caps its flange at
+249.7, and screws far enough out to clear the wall (about 126 from the centre) need a flange about 264 wide. **Check this
+room for every new screw flange next to a sloping wall.** The diffuser's mid joint (12b) is fine: the diffuser widens
+downstream, so behind D1's screw flange the wall narrows away from the bolt line.
 
 ## The corner pieces (D-023)
 

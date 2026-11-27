@@ -321,6 +321,8 @@ Template:
   [2026-11-09 drawing-package session](docs/sessions/2026-11-09-drawing-package.md); [buy list](docs/buy_list.md) §2;
   drawing sheet 10 in [docs/drawings/](docs/drawings/README.md).
 - Status: Accepted (owner, 2026-11-09). Supersedes D-005's joining method. Sizes Proposed or TBD.
+- **Note, 2026-11-27:** one exception. The contraction's joint at x = 82 mm is glued, not bolted, because screws cannot
+  be put in behind its sloping wall (D-032). Every other joint stays bolted.
 
 ## D-014: Model access: the top panel lifts off on magnets; replaceable floor inserts under the model
 
@@ -687,6 +689,10 @@ Template:
 - Status: Accepted (owner, 2026-11-26) for the four-piece split, the mid-wall seams and the tap layout. The flange
   sizes, bolt patterns, gluing method and the S ring's position along the chamber are Proposed in
   `cad/sizing/flanges.md`, to be settled with the test coupons and the settling-chamber sheet.
+- **Note, 2026-11-27:** the inlet ring joins the one-piece contraction with a glued joint, not the bolted J220 flange
+  (D-032). In C3 the mist port sits on one corner piece only (owner: one port, on the camera-side piece), so that piece
+  is its own model; the other three stay identical. C1–C3 and the contraction's inlet ring are drawn whole; the cut into
+  corner pieces is still to be drawn.
 
 ## D-024: Test section 310 mm long in two prints; one clear window and one black printed wall; E and M tap positions
 
@@ -889,3 +895,34 @@ Template:
     the owner.
   - A fresh clone has the notes but not these PDFs, like Barlow1999 and Ewald1998 (D-006). New papers follow the
     licence step in `resources/README.md`.
+
+## D-032: The contraction's joint at x = 82 mm is glued with filament pins, not bolted
+
+- Date: 2026-11-27
+- Question: How are the contraction's inlet ring (x = 0–82 mm) and its one-piece part (x = 82–250 mm) joined? The
+  flange sheet (Proposed, 2026-11-26) gave this joint (J220) the standard bolted flange: 12 M3 screws on a 237.7 mm
+  square, their heads on the inlet ring's flange.
+- Found (agent, 2026-11-27, measured on the owner's exported contraction): **those screws cannot be put in.** The inlet
+  ring's wall leans outward toward the inlet, about 22–24° from the axis at the joint. Behind the flange its outside
+  reaches the edge of a Ø5.5 screw head 1.4 mm back and the screw's own line 9 mm back, while an M3 × 12 needs about
+  18 mm of straight room. The flange sheet had set the bolt line 6 mm outside the wall as on the straight sections and
+  missed the slope. The bolts cannot move outward: the one-piece part prints whole on the 256 mm bed, which caps its
+  flange at 249.7 mm, and screws far enough out to clear the wall need a flange about 264 mm wide.
+- Decision (owner: "ok lets just glue it"): the two flanges at 82 mm (249.7 mm square, 6 mm thick each, no screw
+  holes) are glued face to face with 5-minute epoxy, lined up by four 1.75 mm filament pins about 9.5 mm long in
+  Ø2.0 × 5 mm holes at the corners (±118.85, ±118.85) of both flanges.
+- Rationale: the joint holds no screen and never needs to come apart; the contraction still comes off whole at its two
+  bolted ends (to C3, and to the test section); the joint sits at the slow end (about a fifth of the test-section
+  speed), so a hair of misalignment barely matters; no extra parts.
+- Alternatives considered: a separate four-piece clamp ring behind the one-piece part's flange, with screws further out
+  (the owner's sketch, made printable: works, but an extra part and 12 longer screws); moving the cut to about 100 mm,
+  where a 250 mm flange leaves about 20 mm of room behind the screws (the split redone); turning the screws round
+  (their heads would sit under the one-piece part's top flange, which then needs support to print); printed Ø2 mm pegs
+  instead of filament pins (the owner's idea, 2026-11-27; weaker and harder to fit than filament).
+- Evidence / source: measurements in the
+  [2026-11-27 session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md) §6; the to-scale comparison of the
+  joints at 0 and 82 mm (private page on claude.ai, "Contraction Joint at 82":
+  https://claude.ai/artifact/CMmfsKheNZV3cRpVMLJkBj); [cad/sizing/flanges.md](cad/sizing/flanges.md) ("Screw room") and
+  [cad/sizing/contraction.md](cad/sizing/contraction.md).
+- Status: Accepted (owner, 2026-11-27). Replaces, for this one joint, D-013's bolted flange and the flange sheet's J220
+  bolt pattern. The pin and hole sizes are Proposed (coupon C5).

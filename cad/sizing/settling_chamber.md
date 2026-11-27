@@ -14,7 +14,7 @@ from the chamber's inlet face (the diffuser's exit, screen 12c).
 | 125 | Joint J250 with screen 12d | 50 after the honeycomb (0.2 D, Mehta1979) |
 | 175 | Joint J250 with screen 12e | 50 after 12d (0.2 D) |
 | **200** | **S taps**, one per wall (D-023) | after the last screen (Barlow1999 notes); at least about 70 before the contraction (Morel1975 notes): here 75 |
-| 240 | Mist port (capped), camera side, mid-height | after the last screen (TODO P2, owner's idea) |
+| 240 | Mist port, on the camera-side wall, 20 beside the seam (owner, 2026-11-27; it was mid-height, on the seam) | after the last screen (TODO P2, owner's idea) |
 | 275 | Joint J250 to the contraction | D-027 |
 
 ## Sections (each printed as four identical corner pieces, D-023)
@@ -40,6 +40,11 @@ Walls 3, PLA. Insert flange at each section's upstream end, screw flange at its 
 At x = 200, one in each wall, each about 20 beside its piece's seam (D-023). Boss and drilling as on coupon C4. The four
 stubs join through three barbed tees into one line: the High side of the SDP810 during force runs.
 
+**As drawn in C3 (owner, 2026-11-27; checked from the export):** four taps by a circular pattern, one per wall, 25
+from C3's front face and 20 beside each seam, all the same way round. Each: a Ø8 boss 8 proud, a Ø3.3 socket for the
+1/8 in brass stub stopping 1.5 short of the inside face, and a Ø0.9 hole through that last 1.5 (drilled out after
+printing, as on coupon C4). The bosses clear the chamfer under the insert flange by 1.
+
 ## Coarse grid (2026-11-22 proposal #8, at the end of the validation)
 
 On test days only: a piece of 1/4 in galvanized hardware cloth (to buy then, a few dollars) in its own J250 frame,
@@ -48,7 +53,25 @@ is needed. Recalibrate S − E with the grid in (Proposed).
 
 ## Found while preparing the CAD (2026-11-26)
 
-- **The mist port sits on a seam.** The stations table puts it on the camera side at mid-height, x = 240. The middle of
+- **Decided 2026-11-27 (owner): one mist port, on the camera-side corner piece** (option 2 below: "lets just do one,
+  and that one will face the camera side"), 20 beside the seam on the same piece as that wall's S tap. That piece is
+  its own model. **Port as drawn (design Proposed, agent; drawn by the owner):** a Ø8 boss 6 proud, a Ø4.5 stub 5
+  long on it (it ends 139 from the centre, inside the flange edge), and a Ø3.3 hole straight through into the duct.
+  In use (all from parts on hand, made at the end with the mist):
+  - a 15 mm sleeve of the 1/8 in silicone tubing: 5 on the stub, 10 gripping what goes through it;
+  - **for measurements:** a 23 mm piece of 1/8 in brass rod pushed in flush with the sleeve, ending about 1 short of the
+    inside face;
+  - **mist at the wall:** a 1/4 → 1/8 in barbed reducer in the sleeve, the mist hose on it;
+  - **mist past the ball:** a straight 1/8 in brass tube, about 170 long, its inner end closed with solder and a Ø1.2
+    hole drilled about 2 from that end, turned to face downstream. A bent (L) tip cannot pass the Ø3.3 hole. The
+    contraction squeezes positions 2.5× toward the axis, so the hole 20 above the axis passes 8 above it at the ball.
+  - Rejected: an angled port (the mist would stay at the wall and miss the ball), a barb (the chamber is only about
+    100 Pa above the room) and a printed screw cap (too small to print well).
+  - The mist maker stands on its own tray or stand below the port (about 195 above the bench), so condensed water
+    drains back down the hose; on the camera side, away from the load-cell box and the Arduino.
+  - Drawings: private page "C3 Mist Port" on claude.ai (https://claude.ai/artifact/4X4CDRrWL8hWaH7mu3eoTG).
+- **The mist port sits on a seam** (found 2026-11-26; decided above). The stations table put it on the camera side at
+  mid-height, x = 240. The middle of
   every wall is a glued seam (D-023), so mid-height on the side wall is exactly on the seam. The port is optional and
   used last (TODO P2), so this does not hold up the coupons. The section C3 piece needs an answer before it is drawn.
   Options, for the owner to choose:
@@ -71,7 +94,14 @@ is needed. Recalibrate S − E with the grid in (Proposed).
   do: cut it into four corner pieces with the pin holes.
 - **The S-tap boss clears the chamfer by about 1 mm.** In section C3 the insert flange (8) and its chamfer (12) take the
   first 20 along the wall from the x = 175 joint face. A Ø8 boss centred at x = 200 (25 into the section) starts at 21.
-  Check it in the CAD, or let the boss merge into the chamfer.
+  Check it in the CAD, or let the boss merge into the chamfer. **As drawn: 1 mm clear** (2026-11-27).
+- **C2 as drawn** (owner, exported 2026-11-27, checked with `scripts/check_mesh.py`): one body, 280 × 280 × 50, the
+  flanges, chamfer and 24 holes exactly as C1's, no corner blocks; its insert holes line up with C1's screw holes
+  (offset 0.000). Passed first time.
+- **C3 as drawn** (owner, exported 2026-11-27, three rounds): one body, 280 × 280 × 100, flanges as C2, back holes
+  Ø3.4 (first drawn Ø3.2), four S taps as above (first one only, with a Ø6 boss and a Ø4.15 socket) and the mist port
+  as above (first a solid Ø6 stub; in the second round one tap boss was a separate body, joined with Combine). Its
+  insert holes line up with C2's (offset 0.000). Still to do for C1–C3: cut into corner pieces with the seam pin holes.
 
 ## Length
 

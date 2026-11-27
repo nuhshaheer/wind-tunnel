@@ -8,9 +8,10 @@
 > reads with its bring-up sketch in [firmware/](firmware/README.md) (2026-11-23). The shield PCB that will replace the
 > breadboard is designed in KiCad ([PCB/arduino_shield/](PCB/arduino_shield/)) and **ordered (2026-11-26)**. Data so far:
 > the calibration weights' true masses (EXP-001, 2026-11-19) and the load cell on a printed bench scale (EXP-002,
-> 2026-11-26: 13,727.5 counts/g, straight within 0.025 g; its zero is the limit; Preliminary). The first four CAD parts
-> are exported and checked (the honeycomb, a settling-chamber section, the diffuser and the fan inlet ring, in
-> `cad/main cad files/`). Next: the rest of the CAD, the test coupons, and a combined logging sketch.
+> 2026-11-26: 13,727.5 counts/g, straight within 0.025 g; its zero is the limit; Preliminary). The settling chamber,
+> diffuser, fan inlet ring and contraction are drawn as CAD and checked (`cad/main cad files/`, measured with
+> `scripts/check_mesh.py`). Next: the corner-piece cuts, the test section, the test coupons, and a combined logging
+> sketch.
 > The authoritative current state is [PROJECT_STATUS.md](PROJECT_STATUS.md); the next tasks are in [TODO.md](TODO.md).
 > The complete parts list is [docs/buy_list.md](docs/buy_list.md), and the order tracker is
 > [docs/shopping_list.md](docs/shopping_list.md).

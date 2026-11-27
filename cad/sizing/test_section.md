@@ -28,7 +28,7 @@ height above the floor's inside face. y is across, from the centre line; the win
 |---|---|---|
 | Inside | **100.3 × 100.3** (0.15 per side bigger than the contraction's 100.0 exit, so any mismatch at the joint is a step down, away from the flow). **Measure the printed inside** and use the real area C in the blockage correction | Proposed |
 | Walls | 3, black PLA | Proposed |
-| Upstream end (x = 0) | Insert flange, 8 thick; J100: 8 M3 × 5 inserts on a 118 bolt square (corners and mid-sides), plus two Ø3.2 pin holes at (y, z) = (−59, −29.5) and (59, 29.5) measured from the section's centre | Proposed (flange sheet) |
+| Upstream end (x = 0) | Insert flange, 8 thick; J100: 8 M3 × 5 inserts on a 118 bolt square (corners and mid-sides), plus two Ø3.2 pin holes at (y, z) = (−59, −29.5) and (59, 29.5) measured from the section's centre. **The contraction's exit flange has them at (−29.5, 59) and (29.5, −59) as drawn (owner, 2026-11-27): the same pattern turned 90°. Draw this flange to match the contraction** | Proposed (flange sheet) |
 | Downstream end (x = 245) | Screw flange, 6 thick, J100 pattern (8 clearance holes), no pins | Proposed |
 | Entrance band (x = 0–80) | Closed, all four walls printed. One E tap boss in the middle of each wall at x = 56 (coupon C4) | Proposed |
 | Black wall (far side) | Solid, full height, x = 0–245. M tap at x = 206, z = 12 | Accepted position; Proposed details |

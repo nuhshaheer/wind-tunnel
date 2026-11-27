@@ -88,8 +88,8 @@ Then, either way:
 | How it is split | **An inlet ring (x = 0 to 82) printed as four identical corner pieces glued at mid-wall seams, like the settling chamber, and one seamless piece from x = 82 to the exit** | **Accepted ([D-023](../../DECISIONS.md), owner, 2026-11-26)** |
 | Flanges | The standard flange of the [flange sheet](flanges.md): 12 beyond the wall, bolt line 6 beyond the wall, an insert flange (8 thick) at each part's upstream end and a screw flange (6 thick) at its downstream end | Proposed |
 | Joint at the inlet (x = 0, to the settling chamber) | J250: inside 250, flange 280, 12 bolts | Proposed |
-| Joint inside the contraction (x = 82) | J220: inside 219.7, flange 249.7 (fits the bed with about 3 to spare each side), 12 bolts | Proposed |
-| Joint at the exit (x = 250, to the test section) | J100: inside 100, flange 130, 8 bolts and 2 pins; the test section's opening about 0.3 bigger, so any mismatch is a step down, away from the flow | Proposed; settled in the test-section sheet |
+| Joint inside the contraction (x = 82) | **Glued, not bolted ([D-032](../../DECISIONS.md), owner, 2026-11-27):** inside 219.7, both flanges 249.7 square (fits the bed with about 3 to spare each side) and 6 thick, no screw holes; 4 filament pins (1.75, about 9.5 long) in Ø2.0 × 5 holes at the corners (±118.85, ±118.85); 5-minute epoxy. The 12 bolts first proposed could not go in: the inlet ring's wall leans over the bolt line 9 mm behind its flange ([flange sheet](flanges.md), "Screw room") | Accepted (D-032); pin and hole sizes Proposed (coupon C5) |
+| Joint at the exit (x = 250, to the test section) | J100: inside 100, flange 130, 8 bolts and 2 pins; the test section's opening about 0.3 bigger, so any mismatch is a step down, away from the flow. **Pins as drawn (owner, 2026-11-27): Ø3.2 through at (−29.5, 59) and (29.5, −59)**, the test-section sheet's pattern turned 90°; the test section's flange must match. About 50 mm of room behind the screws | Proposed; settled in the test-section sheet |
 
 ### Why it is split at x = 82
 
@@ -105,8 +105,10 @@ one-piece downstream part can start where its upstream flange fits the bed with 
 - The joint sits where the air moves at about a fifth of the test-section speed, so a small step there matters far less
   than near the exit (Morel1975: contractions with large ratios tolerate irregularities at the slow end).
 - **Printing the one-piece part:** stand it on its exit (screw) flange. The walls lean outward going up, at most 29.4°
-  from vertical, so the inside needs no supports. The big insert flange at the top gets a 45° chamfer underneath
-  (flange sheet).
+  from vertical, so the inside needs no supports. **Corrected 2026-11-27:** the flange at the top (the glued joint) needs
+  slicer supports (tree supports from the build plate, under that flange only), not the 45° chamfer planned here. The
+  wall under it leans inward going down, so a 45° chamfer would run about 29 mm down before meeting it: about 250 g of
+  PLA (estimate).
 - **The inlet ring:** four corner pieces, each with a curved wall from the points file, printed and glued as in the
   flange sheet.
 
@@ -117,6 +119,24 @@ one-piece downstream part can start where its upstream flange fits the bed with 
   the bends (radius 158).
 - Printed standing, the 29° slope leaves layer ridges about 0.1 mm high (estimate at 0.2 mm layers). Sanding removes
   them; finer layers in the steep middle, or the filler primer (optional, buy list §2), reduce the sanding.
+
+## As drawn (2026-11-27)
+
+The owner drew the contraction in Fusion and exported it as two parts; the agent checked both meshes with
+`scripts/check_mesh.py` (commands in the [2026-11-27 session log](../../docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md)).
+
+| Part | As drawn | Check |
+|---|---|---|
+| Inside wall | Within 0.029 of the equation at 11 stations (87.500 exactly at x = 125); square at every station with sharp corners | Matches |
+| Wall | 3.0 square to the surface (3.000 at the ends, 3.438 measured across the axis at x = 125) | Matches |
+| `Contraction Part 2.3mf`: inlet ring, x 0–82 | Inlet flange 280 square, 8 thick, 12 × Ø4.0 × 6 on the J250 pattern, straight 45° chamfer 12 tall under it; flange at 82: 249.7 square, 6 thick, 4 × Ø2.0 × 5 pin holes | Matches; one closed body; still whole (the four corner pieces are still to cut) |
+| `Contraction Part 1.3mf`: one-piece part, x 82–250 | Flange at 82 as on Part 2 (pin holes line up, offset 0.000); exit flange 130 square, 6 thick, 8 × Ø3.4 through, 2 × Ø3.2 pin holes through, no chamfer | Matches; one closed body; 249.7 × 249.7 × 168, fits the bed |
+
+How it was modelled after two false starts ([session log](../../docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md) §8): one sketch holding the
+inside curve (the degree-5 control point spline) and its 3 mm offset on both sides, closed by a line across each end;
+the outside region and the inside region each extruded symmetric 300, copied turned 90° about the axis and intersected;
+then the air cut from the outside funnel. Each flange's inner boundary is the projected inside edge of the duct, so the
+flange welds to the whole wall.
 
 ## Still to decide for this part
 

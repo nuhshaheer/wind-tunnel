@@ -43,7 +43,15 @@ Earlier: revision D 2026-11-17 with sheet 12 at revision E 2026-11-23; revision 
     [D-026](../../DECISIONS.md)); the tunnel is about 1.40 m long, not 1.34 (note on D-027).
   - The fan inlet ring's socket is 27 deep in the CAD (`sock_depth=28` here), kept by the owner.
   - The TBD register's collar row still reads "collar 150, socket ≈153.7". The sheets now use the nominal 6 in collar
-    (152.4) as the placeholder, which gives a socket of Ø156.1 ([sizing README](../../cad/sizing/README.md)).
+    (152.4) as the placeholder, which gives a socket of Ø156.1 ([sizing README](../../cad/sizing/README.md)). The CAD
+    has Ø156.2 (2026-11-27).
+  - **Added 2026-11-27:**
+    - The mist port is drawn as a layout block with a cap, 20 proud, at mid-height on the seam. In the CAD it is a Ø8
+      boss 6 proud with a Ø4.5 stub and a Ø3.3 hole, 20 beside the seam on the camera-side piece only
+      ([settling-chamber sheet](../../cad/sizing/settling_chamber.md)).
+    - The contraction's joint at 82 (J220) is drawn bolted. It is glued with four filament pins and no screws
+      ([D-032](../../DECISIONS.md)); the one-piece part's top flange needs print supports, not a chamfer.
+    - The contraction exit's two pins are at (−29.5, 59) and (29.5, −59) in the CAD, the sheets' pattern turned 90°.
   Redraw these in the next revision, once more parts are drawn.
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
   [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C);

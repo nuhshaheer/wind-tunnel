@@ -1,17 +1,17 @@
 # Project Status
 
-**Last updated:** 2026-11-26
-**Last commit:** `83d6fad` (2026-11-26, the copyrighted PDFs untracked and the decisions register), pushed by the owner
-to `origin/main` (`UP_TO_DATE` at the next catch-up).
+**Last updated:** 2026-11-27
+**Last commit:** `163e568` (2026-11-26, the first CAD exports and the diffuser and socket choices), pushed by the owner
+to `origin/main` (`UP_TO_DATE` at the 2026-11-27 catch-up).
 - The repo is https://github.com/nuhshaheer/wind-tunnel, **public since 2026-11-26** ([D-031](DECISIONS.md); account
   renamed from `nuhshaheer-2007` on 2026-11-02; the old URL redirects).
-- **Not committed yet (2026-11-26, CAD-exports session,
-  [log](docs/sessions/2026-11-26-first-cad-exports-checked.md)):**
-  - the owner's first four CAD exports, `cad/main cad files/*.3mf` (1.3 MB in all);
-  - the owner's decisions recorded (diffuser 189 overall, fan socket 27 deep), the tunnel length corrected to about
-    1.40 m, and the sizing-sheet corrections found while checking the exports.
+- **Not committed yet (2026-11-27, [log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md)):**
+  - four more CAD exports in `cad/main cad files/`: settling chambers C2 and C3, and the contraction in two parts;
+  - the CAD checker `scripts/check_mesh.py` with its tests and the `/check-cad` skill (owner's request);
+  - the owner's mist-port sketch (`docs/sketches/`), [D-032](DECISIONS.md) (the contraction's joint at 82 glued), and
+    the sheet corrections and as-drawn notes.
 
-**Current stage:** pre-build, **sized (build step 1 done 2026-11-26), CAD in progress (owner, started 2026-11-26).** Every printed part has a dimension sheet in [cad/sizing/](cad/sizing/README.md) (decisions D-022 to D-031), with points files for Fusion 360, and the [drawing package](docs/drawings/README.md) is at revision F. The owner draws the CAD (D-017). **Exported and checked (2026-11-26, `cad/main cad files/`, 3MF):** the honeycomb, settling chamber C1 (whole, still to split into corner pieces), the whole diffuser (still to cut at its mid joint) and the fan inlet ring. The agent checked each export by cutting sections through the mesh: all now match the sheets, with two owner's changes kept (diffuser 189 overall, socket 27 deep). Also drawn, not exported: screen 12a's frame. Test coupons C1–C5 come before any big part is printed. The layout is decided and **a full buy list exists
+**Current stage:** pre-build, **sized (build step 1 done 2026-11-26), CAD in progress (owner, started 2026-11-26).** Every printed part has a dimension sheet in [cad/sizing/](cad/sizing/README.md) (decisions D-022 to D-031), with points files for Fusion 360, and the [drawing package](docs/drawings/README.md) is at revision F. The owner draws the CAD (D-017). **Exported and checked (2026-11-26/27, `cad/main cad files/`, 3MF):** the honeycomb, settling chambers C1, C2 and C3 (each whole, still to split into corner pieces; C3 with its four S taps and the mist port), the whole diffuser (still to cut at its mid joint), the fan inlet ring, and the contraction in two parts (inlet ring 0–82, still to split; one-piece part 82–250), glued at 82 ([D-032](DECISIONS.md)). Each export is checked with `scripts/check_mesh.py` (`/check-cad`): all match the sheets, with the owner's kept changes. Also drawn, not exported: screen 12a's frame. Test coupons C1–C5 come before any big part is printed. The layout is decided and **a full buy list exists
 ([docs/buy_list.md](docs/buy_list.md), about $315–505 before tax and shipping). Everything ordered on 2026-11-09/10 has
 arrived (owner, 2026-11-17): all the sensors and boards, the screen, tubing and fittings, brass, balls, acrylic,
 fasteners, tools, 4 kg of black PLA. Most arrival checks are not done yet. Still to buy: the fan (the S6, D-025; bought last, once the airspeed
@@ -87,7 +87,7 @@ This is the authoritative snapshot of the project. Status labels used below:
 ## Decisions: what is decided and what is not
 
 **Read this before treating anything as settled.** Checked against every Status line in [DECISIONS.md](DECISIONS.md) on
-2026-11-26. Older text elsewhere in this file (the history tables in §2, the open questions in §10, session logs) may
+2026-11-27. Older text elsewhere in this file (the history tables in §2, the open questions in §10, session logs) may
 quote an earlier status. Where it disagrees with this section, this section and DECISIONS.md win.
 
 Rules for agents:
@@ -103,7 +103,7 @@ Rules for agents:
   - update this section;
   - correct every document that quotes the old status, all in the same session.
 
-### Decided: every DECISIONS.md entry (none is Tentative as of 2026-11-26)
+### Decided: every DECISIONS.md entry (none is Tentative as of 2026-11-27)
 
 | ID | Decision | Status |
 |---|---|---|
@@ -119,7 +119,7 @@ Rules for agents:
 | D-010 | 13 m/s target top speed, validation runs from about 6.5 m/s | Accepted 2026-11-08 |
 | D-011 | Fan open between the S6 and the VEVOR | Superseded by D-025 |
 | D-012 | No display or knob; all output on the laptop | Accepted 2026-11-08 |
-| D-013 | Bolted flanges, M3 screws into heat-set inserts, foam tape, screens clamped in the joints | Accepted 2026-11-09; sizes Proposed |
+| D-013 | Bolted flanges, M3 screws into heat-set inserts, foam tape, screens clamped in the joints | Accepted 2026-11-09; sizes Proposed; the contraction's joint at 82 glued instead (D-032) |
 | D-014 | Top panel lifts off on magnets; replaceable floor inserts; the shield on the sphere insert | Accepted 2026-11-09; details Proposed |
 | D-015 | Printed sting mount, thumb-screw sting lock, sting lifted out to change balls, overload stops | Accepted 2026-11-09 as the concept; sizes Proposed |
 | D-016 | One full-length 1/8 in brass sting per ball, no sleeve | Accepted 2026-11-26 |
@@ -138,6 +138,7 @@ Rules for agents:
 | D-029 | Image sting for the sting's tare and interference | Accepted 2026-11-26; sizes Proposed |
 | D-030 | Calibration probe through the open exit, on a stand | Accepted 2026-11-26; the stand Proposed ([supports sheet](cad/sizing/supports.md)) |
 | D-031 | Public repository; copyrighted PDFs local only (option (a)) | Accepted 2026-11-26 |
+| D-032 | The contraction's joint at x = 82 glued with 4 filament pins, not bolted (screws cannot go in behind its sloping wall) | Accepted 2026-11-27; pin and hole sizes Proposed |
 
 ### Decided by the owner, recorded outside DECISIONS.md
 
@@ -156,6 +157,10 @@ These are owner's choices with a date and a source. Treat them as decided:
   - airfoils at preset angles of attack, not on a servo (2026-11-01);
   - mist visualization optional and last (2026-10-31);
   - the coarse-grid check at the end, after the main validation runs (2026-11-22; its form is Proposed).
+- **Mist port** (2026-11-27; [settling-chamber sheet](cad/sizing/settling_chamber.md)): one port only, on the
+  camera-side corner piece of C3, 20 beside the seam; that piece is its own model. The port's design (Ø8 boss, Ø4.5
+  stub, Ø3.3 hole, silicone sleeve, straight brass tube, brass plug) is Proposed; the owner drew the boss, stub and
+  hole.
 
 ### Not decided yet
 
@@ -168,7 +173,7 @@ These are owner's choices with a date and a source. Treat them as decided:
 | A second, vertical load cell (lift, model-car downforce) | Open: an idea (owner, 2026-11-02). Lift may never be measured (2026-11-09). The balance sheet does not provide for one | The owner, after validation | §10 question 14 |
 | The airfoil mount | Open: only "preset angles" is decided | After validation | [TODO.md](TODO.md) P3 |
 | What the honeycomb's corner spacers push on | Proposed (agent, 2026-11-26): four small corner tabs on the upstream layer of screen 12d's frame; spacers 50 long, about 2 mm of play. Found while checking: the frame's inside is 250, so as sized the spacers press on the mesh or nothing | The owner, before drawing the spacers and 12d's frame | [settling_chamber.md](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26) |
-| The mist port's place on settling chamber C3 | Open: the planned spot is on a glued seam. Three options, agent recommends a boss on all four pieces (2026-11-26) | The owner, before C3 is drawn | [settling_chamber.md](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26) |
+| Uses for the spare neoprene | Proposed (agent, 2026-11-27): a patch with a punched hole as the load-cell box's cable seal (instead of silicone, so the cable can slide out with the module); strips where the fan rests on its stand; not between flanges (foam tape, D-013) or under the load cell | The owner, when the box and the fan stand are drawn | [2026-11-27 log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md) |
 | The mist or smoke generator | Deferred to the end (owner, 2026-11-01); the agent's first choice is an ultrasonic mist maker | The owner, at the end | [TODO.md](TODO.md) P2 |
 | Purging the copyrighted PDFs from the Git history (D-031 option (b)) | Not chosen; the owner can revisit it | The owner | [D-031](DECISIONS.md) |
 | Housekeeping | Open: republish the drawings' private claude.ai copy (it shows revision B); shorten this file | The owner | [TODO.md](TODO.md) P0; §12 |
@@ -281,19 +286,20 @@ checked).
 | Serial capture (`scripts/serial_capture.ps1`) | **Implemented 2026-11-26 and used once** ([D-021](DECISIONS.md), Accepted 2026-11-26): records every line from the Mega to a new CSV with the PC's time in front; refuses to overwrite; Windows PowerShell 5.1, nothing to install. EXP-002 run02: 20,180 lines over 32 min, steady 95 ms interval. No automated test. Close the Arduino IDE first (it holds COM3) |
 | Drawing package ([docs/drawings/](docs/drawings/README.md)) | Implemented 2026-11-09; a preliminary, pre-sizing design, not checked against anything built. **Revision C, 2026-11-10:** one full-length sting per ball, no sleeve or separate stems (D-016); stainless short M3 screws at the balance; the shield attached to the sphere floor insert; every parts-list status as ordered; the unused draft sheet code deleted (the page rebuilt byte-identical before the content changes). `python docs/drawings/page.py` rebuilds the page (standard library only). Checked: every callout has a parts-list row and every part is drawn (`parts never drawn: []`). The owner's private published copy on claude.ai matched revision B and has not been republished as C or D (owner's call; TODO P0). **Revision D, 2026-11-17:** electrical sheets 11 (system block diagram) and 12 (interface schematic, electrical parts list, net list); sheet 9's wiring note and HX711 pins point to sheet 12; parts-list statuses Ordered → On hand. `wtlib.py` gained an electrical key and title-block fields, refactored first with byte-identical output. **Sheet 12 revision E, 2026-11-23:** the connectors in each part's pin order (straight cables), a five-pin J3, C1 on the shield, the HX711 in board order with its pad names (D-020); sheets 1–11 unchanged; the last text-only edits could not be previewed (Edge stopped writing screenshots). **Revision F, 2026-11-26: sized** from D-022 to D-031 (stations, joints, bolt patterns, seams, taps, window and black wall, sealed box, image run as view H, cradles; parts list with items 55–57; TBD register cut to measurements and test prints; findings resolved). Every changed sheet previewed and the overlaps fixed; `parts never drawn: []` |
 | Sizing sheets ([cad/sizing/](cad/sizing/README.md)) | **Implemented 2026-11-26** (documentation): one dimension sheet per part (contraction, flanges, coupons, test section, diffuser, settling chamber, balance, supports) and two standard-library scripts, `contraction.py` and `profiles.py`, which write the Fusion points files in cm (ImportSplineCSV reads cm) and mm copies. Not checked against anything built; hole sizes wait on the test coupons |
-| Owner's CAD exports (`cad/main cad files/`, 3MF from Fusion 360) | **In progress (2026-11-26):** the honeycomb, settling chamber C1 (whole), the whole diffuser and the fan inlet ring, drawn by the owner (D-017). Each checked by the agent by cutting sections through the mesh (sizes, wall, flanges, every hole's size, position and depth, chamfers, the diffuser curve against the S-curve). After two rounds of fixes all match the sheets, except the owner's kept changes: diffuser 189 overall, socket 27 deep ([diffuser sheet](cad/sizing/diffuser.md#as-drawn-2026-11-26)). Not printed. The checking scripts were scratch work, not kept ([log](docs/sessions/2026-11-26-first-cad-exports-checked.md)) |
+| Owner's CAD exports (`cad/main cad files/`, 3MF from Fusion 360) | **In progress (2026-11-26/27):** the honeycomb, settling chambers C1–C3, the whole diffuser, the fan inlet ring and the contraction (two parts), drawn by the owner (D-017). Each checked by measuring the mesh: sizes, walls, flanges, every hole's size, position and depth, chamfers, curves against their equations (the contraction's inside within 0.029 mm), and mating holes lining up. All match the sheets, with the owner's kept changes (diffuser 189 overall, socket 27 deep; [diffuser sheet](cad/sizing/diffuser.md)). Still whole: C1–C3 and the contraction's inlet ring are to be cut into corner pieces; the diffuser is to be cut at its mid joint. Nothing printed |
+| CAD checker (`scripts/check_mesh.py`, `/check-cad`) | **Implemented and tested 2026-11-27** (owner's request: "why not make a skill"): `info`, `layers`, `cut`, `match` on 3MF meshes, standard library; 15 unit tests in `tests/test_check_mesh.py`; procedure in `.claude/skills/check-cad/SKILL.md`. Reproduces the 2026-11-26 checks of the first four exports, and reads holes at their drawn size (Ø4.000 where the old area method read 3.98). Fixed the same day to notice small bosses on flat walls |
 | Electronics walk-through ([docs/electronics_walkthrough.md](docs/electronics_walkthrough.md)) | Written 2026-11-17 for a beginner: the ideas needed, how the wiring and pins were decided, reading the schematic, power, the breadboard bring-up steps (Planned), breadboard to PCB, self-check questions, resources. Documentation only. Corrected 2026-11-18 from the delivered parts (HX711 pad names, SDP810 pin view, BME280 cable and first checks); steps 1–3 done on the bench 2026-11-23; §7 and §10 updated 2026-11-23 for the shield PCB (pin order, connector type, KiCad) |
 | Shield PCB (`PCB/arduino_shield/`, KiCad 10) | **Implemented, unverified (2026-11-23); ordered 2026-11-26:** drawn by the owner from KiCad's Arduino Mega shield template ([D-020](DECISIONS.md)). Final ERC: 69 warnings, all the template's labels on unused pins, 0 errors. Final DRC with schematic parity: 0 unconnected items, 0 parity issues, 9 harmless warnings. Gerbers (7 layers) and drill files in `gerbers/`, checked by the agent (layers, outline 101.6 × 53.34 mm, 112 pads and 113 mask openings per side, 118 holes); ordered from JLCPCB with these files (zip checked byte for byte), not received. **2026-11-26:** title block filled in (revision 1); a KiCad local-history restore that night changed only the title block, one note's position and the plot settings (copper, nets and outline compared with `397c671`: identical). Agents check it with `kicad-cli` on a copy (commands in the [session log](docs/sessions/2026-11-23-sensor-shield-pcb.md#5-commands-and-scripts-executed)) |
 | Weighing form ([docs/forms/calibration-mass-weighing.xlsx](docs/forms/calibration-mass-weighing.xlsx)) | Implemented 2026-11-19 and used once ([EXP-001](docs/data_catalog.md#exp-001-calibration-mass-weighing)): one sheet in Times New Roman (owner's request), the balance details, three readings per piece, and mean, spread and mean − nominal by formula; Excel computed them on the owner's copy. Reset to a blank template after the filled copy was filed in `data/raw/`. Built by an agent script in the scratchpad (not kept) |
 | `scripts/sync_status.py`: Git sync check for agents | Verified by `tests/test_sync_status.py` (10 tests on throwaway local repos: behind, ahead, diverged, local-change collisions, empty remote). States seen live so far, each correct for the situation: `NO_COMMITS_YET`, `UP_TO_DATE`, `FETCH_FAILED`, `AHEAD` (the last two on 2026-10-31, in the owner's terminal) |
 | `scripts/check_docs.py`: documentation consistency check | Verified by `tests/test_check_docs.py` (10 tests) and clean runs on this repo |
-| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19, 2026-11-22, 2026-11-23, 2026-11-25, 2026-11-26); the others are covered by unit tests. |
-| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1`, `f10f315`, `397c671`, `ac895a3`, `f210b9e` and `83d6fad`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
+| `/catchup` | Verified 2026-10-29 by a fresh agent. States exercised live so far: `NO_COMMITS_YET` (2026-10-29) and `UP_TO_DATE` (2026-10-30, 2026-10-31, 2026-11-01, 2026-11-02, 2026-11-05, 2026-11-08, 2026-11-09, 2026-11-10, 2026-11-15, 2026-11-17, 2026-11-19, 2026-11-22, 2026-11-23, 2026-11-25, 2026-11-26, 2026-11-27); the others are covered by unit tests. |
+| `/wrap` | Verified 2026-10-31. Run by an agent that did not write the skill, with `check_docs.py` at 0 failures. The owner committed and pushed with the commands it gave (`cc51fff..5bc60f0`, then `b710093`, `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`, `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1`, `f10f315`, `397c671`, `ac895a3`, `f210b9e`, `83d6fad` and `163e568`; `UP_TO_DATE` afterwards). One content error in its first run was corrected by the second ([log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md)). |
 | No-push guard (`.claude/settings.json`) | Verified 2026-10-29: `git push -h` was blocked by Claude Code for both the Bash and PowerShell tools. |
 
 Dependencies: Python 3 standard library only, developed with Python 3.13 on Windows 11.
 - On 2026-11-02, `python` on the owner's PC was **3.11.0** in both Git Bash and PowerShell. The `py` launcher listed
-  3.10, 3.11, 3.12 and 3.14, but no 3.13. The 20 tests pass under 3.11.
+  3.10, 3.11, 3.12 and 3.14, but no 3.13. The tests pass under 3.11 (35 since 2026-11-27).
 - Git 2.54, Git LFS 3.7 (installed, not enabled), GitHub CLI 2.97.
 - openpyxl 3.1.5, installed for Python 3.11 by the agent on 2026-11-19 (`python -m pip install --user openpyxl`) to write
   the weighing form; not a project dependency. LibreOffice is not installed.
@@ -562,6 +568,22 @@ bring-up of every sensor (2026-11-23) and the 2026-11-26 breadboard checks are r
   - Found in the sheets: the honeycomb's corner spacers have nothing to push on (corner tabs on 12d's frame proposed,
     owner to choose), and the corner blocks are flat-ended as drawn. See
     [the session log](docs/sessions/2026-11-26-first-cad-exports-checked.md).
+  - Committed and pushed as `163e568`.
+- 2026-11-27: the CAD checker, settling chambers C2 and C3, and the contraction. Nothing was built, printed or measured.
+  - `/catchup`: `UP_TO_DATE` at `163e568`.
+  - **CAD checker (owner's request):** `scripts/check_mesh.py` with 15 tests and the `/check-cad` skill, so no checker
+    is rewritten each session. It found the fan socket drawn Ø156.2 (sheet 156.1; harmless until the collar is
+    measured).
+  - **C2** passed first time. **C3:** three rounds, then one body with four S taps and the mist port.
+  - **Mist port:** the owner chose one port on the camera-side piece; the agent proposed the port and its parts (a
+    straight brass tube with a side hole, since an L-tip cannot pass the hole); the owner's sketch filed in
+    `docs/sketches/`.
+  - **Contraction:** drawn as the exact degree-5 spline (inside within 0.029 mm), wall from two crossed funnels, split
+    at 82. The agent found that the J220 screws could not be put in behind the sloping wall (a sizing error); the owner
+    chose to glue that joint ([D-032](DECISIONS.md)).
+  - Explained on request: the J100 brass pins against the filament pins, the foam tape on one face only, why the
+    C3-to-contraction joint has no screen, the contraction's split at 82, and why the spline is the equation. Two
+    private explainer pages on claude.ai. See [the session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md).
 
 ## 7. Data and analyses
 
@@ -616,8 +638,9 @@ Estimates are spread across these files; all are **calculations from assumed val
 
 ## 9. Bugs, equipment issues, blockers
 
-- **Not blocked: the sizing is done and the CAD is in progress (2026-11-26).**
-  - The owner is drawing the parts first. Four are exported and checked (honeycomb, C1, diffuser, fan ring).
+- **Not blocked: the sizing is done and the CAD is in progress (2026-11-27).**
+  - The owner is drawing the parts first. Exported and checked: honeycomb, C1–C3, diffuser, fan ring, contraction (two
+    parts). Next: the corner-piece cuts, the diffuser's mid cut, then the test section.
   - Printing waits on test coupons C1–C5, and C1 needs the T18 heat-set insert tip (to buy).
   - The fan is chosen (S6, D-025) and bought last. The owner said "im buying the s6" on 2026-11-26, so check whether
     that timing has changed.
@@ -996,23 +1019,21 @@ design are summarized in the notes under `resources/notes/`. Worth noting:
 See [TODO.md](TODO.md) for the full list. In order:
 
 1. **Owner:**
-   - commit and push this session
-     ([commands](docs/sessions/2026-11-26-first-cad-exports-checked.md#13-manual-git-commands-as-given-to-the-owner)):
-     the four CAD exports and the doc updates;
+   - commit and push this session ([commands](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md#13-manual-git-commands-as-given-to-the-owner));
    - buy the tools: the T18 heat-set insert tip with an M3 size, the AstroAI multimeter, flush cutters, a heat gun;
-   - **CAD (D-017), in progress** (exported so far: honeycomb, C1, diffuser, fan ring, all checked):
-     - next, settling chambers C2 and C3 (same flanges as C1, chamfer under the insert flange, no corner blocks);
-     - then cut the diffuser at the middle of its curve (87.5 from the curve's start, 95.5 from the round flange's
-       face), flanges around the wall there, no straight length added;
+   - **CAD (D-017), in progress** (exported and checked: honeycomb, C1–C3, diffuser, fan ring, contraction in two
+     parts):
+     - next, the corner-piece cuts: C2 first (simplest), then C1, C3 (its mist-port piece is its own model) and the
+       contraction's inlet ring, with filament-pin holes in the seam faces ([flange sheet](cad/sizing/flanges.md));
+     - the diffuser cut at the middle of its curve (87.5 from the curve's start), flanges around the wall there;
      - choose what the honeycomb's spacers push on (corner tabs on 12d's frame proposed) before drawing them;
-     - export each part to `cad/main cad files/` as 3MF for the agent to check;
-     - then the corner-piece cuts, the honeycomb and spacers, the screen frames, the contraction, the test section,
-       the balance and the supports ([cad/sizing/README.md](cad/sizing/README.md));
-     - print and report test coupons C1–C5 before any big part ([cad/sizing/coupons.md](cad/sizing/coupons.md));
+     - then the screen frames and spacers, the test section (its front flange's pins to match the contraction's
+       exit), the balance and the supports ([cad/sizing/README.md](cad/sizing/README.md));
+     - export each part as 3MF to `cad/main cad files/` and say so: the agent runs `/check-cad`;
+     - print and report test coupons C1–C5 before any big part, with C4 standing on its edge
+       ([cad/sizing/coupons.md](cad/sizing/coupons.md));
      - re-check the fan ring's socket against the S6's measured collar;
-   - **answer before drawing C3:** the mist port, which lands on a glued seam
-     ([options](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26)); and whether the S6 is
-     being bought now ("im buying the s6") or last, as D-025 says;
+   - **answer:** whether the S6 is being bought now ("im buying the s6") or last, as D-025 says;
    - **when the shield boards arrive** (about 6–8 December): keep them sealed until soldering (OSP), then solder and test
      (TODO P2);
    - **close the bring-up** (TODO P0): the HX711's excitation voltage, the Adafruit BME280 Library version, which wire
@@ -1021,7 +1042,7 @@ See [TODO.md](TODO.md) for the full list. In order:
    - smaller open items: whether to republish the drawings' private claude.ai copy (still revision B; the repo copy is
      revision F); whether to shorten this file; the filament amounts and "check house" items; the bench supply's
      rating; the document and paper-note checklists; the five procedure proposals left from 2026-11-22 (#3, #4, #5,
-     #9, #10).
+     #9, #10); the spare-neoprene proposal.
 2. **Agent, when coupon results come in:** put the measured hole sizes into the sheets; check exported STLs on
    request (bed fit, key dimensions, matching bolt holes); estimate the filament for the whole tunnel.
 3. **Agent, with the owner at the bench: the combined logging sketch** (walk-through step 4, TODO P0), recorded with
@@ -1035,6 +1056,6 @@ See [TODO.md](TODO.md) for the full list. In order:
 - Local path: `C:\Users\nuhbm\OneDrive\Desktop\nuhs projects\2 - Wind Tunnel`
 - Remote: `origin` → https://github.com/nuhshaheer/wind-tunnel (**public since 2026-11-26**, D-031; holds `cc51fff`, `5bc60f0`, `b710093`,
   `7db221f`, `9b42a07`, `748dae9`, `8fda08f`, `c04de1b`, `b22a45b`, `36f39eb`, `d7f5cdf`, `0351407`, `b08a151`,
-  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1`, `f10f315`, `397c671`, `ac895a3`, `f210b9e` and `83d6fad`). The account was `nuhshaheer-2007` until
-  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-22, 2026-11-23, 2026-11-25 and 2026-11-26).
+  `0558370`, `507f71c`, `c768e2c`, `f4fa904`, `f5616a3`, `2ac0809`, `5cb8b7a`, `ce69a57`, `8904785`, `ff2ac6e`, `fd20afe`, `604ee42`, `1ffd4a1`, `f10f315`, `397c671`, `ac895a3`, `f210b9e`, `83d6fad` and `163e568`). The account was `nuhshaheer-2007` until
+  2026-11-02, and the old URL redirects. The local `origin` points at the new URL (checked 2026-11-02, 2026-11-15, 2026-11-17, 2026-11-18, 2026-11-19, 2026-11-22, 2026-11-23, 2026-11-25, 2026-11-26 and 2026-11-27).
 - Branch: `main`

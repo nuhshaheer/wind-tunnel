@@ -53,6 +53,7 @@ sheets' starting values. The coupon named beside each one replaces it.
 | `collar_d` | 152.4 | the S6 collar's **outside** diameter. Placeholder: the nominal 6 in (owner, 2026-11-26). Measure the real one (paper strip ÷ π, or calipers in two directions) | measurement on arrival, then coupon C7 |
 | `neo_t` | 1.6 | the neoprene wrap, one layer of 1/16 in | on hand (buy list §1) |
 | `ring_clear` | 0.5 | print clearance on the socket's diameter | coupon C7 |
+| `side_bolt` | 45 | J250 side bolts, distance from the seam (from the middle of the side) | Proposed |
 
 **Fan inlet ring socket** (item 10, owner's design, 2026-11-08):
 - Inside Ø = `collar_d + 2*neo_t + ring_clear`, 28 deep: 156.1 with the 6 in placeholder, outside Ø 162.1.
@@ -60,7 +61,9 @@ sheets' starting values. The coupon named beside each one replaces it.
 - Outside Ø = inside Ø + `2*wall`: the wall is added outside the hole, never taken from it.
 - The owner's first figure, 6.25 in (158.75), is not used. On a 150 collar it would leave about 4.4 per side against
   1.6 of neoprene, so the fan would sit loose.
-| `side_bolt` | 45 | J250 side bolts, distance from the seam (from the middle of the side) | Proposed |
+- **As exported (2026-11-27, `scripts/check_mesh.py`):** the socket is drawn Ø156.2, 0.1 wider than the 156.1 above;
+  the outside is Ø162.1 as sized. The 2026-11-26 check read "156.12" because it sized circles by their area, which
+  reads about 0.05 % small. Harmless for now: the socket is redrawn from the S6's measured collar.
 
 Derived positions for a 250 mm section, measured from its centre line: inside face 125, wall outside 128, bolt line 134,
 flange edge 140. In Fusion: `sc_in/2`, `sc_in/2 + wall`, `sc_in/2 + wall + bolt_off`, `sc_in/2 + wall + flange_w`.
@@ -83,3 +86,18 @@ dimensioned with the parameters above.
 For a future curve with no exact form, there are two routes: import points (ImportSplineCSV, as now), or a third-party
 add-in such as CodeReclaimers' free "Equation Driven Curve" (not tried). It also makes a spline through computed
 points, so it is no more exact than an import.
+
+## Checking the exports (2026-11-27)
+
+Every export in `cad/main cad files/` is checked against its sheet by measuring the mesh, never from screenshots
+(procedure: `/check-cad`, [.claude/skills/check-cad/SKILL.md](../../.claude/skills/check-cad/SKILL.md)):
+
+```bash
+python scripts/check_mesh.py info   "cad/main cad files/Settling Chamber 2.3mf"   # bodies, closed, size, bed fit
+python scripts/check_mesh.py layers "cad/main cad files/Settling Chamber 2.3mf"   # flanges, holes, chamfers, curves
+python scripts/check_mesh.py match  "cad/main cad files/Settling Chamber 1.3mf" -114 "cad/main cad files/Settling Chamber 2.3mf" 5
+```
+
+It reproduces the 2026-11-26 checks of the first four exports (the honeycomb's 1,777 cells at 6.000 across the flats,
+6.400 apart; C1's flanges, holes and straight chamfer; the diffuser curve at x = 43.75, 87.5 and 131.25, to 0.001), and
+reads holes at their drawn size (Ø4.000 and Ø3.400) where the old area method read 3.98 and 3.38.

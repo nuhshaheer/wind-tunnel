@@ -493,6 +493,17 @@ chapter 6 (Cooper1998) has been reviewed, and further candidates are under "Want
 
 Add lasting lessons here (with a link to the session log where they were learned).
 
+- **Check that every screw can actually be put in** (2026-11-27,
+  [session log](docs/sessions/2026-11-27-cad-checker-c2-c3-contraction.md#8-errors-failed-approaches-and-troubleshooting)).
+  - The flange sheet put the contraction's J220 bolts 6 mm outside the wall, as on the straight sections. Behind that
+    flange the wall leans outward, so it covered the screws' line 9 mm back, where an M3 × 12 needs about 18 mm of
+    straight room. The drawing package showed every joint with the same small symbol, so neither the sheet nor the
+    drawings showed it; measuring the owner's export did. The joint is now glued (D-032).
+  - For every screw flange beside a sloping wall, check the straight room behind the screw heads before drawing.
+- **Check CAD from the exported mesh, with a kept tool** (2026-11-26 and 2026-11-27): screenshots missed a split body,
+  fillets for chamfers and a tapered socket; `scripts/check_mesh.py` (`/check-cad`) measures every export the same way
+  each session.
+
 - **"Could not resolve host: github.com" can be a missing IPv4 address, not a DNS or sandbox problem** (2026-10-31,
   [session log](docs/sessions/2026-10-31-literature-review-and-design-inputs.md#8-errors-failed-approaches-and-troubleshooting)).
   - What happened: the PC's Wi-Fi had only a self-assigned IPv4 address (169.254.x.x), so only sites with IPv6

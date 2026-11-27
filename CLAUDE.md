@@ -41,7 +41,11 @@ into these files is lost.
   log, run the checks, and give the owner exact commit-and-push commands. `/wrap commit` additionally authorizes one local
   commit. Procedure: `.claude/skills/wrap/SKILL.md`.
 
-Both are plain Markdown procedures, so an agent without slash-command support can read the file and follow it.
+- **`/check-cad`** (whenever the owner exports a part): measure the 3MF in `cad/main cad files/` with
+  `scripts/check_mesh.py` and check it against its dimension sheet in `cad/sizing/`. Procedure:
+  `.claude/skills/check-cad/SKILL.md`.
+
+All three are plain Markdown procedures, so an agent without slash-command support can read the file and follow it.
 
 ## Helper scripts and tests (Python 3 standard library only)
 
@@ -49,7 +53,8 @@ Both are plain Markdown procedures, so an agent without slash-command support ca
 python scripts/sync_status.py --fetch          # where local stands vs GitHub (read-only apart from fetch)
 python scripts/sync_status.py --fetch --pull   # also fast-forward when strictly behind and safe
 python scripts/check_docs.py                   # documentation consistency, size and secret checks
-python -m unittest discover -s tests -v        # tests for the two scripts
+python scripts/check_mesh.py layers FILE.3mf   # measure a CAD export (also info, cut, match; used by /check-cad)
+python -m unittest discover -s tests -v        # tests for the three scripts
 ```
 
 One exception to "standard library only": `scripts/serial_capture.ps1` (Windows PowerShell 5.1, built in) records the
