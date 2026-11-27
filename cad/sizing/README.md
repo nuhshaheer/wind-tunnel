@@ -48,7 +48,7 @@ sheets' starting values. The coupon named beside each one replaces it.
 | `sc_in` | 250 | settling chamber inside, square | D-022 (Accepted) |
 | `ts_in` | 100 | test section inside at the contraction exit | D-008 (Accepted) |
 | `con_len` | 250 | contraction length | D-022 (Accepted) |
-| `dif_len` | 175 | diffuser length | D-026 (Accepted) |
+| `dif_len` | 175 | diffuser length: the curve. The drawn part is 189 with its two end flanges added (owner, 2026-11-26) | D-026 (Accepted) |
 | `fan_in_d` | 152 | diffuser inlet, inside diameter: match the S6 collar's **inside** diameter, so the air sees no step | Proposed; measure the S6's collar on arrival |
 | `collar_d` | 152.4 | the S6 collar's **outside** diameter. Placeholder: the nominal 6 in (owner, 2026-11-26). Measure the real one (paper strip ÷ π, or calipers in two directions) | measurement on arrival, then coupon C7 |
 | `neo_t` | 1.6 | the neoprene wrap, one layer of 1/16 in | on hand (buy list §1) |
@@ -56,6 +56,7 @@ sheets' starting values. The coupon named beside each one replaces it.
 
 **Fan inlet ring socket** (item 10, owner's design, 2026-11-08):
 - Inside Ø = `collar_d + 2*neo_t + ring_clear`, 28 deep: 156.1 with the 6 in placeholder, outside Ø 162.1.
+  **Drawn 27 deep** with a 1 mm floor (owner, 2026-11-26; [diffuser sheet](diffuser.md#as-drawn-2026-11-26)).
 - Outside Ø = inside Ø + `2*wall`: the wall is added outside the hole, never taken from it.
 - The owner's first figure, 6.25 in (158.75), is not used. On a 150 collar it would leave about 4.4 per side against
   1.6 of neoprene, so the fan would sit loose.

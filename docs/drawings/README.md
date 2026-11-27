@@ -36,6 +36,15 @@ Earlier: revision D 2026-11-17 with sheet 12 at revision E 2026-11-23; revision 
   box. Parts-list entries updated and the TBD register reduced to measurements and test prints; the findings marked
   resolved. Title blocks read "REVISION F · SIZED 2026-11-26 · CAD FROM cad/sizing". Checked: `page.py` prints
   `parts never drawn: []`; every changed sheet previewed and the overlaps found were fixed.
+- **Known differences from the owner's CAD (2026-11-26, not redrawn):** the owner's exported parts in
+  `cad/main cad files/` are the reference where they differ from these sheets.
+  - The diffuser is drawn 189 overall in the CAD: the 175 curve with its round insert flange (8) and square screw
+    flange (6) added on the ends. These sheets put the flanges inside the 175. Kept by the owner (note on
+    [D-026](../../DECISIONS.md)); the tunnel is about 1.40 m long, not 1.34 (note on D-027).
+  - The fan inlet ring's socket is 27 deep in the CAD (`sock_depth=28` here), kept by the owner.
+  - The TBD register's collar row still reads "collar 150, socket ≈153.7". The sheets now use the nominal 6 in collar
+    (152.4) as the placeholder, which gives a socket of Ø156.1 ([sizing README](../../cad/sizing/README.md)).
+  Redraw these in the next revision, once more parts are drawn.
 - Sessions: [2026-11-09 drawing package](../sessions/2026-11-09-drawing-package.md) (revision B);
   [2026-11-10 consistency audit](../sessions/2026-11-10-consistency-audit.md) (revision C);
   [2026-11-17 sensor circuit design](../sessions/2026-11-17-sensor-circuit-design.md) (revision D);

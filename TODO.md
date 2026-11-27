@@ -17,17 +17,25 @@ Owner tasks are physical or account actions that an agent cannot do.
     the S6's collar (coupon C7).
   - **In progress (started 2026-11-26,
     [log](docs/sessions/2026-11-26-pdfs-decisions-register-and-cad-start.md)).** The owner is drawing the parts
-    first and will print the coupons before any big part. Drawn in Fusion, not exported:
-    - the diffuser, whole: a curved loft with a 3 mm shell, the round insert flange and the J250 screw flange;
-    - the fan inlet ring, on the 6 in collar placeholder;
-    - screen 12a's frame;
-    - settling chamber C1 with its corner wedges.
+    first and will print the coupons before any big part. **Exported as 3MF to `cad/main cad files/` and checked by the
+    agent (2026-11-26, [log](docs/sessions/2026-11-26-first-cad-exports-checked.md)):**
+    - the honeycomb (249.4 outside, 247 inside the rim, 50 tall, 6 mm cells, 0.4 walls);
+    - settling chamber C1, whole (one body, chamfer under the insert flange, corner blocks at x = 17–25);
+    - the diffuser, whole: 189 overall, the 175 curve plus its end flanges (owner kept it);
+    - the fan inlet ring: a straight Ø156.1 socket 27 deep (owner kept it), on the 6 in collar placeholder.
 
-    Next:
-    - chambers C2 and C3;
-    - the diffuser cut at x = 87.5 with its mid flanges, then D2 into four corner pieces;
+    Drawn, not exported: screen 12a's frame. Next:
+    - chambers C2 and C3 (flanges as on C1, chamfer under the insert flange, no corner blocks);
+    - the diffuser cut at the middle of its curve: 87.5 from the curve's start, 95.5 from the round flange's face.
+      Flanges go around the wall there with no straight length added; D2's insert flange gets the chamfer, D1's screw
+      flange doesn't. Then D2 into four corner pieces;
     - the chambers into corner pieces with pin holes;
-    - the honeycomb, the 50 mm corner spacers, and screen frames 12b–12e.
+    - the 50 mm corner spacers and screen frames 12b–12e, after the spacer choice below.
+  - **Owner, before drawing the spacers and 12d's frame:** choose what the spacers push on. Proposed: four small corner
+    tabs on the upstream layer of 12d's frame, spacers 50 long
+    ([settling_chamber.md](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26)).
+  - **Owner, each part:** export it as 3MF to `cad/main cad files/` for the agent to check. Check chamfers are Chamfer,
+    not Fillet, and that each part is one body.
   - **Owner, before drawing C3:** choose the mist port's place
     ([options](cad/sizing/settling_chamber.md#found-while-preparing-the-cad-2026-11-26); it lands on a glued seam).
   - **Owner, also:**
@@ -286,6 +294,15 @@ Owner tasks are physical or account actions that an agent cannot do.
   revision E (new 2026-11-23). Sheet 12 now shows the delivered HX711 pad names and the shield's pin orders, but Edge's
   headless screenshots stopped working during the 2026-11-23 wrap, so no new snapshot was made. Verify: `python
   docs/drawings/preview.py 12` writes a PNG that shows "J1 … SCL" at pin 1, and the walk-through links it.
+- [ ] **Agent: bring the drawing package to the owner's CAD (revision G)** (new 2026-11-26). Revision F puts the
+  diffuser's flanges inside its 175 mm (the CAD has them outside: 189 overall), the socket 28 deep (CAD 27), and the TBD
+  register's collar row at 150/153.7 (now 152.4/156.1). Do it once more parts are drawn
+  ([drawings README](docs/drawings/README.md)). Verify: `python docs/drawings/page.py` rebuilds with
+  `parts never drawn: []`, the changed sheets previewed, and the README's "Known differences" list cleared.
+- [ ] **Optional, agent: keep the 3MF export checker in the repo** (new 2026-11-26). This session's section-cutting
+  scripts (a standard-library 3MF reader, a plane-section and ray tool) were scratch work. A kept script in `cad/`
+  would make each export check rerunnable. Outcome: a script with its command in `cad/sizing/README.md`. Verify: it
+  reproduces this session's numbers on the four exports.
 - [ ] **Data-logging firmware** (replaces the 2026-11-01 "firmware with an on-tunnel display and knob menu", dropped by
   [D-012](DECISIONS.md) on 2026-11-08: all output goes to the laptop).
   - **First, bring-up sketches** (agent, proposed 2026-11-17): an I²C scanner, then one commented sketch per sensor,
@@ -671,3 +688,10 @@ Owner tasks are physical or account actions that an agent cannot do.
   the equations (2.2 × 10⁻¹³ mm and below). Sheets: [cad/sizing/README.md](cad/sizing/README.md),
   [contraction.md](cad/sizing/contraction.md) and [diffuser.md](cad/sizing/diffuser.md)
   ([session log](docs/sessions/2026-11-26-pdfs-decisions-register-and-cad-start.md)).
+- [x] 2026-11-26: Owner committed and pushed the PDFs-and-register session as `83d6fad`; `/catchup` confirmed
+  `UP_TO_DATE` ([session log](docs/sessions/2026-11-26-first-cad-exports-checked.md)).
+- [x] 2026-11-26: **First four CAD exports checked** (honeycomb, settling chamber C1, the whole diffuser, the fan inlet
+  ring; 3MF in `cad/main cad files/`). Verified by cutting sections through each mesh against the sheets. Found and
+  fixed by the owner in two rounds: C1 in six bodies, the missing chamfers (then fillets instead of chamfers) and a
+  tapered socket. Owner's decisions: the diffuser 189 overall and the socket 27 deep (notes on D-026 and D-027); the
+  tunnel is about 1.40 m long ([session log](docs/sessions/2026-11-26-first-cad-exports-checked.md)).

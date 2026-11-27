@@ -54,7 +54,7 @@ fade out through the settling chamber, and the third screen already gives about 
 
 | Part | x | Print | Joints |
 |---|---|---|---|
-| **Fan inlet ring** (item 10) | −40 to 0 | One piece | Upstream: a socket for the fan collar, inside Ø = collar Ø + 2 × 1.6 (neoprene) + about 0.5, 28 deep. Size it from the measured collar; print a 10 mm test ring first (coupon C7). Downstream: a round screw flange, 6 thick |
+| **Fan inlet ring** (item 10) | −40 to 0 | One piece | Upstream: a socket for the fan collar, inside Ø = collar Ø + 2 × 1.6 (neoprene) + about 0.5, **27 deep as drawn** (owner, 2026-11-26; 28 proposed, see "As drawn" below). Size it from the measured collar; print a 10 mm test ring first (coupon C7). Downstream: a round screw flange, 6 thick |
 | **Screen 12a** | 0 | Round frame | Clamped between the ring and the diffuser's front half |
 | **Diffuser, front half** (D1) | 0 to 87.5 | **One piece, standing on its mid-section screw flange** (231 across the flats), so the screw-head face is flat on the bed like every other part. The round insert flange is on top, with the 45° chamfer under it. The walls narrow going up, at most 40.8° from vertical (along the diagonal), so the inside needs no supports. (Corrected 2026-11-26. The first version stood D1 on its inlet end, which put the screw-head face underneath, where it would need supports or a chamfer under the heads) | Upstream: round insert flange (Ø152 inside, Ø182 outside, 6 bolts on a Ø170 circle). Downstream: screw flange around the mid-section, 12 beyond the wall |
 | **Screen 12b** | 87.5 | Frame of the mid-section's shape | Clamped in the mid joint |
@@ -78,6 +78,23 @@ see the screen frame below.
 | Frame | Two printed layers, each **2 thick**, the joint's own outline (inside = the duct's inside, outside = the flange's outside, bolt holes Ø3.4 on the bolt line). Stretch the screen over one layer, glue it with super glue along the band, press the second layer on and trim the screen at the outer edge and the bolt holes. 250 frames are made of four corner pieces glued flat (D-023) | Proposed |
 | Seal at a frame joint | Foam tape on the screw-flange side only; the frame's other face meets the insert flange directly | Proposed |
 | Lands | Each frame meets flat, parallel walls on both sides: the walls at every joint run parallel to the axis for at least 5 before they start to grow (2026-11-22 proposal #7, Bradshaw1964). **Corrected 2026-11-26: this holds at 12a and 12c,** where the S-curve starts and ends parallel to the axis: within 5 of either end the wall rises less than 0.1. **At 12b (x = 87.5) the walls are at their steepest** (22.8° across the flats, 40.8° along the diagonal), so a land there would mean changing the curve. Its frame meets the walls at that angle | Proposed |
+
+## As drawn (2026-11-26)
+
+The owner drew the ring and the whole diffuser in Fusion and exported them to `cad/main cad files/` as 3MF. The agent
+checked the exports by cutting sections through the meshes (millimetres, closed solids):
+
+| Part | As drawn | Status |
+|---|---|---|
+| Fan inlet ring | 40 long. Socket Ø156.1 inside, Ø162.1 outside, a straight bore **27 deep**, ending in a flat step to Ø152 (the outside is 28 long, so the socket has a 1 mm floor). Then a Ø152/Ø158 section to 34, then the Ø182 screw flange, 6 thick, with 6 × Ø3.4 on Ø170, matching the diffuser's holes | 27 deep: owner, 2026-11-26 ("keep 27"). The 1 mm floor is what joins the socket's wall to the narrower Ø158 section; with the step at 28 the joint would be under 1 mm wide |
+| Diffuser, whole | **189 long overall:** the round insert flange (8, x −8 to 0), the 175 curve (x 0 to 175), then the J250 screw flange (6, x 175 to 181). The curve is within 0.07 of the S-curve at every station checked, most within 0.04 (the Direction 0° loft; at x = 43.75 the flats are at 83.62 against 83.66 and the diagonal at 91.75 exactly). All 18 holes on their patterns, the round ones 6 deep | 189: owner, 2026-11-26 ("keep the diffuser at 189"), note on [D-026](../../DECISIONS.md) |
+| Chamfer under the round flange | Straight, from the flange's Ø182 edge to the wall about 12 down, about 43° from the print direction | Drawn |
+| Wall | 3 measured across the axis. The outside was lofted, not shelled, so measured square to the wall it is about 2.8 where the wall is steepest. Fine as is | Drawn |
+
+Still to draw: the cut at the middle of the curve, **x = 87.5 from where the curve starts (95.5 from the round flange's
+face)**. There the flanges go around the wall, with no straight length added, because the wall is at its steepest. D1
+gets the 6 mm screw flange (no chamfer: it stands on it), D2 the 8 mm insert flange (with the 45° chamfer under it). Then
+D2 is cut into four corner pieces.
 
 ## Still open
 

@@ -753,6 +753,12 @@ Template:
   WT-02.
 - Status: Accepted (owner, 2026-11-26). Wall shape, corner fillets and the screen frames are in the diffuser sheet
   (`cad/sizing/diffuser.md`, Proposed).
+  - Note (2026-11-26, CAD session): **the diffuser as drawn is 189 mm long overall, and the owner kept it** ("keep the
+    diffuser at 189"). The curve is the full 175 mm; the 8 mm round insert flange and the 6 mm square screw flange were
+    added on its two ends instead of inside the 175. The curve's angles are unchanged, and the short straight ends give
+    screens 12a and 12c flat walls to meet (2026-11-22 proposal #7). Screen 12b's joint stays at the middle of the
+    curve: 87.5 mm from where the curve starts, 95.5 mm from the round flange's face. The tunnel is 14 mm longer
+    ([diffuser sheet](cad/sizing/diffuser.md#as-drawn-2026-11-26)).
 
 ## D-027: Settling chamber: compact spacing, about 275 mm
 
@@ -774,6 +780,12 @@ Template:
   - Note (2026-11-26, later session): the sheets give the overall length as **about 1.34 m** from the fan's inlet face to
     the open exit ([settling-chamber sheet](cad/sizing/settling_chamber.md), with a collar overlap of 28 mm). That is
     the figure to use. The "about 1.36 m" above is from the same session, and its reference points were not recorded.
+  - Note (2026-11-26, CAD session): **about 1.40 m is now the figure to use.** The 1.34 m was the parts end to end:
+    S6 320 − collar overlap 28 + inlet ring 40 + diffuser 175 + chamber 275 + contraction 250 + test section 310 =
+    1,342 mm. With the diffuser drawn 189 long (note on D-026) and the fan socket drawn 27 deep (owner), the parts add
+    to 1,357 mm. The screen frames and foam tape in the nine joints, which that sum left out, add about 38 mm more
+    (5 frames × 4 + 9 tapes × about 2 squeezed; estimate). So about 1,395 mm, if the parts still to draw keep their
+    sized lengths.
 
 ## D-028: Seal the load-cell box, with a gasketed access door for model changes
 

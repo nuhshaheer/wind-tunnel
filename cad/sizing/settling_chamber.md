@@ -31,8 +31,8 @@ Walls 3, PLA. Insert flange at each section's upstream end, screw flange at its 
 
 | Item | Value | Status |
 |---|---|---|
-| Honeycomb | Printed flat, cells vertical: 6 mm hexagons (across the flats), 0.4 walls, 50 long (cell length about 8 diameters; Mehta1979 asks 7–10), **249.4 square** outside (0.3 clearance each side) with a 1.2 rim | Proposed |
-| Holding it | Four small corner stops printed into C1's corner pieces at x = 25 (triangles 8 on a side, in the corners only) take its upstream face. **Shape (agent, 2026-11-26):** a small corner pyramid. Its flat triangular face (two 8 legs along the walls) sits at x = 25, facing downstream, for the honeycomb to rest on. It tapers back to the corner over 8 toward the fan (to x = 17), so the air meets a ramp, not a ledge, and the layers shrink as C1 prints standing on its screw flange. The flat face prints as an 11 bridge between the two walls. The owner drew it this way in Fusion (2026-11-26). Four printed corner spacers, 50 long, run from its downstream face (x = 75) to the screen 12d frame at x = 125, which presses them when C2 is bolted on. It slides out once C2 is off, so drinking straws can replace it later | Proposed |
+| Honeycomb | Printed flat, cells vertical: 6 mm hexagons (across the flats), 0.4 walls, 50 long (cell length about 8 diameters; Mehta1979 asks 7–10), **249.4 square** outside (0.3 clearance each side) with a 1.2 rim | Proposed. **Drawn by the owner as sized (2026-11-26):** 249.4 outside, 247 inside the rim, 50 tall, 1,777 cells (1,613 whole), 6.000 across the flats, walls 0.400 (checked from the export). About 530 g of PLA if printed solid (mesh volume 426 cm³) |
+| Holding it | Four small corner stops printed into C1's corner pieces at x = 25 (triangles 8 on a side, in the corners only) take its upstream face. **Shape as drawn (owner, 2026-11-26; checked from the export):** a triangular block in each corner, two 8 legs along the walls, from x = 17 to x = 25, flat at both ends. (The agent had proposed tapering it to the corner toward the fan; the owner left it flat-ended, since the air there is about 2 m/s and the honeycomb straightens it.) Its downstream face at x = 25 is the stop for the honeycomb and prints as an 11 bridge between the two walls. Four printed corner spacers, 50 long, run from the honeycomb's downstream face (x = 75) to x = 125. **Found 2026-11-26: screen 12d's frame does not reach them** (its inside is 250, like the duct), so they need something to push on; see "Found while preparing the CAD". It slides out once C2 is off, so drinking straws can replace it later | Proposed |
 | Why corners only | The air here moves at about 2 m/s; small corner blocks barely matter, while anything across the flow would | |
 
 ## S taps (item 23)
@@ -57,6 +57,18 @@ is needed. Recalibrate S − E with the grid in (Proposed).
      (agent's recommendation).
   2. One piece only carries a port, 20 beside the seam. That piece becomes a separate model.
   3. Leave the port out of the chamber for now and add it later in a spare joint frame.
+- **The honeycomb's spacers have nothing to push on** (agent, 2026-11-26). The air pushes the honeycomb downstream onto
+  the four 50 mm corner spacers. They end at x = 125, C1's end face. Beyond it come the squeezed foam tape (about 2)
+  and screen 12d's frame, whose inside is 250, the same as the duct, so the frame has no material in the corners. The
+  spacers would press on the screen mesh about 4 further on, or on nothing. **Proposed fix (owner to choose):** four
+  small corner tabs on the upstream layer of 12d's frame only (triangles, two 8 legs, like the stops at x = 25). The
+  spacers stay 50 long, flush with C1's end, which leaves about 2 of play: harmless, since the air always pushes the
+  honeycomb onto them. Making them longer instead would stop the joint closing on its foam tape, and it would leak.
+  12d's frame then becomes its own model; 12b, 12c and 12e stay plain.
+- **C1 as drawn** (owner, exported 2026-11-26, checked by the agent): one body, 125 long, 250 inside, 3 wall, the 8 insert
+  flange with 12 × Ø4.0 × 6 deep holes and the 45° chamfer under it (12 × 12), the 6 screw flange with 12 × Ø3.4
+  through, the four corner blocks at x = 17–25. Its insert holes line up with the diffuser's exit flange. Still to
+  do: cut it into four corner pieces with the pin holes.
 - **The S-tap boss clears the chamfer by about 1 mm.** In section C3 the insert flange (8) and its chamfer (12) take the
   first 20 along the wall from the x = 175 joint face. A Ø8 boss centred at x = 200 (25 into the section) starts at 21.
   Check it in the CAD, or let the boss merge into the chamfer.
@@ -65,6 +77,9 @@ is needed. Recalibrate S − E with the grid in (Proposed).
 
 Chamber 275. With the S6, the inlet ring, the 175 mm diffuser, the 250 mm contraction and the 310 mm test section, the
 tunnel is about **1.34 m** from the fan's inlet face to the open exit (estimate; collar overlap 28).
+**Updated 2026-11-26 (CAD session): about 1.40 m.** The diffuser is drawn 189 long and the socket 27 deep (owner), so
+the parts add to 1,357 mm. The 1.34 m also left out the five screen frames (4 each) and the foam tape in the nine
+joints (about 2 each, squeezed): about 38 mm more (estimate). Note on [D-027](../../DECISIONS.md).
 
 Sources: D-022, D-023, D-026, D-027 in [DECISIONS.md](../../DECISIONS.md); [Mehta1979](../../resources/notes/Mehta1979.md),
 [Mehta1977](../../resources/notes/Mehta1977.md), [Morel1975](../../resources/notes/Morel1975.md) and
